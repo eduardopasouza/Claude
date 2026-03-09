@@ -1,121 +1,117 @@
-# Coordenação do Projeto — Enciclopédia Narrativa do Maranhão
+# Coordenação — Maranhão Inteiro
 
-> Leia este arquivo ao iniciar qualquer sessão de trabalho no livro.
-
----
-
-## O que é este livro
-
-Uma enciclopédia narrativa do Maranhão. Conta o estado como civilização — suas raízes, seu povo, seus choques, sua geografia, sua história, sua cultura, sua economia, sua política — e propõe um futuro.
-
-**Inspirações de conteúdo** (não de formato):
-- *Raízes do Brasil* (Sérgio Buarque) → buscar na formação histórica as explicações para o presente
-- *O Povo Brasileiro* (Darcy Ribeiro) → contar um povo como narrativa viva, as três matrizes
-- *Choque de Civilizações* (Huntington) → identidades culturais como linhas de fratura
-- *Geografia da Fome* (Josué de Castro) → geografia como denúncia e programa
-- *Formação Econômica do Brasil* (Celso Furtado) → economia como história e possibilidade
-- *As Veias Abertas* (Galeano) → história como literatura, dados como drama
-
-**Não é**: guia turístico, livro didático, celebração ufanista, lamento, compilação acadêmica.
-**É**: obra de referência com alma literária que termina em proposição.
+> Leia este arquivo ao iniciar qualquer sessão de trabalho. Leia o playbook.md para entender o processo.
 
 ---
 
-## Estrutura (a definir com o autor)
+## O Livro
 
-A estrutura abaixo é proposta. O autor precisa validar.
+**Título**: Maranhão Inteiro — Terra, povo e futuro
 
-### PARTE I — TERRA E NATUREZA
-1. Geografia, ecossistemas, posição estratégica
-2. Biodiversidade, recursos naturais, desafios ambientais
+**Tese central**: O Maranhão é um estado forjado por choques — de civilizações, de ecossistemas, de poderes — e sua maior riqueza é o que seu povo criou a partir desses choques. Mas essa riqueza foi sistematicamente capturada por poucos, exportada para fora, ou invisibilizada. O futuro do Maranhão depende de inverter essa lógica: fazer a riqueza ficar, ser de quem a cria, e ser vista.
 
-### PARTE II — RAÍZES E HISTÓRIA
-3. Povos originários e pré-colonização
-4. Colonização e França Equinocial
-5. Economia colonial e ciclo do algodão
-6. A "Atenas Brasileira" e o Maranhão Imperial
-7. Balaiada e revoltas populares
-8. República, oligarquias e transformações
-9. Ditadura militar, redemocratização e era Sarney
+**Arco narrativo**: CHÃO → FORMAÇÃO → POVO → CRIAÇÃO → REALIDADE → FUTURO
 
-### PARTE III — POVO E SOCIEDADE
-10. Demografia, matrizes étnicas, identidade
-11. Comunidades tradicionais
-12. Desigualdade, indicadores sociais, diáspora
+**Público**: Leitor culto geral + decisores técnicos (investidores, gestores, pesquisadores)
 
-### PARTE IV — CULTURA E IDENTIDADE
-13. Bumba-meu-boi e festas populares
-14. Religiosidade e encantaria
-15. Literatura, artes e pensamento
-16. Música, reggae, gastronomia e saberes
+**Tom**: Narrativo-ensaístico com rigor analítico. Acessível sem ser superficial. Afetivo sem ser ufanista.
 
-### PARTE V — TERRITÓRIO
-17. São Luís
-18. O interior
+**Inspirações de conteúdo**: Raízes do Brasil (Sérgio Buarque), O Povo Brasileiro (Darcy Ribeiro), Choque de Civilizações (Huntington), Geografia da Fome (Josué de Castro), Formação Econômica do Brasil (Celso Furtado), As Veias Abertas (Galeano)
 
-### PARTE VI — ECONOMIA E POLÍTICA
-19. Ciclos econômicos e economia contemporânea
-20. Política e governança
-21. Infraestrutura e logística
+---
 
-### PARTE VII — FUTURO
-22. Diagnóstico: ativos e lacunas
-23. Propostas
-- Epílogo: O Encante
+## Estrutura
+
+### PARTE I — O CHÃO E O TEMPO (de onde viemos)
+| Cap | Título | Status |
+|-----|--------|--------|
+| 1 | A Encruzilhada | ⬜ |
+| 2 | A Natureza Viva | ⬜ |
+| 3 | Os Primeiros | ⬜ |
+| 4 | A França, a Holanda e Portugal | ⬜ |
+| 5 | O Ouro Branco | ⬜ |
+| 6 | A Ferida | ⬜ |
+| 7 | O Levante | ⬜ |
+| 8 | A Construção do Poder | ⬜ |
+
+### PARTE II — O POVO (quem somos)
+| Cap | Título | Status |
+|-----|--------|--------|
+| 9 | Três Sangues, Um Povo | ⬜ |
+| 10 | Os Que Resistem | ⬜ |
+| 11 | Dois Maranhões | ⬜ |
+| 12 | O Abismo | ⬜ |
+| 13 | Os Que Partiram | ⬜ |
+
+### PARTE III — AS CRIAÇÕES (o que inventamos)
+| Cap | Título | Status |
+|-----|--------|--------|
+| 14 | O Corpo Festeja | ⬜ |
+| 15 | O Espírito Encanta | ⬜ |
+| 16 | A Palavra Ilumina | ⬜ |
+| 17 | O Som Conecta | ⬜ |
+| 18 | A Mesa Reúne | ⬜ |
+
+### PARTE IV — O TERRITÓRIO (onde vivemos)
+| Cap | Título | Status |
+|-----|--------|--------|
+| 19 | A Ilha — Patrimônio | ⬜ |
+| 20 | A Ilha — Metrópole | ⬜ |
+| 21 | O Interior — Norte e Litoral | ⬜ |
+| 22 | O Interior — Sul, Cerrado e Fronteiras | ⬜ |
+
+### PARTE V — A ECONOMIA (quanto temos, quem controla)
+| Cap | Título | Status |
+|-----|--------|--------|
+| 23 | A Riqueza Que Passa | ⬜ |
+| 24 | A Economia Que Pode Ficar | ⬜ |
+| 25 | O Poder e Seus Donos | ⬜ |
+
+### PARTE VI — O AMANHÃ (para onde podemos ir)
+| Cap | Título | Status |
+|-----|--------|--------|
+| 26 | O Que Temos, O Que Falta | ⬜ |
+| 27 | Caminhos | ⬜ |
+| Ep | O Encante | ⬜ |
+
+**Legenda**: ⬜ Pendente | 📋 Pesquisa | 📐 Outline | ✍️ Redação | 🔍 Revisão | ✅ Aprovado
 
 ---
 
 ## Padrão de Qualidade
 
-Aprendizado da V1.0 rejeitada na Manus AI. A crítica foi: "seções curtas, sem profundidade, sem fontes, parece resumão."
+- 8.000-12.000 palavras por capítulo / 1.500+ por seção
+- 15+ fontes citadas por capítulo, toda afirmação factual com referência
+- Citações numéricas [1] [2] com referências ao final
+- 3+ citações diretas de especialistas ou fontes primárias
+- Análise crítica: causas, consequências, tensões — não apenas descrição
+- Pontes de entrada e saída conectando ao arco do livro
+- 2+ referências cruzadas com outros capítulos
 
-**Regras:**
-- **8.000-12.000 palavras por capítulo** (mínimo 1.500 por seção)
-- **15+ fontes citadas** por capítulo, toda afirmação factual com referência
-- **Citações numéricas** [1] [2] com referências ao final
-- **Análise crítica**, não apenas descrição — causas, consequências, tensões
-- **Vozes diversas**: acadêmicos, protagonistas, moradores
-- **Conexões entre capítulos**: o compilador é você (o coordenador)
-
-**Anti-padrões proibidos:**
-- Seções-resumo de 300 palavras
-- "Segundo historiadores..." sem dizer quais
-- Texto genérico que poderia ser sobre qualquer estado
-- Lista disfarçada de prosa
-- Ufanismo ou vitimismo
+**Proibido**: seções-resumo, fontes implícitas, texto genérico, listas disfarçadas de prosa, ufanismo, vitimismo, clichês turísticos.
 
 ---
 
-## Sensibilidades Editoriais
+## Sensibilidades
 
 - "Escravizado" (não "escravo")
 - "Povos indígenas/originários" (não "índios")
 - "Comunidades quilombolas" (não "remanescentes" salvo contexto legal)
-- Religiosidade afro-brasileira tratada com respeito, sem folclorização
-- Política: equilíbrio, sem partidarismo
-- Desigualdade: dados sem revitimização
+- Religiosidade afro-brasileira com respeito, sem folclorização
+- Política com equilíbrio, sem partidarismo
+- Desigualdade com dados, sem revitimização
 
 ---
 
-## Tom
+## Processo (resumo — detalhes no playbook.md)
 
-Narrativo-ensaístico com rigor analítico. Acessível sem ser superficial. Afetivo sem ser ufanista. Cada capítulo abre com cena ou imagem vívida, desenvolve com análise e dados, fecha com reflexão.
-
----
-
-## Estado Atual
-
-| Cap | Título | Status | Notas |
-|-----|--------|--------|-------|
-| 1-5 | — | Pendente | — |
-| 6-7 | República / Ditadura | V1 rejeitada (Manus) | Material em drafts/rejected/ |
-| 8 | Cultura | V1 rejeitada (Manus) | Idem |
-| 9-23 | — | Pendente | — |
-| Ep | O Encante | Pendente | — |
+```
+PESQUISA → OUTLINE → [AUTOR APROVA] → REDAÇÃO → REVISÃO → [AUTOR APROVA] → FINAL
+```
 
 ---
 
-## Dados Validados (da Manus AI)
+## Dados Validados
 
 | Dado | Valor | Fonte |
 |------|-------|-------|
@@ -127,13 +123,23 @@ Narrativo-ensaístico com rigor analítico. Acessível sem ser superficial. Afet
 | PIB | R$ 5,6 bi (2024) | IBGE |
 | Esgoto tratado | 3,92% | — |
 
-*280+ dados adicionais existem na Manus — importar quando disponíveis.*
+---
+
+## Mapa de Conexões
+
+*Atualizar conforme capítulos são produzidos.*
+
+| De | Para | Conexão |
+|----|------|---------|
+| — | — | — |
 
 ---
 
-## Decisões Pendentes
+## Decisões Tomadas
 
-- [ ] Validar estrutura de capítulos
-- [ ] Título definitivo
-- [ ] Público prioritário (geral culto vs. investidores/gestores vs. ambos)
+- [x] Título: Maranhão Inteiro — Terra, povo e futuro
+- [x] Público: ambos (geral culto + decisores)
+- [x] Estrutura: 27 caps + epílogo, 6 partes
+- [x] Tese e arco narrativo definidos
+- [x] Processo: pesquisa → outline → aprovação → redação → revisão → aprovação
 - [ ] Ordem de produção dos capítulos
