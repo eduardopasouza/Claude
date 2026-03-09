@@ -1,31 +1,38 @@
-# Maranhão Book Plugin
+# Maranhão — Enciclopédia Narrativa
 
-Plugin para orquestrar a redação colaborativa do livro sobre o Maranhão usando agentes especializados.
+Plugin para produção do livro. Três skills, um arquivo de coordenação.
+
+## Como Usar
+
+### Modo interativo (trabalhar junto)
+Abra uma conversa e diga o que quer fazer:
+- "Vamos pensar no capítulo sobre os povos originários"
+- "Pesquisa sobre o reggae no Maranhão"
+- "Escreve a seção sobre a Balaiada"
+- "Revisa o que temos do capítulo 4"
+
+### Modo delegado (mandar e revisar depois)
+- "Pesquisa e escreve o capítulo 12"
+- "Revisa todos os capítulos prontos"
+
+### Estado do projeto
+Tudo está em `coordination.md` — estrutura, o que existe, decisões, padrão de qualidade.
 
 ## Estrutura
 
 ```
 maranhao-book-plugin/
-├── skills/          # Skills especializadas (pesquisa, redação, revisão, etc.)
-├── agents/          # Configurações de agentes por tópico/função
-├── references/      # Referências bibliográficas e fontes
-├── drafts/          # Rascunhos e versões dos capítulos
-└── config/          # Configurações do plugin e do projeto
+├── coordination.md      # Estado do projeto (ler sempre ao iniciar)
+├── skills/
+│   ├── research.md      # Pesquisa profunda com fontes
+│   ├── write.md         # Redação narrativa com dados
+│   └── review.md        # Revisão editorial e factual
+├── drafts/              # Capítulos em produção
+│   ├── cap-XX-titulo/
+│   │   ├── research.md  # Material de pesquisa
+│   │   ├── draft-vN.md  # Versões do texto
+│   │   └── review.md    # Feedback de revisão
+│   └── rejected/        # Material rejeitado (referência)
+├── references/          # Bibliografia e dados
+└── final/               # Capítulos aprovados pelo autor
 ```
-
-## Fluxo de Trabalho
-
-1. **Importar** contexto do projeto da Manus AI (ver `PROMPT_MANUS_EXPORT.md`)
-2. **Configurar** agentes especializados por tópico/capítulo
-3. **Delegar** redação via skills com instruções específicas
-4. **Revisar** e integrar os outputs dos agentes
-5. **Compilar** o livro final
-
-## Status
-
-- [ ] Exportação de dados da Manus AI
-- [ ] Definição da estrutura de capítulos
-- [ ] Configuração dos agentes
-- [ ] Redação dos capítulos
-- [ ] Revisão e edição
-- [ ] Compilação final
