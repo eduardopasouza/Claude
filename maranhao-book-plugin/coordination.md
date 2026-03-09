@@ -25,7 +25,7 @@
 ### PARTE I — O CHÃO E O TEMPO (de onde viemos)
 | Cap | Título | Status |
 |-----|--------|--------|
-| 1 | A Encruzilhada | ⬜ |
+| 1 | A Encruzilhada | 🔍 Revisão (ajustes aplicados, aguardando aprovação do autor) |
 | 2 | A Natureza Viva | ⬜ |
 | 3 | Os Primeiros | ⬜ |
 | 4 | A França, a Holanda e Portugal | ⬜ |
@@ -131,7 +131,10 @@ PESQUISA → OUTLINE → [AUTOR APROVA] → REDAÇÃO → REVISÃO → [AUTOR AP
 
 | De | Para | Conexão |
 |----|------|---------|
-| — | — | — |
+| Cap 1 | Cap 2 | Ponte de saída: ecossistemas da encruzilhada → natureza viva/ameaçada |
+| Cap 1 | Cap 4 | Três impérios europeus atraídos pela baía e litoral |
+| Cap 1 | Cap 10 | Quebradeiras de coco babaçu — luta pelo acesso |
+| Cap 1 | Cap 23 | Porto/ferrovia como corredor de exportação — riqueza que passa |
 
 ---
 
