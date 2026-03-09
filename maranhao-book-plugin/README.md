@@ -1,38 +1,36 @@
-# Maranhão — Enciclopédia Narrativa
+# Maranhão Inteiro — Terra, povo e futuro
 
-Plugin para produção do livro. Três skills, um arquivo de coordenação.
+Plugin para produção do livro.
 
-## Como Usar
+## Arquivos
 
-### Modo interativo (trabalhar junto)
-Abra uma conversa e diga o que quer fazer:
-- "Vamos pensar no capítulo sobre os povos originários"
-- "Pesquisa sobre o reggae no Maranhão"
-- "Escreve a seção sobre a Balaiada"
-- "Revisa o que temos do capítulo 4"
+| Arquivo | Função |
+|---------|--------|
+| `coordination.md` | Estado do projeto. **Ler sempre ao iniciar.** |
+| `playbook.md` | Processo completo: tese, arco, etapas, regras. |
+| `skills/research.md` | Pesquisa profunda com fontes |
+| `skills/write.md` | Redação narrativa com dados |
+| `skills/review.md` | Revisão editorial e factual |
 
-### Modo delegado (mandar e revisar depois)
-- "Pesquisa e escreve o capítulo 12"
-- "Revisa todos os capítulos prontos"
+## Como usar
 
-### Estado do projeto
-Tudo está em `coordination.md` — estrutura, o que existe, decisões, padrão de qualidade.
+**Modo interativo**: "Vamos pensar no capítulo 3" → conversa, pesquisa, escreve junto.
 
-## Estrutura
+**Modo delegado**: "Pesquisa o capítulo 14" → entrega research.md para aprovação.
+
+**Fluxo completo**: Pesquisa → Outline → [Aprovação] → Redação → Revisão → [Aprovação]
+
+## Estrutura de trabalho
 
 ```
-maranhao-book-plugin/
-├── coordination.md      # Estado do projeto (ler sempre ao iniciar)
-├── skills/
-│   ├── research.md      # Pesquisa profunda com fontes
-│   ├── write.md         # Redação narrativa com dados
-│   └── review.md        # Revisão editorial e factual
-├── drafts/              # Capítulos em produção
-│   ├── cap-XX-titulo/
-│   │   ├── research.md  # Material de pesquisa
-│   │   ├── draft-vN.md  # Versões do texto
-│   │   └── review.md    # Feedback de revisão
-│   └── rejected/        # Material rejeitado (referência)
-├── references/          # Bibliografia e dados
-└── final/               # Capítulos aprovados pelo autor
+drafts/
+├── cap-XX-titulo/
+│   ├── research.md    # Pesquisa
+│   ├── outline.md     # Esqueleto (aprovado pelo autor)
+│   ├── draft-vN.md    # Versões do texto
+│   └── review.md      # Feedback de revisão
+└── rejected/          # Material rejeitado (referência)
+
+final/                 # Capítulos aprovados pelo autor
+references/            # Bibliografia e dados
 ```
