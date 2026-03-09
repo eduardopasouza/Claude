@@ -25,7 +25,7 @@
 ### PARTE I — O CHÃO E O TEMPO (de onde viemos)
 | Cap | Título | Status |
 |-----|--------|--------|
-| 1 | A Encruzilhada | 🔍 Revisão (ajustes aplicados, aguardando aprovação do autor) |
+| 1 | A Encruzilhada | ✅ Aprovado |
 | 2 | A Natureza Viva | ⬜ |
 | 3 | Os Primeiros | ⬜ |
 | 4 | A França, a Holanda e Portugal | ⬜ |
