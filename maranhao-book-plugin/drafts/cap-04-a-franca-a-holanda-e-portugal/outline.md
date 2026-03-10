@@ -16,7 +16,23 @@ Do Cap 3: *"Os europeus que chegaram ao Maranhão a partir de 1612 não encontra
 
 ## Seções
 
-### 4.1 — Os Papagaios Amarelos (abertura)
+### 4.1 — O Litoral Esquecido (nova abertura)
+
+- **Argumento**: Antes da França Equinocial, o Maranhão já tinha sido tocado por europeus — e já tinha derrotado todas as tentativas de colonização. Pinzón passou pela costa em 1500, três meses antes de Cabral. O Tratado de Tordesilhas colocava o Maranhão numa zona cinzenta. E a tentativa portuguesa de colonizar via capitanias hereditárias fracassou espetacularmente com o naufrágio de Aires da Cunha (1535) e a falência de João de Barros. É esse vazio — criado pelo fracasso português — que os franceses preencheram em 1612.
+- **Dados-chave**:
+  - Vicente Yáñez Pinzón: partiu de Palos dez/1499; costa brasileira 26/jan/1500; "Mar Dulce" (Amazonas)
+  - Diego de Lepe: partiu jan/1500; mesma rota norte
+  - Tratado de Tordesilhas (1494): linha a ~46°37'W; São Luís a ~44°W (zona espanhola no papel)
+  - D. João III: 15 capitanias hereditárias (1534)
+  - Capitania do Maranhão: donatários João de Barros + Fernão Álvares de Andrade
+  - Expedição de Aires da Cunha: 10 navios, 900 pessoas (1535); naufrágio na costa maranhense
+  - João de Barros: gastou fortuna, morreu pobre em 1570
+  - Jacques Riffault (1594): feitoria em Upaon-Açu; Charles des Vaux entre os Tupinambá
+  - Des Vaux → convence Henrique IV → Maria de Médici → La Touche (1612)
+- **Função**: Contextualizar o vazio que permitiu a França Equinocial; explicar por que o Maranhão ficou "esquecido"
+- **Extensão estimada**: 2.000 palavras
+
+### 4.2 — Os Papagaios Amarelos
 
 - **Argumento**: Em setembro de 1612, três navios franceses fundam o Fort Saint-Louis na ilha que os Tupinambá chamavam de Upaon-Açu. Os franceses tinham um plano diferente dos portugueses: aliar-se aos indígenas, não escravizá-los. Os Tupinambá chamaram os franceses de "papagaios amarelos" — loiros e tagarelas. A cena de abertura é a fundação do forte e o encontro de dois mundos que, brevemente, tentaram se entender.
 - **Dados-chave**:
@@ -30,7 +46,7 @@ Do Cap 3: *"Os europeus que chegaram ao Maranhão a partir de 1612 não encontra
 - **Função**: Imersão — o leitor entra na França Equinocial pelo olhar dos Tupinambá e dos capuchinhos
 - **Extensão estimada**: 2.000 palavras
 
-### 4.2 — O Inferno na Praia
+### 4.3 — O Inferno na Praia
 
 - **Argumento**: A resposta portuguesa à França Equinocial foi militar. A Batalha de Guaxenduba (19/11/1614) decidiu o Norte do Brasil — e foi comandada por um mameluco, filho de nobre português e princesa indígena, que usou os índios contra os índios. A história de Jerônimo de Albuquerque Maranhão é, em si, uma metáfora do Brasil colonial: mestiço, violento, pragmático.
 - **Dados-chave**:
@@ -44,7 +60,7 @@ Do Cap 3: *"Os europeus que chegaram ao Maranhão a partir de 1612 não encontra
 - **Citação**: "por ser experimentado nas coisas e guerras do sertão, por ser meio índio" [eBiografia]
 - **Extensão estimada**: 1.800 palavras
 
-### 4.3 — A Chave do Forte
+### 4.4 — A Chave do Forte
 
 - **Argumento**: Em 4 de novembro de 1615, Ravardière entrega a chave do Fort Saint-Louis a Alexandre de Moura. A França Equinocial durou três anos. Mas suas consequências duraram séculos: a conquista do Maranhão abriu o caminho para Belém, para a Amazônia, para a expansão que faria do Brasil o maior país da América do Sul. E alguns franceses ficaram — casados com indígenas, misturados à terra que tinham tentado colonizar.
 - **Dados-chave**:
@@ -56,7 +72,7 @@ Do Cap 3: *"Os europeus que chegaram ao Maranhão a partir de 1612 não encontra
 - **Função**: Fechamento do ciclo francês; abertura do ciclo português
 - **Extensão estimada**: 1.500 palavras
 
-### 4.4 — Um Estado Dentro do Estado
+### 4.5 — Um Estado Dentro do Estado
 
 - **Argumento**: Em 1621, a Coroa portuguesa fez algo inédito: criou um Estado separado — o Estado do Maranhão e Grão-Pará — subordinado diretamente a Lisboa, independente do Estado do Brasil (capital em Salvador). Essa decisão, motivada pela distância e pela ameaça estrangeira, deu ao Maranhão uma autonomia administrativa que marcou toda a sua trajetória colonial — e explica, em parte, por que o estado resistiu à independência do Brasil em 1822.
 - **Dados-chave**:
@@ -70,7 +86,7 @@ Do Cap 3: *"Os europeus que chegaram ao Maranhão a partir de 1612 não encontra
   - MA resistiu à independência do Brasil; adesão forçada em 1823 [Brasil Turismo]
 - **Extensão estimada**: 1.500 palavras
 
-### 4.5 — Os Holandeses
+### 4.6 — Os Holandeses
 
 - **Argumento**: Em novembro de 1641, dezenove navios holandeses invadiram São Luís. A ocupação durou três anos — e terminou não porque Portugal mandou reforços, mas porque os próprios colonos luso-brasileiros se revoltaram e expulsaram os invasores. A história holandesa no Maranhão é breve mas reveladora: mostra que, já no século XVII, o Maranhão era periférico o suficiente para que a metrópole o abandonasse — e resiliente o suficiente para que seus habitantes se defendessem sozinhos.
 - **Dados-chave**:
@@ -84,7 +100,7 @@ Do Cap 3: *"Os europeus que chegaram ao Maranhão a partir de 1612 não encontra
   - Presença holandesa anterior a 1612: traficantes [Imirante 2023]
 - **Extensão estimada**: 1.800 palavras
 
-### 4.6 — A Cidade que Ficou (fechamento)
+### 4.7 — A Cidade que Ficou (fechamento)
 
 - **Argumento**: Das três presenças europeias — francesa, holandesa e portuguesa —, a que ficou foi a portuguesa. Mas as três deixaram marcas. O forte francês virou Palácio dos Leões. O traçado urbano guarda influências francesas e portuguesas. Os azulejos portugueses revestem a cidade que a UNESCO reconheceu como patrimônio mundial. São Luís é a síntese física dos choques narrados neste capítulo — e sua arquitetura conta, em silêncio, a história de uma cidade que mudou de dono três vezes em trinta anos.
 - **Dados-chave**:
@@ -121,4 +137,4 @@ O Maranhão era agora português — definitivamente. Mas ser português signifi
 
 ## Extensão estimada total
 
-~10.100 palavras (dentro do padrão 8.000-12.000)
+~12.100 palavras (dentro do padrão 8.000-12.000)

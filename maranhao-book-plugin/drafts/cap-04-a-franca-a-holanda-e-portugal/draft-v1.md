@@ -4,7 +4,51 @@
 
 ---
 
-## 4.1 Os Papagaios Amarelos
+## 4.1 O Litoral Esquecido
+
+Três meses antes de Pedro Álvares Cabral avistar o Monte Pascoal e reivindicar o Brasil para Portugal, um navegador espanhol já havia tocado a costa norte do que viria a ser o território brasileiro — e possivelmente pisado em solo maranhense.
+
+Vicente Yáñez Pinzón — o mesmo capitão que comandara a caravela Niña na primeira viagem de Colombo à América — partiu de Palos de la Frontera em dezembro de 1499 com quatro navios. Navegou para sudoeste, cruzou o equador e, em 26 de janeiro de 1500, avistou uma ponta de terra que batizou de *Cabo de Santa María de la Consolación* — provavelmente o atual Cabo de Santo Agostinho, em Pernambuco [P1]. Era a primeira vez que um europeu documentava contato com a costa do Brasil. Cabral só chegaria em 22 de abril.
+
+Pinzón não ficou. Seguiu para noroeste, acompanhando o litoral, e encontrou a foz de um rio tão vasto que a água do mar perdia a salinidade a léguas da costa. Chamou-o de *Mar Dulce* — o Mar Doce — e de *Río Santa María de la Mar Dulce*. Era a foz do Amazonas [P2]. Na travessia entre Pernambuco e a Amazônia, Pinzón passou necessariamente pela costa do que hoje é o Maranhão — as mesmas baías, as mesmas ilhas, os mesmos manguezais que os Tupinambá habitavam e que, um século depois, os franceses tentariam colonizar. Mas Pinzón não desembarcou, não fundou forte algum, não plantou cruz. Para ele, aquele litoral era apenas paisagem a ser percorrida.
+
+Semanas depois de Pinzón, outro espanhol refez parte do mesmo trajeto. Diego de Lepe partiu de Palos em janeiro de 1500 com dois navios e atingiu a costa brasileira pouco mais ao sul. Navegou para noroeste, explorou a foz do Amazonas e pode ter chegado até a costa da Guiana antes de retornar [P3]. Nem Pinzón nem Lepe tentaram colonização. Eram exploradores, não fundadores de colônias. Mas suas viagens tinham consequências jurídicas: ao tocar aquela costa, reivindicavam-na para a Coroa de Castela.
+
+A questão era complexa. O Tratado de Tordesilhas, assinado em 1494 entre Portugal e Espanha, dividia o mundo por um meridiano traçado a 370 léguas a oeste das ilhas de Cabo Verde [P4]. Tudo a leste da linha era português; tudo a oeste, espanhol. O problema — que os dois reinos conheciam mas preferiam ignorar — era que ninguém sabia com precisão onde, exatamente, a linha caía. As técnicas de medição de longitude no século XV eram rudimentares. As estimativas variavam em centenas de quilômetros. E a costa norte do Brasil — incluindo o Maranhão — ficava, na maioria das projeções, a oeste da linha, ou perigosamente perto dela [P5].
+
+São Luís fica a aproximadamente 44° de longitude oeste. A linha de Tordesilhas, segundo a maioria dos historiadores modernos, passava por volta de 46°37' oeste — o que colocava o Maranhão, tecnicamente, dentro da zona espanhola [P6]. Mas Portugal, ao longo do século XVI, simplesmente ignorou essa fronteira. Reivindicou toda a costa do Brasil como sua, de norte a sul, com base na posse efetiva e no argumento de que a costa formava uma unidade territorial indivisível. A Espanha, ocupada com suas colônias no Pacífico, no México e no Peru, não tinha interesse em disputar uma faixa de litoral tropical que não produzia ouro nem prata. O Maranhão caiu numa zona cinzenta diplomática: era espanhol no papel e de ninguém na prática.
+
+Esse vazio de soberania efetiva durou mais de um século. Enquanto o Nordeste açucareiro — Bahia, Pernambuco, Paraíba — recebia colonos, escravizados e investimentos, a costa entre o Ceará e a foz do Amazonas permanecia sem presença europeia permanente. Os Tupinambá, os Timbira, os Guajajara habitavam o litoral como o haviam feito por séculos, sem que nenhuma bandeira europeia tremulasse sobre suas aldeias.
+
+Não que a Coroa portuguesa não tivesse tentado.
+
+Em 1534, o rei D. João III dividiu a costa brasileira em quinze capitanias hereditárias — faixas de terra que iam do litoral até a linha de Tordesilhas, entregues a donatários que receberiam o direito de colonizar, administrar e lucrar com a terra em troca de povoá-la às próprias custas [P7]. O sistema era uma solução barata: a Coroa não tinha recursos para colonizar diretamente um território tão vasto, e os donatários — fidalgos, funcionários reais, militares — aceitavam o risco na esperança de enriquecer.
+
+Para o Maranhão, D. João III criou duas capitanias. A primeira — a Capitania do Maranhão propriamente dita, com setenta e cinco léguas de costa — foi concedida a dois donatários em conjunto: Fernão Álvares de Andrade, tesoureiro-mor do Reino, e o célebre João de Barros, cronista oficial do Império e autor das *Décadas da Ásia*, a grande narrativa das conquistas portuguesas no Oriente [P8]. A segunda, mais ao norte — a Capitania do Tapuitapera — não chegou a ser efetivamente ocupada.
+
+A parceria entre Andrade e Barros era improvável. Andrade era um homem de finanças — calculista, pragmático, com acesso ao tesouro real. Barros era um intelectual — historiador, humanista, o maior escritor de língua portuguesa de sua geração. Juntos, investiram uma fortuna na colonização de uma terra que nenhum dos dois jamais visitaria.
+
+Em 1535, uma armada impressionante partiu de Lisboa rumo ao Maranhão. O comando militar foi confiado a Aires da Cunha, fidalgo experimentado que levava consigo dez navios e novecentas pessoas — soldados, colonos, mulheres, padres, artesãos [P9]. Era a maior expedição colonizadora enviada a uma capitania brasileira até então, superando em número e investimento qualquer tentativa anterior.
+
+A expedição nunca chegou ao seu destino.
+
+Os navios encontraram tempestades na travessia do Atlântico. Parte da frota se dispersou. Aires da Cunha morreu em naufrágio na costa maranhense — provavelmente nas proximidades da Ilha de São Luís ou nos baixios traiçoeiros da baía de São Marcos, onde as correntes e os bancos de areia apanhavam até os navegadores mais experientes [P10]. Dos sobreviventes, alguns alcançaram a costa e tentaram se estabelecer, mas sem liderança militar, sem suprimentos e cercados por indígenas hostis, a empresa fracassou. Os que sobreviveram acabaram por se deslocar para o Pará ou retornar a Portugal, carregando consigo a notícia do desastre.
+
+João de Barros, em Lisboa, recebeu a notícia da perda com desespero. Organizou outras tentativas — todas falharam. A costa do Maranhão era inacessível: correntes adversas, ventos contrários, recifes ocultos, e um litoral dominado por nações indígenas guerreiras que não tinham nenhum interesse em receber colonizadores. Barros gastou toda a sua fortuna tentando colonizar uma capitania que nunca viu. Morreu em 1570, empobrecido, amargurando o fracasso maranhense — o mesmo cronista que narrara com tanta glória as conquistas portuguesas na Ásia via-se incapaz de plantar uma simples feitoria na costa norte do Brasil [P11].
+
+Fernão Álvares de Andrade também não teve melhor sorte. A capitania do Maranhão permaneceu sem colonização efetiva, sem administração, sem receita — uma donatária fantasma no mapa de um império que se estendia da Índia ao Japão mas não conseguia povoar uma faixa de litoral na América do Sul.
+
+O fracasso não era exclusivo do Maranhão. Das quinze capitanias criadas por D. João III, apenas duas prosperaram: São Vicente (no atual estado de São Paulo) e Pernambuco, onde Duarte Coelho construiu uma colônia baseada no açúcar que se tornaria a mais rica da América portuguesa [P12]. Mas o Maranhão foi o fracasso mais espetacular — pela ambição da tentativa, pela dimensão do investimento e pela brutalidade da derrota. A terra se recusou a ser colonizada.
+
+Nas décadas seguintes, o litoral maranhense voltou a ser o que sempre fora: território indígena, frequentado esporadicamente por comerciantes e corsários franceses, holandeses e ingleses que traficavam pau-brasil, algodão e pimenta com os Tupinambá sem nenhuma pretensão de permanência. Em 1594, o comerciante francês Jacques Riffault, de Dieppe, estabeleceu uma feitoria na ilha de Upaon-Açu — a futura São Luís — e ali deixou seu compatriota Charles des Vaux, que aprendeu a língua dos Tupinambá e viveu entre eles como traficante e intermediário [P13]. Foi Des Vaux quem, de volta à França, convenceu o rei Henrique IV do interesse de colonizar aquela costa abandonada pelos portugueses. Henrique IV morreu antes de concretizar o plano, mas sua viúva, a regente Maria de Médici, retomou o projeto — e, em 1612, enviou Daniel de La Touche para fundar o que a França chamaria de *France Équinoxiale*.
+
+A ironia é precisa: o Maranhão, que Portugal tentara colonizar com novecentos homens e dez navios, e que fora derrotado pela geografia e pelos indígenas, seria ocupado por quinhentos franceses que, em vez de lutar contra os Tupinambá, aliaram-se a eles. O fracasso das donatárias — a incapacidade portuguesa de povoar a costa norte — é a precondição da França Equinocial. Sem o vazio deixado pelo naufrágio de Aires da Cunha e pela falência de João de Barros, os franceses jamais teriam encontrado uma porta aberta.
+
+E foi por essa porta que entraram os papagaios amarelos.
+
+---
+
+## 4.2 Os Papagaios Amarelos
 
 Em março de 1612, três navios deixaram o porto de Cancale, na costa da Bretanha, carregando cerca de quinhentos homens — soldados, colonos, carpinteiros, ferreiros, padres — e uma ambição que já tinha falhado uma vez: plantar a bandeira da França nos trópicos [1].
 
@@ -46,7 +90,7 @@ Mas a França Equinocial durou apenas três anos. E seu fim começou com uma bat
 
 ---
 
-## 4.2 O Inferno na Praia
+## 4.3 O Inferno na Praia
 
 Os portugueses não podiam aceitar a presença francesa no Maranhão. A questão não era apenas territorial — era geopolítica. Se os franceses consolidassem uma colônia ao norte, todo o litoral entre o Ceará e a foz do Amazonas ficaria sob controle estrangeiro, e a costa brasileira — a mais longa fronteira atlântica de Portugal — seria cortada ao meio. O Maranhão era a porta da Amazônia. Quem o controlasse controlaria o acesso a um território imenso, rico em drogas do sertão, madeira e especiarias que a Europa cobiçava.
 
@@ -80,7 +124,7 @@ Após a batalha, La Ravardière e Jerônimo assinaram uma trégua em 28 de novem
 
 ---
 
-## 4.3 A Chave do Forte
+## 4.4 A Chave do Forte
 
 A trégua de Guaxenduba era, para os portugueses, apenas uma pausa. A diplomacia entre as cortes não produziu resultado algum — a Espanha, que governava Portugal, recusou qualquer acordo que reconhecesse presença francesa na América do Sul, e a França, internamente dividida por tensões religiosas e políticas, não tinha vontade nem recursos para sustentar uma guerra colonial por uma faixa de litoral tropical.
 
@@ -108,7 +152,7 @@ Mas o Maranhão recém-conquistado precisava ser administrado. E a solução enc
 
 ---
 
-## 4.4 Um Estado Dentro do Estado
+## 4.5 Um Estado Dentro do Estado
 
 Em 13 de junho de 1621, o rei Filipe II de Portugal — que era também Filipe III da Espanha, num dos arranjos mais complexos da monarquia europeia — assinou uma carta régia que dividiria a América portuguesa em duas metades [33]. A partir daquela data, o Brasil colonial deixou de ser uma unidade administrativa. Nasciam dois Estados separados, ambos subordinados diretamente a Lisboa: o Estado do Brasil, com capital em Salvador, e o Estado do Maranhão, com capital em São Luís.
 
@@ -134,7 +178,7 @@ Mas antes que essa dissolução administrativa se completasse, o Maranhão enfre
 
 ---
 
-## 4.5 Os Holandeses
+## 4.6 Os Holandeses
 
 Na madrugada de 25 de novembro de 1641, dezenove navios holandeses apareceram na baía de São Marcos [39].
 
@@ -172,7 +216,7 @@ Esse dado é fundamental. Os colonos do Maranhão expulsaram uma potência europ
 
 ---
 
-## 4.6 A Cidade que Ficou
+## 4.7 A Cidade que Ficou
 
 Das três presenças europeias que disputaram o Maranhão em menos de quarenta anos — a francesa (1612-1615), a holandesa (1641-1644) e a portuguesa (1615 em diante) —, a que permaneceu foi a portuguesa. Mas as três deixaram marcas. E a cidade que emergiu dessa tripla herança carrega, em suas pedras, a memória de cada uma.
 
