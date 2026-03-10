@@ -30,7 +30,7 @@
 | 3 | Os Primeiros | ✍️ |
 | 4 | A França, a Holanda e Portugal | ✍️ |
 | 5 | O Ouro Branco | ✍️ |
-| 6 | A Ferida | ⬜ |
+| 6 | A Ferida | 📐 Outline |
 | 7 | O Levante | ⬜ |
 | 8 | A Construção do Poder | ⬜ |
 
@@ -142,6 +142,13 @@ PESQUISA → OUTLINE → [AUTOR APROVA] → REDAÇÃO → REVISÃO → [AUTOR AP
 | Cap 3 | Cap 10 | Continuidade da luta indígena contemporânea — Guardiões, Ka'apor, Gamela |
 | Cap 4 | Cap 5 | Ponte de saída: terra transformada em fazenda → Cap 5 narra a economia escravista |
 | Cap 5 | Cap 6 | Escravização como ferida — Cap 5 mostra a economia, Cap 6 mostra as pessoas |
+| Cap 6 | Cap 3 | Alianças quilombo-indígenas; escravização indígena como primeira ferida |
+| Cap 6 | Cap 5 | Travessia e origens dos escravizados; conhecimento agrícola africano aprofundado |
+| Cap 6 | Cap 7 | Negro Cosme e Balaiada como ponte para os levantes |
+| Cap 6 | Cap 9 | Mestiçagem como herança da escravização |
+| Cap 6 | Cap 10 | Comunidades quilombolas contemporâneas |
+| Cap 6 | Cap 14 | Tambor de Crioula como expressão da herança africana |
+| Cap 6 | Cap 15 | Tambor de Mina como religiosidade afro-brasileira |
 | Cap 5 | Cap 7 | Revolta de Beckman como prelúdio dos levantes coloniais |
 | Cap 5 | Cap 23 | Padrão exportador: algodão→Liverpool = ferro→China (riqueza que passa) |
 
