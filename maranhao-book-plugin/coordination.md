@@ -29,7 +29,7 @@
 | 2 | A Natureza Viva | ✍️ |
 | 3 | Os Primeiros | ✍️ |
 | 4 | A França, a Holanda e Portugal | ✍️ |
-| 5 | O Ouro Branco | ⬜ |
+| 5 | O Ouro Branco | ✍️ |
 | 6 | A Ferida | ⬜ |
 | 7 | O Levante | ⬜ |
 | 8 | A Construção do Poder | ⬜ |
@@ -140,6 +140,10 @@ PESQUISA → OUTLINE → [AUTOR APROVA] → REDAÇÃO → REVISÃO → [AUTOR AP
 | Cap 3 | Cap 4 | Tupinambá como aliados dos franceses na França Equinocial; resistência à colonização portuguesa |
 | Cap 3 | Cap 6 | Escravização indígena como primeira "ferida" — Tenetehara aldeados e escravizados |
 | Cap 3 | Cap 10 | Continuidade da luta indígena contemporânea — Guardiões, Ka'apor, Gamela |
+| Cap 4 | Cap 5 | Ponte de saída: terra transformada em fazenda → Cap 5 narra a economia escravista |
+| Cap 5 | Cap 6 | Escravização como ferida — Cap 5 mostra a economia, Cap 6 mostra as pessoas |
+| Cap 5 | Cap 7 | Revolta de Beckman como prelúdio dos levantes coloniais |
+| Cap 5 | Cap 23 | Padrão exportador: algodão→Liverpool = ferro→China (riqueza que passa) |
 
 ---
 
