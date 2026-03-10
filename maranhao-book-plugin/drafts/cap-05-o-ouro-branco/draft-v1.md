@@ -81,7 +81,7 @@ A terceira peça — e a mais consequente — foi a **Companhia Geral de Comérc
 
 O raciocínio era de uma lógica implacável. Se a escravização indígena causava conflitos intermináveis com os missionários, gerava legislação contraditória e revoltas periódicas como a de Beckman — então o problema não era a escravização em si, mas quem estava sendo escravizado. A solução: substituir indígenas por africanos. Os africanos não tinham defensores jesuítas. Não estavam protegidos por leis ambíguas. E, sob a ótica mercantilista de Pombal, eram trabalhadores mais "eficientes" para a agricultura de plantation que ele pretendia implantar no Maranhão.
 
-Antes da Companhia, o Maranhão tinha aproximadamente 3.000 escravizados africanos — um número insignificante comparado às dezenas de milhares que trabalhavam nos engenhos da Bahia e de Pernambuco. O historiador Jerônimo de Viveiros estimou esse contingente como "absolutamente insuficiente para qualquer empreendimento agrícola de escala" [19]. A Companhia mudou isso. Durante seus 23 anos de operação (1755–1778), transportou entre 12.000 e 14.749 africanos escravizados para o Maranhão, segundo estimativas que variam conforme a fonte — Manuel Nunes Dias, na tese que é referência sobre o tema, apontou 14.749 desembarques documentados. Para toda a Amazônia (Maranhão, Pará e Mato Grosso), o total chegou a 25.365 [20].
+Antes da Companhia, o Maranhão tinha aproximadamente 3.000 escravizados africanos — um número insignificante comparado às dezenas de milhares que trabalhavam nos engenhos da Bahia e de Pernambuco. O historiador Jerônimo de Viveiros estimou esse contingente como "absolutamente insuficiente para qualquer empreendimento agrícola de escala" [19]. A Companhia mudou isso. Durante seus 23 anos de operação (1755–1778), transportou aproximadamente 25.365 africanos escravizados para toda a Amazônia (Maranhão, Pará e Mato Grosso), segundo a contagem de Manuel Nunes Dias, na tese que é referência sobre o tema. Desses, cerca de 10.600 desembarcaram no Maranhão e 14.749 no Pará [20].
 
 Os africanos vinham, na esmagadora maioria, dos portos de **Cacheu** e **Bissau**, na região da Alta Guiné — a costa da atual Guiné-Bissau. Essa origem não era acidental: Portugal controlava esses portos desde o século XV e a Companhia operava feitorias ali, comprando prisioneiros de guerras locais, vítimas de razias e pessoas vendidas por dívida. A "mercadoria" era examinada, marcada a ferro com o selo da Companhia, embarcada em navios que faziam a travessia em condições de extrema brutalidade — amontoados nos porões, acorrentados, alimentados com o mínimo para sobreviver os 40 a 60 dias de viagem. A taxa de mortalidade durante a travessia era alta, embora dados específicos para a rota Cacheu/Bissau–São Luís não tenham sido encontrados nesta pesquisa. As 34 ou mais expedições comerciais que partiram de Lisboa com destino à costa africana e de volta ao Maranhão formavam um triângulo atlântico que conectava Lisboa (capital e mercadorias), Cacheu/Bissau (corpos humanos) e São Luís (destino final) [21].
 
@@ -137,7 +137,7 @@ O algodão era o produto-estrela — mas havia outro produto, menos celebrado e 
 
 O arroz.
 
-Antes da Companhia de Comércio de Pombal, os colonos do Maranhão já cultivavam arroz — mas um arroz vermelho, também chamado "de Veneza" ou "da terra", de grão miúdo e quebradiço, considerado de baixa qualidade para exportação. Era um alimento de subsistência, não um produto comercial [31]. A transformação veio em 1776, quando a Companhia introduziu o chamado "arroz da Carolina" — um arroz branco, de grão longo, originário da Carolina do Sul (então colônia inglesa), que os mercados europeus pagavam a bom preço.
+Antes da Companhia de Comércio de Pombal, os colonos do Maranhão já cultivavam arroz — mas um arroz vermelho, também chamado "de Veneza" ou "da terra", de grão miúdo e quebradiço, considerado de baixa qualidade para exportação. Era um alimento de subsistência, não um produto comercial [31]. A transformação veio na década de 1760, quando a Companhia introduziu o chamado "arroz da Carolina" — um arroz branco, de grão longo, originário da Carolina do Sul (então colônia inglesa), que os mercados europeus pagavam a bom preço.
 
 A introdução do arroz da Carolina não foi apenas uma inovação agrícola — foi uma imposição colonial. Em 1772, o governador Joaquim de Mello e Povoas proibiu o cultivo do arroz vermelho, sob penas que variavam conforme a cor da pele: brancos seriam castigados com um ano de prisão e multa; indígenas, com dois anos de prisão; escravizados, com dois anos de prisão e açoite [32]. A hierarquia racial da punição espelhava a hierarquia da sociedade colonial: o mesmo "crime" — plantar o arroz errado — era punido com severidade proporcional à posição do acusado na escala de desumanização. O arroz vermelho, que os povos locais cultivavam há gerações como alimento básico, foi criminalizado para dar lugar a um produto de exportação que não alimentava quem o plantava — ia para os navios, não para as mesas. É uma microhistória que condensa toda a lógica colonial: o que o povo precisa é proibido; o que o mercado quer é obrigatório.
 
@@ -245,7 +245,7 @@ E há algo mais que o ciclo do algodão legou ao Maranhão: uma ferida racial qu
 
 [19] SciELO — "Escravos do Atlântico equatorial: tráfico negreiro para o Estado do Maranhão e Pará." Estimativa de Viveiros: ~3.000 escravizados africanos antes de 1755.
 
-[20] SciELO, op. cit.; UFBA — tese sobre tráfico no Atlântico equatorial. Manuel Nunes Dias: 14.749 desembarques; total Amazônia: 25.365.
+[20] SciELO, op. cit.; UFBA — tese sobre tráfico no Atlântico equatorial. Manuel Nunes Dias: 25.365 para toda a Amazônia (14.749 no Pará, ~10.600 no Maranhão).
 
 [21] UFSC/Labhstc — Maria Celeste Gomes da Silva, "Rotas negreiras e comércio de africanos para o Maranhão colonial, 1755-1800." Portos de Cacheu e Bissau; 34+ expedições.
 
@@ -267,7 +267,7 @@ E há algo mais que o ciclo do algodão legou ao Maranhão: uma ferida racial qu
 
 [30] Redalyc/Afro-Ásia, op. cit. 26 inventários post-mortem (1785-1825): 55% africanos de diversas "nações", 42% crioulos.
 
-[31] Redalyc — artigo sobre introdução do arroz da Carolina. Arroz vermelho = "de Veneza" ou "da terra"; miúdo e quebradiço.
+[31] Redalyc — artigo sobre introdução do arroz da Carolina. Arroz vermelho = "de Veneza" ou "da terra"; miúdo e quebradiço. Introdução do arroz da Carolina na década de 1760 (fábrica de descasque fundada em 1765 pelo governador Mello e Povoas).
 
 [32] Redalyc, op. cit. Governador Joaquim de Mello e Povoas (1772): proibição do arroz vermelho; penas diferenciadas por raça.
 
