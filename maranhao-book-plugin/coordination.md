@@ -27,7 +27,7 @@
 |-----|--------|--------|
 | 1 | A Encruzilhada | ✅ Aprovado |
 | 2 | A Natureza Viva | ✍️ |
-| 3 | Os Primeiros | ⬜ |
+| 3 | Os Primeiros | ✍️ |
 | 4 | A França, a Holanda e Portugal | ⬜ |
 | 5 | O Ouro Branco | ⬜ |
 | 6 | A Ferida | ⬜ |
@@ -137,6 +137,9 @@ PESQUISA → OUTLINE → [AUTOR APROVA] → REDAÇÃO → REVISÃO → [AUTOR AP
 | Cap 1 | Cap 23 | Porto/ferrovia como corredor de exportação — riqueza que passa |
 | Cap 2 | Cap 3 | Cap 2 fecha com a natureza como "casa de alguém"; Cap 3 apresenta os povos indígenas |
 | Cap 2 | Cap 23-24 | Tensão economia extrativa vs. economia sustentável desenvolvida no Cap 2 |
+| Cap 3 | Cap 4 | Tupinambá como aliados dos franceses na França Equinocial; resistência à colonização portuguesa |
+| Cap 3 | Cap 6 | Escravização indígena como primeira "ferida" — Tenetehara aldeados e escravizados |
+| Cap 3 | Cap 10 | Continuidade da luta indígena contemporânea — Guardiões, Ka'apor, Gamela |
 
 ---
 
