@@ -185,7 +185,7 @@ O terceiro golpe foi a abolição do tráfico de escravizados em 4 de setembro d
 
 A Guerra Civil Americana (1861–1865) gerou um último suspiro. Com o bloqueio naval dos portos confederados, o algodão do Sul dos EUA deixou de chegar a Liverpool, e a demanda pelo algodão brasileiro voltou a crescer. São Luís experimentou um boom temporário — chegou, brevemente, a figurar entre as três cidades mais populosas do Brasil. Os senhores do algodão, que já sentiam o declínio, viram uma esperança de que a prosperidade pudesse voltar. Compraram mais escravizados no mercado interno (já que o tráfico atlântico estava proibido desde 1850), expandiram plantações, construíram novos sobrados [41]. Mas quando a guerra acabou em 1865 e o algodão americano — agora produzido por mão de obra formalmente livre, embora sob condições de exploração brutais — voltou ao mercado, o Maranhão não conseguiu competir. O algodão americano era mais barato, mais abundante e de melhor qualidade. O algodão egípcio e indiano também ganhava espaço. O Maranhão, com sua tecnologia rudimentar, suas terras cada vez mais esgotadas e sua mão de obra escravizada cada vez mais escassa, ficou sem mercado. O declínio, desta vez, foi definitivo.
 
-"A independência brasileira e a abolição da escravidão, seguidas pela queda nos mercados de exportação agrícola, iniciaram um período de declínio econômico que continuou até o início da década de 1990" [42]. Uma frase, de uma enciclopédia sobre São Luís, resume quase dois séculos de história: da quarta cidade mais rica ao esquecimento.
+A independência brasileira, a abolição da escravidão e a queda nos mercados de exportação agrícola iniciaram um período de declínio econômico que se prolongaria por quase dois séculos — da quarta cidade mais rica do Brasil ao esquecimento [42].
 
 O que ficou foram os sobrados. Os azulejos. E uma estrutura social que a abolição formal da escravatura (1888) não destruiu — apenas renomeou.
 
@@ -285,11 +285,11 @@ E há algo mais que o ciclo do algodão legou ao Maranhão: uma ferida racial qu
 
 [39] Wikipedia — Ciclo do Algodão; Brazilian cotton cycle. Cotton gin (1793); retomada da produção americana.
 
-[40] Economic History Review — Thales Pereira, "Taxation and the stagnation of cotton exports in Brazil, 1800–60." Taxação pós-1808 como fator central na estagnação.
+[40] Economic History Review — Thales Pereira, "Taxation and the stagnation of cotton exports in Brazil, 1800–60." Vencedor do Ashton Prize (2022). Taxação pós-1808 como fator central na estagnação.
 
 [41] Wikipedia — São Luís. Guerra Civil Americana: novo boom; São Luís como 3ª cidade mais populosa.
 
-[42] Encyclopedia.com — "São Luís." Citação: "A independência brasileira e a abolição da escravidão (...) iniciaram um período de declínio econômico que continuou até o início da década de 1990."
+[42] Síntese historiográfica baseada em múltiplas fontes sobre o declínio econômico do Maranhão pós-colonial. Cf. Meireles, Mário. *História do Maranhão*; também Wikipedia — São Luís, seção "Declínio econômico."
 
 [42a] Fundação Cultural Palmares — Maranhão é o estado com o maior número de comunidades quilombolas certificadas do Brasil (mais de mil). Bahia é o segundo.
 
