@@ -26,7 +26,7 @@
 | Cap | Título | Status |
 |-----|--------|--------|
 | 1 | A Encruzilhada | ✅ Aprovado |
-| 2 | A Natureza Viva | ⬜ |
+| 2 | A Natureza Viva | ✍️ |
 | 3 | Os Primeiros | ⬜ |
 | 4 | A França, a Holanda e Portugal | ⬜ |
 | 5 | O Ouro Branco | ⬜ |
@@ -131,10 +131,12 @@ PESQUISA → OUTLINE → [AUTOR APROVA] → REDAÇÃO → REVISÃO → [AUTOR AP
 
 | De | Para | Conexão |
 |----|------|---------|
-| Cap 1 | Cap 2 | Ponte de saída: ecossistemas da encruzilhada → natureza viva/ameaçada |
+| Cap 1 | Cap 2 | Ponte de saída: ecossistemas da encruzilhada → natureza viva/ameaçada; Cap 2 aprofunda ecologia e ameaças |
 | Cap 1 | Cap 4 | Três impérios europeus atraídos pela baía e litoral |
 | Cap 1 | Cap 10 | Quebradeiras de coco babaçu — luta pelo acesso |
 | Cap 1 | Cap 23 | Porto/ferrovia como corredor de exportação — riqueza que passa |
+| Cap 2 | Cap 3 | Cap 2 fecha com a natureza como "casa de alguém"; Cap 3 apresenta os povos indígenas |
+| Cap 2 | Cap 23-24 | Tensão economia extrativa vs. economia sustentável desenvolvida no Cap 2 |
 
 ---
 
