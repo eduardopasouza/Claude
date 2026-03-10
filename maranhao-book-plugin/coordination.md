@@ -28,7 +28,7 @@
 | 1 | A Encruzilhada | ✅ Aprovado |
 | 2 | A Natureza Viva | ✍️ |
 | 3 | Os Primeiros | ✍️ |
-| 4 | A França, a Holanda e Portugal | ⬜ |
+| 4 | A França, a Holanda e Portugal | ✍️ |
 | 5 | O Ouro Branco | ⬜ |
 | 6 | A Ferida | ⬜ |
 | 7 | O Levante | ⬜ |
