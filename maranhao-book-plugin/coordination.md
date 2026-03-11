@@ -30,7 +30,7 @@
 | 3 | Os Primeiros | ✍️ |
 | 4 | A França, a Holanda e Portugal | ✍️ |
 | 5 | O Ouro Branco | ✍️ |
-| 6 | A Ferida | 📐 Outline |
+| 6 | A Ferida | ✍️ Redação (draft-v1, ~6.5k palavras — expandir para 8k+) |
 | 7 | O Levante | ⬜ |
 | 8 | A Construção do Poder | ⬜ |
 
