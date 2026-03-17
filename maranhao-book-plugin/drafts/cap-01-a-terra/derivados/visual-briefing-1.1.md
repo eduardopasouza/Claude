@@ -1,94 +1,183 @@
-# Briefing Visual — Tópico 1.1: A Encruzilhada
+# Visual Briefing — 1.1 "A Encruzilhada: três biomas, dois mundos, um estado"
+
+**Derivado de:** Cap. 01 — A Terra, Tópico 1.1
+**Data:** 2026-03-17
+**Destinatário:** Designer / Ilustrador
+**Contexto:** O Maranhão (329.651 km²) é o único estado brasileiro onde três biomas se encontram. Fica na fronteira entre o Norte (Amazônia) e o Nordeste (Cerrado/Caatinga). Este tópico abre o livro inteiro — os visuais precisam causar impacto imediato e traduzir a ideia central de "encruzilhada".
 
 ---
 
-## Asset 1 — Infográfico "O Mapa Dobrado"
+## Asset 1 — Mapa dos 3 Biomas
 
-**Prioridade**: MUST-HAVE (é a imagem de abertura do livro inteiro)
+**Código:** `VIS-1.1-A`
+**Prioridade:** Must-have (imagem principal do tópico)
 
-**Conceito**: Ilustração conceitual do mapa do Brasil sendo "dobrado" em três partes — Amazônia, Cerrado, Nordeste seco. O ponto onde as três dobras se cruzam cai sobre o Maranhão, que fica destacado.
+### Formato e Dimensões
+- **Tipo:** Página inteira (full page), orientação retrato.
+- **Proporção:** Aproximadamente 170 × 240 mm (mancha útil de livro 16 × 23 cm). Prever versão digital em alta resolução (300 dpi, PNG/SVG).
+- Deve funcionar também reduzido a 50% para uso em redes sociais.
 
-**Formato**: Página inteira (spread ou página ímpar)
+### Descrição
+Mapa do estado do Maranhão preenchido pelas áreas dos três biomas, com a silhueta do estado bem definida. O mapa deve ser limpo, vetorial, com estética inspirada no estúdio **Kurzgesagt** — cores sólidas, formas simplificadas, sem texturas fotográficas, tipografia moderna (sem serifa). Fundo: off-white ou cinza muito claro (#F5F5F0).
 
-**Paleta de cores**:
-- Amazônia: verde-mata (#2D6A4F)
-- Cerrado: ocre/dourado (#D4A84B)
-- Nordeste seco/Caatinga: terracota (#C46035)
-- Maranhão (ponto de cruzamento): destaque em branco ou dourado, com as três cores se fundindo
+### Paleta de Cores
 
-**Labels/texto**:
-- "AMAZÔNIA" sobre a dobra verde
-- "CERRADO" sobre a dobra ocre
-- "CAATINGA" sobre a dobra terracota
-- "MARANHÃO" no ponto de cruzamento, em destaque
+| Bioma     | Cor principal           | Hex sugerido | Área  |
+|-----------|-------------------------|--------------|-------|
+| Amazônia  | Verde-floresta denso    | #2D6A4F      | 35%   |
+| Cerrado   | Ocre / dourado quente   | #D4A843      | 64%   |
+| Caatinga  | Terracota / tijolo seco | #C4624A      | 1%    |
 
-**Estilo de referência**: Kurzgesagt / infográfico editorial (The Economist, National Geographic). Limpo, geométrico, sem excesso de detalhes. Pode ser flat design com sombras sutis nas dobras para dar profundidade.
+- Usar variações de saturação (mais claro no interior, mais escuro nas bordas) para dar profundidade sem perder a limpeza.
+- Contorno do estado: linha fina cinza-escuro (#333333), 1 pt.
 
-**Notas para o designer**: A ideia é que o leitor entenda instantaneamente que o Maranhão é o ponto onde três mundos se encontram. As "dobras" podem ser literais (papel dobrado, com vincos) ou abstratas (gradientes, sobreposições). O importante é que o olho vá direto para o ponto de convergência.
+### Overlay: Amazônia Legal
+- Sobrepor ao mapa uma **linha tracejada branca ou cinza-claro** delimitando a área da Amazônia Legal dentro do Maranhão (181 dos 217 municípios — ~79,3% do território, a oeste do meridiano 44°W).
+- Legenda da linha: "Amazônia Legal (79,3% do território)".
+- A linha deve contrastar com os biomas sem competir visualmente. Sugestão: tracejado 4 px / 4 px, opacidade 70%.
+
+### Rótulos e Textos
+- Dentro de cada área de bioma, centralizado:
+  - **"CERRADO — 64%"** (tipografia bold, corpo grande)
+  - **"AMAZÔNIA — 35%"**
+  - **"CAATINGA — 1%"** (corpo menor, com seta indicadora se a faixa for muito estreita no mapa)
+- Rodapé do mapa: `Fonte: IBGE — Biomas (2019); Embrapa (2011)`
+- Título superior (opcional, se houver espaço): "Três biomas, um estado"
+
+### Referência de Estilo
+- **Kurzgesagt — In a Nutshell** (YouTube): mapas vetoriais com gradientes suaves, paleta restrita, labels integrados ao corpo do mapa.
+- Referência adicional: mapas do Our World in Data (ourworldindata.org) — clareza informacional acima de tudo.
+
+### Notas Técnicas
+- A Caatinga ocupa apenas a faixa leste extrema do estado (divisa com Piauí). É uma fatia muito fina — usar uma seta ou callout para garantir legibilidade.
+- A transição Amazônia–Cerrado no centro do estado pode ser indicada por uma faixa de gradiente sutil ou por uma linha de transição rotulada "Mata dos Cocais (transição)".
 
 ---
 
-## Asset 2 — Mapa dos 3 Biomas
+## Asset 2 — Infográfico "O Mapa Dobrado"
 
-**Prioridade**: MUST-HAVE
+**Código:** `VIS-1.1-B`
+**Prioridade:** Must-have (imagem de abertura do livro)
 
-**Conceito**: Mapa do contorno do Maranhão dividido nas três áreas de bioma, com porcentagens e a linha da Amazônia Legal sobreposta.
+### Formato e Dimensões
+- **Tipo:** Página dupla (spread) ou página inteira sangrada (full bleed). É a primeira imagem que o leitor vê ao abrir o Capítulo 1.
+- **Proporção:** 340 × 240 mm (spread) ou 170 × 240 mm (página inteira). Prever versão quadrada (1:1) para uso digital.
 
-**Formato**: Meia página ou coluna lateral
+### Descrição Conceitual
+Ilustração conceitual que traduz visualmente a metáfora do texto de abertura:
 
-**Paleta de cores**:
-- Amazônia: verde-mata (#2D6A4F) — região oeste/noroeste
-- Cerrado: ocre (#D4A84B) — região sul e centro-leste (maior área)
-- Caatinga: terracota (#C46035) — faixa estreita no extremo leste
+> "Dobre o mapa do Brasil em três. Uma dobra separando a Amazônia. Outra separando o Cerrado. Uma terceira isolando o Nordeste seco. Agora olhe para o ponto onde as três dobras se cruzam. É o Maranhão."
 
-**Labels/texto**:
-- "CERRADO — 64%" (138 municípios)
-- "AMAZÔNIA — 35%" (110 municípios)
-- "CAATINGA — ~1%" (15 municípios)
-- Linha tracejada: "Limite da Amazônia Legal (79,3% do território)"
+O mapa do Brasil aparece como se fosse uma **folha de papel sendo dobrada fisicamente** em três partes. As dobras criam três "abas" ou painéis:
 
-**Elementos adicionais**:
-- Localização de São Luís (ponto + nome)
-- Contorno dos estados vizinhos em cinza claro (PA a oeste, TO ao sul, PI a leste)
-- Rosa dos ventos ou indicação de norte
-- Escala
+1. **Aba esquerda (Oeste/Norte):** Amazônia — verde-floresta (#2D6A4F), com ícones sutis de árvores/copa de floresta.
+2. **Aba central/sul:** Cerrado — ocre/dourado (#D4A843), com ícones sutis de árvores retorcidas típicas do cerrado.
+3. **Aba direita (Leste):** Nordeste seco — terracota (#C4624A), com ícones sutis de cacto/solo rachado.
 
-**Estilo de referência**: Mapas do MapBiomas ou IBGE, simplificados. Sem topografia, sem rios — apenas contorno, biomas e rótulos. Flat, limpo.
+No **ponto exato onde as três dobras se cruzam**, o estado do Maranhão aparece em destaque — um brilho ou halo sutil ao redor da sua silhueta, como se ali fosse o "eixo" do papel dobrado. Pode haver uma leve sombra de dobra de papel para reforçar a tridimensionalidade.
 
-**Fonte dos dados**: IBGE — Biomas (2019); Embrapa (2011)
+### Paleta de Cores
+- Mesma paleta do Asset 1 (verde-floresta, ocre, terracota).
+- Fundo: branco puro ou off-white.
+- Sombras da dobra: cinza neutro com baixa opacidade.
+- Destaque no Maranhão: borda luminosa branca ou dourada sutil.
+
+### Rótulos e Textos
+- Em cada "aba" do mapa dobrado, um rótulo discreto:
+  - "AMAZÔNIA"
+  - "CERRADO"
+  - "NORDESTE SECO"
+- No ponto de cruzamento: **"MARANHÃO"** em destaque (bold, corpo maior).
+- Não precisa de título — a imagem é autoexplicativa e será acompanhada pelo parágrafo de abertura do texto.
+
+### Referência de Estilo
+- Estética de **paper folding / origami infographic** — clean, tridimensional porém flat, com sombras mínimas.
+- Referências visuais: ilustrações editoriais da revista *Monocle*, infográficos da *National Geographic* (versão simplificada), ou trabalhos do ilustrador **Malika Favre** (formas planas com sugestão de profundidade).
+- Evitar: realismo fotográfico, texturas pesadas, excesso de detalhes cartográficos.
+
+### Notas Técnicas
+- A proporção geográfica do Brasil não precisa ser milimetricamente exata — é uma ilustração conceitual, não um mapa técnico. Mas a silhueta deve ser reconhecível.
+- As "dobras" devem parecer naturais, como se alguém realmente dobrasse um papel. As linhas de dobra passam aproximadamente pelos limites dos biomas.
+- O Maranhão deve ser o ponto focal inequívoco da composição. Considerar usar escala levemente exagerada para o estado.
 
 ---
 
 ## Asset 3 — Mapa de Localização
 
-**Prioridade**: NICE-TO-HAVE (pode ser combinado com o Asset 2 como inset)
+**Código:** `VIS-1.1-C`
+**Prioridade:** Nice-to-have (pode ser integrado como inset no Asset 1)
 
-**Conceito**: Mapa-miniatura do Brasil com o Maranhão destacado, mostrando que ele fica na fronteira entre a Região Nordeste e a Região Norte.
+### Formato e Dimensões
+- **Tipo:** Inline ou quarter-page. Pode funcionar como inset (caixa menor) dentro do Asset 1, no canto inferior direito.
+- **Proporção:** ~80 × 80 mm (quadrado ou levemente retrato).
 
-**Formato**: Inline pequeno (thumb) ou inset no canto do Asset 2
+### Descrição
+Mapa simplificado do Brasil inteiro, com todos os estados delineados em cinza claro. O Maranhão aparece em destaque (preenchido em cor sólida). Os estados vizinhos relevantes são rotulados:
 
-**Paleta de cores**:
-- Brasil: cinza claro (#E0E0E0)
-- Região Nordeste: azul claro (#A8DADC)
-- Região Norte: verde claro (#B7E4C7)
-- Maranhão: destaque (borda grossa ou cor diferenciada), tocando ambas as regiões
+- **Pará** (a oeste) — pertence à Região Norte.
+- **Piauí** (a leste) — pertence à Região Nordeste.
+- **Tocantins** (a sudoeste) — pertence à Região Norte.
 
-**Labels/texto**:
-- "REGIÃO NORTE" sobre PA/AM
-- "REGIÃO NORDESTE" sobre PI/CE/BA
-- "MARANHÃO" com seta ou destaque
-- Fronteiras: "PARÁ" a oeste, "TOCANTINS" ao sul, "PIAUÍ" a leste
+O objetivo é mostrar visualmente que o Maranhão **fica exatamente na fronteira entre duas macrorregiões** do IBGE (Norte e Nordeste).
 
-**Estilo de referência**: Locator map estilo Wikipedia/atlas escolar. Minimalista.
+### Paleta de Cores
+
+| Elemento                  | Cor                  | Hex sugerido |
+|---------------------------|----------------------|--------------|
+| Maranhão                  | Destaque forte       | #1B4332      |
+| Estados da Região Norte   | Azul-acinzentado     | #A8DADC      |
+| Estados da Região Nordeste| Bege/areia           | #E8D5B7      |
+| Demais estados            | Cinza muito claro    | #E0E0E0      |
+| Contornos                 | Cinza médio          | #999999      |
+
+### Rótulos e Textos
+- **"MARANHÃO"** — dentro ou ao lado do estado, bold.
+- **"Pará"** — com indicação "(Região Norte)".
+- **"Piauí"** — com indicação "(Região Nordeste)".
+- **"Tocantins"** — com indicação "(Região Norte)".
+- Linha divisória visual ou rótulo indicando: **"Limite Norte / Nordeste"** passando pela fronteira oeste do Maranhão.
+- Legenda de cores: "Norte" / "Nordeste" / "Demais regiões".
+
+### Referência de Estilo
+- Mapa localizador clássico de atlas ou artigo acadêmico, porém com a mesma linguagem visual limpa dos demais assets.
+- Referência: mapas localizadores da Wikipedia em SVG — simples, sem relevo, com foco na informação política/regional.
+
+### Notas Técnicas
+- Não incluir relevo, rios ou cidades — é um mapa puramente político/regional.
+- Se usado como inset do Asset 1, reduzir para ~60 × 60 mm e eliminar rótulos secundários (manter apenas "MA", "PA", "PI" como siglas).
+- Garantir que a diferença cromática entre Região Norte e Região Nordeste seja perceptível mesmo em impressão P&B (usar tons com luminosidade bem diferente).
 
 ---
 
-## Notas gerais
+## Diretrizes Gerais (todos os assets)
 
-- Todos os assets devem seguir a mesma identidade visual do livro (a ser definida)
-- Preferir tipografia sem serifa para labels nos mapas
-- Evitar excesso de informação — cada asset deve comunicar UMA ideia principal:
-  - Asset 1: "O Maranhão é onde três mundos se cruzam"
-  - Asset 2: "Três biomas num só estado, com porcentagens"
-  - Asset 3: "Fica entre Norte e Nordeste"
-- Formatos de entrega: vetor (SVG/AI) + rasterizado alta resolução (300dpi, CMYK para impressão)
+### Tipografia
+- Família sem serifa, geométrica. Sugestões: **Inter**, **DM Sans**, **Outfit** ou **Nunito Sans**.
+- Rótulos de mapa: peso medium ou semibold.
+- Dados percentuais: peso bold.
+- Fontes/créditos: peso regular, corpo reduzido (7–8 pt impresso).
+
+### Entrega
+- Formatos: **SVG** (editável) + **PNG 300 dpi** (para diagramação) + **PDF vetorial**.
+- Organizar camadas nomeadas (biomas, labels, overlay, fundo).
+- Versão light e dark mode para uso digital, se possível.
+
+### Acessibilidade
+- Garantir contraste mínimo WCAG AA entre cores de bioma e texto sobreposto.
+- Não depender exclusivamente de cor para distinguir os biomas — usar também rótulos textuais e/ou padrões (hachura sutil) como fallback.
+- Incluir alt-text sugerido para cada asset (para versão digital/e-book).
+
+### Alt-texts sugeridos
+- **Asset 1:** "Mapa do Maranhão dividido em três biomas: Cerrado (64%, em ocre), Amazônia (35%, em verde) e Caatinga (1%, em terracota), com sobreposição da fronteira da Amazônia Legal."
+- **Asset 2:** "Ilustração conceitual do mapa do Brasil dobrado em três partes — Amazônia, Cerrado e Nordeste seco — com o ponto de cruzamento das dobras no Maranhão."
+- **Asset 3:** "Mapa do Brasil com o Maranhão em destaque, mostrando sua posição entre a Região Norte (Pará, Tocantins) e a Região Nordeste (Piauí)."
+
+---
+
+## Resumo de Prioridades
+
+| Asset                        | Código     | Prioridade  | Formato         |
+|------------------------------|------------|-------------|-----------------|
+| Mapa dos 3 Biomas            | VIS-1.1-A  | Must-have   | Página inteira  |
+| Infográfico "O Mapa Dobrado" | VIS-1.1-B  | Must-have   | Spread / página |
+| Mapa de Localização          | VIS-1.1-C  | Nice-to-have| Inline / inset  |
