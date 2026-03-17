@@ -81,7 +81,7 @@
 - Exemplos de abertura de tópico (bom vs. ruim)
 - Lista de clichês proibidos
 - Posicionamento político: exemplos concretos do que pode e do que não pode
-**Status**: ⬜ A produzir
+**Status**: ✅ Produzido → `style-guide-editorial.md`
 
 ### 7. Guia de Estilo Visual (Style Guide Visual)
 **O que é**: Regras visuais que garantem consistência em todas as imagens, infográficos e vídeos.
@@ -192,7 +192,7 @@
 | 3. Perfil de Público | Concepção | ⬜ | 🟡 Média |
 | 4. Playbook de Produção | Planejamento | 🔄 Reescrever | 🔴 Alta |
 | 5. Estrutura Completa | Planejamento | 🔄 Detalhar | 🔴 Alta |
-| 6. Style Guide Textual | Planejamento | ⬜ | 🔴 Alta |
+| 6. Style Guide Textual | Planejamento | ✅ Produzido | 🔴 Alta |
 | 7. Style Guide Visual | Planejamento | ⬜ | 🔴 Alta |
 | 8. Guia de Pesquisa | Planejamento | ⬜ | 🔴 Alta |
 | 9. Banco de Referências | Pré-produção | 🔄 Parcial | 🟡 Média |
