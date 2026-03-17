@@ -71,7 +71,9 @@ Quando o algodão americano voltou ao mercado após a Guerra Civil, quando o alg
 
 A Abolição, em 1888, foi o golpe final — não porque a liberdade fosse ruim, mas porque a economia de Alcântara era tão dependente do trabalho escravizado que não sobreviveu sem ele.¹⁴ As famílias ricas migraram. Os sobrados ficaram vazios. A população caiu. A cidade que no início do século XIX rivalizava com São Luís tornou-se, ao longo do século XX, um vilarejo remoto acessível apenas por barco.
 
-O paradoxo é idêntico ao do Centro Histórico de São Luís: a decadência preservou. Ninguém demoliu os casarões porque ninguém tinha dinheiro para demolir — nem para construir outra coisa no lugar. As ruínas são ruínas porque a pobreza as congelou. A cidade "parou no tempo" não por vontade, não por decisão, não por preservacionismo. Parou porque foi abandonada.
+O paradoxo é idêntico ao do Centro Histórico de São Luís — mas levado ao extremo. São Luís pelo menos continuou sendo capital; Alcântara não continuou sendo nada. Ninguém demoliu os casarões porque ninguém tinha dinheiro para demolir — nem para construir outra coisa no lugar. Ninguém restaurou porque não havia interesse político nem viabilidade econômica. As ruínas são ruínas porque a pobreza as congelou. A cidade "parou no tempo" não por vontade, não por decisão, não por preservacionismo. Parou porque foi abandonada. E como toda coisa abandonada, foi lentamente devorada: pelo mato, pela chuva, pelo cupim, pelo esquecimento.
+
+Há uma diferença entre São Luís e Alcântara que importa. Em São Luís, o centro histórico decaiu, mas a cidade cresceu ao redor — Renascença, Calhau, São Francisco absorveram a vida que o centro perdeu. Em Alcântara, não houve crescimento ao redor. A cidade inteira encolheu. O que ficou é tudo o que há.
 
 ↗ V50 — "Centro Histórico de São Luís: patrimônio, abandono e vida"
 
@@ -85,7 +87,9 @@ Alcântara é, segundo o Censo 2022 do IBGE, o município com a maior proporçã
 
 A ironia é monumental. A cidade que enriqueceu escravizando africanos é hoje, demograficamente, uma cidade negra. Os descendentes dos escravizados que construíram os palácios dos barões são os donos de Alcântara — ou deveriam ser.
 
-Essas comunidades mantêm práticas ancestrais: roças de mandioca, pesca artesanal, extrativismo de babaçu, festas religiosas que fundem catolicismo e tradições de matriz africana. A terra não é apenas propriedade — é identidade. Os cemitérios onde estão enterrados os antepassados, as praias onde se pesca, os caminhos entre uma comunidade e outra, os terreiros onde se dança: tudo isso é território, no sentido mais profundo da palavra.
+Essas comunidades mantêm práticas ancestrais: roças de mandioca, pesca artesanal, extrativismo de babaçu, festas religiosas que fundem catolicismo e tradições de matriz africana. Fabricam farinha de mandioca em fornos comunitários. Conhecem cada igarapé, cada mangue, cada trilha no mato. A terra não é apenas propriedade — é identidade. Os cemitérios onde estão enterrados os antepassados, as praias onde se pesca, os caminhos entre uma comunidade e outra, os terreiros onde se dança: tudo isso é território, no sentido mais profundo da palavra.
+
+É preciso dizer com clareza: quando 85% da população de um município é quilombola, o município é quilombola. Alcântara não "tem" comunidades quilombolas como São Paulo "tem" bairros japoneses. Alcântara *é* quilombola. Essa distinção importa — e importou muito quando o governo decidiu instalar foguetes ali.
 
 ↗ V37 — "Comunidades quilombolas"
 
