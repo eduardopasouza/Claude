@@ -109,7 +109,7 @@
 - Como tratar divergências entre fontes
 - Como incluir fontes de YouTube (salvar link, autor, data, minutagem)
 - Template de arquivo de referências
-**Status**: ⬜ A produzir
+**Status**: ✅ Produzido → `guia-de-pesquisa.md`
 
 ---
 
@@ -194,7 +194,7 @@
 | 5. Estrutura Completa | Planejamento | 🔄 Detalhar | 🔴 Alta |
 | 6. Style Guide Textual | Planejamento | ✅ Produzido | 🔴 Alta |
 | 7. Style Guide Visual | Planejamento | ⬜ | 🔴 Alta |
-| 8. Guia de Pesquisa | Planejamento | ⬜ | 🔴 Alta |
+| 8. Guia de Pesquisa | Planejamento | ✅ Produzido | 🔴 Alta |
 | 9. Banco de Referências | Pré-produção | 🔄 Parcial | 🟡 Média |
 | 10. Template/Piloto | Pré-produção | ⬜ | 🔴 Alta |
 | 11. Cronograma | Pré-produção | ⬜ | 🟢 Baixa |
