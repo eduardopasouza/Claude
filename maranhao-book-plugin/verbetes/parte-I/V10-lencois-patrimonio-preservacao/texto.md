@@ -3,7 +3,7 @@ id: V10
 titulo: "Lençóis Maranhenses: patrimônio e preservação"
 parte: 1
 tipo: verbete-complementar
-palavras: 3800
+palavras: 2700
 boxes:
   - tipo: mundo
     titulo: "Enquanto isso no mundo: dunas protegidas"

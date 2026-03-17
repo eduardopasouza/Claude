@@ -11,13 +11,13 @@
 | Métrica | Valor |
 |---------|-------|
 | Total de verbetes | 106 |
-| Produzidos | 8 |
+| Produzidos | 14 |
 | Em produção | 0 |
-| Pendentes | 98 |
-| Palavras escritas | ~35.100 |
-| Reels produzidos | 24 |
-| Visuais produzidos | 24 |
-| Fase atual | Fase 1 — Verbetes-âncora |
+| Pendentes | 92 |
+| Palavras escritas | ~50.100 |
+| Reels produzidos | 42 |
+| Visuais produzidos | 36 |
+| Fase atual | Fase 2 — Completar partes cronológicas |
 
 ---
 
@@ -38,6 +38,21 @@
 
 ---
 
+## Fase 2 — Verbetes complementares e adjacentes (6 verbetes)
+
+| # | Verbete | Parte | Status | Palavras | Reels | Visuais | Data |
+|---|---------|-------|--------|----------|-------|---------|------|
+| V05 | Litoral e mangues | I | ✅ Pronto | 3.700 | 3 | 2 | 2026-03-17 |
+| V10 | Lençóis: patrimônio e preservação | I | ✅ Pronto | 2.700 | 3 | 2 | 2026-03-17 |
+| V54 | Alcântara colonial | VI | ✅ Pronto | 3.500 | 3 | 2 | 2026-03-17 |
+| V55 | Alcântara espacial | VI | ✅ Pronto | 2.500 | 3 | 2 | 2026-03-17 |
+| V67 | Bumba-meu-boi: os sotaques | VIII | ✅ Pronto | 3.000 | 3 | 2 | 2026-03-17 |
+| V85 | Babaçu: a palmeira que é identidade | IX | ✅ Pronto | 3.100 | 3 | 2 | 2026-03-17 |
+
+**Progresso Fase 2**: 6/6 concluídos (100%)
+
+---
+
 ## Índice Completo — Controle por Parte
 
 ### PARTE I — O CHÃO (13 verbetes)
@@ -48,17 +63,17 @@
 | V02 | As Quatro Paisagens | Verbete-âncora | ⏳ Pendente | — | — |
 | V03 | Cerrado maranhense | Ecossistêmico | ⏳ Pendente | — | — |
 | V04 | Amazônia maranhense | Ecossistêmico | ⏳ Pendente | — | — |
-| V05 | Litoral e mangues | Ecossistêmico | ⏳ Pendente | — | — |
+| V05 | Litoral e mangues | Ecossistêmico | ✅ Pronto | 3.700 | 2026-03-17 |
 | V06 | Mata dos Cocais | Ecossistêmico/identitário | ⏳ Pendente | — | — |
 | V07 | O Maranhão seco | Ecossistêmico | ⏳ Pendente | — | — |
 | V08 | Rios, lagos e lagoas | Verbete-âncora | ⏳ Pendente | — | — |
 | V09 | Lençóis Maranhenses: o paradoxo geológico | Verbete-âncora | ✅ Pronto | 4.200 | 2026-03-17 |
-| V10 | Lençóis Maranhenses: patrimônio e preservação | Verbete complementar | ⏳ Pendente | — | — |
+| V10 | Lençóis Maranhenses: patrimônio e preservação | Verbete complementar | ✅ Pronto | 2.700 | 2026-03-17 |
 | V11 | Parcel de Manuel Luís: o cemitério submarino | Verbete forte | ⏳ Pendente | — | — |
 | V12 | Delta das Américas | Verbete próprio | ⏳ Pendente | — | — |
 | V13 | Pré-história maranhense | Arqueologia | ⏳ Pendente | — | — |
 
-**Parte I**: 1/13 concluídos
+**Parte I**: 3/13 concluídos
 
 ---
 
@@ -142,11 +157,11 @@
 | V51 | Os azulejos de São Luís | Verbete próprio | ⏳ Pendente | — | — |
 | V52 | O pôr do sol de São Luís | Página visual | ⏳ Pendente | — | — |
 | V53 | Periferia: a cidade que ninguém vê | Verbete forte | ⏳ Pendente | — | — |
-| V54 | Alcântara colonial: a cidade que parou no tempo | Verbete próprio | ⏳ Pendente | — | — |
-| V55 | Alcântara espacial: do quilombo ao foguete | Verbete + box | ⏳ Pendente | — | — |
+| V54 | Alcântara colonial: a cidade que parou no tempo | Verbete próprio | ✅ Pronto | 3.500 | 2026-03-17 |
+| V55 | Alcântara espacial: do quilombo ao foguete | Verbete + box | ✅ Pronto | 2.500 | 2026-03-17 |
 | V56 | Três potências em uma ilha | Infográfico + boxes | ⏳ Pendente | — | — |
 
-**Parte VI**: 1/9 concluídos
+**Parte VI**: 3/9 concluídos
 
 ---
 
@@ -173,7 +188,7 @@
 | # | Verbete | Tipo | Status | Palavras | Data |
 |---|---------|------|--------|----------|------|
 | V66 | Bumba-meu-boi: o boi que morre e ressuscita | Verbete-âncora | ✅ Pronto | 4.500 | 2026-03-17 |
-| V67 | Bumba-meu-boi: os sotaques | Verbete complementar | ⏳ Pendente | — | — |
+| V67 | Bumba-meu-boi: os sotaques | Verbete complementar | ✅ Pronto | 3.000 | 2026-03-17 |
 | V68 | Tambor de Crioula | Verbete próprio | ⏳ Pendente | — | — |
 | V69 | Reggae: a Jamaica brasileira | Verbete forte | ✅ Pronto | 4.200 | 2026-03-17 |
 | V70 | Divino Espírito Santo | Verbete próprio | ⏳ Pendente | — | — |
@@ -189,7 +204,7 @@
 | V80 | Patrimônios UNESCO/IPHAN | Infográfico + boxes | ⏳ Pendente | — | — |
 | V81 | Artesanato maranhense | Boxes visuais | ⏳ Pendente | — | — |
 
-**Parte VIII**: 2/16 concluídos
+**Parte VIII**: 3/16 concluídos
 
 ---
 
@@ -200,7 +215,7 @@
 | V82 | Os 4 ciclos e os menores | Verbete-âncora | ⏳ Pendente | — | — |
 | V83 | Porto de Itaqui | Verbete próprio | ⏳ Pendente | — | — |
 | V84 | Ferrovia Carajás: o paradoxo dos $24 bilhões | Verbete próprio | ✅ Pronto | 4.500 | 2026-03-17 |
-| V85 | Babaçu: a palmeira que é identidade | Verbete cultural | ⏳ Pendente | — | — |
+| V85 | Babaçu: a palmeira que é identidade | Verbete cultural | ✅ Pronto | 3.100 | 2026-03-17 |
 | V86 | MATOPIBA: a última fronteira | Verbete forte | ⏳ Pendente | — | — |
 | V87 | Comércio exterior | Verbete próprio | ⏳ Pendente | — | — |
 | V88 | Indústria e minerais | Verbete próprio | ⏳ Pendente | — | — |
@@ -208,7 +223,7 @@
 | V90 | Pesca: artesanal e industrial | Verbete | ⏳ Pendente | — | — |
 | V91 | O corredor logístico | Fio condutor | ⏳ Pendente | — | — |
 
-**Parte IX**: 1/10 concluídos
+**Parte IX**: 2/10 concluídos
 
 ---
 
@@ -282,8 +297,26 @@
 | REEL-V66-1 | V66 | 60s | pergunta-resposta | O boi que morre e ressuscita |
 | REEL-V66-2 | V66 | 30s | lista | 5 sotaques, um boi |
 | REEL-V66-3 | V66 | 60s | imersão | Noite de São João no terreiro |
+| REEL-V05-1 | V05 | 60s | pergunta-resposta-surpresa | O cofre que ninguém vê |
+| REEL-V05-2 | V05 | 30s | lista | 3 fatos sobre o litoral |
+| REEL-V05-3 | V05 | 60s | imersão | Um dia na lama |
+| REEL-V10-1 | V10 | 60s | pergunta-resposta-surpresa | O patrimônio que ninguém sabe proteger |
+| REEL-V10-2 | V10 | 30s | lista | 3 fatos sobre os Lençóis que a UNESCO não conta |
+| REEL-V10-3 | V10 | 60s | imersão | A comunidade que existe onde não deveria |
+| REEL-V54-1 | V54 | 60s | pergunta-resposta-surpresa | A cidade que construiu para quem nunca veio |
+| REEL-V54-2 | V54 | 30s | lista | 3 contrastes de Alcântara |
+| REEL-V54-3 | V54 | 60s | imersão | As Caixeiras de Alcântara |
+| REEL-V55-1 | V55 | 60s | pergunta-resposta-surpresa | Foguetes no Equador |
+| REEL-V55-2 | V55 | 30s | lista | 3 contrastes de Alcântara espacial |
+| REEL-V55-3 | V55 | 60s | comparação | 4 bases espaciais do mundo |
+| REEL-V67-1 | V67 | 60s | pergunta-resposta-surpresa | O mesmo boi, cinco vozes |
+| REEL-V67-2 | V67 | 30s | lista | 5 sotaques do bumba-meu-boi |
+| REEL-V67-3 | V67 | 60s | imersão | Costa-de-mão: o sotaque que sangra |
+| REEL-V85-1 | V85 | 60s | pergunta-resposta-surpresa | A palmeira que é tudo |
+| REEL-V85-2 | V85 | 30s | lista | 3 números do babaçu |
+| REEL-V85-3 | V85 | 60s | imersão | Um dia de quebradeira |
 
-**Total reels**: 24
+**Total reels**: 42
 
 ### Visuais
 
@@ -313,8 +346,20 @@
 | VIS-V66-A | V66 | Infográfico | Página inteira | Os cinco sotaques do bumba-meu-boi |
 | VIS-V66-B | V66 | Infográfico | Meia página | O ciclo do boi — abril a dezembro |
 | VIS-V66-C | V66 | Infográfico | Corpo | Anatomia do couro do boi |
+| VIS-V05-A | V05 | Mapa | Página inteira | Mapa do litoral maranhense |
+| VIS-V05-B | V05 | Infográfico | Meia página | Ciclo da maré — díptico |
+| VIS-V10-A | V10 | Infográfico | Página inteira | Turismo vs. Saneamento |
+| VIS-V10-B | V10 | Mapa | Meia página | Mapa de ameaças ao PNLM |
+| VIS-V54-A | V54 | Mapa | Página inteira | Mapa ilustrado de Alcântara |
+| VIS-V54-B | V54 | Timeline | Meia página | Alcântara em 4 séculos |
+| VIS-V55-A | V55 | Mapa | Página inteira | Bases espaciais equatoriais — mapa-múndi |
+| VIS-V55-B | V55 | Timeline | Meia página | Timeline do programa espacial brasileiro |
+| VIS-V67-A | V67 | Mapa | Página inteira | Mapa sonoro dos 5 sotaques |
+| VIS-V67-B | V67 | Infográfico | Meia página | Comparativo dos sotaques |
+| VIS-V85-A | V85 | Infográfico | Página inteira | Anatomia do babaçu |
+| VIS-V85-B | V85 | Mapa | Meia página | Mapa da Mata dos Cocais |
 
-**Total visuais**: 24
+**Total visuais**: 36
 
 ---
 
@@ -322,19 +367,19 @@
 
 | Parte | Nome | Verbetes | Concluídos | % |
 |-------|------|----------|------------|---|
-| I | O Chão | 13 | 1 | 7,7% |
+| I | O Chão | 13 | 3 | 23,1% |
 | II | Os Primeiros | 8 | 1 | 12,5% |
 | III | A Conquista | 8 | 1 | 12,5% |
 | IV | O Povo Negro | 10 | 1 | 10% |
 | V | Apogeu e Queda | 8 | 0 | 0% |
-| VI | São Luís: A Ilha | 9 | 1 | 11,1% |
+| VI | São Luís: A Ilha | 9 | 3 | 33,3% |
 | VII | O Povo e a Identidade | 9 | 0 | 0% |
-| VIII | As Criações | 16 | 2 | 12,5% |
-| IX | A Economia | 10 | 1 | 10% |
+| VIII | As Criações | 16 | 3 | 18,8% |
+| IX | A Economia | 10 | 2 | 20% |
 | X | O Estado e a Estrutura | 8 | 0 | 0% |
 | XI | O Maranhão no Mundo | 6 | 0 | 0% |
 | — | Epílogo | 1 | 0 | 0% |
-| **TOTAL** | | **106** | **8** | **7,5%** |
+| **TOTAL** | | **106** | **14** | **13,2%** |
 
 ---
 
@@ -350,6 +395,12 @@
 | 2026-03-17 | V69 | ✅ Pipeline completo | research + outline + texto (4.200 palavras) + 3 reels + 3 visuais |
 | 2026-03-17 | V50 | ✅ Pipeline completo | research + outline + texto (4.300 palavras) + 3 reels + 3 visuais |
 | 2026-03-17 | V66 | ✅ Pipeline completo | research + outline + texto (4.500 palavras) + 3 reels + 3 visuais |
+| 2026-03-17 | V05 | ✅ Pipeline completo | texto (3.700 palavras) + 3 reels + 2 visuais |
+| 2026-03-17 | V10 | ✅ Pipeline completo | texto (2.700 palavras) + 3 reels + 2 visuais |
+| 2026-03-17 | V54 | ✅ Pipeline completo | texto (3.500 palavras) + 3 reels + 2 visuais |
+| 2026-03-17 | V55 | ✅ Pipeline completo | texto (2.500 palavras) + 3 reels + 2 visuais |
+| 2026-03-17 | V67 | ✅ Pipeline completo | texto (3.000 palavras) + 3 reels + 2 visuais |
+| 2026-03-17 | V85 | ✅ Pipeline completo | texto (3.100 palavras) + 3 reels + 2 visuais |
 
 ---
 

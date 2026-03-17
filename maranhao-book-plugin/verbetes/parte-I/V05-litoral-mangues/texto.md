@@ -3,7 +3,7 @@ id: V05
 titulo: "Litoral e mangues"
 parte: 1
 tipo: ecossistêmico
-palavras: 3800
+palavras: 3700
 boxes:
   - tipo: dado-impactante
     titulo: "O cofre de carbono que o mundo ignora"

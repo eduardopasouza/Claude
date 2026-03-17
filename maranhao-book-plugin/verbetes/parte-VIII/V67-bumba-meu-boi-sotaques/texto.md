@@ -3,7 +3,7 @@ id: V67
 titulo: "Bumba-meu-boi: os sotaques"
 parte: 8
 tipo: verbete-complementar
-palavras: 4000
+palavras: 3000
 boxes:
   - tipo: glossario
     titulo: "Glossário: instrumentos do boi"
