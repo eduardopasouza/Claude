@@ -17,16 +17,16 @@ O Maranhão não é Nordeste nem Amazônia — é os dois ao mesmo tempo, e aind
 
 ## Gancho de abertura
 
-- **Tipo**: Cena (sobrevoo)
-- **Conteúdo**: Um avião decolando de São Luís rumo ao sul — em 90 minutos de voo, a janela mostra manguezal → babaçual → cerrado → floresta amazônica. Três biomas, quatro paisagens, um único estado. Nenhum outro voo no Brasil reproduz isso.
+- **Tipo**: Imagem conceitual (o mapa dobrado)
+- **Conteúdo**: Dobre o mapa do Brasil em três — Amazônia, Cerrado, Nordeste seco. A dobra cai exatamente sobre o Maranhão. Ele não pertence a nenhum dos três. Pertence aos três ao mesmo tempo.
 
 ## Estrutura do texto
 
-### Bloco 1 — O voo (~250 palavras)
-Abertura com o sobrevoo. Descrição sensorial das mudanças de paisagem. O impacto visual: nenhum outro estado concentra essa transição.
+### Bloco 1 — O mapa dobrado (~250 palavras)
+Abertura com a imagem do mapa dobrado em três pedaços. A dobra cai sobre o Maranhão — e revela que ele é o único ponto onde os três mundos se tocam. Dados de área e biomas entram naturalmente, sem parecer inventário.
 
 - **Dados-chave**: 329.651 km² (IBGE 2024); 3 biomas (Cerrado 64%, Amazônia 35%, Caatinga 1%) [IBGE/Embrapa]
-- **Citação**: Não há — é cena narrativa
+- **Citação**: Não há — é imagem conceitual
 
 ### Bloco 2 — A encruzilhada que os mapas não mostram (~300 palavras)
 O que significa ser Nordeste E Amazônia ao mesmo tempo. Ab'Sáber e os domínios morfoclimáticos. A Mata dos Cocais como zona de transição que não pertence a nenhum domínio — e que é a mais maranhense de todas. O conceito de "Meio-Norte".
