@@ -96,7 +96,7 @@
 - Template de Reel/Short (identidade visual)
 - Template de thumbnail YouTube
 - Template de boxes especiais
-**Status**: ⬜ A produzir
+**Status**: ✅ Produzido → `style-guide-visual.md`
 
 ### 8. Guia de Pesquisa
 **O que é**: Regras e padrões para a pesquisa de cada tópico.
@@ -193,7 +193,7 @@
 | 4. Playbook de Produção | Planejamento | ✅ Reescrito | 🔴 Alta |
 | 5. Estrutura Completa | Planejamento | 🔄 Detalhar | 🔴 Alta |
 | 6. Style Guide Textual | Planejamento | ✅ Produzido | 🔴 Alta |
-| 7. Style Guide Visual | Planejamento | ⬜ | 🔴 Alta |
+| 7. Style Guide Visual | Planejamento | ✅ Produzido | 🔴 Alta |
 | 8. Guia de Pesquisa | Planejamento | ✅ Produzido | 🔴 Alta |
 | 9. Banco de Referências | Pré-produção | 🔄 Parcial | 🟡 Média |
 | 10. Template/Piloto | Pré-produção | ⬜ | 🔴 Alta |
