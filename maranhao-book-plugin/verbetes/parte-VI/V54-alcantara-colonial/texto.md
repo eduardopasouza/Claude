@@ -3,7 +3,7 @@ id: V54
 titulo: "Alcântara colonial: a cidade que parou no tempo"
 parte: 6
 tipo: verbete-proprio
-palavras: 3600
+palavras: 3500
 boxes:
   - tipo: lenda
     titulo: "Lenda: as festas de Alcântara"
