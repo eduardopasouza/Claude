@@ -112,6 +112,8 @@ LIVRO (400+ páginas, documentário 1-2h)
 - **Boxes biográficos** — 200-300 palavras sobre maranhenses de destaque (todas as áreas)
 - **Boxes "Maranhenses que você não sabia que eram maranhenses"** — série especial
 - **Glossário inline** — termos maranhenses explicados quando surgem naturalmente
+- **Série "O Maranhão pelo Mar"** — easter eggs marítimos com identidade visual própria (ícone âncora/bússola) para os temas principais (Cochrane, naufrágios, Dom Sebastião); menções menores tecidas naturalmente nos textos. Cada principal vira Reel da série.
+- **Boxes "Enquanto isso no mundo..."** — contexto geopolítico em formato misto: contextos breves integrados no texto + box lateral destacado (identidade visual própria) para temas extensos (ex: Revolução Industrial, União Ibérica, Guerra Civil Americana)
 - Cada box especial vira 1 Reel/Short com identidade visual fixa
 
 ---
@@ -223,6 +225,7 @@ LIVRO (400+ páginas, documentário 1-2h)
 | 6.1 | A Balaiada (1838-1841): a maior revolta do Norte | ⬜ |
 | 6.2 | Insurreições e resistência no séc. XIX | ⬜ |
 | 6.3 | Independência e República no Maranhão | ⬜ |
+| 6.4 | Lord Cochrane: o mercenário que "libertou" o Maranhão | ⬜ |
 
 ### CAPÍTULO 7 — ASCENSÃO E QUEDA
 *"Quem é o Maranhão? É um ciclo que se repete."*
@@ -330,10 +333,14 @@ LIVRO (400+ páginas, documentário 1-2h)
 | 15.3 | Sousândrade: o gênio esquecido (box especial) | ⬜ |
 | 15.4 | Maria Firmina dos Reis: a primeira romancista negra do Brasil (box especial) | ⬜ |
 | 15.5 | Aluísio Azevedo e o naturalismo maranhense | ⬜ |
-| 15.6 | Ferreira Gullar: do Maranhão ao Neoconcreto | ⬜ |
-| 15.7 | Josué Montello: o romancista de São Luís | ⬜ |
-| 15.8 | Nauro Machado e a geração maldita | ⬜ |
-| 15.9 | Produção contemporânea: quem escreve hoje | ⬜ |
+| 15.6 | Arthur Azevedo: o mestre do teatro brasileiro | ⬜ |
+| 15.7 | Graça Aranha, Coelho Neto e Humberto de Campos: os três gigantes | ⬜ |
+| 15.8 | Josué Montello: o romancista de São Luís | ⬜ |
+| 15.9 | Ferreira Gullar: do Maranhão ao Neoconcreto | ⬜ |
+| 15.10 | Nauro Machado e a geração maldita | ⬜ |
+| 15.11 | Literatura oral: cordel, lendas e contação de histórias | ⬜ |
+| 15.12 | Produção contemporânea: quem escreve hoje | ⬜ |
+| 15.13 | O legado literário: por que o Maranhão produziu tantos escritores? | ⬜ |
 
 ### CAPÍTULO 16 — GASTRONOMIA
 *"Quem é o Maranhão? É arroz de cuxá, juçara e caranguejo."*
@@ -463,7 +470,7 @@ LIVRO (400+ páginas, documentário 1-2h)
 
 **Legenda**: ⬜ Pendente | 📋 Pesquisa | ✍️ Redação | 🔄 Adaptar (material existente) | 🔍 Revisão | ✅ Aprovado
 
-**Contagem**: 24 capítulos + epílogo + apêndices | ~147 tópicos | Estimativa: 500+ subtópicos
+**Contagem**: 24 capítulos + epílogo + apêndices | ~152 tópicos | Estimativa: 500+ subtópicos
 
 ---
 
@@ -536,3 +543,7 @@ LIVRO (400+ páginas, documentário 1-2h)
 - [x] Aprovação: piloto + estrutura, depois confia na produção
 - [x] Style guide visual: produzir (detalhado)
 - [x] Ferramentas: Claude para imagens, orientar vídeo IA
+- [x] Easter eggs marítimos: série "O Maranhão pelo Mar" com identidade visual para os principais + menções soltas para os menores
+- [x] Lord Cochrane: tópico inteiro dedicado (6.4) — 800-1200 palavras + vídeo YouTube 8min
+- [x] Literatura: 13 tópicos confirmados (adicionados Arthur Azevedo, Graça Aranha/Coelho Neto/Humberto, literatura oral, legado literário)
+- [x] Contexto geopolítico: formato misto — breve integrado no texto + box lateral "Enquanto isso no mundo..." para temas extensos
