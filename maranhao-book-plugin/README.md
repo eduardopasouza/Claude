@@ -1,36 +1,52 @@
-# Maranhão Inteiro — Terra, povo e futuro
+# Quem é o Maranhão?
 
-Plugin para produção do livro.
+Almanaque visual do Maranhão — 100+ verbetes com dados e alma.
 
-## Arquivos
+## Arquivos principais
 
 | Arquivo | Função |
 |---------|--------|
-| `coordination.md` | Estado do projeto. **Ler sempre ao iniciar.** |
-| `playbook.md` | Processo completo: tese, arco, etapas, regras. |
-| `skills/research.md` | Pesquisa profunda com fontes |
-| `skills/write.md` | Redação narrativa com dados |
-| `skills/review.md` | Revisão editorial e factual |
+| `coordination-v3.md` | **Ler sempre ao iniciar.** Visão, índice completo, regras, pipeline. |
+| `playbook-v2.md` | Manual de produção: 10 skills com templates, exemplos e checklists. |
+| `proposta-editorial-v2.md` | Proposta editorial formal. |
+| `epilogo-bussola.md` | Ensaio-epílogo (escrito primeiro como calibrador de tom). |
+| `registro-decisoes-73-rodadas.md` | Histórico de 296 decisões em 74 rodadas. |
+| `banco-dados/dados-centrais.yaml` | Banco central de dados factuais. |
+
+## Estrutura
+
+```
+maranhao-book-plugin/
+├── coordination-v3.md
+├── playbook-v2.md
+├── proposta-editorial-v2.md
+├── epilogo-bussola.md
+├── registro-decisoes-73-rodadas.md
+├── banco-dados/
+│   └── dados-centrais.yaml
+├── verbetes/
+│   └── parte-XX/VXX-titulo/
+│       ├── research.md, outline.md, texto.md
+│       ├── reel.md, visual.md, youtube.md
+├── templates/
+├── skills/
+├── references/
+└── legacy/                 # Versão anterior (referência)
+```
 
 ## Como usar
 
-**Modo interativo**: "Vamos pensar no capítulo 3" → conversa, pesquisa, escreve junto.
+**Iniciar sessão**: Ler `coordination-v3.md`
 
-**Modo delegado**: "Pesquisa o capítulo 14" → entrega research.md para aprovação.
-
-**Fluxo completo**: Pesquisa → Outline → [Aprovação] → Redação → Revisão → [Aprovação]
-
-## Estrutura de trabalho
-
+**Produzir verbete**: Seguir pipeline em `playbook-v2.md`
 ```
-drafts/
-├── cap-XX-titulo/
-│   ├── research.md    # Pesquisa
-│   ├── outline.md     # Esqueleto (aprovado pelo autor)
-│   ├── draft-vN.md    # Versões do texto
-│   └── review.md      # Feedback de revisão
-└── rejected/          # Material rejeitado (referência)
-
-final/                 # Capítulos aprovados pelo autor
-references/            # Bibliografia e dados
+Pesquisa → Outline → [Aprovação] → Texto → Reel → Visual → [Review]
 ```
+
+**Consultar decisões**: `registro-decisoes-73-rodadas.md`
+
+**Verificar dados**: `banco-dados/dados-centrais.yaml`
+
+## Diretriz-mestra
+
+**DADOS + ALMA** — rigor de dados com alma literária. Cada número conta uma história humana.

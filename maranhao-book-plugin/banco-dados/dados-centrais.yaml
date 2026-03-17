@@ -1,0 +1,211 @@
+# Banco de Dados Central — Quem é o Maranhão?
+# Versão: 1.0 (esqueleto) | Data: 2026-03-17
+# Regra: Todo dado factual usado em 2+ verbetes DEVE estar aqui.
+# Campos: id, valor, fonte, ano_base, categoria, verbetes (onde é usado)
+# Evolutivo: expandir conforme verbetes são produzidos.
+
+---
+
+# === GEOGRAFIA ===
+
+- id: GEO-001
+  categoria: geografia
+  descricao: "Área total do Maranhão"
+  valor: "331.937,450 km²"
+  fonte: "IBGE"
+  ano_base: 2022
+  verbetes: [V01, V02]
+
+- id: GEO-002
+  categoria: geografia
+  descricao: "Posição em área entre estados brasileiros"
+  valor: "8º maior"
+  fonte: "IBGE"
+  ano_base: 2022
+  verbetes: [V01]
+
+- id: GEO-003
+  categoria: geografia
+  descricao: "Extensão do litoral maranhense"
+  valor: "640 km"
+  fonte: "IBGE"
+  ano_base: 2022
+  verbetes: [V05, V48]
+
+- id: GEO-004
+  categoria: geografia
+  descricao: "Proporção de mangues do Brasil no MA"
+  valor: "~50%"
+  fonte: "ICMBio / Atlas dos Manguezais"
+  ano_base: 2018
+  verbetes: [V05]
+
+- id: GEO-005
+  categoria: geografia
+  descricao: "Área dos Lençóis Maranhenses"
+  valor: "155.000 hectares"
+  fonte: "ICMBio"
+  ano_base: 2020
+  verbetes: [V09, V10]
+
+- id: GEO-006
+  categoria: geografia
+  descricao: "Naufrágios no Parcel de Manuel Luís"
+  valor: "200+"
+  fonte: "Marinha do Brasil / ICMBio"
+  ano_base: 2020
+  verbetes: [V11, V105]
+
+# === DEMOGRAFIA ===
+
+- id: DEM-001
+  categoria: demografia
+  descricao: "População do Maranhão"
+  valor: "7.153.262"
+  fonte: "IBGE Censo"
+  ano_base: 2022
+  verbetes: [V01, V94]
+
+- id: DEM-002
+  categoria: demografia
+  descricao: "Número de municípios"
+  valor: "217"
+  fonte: "IBGE"
+  ano_base: 2022
+  verbetes: [V99]
+
+- id: DEM-003
+  categoria: demografia
+  descricao: "População de São Luís (município)"
+  valor: "1.108.975"
+  fonte: "IBGE Censo"
+  ano_base: 2022
+  verbetes: [V48]
+
+- id: DEM-004
+  categoria: demografia
+  descricao: "Maranhenses vivendo fora do MA"
+  valor: "~1 milhão"
+  fonte: "IBGE / estimativa"
+  ano_base: 2022
+  verbetes: [V60]
+
+- id: DEM-005
+  categoria: demografia
+  descricao: "Proporção afrodescendente em Serrano"
+  valor: "58,5%"
+  fonte: "IBGE Censo"
+  ano_base: 2022
+  verbetes: [V37]
+
+# === POVOS INDÍGENAS ===
+
+- id: IND-001
+  categoria: indigena
+  descricao: "População indígena no MA"
+  valor: "~57.000"
+  fonte: "IBGE Censo / FUNAI"
+  ano_base: 2022
+  verbetes: [V14, V21]
+
+- id: IND-002
+  categoria: indigena
+  descricao: "Número de Terras Indígenas no MA"
+  valor: "23"
+  fonte: "FUNAI / ISA"
+  ano_base: 2023
+  verbetes: [V14]
+
+- id: IND-003
+  categoria: indigena
+  descricao: "Número de povos indígenas no MA"
+  valor: "~12 povos"
+  fonte: "ISA / FUNAI"
+  ano_base: 2023
+  verbetes: [V14]
+
+# === QUILOMBOS ===
+
+- id: QUI-001
+  categoria: quilombo
+  descricao: "Comunidades quilombolas certificadas no MA"
+  valor: "1.152"
+  fonte: "Fundação Cultural Palmares"
+  ano_base: 2023
+  verbetes: [V35, V37]
+
+# === ECONOMIA ===
+
+- id: ECO-001
+  categoria: economia
+  descricao: "PIB do Maranhão"
+  valor: "R$ 116,4 bilhões"
+  fonte: "IBGE"
+  ano_base: 2022
+  verbetes: [V82, V84, V94]
+
+- id: ECO-002
+  categoria: economia
+  descricao: "Receita anual da Vale na Ferrovia Carajás"
+  valor: "~US$ 24 bilhões (exportações via Itaqui)"
+  fonte: "MDIC / Comex Stat"
+  ano_base: 2023
+  verbetes: [V84]
+
+- id: ECO-003
+  categoria: economia
+  descricao: "Posição do Porto de Itaqui"
+  valor: "2º maior do Brasil em movimentação"
+  fonte: "ANTAQ"
+  ano_base: 2023
+  verbetes: [V83]
+
+# === CULTURA ===
+
+- id: CUL-001
+  categoria: cultura
+  descricao: "Bumba-meu-boi como Patrimônio da Humanidade"
+  valor: "Inscrito em 2019"
+  fonte: "UNESCO"
+  ano_base: 2019
+  verbetes: [V66, V80]
+
+- id: CUL-002
+  categoria: cultura
+  descricao: "Centro Histórico como Patrimônio da Humanidade"
+  valor: "Inscrito em 1997"
+  fonte: "UNESCO"
+  ano_base: 1997
+  verbetes: [V50, V80]
+
+# === HISTÓRIA ===
+
+- id: HIS-001
+  categoria: historia
+  descricao: "Fundação de São Luís"
+  valor: "8 de setembro de 1612"
+  fonte: "Historiografia"
+  ano_base: 1612
+  verbetes: [V23, V48]
+
+- id: HIS-002
+  categoria: historia
+  descricao: "Período como estado separado"
+  valor: "1621-1774"
+  fonte: "Historiografia"
+  ano_base: 1621
+  verbetes: [V25]
+
+- id: HIS-003
+  categoria: historia
+  descricao: "Maria Firmina dos Reis — Úrsula"
+  valor: "1859 — 1º romance de mulher brasileira"
+  fonte: "Historiografia literária"
+  ano_base: 1859
+  verbetes: [V76]
+
+# ===================================================
+# NOTA: Este banco é evolutivo. Cada verbete produzido
+# deve adicionar seus dados aqui. Conferir dados
+# contra fontes atualizadas antes de usar.
+# ===================================================

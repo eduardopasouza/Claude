@@ -1,4 +1,4 @@
-# Registro de Decisões — 65 Rodadas de Perguntas
+# Registro de Decisões — 74 Rodadas de Perguntas
 ## "Quem é o Maranhão?" — Almanaque Visual
 
 **Data:** 2026-03-17
@@ -373,13 +373,25 @@ Todos com: template + exemplo + checklist
 | YouTube timing | Lançar junto com o livro |
 | Fatos curiosos da pesquisa | Distribuídos no coordination v3 |
 
-## XX. PRÓXIMOS PASSOS
+## XX. RODADA 74 — DECISÕES ESTRUTURAIS FINAIS
 
-1. **Coordination v3** (próxima sessão) — prioridade absoluta
+| Decisão | Escolha |
+|---------|---------|
+| Organização macro | Cronológico + temático (1ª metade cronológica, 2ª metade temática) |
+| Escravizados | MESMO tratamento que indígenas — mesmo número de verbetes, mesma profundidade |
+| Europeus/migrantes | MESMO tratamento que indígenas e africanos — as 3 matrizes com PESO IGUAL |
+| Pinzón/Barros/Cunha | Verbete próprio "Antes da Conquista" |
+
+### REGRA FUNDAMENTAL
+> As três matrizes de formação (indígena, africana, europeia/migrante) devem receber tratamento IDÊNTICO em profundidade, número de verbetes e qualidade de pesquisa.
+
+## XXI. PRÓXIMOS PASSOS
+
+1. **Coordination v3** — prioridade absoluta
 2. **Pacote completo** — Coord + playbook + README + epílogo + proposta + banco YAML + estrutura de pastas
 3. **Ordem de produção** — por prioridade (verbetes mais fortes primeiro)
 
 ---
 
-*73 rodadas de perguntas — 292 perguntas respondidas*
+*74 rodadas de perguntas — 296 perguntas respondidas*
 *Registro salvo e atualizado em 2026-03-17*
