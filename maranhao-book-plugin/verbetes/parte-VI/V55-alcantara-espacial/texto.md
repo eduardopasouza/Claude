@@ -3,7 +3,7 @@ id: V55
 titulo: "Alcântara espacial: foguetes no Equador"
 parte: 6
 tipo: verbete-próprio
-palavras: 4200
+palavras: 2500
 boxes:
   - tipo: documento
     titulo: "Documento: a tragédia de 2003"

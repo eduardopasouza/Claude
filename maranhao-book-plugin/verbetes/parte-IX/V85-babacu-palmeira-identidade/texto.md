@@ -3,7 +3,7 @@ id: V85
 titulo: "Babaçu: a palmeira que é identidade"
 parte: 9
 tipo: cultural/identitário
-palavras: 3800
+palavras: 3100
 boxes:
   - tipo: receita
     titulo: "Do coco ao prato: sabores do babaçu"
