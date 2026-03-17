@@ -29,12 +29,12 @@ As Partes funcionam como **divisórias visuais** — páginas de abertura com id
 
 | Parte | Movimento | Capítulos |
 |-------|-----------|-----------|
-| I — O Chão e o Tempo | De onde viemos | 1-7 |
-| II — O Povo | Quem somos | 8-10 |
-| III — As Criações | O que inventamos | 11-16 |
-| IV — O Território | Onde vivemos | 17-18 |
-| V — A Economia e o Poder | Quanto temos, quem controla | 19-22 |
-| VI — O Amanhã | Para onde podemos ir | 23-24 |
+| I — O Chão | O palco | Cap 1 (A Terra) |
+| II — A Formação | De onde viemos | Cap 2-7 (Primeiros → Colônia → Ouro → Ferida → Levantes → Ascensão e Queda) |
+| III — O Povo | Quem somos | Cap 8-10 (Indígenas → Povo → Diáspora) |
+| IV — As Criações | O que inventamos | Cap 11-16 (Boi → Festas → Música → Espiritualidade → Literatura → Gastronomia) |
+| V — O Território e a Estrutura | Onde vivemos, quanto temos | Cap 17-22 (São Luís → Território → Economia → Turismo → Poder → Educação) |
+| VI — O Amanhã | Para onde podemos ir | Cap 23-24 (Esporte/Cultura Pop → Futuro) |
 
 ### 1.3 Formato modular com pontes
 
