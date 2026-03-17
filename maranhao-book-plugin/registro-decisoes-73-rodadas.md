@@ -328,14 +328,58 @@ Todos com: template + exemplo + checklist
 1. **Fio da água** — referências orgânicas a água em verbetes (principal)
 2. **Outros** — Claude propõe no coordination v3
 
-## XIX. PRÓXIMOS PASSOS
+## XIX. RODADAS 66-73 — REFINAMENTOS ADICIONAIS
 
-1. **Mais rodadas de perguntas** (solicitado pelo autor)
-2. **Coordination v3** (próxima sessão) — prioridade absoluta
-3. **Pacote completo** — Coord + playbook + README + epílogo + proposta + banco YAML + estrutura de pastas
-4. **Ordem de produção** — por prioridade (verbetes mais fortes primeiro)
+### Visual e Design
+| Decisão | Escolha |
+|---------|---------|
+| Tipografia | Definir no playbook visual |
+| Abertura de parte | Ilustração original (não fotografia) |
+| Infográficos | Definir no playbook visual |
+| Mapas | Varia por função (localização: esquemáticos, TIs: precisos, históricos: estilizados) |
+
+### Conteúdo Refinado
+| Decisão | Escolha |
+|---------|---------|
+| Reggae internacional | Todas as camadas: história chegada + personagens + comparação Jamaica |
+| Culinária indígena | Box "As 3 mesas" (ingredientes de cada matriz) |
+| Praia Grande/Reviver | Dentro do verbete Centro Histórico |
+| Sotaques do boi | Todos detalhados + infográfico comparativo |
+| Estado separado (1621-1774) | 3 dimensões: político + identitário + econômico |
+| Sírio-libaneses | Verbete menor (800 palavras) |
+| Pesca | Artesanal como foco + box com dados industrial |
+| Hidrovias | Cross-reference entre transporte e águas |
+| Dados municipais (apêndice) | Base YAML expansível |
+| Cenários futuros | Projeções com fontes (IBGE, IPCC, IPEA para 2030/2050) |
+
+### Produção
+| Decisão | Escolha |
+|---------|---------|
+| Research web | Web obrigatório para todo dossiê |
+| Outline formato | Template com campos obrigatórios |
+| Reels por verbete | Claude decide quantos |
+| Infográfico | Skill separado |
+| Social media | Skill específico que adapta cada verbete |
+
+### Estratégia
+| Decisão | Escolha |
+|---------|---------|
+| Site tech | Claude propõe stack (markdown + YAML → static site) |
+| E-book formato | Ambos: EPUB + PDF interativo |
+| Distribuição | Autopublicação |
+| Financiamento | Investimento próprio |
+| Impressão | Sob demanda (Amazon KDP / IngramSpark) |
+| ISBN | No final |
+| YouTube timing | Lançar junto com o livro |
+| Fatos curiosos da pesquisa | Distribuídos no coordination v3 |
+
+## XX. PRÓXIMOS PASSOS
+
+1. **Coordination v3** (próxima sessão) — prioridade absoluta
+2. **Pacote completo** — Coord + playbook + README + epílogo + proposta + banco YAML + estrutura de pastas
+3. **Ordem de produção** — por prioridade (verbetes mais fortes primeiro)
 
 ---
 
-*65 rodadas de perguntas — 260 perguntas respondidas*
-*Registro salvo em 2026-03-17*
+*73 rodadas de perguntas — 292 perguntas respondidas*
+*Registro salvo e atualizado em 2026-03-17*
