@@ -11,12 +11,12 @@
 | Métrica | Valor |
 |---------|-------|
 | Total de verbetes | 106 |
-| Produzidos | 1 |
-| Em produção | 1 |
+| Produzidos | 2 |
+| Em produção | 0 |
 | Pendentes | 104 |
-| Palavras escritas | ~4.200 |
-| Reels produzidos | 3 |
-| Visuais produzidos | 3 |
+| Palavras escritas | ~8.700 |
+| Reels produzidos | 6 |
+| Visuais produzidos | 6 |
 | Fase atual | Fase 1 — Verbetes-âncora |
 
 ---
@@ -26,7 +26,7 @@
 | # | Prioridade | Verbete | Parte | Status | Palavras | Reels | Visuais | Data |
 |---|-----------|---------|-------|--------|----------|-------|---------|------|
 | V09 | 1 | Lençóis: o paradoxo geológico | I | ✅ Pronto | 4.200 | 3 | 3 | 2026-03-17 |
-| V30 | 2 | A travessia: de onde vieram os africanos | IV | 🔄 Em produção | — | — | — | — |
+| V30 | 2 | A travessia: de onde vieram os africanos | IV | ✅ Pronto | 4.500 | 3 | 3 | 2026-03-17 |
 | V14 | 3 | Os povos originários do Maranhão | II | ⏳ Pendente | — | — | — | — |
 | V23 | 4 | A França Equinocial: o sonho francês | III | ⏳ Pendente | — | — | — | — |
 | V69 | 5 | Reggae: a Jamaica brasileira | VIII | ⏳ Pendente | — | — | — | — |
@@ -34,7 +34,7 @@
 | V84 | 7 | Ferrovia Carajás: o paradoxo | IX | ⏳ Pendente | — | — | — | — |
 | V50 | 8 | Centro Histórico: patrimônio, abandono e vida | VI | ⏳ Pendente | — | — | — | — |
 
-**Progresso Fase 1**: 1/8 concluídos (12,5%)
+**Progresso Fase 1**: 2/8 concluídos (25%)
 
 ---
 
@@ -100,7 +100,7 @@
 
 | # | Verbete | Tipo | Status | Palavras | Data |
 |---|---------|------|--------|----------|------|
-| V30 | A travessia: de onde vieram os africanos do Maranhão | Verbete-âncora | 🔄 Em produção | — | — |
+| V30 | A travessia: de onde vieram os africanos do Maranhão | Verbete-âncora | ✅ Pronto | 4.500 | 2026-03-17 |
 | V31 | Alta Guiné: mandingas, minas e a presença islamizada | Verbete de região | ⏳ Pendente | — | — |
 | V32 | Golfo do Benin e África Central: jejes, nagôs e bantos | Verbete de região | ⏳ Pendente | — | — |
 | V33 | Números da escravidão no Maranhão | Verbete de dados | ⏳ Pendente | — | — |
@@ -111,7 +111,7 @@
 | V38 | O arroz que veio da África | Verbete cultural | ⏳ Pendente | — | — |
 | V39 | Matriz africana: a herança viva | Verbete-síntese | ⏳ Pendente | — | — |
 
-**Parte IV**: 0/10 concluídos
+**Parte IV**: 1/10 concluídos
 
 ---
 
@@ -261,8 +261,11 @@
 | REEL-V09-1 | V09 | 60s | pergunta-resposta-surpresa | O deserto que não é deserto |
 | REEL-V09-2 | V09 | 30s | lista | 3 fatos sobre os Lençóis que você não sabia |
 | REEL-V09-3 | V09 | 60s | comparação | Por que os Lençóis são únicos no mundo |
+| REEL-V30-1 | V30 | 60s | pergunta-resposta-surpresa | De onde vieram os africanos do Maranhão? |
+| REEL-V30-2 | V30 | 30s | lista | 3 fatos sobre a escravidão no Maranhão |
+| REEL-V30-3 | V30 | 60s | timeline | O que os africanos trouxeram para o Maranhão |
 
-**Total reels**: 3
+**Total reels**: 6
 
 ### Visuais
 
@@ -271,8 +274,11 @@
 | VIS-V09-A | V09 | Infográfico | Página inteira | Corte transversal — o paradoxo explicado |
 | VIS-V09-B | V09 | Infográfico | Meia página | Ciclo sazonal — calendário das lagoas |
 | VIS-V09-C | V09 | Mapa | Corpo | Mapa de localização — PNLM |
+| VIS-V30-A | V30 | Mapa | Página inteira | Rotas do tráfico atlântico para o MA |
+| VIS-V30-B | V30 | Infográfico | Meia página | Transformação demográfica — antes e depois de Pombal |
+| VIS-V30-C | V30 | Mapa | Corpo | Origens étnicas na costa africana |
 
-**Total visuais**: 3
+**Total visuais**: 6
 
 ---
 
@@ -283,7 +289,7 @@
 | I | O Chão | 13 | 1 | 7,7% |
 | II | Os Primeiros | 8 | 0 | 0% |
 | III | A Conquista | 8 | 0 | 0% |
-| IV | O Povo Negro | 10 | 0 | 0% |
+| IV | O Povo Negro | 10 | 1 | 10% |
 | V | Apogeu e Queda | 8 | 0 | 0% |
 | VI | São Luís: A Ilha | 9 | 0 | 0% |
 | VII | O Povo e a Identidade | 9 | 0 | 0% |
@@ -292,7 +298,7 @@
 | X | O Estado e a Estrutura | 8 | 0 | 0% |
 | XI | O Maranhão no Mundo | 6 | 0 | 0% |
 | — | Epílogo | 1 | 0 | 0% |
-| **TOTAL** | | **106** | **1** | **0,9%** |
+| **TOTAL** | | **106** | **2** | **1,9%** |
 
 ---
 
@@ -301,7 +307,7 @@
 | Data | Verbete | Ação | Notas |
 |------|---------|------|-------|
 | 2026-03-17 | V09 | ✅ Pipeline completo | research + outline + texto (4.200 palavras) + 3 reels + 3 visuais |
-| 2026-03-17 | V30 | 🔄 Pesquisa iniciada | Dossiê sobre tráfico atlântico para o MA |
+| 2026-03-17 | V30 | ✅ Pipeline completo | research + outline + texto (4.500 palavras) + 3 reels + 3 visuais |
 
 ---
 
