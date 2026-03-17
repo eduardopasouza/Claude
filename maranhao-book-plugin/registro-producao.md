@@ -11,12 +11,12 @@
 | Métrica | Valor |
 |---------|-------|
 | Total de verbetes | 106 |
-| Produzidos | 2 |
+| Produzidos | 8 |
 | Em produção | 0 |
-| Pendentes | 104 |
-| Palavras escritas | ~8.700 |
-| Reels produzidos | 6 |
-| Visuais produzidos | 6 |
+| Pendentes | 98 |
+| Palavras escritas | ~35.100 |
+| Reels produzidos | 24 |
+| Visuais produzidos | 24 |
 | Fase atual | Fase 1 — Verbetes-âncora |
 
 ---
@@ -27,14 +27,14 @@
 |---|-----------|---------|-------|--------|----------|-------|---------|------|
 | V09 | 1 | Lençóis: o paradoxo geológico | I | ✅ Pronto | 4.200 | 3 | 3 | 2026-03-17 |
 | V30 | 2 | A travessia: de onde vieram os africanos | IV | ✅ Pronto | 4.500 | 3 | 3 | 2026-03-17 |
-| V14 | 3 | Os povos originários do Maranhão | II | ⏳ Pendente | — | — | — | — |
-| V23 | 4 | A França Equinocial: o sonho francês | III | ⏳ Pendente | — | — | — | — |
-| V69 | 5 | Reggae: a Jamaica brasileira | VIII | ⏳ Pendente | — | — | — | — |
-| V66 | 6 | Bumba-meu-boi: o auto | VIII | ⏳ Pendente | — | — | — | — |
-| V84 | 7 | Ferrovia Carajás: o paradoxo | IX | ⏳ Pendente | — | — | — | — |
-| V50 | 8 | Centro Histórico: patrimônio, abandono e vida | VI | ⏳ Pendente | — | — | — | — |
+| V14 | 3 | Os povos originários do Maranhão | II | ✅ Pronto | 4.800 | 3 | 3 | 2026-03-17 |
+| V23 | 4 | A França Equinocial: o sonho francês | III | ✅ Pronto | 4.600 | 3 | 3 | 2026-03-17 |
+| V69 | 5 | Reggae: a Jamaica brasileira | VII | ✅ Pronto | 4.200 | 3 | 3 | 2026-03-17 |
+| V66 | 6 | Bumba-meu-boi: o boi que morre e ressuscita | VII | ✅ Pronto | 4.500 | 3 | 3 | 2026-03-17 |
+| V84 | 7 | Ferrovia Carajás: o paradoxo dos $24 bilhões | IX | ✅ Pronto | 4.500 | 3 | 3 | 2026-03-17 |
+| V50 | 8 | Centro Histórico: patrimônio, abandono e vida | VI | ✅ Pronto | 4.300 | 3 | 3 | 2026-03-17 |
 
-**Progresso Fase 1**: 2/8 concluídos (25%)
+**Progresso Fase 1**: 8/8 concluídos (100%)
 
 ---
 
@@ -66,7 +66,7 @@
 
 | # | Verbete | Tipo | Status | Palavras | Data |
 |---|---------|------|--------|----------|------|
-| V14 | Os povos originários do Maranhão | Verbete-mapa + âncora | ⏳ Pendente | — | — |
+| V14 | Os povos originários do Maranhão | Verbete-mapa + âncora | ✅ Pronto | 4.800 | 2026-03-17 |
 | V15 | Tupinambá: o povo do litoral | Verbete de povo | ⏳ Pendente | — | — |
 | V16 | Guajajara/Tenetehar: guardiões da mata | Verbete + série boxes | ⏳ Pendente | — | — |
 | V17 | Awá-Guajá: o povo mais ameaçado do mundo | Box impactante | ⏳ Pendente | — | — |
@@ -75,7 +75,7 @@
 | V20 | Línguas indígenas do Maranhão | Verbete próprio | ⏳ Pendente | — | — |
 | V21 | A questão indígena hoje | Verbete-âncora forte | ⏳ Pendente | — | — |
 
-**Parte II**: 0/8 concluídos
+**Parte II**: 1/8 concluídos
 
 ---
 
@@ -84,7 +84,7 @@
 | # | Verbete | Tipo | Status | Palavras | Data |
 |---|---------|------|--------|----------|------|
 | V22 | Antes da conquista: Pinzón, Barros e o naufrágio | Verbete próprio | ⏳ Pendente | — | — |
-| V23 | A França Equinocial: o sonho francês | Verbete-âncora | ⏳ Pendente | — | — |
+| V23 | A França Equinocial: o sonho francês | Verbete-âncora | ✅ Pronto | 4.600 | 2026-03-17 |
 | V24 | Guaxenduba: a batalha que definiu o Maranhão | Verbete | ⏳ Pendente | — | — |
 | V25 | O Estado do Maranhão e Grão-Pará (1621–1774) | Verbete essencial | ⏳ Pendente | — | — |
 | V26 | Os holandeses no Maranhão | Verbete próprio | ⏳ Pendente | — | — |
@@ -92,7 +92,7 @@
 | V28 | A Companhia de Pombal | Verbete próprio | ⏳ Pendente | — | — |
 | V29 | Os portugueses no Maranhão | Verbete de grupo | ⏳ Pendente | — | — |
 
-**Parte III**: 0/8 concluídos
+**Parte III**: 1/8 concluídos
 
 ---
 
@@ -138,7 +138,7 @@
 |---|---------|------|--------|----------|------|
 | V48 | A ilha: geografia e insularidade | Verbete de abertura | ⏳ Pendente | — | — |
 | V49 | Baía de São Marcos | Verbete próprio | ⏳ Pendente | — | — |
-| V50 | Centro Histórico: patrimônio, abandono e vida | Verbete-âncora | ⏳ Pendente | — | — |
+| V50 | Centro Histórico: patrimônio, abandono e vida | Verbete-âncora | ✅ Pronto | 4.300 | 2026-03-17 |
 | V51 | Os azulejos de São Luís | Verbete próprio | ⏳ Pendente | — | — |
 | V52 | O pôr do sol de São Luís | Página visual | ⏳ Pendente | — | — |
 | V53 | Periferia: a cidade que ninguém vê | Verbete forte | ⏳ Pendente | — | — |
@@ -146,7 +146,7 @@
 | V55 | Alcântara espacial: do quilombo ao foguete | Verbete + box | ⏳ Pendente | — | — |
 | V56 | Três potências em uma ilha | Infográfico + boxes | ⏳ Pendente | — | — |
 
-**Parte VI**: 0/9 concluídos
+**Parte VI**: 1/9 concluídos
 
 ---
 
@@ -172,10 +172,10 @@
 
 | # | Verbete | Tipo | Status | Palavras | Data |
 |---|---------|------|--------|----------|------|
-| V66 | Bumba-meu-boi: o auto | Verbete-âncora | ⏳ Pendente | — | — |
+| V66 | Bumba-meu-boi: o boi que morre e ressuscita | Verbete-âncora | ✅ Pronto | 4.500 | 2026-03-17 |
 | V67 | Bumba-meu-boi: os sotaques | Verbete complementar | ⏳ Pendente | — | — |
 | V68 | Tambor de Crioula | Verbete próprio | ⏳ Pendente | — | — |
-| V69 | Reggae: a Jamaica brasileira | Verbete forte | ⏳ Pendente | — | — |
+| V69 | Reggae: a Jamaica brasileira | Verbete forte | ✅ Pronto | 4.200 | 2026-03-17 |
 | V70 | Divino Espírito Santo | Verbete próprio | ⏳ Pendente | — | — |
 | V71 | Carnaval maranhense | Verbete curto | ⏳ Pendente | — | — |
 | V72 | O calendário das festas | Verbete-calendário | ⏳ Pendente | — | — |
@@ -189,7 +189,7 @@
 | V80 | Patrimônios UNESCO/IPHAN | Infográfico + boxes | ⏳ Pendente | — | — |
 | V81 | Artesanato maranhense | Boxes visuais | ⏳ Pendente | — | — |
 
-**Parte VIII**: 0/16 concluídos
+**Parte VIII**: 2/16 concluídos
 
 ---
 
@@ -199,7 +199,7 @@
 |---|---------|------|--------|----------|------|
 | V82 | Os 4 ciclos e os menores | Verbete-âncora | ⏳ Pendente | — | — |
 | V83 | Porto de Itaqui | Verbete próprio | ⏳ Pendente | — | — |
-| V84 | Ferrovia Carajás: o paradoxo dos $24 bilhões | Verbete próprio | ⏳ Pendente | — | — |
+| V84 | Ferrovia Carajás: o paradoxo dos $24 bilhões | Verbete próprio | ✅ Pronto | 4.500 | 2026-03-17 |
 | V85 | Babaçu: a palmeira que é identidade | Verbete cultural | ⏳ Pendente | — | — |
 | V86 | MATOPIBA: a última fronteira | Verbete forte | ⏳ Pendente | — | — |
 | V87 | Comércio exterior | Verbete próprio | ⏳ Pendente | — | — |
@@ -208,7 +208,7 @@
 | V90 | Pesca: artesanal e industrial | Verbete | ⏳ Pendente | — | — |
 | V91 | O corredor logístico | Fio condutor | ⏳ Pendente | — | — |
 
-**Parte IX**: 0/10 concluídos
+**Parte IX**: 1/10 concluídos
 
 ---
 
@@ -264,8 +264,26 @@
 | REEL-V30-1 | V30 | 60s | pergunta-resposta-surpresa | De onde vieram os africanos do Maranhão? |
 | REEL-V30-2 | V30 | 30s | lista | 3 fatos sobre a escravidão no Maranhão |
 | REEL-V30-3 | V30 | 60s | timeline | O que os africanos trouxeram para o Maranhão |
+| REEL-V14-1 | V14 | 60s | pergunta-resposta | Os povos originários do Maranhão |
+| REEL-V14-2 | V14 | 30s | lista | 3 fatos sobre os indígenas do Maranhão |
+| REEL-V14-3 | V14 | 60s | imersão | Sônia Guajajara e os Guardiões da Floresta |
+| REEL-V23-1 | V23 | 60s | pergunta-resposta | A França Equinocial |
+| REEL-V23-2 | V23 | 30s | lista | 3 fatos sobre a França no Maranhão |
+| REEL-V23-3 | V23 | 60s | contrafactual | E se o Maranhão fosse francês? |
+| REEL-V84-1 | V84 | 60s | pergunta-resposta | O trem mais rico do mundo no estado mais pobre |
+| REEL-V84-2 | V84 | 30s | lista | 3 números da Ferrovia Carajás |
+| REEL-V84-3 | V84 | 60s | comparação | Noruega vs. Maranhão |
+| REEL-V69-1 | V69 | 60s | pergunta-resposta | Reggae no Maranhão |
+| REEL-V69-2 | V69 | 30s | lista | 3 coisas sobre o reggae de São Luís |
+| REEL-V69-3 | V69 | 60s | imersão | Uma noite de reggae em São Luís |
+| REEL-V50-1 | V50 | 60s | pergunta-resposta | O patrimônio que só existe porque o MA empobreceu |
+| REEL-V50-2 | V50 | 30s | lista | 3 números do Centro Histórico |
+| REEL-V50-3 | V50 | 60s | imersão | Um passeio pelo Centro Histórico |
+| REEL-V66-1 | V66 | 60s | pergunta-resposta | O boi que morre e ressuscita |
+| REEL-V66-2 | V66 | 30s | lista | 5 sotaques, um boi |
+| REEL-V66-3 | V66 | 60s | imersão | Noite de São João no terreiro |
 
-**Total reels**: 6
+**Total reels**: 24
 
 ### Visuais
 
@@ -277,8 +295,26 @@
 | VIS-V30-A | V30 | Mapa | Página inteira | Rotas do tráfico atlântico para o MA |
 | VIS-V30-B | V30 | Infográfico | Meia página | Transformação demográfica — antes e depois de Pombal |
 | VIS-V30-C | V30 | Mapa | Corpo | Origens étnicas na costa africana |
+| VIS-V14-A | V14 | Mapa | Página inteira | Terras Indígenas do Maranhão |
+| VIS-V14-B | V14 | Infográfico | Meia página | Colapso demográfico indígena |
+| VIS-V14-C | V14 | Infográfico | Corpo | Troncos etnolinguísticos |
+| VIS-V23-A | V23 | Mapa | Página inteira | Expedição e batalha de Guaxenduba |
+| VIS-V23-B | V23 | Infográfico | Meia página | Forças em Guaxenduba |
+| VIS-V23-C | V23 | Infográfico | Corpo | Gravuras Tupinambá (d'Abbeville) |
+| VIS-V84-A | V84 | Infográfico | Página inteira | O que passa vs. o que fica |
+| VIS-V84-B | V84 | Mapa | Meia página | Rota da EFC Carajás |
+| VIS-V84-C | V84 | Infográfico | Corpo | Noruega/Chile/MA — comparação |
+| VIS-V69-A | V69 | Infográfico | Página inteira | Anatomia de uma radiola |
+| VIS-V69-B | V69 | Timeline | Meia página | Timeline do reggae maranhense |
+| VIS-V69-C | V69 | Mapa | Corpo | Circuito reggae de São Luís |
+| VIS-V50-A | V50 | Infográfico | Página inteira | Anatomia de um sobrado azulejado |
+| VIS-V50-B | V50 | Mapa | Meia página | Centro Histórico: restaurado vs. ruínas |
+| VIS-V50-C | V50 | Timeline | Corpo | Do algodão à UNESCO |
+| VIS-V66-A | V66 | Infográfico | Página inteira | Os cinco sotaques do bumba-meu-boi |
+| VIS-V66-B | V66 | Infográfico | Meia página | O ciclo do boi — abril a dezembro |
+| VIS-V66-C | V66 | Infográfico | Corpo | Anatomia do couro do boi |
 
-**Total visuais**: 6
+**Total visuais**: 24
 
 ---
 
@@ -287,18 +323,18 @@
 | Parte | Nome | Verbetes | Concluídos | % |
 |-------|------|----------|------------|---|
 | I | O Chão | 13 | 1 | 7,7% |
-| II | Os Primeiros | 8 | 0 | 0% |
-| III | A Conquista | 8 | 0 | 0% |
+| II | Os Primeiros | 8 | 1 | 12,5% |
+| III | A Conquista | 8 | 1 | 12,5% |
 | IV | O Povo Negro | 10 | 1 | 10% |
 | V | Apogeu e Queda | 8 | 0 | 0% |
-| VI | São Luís: A Ilha | 9 | 0 | 0% |
+| VI | São Luís: A Ilha | 9 | 1 | 11,1% |
 | VII | O Povo e a Identidade | 9 | 0 | 0% |
-| VIII | As Criações | 16 | 0 | 0% |
-| IX | A Economia | 10 | 0 | 0% |
+| VIII | As Criações | 16 | 2 | 12,5% |
+| IX | A Economia | 10 | 1 | 10% |
 | X | O Estado e a Estrutura | 8 | 0 | 0% |
 | XI | O Maranhão no Mundo | 6 | 0 | 0% |
 | — | Epílogo | 1 | 0 | 0% |
-| **TOTAL** | | **106** | **2** | **1,9%** |
+| **TOTAL** | | **106** | **8** | **7,5%** |
 
 ---
 
@@ -308,6 +344,12 @@
 |------|---------|------|-------|
 | 2026-03-17 | V09 | ✅ Pipeline completo | research + outline + texto (4.200 palavras) + 3 reels + 3 visuais |
 | 2026-03-17 | V30 | ✅ Pipeline completo | research + outline + texto (4.500 palavras) + 3 reels + 3 visuais |
+| 2026-03-17 | V14 | ✅ Pipeline completo | research + outline + texto (4.800 palavras) + 3 reels + 3 visuais |
+| 2026-03-17 | V23 | ✅ Pipeline completo | research + outline + texto (4.600 palavras) + 3 reels + 3 visuais |
+| 2026-03-17 | V84 | ✅ Pipeline completo | research + outline + texto (4.500 palavras) + 3 reels + 3 visuais |
+| 2026-03-17 | V69 | ✅ Pipeline completo | research + outline + texto (4.200 palavras) + 3 reels + 3 visuais |
+| 2026-03-17 | V50 | ✅ Pipeline completo | research + outline + texto (4.300 palavras) + 3 reels + 3 visuais |
+| 2026-03-17 | V66 | ✅ Pipeline completo | research + outline + texto (4.500 palavras) + 3 reels + 3 visuais |
 
 ---
 
