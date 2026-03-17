@@ -19,7 +19,7 @@
 - Tom e estilo
 - Biografia do autor / credenciais
 - Plataformas derivadas (YouTube, Reels, documentário)
-**Status**: ⬜ A produzir (temos as decisões, falta consolidar num documento formal)
+**Status**: ✅ Produzido → `proposta-editorial.md`
 
 ### 2. Análise de Mercado e Concorrência
 **O que é**: Mapeamento de livros similares, canais de YouTube sobre o Maranhão, conteúdo existente.
@@ -187,7 +187,7 @@
 
 | Documento | Fase | Status | Prioridade |
 |-----------|------|--------|------------|
-| 1. Proposta Editorial | Concepção | ⬜ | 🔴 Alta |
+| 1. Proposta Editorial | Concepção | ✅ Produzido | 🔴 Alta |
 | 2. Análise de Mercado | Concepção | ⬜ | 🟡 Média |
 | 3. Perfil de Público | Concepção | ⬜ | 🟡 Média |
 | 4. Playbook de Produção | Planejamento | 🔄 Reescrever | 🔴 Alta |
