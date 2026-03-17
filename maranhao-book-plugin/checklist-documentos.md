@@ -55,7 +55,7 @@
 - Regras de citação e referência
 - Processo de aprovação
 - Regras de tom, voz, limites políticos
-**Status**: 🔄 Temos v1 (playbook.md), precisa ser reescrito para o novo formato
+**Status**: ✅ Reescrito → `playbook.md` (v2, formato modular)
 
 ### 5. Estrutura Completa (Sumário Detalhado)
 **O que é**: Sumário com todos os capítulos, tópicos, subtópicos, boxes especiais.
@@ -190,7 +190,7 @@
 | 1. Proposta Editorial | Concepção | ✅ Produzido | 🔴 Alta |
 | 2. Análise de Mercado | Concepção | ⬜ | 🟡 Média |
 | 3. Perfil de Público | Concepção | ⬜ | 🟡 Média |
-| 4. Playbook de Produção | Planejamento | 🔄 Reescrever | 🔴 Alta |
+| 4. Playbook de Produção | Planejamento | ✅ Reescrito | 🔴 Alta |
 | 5. Estrutura Completa | Planejamento | 🔄 Detalhar | 🔴 Alta |
 | 6. Style Guide Textual | Planejamento | ✅ Produzido | 🔴 Alta |
 | 7. Style Guide Visual | Planejamento | ⬜ | 🔴 Alta |
