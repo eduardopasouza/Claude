@@ -1,330 +1,626 @@
-# Playbook de Produção — Maranhão Inteiro
+# Playbook de Produção — Quem é o Maranhão?
 
-> Este documento define como cada capítulo é produzido, como se conecta ao todo, e como garantimos qualidade.
-
----
-
-## 1. O FIO DO LIVRO
-
-### Tese Central
-
-> **O Maranhão é um estado forjado por choques — de civilizações, de ecossistemas, de poderes — e sua maior riqueza é o que seu povo criou a partir desses choques. Mas essa riqueza foi sistematicamente capturada por poucos, exportada para fora, ou invisibilizada. O futuro do Maranhão depende de inverter essa lógica: fazer a riqueza ficar, ser de quem a cria, e ser vista.**
-
-### Arco Narrativo
-
-O livro é uma jornada em 6 movimentos:
-
-```
-CHÃO → FORMAÇÃO → POVO → CRIAÇÃO → REALIDADE → FUTURO
-(de onde)  (como)    (quem)  (o quê)    (quanto)    (para onde)
-```
-
-| Parte | Movimento | Função narrativa |
-|-------|-----------|-----------------|
-| I — O Chão e o Tempo | **De onde viemos** | Estabelece o palco (terra) e conta como os choques fundadores formaram este lugar. Termina com a estrutura de poder consolidada. O leitor entende as RAÍZES. |
-| II — O Povo | **Quem somos** | Apresenta quem vive aqui hoje — resultado vivo daqueles choques. Mostra a diversidade, a resistência, a desigualdade, a diáspora. O leitor entende as PESSOAS. |
-| III — As Criações | **O que inventamos** | Mostra o que o povo criou apesar de tudo — a riqueza cultural como resposta aos choques. O leitor entende a FORÇA. |
-| IV — O Território | **Onde vivemos** | Aterrissa tudo em lugares concretos. São Luís e o interior como espaços onde tese, povo e criação se materializam. O leitor entende o ESPAÇO. |
-| V — A Economia | **Quanto temos, quem controla** | Confronta a riqueza cultural com a pobreza material. Mostra a economia que passa, a que pode ficar, e o poder que decide. O leitor entende a ESTRUTURA. |
-| VI — O Amanhã | **Para onde podemos ir** | Propõe caminhos. Não ufanismo, não lamento — proposição fundamentada. O leitor entende a POSSIBILIDADE. |
-
-### Como a tese aparece em cada parte
-
-- **Parte I**: Os choques são apresentados (terra, civilizações, escravidão, poder)
-- **Parte II**: As consequências dos choques no povo (desigualdade, resistência, êxodo)
-- **Parte III**: A criação que nasce dos choques (cultura como resposta)
-- **Parte IV**: O território onde tudo se materializa (patrimônio e abandono lado a lado)
-- **Parte V**: A estrutura que captura a riqueza (economia que passa, poder que fica)
-- **Parte VI**: A inversão proposta (fazer a riqueza ficar, ser de quem a cria)
-
-### Transições entre partes
-
-Cada parte termina com um parágrafo-ponte que conecta ao próximo movimento. Exemplos:
-
-- Parte I → II: *"Essa é a história de como o Maranhão se formou. Mas quem são os maranhenses que essa formação produziu?"*
-- Parte II → III: *"Um povo marcado por tanto — e que, apesar de tudo, criou tanto."*
-- Parte III → IV: *"Essa criação não acontece no abstrato. Acontece em lugares concretos."*
-- Parte IV → V: *"Um território tão rico em cultura, tão pobre em indicadores. Por quê?"*
-- Parte V → VI: *"Se o diagnóstico é claro, os caminhos também podem ser."*
+> Manual operacional. Define o processo passo a passo para produzir cada unidade de conteúdo. Leia junto com `style-guide-editorial.md` (como escrever) e `guia-de-pesquisa.md` (como pesquisar).
 
 ---
 
-## 2. PROCESSO DE PRODUÇÃO (por capítulo)
+## 1. VISÃO GERAL DO PROJETO
 
-### Etapa 1: PESQUISA
+### O que estamos produzindo
 
-**Objetivo**: Levantar tudo que é necessário para escrever o capítulo com profundidade e precisão.
+```
+QUEM É O MARANHÃO?
+├── LIVRO (400+ páginas, 24 capítulos, ~150 tópicos)
+│   ├── Edição premium (capa dura, grande formato)
+│   ├── Edição popular (brochura)
+│   └── E-book (PDF + ePub)
+├── YOUTUBE (~150 vídeos de 8min, ensaio visual)
+├── REELS/SHORTS (~500+ pílulas de 60s, série numerada)
+├── DOCUMENTÁRIO (1-2h, meta futura)
+└── MARCA @quemeomaranhao
+```
 
-**O que fazer**:
+### Hierarquia de conteúdo
 
-1. **Ler o coordination.md** — entender onde o capítulo se encaixa no arco
-2. **Definir escopo** — listar todas as seções e subtópicos do capítulo
-3. **Pesquisar cada subtópico**:
-   - Fontes acadêmicas (livros, teses, artigos)
-   - Dados oficiais (IBGE, IPEA, INPE, FUNAI, FCP, etc.)
-   - Fontes primárias quando possível (documentos históricos, relatos)
-   - Fontes culturais (registros etnográficos, entrevistas publicadas)
-4. **Para cada informação, registrar**:
-   - O dado/fato
-   - A fonte completa (autor, obra, ano, página ou URL)
-   - Se foi cruzado com segunda fonte
-5. **Identificar lacunas** — o que não encontrou, o que é controverso
-6. **Sugerir ângulos narrativos** — como essa pesquisa vira história
+```
+PARTE (6 — divisórias visuais com epígrafe e parágrafo-ponte)
+  └── CAPÍTULO (24 — com subtítulo-resposta e epígrafe)
+        └── TÓPICO (800-1.200 palavras, autocontido, modular)
+              → Gera: 1 vídeo YouTube 8min
+              → Gera: 1 briefing visual
+              └── SUBTÓPICO (150-300 palavras, emerge da pesquisa)
+                    → Gera: 1 Reel/Short numerado
+```
 
-**Critérios de qualidade da pesquisa**:
+### As 6 Partes
 
-| Critério | Mínimo |
-|----------|--------|
-| Fontes totais | 15+ por capítulo |
-| Dados quantitativos | Com fonte e ano, cruzados quando possível |
-| Citações diretas | 3+ de especialistas ou fontes primárias |
-| Fontes acadêmicas | Pelo menos 5 |
-| Fontes oficiais (IBGE etc.) | Para todo dado numérico |
-| Lacunas documentadas | Todas listadas explicitamente |
+| Parte | Nome | Capítulos | Arco |
+|-------|------|-----------|------|
+| I | O Chão | Cap 1 | O palco: terra e biomas |
+| II | A Formação | Cap 2-7 | De onde viemos: primeiros habitantes → colônia → ouro branco → escravidão → levantes → ascensão e queda |
+| III | O Povo | Cap 8-10 | Quem somos: indígenas → povo → diáspora |
+| IV | As Criações | Cap 11-16 | O que inventamos: boi → festas → música → fé → letras → comida |
+| V | O Território e a Estrutura | Cap 17-22 | Onde vivemos: São Luís → território → economia → turismo → poder → educação |
+| VI | O Amanhã | Cap 23-24 | Para onde ir: esporte/cultura pop → futuro |
 
-**Regras de validação**:
+### Tese e fio condutor
 
-- Dado numérico sem fonte = **não usar**
-- Fato histórico com 1 fonte só = **marcar como "a confirmar"**
-- Citação sem autor/obra/ano = **não usar**
-- Wikipedia = ponto de partida, **nunca** fonte final
-- Quando fontes divergem = **registrar a divergência**, não escolher uma
+**Tese**: Por que a riqueza do Maranhão não fica no Maranhão? O padrão se repete com diferentes mercadorias, em diferentes séculos — mas a estrutura é a mesma.
 
-**Saída**: `drafts/cap-XX-titulo/research.md`
+**Fio condutor**: A pergunta "Quem é o Maranhão?" — cada capítulo responde de um ângulo diferente.
+
+### Transições entre Partes
+
+Cada Parte termina com um parágrafo-ponte:
+
+- I → II: *"Esse é o palco. Agora, a história que aconteceu nele."*
+- II → III: *"Essa é a história de como o Maranhão se formou. Mas quem são os maranhenses que essa formação produziu?"*
+- III → IV: *"Um povo marcado por tanto — e que, apesar de tudo, criou tanto."*
+- IV → V: *"Essa criação não acontece no abstrato. Acontece em lugares concretos, com indicadores reais."*
+- V → VI: *"Se o diagnóstico é claro, os caminhos também podem ser."*
 
 ---
 
-### Etapa 2: OUTLINE
+## 2. DOCUMENTOS DE REFERÊNCIA
 
-**Objetivo**: Transformar a pesquisa em um esqueleto detalhado do capítulo antes de redigir.
+Antes de produzir qualquer conteúdo, o Claude deve ter lido:
 
-**O que fazer**:
+| Documento | O que define | Arquivo |
+|-----------|-------------|---------|
+| Coordenação | Estrutura, capítulos, tópicos, estado do projeto | `coordination-v2.md` |
+| Style Guide Editorial | Tom, voz, vocabulário, ganchos, boxes, referências, anti-padrões | `style-guide-editorial.md` |
+| Guia de Pesquisa | Fontes, hierarquia, banco de dados, validação, processo | `guia-de-pesquisa.md` |
+| Proposta Editorial | Visão geral, público, tese, diferencial | `proposta-editorial.md` |
+| Este playbook | Processo de produção, templates, fluxo, coordenação | `playbook.md` |
 
-1. **Definir o fio narrativo do capítulo**: Qual é a história que este capítulo conta? Como ele avança a tese do livro?
-2. **Escrever a ponte de entrada**: De onde o leitor vem (capítulo anterior)?
-3. **Estruturar as seções** com:
-   - Título da seção
-   - Argumento central (1 frase)
-   - Dados-chave que serão usados (com fonte)
-   - Citações que serão incluídas
-   - Cena ou imagem de abertura (se aplicável)
-4. **Escrever a ponte de saída**: Para onde o leitor vai (próximo capítulo)?
-5. **Mapear conexões** com outros capítulos (referências cruzadas)
-6. **Estimar extensão** por seção
+**Regra**: ao iniciar qualquer sessão, ler `coordination-v2.md` + este playbook. Consultar os demais conforme necessário.
 
-**Formato do outline**:
+---
+
+## 3. PROCESSO DE PRODUÇÃO — FLUXO POR TÓPICO
+
+A unidade de produção é o **tópico** (800-1.200 palavras). Capítulos são conjuntos de tópicos. O fluxo para cada tópico é:
 
 ```
-# Cap XX — [Título]
-
-## Fio narrativo
-[Qual história este capítulo conta? 2-3 frases]
-
-## Conexão com a tese
-[Como este capítulo avança o argumento do livro? 1-2 frases]
-
-## Ponte de entrada
-[De onde vem o leitor? Como conectar com o capítulo anterior?]
-
-## Seções
-
-### X.1 — [Título da seção]
-- Argumento: [1 frase]
-- Abertura: [cena ou imagem]
-- Dados-chave: [lista com fontes]
-- Citações: [quais usar]
-- Extensão estimada: [palavras]
-
-### X.2 — [Título da seção]
-(...)
-
-## Ponte de saída
-[Para onde vai o leitor?]
-
-## Referências cruzadas
-- Cap Y, seção Z: [conexão]
-- Cap W, seção V: [conexão]
+┌─────────────────────────────────────────────────┐
+│  ETAPA 0: PREPARAÇÃO                            │
+│  Ler coordination-v2.md, identificar tópico,    │
+│  entender posição no arco                       │
+└──────────────────┬──────────────────────────────┘
+                   ▼
+┌─────────────────────────────────────────────────┐
+│  ETAPA 1: PESQUISA                              │
+│  Seguir guia-de-pesquisa.md                     │
+│  Pesquisa web ativa + banco de dados            │
+│  Saída: research.md + banco-de-fontes.yaml      │
+└──────────────────┬──────────────────────────────┘
+                   ▼
+┌─────────────────────────────────────────────────┐
+│  ETAPA 2: OUTLINE DO TÓPICO                     │
+│  Esqueleto com argumento, fontes, gancho,       │
+│  conexões, boxes previstos                      │
+│  Saída: outline.md                              │
+│                                                 │
+│  → AUTOR APROVA OUTLINE ←                      │
+└──────────────────┬──────────────────────────────┘
+                   ▼
+┌─────────────────────────────────────────────────┐
+│  ETAPA 3: REDAÇÃO DO TÓPICO                     │
+│  Seguir style-guide-editorial.md                │
+│  800-1.200 palavras, notas de rodapé,           │
+│  ganchos, pontes, boxes, glossário              │
+│  Saída: draft-v1.md                             │
+└──────────────────┬──────────────────────────────┘
+                   ▼
+┌─────────────────────────────────────────────────┐
+│  ETAPA 4: DERIVADOS                             │
+│  Roteiro YouTube 8min                           │
+│  Roteiro(s) Reel/Short                          │
+│  Briefing visual (storyboard textual)           │
+│  Saída: youtube.md, reels.md, visual.md         │
+└──────────────────┬──────────────────────────────┘
+                   ▼
+┌─────────────────────────────────────────────────┐
+│  ETAPA 5: REVISÃO                               │
+│  Factual + narrativa + padrão + derivados       │
+│  Saída: review.md                               │
+│                                                 │
+│  Aprovado → autor | Ajustes → volta p/ 3 ou 4  │
+└──────────────────┬──────────────────────────────┘
+                   ▼
+┌─────────────────────────────────────────────────┐
+│  ETAPA 6: APROVAÇÃO DO AUTOR                    │
+│                                                 │
+│  Aprovado → final/                              │
+│  Com ajustes → volta p/ etapa indicada          │
+│  Rejeitar → volta p/ pesquisa                   │
+└──────────────────┬──────────────────────────────┘
+                   ▼
+┌─────────────────────────────────────────────────┐
+│  ATUALIZA COORDINATION-V2.MD                    │
+│  Status do tópico, conexões, dados validados    │
+└─────────────────────────────────────────────────┘
 ```
 
-**O outline é apresentado ao autor para aprovação ANTES da redação.**
+---
+
+## 4. ETAPAS DETALHADAS
+
+### Etapa 0: Preparação
+
+**Antes de qualquer trabalho**:
+
+1. Ler `coordination-v2.md` — entender estado atual do projeto
+2. Identificar o tópico a produzir (ex: 4.2 — O algodão)
+3. Verificar:
+   - Qual capítulo? Qual Parte?
+   - Qual é o subtítulo-resposta do capítulo?
+   - Há material existente em `drafts/`?
+   - Quais tópicos vizinhos já existem? (para pontes)
+   - Quais conexões cruzadas são esperadas?
+
+---
+
+### Etapa 1: Pesquisa
+
+**Processo completo definido em `guia-de-pesquisa.md`**. Resumo:
+
+1. Definir escopo e argumento central do tópico
+2. Consultar banco de dados centralizado (`references/banco-de-fontes.yaml`)
+3. Pesquisa por categoria: dados oficiais → historiografia → academia → fontes primárias
+4. Pesquisa web ativa (Google Scholar, IBGE, repositórios)
+5. Catalogar fontes no banco de dados
+6. Produzir relatório de pesquisa
+
+**Mínimos**: 3+ fontes por tópico, 2+ categorias, todo dado com fonte.
+
+**Saída**: relatório integrado em `drafts/cap-XX-titulo/research.md`
+
+---
+
+### Etapa 2: Outline do tópico
+
+**Objetivo**: esqueleto que o autor aprova antes da redação.
+
+**Template**:
+
+```markdown
+# Outline — Tópico X.Y: [Título]
+
+## Argumento central
+[1-2 frases: o que este tópico mostra/defende]
+
+## Posição no arco
+- Capítulo: [nº e título]
+- Parte: [nº e nome]
+- Como avança a tese: [1 frase]
+
+## Gancho de abertura
+- Tipo: [pergunta / cena / dado / anedota / contraste / frase-gatilho]
+- Conteúdo: [o gancho em si]
+
+## Estrutura do texto
+1. [Bloco 1 — ~200-300 palavras]: [o que cobre]
+   - Dados-chave: [com fonte]
+   - Citação: [se houver]
+2. [Bloco 2 — ~200-300 palavras]: [o que cobre]
+   - ...
+3. [Bloco 3 — ~200-300 palavras]: [o que cobre]
+   - ...
+
+## Texto-ponte
+- De: [tópico anterior] → Como conecta
+- Para: [tópico seguinte] → Como conecta
+
+## Conexões cruzadas
+- ↗ Tópico X.Z: [natureza da conexão]
+- ↗ Tópico W.V: [natureza da conexão]
+
+## Boxes previstos
+- [ ] [Tipo]: [tema] (~X palavras)
+
+## Glossário inline
+- [ ] [termo]: [definição curta prevista]
+
+## Infográfico/mapa sugerido
+- [ ] [descrição]
+
+## Extensão estimada
+[X palavras texto principal + X palavras boxes]
+```
+
+**O outline é apresentado ao autor. Só avança com aprovação.**
 
 **Saída**: `drafts/cap-XX-titulo/outline.md`
 
 ---
 
-### Etapa 3: REDAÇÃO
+### Etapa 3: Redação do tópico
 
-**Objetivo**: Transformar o outline aprovado em texto narrativo-ensaístico de alta qualidade.
+**Regras completas em `style-guide-editorial.md`**. Resumo:
 
-**O que fazer**:
+| Aspecto | Regra |
+|---------|-------|
+| Extensão | 800-1.200 palavras (texto principal) |
+| Voz | 2ª pessoa predominante |
+| Tom | Eduardo Bueno — irônico, pop, rigoroso |
+| Abertura | Gancho alternado (pergunta, cena, dado, anedota, contraste) |
+| Fontes | Notas de rodapé numeradas por capítulo |
+| Dados | Inline + infográficos para séries |
+| Boxes | Orgânico (biográfico, curiosidade, "E se?", glossário lateral) |
+| Pontes | 1-3 frases conectando ao tópico seguinte |
+| Conexões | Mínimo 2 (texto + ícone ↗) |
+| Anti-padrões | Sem clichês, sem listas disfarçadas, sem texto genérico |
 
-1. **Seguir o outline** — não inventar seções novas nem cortar seções aprovadas
-2. **Abrir com cena ou imagem** — cada seção começa com algo vívido
-3. **Entrelaçar narrativa e dados** — informação embutida na história, não em listas
-4. **Citar fontes** — referências numéricas [1] [2] para toda afirmação factual
-5. **Incluir vozes** — citações diretas de pessoas reais
-6. **Conectar com o arco** — o leitor deve sentir que o capítulo avança uma história maior
-7. **Fechar com reflexão** — insight, pergunta, ou ponte para o próximo
+**Checklist antes de finalizar o draft**:
 
-**Padrão mínimo**:
-
-| Critério | Mínimo |
-|----------|--------|
-| Palavras por capítulo | 8.000 — 12.000 |
-| Palavras por seção | 1.500+ |
-| Fontes citadas | 15+ |
-| Citações diretas | 3+ |
-| Referências cruzadas | 2+ para outros capítulos |
-
-**Proibido**:
-
-- Inventar dados, datas, citações
-- Resumir em vez de desenvolver
-- Usar clichês ("paraíso tropical", "povo acolhedor", "rica cultura")
-- Ignorar contradições
-- Texto genérico que poderia ser sobre qualquer estado
-- Lista disfarçada de prosa
+```
+☐ 800-1.200 palavras
+☐ Gancho de abertura (não definição, não resumo)
+☐ Voz 2ª pessoa predominante
+☐ Notas de rodapé para afirmações factuais
+☐ Texto-ponte para tópico seguinte
+☐ Mínimo 2 conexões cruzadas
+☐ Sem clichês proibidos
+☐ Sem anti-padrões
+☐ Vocabulário conforme style guide (escravizado, povos indígenas, etc.)
+☐ Posicionamento político conforme style guide
+```
 
 **Saída**: `drafts/cap-XX-titulo/draft-v1.md`
 
 ---
 
-### Etapa 4: REVISÃO
+### Etapa 4: Derivados
 
-**Objetivo**: Verificar qualidade narrativa, precisão factual, conexão com o arco.
+Cada tópico gera 3 outputs derivados do texto principal:
 
-**Três verificações**:
+#### 4a. Roteiro YouTube (8 min)
 
-#### 4a. Verificação factual
-- Toda afirmação com fonte está correta?
-- Dados numéricos conferem?
+**Formato**: ensaio visual narrado. Estilo Kurzgesagt/Vox.
+
+**Template**:
+
+```markdown
+# Roteiro YouTube — Tópico X.Y: [Título]
+
+**Duração**: ~8 min (~1.200 palavras de narração)
+**Estilo**: Ensaio visual narrado
+**Narração**: Voz IA
+**Legendas**: PT-BR + EN
+
+## Gancho (0:00-0:30)
+[Abertura que prende — pode ser diferente do livro]
+VISUAL: [descrição da cena/imagem/infográfico]
+
+## Desenvolvimento (0:30-6:30)
+### Bloco 1: [subtema] (0:30-2:30)
+NARRAÇÃO: [texto]
+VISUAL: [descrição]
+
+### Bloco 2: [subtema] (2:30-4:30)
+NARRAÇÃO: [texto]
+VISUAL: [descrição]
+
+### Bloco 3: [subtema] (4:30-6:30)
+NARRAÇÃO: [texto]
+VISUAL: [descrição]
+
+## Fechamento (6:30-7:30)
+NARRAÇÃO: [reflexão/gancho para próximo]
+VISUAL: [descrição]
+
+## CTA (7:30-8:00)
+NARRAÇÃO: "Se você não sabia disso sobre o Maranhão, se inscreve.
+Quem é o Maranhão? A gente descobre junto."
+VISUAL: Logo @quemeomaranhao + próximo vídeo
+
+## Fontes na descrição
+- [lista de fontes principais]
+```
+
+#### 4b. Roteiro(s) Reel/Short
+
+**Formato**: pílula de ~60 segundos, série numerada.
+
+**Template**:
+
+```markdown
+# Reel — Quem é o Maranhão? #[N]: [Título]
+
+**Duração**: ~60s (~150-200 palavras)
+**Formato**: Vertical 9:16
+**Narração**: Voz IA
+**Legenda**: PT-BR + EN
+
+## Hook (0-5s)
+[Frase de impacto que prende no scroll]
+VISUAL: [descrição]
+
+## Conteúdo (5-50s)
+[Texto da narração]
+VISUAL: [descrição, transições]
+
+## Fechamento (50-60s)
+"Quem é o Maranhão? #[N]."
+VISUAL: Logo + "Segue pra descobrir mais"
+```
+
+**Quantos Reels por tópico**: depende dos subtópicos que emergirem. Mínimo 1, sem máximo.
+
+#### 4c. Briefing visual (storyboard textual)
+
+**Para cada imagem, infográfico ou mapa previsto no tópico**.
+
+**Template**:
+
+```markdown
+# Briefing Visual — Tópico X.Y
+
+## Imagem 1: [título/descrição curta]
+- **Tipo**: [infográfico / mapa / cena histórica / foto / ilustração IA]
+- **Conteúdo**: [descrição detalhada do que deve mostrar]
+- **Dados**: [se infográfico, quais dados exatos com fonte]
+- **Referência visual**: [se houver referência de estilo]
+- **Paleta**: [cores predominantes, conforme style guide visual]
+- **Texto na imagem**: [se houver legendas, rótulos]
+- **Uso**: [livro página X / YouTube minuto X / Reel #N]
+
+## Imagem 2: ...
+```
+
+**Saída**: `drafts/cap-XX-titulo/youtube.md`, `reels.md`, `visual.md`
+
+---
+
+### Etapa 5: Revisão
+
+**Três verificações + uma quarta para derivados**:
+
+#### 5a. Verificação factual
+- Toda afirmação com nota de rodapé está correta?
+- Dados numéricos conferem com a fonte citada?
 - Nomes, datas, grafias corretos?
 - Citações fiéis ao original?
 
-#### 4b. Verificação narrativa
-- Abre com cena/imagem?
-- Tem fio narrativo claro?
+#### 5b. Verificação narrativa
+- Abre com gancho (não definição)?
+- Tem fio narrativo claro dentro do tópico?
 - Avança a tese do livro?
 - Pontes de entrada/saída funcionam?
-- Referências cruzadas fazem sentido?
+- Conexões cruzadas fazem sentido?
 
-#### 4c. Verificação de padrão
-- Atinge extensão mínima?
-- Tem 15+ fontes?
+#### 5c. Verificação de padrão
+- 800-1.200 palavras?
+- Segue style guide (voz, tom, vocabulário)?
 - Segue sensibilidades editoriais?
 - Sem anti-padrões?
+- Boxes acrescentam (não repetem)?
+- Glossário inline para termos novos?
+
+#### 5d. Verificação de derivados
+- Roteiro YouTube cobre o essencial do tópico?
+- Reels funcionam isoladamente?
+- Briefing visual é específico o suficiente para produzir?
 
 **Veredito**:
 - **Aprovado** → vai para o autor
-- **Ajustes** → lista específica → volta para redação
-- **Reescrever** → explica por quê → volta para outline
+- **Ajustes menores** → lista → volta para etapa 3 ou 4
+- **Reescrever** → explica por quê → volta para etapa 2
 
 **Saída**: `drafts/cap-XX-titulo/review.md`
 
 ---
 
-### Etapa 5: APROVAÇÃO DO AUTOR
+### Etapa 6: Aprovação do autor
 
-O autor (Eduardo) lê o capítulo revisado e decide:
-- **Aprovado** → move para `final/cap-XX-titulo.md`
-- **Com ajustes** → lista o que mudar → volta para etapa 3 ou 4
-- **Rejeitar** → explica por quê → volta para etapa 1 ou 2
+O autor lê o tópico revisado e decide:
+
+| Veredito | Ação |
+|----------|------|
+| **Aprovado** | Move para `final/cap-XX-titulo/topico-X.Y.md` |
+| **Com ajustes** | Lista o que mudar → volta para etapa 3 ou 4 |
+| **Rejeitar** | Explica por quê → volta para etapa 1 ou 2 |
+
+Após aprovação:
+- Atualizar status do tópico em `coordination-v2.md`
+- Registrar dados validados
+- Registrar conexões cruzadas confirmadas
 
 ---
 
-## 3. COORDENAÇÃO
+## 5. ORGANIZAÇÃO DE ARQUIVOS
 
-### O que o coordination.md faz
+### Estrutura de pastas
 
-É a **memória do projeto**. Toda sessão de trabalho começa lendo este arquivo. Ele contém:
+```
+maranhao-book-plugin/
+├── coordination-v2.md          # Memória do projeto
+├── playbook.md                 # Este arquivo
+├── style-guide-editorial.md    # Como escrever
+├── guia-de-pesquisa.md         # Como pesquisar
+├── proposta-editorial.md       # Visão geral do projeto
+├── checklist-documentos.md     # Status dos documentos
+│
+├── references/
+│   └── banco-de-fontes.yaml    # Banco centralizado de fontes
+│
+├── drafts/
+│   └── cap-XX-titulo/
+│       ├── research.md          # Pesquisa (todos os tópicos do cap)
+│       ├── outline.md           # Outline (todos os tópicos do cap)
+│       ├── draft-v1.md          # Texto (todos os tópicos do cap)
+│       ├── youtube.md           # Roteiros YouTube
+│       ├── reels.md             # Roteiros Reels
+│       ├── visual.md            # Briefings visuais
+│       └── review.md            # Revisão
+│
+├── final/
+│   └── cap-XX-titulo/
+│       └── topico-X.Y.md       # Tópico aprovado
+│
+└── rejected/
+    └── [material descartado com justificativa]
+```
 
-- O que o livro é (visão, tese, arco)
-- Estrutura completa (partes e capítulos)
-- Estado de cada capítulo (pesquisa/outline/redação/revisão/aprovado)
-- Padrão de qualidade
-- Sensibilidades editoriais
+### Convenções de nomeação
+
+- Pastas de capítulo: `cap-XX-titulo-em-slug` (ex: `cap-04-o-ouro-branco`)
+- Sempre 2 dígitos no número do capítulo (01, 02... 24)
+- Slugs em minúscula, separados por hífen
+- Sem acentos nos nomes de arquivo/pasta
+
+---
+
+## 6. PRODUÇÃO POR CAPÍTULO vs. POR TÓPICO
+
+### Quando produzir o capítulo inteiro de uma vez
+
+- Capítulos com poucos tópicos (3-5) e forte interdependência
+- Quando o autor pede "faz o capítulo X inteiro"
+- Quando há material existente em `drafts/` para adaptar
+
+**Neste caso**: pesquisa de todos os tópicos → outline do capítulo → redação sequencial → derivados → revisão do conjunto.
+
+### Quando produzir tópico a tópico
+
+- Capítulos grandes (8+ tópicos)
+- Quando o autor quer aprovar aos poucos
+- Quando tópicos são muito independentes entre si
+
+**Neste caso**: cada tópico passa pelo fluxo completo antes de iniciar o próximo.
+
+### Regra geral
+
+O autor decide. Se não disser, **produzir o capítulo inteiro** (pesquisa conjunta, outline conjunto, aprovação do outline, depois redação tópico a tópico).
+
+---
+
+## 7. ADAPTAÇÃO DE MATERIAL EXISTENTE
+
+Há material em `drafts/` dos capítulos 1-6 que precisa ser **adaptado** ao novo formato.
+
+### Processo de adaptação
+
+1. **Ler** o material existente (research.md, draft)
+2. **Avaliar**: o que é reaproveitável? O que precisa de nova pesquisa?
+3. **Extrair**: dados, fontes, citações úteis → catalogar no banco de dados
+4. **Reescrever** no novo formato:
+   - Texto antigo era ensaio longo (8-12k palavras por capítulo)
+   - Texto novo é modular (800-1.200 palavras por tópico, com pontes)
+   - Tom e voz conforme `style-guide-editorial.md`
+5. **Não copiar** — reescrever. O material antigo é base de pesquisa, não rascunho final
+
+### Mapa de adaptação
+
+| Material existente | Capítulo novo | Tópicos |
+|-------------------|---------------|---------|
+| `cap-01-a-encruzilhada/` | Cap 1 — A Terra | 1.1, 1.8 |
+| `cap-02-natureza-viva/` | Cap 1 — A Terra | 1.2-1.7, 1.9-1.10 |
+| `cap-03-os-primeiros/` | Cap 2 — Antes de Tudo | 2.1-2.3 |
+| `cap-04-a-franca-a-holanda-e-portugal/` | Cap 3 — A Colônia | 3.1-3.3 |
+| `cap-05-o-ouro-branco/` | Cap 3-4 | 3.4-3.6, 4.1-4.4 |
+| `cap-06-a-ferida/` | Cap 5 — A Ferida | 5.1-5.5 |
+
+---
+
+## 8. COORDENAÇÃO E ATUALIZAÇÃO
+
+### O coordination-v2.md
+
+É a **fonte de verdade** do projeto. Contém:
+- Estrutura completa (capítulos, tópicos, status)
 - Dados validados
-- Decisões já tomadas
+- Decisões consolidadas
 
-### Quando atualizar o coordination.md
+### Quando atualizar
 
-- Quando um capítulo muda de estado (pesquisa → outline → etc.)
-- Quando uma decisão editorial é tomada
-- Quando novos dados são validados
-- Quando referências cruzadas são identificadas
-- Quando o autor aprova ou rejeita algo
+| Evento | Atualizar |
+|--------|-----------|
+| Tópico muda de estado (pesquisa → outline → draft → aprovado) | Status na tabela do capítulo |
+| Novo dado validado | Tabela "Dados Validados" |
+| Decisão editorial tomada | Lista "Decisões Consolidadas" |
+| Conexão cruzada confirmada | (futuro: mapa de conexões) |
+| Material existente adaptado | Status e campo "Material Existente" |
 
-### O mapa de conexões
+### Início de sessão
 
-O coordination.md mantém um **mapa de referências cruzadas** — quais capítulos se conectam entre si e como. Isso garante que:
-
-- Não há redundância (o mesmo tema tratado em dois capítulos sem necessidade)
-- As pontes funcionam (cada capítulo sabe de onde vem e para onde vai)
-- A tese avança (cada parte cumpre sua função no arco)
-
----
-
-## 4. RESUMO DO FLUXO
+Toda sessão de trabalho começa com:
 
 ```
-┌─────────────────────────────────────────┐
-│          AUTOR DEFINE CAPÍTULO           │
-│  (ou pede: "faz o capítulo X")          │
-└──────────────────┬──────────────────────┘
-                   ▼
-┌─────────────────────────────────────────┐
-│         1. PESQUISA                     │
-│  Fontes, dados, citações, lacunas       │
-│  Saída: research.md                     │
-└──────────────────┬──────────────────────┘
-                   ▼
-┌─────────────────────────────────────────┐
-│         2. OUTLINE                      │
-│  Esqueleto com fio narrativo,           │
-│  dados-chave, pontes, conexões          │
-│  Saída: outline.md                      │
-│                                         │
-│  → AUTOR APROVA OUTLINE ←              │
-└──────────────────┬──────────────────────┘
-                   ▼
-┌─────────────────────────────────────────┐
-│         3. REDAÇÃO                      │
-│  Texto narrativo completo               │
-│  8-12k palavras, 15+ fontes            │
-│  Saída: draft-v1.md                     │
-└──────────────────┬──────────────────────┘
-                   ▼
-┌─────────────────────────────────────────┐
-│         4. REVISÃO                      │
-│  Factual + narrativa + padrão           │
-│  Saída: review.md                       │
-│                                         │
-│  Se precisa ajuste → volta p/ 3         │
-│  Se precisa reescrever → volta p/ 2     │
-└──────────────────┬──────────────────────┘
-                   ▼
-┌─────────────────────────────────────────┐
-│         5. APROVAÇÃO DO AUTOR           │
-│                                         │
-│  Aprovado → final/                      │
-│  Com ajustes → volta p/ 3 ou 4          │
-│  Rejeitar → volta p/ 1 ou 2            │
-└──────────────────┬──────────────────────┘
-                   ▼
-┌─────────────────────────────────────────┐
-│     ATUALIZA COORDINATION.MD            │
-│  Estado, conexões, decisões             │
-└─────────────────────────────────────────┘
+1. Ler coordination-v2.md (estado atual)
+2. Ler playbook.md (processo)
+3. Identificar próximo tópico a produzir
+4. Verificar material existente em drafts/
+5. Iniciar pelo passo 0 (Preparação)
 ```
 
 ---
 
-## 5. REGRAS DE OURO
+## 9. PILOTO
+
+### Tópico piloto: 1.1 — A Encruzilhada
+
+O primeiro tópico produzido no novo formato será **1.1 — A Encruzilhada: três biomas, dois mundos, um estado**.
+
+**Por quê**: abre o livro, tem material existente, testa todos os elementos do fluxo.
+
+**Entregas do piloto**:
+- [ ] Pesquisa atualizada (research.md)
+- [ ] Fontes catalogadas no banco de dados (banco-de-fontes.yaml)
+- [ ] Outline aprovado (outline.md)
+- [ ] Texto do tópico (800-1.200 palavras, novo formato)
+- [ ] Roteiro YouTube 8min (youtube.md)
+- [ ] Roteiro(s) Reel/Short (reels.md)
+- [ ] Briefing visual (visual.md)
+- [ ] Revisão completa (review.md)
+- [ ] Aprovação do autor
+
+**O piloto serve como prova de conceito.** Após aprovado, o template está validado e a produção em escala começa.
+
+---
+
+## 10. REGRAS DE OURO
 
 1. **Nada se escreve sem pesquisa.** Nada.
 2. **Nada se redige sem outline aprovado.** O esqueleto evita retrabalho.
 3. **Todo dado tem fonte.** Se não tem fonte, não entra no livro.
-4. **Todo capítulo avança a tese.** Se não avança, por que existe?
-5. **Todo capítulo se conecta.** Pontes de entrada e saída obrigatórias.
-6. **O autor tem veto absoluto.** Nenhum capítulo é final sem aprovação humana.
-7. **O coordination.md é sempre atualizado.** É a única fonte de verdade do projeto.
+4. **Todo tópico avança a tese.** Se não avança, por que existe?
+5. **Todo tópico se conecta.** Mínimo 2 conexões cruzadas.
+6. **O autor tem veto absoluto.** Nenhum tópico é final sem aprovação humana.
+7. **O coordination-v2.md é sempre atualizado.** É a única fonte de verdade.
+8. **Pesquisa web ativa.** Claude busca fontes reais, não inventa.
+9. **Modular com pontes.** Cada tópico funciona sozinho E no fluxo.
+10. **Os derivados nascem do texto.** YouTube e Reels são adaptações do livro, não conteúdo separado.
+
+---
+
+## 11. ORDEM DE PRODUÇÃO
+
+### Fase atual: Documentação
+
+```
+1. ✅ Proposta Editorial
+2. ✅ Style Guide Textual
+3. ✅ Guia de Pesquisa
+4. ✅ Playbook de Produção (este documento)
+5. ⬜ Style Guide Visual
+6. ⬜ Estrutura Completa com subtópicos (emergem da pesquisa)
+```
+
+### Fase seguinte: Piloto
+
+```
+7. Tópico 1.1 — A Encruzilhada (fluxo completo)
+   → Aprovação do autor
+```
+
+### Fase seguinte: Produção
+
+```
+8. Capítulo 1 completo (tópicos 1.1-1.10)
+9. Capítulo por capítulo, na ordem natural (Cap 2, 3, 4...)
+   → Ou na ordem que o autor preferir
+```
+
+**Princípio**: qualidade sobre velocidade. Sem prazo fixo. A produção avança conforme o autor aprova.
