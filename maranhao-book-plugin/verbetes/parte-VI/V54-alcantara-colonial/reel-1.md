@@ -20,7 +20,7 @@ hashtags: ["#QuemEoMaranhao", "#Alcantara", "#Quilombo", "#PatrimonioHistorico"]
 
 **TELA**: "Alcântara: a 2ª cidade do Maranhão"
 **VISUAL**: Gravura ou foto antiga de Alcântara no auge
-**NARRAÇÃO**: "Alcântara era a segunda cidade mais rica da quarta capitania mais rica do Brasil. Algodão para a Inglaterra. Cento e cinquenta e cinco navios por ano. Tudo movido por mãos escravizadas."
+**NARRAÇÃO**: "Alcântara era a segunda cidade mais rica de uma das capitanias mais ricas do Brasil. Algodão para a Inglaterra. Cento e cinquenta e cinco navios por ano. Tudo movido por mãos escravizadas."
 
 **TELA**: "Quando o algodão acabou, Alcântara acabou junto."
 **VISUAL**: Timelapse simulado — casarão íntegro se transformando em ruína

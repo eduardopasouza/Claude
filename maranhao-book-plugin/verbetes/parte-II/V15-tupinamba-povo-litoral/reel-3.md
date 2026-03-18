@@ -28,12 +28,12 @@ hashtags: ["#QuemEoMaranhao", "#Tupinamba", "#FrancaEquinocial", "#SaoLuis"]
 
 **TELA**: "3 anos depois, os portugueses tomam São Luís."
 **VISUAL**: Mapa com bandeira francesa substituída pela portuguesa
-**NARRAÇÃO**: "A profecia se cumpriu. Os franceses perderam. E sem a ameaça francesa, os portugueses não teriam fundado Belém. A aliança Tupinambá mudou a Amazônia inteira."
+**NARRAÇÃO**: "A profecia se cumpriu. Os franceses perderam. E a ameaça francesa pode ter influenciado a decisão portuguesa de fundar Belém. A aliança Tupinambá pode ter mudado a Amazônia inteira."
 
 ## SURPRESA/CTA (45-60s)
 **TELA**: "O Brasil que você conhece existe por causa de uma decisão Tupinambá."
 **VISUAL**: Mapa do Brasil com o Maranhão pulsando, depois expandindo para Amazônia
-**NARRAÇÃO**: "Uma escolha política indígena — em 1612, na ilha que hoje é São Luís — redesenhou o mapa de um continente."
+**NARRAÇÃO**: "Uma escolha política indígena — em 1612, na ilha que hoje é São Luís — contribuiu para redesenhar o mapa de um continente."
 
 **TELA**: "Quem é o Maranhão? #15"
 **VISUAL**: Logo @quemeomaranhao + hashtags

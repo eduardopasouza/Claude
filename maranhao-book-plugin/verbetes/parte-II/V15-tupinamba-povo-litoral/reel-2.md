@@ -18,7 +18,7 @@ hashtags: ["#QuemEoMaranhao", "#Tupinamba", "#HistoriaDoBrasil", "#Maranhao"]
 **VISUAL**: Mapa antigo da ilha com o nome Tupinambá
 **NARRAÇÃO**: "Os Tupinambá não 'moravam' na ilha de São Luís — eles ERAM a ilha. Doze mil pessoas, vinte e sete aldeias."
 
-**TELA**: "2. Três diplomatas Tupinambá morreram em Paris"
+**TELA**: "2. Três diplomatas Tupinambá morreram na França"
 **VISUAL**: Silhueta dos seis embaixadores com três desaparecendo
 **NARRAÇÃO**: "Em 1613, seis foram à França como embaixadores. Três não voltaram."
 

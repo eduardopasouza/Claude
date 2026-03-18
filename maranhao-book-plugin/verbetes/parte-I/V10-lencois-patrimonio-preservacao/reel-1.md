@@ -16,7 +16,7 @@ hashtags: ["#QuemEoMaranhao", "#LencoisMaranhenses", "#UNESCO", "#PatrimonioMund
 
 **TELA**: "O turismo explodiu."
 **VISUAL**: Gráfico animado subindo — 141k (2019) → 440k (2024) → 656k (2025)
-**NARRAÇÃO**: "Em dois mil e dezenove, cento e quarenta e um mil visitantes. Em dois mil e vinte e cinco, seiscentos e cinquenta e seis mil. Crescimento de quase quatrocentos por cento em seis anos."
+**NARRAÇÃO**: "Em dois mil e dezenove, cento e quarenta e um mil visitantes. Em dois mil e vinte e cinco, seiscentos e cinquenta e seis mil. Crescimento de mais de trezentos e sessenta por cento em seis anos."
 
 **TELA**: "O 6º parque mais visitado do Brasil"
 **VISUAL**: Drone aéreo sobre lagoas lotadas de turistas em toyotas e quadriciclos

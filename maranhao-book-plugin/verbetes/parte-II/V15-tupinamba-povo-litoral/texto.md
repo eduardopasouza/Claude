@@ -74,7 +74,7 @@ Seus nomes: **Uaruajá**, **Ity-assú**, **Arimã**, **Manéo**, **Patua** e **J
 
 Paris ficou fascinada. Os Tupinambá foram levados a uma cerimônia de recepção na igreja dos Capuchinhos, onde três deles foram batizados com nomes franceses — Luís, Luísa e Francisco — numa missa solene perante centenas de parisienses. A rainha-mãe Maria de Médici e o jovem rei Luís XIII, então com doze anos, estiveram presentes. D'Abbeville dedicou capítulos inteiros de sua crônica à visita.¹⁶
 
-Mas Paris também matou. Três dos seis embaixadores morreram — provavelmente de doenças respiratórias, contra as quais não tinham defesa imunológica. Itapucú, o mais velho, morreu semanas após o desembarque. Dos que sobreviveram, pelo menos dois retornaram ao Maranhão em 1614.¹⁷
+Mas Paris também matou. Três dos seis embaixadores morreram — provavelmente de doenças respiratórias, contra as quais não tinham defesa imunológica. Um deles, o mais velho do grupo, morreu semanas após o desembarque. Dos que sobreviveram, pelo menos dois retornaram ao Maranhão em 1614.¹⁷
 
 A tragédia dos embaixadores é um microcosmo do que viria. O encontro entre Tupinambá e europeus — mesmo quando mediado pela curiosidade mútua e pela diplomacia — terminava em morte.
 
@@ -114,7 +114,7 @@ Os Tupinambá não deixaram templos nem estátuas. Deixaram algo mais durável: 
 
 A influência vai além dos topônimos. A mandioca, o cauim (que virou cachaça), a rede de dormir, a canoa, o moquém (carne defumada), o mingau, a farinha d'água — tudo isso era Tupinambá antes de ser brasileiro. O beiju que se come no Maranhão é o mesmo beiju que d'Abbeville descreveu em 1612.²³
 
-E há um legado mais sutil: o próprio sotaque maranhense. Linguistas argumentam que o português do Maranhão — considerado o mais "puro" do Brasil, o que mais se aproxima do português europeu — deve parte de sua pronúncia peculiar à influência do substrato Tupi. A maneira como o maranhense pronuncia o "s" final (sibilante, como os portugueses) pode ter se preservado porque a Língua Geral Tupinambá, falada como primeira língua na região até meados do século XVIII, não tinha o "s" chiado que se desenvolveu no Rio de Janeiro.²⁴
+E há um legado mais sutil: o próprio sotaque maranhense. Alguns linguistas argumentam — embora a hipótese ainda careça de comprovação empírica definitiva — que o português do Maranhão — considerado o mais "puro" do Brasil, o que mais se aproxima do português europeu — deve parte de sua pronúncia peculiar à influência do substrato Tupi. A maneira como o maranhense pronuncia o "s" final (sibilante, como os portugueses) pode ter se preservado porque a Língua Geral Tupinambá, falada como primeira língua na região até meados do século XVIII, não tinha o "s" chiado que se desenvolveu no Rio de Janeiro.²⁴
 
 ↗ V20 — "Línguas indígenas do Maranhão"
 ↗ V62 — "O sotaque maranhense"

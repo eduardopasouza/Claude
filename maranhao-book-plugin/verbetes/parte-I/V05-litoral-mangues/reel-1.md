@@ -20,7 +20,7 @@ hashtags: ["#QuemEoMaranhao", "#Mangues", "#Maranhao", "#CarbonoAzul"]
 
 **TELA**: "468 toneladas de carbono por hectare"
 **VISUAL**: Animação comparativa — 1 ha de mangue vs. 1 ha de floresta (escala de carbono)
-**NARRAÇÃO**: "Um hectare de manguezal sequestra até vinte vezes mais carbono do que a mesma área de Caatinga."
+**NARRAÇÃO**: "Um hectare de manguezal sequestra até oito vezes mais carbono do que a mesma área de Caatinga."
 
 **TELA**: "R$ 49 bilhões em carbono azul"
 **VISUAL**: Número aparecendo em tela cheia sobre imagem de mangue
@@ -32,7 +32,7 @@ hashtags: ["#QuemEoMaranhao", "#Mangues", "#Maranhao", "#CarbonoAzul"]
 ## SURPRESA/CTA (40-60s)
 **TELA**: "Quem guarda esse cofre?"
 **VISUAL**: Imagem de marisqueira na lama, balde na mão
-**NARRAÇÃO**: "Mais de quinhentas mil pessoas dependem dos manguezais para sobreviver. Pescadores, marisqueiras, catadores de caranguejo. Ganham menos de trinta reais por dia para proteger um patrimônio de bilhões."
+**NARRAÇÃO**: "Mais de quinhentas mil pessoas dependem dos manguezais para sobreviver. Pescadores, marisqueiras, catadores de caranguejo. Ganham menos de dez reais por dia para proteger um patrimônio de bilhões."
 
 **TELA**: "Quem é o Maranhão? #5"
 **VISUAL**: Logo @quemeomaranhao + hashtags
