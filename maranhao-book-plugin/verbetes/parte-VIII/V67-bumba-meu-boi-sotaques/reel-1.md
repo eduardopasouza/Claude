@@ -28,7 +28,7 @@ hashtags: ["#QuemEoMaranhao", "#BumbaMeuBoi", "#Sotaques", "#PatrimonioDaHumanid
 
 **PAUSA. CORTE SECO.**
 
-"Restam oito grupos de costa-de-mão no mundo. Oito."
+"Restam oito grupos de costa-de-mão no Maranhão. Oito."
 
 ## CTA (50-60s)
 **TELA**: "Cinco sotaques. Um boi. Uma voz quase perdida. Quem é o Maranhão? #67"
