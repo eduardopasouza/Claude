@@ -26,7 +26,7 @@ Você afunda o pé na lama. Afunda até o tornozelo, depois até a canela. A lam
 
 Agora olhe para cima. Contra o céu alaranjado do fim de tarde, uma nuvem vermelha cruza o horizonte. Não é nuvem. São guarás — centenas, talvez milhares de íbis-escarlate voando em formação para os dormitórios nos manguezais de Cururupu. A cor é tão saturada que parece erro de impressão. Vermelho-vivo contra verde-escuro contra água barrenta. É o cartão-postal que o Maranhão ainda não aprendeu a vender — e talvez seja melhor assim.
 
-Porque este lugar, que poucos brasileiros conseguem localizar no mapa, guarda um terço de todos os manguezais do país. E junto com o vizinho Pará, forma o maior cinturão contínuo de manguezais do planeta.²
+Porque este lugar, que poucos brasileiros conseguem localizar no mapa, guarda um terço de todos os manguezais do país. E junto com o Pará e o Amapá, forma o maior cinturão contínuo de manguezais do planeta.²
 
 ---
 
@@ -82,7 +82,7 @@ As Reentrâncias Maranhenses são, possivelmente, a paisagem mais subestimada do
 
 Criada como Área de Proteção Ambiental em 1991, reconhecida como Sítio Ramsar em 1993, incluída na Rede Hemisférica de Reservas para Aves Limícolas — as credenciais internacionais são impecáveis.¹⁵ A realidade no chão é outra. A APA cobre 2,6 milhões de hectares espalhados por 16 municípios, mas a gestão é estadual, os recursos são escassos e a fiscalização, intermitente. O desmatamento acumulado dentro da APA saltou de 84 mil hectares em 2000 para mais de 615 mil hectares em 2023.¹⁶
 
-Mesmo assim, o que resta é extraordinário. As Reentrâncias abrigam a segunda maior concentração de aves migratórias da América do Sul — 50% de todas as aves costeiras do Brasil e 7% das da América do Sul inteira passam por aqui.¹⁷ Maçaricos, batuíras e trinta-réis viajam milhares de quilômetros desde o Ártico canadense até os lodaçais do Maranhão para se alimentar nos bancos de lama expostos pela maré baixa. A jornada é épica: 15 mil quilômetros para comer caranguejinho na lama maranhense.
+Mesmo assim, o que resta é extraordinário. As Reentrâncias abrigam a uma das maiores concentrações de aves migratórias costeiras do Brasil — metade de todas as aves costeiras do país e 7% das da América do Sul — 50% de todas as aves costeiras do Brasil e 7% das da América do Sul inteira passam por aqui.¹⁷ Maçaricos, batuíras e trinta-réis viajam milhares de quilômetros desde o Ártico canadense até os lodaçais do Maranhão para se alimentar nos bancos de lama expostos pela maré baixa. A jornada é épica: 15 mil quilômetros para comer caranguejinho na lama maranhense.
 
 É nesse cenário que os guarás reinam.
 

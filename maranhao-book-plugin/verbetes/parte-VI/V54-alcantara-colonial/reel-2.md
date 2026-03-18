@@ -24,7 +24,7 @@ hashtags: ["#QuemEoMaranhao", "#Alcantara", "#IPHAN", "#CorteIDH"]
 
 **TELA**: "3. Quilombos + foguetes"
 **VISUAL**: Foto de quilombo com torre do CLA ao fundo
-**NARRAÇÃO**: "Trezentas e doze famílias removidas para instalar uma base espacial. Em dois mil e vinte e cinco, a Corte Interamericana condenou o Brasil."
+**NARRAÇÃO**: "Trezentas e doze famílias removidas para instalar uma base espacial. Em novembro de dois mil e vinte e quatro, a Corte Interamericana condenou o Brasil."
 
 ## SURPRESA/CTA (25-30s)
 **TELA**: "Uma sentença inédita. Uma dívida de 4 séculos. Quem é o Maranhão? #54"
