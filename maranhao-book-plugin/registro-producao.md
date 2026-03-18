@@ -2,7 +2,7 @@
 
 > Controle de produção de todos os 106 verbetes do livro.
 > Atualizado a cada verbete concluído.
-> Última atualização: 2026-03-17
+> Última atualização: 2026-03-18
 
 ---
 
@@ -11,12 +11,12 @@
 | Métrica | Valor |
 |---------|-------|
 | Total de verbetes | 106 |
-| Produzidos | 14 |
+| Produzidos | 15 |
 | Em produção | 0 |
-| Pendentes | 92 |
-| Palavras escritas | ~50.100 |
-| Reels produzidos | 42 |
-| Visuais produzidos | 36 |
+| Pendentes | 91 |
+| Palavras escritas | ~52.700 |
+| Reels produzidos | 45 |
+| Visuais produzidos | 38 |
 | Fase atual | Fase 2 — Completar partes cronológicas |
 
 ---
@@ -48,8 +48,9 @@
 | V55 | Alcântara espacial | VI | ✅ Pronto | 2.500 | 3 | 2 | 2026-03-17 |
 | V67 | Bumba-meu-boi: os sotaques | VIII | ✅ Pronto | 3.000 | 3 | 2 | 2026-03-17 |
 | V85 | Babaçu: a palmeira que é identidade | IX | ✅ Pronto | 3.100 | 3 | 2 | 2026-03-17 |
+| V15 | Tupinambá: o povo do litoral | II | ✅ Pronto | 2.600 | 3 | 2 | 2026-03-18 |
 
-**Progresso Fase 2**: 6/6 concluídos (100%)
+**Progresso Fase 2**: 7/7 concluídos (100%)
 
 ---
 
@@ -82,7 +83,7 @@
 | # | Verbete | Tipo | Status | Palavras | Data |
 |---|---------|------|--------|----------|------|
 | V14 | Os povos originários do Maranhão | Verbete-mapa + âncora | ✅ Pronto | 4.800 | 2026-03-17 |
-| V15 | Tupinambá: o povo do litoral | Verbete de povo | ⏳ Pendente | — | — |
+| V15 | Tupinambá: o povo do litoral | Verbete de povo | ✅ Pronto | 2.600 | 2026-03-18 |
 | V16 | Guajajara/Tenetehar: guardiões da mata | Verbete + série boxes | ⏳ Pendente | — | — |
 | V17 | Awá-Guajá: o povo mais ameaçado do mundo | Box impactante | ⏳ Pendente | — | — |
 | V18 | Canela, Gavião, Krikati: os Timbira | Verbete de povos | ⏳ Pendente | — | — |
@@ -90,7 +91,7 @@
 | V20 | Línguas indígenas do Maranhão | Verbete próprio | ⏳ Pendente | — | — |
 | V21 | A questão indígena hoje | Verbete-âncora forte | ⏳ Pendente | — | — |
 
-**Parte II**: 1/8 concluídos
+**Parte II**: 2/8 concluídos
 
 ---
 
@@ -315,8 +316,11 @@
 | REEL-V85-1 | V85 | 60s | pergunta-resposta-surpresa | A palmeira que é tudo |
 | REEL-V85-2 | V85 | 30s | lista | 3 números do babaçu |
 | REEL-V85-3 | V85 | 60s | imersão | Um dia de quebradeira |
+| REEL-V15-1 | V15 | 60s | pergunta-resposta-surpresa | Os Tupinambá do Maranhão |
+| REEL-V15-2 | V15 | 30s | lista | 3 fatos sobre os Tupinambá |
+| REEL-V15-3 | V15 | 60s | imersão | A embaixada Tupinambá em Paris |
 
-**Total reels**: 42
+**Total reels**: 45
 
 ### Visuais
 
@@ -358,8 +362,10 @@
 | VIS-V67-B | V67 | Infográfico | Meia página | Comparativo dos sotaques |
 | VIS-V85-A | V85 | Infográfico | Página inteira | Anatomia do babaçu |
 | VIS-V85-B | V85 | Mapa | Meia página | Mapa da Mata dos Cocais |
+| VIS-V15-A | V15 | Mapa | Página inteira | O mundo Tupinambá no Maranhão — 1612 |
+| VIS-V15-B | V15 | Timeline | Meia página | Da aliança francesa à resistência |
 
-**Total visuais**: 36
+**Total visuais**: 38
 
 ---
 
@@ -368,7 +374,7 @@
 | Parte | Nome | Verbetes | Concluídos | % |
 |-------|------|----------|------------|---|
 | I | O Chão | 13 | 3 | 23,1% |
-| II | Os Primeiros | 8 | 1 | 12,5% |
+| II | Os Primeiros | 8 | 2 | 25% |
 | III | A Conquista | 8 | 1 | 12,5% |
 | IV | O Povo Negro | 10 | 1 | 10% |
 | V | Apogeu e Queda | 8 | 0 | 0% |
@@ -379,7 +385,7 @@
 | X | O Estado e a Estrutura | 8 | 0 | 0% |
 | XI | O Maranhão no Mundo | 6 | 0 | 0% |
 | — | Epílogo | 1 | 0 | 0% |
-| **TOTAL** | | **106** | **14** | **13,2%** |
+| **TOTAL** | | **106** | **15** | **14,2%** |
 
 ---
 
@@ -401,6 +407,7 @@
 | 2026-03-17 | V55 | ✅ Pipeline completo | texto (2.500 palavras) + 3 reels + 2 visuais |
 | 2026-03-17 | V67 | ✅ Pipeline completo | texto (3.000 palavras) + 3 reels + 2 visuais |
 | 2026-03-17 | V85 | ✅ Pipeline completo | texto (3.100 palavras) + 3 reels + 2 visuais |
+| 2026-03-18 | V15 | ✅ Pipeline completo | texto (2.600 palavras) + 3 reels + 2 visuais |
 
 ---
 
