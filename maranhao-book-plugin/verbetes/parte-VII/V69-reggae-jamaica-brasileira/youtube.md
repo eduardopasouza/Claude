@@ -1,0 +1,48 @@
+---
+id: YT-V69
+verbete: V69
+titulo_video: "Reggae no Maranhão: como a Jamaica foi parar no Brasil?"
+duracao: ~8min
+thumbnail_idea: "Mapa-múndi com linha conectando Kingston a São Luís, radiola gigante ao fundo com caixas de som empilhadas, casal dançando agarradinho em silhueta. Texto bold: '8.000 KM DE DISTÂNCIA. ZERO DE DIFERENÇA.'"
+---
+# Roteiro YouTube — V69: Reggae no Maranhão — como a Jamaica foi parar no Brasil?
+
+## HOOK (0:00-0:30)
+**NARRAÇÃO**: "Em 1975, um homem chamado Riba Macedo comprou dois discos de vinil num camelô de Belém. Levou pra São Luís, colocou na vitrola — e sem querer criou a maior cena de reggae fora da Jamaica. Duzentas radiolas. Vinte horas de reggae por dia no rádio. Um museu. Uma lei federal. E o único lugar do planeta onde reggae se dança abraçado. São Luís fica a oito mil quilômetros de Kingston. E mesmo assim virou a Jamaica brasileira. Como isso aconteceu?"
+**VISUAL**: Animação estilo mapa-múndi com zoom rápido de Kingston até São Luís. Transição para imagens estilizadas de radiolas, vitrolas girando, casais dançando agarradinho. Contador numérico: 8.000 km. Texto na tela: "A MAIOR CENA DE REGGAE FORA DA JAMAICA."
+
+## ATO 1 — Como o reggae cruzou o Atlântico (0:30-2:30)
+**NARRAÇÃO**: "A origem exata é o que o curador do Museu do Reggae chama de 'mistério supremo'. Existem pelo menos três teorias. Primeira: marinheiros caribenhos deixavam discos jamaicanos no porto de São Luís, às vezes trocados por bebida. Segunda: radioamadores captavam sinais de emissoras do Caribe — a latitude equatorial de São Luís facilitava a recepção. Terceira — e a mais acadêmica: o selo britânico Trojan Records licenciou reggae para gravadoras brasileiras como Beverly e Caravelle, e os discos circularam em camelôs do Norte. Mas a história mais documentada é a de Riba Macedo. Em 1976, ele fundou a Som Guarani — a primeira radiola de São Luís dedicada ao reggae. Antes dele, as radiolas tocavam bolero, merengue, salsa. O reggae entrou como 'música internacional', sem rótulo. E aí veio a pergunta que importa: por que ficou? O Maranhão tem cerca de 80% de população afrodescendente — herança de 114 mil africanos trazidos pelo tráfico. São Luís é a segunda cidade mais negra do Brasil. O reggae — música da diáspora africana, cantando opressão, resistência e redenção — encontrou um público que entendia o sentimento sem precisar entender a letra. Como dizem os regueiros mais antigos: 'É a música dos pobres e dos pretos.'"
+**B-ROLL**: Animação de navio chegando ao porto de São Luís com discos de vinil saindo da carga. Ondas de rádio cruzando o Atlântico em estilo infográfico. Mapa mostrando rota Trojan Records → Brasil. Foto estilizada de Riba Macedo. Transição para dados demográficos do Maranhão.
+**INFOGRÁFICO**: Mapa com três rotas possíveis (marinheiros, ondas de rádio, indústria fonográfica) convergindo em São Luís. Barra comparativa: Salvador 79% afrodescendente vs. São Luís ~80%. Linha do tempo: 1975 (primeiros discos) → 1976 (Som Guarani) → anos 1980 (explosão).
+
+## ATO 2 — Radiolas, pedras e agarradinho (2:30-5:00)
+**NARRAÇÃO**: "Agora, o mais fascinante. São Luís é o único lugar do mundo onde reggae se dança em casal abraçado. O estilo se chama agarradinho — de agarrar. E a explicação é genial na simplicidade: antes do reggae, São Luís já dançava bolero e salsa em casal. Quando o ritmo jamaicano chegou, o público simplesmente aplicou a dança que já conhecia ao som novo. O tempo lento do roots reggae era perfeito pro abraço. E isso criou um ciclo de retroalimentação: a dança moldou o gosto musical. Por isso São Luís não toca dancehall. Toca roots. Toca lovers rock. Toca os jamaicanos lentos dos anos 60 e 70 — Eric Donaldson, Jimmy London, Jackie Brown — artistas que a própria Jamaica esqueceu. Mas o coração dessa cena são as radiolas — paredões de caixas de som que são o equivalente direto do sound system jamaicano. Mais de duzentas operam hoje no Maranhão. No auge, entre 1985 e 1992, São Luís tinha cem clubes e quase vinte horas por dia de reggae no rádio e na TV. E aqui vem o detalhe mais incrível: as pedras. Pedra é um disco que incendeia a pista — um vinil raro, geralmente um compacto jamaicano de sete polegadas. Para impedir que rivais identifiquem seus melhores discos, os radioleiros raspam os rótulos — exatamente como fazem na Jamaica. Os discos ganham nomes em português: Melô do Chocolate, Melô da Flor. O original pode estar esquecido em Kingston. Em São Luís, é pedra preciosa. Um colecionador voltou de uma única viagem a Londres com mil e quinhentos compactos e setecentos LPs. Natty Nayfson — que largou o emprego na Vale do Rio Doce pelo reggae — fez mais de 35 viagens à Jamaica caçando pedras."
+**B-ROLL**: Animação de casal dançando agarradinho com diagrama comparativo: bolero → reggae (mesma dança, ritmo diferente). Tabela comparativa das cenas reggae mundiais (Kingston: dancehall/solo vs. São Luís: roots/casal). Animação de radiola gigante com caixas empilhadas. Vinil girando com rótulo sendo raspado. Mala de viagem se abrindo com centenas de discos.
+**INFOGRÁFICO**: Comparativo global de cenas reggae: Kingston (dancehall, solo), Londres (lovers rock, misto), Tóquio (roots, individual), São Luís (roots, agarradinho) — destaque para a unicidade. Números: 200+ radiolas, ~100 clubes no auge, 20h/dia de programação. Linha do tempo das grandes radiolas: Estrela do Som, Pop Som, Mega Itamaraty, FM Natty Nayfson.
+
+## ATO 3 — Capital Nacional do Reggae (5:00-7:00)
+**NARRAÇÃO**: "Essa história podia ter ficado invisível. Mas não ficou. Em 2018, abriu no Centro Histórico de São Luís o Museu do Reggae — o primeiro fora da Jamaica, com mais de 50 mil visitantes. Em 2021, o agarradinho virou Patrimônio Imaterial do Maranhão. Em setembro de 2023, a Lei Federal 14.668 fez de São Luís a Capital Nacional do Reggae. E em novembro de 2025, o Festival Ilha do Reggae — com Burning Spear e Ky-Mani Marley, entrada gratuita — foi o maior festival de reggae da história da América Latina. A banda Tribo de Jah, fundada em 1986 por Fauzi Beydoun, foi a primeira a fundir reggae com ritmos maranhenses e cantar em português — levando o reggae do Maranhão para além do Maranhão. Mas o debate do momento é outro: vinil ou digital? As radiolas puristas insistem na agulha. As novas gerações querem playlists. E a pergunta é filosófica: se o vinil é a alma da pedra, a pedra sem vinil ainda é pedra? Seja qual for a resposta, o que não está em debate é a vitalidade. Toda noite, em algum bairro de São Luís — Sacavém, Jordoá, Liberdade — um seletor larga a agulha num vinil sem rótulo e duzentas pessoas começam a dançar abraçadas num ritmo que veio de Kingston, passou por Belém e encontrou no Maranhão o único lugar do mundo onde faz sentido dançar reggae agarradinho."
+**B-ROLL**: Fotos e animação do Museu do Reggae. Selo oficial da Lei Federal. Imagens estilizadas do Festival Ilha do Reggae 2025. Animação de vinil vs. ícone digital com interrogação. Fechamento com animação de radiola tocando à noite, casais dançando.
+**INFOGRÁFICO**: Linha do tempo dos reconhecimentos: 2018 (Museu) → 2021 (Patrimônio Imaterial) → 2023 (Lei Federal — Capital Nacional) → 2025 (Festival Ilha do Reggae). Mapa do Brasil com São Luís pulsando como "Capital Nacional do Reggae". Contrafactual animado: "E se Riba Macedo não tivesse ido a Belém?" — árvore de possibilidades.
+
+## FECHAMENTO (7:00-8:00)
+**NARRAÇÃO**: "Oito mil quilômetros separam São Luís de Kingston. Duzentas radiolas e meio século de agarradinho dizem que a distância é zero. O reggae de São Luís não é uma cópia da Jamaica. É uma tradução — feita por gente preta e pobre que ouviu naquela música algo que já sentia. A Jamaica deu o ritmo. O Maranhão deu o abraço. E quando a agulha cai na pedra e o casal se agarra, Kingston e São Luís viram o mesmo lugar. Se esse vídeo fez você querer ouvir um roots reggae maranhense, deixa o like. Se inscrevam no canal e ativem o sino — porque no próximo vídeo a gente vai falar sobre outra coisa que cruza o Maranhão inteiro e muda tudo por onde passa: a Ferrovia Carajás."
+**CTA**: "Se inscreva / Próximo: V84 — Ferrovia Carajás: o paradoxo sobre trilhos"
+
+## NOTAS DE PRODUÇÃO
+- **Trilha**: Roots reggae instrumental nos atos 1 e 2 (Eric Donaldson / Jimmy London vibe). Lovers rock suave no trecho do agarradinho. Tribo de Jah no ato 3. Fade out com pedra clássica no fechamento.
+- **Animações**: Estilo Kurzgesagt — cores vibrantes (verde, amarelo, vermelho reggae). Mapa-múndi animado. Radiolas em motion graphics. Vinil girando como elemento recorrente.
+- **Infográficos**: Comparativo global de cenas reggae. Linha do tempo 1975-2025. Dados demográficos do Maranhão. Diagrama bolero→reggae→agarradinho.
+- **Tags SEO**: reggae maranhão, reggae são luís, jamaica brasileira, agarradinho, radiola, reggae brasil, capital do reggae, museu do reggae, riba macedo, tribo de jah, pedras reggae, sound system brasil
+- **Timestamps**: 0:00 Como o reggae chegou ao Maranhão? | 0:30 As três teorias da origem | 1:45 Por que ficou | 2:30 O agarradinho | 3:15 As radiolas | 4:00 As pedras secretas | 5:00 Capital Nacional do Reggae | 6:15 Vinil vs. digital | 7:00 Reflexão final
+
+## FONTES DO VÍDEO
+- Museu do Reggae do Maranhão — depoimento Riba Macedo
+- PAULRAJ, Kavin. University of Pittsburgh, 2013 — Trojan Records e distribuição no Brasil
+- KATZ, David — Natty Nayfson e a cultura das radiolas
+- DANILO, Ademar — Curador do Museu do Reggae
+- Lei Federal 14.668/2023 — Capital Nacional do Reggae
+- Festival Ilha do Reggae (novembro 2025) — Burning Spear, Ky-Mani Marley
+- IBGE — dados demográficos do Maranhão
+- Registro de Patrimônio Imaterial do MA (2021) — agarradinho
