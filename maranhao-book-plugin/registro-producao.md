@@ -11,10 +11,10 @@
 | Métrica | Valor |
 |---------|-------|
 | Total de verbetes | 106 |
-| Produzidos | 23 |
-| Em produção | 1 (V25) |
-| Pendentes | 83 |
-| Palavras escritas | ~88.400 |
+| Produzidos | 24 |
+| Em produção | 0 |
+| Pendentes | 82 |
+| Palavras escritas | ~92.200 |
 | Reels produzidos | 63 |
 | Visuais produzidos | 55 |
 | Fase atual | Fase 3 — Blocos 3A+3B completos, 3C em andamento (V25 em produção) |
@@ -102,7 +102,7 @@
 | V22 | Antes da conquista: Pinzón, Barros e o naufrágio | Verbete próprio | ⏳ Pendente | — | — |
 | V23 | A França Equinocial: o sonho francês | Verbete-âncora | ✅ Pronto | 4.600 | 2026-03-17 |
 | V24 | Guaxenduba: a batalha que definiu o Maranhão | Verbete | ✅ Pronto | 3.300 | 2026-04-01 |
-| V25 | O Estado do Maranhão e Grão-Pará (1621–1774) | Verbete essencial | 🔄 Em produção | ~3.800 | 2026-04-01 |
+| V25 | O Estado do Maranhão e Grão-Pará (1621–1774) | Verbete essencial | ✅ Pronto | 3.800 | 2026-04-01 |
 | V26 | Os holandeses no Maranhão | Verbete próprio | ⏳ Pendente | — | — |
 | V27 | Jesuítas e Vieira: a voz na selva | Verbete próprio | ⏳ Pendente | — | — |
 | V28 | A Companhia de Pombal | Verbete próprio | ⏳ Pendente | — | — |
