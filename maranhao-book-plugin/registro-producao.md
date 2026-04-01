@@ -11,13 +11,13 @@
 | Métrica | Valor |
 |---------|-------|
 | Total de verbetes | 106 |
-| Produzidos | 17 |
+| Produzidos | 18 |
 | Em produção | 0 |
-| Pendentes | 89 |
-| Palavras escritas | ~67.100 |
-| Reels produzidos | 50 |
-| Visuais produzidos | 43 |
-| Fase atual | Fase 3 — V01+V02 concluídos, próximo V06 |
+| Pendentes | 88 |
+| Palavras escritas | ~70.900 |
+| Reels produzidos | 53 |
+| Visuais produzidos | 45 |
+| Fase atual | Fase 3 — V01+V02+V06 concluídos, próximo V13 |
 
 ---
 
@@ -65,7 +65,7 @@
 | V03 | Cerrado maranhense | Ecossistêmico | ⏳ Pendente | — | — |
 | V04 | Amazônia maranhense | Ecossistêmico | ⏳ Pendente | — | — |
 | V05 | Litoral e mangues | Ecossistêmico | ✅ Pronto | 3.700 | 2026-03-17 |
-| V06 | Mata dos Cocais | Ecossistêmico/identitário | ⏳ Pendente | — | — |
+| V06 | Mata dos Cocais | Ecossistêmico/identitário | ✅ Pronto | 3.800 | 2026-04-01 |
 | V07 | O Maranhão seco | Ecossistêmico | ⏳ Pendente | — | — |
 | V08 | Rios, lagos e lagoas | Verbete-âncora | ⏳ Pendente | — | — |
 | V09 | Lençóis Maranhenses: o paradoxo geológico | Verbete-âncora | ✅ Pronto | 4.200 | 2026-03-17 |
@@ -74,7 +74,7 @@
 | V12 | Delta das Américas | Verbete próprio | ⏳ Pendente | — | — |
 | V13 | Pré-história maranhense | Arqueologia | ⏳ Pendente | — | — |
 
-**Parte I**: 5/13 concluídos
+**Parte I**: 6/13 concluídos
 
 ---
 
@@ -410,6 +410,7 @@
 | 2026-03-18 | V15 | ✅ Pipeline completo | texto (2.600 palavras) + 3 reels + 2 visuais |
 | 2026-04-01 | V01 | ✅ Pipeline completo | research + outline + texto (3.200 palavras) + 2 reels + 2 visuais. Primeiro verbete da Fase 3. Legacy reaproveitado. |
 | 2026-04-01 | V02 | ✅ Pipeline completo | research + outline + texto (4.300 palavras) + 3 reels + 3 visuais. Verbete-âncora da Parte I. YouTube sugerido. |
+| 2026-04-01 | V06 | ✅ Pipeline completo | research + outline + texto (3.800 palavras) + 3 reels + 2 visuais. Mata dos Cocais — quebradeiras, babaçu livre, coco preso. |
 
 ---
 

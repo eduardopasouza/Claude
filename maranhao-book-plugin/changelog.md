@@ -20,6 +20,12 @@
 - Rotina de início de sessão atualizada: roadmap.md como prioridade 2 (antes do registro-producao)
 - Decisões registradas: V93 independente, V99 ambos, legacy reaproveitável, YouTube com regra
 
+### V06 — Mata dos Cocais (Parte I)
+- Pipeline completo: research + outline + texto (3.800 palavras) + 3 reels + 2 visuais
+- Boxes: Receita (leite de babaçu), Maranhense desconhecida #2 (Dona Dijé), Glossário (Babaçu Livre)
+- Cross-references: V02, V04, V37, V65, V85
+- Fio da água: sim (buriti nas veredas, rios como veias)
+
 ### V02 — As Quatro Paisagens (Parte I)
 - Pipeline completo: research + outline + texto (4.300 palavras) + 3 reels + 3 visuais
 - Verbete-âncora da Parte I — YouTube sugerido
