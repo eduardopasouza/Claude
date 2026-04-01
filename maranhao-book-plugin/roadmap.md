@@ -1,7 +1,7 @@
 # Roadmap — Quem é o Maranhão?
 
 > Auto-atualizado ao final de cada verbete concluído. Fonte única de estado do projeto.
-> Última atualização: 2026-04-01 (Bloco 3A completo: V01+V02+V06+V13)
+> Última atualização: 2026-04-01 (23/106 — Blocos 3A+3B completos, 3C em andamento)
 
 ---
 
@@ -9,11 +9,11 @@
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Verbetes concluídos | 19 / 106 | 106 |
-| Progresso geral | 17,9% | 100% |
-| Palavras escritas | ~74.300 | ~300.000–400.000 |
-| Reels produzidos | 55 | ~250–320 |
-| Visuais produzidos | 47 | ~150–200 |
+| Verbetes concluídos | 23 / 106 | 106 |
+| Progresso geral | 21,7% | 100% |
+| Palavras escritas | ~88.400 | ~300.000–400.000 |
+| Reels produzidos | 63 | ~250–320 |
+| Visuais produzidos | 55 | ~150–200 |
 | YouTube produzidos | 8 | ~15–25 |
 | Entradas YAML | 126 | ~500–800 |
 | Fase atual | **Fase 3** (V01 concluído) | Fase 6 |
@@ -23,8 +23,8 @@
 | Parte | Nome | Total | Prontos | % | Barra |
 |-------|------|-------|---------|---|-------|
 | I | O Chão | 13 | 7 | 54% | `█████░░░░░` |
-| II | Os Primeiros | 8 | 2 | 25% | `██░░░░░░░░` |
-| III | A Conquista | 8 | 1 | 13% | `█░░░░░░░░░` |
+| II | Os Primeiros | 8 | 5 | 63% | `██████░░░░` |
+| III | A Conquista | 8 | 2 | 25% | `██░░░░░░░░` |
 | IV | O Povo Negro | 10 | 1 | 10% | `█░░░░░░░░░` |
 | V | Apogeu e Queda | 8 | 0 | 0% | `░░░░░░░░░░` |
 | VI | São Luís: A Ilha | 9 | 3 | 33% | `███░░░░░░░` |
@@ -45,11 +45,11 @@
 | ~~2~~ | ~~V02 — As Quatro Paisagens~~ | I | 3A | ✅ Concluído |
 | ~~3~~ | ~~V06 — Mata dos Cocais~~ | I | 3A | ✅ Concluído |
 | ~~4~~ | ~~V13 — Pré-história maranhense~~ | I | 3A | ✅ Concluído |
-| **→ 5** | **V16 — Guajajara/Tenetehar** | II | 3B | ⏳ Próximo |
-| 6 | V17 — Awá-Guajá | II | 3B | ⏳ Pendente |
-| 7 | V21 — A questão indígena hoje | II | 3B | ⏳ Pendente |
-| 8 | V25 — O Estado do MA e Grão-Pará | III | 3C | ⏳ Pendente |
-| 9 | V24 — Guaxenduba | III | 3C | ⏳ Pendente |
+| ~~5~~ | ~~V16 — Guajajara/Tenetehar~~ | II | 3B | ✅ Concluído |
+| ~~6~~ | ~~V17 — Awá-Guajá~~ | II | 3B | ✅ Concluído |
+| ~~7~~ | ~~V21 — A questão indígena hoje~~ | II | 3B | ✅ Concluído |
+| 8 | V25 — O Estado do MA e Grão-Pará | III | 3C | 🔄 Em produção |
+| ~~9~~ | ~~V24 — Guaxenduba~~ | III | 3C | ✅ Concluído |
 | 10 | V33 — Números da escravidão | IV | 3D | ⏳ Pendente |
 | 11 | V35 — Quilombos do Maranhão | IV | 3D | ⏳ Pendente |
 | 12 | V37 — Terras de Preto, de Santo e de Índio | IV | 3D | ⏳ Pendente |
@@ -91,6 +91,10 @@
 | 17 | 2026-04-01 | V02 — Quatro Paisagens | 4.300 | 3 | 3 | sugerido | âncora |
 | 18 | 2026-04-01 | V06 — Mata dos Cocais | 3.800 | 3 | 2 | não | ecossistêmico |
 | 19 | 2026-04-01 | V13 — Pré-história | 3.400 | 2 | 2 | não | arqueologia |
+| 20 | 2026-04-01 | V16 — Guajajara | 3.800 | 2 | 2 | não | povo |
+| 21 | 2026-04-01 | V17 — Awá-Guajá | 2.800 | 2 | 2 | não | box impactante |
+| 22 | 2026-04-01 | V21 — Questão indígena | 4.200 | 3 | 3 | sim | âncora forte |
+| 23 | 2026-04-01 | V24 — Guaxenduba | 3.300 | 2 | 2 | não | verbete |
 
 ### Tendências
 

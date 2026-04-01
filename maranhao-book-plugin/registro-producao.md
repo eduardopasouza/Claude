@@ -11,13 +11,13 @@
 | Métrica | Valor |
 |---------|-------|
 | Total de verbetes | 106 |
-| Produzidos | 19 |
-| Em produção | 0 |
-| Pendentes | 87 |
-| Palavras escritas | ~74.300 |
-| Reels produzidos | 55 |
-| Visuais produzidos | 47 |
-| Fase atual | Fase 3 — Bloco 3A completo (V01+V02+V06+V13), próximo Bloco 3B (V16) |
+| Produzidos | 23 |
+| Em produção | 1 (V25) |
+| Pendentes | 83 |
+| Palavras escritas | ~88.400 |
+| Reels produzidos | 63 |
+| Visuais produzidos | 55 |
+| Fase atual | Fase 3 — Blocos 3A+3B completos, 3C em andamento (V25 em produção) |
 
 ---
 
@@ -84,14 +84,14 @@
 |---|---------|------|--------|----------|------|
 | V14 | Os povos originários do Maranhão | Verbete-mapa + âncora | ✅ Pronto | 4.800 | 2026-03-17 |
 | V15 | Tupinambá: o povo do litoral | Verbete de povo | ✅ Pronto | 2.600 | 2026-03-18 |
-| V16 | Guajajara/Tenetehar: guardiões da mata | Verbete + série boxes | ⏳ Pendente | — | — |
-| V17 | Awá-Guajá: o povo mais ameaçado do mundo | Box impactante | ⏳ Pendente | — | — |
+| V16 | Guajajara/Tenetehar: guardiões da mata | Verbete + série boxes | ✅ Pronto | 3.800 | 2026-04-01 |
+| V17 | Awá-Guajá: o povo mais ameaçado do mundo | Box impactante | ✅ Pronto | 2.800 | 2026-04-01 |
 | V18 | Canela, Gavião, Krikati: os Timbira | Verbete de povos | ⏳ Pendente | — | — |
 | V19 | Ka'apor, Urubu e os povos do oeste | Verbete de povos | ⏳ Pendente | — | — |
 | V20 | Línguas indígenas do Maranhão | Verbete próprio | ⏳ Pendente | — | — |
-| V21 | A questão indígena hoje | Verbete-âncora forte | ⏳ Pendente | — | — |
+| V21 | A questão indígena hoje | Verbete-âncora forte | ✅ Pronto | 4.200 | 2026-04-01 |
 
-**Parte II**: 2/8 concluídos
+**Parte II**: 5/8 concluídos
 
 ---
 
@@ -101,14 +101,14 @@
 |---|---------|------|--------|----------|------|
 | V22 | Antes da conquista: Pinzón, Barros e o naufrágio | Verbete próprio | ⏳ Pendente | — | — |
 | V23 | A França Equinocial: o sonho francês | Verbete-âncora | ✅ Pronto | 4.600 | 2026-03-17 |
-| V24 | Guaxenduba: a batalha que definiu o Maranhão | Verbete | ⏳ Pendente | — | — |
-| V25 | O Estado do Maranhão e Grão-Pará (1621–1774) | Verbete essencial | ⏳ Pendente | — | — |
+| V24 | Guaxenduba: a batalha que definiu o Maranhão | Verbete | ✅ Pronto | 3.300 | 2026-04-01 |
+| V25 | O Estado do Maranhão e Grão-Pará (1621–1774) | Verbete essencial | 🔄 Em produção | ~3.800 | 2026-04-01 |
 | V26 | Os holandeses no Maranhão | Verbete próprio | ⏳ Pendente | — | — |
 | V27 | Jesuítas e Vieira: a voz na selva | Verbete próprio | ⏳ Pendente | — | — |
 | V28 | A Companhia de Pombal | Verbete próprio | ⏳ Pendente | — | — |
 | V29 | Os portugueses no Maranhão | Verbete de grupo | ⏳ Pendente | — | — |
 
-**Parte III**: 1/8 concluídos
+**Parte III**: 2/8 concluídos
 
 ---
 

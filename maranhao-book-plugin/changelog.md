@@ -20,6 +20,26 @@
 - Rotina de início de sessão atualizada: roadmap.md como prioridade 2 (antes do registro-producao)
 - Decisões registradas: V93 independente, V99 ambos, legacy reaproveitável, YouTube com regra
 
+### V24 — Guaxenduba: a batalha que definiu o Maranhão (Parte III)
+- Pipeline completo: research + outline + texto (3.300 palavras) + 2 reels + 2 visuais
+- Boxes: Lenda (N.S. da Vitória), Contrafactual (MA francês?), Maranhense #4 (Jerônimo de Albuquerque)
+- Cross-references: V14, V15, V23, V25
+
+### V21 — A questão indígena hoje (Parte II)
+- Pipeline completo: research + outline + texto (4.200 palavras) + 3 reels + 3 visuais + YouTube sugerido
+- Verbete-âncora forte que fecha a Parte II
+- Boxes: Documento (CIMI 2022), Glossário (Guardiões), Maranhense #3 (Sônia Guajajara)
+- Dado central: 57.214 pessoas guardam 52% da floresta
+
+### V17 — Awá-Guajá: o povo mais ameaçado do mundo (Parte II)
+- Pipeline completo: research + outline + texto (~2.800 palavras) + 2 reels + 2 visuais
+- Box impactante — formato mais intenso e concentrado
+
+### V16 — Guajajara/Tenetehar: guardiões da mata (Parte II)
+- Pipeline completo: research + outline + texto (~3.800 palavras) + 2 reels + 2 visuais
+- Boxes: Maranhense desconhecida (Sônia Guajajara), Glossário (Guardiões da Floresta)
+- **Bloco 3B da Fase 3 COMPLETO** (V16+V17+V21)
+
 ### V13 — Pré-história maranhense (Parte I)
 - Pipeline completo: research + outline + texto (3.400 palavras) + 2 reels + 2 visuais
 - Boxes: Documento (Sítio Chácara Rosane), Glossário (Sambaqui), Glossário (Estearia)
