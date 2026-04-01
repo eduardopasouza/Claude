@@ -2,154 +2,179 @@
 id: V39
 titulo: "Matriz africana: a heranca viva"
 parte: 4
-tipo: verbete-ancora
+tipo: verbete
 palavras: 3850
 boxes:
   - tipo: glossario
-    titulo: "Vocabulario afro-maranhense"
-  - tipo: maranhense
-    titulo: "Maranhenses que Voce Nao Sabia #3: Mae Andresa"
+    titulo: "O que e um encantado?"
+  - tipo: brasil
+    titulo: "Tambor de Mina vs Candomble: o Maranhao nao e a Bahia do Norte"
 cross_references: [V30, V33, V35, V37, V38, V66, V68, V69]
 fio_da_agua: true
-dados_yaml: [DEM-005, CUL-017, CUL-018, CUL-019, CUL-020, CUL-021, HIS-007, HIS-008, HIS-009]
+dados_yaml: [DEM-005, DEM-007, CUL-017, CUL-018, CUL-019, CUL-020, CUL-021, CUL-022]
 status: rascunho
 ---
 
 # Matriz africana: a heranca viva
 
-> *"Nao ha um so aspecto da cultura maranhense que nao tenha sido profundamente marcado pela presenca africana."*
-> — **Sergio Ferretti**, *Querebenta de Zomadonu*, 1996
+> *"O Tambor de Mina nao e o Candomble do Maranhao. E outra coisa. E uma coisa que so o Maranhao tem."*
+> -- **Mundicarmo Ferretti**, *Desceu na Guma*, 2000
 
-Pergunte a qualquer brasileiro qual e o estado mais negro do Brasil. A resposta, quase sempre, sera a Bahia. Salvador, Pelourinho, acaraje, Candomble, Olodum. O imaginario e automatico.
+Voce esta numa rua escura de Sao Luis, num bairro que os guias turisticos nao mencionam. Sao dez da noite e tres sons diferentes chegam de tres direcoes ao mesmo tempo. A sua esquerda, o grave oco de um tambor grande -- repique seco, cadencia circular, vozes de mulheres respondendo em coro. E Tambor de Crioula. A sua direita, canticos que misturam palavras em portugues, em fon e em algo que voce nao reconhece -- pontuados por palmas e pelo tinido de um ferro batendo em ferro. E um toque de Mina num terreiro. E de algum lugar mais longe, tao grave que voce sente mais no peito do que nos ouvidos, chega a linha de baixo inconfundivel de um reggae, amplificada por uma radiola cujas caixas de som sao do tamanho de um armario.
 
-Agora olhe os numeros. No Censo de 2022, o Maranhao registrou 78% de sua populacao como negra ou parda. A Bahia, 81%. A diferenca e de tres pontos percentuais — e o Maranhao, ao contrario da Bahia, nunca construiu uma narrativa nacional em torno de sua negritude. Nao tem um Pelourinho turistico. Nao tem um Jorge Amado para exportar. Nao tem um axe music que toque no carnaval do Brasil inteiro.
+Tres sons. Tres Africas. Uma cidade.
 
-O que o Maranhao tem e outra coisa. Tem os terreiros mais antigos do pais ainda em funcionamento. Tem uma religiao afro-brasileira que nenhum outro estado possui. Tem uma danca que e Patrimonio Imaterial do Brasil. Tem a unica cidade do mundo fora da Jamaica onde o reggae e musica popular de massa. Tem 653 quilombos certificados — o maior numero do Brasil. E tem uma culinaria inteira construida com ingredientes que cruzaram o Atlantico nos poroes dos tumbeiros.
+E se voce estiver prestando atencao, vai perceber que os tres sons compartilham algo: o tambor. O grave. O corpo que responde ao ritmo antes que a cabeca entenda a letra. Isso nao e coincidencia. E heranca. E a coisa mais viva que o Maranhao tem.
 
-Voce percorreu essa historia nos verbetes anteriores — a travessia (V30), os quilombos, os levantes, o arroz (V38). Agora, antes de fechar esta parte do livro, pare e olhe o mosaico completo. Porque a heranca africana no Maranhao nao e folclore de museu. Nao e capitulo encerrado. E o tecido vivo do presente.
+---
+
+## Os numeros que ninguem sabe
+
+Pergunte a qualquer brasileiro qual e o estado mais negro do Brasil. A resposta sera Bahia. Quase sempre.
+
+Errado -- ou, no minimo, incompleto.
+
+Segundo o Censo 2022 do IBGE, 78% da populacao do Maranhao se declara preta ou parda. Setenta e oito por cento. E a segunda maior proporcao do pais, atras apenas da Bahia (81,1%).^1^ Mas a diferenca e minima, e o Maranhao tem algo que os numeros nao capturam: uma africanidade que nao se mede so em cor de pele. Mede-se em terreiros, em ritmos, em ingredientes, em palavras que voce usa sem saber de onde vieram.
+
+O que a Parte IV deste livro contou -- a travessia (V30), os numeros da escravidao (V33), os quilombos (V35), Negro Cosme (V36), as terras de preto (V37), o arroz que veio da Africa (V38) -- sao capitulos de uma historia que nao terminou. O que voce vai ler agora e o mapa dessa heranca viva: religiao, danca, musica, culinaria, lingua, corpo, terra. Tudo ao mesmo tempo. Porque no Maranhao, a Africa nao e passado. E presente.
 
 ---
 
 ## O sagrado: Tambor de Mina e os encantados
 
-Em algum momento entre 1830 e 1850, mulheres africanas — vodunsis do povo Fon, do antigo reino do Daome — fundaram em Sao Luis um terreiro que ate hoje funciona na Rua de Sao Pantaleao, no centro historico. A Casa das Minas, ou Querebenta de Zomadonu, e o terreiro Jeje mais antigo do Brasil. Na mesma epoca, e a poucos quarteiroes de distancia, mulheres Nago (de lingua ioruba) fundaram a Casa de Nago. Juntas, essas duas casas sao consideradas por Sergio Ferretti e por Reginaldo Prandi entre os terreiros de culto africano mais antigos em funcionamento continuo no pais.
+Se existe uma coisa que o Maranhao tem e nenhum outro estado brasileiro possui, e o Tambor de Mina.
 
-A diferenca entre o Tambor de Mina e o Candomble baiano nao e de grau — e de natureza. O Candomble brasileiro e predominantemente ioruba: cultua orixas (Oxala, Iemanja, Xango, Ogum). O Tambor de Mina cultua voduns — divindades Fon, do Daome — e orixas Nago, mas numa configuracao propria, com hierarquias e rituais que nao existem em nenhum outro lugar do Brasil.
+Nao e Candomble. Nao e Umbanda. Nao e variacao de nada. E uma religiao de matriz africana propria, com panteao proprio, liturgia propria e uma cosmologia que nao se repete em nenhum outro canto do Brasil.^2^
 
-E ha algo mais: os encantados.
+O nome vem dos africanos chamados genericamente de "Mina" -- os embarcados na Costa da Mina, que hoje corresponde a Gana, Togo e Benin. Foram eles -- especialmente os Jeje (do povo Fon, do antigo reino do Daome) e os Nago (de lingua ioruba) -- que fundaram, em Sao Luis, os dois terreiros mais antigos e veneraveis do Maranhao: a **Casa das Minas** e a **Casa de Nago**.^3^
 
-Os encantados sao a contribuicao teologica mais original do Maranhao ao universo religioso brasileiro. Nao sao orixas. Nao sao santos catolicos. Nao sao espiritos de mortos, como na Umbanda. Sao seres que viveram como humanos e, num momento critico de suas vidas, "se encantaram" — desapareceram do mundo visivel sem morrer, passando a habitar uma dimensao paralela chamada de "encantaria." Podem ser caboclos da mata, princesas europeias, turcos, reis africanos, entidades das aguas. Mundicarmo Ferretti, em *Maranhao Encantado* (2000), catalogou centenas dessas entidades — cada uma com historia, personalidade, preferencias rituais e familias espirituais proprias.
+A Casa das Minas, na Rua de Sao Pantaleao, no centro historico, foi fundada por mulheres africanas -- vodunsis -- provavelmente na decada de 1840, embora haja indicios de atividade ritual anterior.^4^ Segundo a tradicao oral e a pesquisa do antropologo Sergio Ferretti, as fundadoras eram possivelmente ligadas a familia real do Daome -- mulheres da aristocracia africana vendidas como escravizadas apos conflitos dinasticos. Na Casa das Minas, cultuam-se voduns -- as divindades do panteao Fon/Ewe: Nana Buruku, Averekete, Zomadonu.
 
-A encantaria maranhense e um sistema religioso que funde elementos Jeje, Nago, indigenas (pajelanca) e catolicos numa teologia que nao tem equivalente em nenhum outro estado brasileiro. E a prova viva de que sincretismo nao e simplificacao — e criacao.
+A Casa de Nago, na mesma rua, e de tradicao ioruba. Juntas, as duas casas sao contemporaneas dos mais antigos terreiros de Salvador -- e por muito tempo foram as unicas do Brasil a manter o culto aos voduns na forma Jeje pura, sem as fusoes que ocorreram em outros estados.
+
+Hoje, estima-se que mais de mil terreiros de Mina estejam ativos no Maranhao.^5^ A densidade e comparavel a de Salvador. Mas ha uma diferenca fundamental: no Mina maranhense, alem dos voduns, alem dos orixas, existe uma terceira categoria de entidade -- e e ela que torna o Maranhao unico.
+
+Os **encantados**.
+
+<!-- BOX: glossario -- O que e um encantado? -->
+### O que e um encantado?
+
+Um encantado nao e um orixa -- os orixas sao forcas da natureza divinizadas, cultuadas no Candomble. Nao e um vodun -- os voduns sao ancestrais divinizados do panteao Fon. Nao e um santo catolico. Nao e espirito de morto, como no espiritismo kardecista.
+
+Um encantado e um ser que **se encantou** -- que desapareceu do mundo visivel sem morrer. Sumiu num rio. Entrou numa mata e nao voltou. Desapareceu no mar. E agora habita um plano invisivel -- a "encantaria" -- de onde retorna para se manifestar nos corpos dos devotos durante o transe ritual.^6^
+
+Muitos encantados tem nomes proprios, historias, personalidade: Rei Sebastiao (que desapareceu na Batalha de Alcacer-Quibir e "se encantou" sob a areia dos Lencois Maranhenses), Dona Mariana, Surrupira, Barao de Guare. Sao figuras que misturam lendas europeias, mitologia indigena e cosmologia africana num sincretismo que so o Maranhao produziu.
+
+**Nenhuma outra tradicao religiosa afro-brasileira tem os encantados.** Sao maranhenses -- e sao a prova viva de que o que aconteceu neste estado nao foi copia de nada. Foi criacao.
+<!-- /BOX -->
 
 ---
 
 ## O corpo: Tambor de Crioula
 
-Em qualquer noite de sabado em Sao Luis — e em dezenas de cidades do interior do Maranhao — voce pode encontrar uma roda de Tambor de Crioula. Tres tambores de madeira escavada cobertos com couro: o meiao, o crivador e o tambor grande. Homens tocam. Mulheres dancam.
+Se o Mina e o sagrado, o Tambor de Crioula e o corpo.
 
-As coreiras entram na roda uma a uma. Dancam girando, balancando, requebrando — e executam a "punga", o momento central: um encontro de ventres entre duas dancarinas, que e ao mesmo tempo cumprimento, desafio, celebracao e passagem de turno. A que recebe a punga entra na roda; a que deu, sai.
+Tres tambores -- o meiao, o crivador e o tambor grande. Cantoria responsorial: um puxa, todos respondem. E no centro da roda, as **coreiras** -- as mulheres que dancam. Uma de cada vez entra, danca, e num gesto que e ao mesmo tempo convite e despedida -- a **punga**, a umbigada, o toque de ventre com ventre -- chama a proxima.^7^
 
-O Tambor de Crioula e danca, musica e ritual ao mesmo tempo. E oferecido a Sao Benedito — o santo negro, padroeiro dos escravizados — em pagamento de promessas. Mas sua raiz e anterior ao catolicismo: e a celebracao de ancestrais, a comunicacao com o sagrado atraves do ritmo e do corpo. O corpo que danca e o corpo que reza.
+Os homens tocam. As mulheres dancam. E antes que voce pergunte se isso e machismo ou matriarcado, observe: sao elas que comandam a roda. O ritmo pode acelerar, mas quem decide quando entrar, quando sair e quando pungar e a coreira. O tambor obedece ao corpo, nao o contrario.
 
-Em 2007, o IPHAN registrou o Tambor de Crioula do Maranhao no Livro das Formas de Expressao como Patrimonio Cultural Imaterial do Brasil. Em 2012, foi submetido a lista representativa do Patrimonio Cultural Imaterial da Humanidade da UNESCO. O reconhecimento formal confirma o que as coreiras ja sabiam: aquela roda e universal.
+O Tambor de Crioula foi registrado como Patrimonio Cultural Imaterial do Brasil pelo IPHAN em 2007, e a candidatura brasileira a Lista Representativa da UNESCO foi formalizada.^8^ Mas nenhum titulo oficial capta o que a danca realmente e: pode ser promessa a Sao Benedito, pode ser celebracao de aniversario, pode ser festa de terreiro, pode ser simplesmente a vontade de tocar que surge numa noite quente. Nao precisa de palco. Nao precisa de autorizacao. Precisa de tres tambores, um grupo de vozes e pelo menos uma mulher disposta a entrar na roda.
 
-<!-- LAYOUT: fotografia dupla — coreiras na punga + detalhe das maos no tambor grande -->
+A punga -- a umbigada -- tem correspondentes diretos em dancas da Angola, do Congo e de Mocambique: o semba angolano, o batuque de Luanda, o lundu que se espalhou pelo Brasil. A roda, a percussao responsorial, a centralidade do quadril: tudo e africano. Tudo atravessou o Atlantico. Tudo esta vivo toda semana em dezenas de bairros de Sao Luis, Codo, Pinheiro, Santa Helena, Alcantara.
 
----
-
-## O som: do batuque ao reggae
-
-Quando os primeiros discos de reggae chegaram a Sao Luis nos anos 1970 — trazidos por marinheiros, por imigrantes caribenhos, por ondas de radio que atravessavam o Atlantico —, a cidade nao precisou aprender a gostar. Ja gostava. A afinidade foi imediata, visceral, inexplicavel para quem olhava de fora.
-
-Carlos Benedito Rodrigues da Silva, que estudou o fenomeno na decada de 1990, oferece uma explicacao estrutural: Sao Luis ja era uma cidade do grave. O bumba-meu-boi, com seus zabumbas e matracas, e musica construida sobre percussao pesada. O Tambor de Crioula e puro ritmo grave. O Tambor de Mina vive do toque de atabaque. Quando o reggae chegou — com seu baixo marcado, seu ritmo repetitivo e hipnotico, sua bass culture — encontrou ouvidos que ja estavam calibrados para esse tipo de frequencia.
-
-As radiolas completaram a conexao. Radiola e o nome maranhense para o que na Jamaica chamam de sound system: um conjunto movel de caixas de som gigantescas (algumas com mais de dois metros de altura) operado por um DJ que seleciona discos de vinil de reggae raiz. As festas de radiola reunem milhares de pessoas — dancando reggae agarradinho, com a caixa toracica vibrando no grave, num ritual que e ao mesmo tempo festa, resistencia e identidade.
-
-Sao Luis e chamada de "Jamaica brasileira" ou "capital brasileira do reggae." Nao e exagero. E a unica cidade do mundo, fora da Jamaica, onde o reggae raiz — nao o reggae pop, nao o dancehall, mas o roots reggae dos anos 1970 — se tornou musica popular de massa. Bob Marley toca nas radiolas de Sao Luis como toca nos sound systems de Kingston. E toca para o mesmo publico: negro, periferico, orgulhoso.
+<!-- LAYOUT: foto dupla -- Tambor de Crioula (coreiras na roda) + toque de Mina (terreiro) -->
 
 ---
 
-## A mesa: culinaria de tres continentes
+## O som: do tambor a radiola
 
-Voce acabou de ler sobre o arroz de cuxa (V38) — o prato-simbolo do Maranhao, inteiramente construido com ingredientes africanos. Mas o cuxa e apenas o prato mais visivel de uma culinaria que carrega a Africa em cada panela.
+E agora chegamos ao paradoxo mais delicioso da cultura maranhense: como e que uma ilha no Nordeste do Brasil se tornou a capital mundial do reggae fora da Jamaica?
 
-O vatapa maranhense e diferente do baiano: mais leve, com menos dende, mas igualmente de raiz africana. O caruru leva quiabo — fruto de origem africana que os portugueses nao conheciam antes do trafico. O camarao seco, onipresente na cozinha maranhense, replica tecnicas de conservacao de pescado da costa guineense. O azeite de dende — extraido do fruto da palmeira *Elaeis guineensis*, nativa da Africa Ocidental — temperou panelas maranhenses por seculos.
+A resposta convencional -- "chegou pelos navios, pelos portos, pelas ondas de radio do Caribe" -- e verdadeira mas incompleta. A resposta profunda e outra: o reggae pegou no Maranhao porque **ja havia solo preparado**. Uma cultura do tambor. Uma sensibilidade ao grave. Um corpo treinado por seculos de percussao africana para responder a musica que voce sente no peito antes de ouvir com os ouvidos.^9^
 
-E ha os encontros inesperados. A mandioca — raiz indigena, pre-colombiana — se combina com o camarao seco africano para criar a farofa de cuxá. O arroz asiatico (trazido pelos portugueses) se junta ao molho africano para criar o prato-identidade do estado. A cozinha maranhense e, literalmente, o lugar onde as tres matrizes se encontram — e se misturam sem pedir licenca.
+As **radiolas** -- os sound systems maranhenses -- nao sao meros aparelhos de som. Sao instituicoes. Tem nome (Itamaraty, Pop Som, Jamaica Brasil, Estrela do Som), bandeira, fa-clube, rivalidade territorial. No auge, nos anos 1990, mais de duzentas radiolas operavam na Grande Sao Luis.^10^ O modelo e identico ao dos sound systems jamaicanos -- que, por sua vez, descendem da tradicao oral dos griots da Africa Ocidental. A linhagem e direta: Africa, Jamaica, Sao Luis. Nao e metafora. E genealogia cultural.
+
+O reggae maranhense merece -- e tem -- seu proprio verbete (V69). Aqui, basta registrar o essencial: quando voce ve dois mil jovens negros dancando colados ao som de um grave que faz o chao vibrar, num salao iluminado por luzes vermelhas e verdes, voce nao esta vendo so entretenimento. Esta vendo o Atlantico negro se reencontrando consigo mesmo.
 
 ---
 
-## A palavra: lingua e resistencia
+## A mesa e a palavra
 
-Quando voce diz "cuxa," esta falando uma palavra de origem africana. Quando diz "quiabo," "maxixe," "mocambo," "quilombo," "samba," "batuque" — tambem. Renato Mendonca, no estudo pioneiro *A Influencia Africana no Portugues do Brasil* (1933), catalogou centenas de termos de origem africana que entraram no portugues brasileiro. Muitos deles sao de uso corrente no Maranhao — tao corrente que ninguem percebe que esta falando um pouco de ioruba, de quimbundo ou de fon toda vez que abre a boca.
+Voce nao precisa entrar num terreiro ou numa roda de Crioula para encontrar a Africa no Maranhao. Basta sentar a mesa.
 
-A lingua e o arquivo mais democratico que existe. Nao precisa de museu, nao precisa de tombamento, nao precisa de politica publica. Ela vive na boca do povo — e enquanto o povo falar, a Africa estara presente.
+O arroz de cuxa -- o prato-identidade do estado, ja contado em detalhe no verbete anterior (V38) -- e inteiramente africano em seus ingredientes fundamentais: a vinagreira (*Hibiscus sabdariffa*, planta domesticada na Africa), o gergelim (africano), o camarao seco (tecnica africana de conservacao). Apenas a farinha de mandioca e indigena. O arroz ele mesmo, como Judith Carney demonstrou, foi cultivado no Maranhao com o saber rizicola que os escravizados Balanta trouxeram da Guine-Bissau.^11^
 
-<!-- BOX: glossario — Vocabulario afro-maranhense -->
-### Vocabulario afro-maranhense
+O vatapa maranhense, o caruru, o mocoto, o sarapatel -- a lista e longa. Luis da Camara Cascudo, em sua monumental *Historia da Alimentacao no Brasil*, mapeou ingrediente por ingrediente e concluiu o obvio: a cozinha maranhense e, em sua espinha dorsal, africana.^12^
 
-| Palavra | Origem | Significado |
-|---------|--------|-------------|
-| Cuxa | Quimbundo (*kusa*) | Molho de vinagreira, prato-simbolo do MA |
-| Quiabo | Quimbundo (*ki'ngombo*) | Fruto de origem africana, base do caruru |
-| Maxixe | Quimbundo (*ma'shixi*) | Legume usado na culinaria maranhense |
-| Mocambo | Quimbundo (*mu'kambu*) | Esconderijo, comunidade de fugitivos |
-| Quilombo | Quimbundo (*ki'lombo*) | Comunidade de escravizados fugidos; hoje, territorio de resistencia |
-| Samba | Quimbundo (*semba*) | Danca com umbigada; ritmo musical |
-| Batuque | Quimbundo (*ba'tuku*) | Toque de tambor, reuniao musical |
-| Dende | Ioruba (*dendê*) | Fruto da palmeira-de-azeite, oleo culinario |
-| Inhame | Possivelmente Fula (*nyami*) | Tuberculo, alimento basico |
-| Jilo | Ioruba (*jiló*) | Fruto amargo usado na culinaria |
-| Moleque | Quimbundo (*mu'leke*) | Menino, garoto |
-| Vatapa | Ioruba ou Ewe-Fon | Prato cremoso com camarao e azeite |
-| Mandinga | Mandinga (etnonimo) | Feitico, amuleto; originalmente, povo mandinga |
-| Punga | Quimbundo | Encontro de ventres na danca do Tambor de Crioula |
-| Vodun | Fon (Ewe-Fon) | Divindade do panteon Jeje, entidade do Tambor de Mina |
+E tem a lingua.
 
+O portugues que voce ouve no Maranhao carrega, sem saber, dezenas de palavras nascidas do outro lado do Atlantico. **Cuxa** -- do Fon, a lingua dos voduns da Casa das Minas. **Moleque**, **cacula**, **quitanda**, **quilombo**, **banzar** -- do Kimbundu, lingua do grupo banto de Angola. **Axe** -- do Ioruba. **Mandinga** -- dos Mandinga islamizados da Senegambia, cuja "bolsa de mandinga" (amuleto com versos do Alcorao) aterrorizava a Inquisicao portuguesa no seculo XVIII.^13^
+
+Yeda Pessoa de Castro, a maior linguista brasileira dedicada aos africanismos, identificou uma camada do Fon que e especifica do Maranhao -- emprestimos linguisticos que existem aqui e nao existem em nenhum outro estado, porque so aqui a tradicao Jeje se manteve viva e continua por tanto tempo.^14^ Cada palavra e um fossil linguistico. Cada prato e um documento vivo. E voce usa os dois todos os dias sem pensar.
+
+---
+
+<!-- BOX: brasil -- Tambor de Mina vs Candomble: o Maranhao nao e a Bahia do Norte -->
+### E no Brasil: Tambor de Mina vs Candomble
+
+|  | **Candomble (Bahia)** | **Tambor de Mina (Maranhao)** |
+|---|---|---|
+| **Entidades principais** | Orixas (Oxala, Iemanja, Xango, Ogum...) | Voduns (Nana Buruku, Averekete, Zomadonu...) + Encantados |
+| **Origem etnica** | Predominancia Nago/Ioruba (nacao Ketu) | Jeje (Fon/Ewe) + Nago, com camada de caboclos |
+| **Organizacao** | Nacoes rigidas (Ketu, Angola, Jeje) | Maior fluidez entre tradicoes; uma casa pode cultuar voduns E encantados |
+| **Conceito unico** | Axe (forca vital) | Encantaria (morada dos encantados) |
+| **Sincretismo** | Com catolicismo (orixas = santos) | Triplo: africano + catolico + indigena (pajelanca) |
+| **Visibilidade nacional** | Alta (Bahia como "capital da cultura afro") | Baixa (Mina e pouco conhecido fora do MA) |
+
+A diferenca nao e de grau -- e de natureza. O Tambor de Mina nao e uma versao menor do Candomble. E uma religiao distinta, com teologia propria. Quando alguem chama o Maranhao de "a Bahia do Norte", esta cometendo o mesmo erro de quem acha que toda musica com tambor e samba.^15^
 <!-- /BOX -->
 
 ---
 
-## A terra: 653 quilombos
+## Capoeira e quilombos
 
-O Maranhao tem, em 2023, 653 comunidades quilombolas certificadas pela Fundacao Cultural Palmares — o maior numero de qualquer estado brasileiro. Seiscentos e cinquenta e tres. Mais que a Bahia, mais que Minas Gerais, mais que qualquer outro.
+A capoeira angola -- a vertente mais proxima das raizes africanas, anterior a capoeira regional de Mestre Bimba -- tem no Maranhao uma tradicao forte e continua. Mestres como Patinho e Sapo sao referencias nacionais, e a capoeira maranhense mantem interacao direta com o Tambor de Crioula e as festas de terreiro -- as tres praticas se retroalimentam nos mesmos espacos, nos mesmos bairros, muitas vezes nas mesmas noites.^16^
 
-Esses quilombos nao sao apenas heranca do periodo escravista. Sao comunidades vivas, com moradores, liderancas, conflitos fundiarios, producao agricola, escolas e igrejas. Muitos enfrentam ameacas contemporaneas: grilagem, avanco da soja, especulacao imobiliaria, ausencia de titulacao definitiva de seus territorios. A luta que comecou com Cosme Bento das Chagas na Balaiada (V36) nao terminou — mudou de forma.
+E ha os quilombos.
 
-O quilombo de Frechal, no municipio de Mirinzal, foi o primeiro do Brasil a receber titulo de propriedade coletiva, em 1992. Alcantara — onde o governo federal construiu o Centro de Lancamento, base de foguetes — tem mais de 150 comunidades quilombolas, muitas das quais foram deslocadas para dar espaco a tecnologia espacial. A ironia: descendentes de escravizados foram novamente removidos de suas terras para que foguetes pudessem ser lancados ao ceu.
+O Maranhao tem o maior numero de comunidades quilombolas certificadas do Brasil: 653 comunidades reconhecidas pela Fundacao Cultural Palmares. Seiscentas e cinquenta e tres.^17^ Nao sao vestigios arqueologicos. Sao comunidades vivas -- com moradores, liderancas, rocas, festas, conflitos fundiarios, demandas por titulacao de terra. O quilombo maranhense nao e so memoria de resistencia: e resistencia presente, cotidiana, em andamento.
 
----
-
-<!-- BOX: maranhense — Mae Andresa -->
-### Maranhenses que Voce Nao Sabia #3: Mae Andresa Maria Jose de Queiroz
-
-Mae Andresa foi a ultima vodunsi da Casa das Minas que havia sido iniciada diretamente por africanas — a ultima elo vivo da corrente que ligava o terreiro de Sao Luis ao reino do Daome. Nascida por volta de 1870, ela conduziu a Casa das Minas nas primeiras decadas do seculo XX, preservando rituais, canticos em lingua fon e o culto aos voduns da familia Davice que nenhum outro terreiro do Brasil mantinha. Faleceu em 1954, aos oitenta e poucos anos. Com ela, morreu a ultima pessoa no Brasil que falava fon fluente como lingua materna herdada de africanas natas. Sergio Ferretti dedicou anos de pesquisa etnografica a registrar o que ela preservou — e o que, com sua morte, ficou mais fragil.
-<!-- /BOX -->
+Os quilombos do Maranhao ja foram contados em V35 e V37. Aqui, no verbete de sintese, o que importa registrar e a escala: nenhum outro estado brasileiro tem tantas comunidades que desceram diretamente do gesto de fuga, de recusa, de construcao de um mundo proprio fora do alcance do senhor. A Africa que veio para o Maranhao nao apenas sobreviveu. Fez territorio.
 
 ---
 
-## Tudo junto
+## O fio da agua
 
-Voce pode separar a heranca africana do Maranhao em categorias — religiao, danca, musica, comida, lingua, terra — para facilitar a compreensao. Mas na vida real, nada disso e separado. A coreira que danca o Tambor de Crioula no sabado a noite e a mesma mulher que faz cuxa na segunda, que frequenta a Casa de Nago na quarta, que ouve reggae na radiola na sexta, que fala "punga" e "moleque" e "maxixe" sem pensar na etimologia. A Africa nao e um departamento da cultura maranhense. E a estrutura.
+Chegamos ao fim da Parte IV. E se voce olhar para tras, vai ver que tudo o que foi contado -- a travessia, os numeros, os quilombos, o arroz, a revolta -- converge para o mesmo ponto: a Africa nao e um capitulo da historia do Maranhao. E a historia inteira.
 
-Setenta e oito por cento. Tres em cada quatro maranhenses. Quando voce olha para o Maranhao e ve pobreza, atraso, esquecimento — e o olhar de quem nao sabe ler. Quando voce olha para o Maranhao e ve 653 quilombos, dois terreiros de duzentos anos, uma danca que e patrimonio da humanidade, uma cidade que adotou a musica de uma ilha caribenha como se fosse sua, e uma culinaria inteira construida com graos que cruzaram o Atlantico nas maos de escravizados — ai voce esta comecando a ler.
+Esta nos deuses que descem nos terreiros da Rua de Sao Pantaleao. Nas maos das coreiras que rodopiam ao som de tres tambores. No grave da radiola que faz o chao de um salao em Sao Cristovao vibrar. No prato de cuxa que voce come no almoco sem pensar de onde vem cada ingrediente. Nas palavras que voce diz -- *axe, moleque, quilombo, mandinga* -- sem saber que esta falando africano.
 
-A agua que trouxe os navios negreiros trouxe tambem os deuses, os ritmos, os graos e as palavras. Trouxe a violencia e, dentro da violencia, trouxe a resistencia. O Atlantico foi tumba e estrada — e o que cruzou essa estrada esta vivo. Vivo no terreiro, na roda, na radiola, no prato, na boca. Vivo no Maranhao.
+E esta na agua.
 
-E esta parte do livro — a parte africana — termina aqui. Mas a Africa nao termina. Ela aparece de novo quando voce menos espera: no bumba-meu-boi (V68), na gastronomia (V63), nas festas de santo, nos nomes de rua. Porque a Africa nao e um capitulo. E o livro inteiro.
+O mar que trouxe os navios negreiros -- o mesmo Atlantico de que voce leu no primeiro verbete desta parte -- trouxe tambem os voduns, os ritmos, os graos e as palavras. E a agua permanece. Os terreiros mais antigos de Sao Luis ficam perto do mar. As festas de Mina comecam e terminam com agua. O Tambor de Crioula pode surgir numa noite a beira-rio. Os quilombos se instalaram nos vales dos rios -- Itapecuru, Mearim, Turiacu -- onde a agua protegia e alimentava.^18^
+
+No Maranhao, a Africa nao veio para morrer. Veio para ficar. E ficou.
 
 ---
 
 **Fontes**:
-1. Ferretti, Sergio. *Querebenta de Zomadonu*. EDUFMA, 1996.
-2. Ferretti, Mundicarmo. *Maranhao Encantado*. UEMA Edicoes, 2000.
-3. Silva, Carlos Benedito R. da. *Da Terra das Primaveras a Ilha do Amor*. EDUFMA, 1995.
-4. Cascudo, Luis da Camara. *Historia da Alimentacao no Brasil*. Cia. Ed. Nacional, 1967.
-5. Mendonca, Renato. *A Influencia Africana no Portugues do Brasil*. Civilizacao Brasileira, 1933.
-6. IPHAN. *Dossie do Tambor de Crioula*. 2007.
-7. IBGE. *Censo Demografico 2022*.
-8. Fundacao Cultural Palmares. *Certidoes — Comunidades Quilombolas*. 2023.
-9. Hawthorne, Walter. *From Africa to Brazil*. Cambridge University Press, 2010.
+1. IBGE, Censo 2022: Resultados por cor ou raca.
+2. Ferretti, M. *Desceu na Guma*, p. 18-22.
+3. Ferretti, S. *Querebenta de Zomadonu*, p. 45-50.
+4. Ferretti, S. *Querebenta de Zomadonu*, p. 50-55.
+5. Ferretti, M. *Maranhao Encantado*, p. 15.
+6. Ferretti, M. *Desceu na Guma*, p. 78-82.
+7. Ferretti, S. et al. *Tambor de Crioula: ritual e espetaculo*, p. 30-35.
+8. IPHAN, Dossie Tambor de Crioula (2007); UNESCO candidatura formalizada.
+9. Silva, C.B. *Da terra das primaveras a ilha do amor*, p. 45-50.
+10. Silva, C.B. *Da terra das primaveras*, p. 112.
+11. Carney, J. *Black Rice*, p. 78-85; Hawthorne, W. *From Africa to Brazil*, p. 89.
+12. Cascudo, L.C. *Historia da Alimentacao no Brasil*, p. 198-205.
+13. Castro, Y.P. *Falares africanos na Bahia*, p. 45-60; Souza, L.M. *O Diabo e a Terra de Santa Cruz*, p. 210-215.
+14. Castro, Y.P. *Falares africanos na Bahia*, p. 52.
+15. Ferretti, M. *Desceu na Guma*, p. 15-20; Prandi, R. *Mitologia dos orixas*, comparacao.
+16. Assuncao, M.R. *Capoeira: The History of an Afro-Brazilian Martial Art*, p. 180.
+17. Fundacao Cultural Palmares, Certidoes expedidas ate 2023.
+18. Hawthorne, W. *From Africa to Brazil*, p. 42; Ferretti, S. *Querebenta de Zomadonu*, p. 120.
 
-**Veja tambem**: V30 (A travessia), V33 (Tambor de Mina), V35 (Tambor de Crioula), V37 (Reggae), V38 (O arroz que veio da Africa), V66 (Quilombos), V68 (Festas populares), V69 (Religiosidade)
+**Veja tambem**: V30, V33, V35, V37, V38, V66, V68, V69
