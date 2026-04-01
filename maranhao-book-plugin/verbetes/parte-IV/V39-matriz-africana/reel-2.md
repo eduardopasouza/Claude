@@ -2,42 +2,53 @@
 id: REEL-V39-2
 verbete: V39
 duracao: 60s
-formato: pergunta-resposta-surpresa
-hashtags: ["#QuemEoMaranhao", "#Maranhao39", "#Encantados", "#TamborDeMina", "#ReligiaoAfro"]
+formato: lista
+hashtags: ["#QuemEoMaranhao", "#Maranhao39", "#AfricaNoMaranhao", "#HerancaAfricana", "#TamborDeCrioula"]
 ---
 
-# Reel V39-2: O que sao os encantados?
+# Reel V39-2: 6 coisas africanas que voce usa no Maranhao sem saber
 
 ## HOOK (0-3s)
-**TELA**: "Nao sao orixas. Nao sao santos. Nao sao mortos."
-**VISUAL**: Tela escura, velas acesas em terreiro, atmosfera mistica
-**NARRACAO**: "Nao sao orixas. Nao sao santos. Nao sao mortos. Entao o que sao?"
+**TELA**: "6 coisas africanas que todo maranhense usa SEM SABER"
+**VISUAL**: Tela dividida em 6 quadros escuros que vao se iluminando um a um
+**NARRACAO**: "Seis coisas africanas que todo maranhense usa sem saber."
 
-## DESENVOLVIMENTO (3-45s)
+## DESENVOLVIMENTO (3-50s)
 
-**TELA**: "Os ENCANTADOS do Maranhao"
-**VISUAL**: Interior de terreiro do Tambor de Mina, incorporacao, atabaques
-**NARRACAO**: "Sao os encantados. Entidades do Tambor de Mina — a religiao afro-brasileira do Maranhao. Seres que viveram como humanos e se encantaram: desapareceram do mundo visivel sem morrer."
+**TELA**: "1. A COMIDA"
+**VISUAL**: Prato de cuxa, close, vapor subindo
+**NARRACAO**: "Um. A comida. O cuxa e africano. Vinagreira, gergelim, camarao seco -- tudo cruzou o Atlantico."
 
-**TELA**: "Caboclos, princesas, turcos, reis..."
-**VISUAL**: Representacoes artisticas de diferentes encantados (ilustracoes, nao fotos)
-**NARRACAO**: "Podem ser caboclos da mata, princesas, turcos, reis africanos. Cada um tem nome, personalidade, preferencias. E uma teologia inteira que so existe no Maranhao."
+**TELA**: "2. AS PALAVRAS"
+**VISUAL**: Palavras aparecendo em tipografia sobre fundo roxo: cuxa, moleque, quilombo, axe, mandinga
+**NARRACAO**: "Dois. As palavras. Cuxa, moleque, quilombo, axe, mandinga -- voce fala africano todo dia."
 
-**TELA**: "Casa das Minas: ~200 anos"
-**VISUAL**: Fachada da Casa das Minas, Rua de Sao Pantaleao
-**NARRACAO**: "A Casa das Minas, em Sao Luis, funciona ha quase duzentos anos. E um dos terreiros de culto africano mais antigos do Brasil."
+**TELA**: "3. A DANCA"
+**VISUAL**: Coreiras na roda de Tambor de Crioula, punga em camera lenta
+**NARRACAO**: "Tres. A danca. O Tambor de Crioula -- Patrimonio Imaterial do Brasil -- e heranca direta da Africa Ocidental."
 
-## SURPRESA/CTA (45-60s)
+**TELA**: "4. A MUSICA"
+**VISUAL**: Radiola gigante num salao de reggae, luzes vermelhas e verdes
+**NARRACAO**: "Quatro. A musica. O reggae pegou no Maranhao porque ja existia cultura do tambor e do grave. A radiola e filha do sound system jamaicano -- que e filho dos griots africanos."
 
-**TELA**: "Uma teologia que so existe aqui."
-**VISUAL**: Close em maos acendendo vela no terreiro, fade para roxo-tambor
-**NARRACAO**: "A Bahia tem o Candomble. O Rio tem a Umbanda. O Maranhao tem o Tambor de Mina e os encantados. Uma teologia que o Brasil inteiro desconhece — e que e tao brasileira quanto qualquer outra."
+**TELA**: "5. A FE"
+**VISUAL**: Velas acesas num terreiro, simbolos de voduns
+**NARRACAO**: "Cinco. A fe. O Tambor de Mina -- com seus voduns e encantados -- e a religiao afro-brasileira mais original do pais. E so existe no Maranhao."
+
+**TELA**: "6. A TERRA"
+**VISUAL**: Paisagem de quilombo no interior do MA, casas simples, palmeiras
+**NARRACAO**: "Seis. A terra. 653 quilombos. O maior numero do Brasil. Comunidades vivas, nao ruinas."
+
+## SURPRESA/CTA (50-60s)
+
+**TELA**: "78% da populacao. Nao e capitulo da historia. E a historia inteira."
+**VISUAL**: Montagem rapida: terreiro, roda de Crioula, radiola, prato de cuxa, quilombo -- tudo fundindo em fade para o numero 78%
+**NARRACAO**: "Setenta e oito por cento da populacao maranhense e negra ou parda. A Africa nao e capitulo da historia do Maranhao. E a historia inteira."
 
 **TELA**: "Quem e o Maranhao? #39"
 
 ## Notas de producao
-- Trilha sugerida: atabaques do Tambor de Mina (ritmo lento, hipnotico, reverencia)
-- Transicoes: fades lentos, atmosfera de respeito e misterio
-- Referencia visual: documentarios sobre religiosidade (Lazaro Ramos, Spiritwalker), tons escuros, luz de vela
-- Paleta dominante: roxo-tambor #5E3A7E + carvao #2B2B2B + dourado/ocre #C8952E
-- NOTA: Tratar o tema com absoluto respeito. Nao exotizar. Nao folclorizar. E religiao.
+- Trilha sugerida: beat percussivo crescente (comecar com tambor solo, ir adicionando camadas ate virar algo proximo a reggae no final)
+- Transicoes: cada item com corte seco + flash de luz roxa, ritmo rapido
+- Referencia visual: reels tipo "coisas que voce nao sabia" com producao cinematografica, nao clipart
+- Paleta dominante: roxo-tambor #5E3A7E + vermelho escuro + creme #FAF3E8

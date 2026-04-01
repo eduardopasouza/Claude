@@ -1,54 +1,46 @@
 ---
 id: REEL-V39-1
 verbete: V39
-duracao: 90s
-formato: lista
-hashtags: ["#QuemEoMaranhao", "#Maranhao39", "#MatrizAfricana", "#MaranhaoNegro", "#HerancaAfricana"]
+duracao: 60s
+formato: pergunta-resposta-surpresa
+hashtags: ["#QuemEoMaranhao", "#Maranhao39", "#MatrizAfricana", "#TamborDeMina", "#Encantados"]
 ---
 
-# Reel V39-1: 6 provas de que o Maranhao e africano
+# Reel V39-1: O Maranhao tem uma religiao que so existe la
 
 ## HOOK (0-3s)
-**TELA**: "O Maranhao e o estado mais africano do Brasil?"
-**VISUAL**: Montagem rapida — tambor, cuxa, radiola, terreiro, quilombo, roda de crioula
-**NARRACAO**: "O Maranhao e o estado mais africano do Brasil. E eu tenho seis provas."
+**TELA**: "O Maranhao tem uma religiao que NAO EXISTE em nenhum outro estado"
+**VISUAL**: Close cinematografico de maos batendo num atabaque, luz de vela, fumaca de incenso
+**NARRACAO**: "O Maranhao tem uma religiao que nao existe em nenhum outro estado do Brasil."
 
-## DESENVOLVIMENTO (3-75s)
+## DESENVOLVIMENTO (3-45s)
 
-**TELA**: "1. Os terreiros mais antigos do Brasil"
-**VISUAL**: Fachada da Casa das Minas, velas, imagem de vodun
-**NARRACAO**: "Numero um. A Casa das Minas e a Casa de Nago, em Sao Luis, estao entre os terreiros de culto africano mais antigos do Brasil em funcionamento. Duzentos anos. E o Tambor de Mina — a religiao que se pratica ali — tem algo que nenhum outro estado tem: os encantados."
+**TELA**: "NAO e Candomble."
+**VISUAL**: Transicao seca para imagem de terreiro em Sao Luis, fachada antiga da Rua de Sao Pantaleao
+**NARRACAO**: "Nao e Candomble. Nao e Umbanda. Chama-se Tambor de Mina."
 
-**TELA**: "2. Tambor de Crioula — Patrimonio do Brasil"
-**VISUAL**: Coreiras dancando, close na punga, tambores
-**NARRACAO**: "Numero dois. O Tambor de Crioula — danca de mulheres em roda, ao som de tres tambores — e Patrimonio Imaterial do Brasil desde dois mil e sete."
+**TELA**: "Fundado por mulheres africanas no seculo 19"
+**VISUAL**: Reconstituicao estilizada: silhuetas de mulheres diante de um terreiro, paleta roxo-tambor
+**NARRACAO**: "Foi fundado por mulheres africanas -- possivelmente da realeza do Daome -- em Sao Luis, no seculo dezenove. A Casa das Minas e um dos terreiros mais antigos do Brasil."
 
-**TELA**: "3. A unica Jamaica fora da Jamaica"
-**VISUAL**: Radiola gigante, multidao dancando reggae agarradinho, luzes
-**NARRACAO**: "Numero tres. Sao Luis e a unica cidade do mundo fora da Jamaica onde o reggae raiz e musica popular de massa. As radiolas — sound systems gigantes — tocam Bob Marley para milhares de pessoas toda semana."
+**TELA**: "Voduns + Encantados"
+**VISUAL**: Ilustracao dividida: de um lado, simbolos de voduns Fon; do outro, agua de rio com silhueta misteriosa
+**NARRACAO**: "Enquanto o Candomble cultua orixas, o Mina cultua voduns. E tem algo mais: os encantados. Seres que desapareceram sem morrer -- num rio, numa mata, no mar -- e voltam para se manifestar nos corpos dos devotos."
 
-**TELA**: "4. Arroz de cuxa: 100% africano"
-**VISUAL**: Prato de cuxa, close nos ingredientes, vinagreira
-**NARRACAO**: "Numero quatro. O prato mais maranhense que existe — arroz de cuxa — e feito com vinagreira, gergelim e camarao seco. Tudo de origem africana."
+**TELA**: "Nenhuma outra tradicao tem isso."
+**VISUAL**: Mapa do Brasil com ponto pulsante no Maranhao, roxo-tambor
+**NARRACAO**: "Os encantados nao existem em nenhuma outra religiao afro-brasileira. Sao maranhenses. Sao unicos."
 
-**TELA**: "5. 653 quilombos"
-**VISUAL**: Mapa do MA com pontos marcando quilombos, rostos de moradores
-**NARRACAO**: "Numero cinco. O Maranhao tem seiscentos e cinquenta e tres comunidades quilombolas certificadas. O maior numero do Brasil. Mais que a Bahia."
+## SURPRESA/CTA (45-60s)
 
-**TELA**: "6. 78% da populacao"
-**VISUAL**: Mosaico de rostos maranhenses, diversidade
-**NARRACAO**: "Numero seis. Setenta e oito por cento da populacao do Maranhao e negra ou parda. Tres em cada quatro pessoas."
-
-## SURPRESA/CTA (75-90s)
-
-**TELA**: "A Africa nao e um capitulo do Maranhao. E o livro inteiro."
-**VISUAL**: Fade to black, texto branco sobre fundo roxo-tambor
-**NARRACAO**: "A Africa nao e um capitulo da historia do Maranhao. E a historia inteira."
+**TELA**: "Mais de 1.000 terreiros ativos. E voce nunca ouviu falar."
+**VISUAL**: Vista aerea noturna de Sao Luis com pontos de luz pulsando (representando terreiros)
+**NARRACAO**: "Mais de mil terreiros ativos no Maranhao. E a maioria dos brasileiros nunca ouviu falar do Tambor de Mina."
 
 **TELA**: "Quem e o Maranhao? #39"
 
 ## Notas de producao
-- Trilha sugerida: build progressivo — comeca com atabaque solo, vai somando camadas (tambor, baixo de reggae, percussao) ate climax no final
-- Transicoes: corte seco entre cada "prova", ritmo rapido
-- Referencia visual: Vice documentaries, short-form lists com energia alta
-- Paleta dominante: roxo-tambor #5E3A7E + carvao #2B2B2B + ocre #C8952E
+- Trilha sugerida: percussao ritual (ferro + atabaque), ambiente sonoro de terreiro, transicao para silencio no CTA
+- Transicoes: corte seco, fade em luz de vela, dissolve para mapa
+- Referencia visual: documentarios etnograficos (cor quente, pouca luz, texturas), paleta roxa e dourada
+- Paleta dominante: roxo-tambor #5E3A7E + dourado + creme #FAF3E8
