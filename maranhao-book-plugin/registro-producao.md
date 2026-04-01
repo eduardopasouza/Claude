@@ -11,13 +11,13 @@
 | Métrica | Valor |
 |---------|-------|
 | Total de verbetes | 106 |
-| Produzidos | 18 |
+| Produzidos | 19 |
 | Em produção | 0 |
-| Pendentes | 88 |
-| Palavras escritas | ~70.900 |
-| Reels produzidos | 53 |
-| Visuais produzidos | 45 |
-| Fase atual | Fase 3 — V01+V02+V06 concluídos, próximo V13 |
+| Pendentes | 87 |
+| Palavras escritas | ~74.300 |
+| Reels produzidos | 55 |
+| Visuais produzidos | 47 |
+| Fase atual | Fase 3 — Bloco 3A completo (V01+V02+V06+V13), próximo Bloco 3B (V16) |
 
 ---
 
@@ -72,9 +72,9 @@
 | V10 | Lençóis Maranhenses: patrimônio e preservação | Verbete complementar | ✅ Pronto | 2.700 | 2026-03-17 |
 | V11 | Parcel de Manuel Luís: o cemitério submarino | Verbete forte | ⏳ Pendente | — | — |
 | V12 | Delta das Américas | Verbete próprio | ⏳ Pendente | — | — |
-| V13 | Pré-história maranhense | Arqueologia | ⏳ Pendente | — | — |
+| V13 | Pré-história maranhense | Arqueologia | ✅ Pronto | 3.400 | 2026-04-01 |
 
-**Parte I**: 6/13 concluídos
+**Parte I**: 7/13 concluídos
 
 ---
 
@@ -411,6 +411,7 @@
 | 2026-04-01 | V01 | ✅ Pipeline completo | research + outline + texto (3.200 palavras) + 2 reels + 2 visuais. Primeiro verbete da Fase 3. Legacy reaproveitado. |
 | 2026-04-01 | V02 | ✅ Pipeline completo | research + outline + texto (4.300 palavras) + 3 reels + 3 visuais. Verbete-âncora da Parte I. YouTube sugerido. |
 | 2026-04-01 | V06 | ✅ Pipeline completo | research + outline + texto (3.800 palavras) + 3 reels + 2 visuais. Mata dos Cocais — quebradeiras, babaçu livre, coco preso. |
+| 2026-04-01 | V13 | ✅ Pipeline completo | research + outline + texto (3.400 palavras) + 2 reels + 2 visuais. Pré-história — sambaquis, Chácara Rosane, Chapada das Mesas, estearias. Bloco 3A completo. |
 
 ---
 

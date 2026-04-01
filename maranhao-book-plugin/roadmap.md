@@ -1,7 +1,7 @@
 # Roadmap — Quem é o Maranhão?
 
 > Auto-atualizado ao final de cada verbete concluído. Fonte única de estado do projeto.
-> Última atualização: 2026-04-01 (V01+V02+V06 concluídos)
+> Última atualização: 2026-04-01 (Bloco 3A completo: V01+V02+V06+V13)
 
 ---
 
@@ -9,11 +9,11 @@
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Verbetes concluídos | 18 / 106 | 106 |
-| Progresso geral | 17,0% | 100% |
-| Palavras escritas | ~70.900 | ~300.000–400.000 |
-| Reels produzidos | 53 | ~250–320 |
-| Visuais produzidos | 45 | ~150–200 |
+| Verbetes concluídos | 19 / 106 | 106 |
+| Progresso geral | 17,9% | 100% |
+| Palavras escritas | ~74.300 | ~300.000–400.000 |
+| Reels produzidos | 55 | ~250–320 |
+| Visuais produzidos | 47 | ~150–200 |
 | YouTube produzidos | 8 | ~15–25 |
 | Entradas YAML | 126 | ~500–800 |
 | Fase atual | **Fase 3** (V01 concluído) | Fase 6 |
@@ -22,7 +22,7 @@
 
 | Parte | Nome | Total | Prontos | % | Barra |
 |-------|------|-------|---------|---|-------|
-| I | O Chão | 13 | 6 | 46% | `█████░░░░░` |
+| I | O Chão | 13 | 7 | 54% | `█████░░░░░` |
 | II | Os Primeiros | 8 | 2 | 25% | `██░░░░░░░░` |
 | III | A Conquista | 8 | 1 | 13% | `█░░░░░░░░░` |
 | IV | O Povo Negro | 10 | 1 | 10% | `█░░░░░░░░░` |
@@ -44,8 +44,8 @@
 | ~~1~~ | ~~V01 — Coordenadas: onde fica o Maranhão~~ | I | 3A | ✅ Concluído |
 | ~~2~~ | ~~V02 — As Quatro Paisagens~~ | I | 3A | ✅ Concluído |
 | ~~3~~ | ~~V06 — Mata dos Cocais~~ | I | 3A | ✅ Concluído |
-| **→ 4** | **V13 — Pré-história maranhense** | I | 3A | ⏳ Próximo |
-| 5 | V16 — Guajajara/Tenetehar | II | 3B | ⏳ Pendente |
+| ~~4~~ | ~~V13 — Pré-história maranhense~~ | I | 3A | ✅ Concluído |
+| **→ 5** | **V16 — Guajajara/Tenetehar** | II | 3B | ⏳ Próximo |
 | 6 | V17 — Awá-Guajá | II | 3B | ⏳ Pendente |
 | 7 | V21 — A questão indígena hoje | II | 3B | ⏳ Pendente |
 | 8 | V25 — O Estado do MA e Grão-Pará | III | 3C | ⏳ Pendente |
@@ -90,6 +90,7 @@
 | 16 | 2026-04-01 | V01 — Coordenadas | 3.200 | 2 | 2 | não | verbete-mapa |
 | 17 | 2026-04-01 | V02 — Quatro Paisagens | 4.300 | 3 | 3 | sugerido | âncora |
 | 18 | 2026-04-01 | V06 — Mata dos Cocais | 3.800 | 3 | 2 | não | ecossistêmico |
+| 19 | 2026-04-01 | V13 — Pré-história | 3.400 | 2 | 2 | não | arqueologia |
 
 ### Tendências
 

@@ -20,6 +20,13 @@
 - Rotina de início de sessão atualizada: roadmap.md como prioridade 2 (antes do registro-producao)
 - Decisões registradas: V93 independente, V99 ambos, legacy reaproveitável, YouTube com regra
 
+### V13 — Pré-história maranhense (Parte I)
+- Pipeline completo: research + outline + texto (3.400 palavras) + 2 reels + 2 visuais
+- Boxes: Documento (Sítio Chácara Rosane), Glossário (Sambaqui), Glossário (Estearia)
+- Cross-references: V01, V02, V08, V14
+- Fio da água: sim (sambaquis costeiros, estearias fluviais)
+- **Bloco 3A da Fase 3 COMPLETO** (V01+V02+V06+V13 — toda Parte I pendente)
+
 ### V06 — Mata dos Cocais (Parte I)
 - Pipeline completo: research + outline + texto (3.800 palavras) + 3 reels + 2 visuais
 - Boxes: Receita (leite de babaçu), Maranhense desconhecida #2 (Dona Dijé), Glossário (Babaçu Livre)
