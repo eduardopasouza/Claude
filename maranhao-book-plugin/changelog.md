@@ -4,7 +4,44 @@
 
 ---
 
-## 2026-04-01
+## 2026-04-01 (sessão 2)
+
+### Auditoria cruzada e correções
+- coordination-v3 atualizado para v3.1: Fases 1-2 marcadas como concluídas, Fase 3 detalhada com 24 verbetes e blocos
+- Paleta no playbook-v2 completada: adicionados Vermelho-bumba (#C1292E) e Roxo-tambor (#5E3A7E)
+- Hierarquia de fontes unificada: style-guide-editorial é fonte autoritativa; playbook e foundation agora referenciam
+- proposta-editorial-v2.md movida para legacy/ (documento histórico)
+- Regra de YouTube documentada no protocolo: verbete-âncora OU > 4.000 palavras
+- V66 e V69 movidos de parte-VII para parte-VIII (Parte correta: As Criações)
+- V84 movido de parte-VIII para parte-IX (Parte correta: A Economia)
+- Dossier V66 movido de references/ para pasta do verbete
+- dados_yaml preenchidos retroativamente nos 15 verbetes existentes
+- roadmap.md criado: dashboard, fila ativa, métricas evolutivas, projeções, alertas
+- Rotina de início de sessão atualizada: roadmap.md como prioridade 2 (antes do registro-producao)
+- Decisões registradas: V93 independente, V99 ambos, legacy reaproveitável, YouTube com regra
+
+### V01 — Coordenadas: onde fica o Maranhão (Parte I)
+- Pipeline completo: research + outline (aprovado) + texto (3.200 palavras) + 2 reels + 2 visuais
+- Primeiro verbete da Fase 3
+- Legacy reaproveitado (cap-01-a-encruzilhada/research.md)
+- GEO-001 atualizado: área de 331.937 → 329.651 km² (IBGE 2024, refinamento da linha de costa)
+- 6 novas entradas no banco YAML: GEO-026 a GEO-030, DEM-012
+- Boxes: Enquanto isso no mundo (latitudes irmãs) + 2 glossários (Amazônia Legal, Mata dos Cocais)
+- Cross-references: V02, V06, V23, V25, V84
+- Fio da água: sim (rios-fronteira)
+
+### Decisões do autor
+- V93: verbete independente (106 mantidos)
+- V99: verbete resumido na Parte X + apêndice expandido
+- Legacy: cruzar pesquisa antiga com verbetes novos da Fase 3
+- YouTube: regra fixa (âncora OU > 4.000 palavras)
+- dados_yaml: preenchimento retroativo aprovado
+- Roadmap: criação aprovada
+- V01: abordagem e tamanho livres (Claude decide)
+
+---
+
+## 2026-04-01 (sessão 1)
 
 ### Reorganização e auditoria documental
 - Corrigido dado do mangue de ~50% para ~36% em coordination-v3 (alinhado com GEO-004)

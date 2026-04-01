@@ -13,7 +13,7 @@ boxes:
     titulo: "E se os Lençóis virassem Jericoacoara?"
 cross_references: [V09, V01, V05, V08, V11, V12]
 fio_da_agua: true
-dados_yaml: []
+dados_yaml: [GEO-005, GEO-012, GEO-013, GEO-014, GEO-019, GEO-020, DEM-011, CUL-003, SOC-008, AMB-008, TUR-001, TUR-002, TUR-004]
 status: rascunho
 ---
 

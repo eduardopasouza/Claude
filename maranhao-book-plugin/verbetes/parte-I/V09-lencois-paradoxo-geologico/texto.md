@@ -15,7 +15,7 @@ boxes:
     titulo: "Maranhenses que Você Não Sabia #1: a tartaruga que não deveria existir"
 cross_references: [V01, V02, V05, V08, V10]
 fio_da_agua: true
-dados_yaml: []
+dados_yaml: [GEO-005, GEO-012, GEO-013, GEO-014, GEO-015, GEO-016, GEO-017, GEO-018, GEO-019, GEO-020, DEM-011, CUL-003, SOC-008, AMB-007, AMB-008, TUR-001, TUR-002, TUR-004]
 status: rascunho
 ---
 

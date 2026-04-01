@@ -8,7 +8,7 @@
 
 ```
 1. Ler protocolo-producao.md (este arquivo)
-2. Ler registro-producao.md (último verbete concluído, totais atuais)
+2. Ler roadmap.md (estado do projeto, fila ativa, alertas)
 3. Identificar próximo verbete na fila de produção
 4. Confirmar com o autor: "Próximo: V[XX] — [Título]. Início a pesquisa?"
 5. Seguir pipeline completo abaixo
@@ -103,7 +103,9 @@ Briefing triplo obrigatório:
 
 **Output**: `verbetes/parte-XX/VXX-titulo/visual.md`
 
-### Etapa 6 — YOUTUBE (youtube.md) — apenas quando indicado no outline
+### Etapa 6 — YOUTUBE (youtube.md) — quando aplicável
+
+**Critério**: YouTube obrigatório se (a) verbete-âncora OU (b) texto > 4.000 palavras. Nos demais, Claude sugere no outline e o autor decide.
 
 ```
 Roteiro completo de 8min:
@@ -123,12 +125,23 @@ Atualizar TODOS estes registros:
 │   ├── Adicionar verbete à tabela da fase correspondente
 │   ├── Atualizar totais (palavras, reels, visuais)
 │   └── Atualizar log de produção (data + verbete + status)
+├── roadmap.md
+│   ├── Dashboard (totais)
+│   ├── Progresso por Parte (contagem + barra)
+│   ├── Fila ativa (marcar concluído, avançar seta)
+│   └── Métricas evolutivas (nova linha)
 ├── banco-dados/dados-centrais.yaml
 │   └── Confirmar que todos os dados novos foram registrados na Etapa 1
 ├── changelog.md
 │   └── Nova entrada: data + verbete + resumo do que foi produzido
-└── bibliography-core.md (se novas fontes relevantes apareceram)
+├── bibliography-core.md (se novas fontes relevantes apareceram)
+└── GIT: commit + push (OBRIGATÓRIO)
+    ├── git add -A
+    ├── git commit -m "feat(VXX): [título] — pipeline completo"
+    └── git push origin claude/maranhao-book-plugin-Gzrj9
 ```
+
+**Regra de Git**: Todo verbete concluído DEVE ser commitado e pushado no repositório antes de iniciar o próximo. O commit message segue o padrão: `feat(VXX): [título resumido] — pipeline completo`. Correções e reorganizações usam `fix:` ou `chore:`.
 
 ---
 
@@ -214,14 +227,15 @@ V40 → V46 → V61 → V62 → V63 → V94 → V92 → V100 → V103
 | Prioridade | Documento | Função |
 |------------|-----------|--------|
 | 1 | `protocolo-producao.md` | Este arquivo. Regras de comportamento |
-| 2 | `registro-producao.md` | Dashboard — onde parou, o que falta |
-| 3 | `coordination-v3.md` | Índice completo dos 106 verbetes |
-| 4 | `playbook-v2.md` | Templates e checklists das 10 skills |
-| 5 | `style-guide-editorial.md` | Tom, voz, vocabulário, sensibilidades |
-| 6 | `style-guide-visual.md` | Paleta, tipografia, grid, boxes visuais |
-| 7 | `foundation.md` | Fundamentação teórica |
-| 8 | `vision.md` | Premissas editoriais e expectativas |
-| 9 | `banco-dados/dados-centrais.yaml` | Banco central de dados factuais |
+| 2 | `roadmap.md` | Estado do projeto, fila, métricas, alertas |
+| 3 | `registro-producao.md` | Log histórico bruto de produção |
+| 4 | `coordination-v3.md` | Índice completo dos 106 verbetes |
+| 5 | `playbook-v2.md` | Templates e checklists das 10 skills |
+| 6 | `style-guide-editorial.md` | Tom, voz, vocabulário, sensibilidades |
+| 7 | `style-guide-visual.md` | Paleta, tipografia, grid, boxes visuais |
+| 8 | `foundation.md` | Fundamentação teórica |
+| 9 | `vision.md` | Premissas editoriais e expectativas |
+| 10 | `banco-dados/dados-centrais.yaml` | Banco central de dados factuais |
 
 ---
 

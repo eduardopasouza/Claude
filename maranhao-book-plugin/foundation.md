@@ -80,7 +80,7 @@ O projeto se fundamenta em quatro eixos interpretativos complementares, sem ader
 ### 3.1 Dados
 - Todo dado factual tem fonte, ano-base e verificação cruzada
 - Banco central YAML como fonte de verdade do projeto
-- Hierarquia: primária > acadêmica > oficial > jornalística
+- Hierarquia de fontes: ver `style-guide-editorial.md` seção 14.3
 - Divergências entre fontes são registradas, não escondidas
 
 ### 3.2 Narrativa

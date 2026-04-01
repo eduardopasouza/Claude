@@ -15,7 +15,7 @@ boxes:
     titulo: "Documento: o discurso de Momboreuaçu"
 cross_references: [V15, V16, V17, V18, V23, V25, V28, V84]
 fio_da_agua: true
-dados_yaml: []
+dados_yaml: [GEO-021, GEO-022, DEM-008, IND-001, IND-002, IND-003, IND-004, IND-005, IND-006, IND-007, IND-008, IND-009, IND-010, IND-011, IND-012, IND-013, IND-016, HIS-007, HIS-012, HIS-013, HIS-020, SOC-007]
 status: rascunho
 ---
 

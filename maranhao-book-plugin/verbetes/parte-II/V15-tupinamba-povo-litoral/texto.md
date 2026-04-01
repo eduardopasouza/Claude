@@ -13,7 +13,7 @@ boxes:
     titulo: "Maranhenses que Você Não Sabia #4: Japiaçu, o diplomata nu"
 cross_references: [V14, V16, V23, V24, V25, V27, V29, V62]
 fio_da_agua: true
-dados_yaml: []
+dados_yaml: [DEM-008, IND-014, IND-015, HIS-001, HIS-013, HIS-014, HIS-020, HIS-021]
 status: rascunho
 ---
 

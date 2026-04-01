@@ -15,7 +15,7 @@ boxes:
     titulo: "Documento: os números da Companhia"
 cross_references: [V28, V31, V32, V33, V34, V35, V36, V38, V39, V64, V68]
 fio_da_agua: true
-dados_yaml: []
+dados_yaml: [DEM-005, DEM-007, QUI-004, ECO-018, ECO-019, CUL-017, CUL-018, HIS-007, HIS-008, HIS-009, HIS-010, HIS-011]
 status: rascunho
 ---
 

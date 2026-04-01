@@ -9,7 +9,7 @@ boxes:
     titulo: "Lenda: as festas de Alcântara"
 cross_references: [V23, V25, V30, V37, V50, V55]
 fio_da_agua: false
-dados_yaml: []
+dados_yaml: [DEM-009, DEM-010, QUI-002, QUI-003, QUI-004, QUI-005, QUI-006, QUI-007, ECO-018, ECO-019, CUL-026, HIS-007, HIS-022]
 status: rascunho
 ---
 

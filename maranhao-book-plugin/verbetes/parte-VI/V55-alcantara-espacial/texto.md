@@ -13,7 +13,7 @@ boxes:
     titulo: "E se Alcântara funcionasse?"
 cross_references: [V54, V23, V30, V37, V84]
 fio_da_agua: false
-dados_yaml: []
+dados_yaml: [DEM-009, DEM-010, QUI-002, QUI-005, QUI-006, QUI-007, ECO-023, HIS-017, HIS-022, HIS-023, HIS-024]
 status: rascunho
 ---
 

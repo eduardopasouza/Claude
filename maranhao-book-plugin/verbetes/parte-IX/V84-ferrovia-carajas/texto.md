@@ -15,7 +15,7 @@ boxes:
     titulo: "Documento: o que passa vs. o que fica"
 cross_references: [V17, V82, V85, V86, V87, V106]
 fio_da_agua: false
-dados_yaml: []
+dados_yaml: [IND-007, IND-013, QUI-008, ECO-001, ECO-002, ECO-003, ECO-004, ECO-005, ECO-006, ECO-007, ECO-008, ECO-009, ECO-010, ECO-011, ECO-012, ECO-013, ECO-014, ECO-015, ECO-016, ECO-017, HIS-018, SOC-006, AMB-010, AMB-011]
 status: rascunho
 ---
 

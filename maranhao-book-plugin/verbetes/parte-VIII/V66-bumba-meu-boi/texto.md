@@ -15,7 +15,7 @@ boxes:
     titulo: "Documento: o que a UNESCO escreveu"
 cross_references: [V14, V30, V48, V50, V69]
 fio_da_agua: false
-dados_yaml: []
+dados_yaml: [CUL-001, CUL-004, CUL-005, CUL-006, CUL-007, CUL-008, CUL-009, CUL-010, CUL-011, CUL-027, ECO-022, TUR-003]
 status: rascunho
 ---
 

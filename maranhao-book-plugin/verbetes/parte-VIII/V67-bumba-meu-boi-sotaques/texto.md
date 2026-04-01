@@ -13,7 +13,7 @@ boxes:
     titulo: "O mapa sonoro: cinco regiões, cinco timbres"
 cross_references: [V66, V14, V30, V39, V50, V69]
 fio_da_agua: false
-dados_yaml: []
+dados_yaml: [CUL-001, CUL-004, CUL-005, CUL-006, CUL-027]
 status: rascunho
 ---
 

@@ -15,7 +15,7 @@ boxes:
     titulo: "Documento: as pedras secretas"
 cross_references: [V30, V39, V50, V64, V68, V70]
 fio_da_agua: false
-dados_yaml: []
+dados_yaml: [DEM-005, DEM-006, CUL-012, CUL-013, CUL-014, CUL-015, CUL-016, CUL-028, CUL-029, HIS-010]
 status: rascunho
 ---
 

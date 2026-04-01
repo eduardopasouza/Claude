@@ -15,7 +15,7 @@ boxes:
     titulo: "Maranhense desconhecido: Beco Catarina Mina"
 cross_references: [V23, V28, V30, V48, V49, V51, V52, V69]
 fio_da_agua: false
-dados_yaml: []
+dados_yaml: [ECO-018, ECO-019, CUL-002, CUL-019, CUL-020, CUL-021, CUL-022, CUL-023, CUL-024, HIS-004, HIS-019, TUR-005]
 status: revisado
 ---
 

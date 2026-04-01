@@ -1,7 +1,7 @@
 # Coordination v3 — Quem é o Maranhão?
 
 > **Leia este arquivo ao iniciar qualquer sessão de trabalho.**
-> Versão: 3.0 | Data: 2026-03-17 | Baseado em 74 rodadas / 296 decisões
+> Versão: 3.1 | Data: 2026-04-01 | Baseado em 74 rodadas / 296 decisões
 
 ---
 
@@ -393,7 +393,7 @@ maranhao-book-plugin/
 - [x] Banco YAML (esqueleto)
 - [x] README
 
-### Fase 1 — Verbetes-âncora (os mais fortes)
+### Fase 1 — Verbetes-âncora (8 verbetes) ✅ Concluída
 1. V09 — Lençóis: o paradoxo geológico
 2. V30 — A travessia: de onde vieram os africanos
 3. V14 — Os povos originários
@@ -403,12 +403,34 @@ maranhao-book-plugin/
 7. V84 — Ferrovia Carajás: o paradoxo
 8. V50 — Centro Histórico: patrimônio, abandono e vida
 
-### Fase 2 — Completar partes cronológicas (I–V)
-### Fase 3 — Partes temáticas (VI–X)
-### Fase 4 — Contexto e futuro (XI)
-### Fase 5 — Apêndices e epílogo final
+### Fase 2 — Verbetes complementares e adjacentes (7 verbetes) ✅ Concluída
+1. V05 — Litoral e mangues
+2. V10 — Lençóis: patrimônio e preservação
+3. V54 — Alcântara colonial
+4. V55 — Alcântara espacial
+5. V67 — Bumba-meu-boi: os sotaques
+6. V85 — Babaçu: a palmeira que é identidade
+7. V15 — Tupinambá: o povo do litoral
+
+### Fase 3 — Completar Partes zeradas + avançar cronológicas (24 verbetes) ⬅ ATUAL
+> Detalhamento completo da fila em `protocolo-producao.md`
+
+**Bloco 3A — Parte I**: V01 → V02 → V06 → V13
+**Bloco 3B — Parte II**: V16 → V17 → V21
+**Bloco 3C — Parte III**: V25 → V24
+**Bloco 3D — Parte IV**: V33 → V35 → V37 → V36 → V39 → V38
+**Bloco 3E — Partes zeradas (V, VII, X, XI)**: V40 → V46 → V61 → V62 → V63 → V94 → V92 → V100 → V103
+
+### Fase 4 — Partes temáticas restantes (28 verbetes)
+*(Definir ordem detalhada ao iniciar Fase 4)*
+
+### Fase 5 — Verbetes restantes (~26 verbetes)
+*(Definir ordem detalhada ao iniciar Fase 5)*
+
+### Fase 6 — Fechamento
+*(Epílogo final, apêndices, revisão cruzada, sumário)*
 
 ---
 
-*Documento gerado em 2026-03-17 com base em 74 rodadas de decisões (296 perguntas).*
+*Documento gerado em 2026-03-17. Atualizado em 2026-04-01 (Fases 1-2 concluídas, Fase 3 detalhada).*
 *Referência: `registro-decisoes-73-rodadas.md`*

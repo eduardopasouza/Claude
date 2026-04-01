@@ -16,9 +16,10 @@
 - id: GEO-001
   categoria: geografia
   descricao: "Área total do Maranhão"
-  valor: "331.937,450 km²"
-  fonte: "IBGE"
-  ano_base: 2022
+  valor: "329.651,478 km²"
+  fonte: "IBGE (atualização 2024 — refinamento da linha de costa)"
+  ano_base: 2024
+  nota: "Valor anterior: 331.937,450 km² (IBGE 2022). Diferença (~2.286 km²) por refinamento cartográfico do litoral."
   verbetes: [V01, V02]
 
 - id: GEO-002
@@ -1334,8 +1335,58 @@
   verbetes: [V55]
 
 # ============================================================
+# --- ADIÇÕES V01 (2026-04-01) ---
+
+- id: GEO-026
+  categoria: geografia
+  descricao: "Coordenadas extremas do Maranhão"
+  valor: "~1°S a ~10°S latitude; ~41°W a ~48°W longitude"
+  fonte: "IBGE"
+  ano_base: 2022
+  verbetes: [V01]
+
+- id: GEO-027
+  categoria: geografia
+  descricao: "Coordenadas de São Luís"
+  valor: "2°31'S, 44°18'W"
+  fonte: "IBGE"
+  ano_base: 2022
+  verbetes: [V01, V48]
+
+- id: GEO-028
+  categoria: geografia
+  descricao: "Municípios do MA na Amazônia Legal"
+  valor: "181 de 217 (79,3% do território)"
+  fonte: "IBGE / Portal Amazônia"
+  ano_base: 2024
+  verbetes: [V01, V02]
+
+- id: GEO-029
+  categoria: geografia
+  descricao: "Biomas do MA: proporções"
+  valor: "Cerrado ~65%, Amazônia ~34%, Caatinga ~1%"
+  fonte: "IBGE"
+  ano_base: 2019
+  verbetes: [V01, V02]
+
+- id: GEO-030
+  categoria: geografia
+  descricao: "Litoral do MA com reentrâncias"
+  valor: "2.243 km (incluindo baías, estuários, ilhas)"
+  fonte: "IBGE"
+  ano_base: 2022
+  verbetes: [V01, V05]
+
+- id: DEM-012
+  categoria: demografia
+  descricao: "Densidade demográfica do MA"
+  valor: "20,56 hab/km²"
+  fonte: "IBGE, Censo 2022"
+  ano_base: 2022
+  verbetes: [V01, V94]
+
 # NOTA: Este banco é evolutivo. Cada verbete produzido
 # deve adicionar seus dados aqui. Conferir dados
 # contra fontes atualizadas antes de usar.
-# Total de entradas: 120
+# Total de entradas: 126
 # ============================================================

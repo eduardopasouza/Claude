@@ -296,6 +296,8 @@ hashtags: ["#QuemEoMaranhao", "#MaranhaoXX"]
 | Areia | #E8D5B7 | Fundo de boxes |
 | Creme | #FAF3E8 | Fundo de página |
 | Carvão | #2B2B2B | Texto, contraste, fundo vídeo |
+| Vermelho-bumba | #C1292E | Alertas, dados negativos, destaque pontual |
+| Roxo-tambor | #5E3A7E | Cultura afro-maranhense, religiosidade |
 
 #### Template: `visual.md`
 
@@ -578,12 +580,10 @@ Toda informação factual usada em mais de 1 verbete deve estar no banco central
 6. **Dados efêmeros**: dados que mudam anualmente (PIB, população, indicadores) devem ter `ano_base` explícito e nota na introdução do livro sobre data de corte
 
 **Hierarquia de confiabilidade das fontes**:
+> Fonte autoritativa: ver `style-guide-editorial.md` seção 14.3 para versão completa.
+
 ```
-1. Fontes primárias (documentos originais, registros, mapas)
-2. Fontes acadêmicas (livros, teses, artigos peer-reviewed)
-3. Dados oficiais (IBGE, FUNAI, INPE, etc.)
-4. Fontes jornalísticas (reportagens investigativas, séries especiais)
-5. Fontes audiovisuais (documentários, palestras, canais especializados)
+1. Fontes primárias > 2. Acadêmicas > 3. Dados oficiais > 4. Jornalísticas > 5. Audiovisuais
 6. Wikipedia → NUNCA como fonte final, apenas ponto de partida
 ```
 

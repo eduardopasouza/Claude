@@ -13,7 +13,7 @@ boxes:
     titulo: "Maranhenses que Você Não Sabia: as marisqueiras invisíveis"
 cross_references: [V01, V02, V04, V06, V08, V09, V11, V12]
 fio_da_agua: true
-dados_yaml: []
+dados_yaml: [GEO-003, GEO-004, GEO-007, GEO-008, GEO-009, GEO-010, GEO-011, GEO-023, SOC-005, AMB-001, AMB-002, AMB-003, AMB-004, AMB-005, AMB-006]
 status: rascunho
 ---
 

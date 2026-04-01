@@ -13,7 +13,7 @@ boxes:
     titulo: "Maranhenses que Você Não Sabia: Dona Dijé"
 cross_references: [V06, V37, V63, V65, V82]
 fio_da_agua: false
-dados_yaml: []
+dados_yaml: [GEO-024, GEO-025, ECO-020, ECO-021, CUL-025, SOC-001, SOC-002, SOC-003, SOC-004, AMB-009]
 status: rascunho
 ---
 
