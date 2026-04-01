@@ -36,7 +36,7 @@
   valor: "640 km"
   fonte: "IBGE"
   ano_base: 2022
-  verbetes: [V05, V48]
+  verbetes: [V02, V05, V48]
 
 - id: GEO-004
   categoria: geografia
@@ -44,7 +44,7 @@
   valor: "36%"
   fonte: "MapBiomas / ICMBio"
   ano_base: 2021
-  verbetes: [V05]
+  verbetes: [V02, V05]
 
 - id: GEO-005
   categoria: geografia
@@ -84,7 +84,7 @@
   valor: "2.631.260 hectares"
   fonte: "Decreto Estadual 11.901/1991"
   ano_base: 1991
-  verbetes: [V05]
+  verbetes: [V02, V05]
 
 - id: GEO-010
   categoria: geografia
@@ -180,7 +180,7 @@
   valor: "76% destruída"
   fonte: "ISA / MapBiomas"
   ano_base: 2022
-  verbetes: [V14]
+  verbetes: [V02, V14, V21]
 
 - id: GEO-022
   categoria: geografia
@@ -188,7 +188,7 @@
   valor: "52% do que resta"
   fonte: "ISA"
   ano_base: 2022
-  verbetes: [V14]
+  verbetes: [V02, V14, V16, V21]
 
 - id: GEO-023
   categoria: geografia
@@ -204,7 +204,7 @@
   valor: "~141.000 km² (~70% do total nacional)"
   fonte: "IBGE / MMA"
   ano_base: 2022
-  verbetes: [V85]
+  verbetes: [V06, V85]
 
 - id: GEO-025
   categoria: geografia
@@ -272,7 +272,7 @@
   valor: "152.893 total; 84.534 escravizados (55,3%)"
   fonte: "Pereira do Lago, Estatística histórico-geográfica"
   ano_base: 1821
-  verbetes: [V30]
+  verbetes: [V30, V33, V35]
 
 - id: DEM-008
   categoria: demografia
@@ -340,7 +340,7 @@
   valor: "27.000+ em 11 TIs"
   fonte: "PIB Socioambiental"
   ano_base: 2022
-  verbetes: [V14]
+  verbetes: [V14, V16, V21]
 
 - id: IND-005
   categoria: indigena
@@ -356,15 +356,15 @@
   valor: "413.000 hectares, 150 aldeias, 10.000 moradores"
   fonte: "PIB Socioambiental"
   ano_base: 2022
-  verbetes: [V14]
+  verbetes: [V14, V16, V17]
 
 - id: IND-007
   categoria: indigena
   descricao: "População Awá-Guajá"
-  valor: "~350 (dos quais ~100 sem contato)"
-  fonte: "Survival International / FUNAI"
+  valor: "~520-600 (dos quais ~60-100 sem contato)"
+  fonte: "Survival International / FUNAI / ISA"
   ano_base: 2022
-  verbetes: [V14, V84]
+  verbetes: [V14, V17, V21, V84]
 
 - id: IND-008
   categoria: indigena
@@ -372,15 +372,15 @@
   valor: "530.524 hectares — maior TI da Amazônia oriental"
   fonte: "PIB Socioambiental"
   ano_base: 2022
-  verbetes: [V14]
+  verbetes: [V14, V17]
 
 - id: IND-009
   categoria: indigena
   descricao: "Guardiões da Floresta Guajajara"
-  valor: "~120 membros; reduziram 72 estradas ilegais a 5"
+  valor: "~120 membros; reduziram 72 estradas ilegais a 5; criados em 2012"
   fonte: "Relatórios internacionais"
   ano_base: 2019
-  verbetes: [V14]
+  verbetes: [V14, V16, V21]
 
 - id: IND-010
   categoria: indigena
@@ -393,10 +393,10 @@
 - id: IND-011
   categoria: indigena
   descricao: "Sônia Guajajara — 1ª Ministra dos Povos Indígenas"
-  valor: "Nomeada em janeiro de 2023"
+  valor: "Nomeada em janeiro de 2023; deixou o cargo em março de 2025"
   fonte: "Governo Federal"
   ano_base: 2023
-  verbetes: [V14]
+  verbetes: [V14, V16, V21]
 
 - id: IND-012
   categoria: indigena
@@ -448,7 +448,7 @@
   valor: "1.152"
   fonte: "Fundação Cultural Palmares"
   ano_base: 2023
-  verbetes: [V35, V37]
+  verbetes: [V33, V35, V37]
 
 - id: QUI-002
   categoria: quilombo
@@ -472,7 +472,7 @@
   valor: "200+"
   fonte: "IPHAN / INCRA"
   ano_base: 2023
-  verbetes: [V30, V54]
+  verbetes: [V30, V33, V35, V54]
 
 - id: QUI-005
   categoria: quilombo
@@ -540,7 +540,7 @@
   valor: "R$ 17.471"
   fonte: "IBGE"
   ano_base: 2021
-  verbetes: [V84, V94]
+  verbetes: [V84, V94, V100]
 
 - id: ECO-005
   categoria: economia
@@ -652,7 +652,7 @@
   valor: "73-82% das exportações do MA; 40% da fibra em Liverpool (1791-1801)"
   fonte: "Historiografia / Carreira"
   ano_base: 1800
-  verbetes: [V30, V50, V54]
+  verbetes: [V30, V33, V40, V50, V54]
 
 - id: ECO-019
   categoria: economia
@@ -660,7 +660,7 @@
   valor: "4ª posição no auge do algodão/arroz (1780-1830)"
   fonte: "Historiografia"
   ano_base: 1800
-  verbetes: [V30, V50, V54]
+  verbetes: [V30, V40, V50, V54]
 
 - id: ECO-020
   categoria: economia
@@ -832,7 +832,7 @@
   valor: "Registrado em 2007; 200+ grupos ativos"
   fonte: "IPHAN"
   ano_base: 2007
-  verbetes: [V30, V68]
+  verbetes: [V30, V35, V39, V68]
 
 - id: CUL-018
   categoria: cultura
@@ -840,7 +840,7 @@
   valor: "Fundada na década de 1840; tombada pelo IPHAN"
   fonte: "Ferretti, Querebentã de Zomadonu, 1996"
   ano_base: 1996
-  verbetes: [V30, V64]
+  verbetes: [V30, V39, V64]
 
 - id: CUL-019
   categoria: cultura
@@ -948,7 +948,7 @@
   valor: "1621-1774"
   fonte: "Historiografia"
   ano_base: 1621
-  verbetes: [V23, V25]
+  verbetes: [V23, V25, V62]
 
 - id: HIS-003
   categoria: historia
@@ -972,7 +972,7 @@
   valor: "19 de novembro de 1614; vitória portuguesa apesar de inferioridade numérica"
   fonte: "Historiografia"
   ano_base: 1614
-  verbetes: [V23]
+  verbetes: [V23, V24]
 
 - id: HIS-006
   categoria: historia
@@ -988,7 +988,7 @@
   valor: "Criada por alvará régio de 7 de junho de 1755; monopólio de 20 anos"
   fonte: "Historiografia / Carreira"
   ano_base: 1755
-  verbetes: [V14, V30, V54]
+  verbetes: [V14, V25, V30, V33, V38, V40, V54]
 
 - id: HIS-008
   categoria: historia
@@ -996,7 +996,7 @@
   valor: "31.317 embarcados; 24.985 sobreviventes; 6.332 mortos (20,22%)"
   fonte: "Carreira, A Companhia Geral"
   ano_base: 1778
-  verbetes: [V30]
+  verbetes: [V30, V33]
 
 - id: HIS-009
   categoria: historia
@@ -1004,7 +1004,7 @@
   valor: "88% da Alta Guiné (Bissau/Cacheu); 12% de Angola"
   fonte: "Carreira / Hawthorne"
   ano_base: 1800
-  verbetes: [V30]
+  verbetes: [V30, V33, V38]
 
 - id: HIS-010
   categoria: historia
@@ -1012,7 +1012,7 @@
   valor: "~114.000 (1755-1820); possivelmente 20% maior"
   fonte: "Assunção, De caboclos a bem-te-vis, 2015"
   ano_base: 1820
-  verbetes: [V30, V69]
+  verbetes: [V30, V33, V69]
 
 - id: HIS-011
   categoria: historia
@@ -1020,7 +1020,7 @@
   valor: "Média de 34 escravos/ano (1680-1755)"
   fonte: "Mota & Barroso, Revista de História, 2017"
   ano_base: 1755
-  verbetes: [V30]
+  verbetes: [V30, V33]
 
 - id: HIS-012
   categoria: historia
@@ -1112,7 +1112,7 @@
   valor: "300.000+ mulheres; ~90% do contingente é feminino"
   fonte: "MIQCB / IBGE"
   ano_base: 2022
-  verbetes: [V85]
+  verbetes: [V06, V85]
 
 - id: SOC-002
   categoria: social
@@ -1120,7 +1120,7 @@
   valor: "Lago do Junco (MA), Lei nº 05/1997"
   fonte: "MIQCB"
   ano_base: 1997
-  verbetes: [V85]
+  verbetes: [V06, V85]
 
 - id: SOC-003
   categoria: social
@@ -1385,8 +1385,642 @@
   ano_base: 2022
   verbetes: [V01, V94]
 
+# ============================================================
+# --- ADIÇÕES LOTE 2 (2026-04-01) — V02/V06/V13/V16/V17/V21/V24/V25/V33/V35/V36/V37/V38/V39/V40/V46/V61/V62/V63/V92/V94/V100/V103 ---
+# ============================================================
+
+# === GEOGRAFIA ===
+
+- id: GEO-031
+  categoria: geografia
+  descricao: "Bioma Cerrado no MA — área e municípios"
+  valor: "~214.000 km² (~65%); 138 municípios"
+  fonte: "IBGE"
+  ano_base: 2019
+  verbetes: [V02]
+
+- id: GEO-032
+  categoria: geografia
+  descricao: "Bioma Amazônia no MA — área e municípios"
+  valor: "~112.000 km² (~34%); 110 municípios"
+  fonte: "IBGE"
+  ano_base: 2019
+  verbetes: [V02]
+
+- id: GEO-033
+  categoria: geografia
+  descricao: "Área da Baixada Maranhense"
+  valor: "~20.000 km²"
+  fonte: "APA/IBGE"
+  ano_base: 2000
+  verbetes: [V02, V61]
+
+- id: GEO-034
+  categoria: geografia
+  descricao: "APA da Baixada Maranhense — Sítio Ramsar"
+  valor: "1.775.035 ha; Sítio Ramsar desde 2000"
+  fonte: "Ramsar Convention"
+  ano_base: 2000
+  verbetes: [V02]
+
+- id: GEO-035
+  categoria: geografia
+  descricao: "Sítios Ramsar no Maranhão"
+  valor: "3 (Reentrâncias 1993, Baixada 2000, Lençóis 2024)"
+  fonte: "Ramsar Convention"
+  ano_base: 2024
+  verbetes: [V02]
+
+- id: GEO-036
+  categoria: geografia
+  descricao: "Chapada das Mesas — área"
+  valor: "159.952 ha"
+  fonte: "ICMBio"
+  ano_base: 2005
+  verbetes: [V02]
+
+- id: GEO-037
+  categoria: geografia
+  descricao: "REBIO Gurupi — área e estado"
+  valor: "341.650 ha; 70-80% alterada"
+  fonte: "ICMBio"
+  ano_base: 1988
+  verbetes: [V02]
+
+- id: GEO-038
+  categoria: geografia
+  descricao: "Soja no MA (MATOPIBA)"
+  valor: ">1 milhão de hectares"
+  fonte: "IBGE/Embrapa"
+  ano_base: 2023
+  verbetes: [V02, V61, V103]
+
+- id: GEO-039
+  categoria: geografia
+  descricao: "Desmatamento no cerrado maranhense"
+  valor: "95% do desmatamento recente do MA ocorre no Cerrado"
+  fonte: "MapBiomas/RAD"
+  ano_base: 2024
+  verbetes: [V02]
+
+# === DEMOGRAFIA ===
+
+- id: DEM-013
+  categoria: demografia
+  descricao: "Proporção autodeclarada preta + parda no MA"
+  valor: "78,1%"
+  fonte: "IBGE Censo 2022"
+  ano_base: 2022
+  verbetes: [V33, V37, V38, V39]
+
+- id: DEM-014
+  categoria: demografia
+  descricao: "Município mais autodeclarado preto do Brasil"
+  valor: "Serrano/MA — 58,5% se autodeclara preto"
+  fonte: "IBGE Censo 2022"
+  ano_base: 2022
+  verbetes: [V37]
+
+- id: DEM-015
+  categoria: demografia
+  descricao: "População rural do MA"
+  valor: "~36,9% — uma das maiores do Brasil"
+  fonte: "IBGE Censo 2022"
+  ano_base: 2022
+  verbetes: [V61, V94]
+
+- id: DEM-016
+  categoria: demografia
+  descricao: "São Luís e São Paulo tinham mesma população em 1872"
+  valor: "~31.000 cada; em 1920: SLZ ~52.000, SP ~580.000"
+  fonte: "IBGE, Censos Históricos"
+  ano_base: 1920
+  verbetes: [V46]
+
+# === INDÍGENA ===
+
+- id: IND-017
+  categoria: indigena
+  descricao: "Falantes da língua Tenetehara"
+  valor: "~26.000 (uma das línguas indígenas mais faladas do Brasil)"
+  fonte: "IBGE Censo 2022"
+  ano_base: 2022
+  verbetes: [V16]
+
+- id: IND-018
+  categoria: indigena
+  descricao: "TI Caru — área"
+  valor: "~172.000 ha (compartilhada Guajajara + Awá-Guajá)"
+  fonte: "FUNAI"
+  ano_base: 2022
+  verbetes: [V16, V17]
+
+- id: IND-019
+  categoria: indigena
+  descricao: "Incêndios na TI Arariboia"
+  valor: "Mais de 40% da TI afetada em 2015 e 2017"
+  fonte: "FUNAI/ISA"
+  ano_base: 2017
+  verbetes: [V16, V21]
+
+- id: IND-020
+  categoria: indigena
+  descricao: "Paulo Paulino Guajajara — assassinato"
+  valor: "Assassinado em 01/11/2019 por madeireiros na TI Arariboia"
+  fonte: "CIMI / The Guardian"
+  ano_base: 2019
+  verbetes: [V16, V21]
+
+- id: IND-021
+  categoria: indigena
+  descricao: "Massacre de Alto Alegre"
+  valor: "1901 — revolta Guajajara contra missão capuchinha; represália desproporcional"
+  fonte: "Historiografia"
+  ano_base: 1901
+  verbetes: [V16]
+
+- id: IND-022
+  categoria: indigena
+  descricao: "Awá-Guajá — classificação Survival International"
+  valor: "\"The most threatened tribe on Earth\" (2012)"
+  fonte: "Survival International"
+  ano_base: 2012
+  verbetes: [V17, V21]
+
+- id: IND-023
+  categoria: indigena
+  descricao: "TI Awá — área"
+  valor: "116.582 ha (homologada 2005)"
+  fonte: "FUNAI"
+  ano_base: 2005
+  verbetes: [V17]
+
+- id: IND-024
+  categoria: indigena
+  descricao: "Operação Awá (FUNAI, 2014)"
+  valor: "Maior operação de proteção a TIs da história do Brasil; 1.300 famílias invasoras removidas"
+  fonte: "FUNAI"
+  ano_base: 2014
+  verbetes: [V17, V21]
+
+- id: IND-025
+  categoria: indigena
+  descricao: "Indígenas vivendo em TIs no MA"
+  valor: "72,93% (43.281 pessoas); crescimento de 40,27% entre 2010 e 2022"
+  fonte: "IBGE Censo 2022"
+  ano_base: 2022
+  verbetes: [V21]
+
+- id: IND-026
+  categoria: indigena
+  descricao: "Número de TIs no MA (atualizado)"
+  valor: "~23 TIs demarcadas ou em processo"
+  fonte: "FUNAI/ISA"
+  ano_base: 2024
+  verbetes: [V21]
+
+# === QUILOMBO ===
+
+- id: QUI-009
+  categoria: quilombo
+  descricao: "MA como 1o estado em comunidades quilombolas certificadas"
+  valor: "1.152 — primeiro do ranking nacional"
+  fonte: "Fundação Cultural Palmares"
+  ano_base: 2024
+  verbetes: [V35, V37]
+
+- id: QUI-010
+  categoria: quilombo
+  descricao: "Quilombo de Frechal — primeiro reconhecido no MA"
+  valor: "RESEX Federal criada em 1992, Mirinzal/MA"
+  fonte: "ICMBio"
+  ano_base: 1992
+  verbetes: [V35]
+
+- id: QUI-011
+  categoria: quilombo
+  descricao: "Titulação efetiva de quilombos no MA"
+  valor: "~10% das comunidades certificadas possuem título definitivo"
+  fonte: "INCRA"
+  ano_base: 2023
+  verbetes: [V35, V37]
+
+- id: QUI-012
+  categoria: quilombo
+  descricao: "Decreto 4.887/2003 — regulamentação da titulação quilombola"
+  valor: "Critério de autoidentificação para certificação"
+  fonte: "Presidência da República"
+  ano_base: 2003
+  verbetes: [V35, V37]
+
+# === ECONOMIA ===
+
+- id: ECO-024
+  categoria: economia
+  descricao: "Exportação de algodão do MA (crescimento)"
+  valor: "De 651 arrobas (1760) para 30.000+ arrobas (1800) — ~46x em 40 anos"
+  fonte: "Meireles, História do Maranhão"
+  ano_base: 1800
+  verbetes: [V40]
+
+- id: ECO-025
+  categoria: economia
+  descricao: "MA como maior exportador de algodão do Brasil"
+  valor: "Maior exportador no fim do séc. XVIII"
+  fonte: "Meireles / Furtado"
+  ano_base: 1800
+  verbetes: [V40]
+
+- id: ECO-026
+  categoria: economia
+  descricao: "Arroz como principal exportação do MA antes do algodão"
+  valor: "1760-1778, superando algodão; 12-15 mil arrobas/ano nos anos 1770"
+  fonte: "Viveiros; Gaioso, Compêndio Histórico-Político, 1818"
+  ano_base: 1778
+  verbetes: [V38]
+
+- id: ECO-027
+  categoria: economia
+  descricao: "Babaçu: produção nacional do MA"
+  valor: ">90% da amêndoa de babaçu do Brasil"
+  fonte: "Embrapa"
+  ano_base: 2024
+  verbetes: [V06]
+
+- id: ECO-028
+  categoria: economia
+  descricao: "Exportações de minério transitando pelo MA"
+  valor: "~US$ 15 bilhões/ano"
+  fonte: "MDIC/Comex Stat"
+  ano_base: 2023
+  verbetes: [V94]
+
+- id: ECO-029
+  categoria: economia
+  descricao: "PIB do MA (2022)"
+  valor: "R$ 116,4 bilhões"
+  fonte: "IBGE"
+  ano_base: 2022
+  verbetes: [V94]
+
+# === CULTURA ===
+
+- id: CUL-030
+  categoria: cultura
+  descricao: "Arroz de cuxá — prato-símbolo do MA"
+  valor: "Único estado com prato à base de vinagreira (Hibiscus sabdariffa)"
+  fonte: "Cascudo, História da Alimentação no Brasil, 1967"
+  ano_base: 1967
+  verbetes: [V38, V63]
+
+- id: CUL-031
+  categoria: cultura
+  descricao: "Tiquira — cachaça de mandioca exclusiva do MA"
+  valor: "Destilado artesanal; técnica indígena de fermentação + destilação europeia"
+  fonte: "IPHAN, Inventário Nacional de Referências Culturais, 2014"
+  ano_base: 2014
+  verbetes: [V63]
+
+- id: CUL-032
+  categoria: cultura
+  descricao: "Vinagreira (Hibiscus sabdariffa) — planta africana base do cuxá"
+  valor: "Origem africana (provável sudanesa); trazida por escravizados"
+  fonte: "Cascudo, 1967"
+  ano_base: 1967
+  verbetes: [V38, V63]
+
+- id: CUL-033
+  categoria: cultura
+  descricao: "Encantados — conceito religioso único do Tambor de Mina"
+  valor: "Entidades distintas de orixás e santos; seres que 'se encantaram' sem morrer"
+  fonte: "Ferretti, Mundicarmo, Maranhão Encantado, 2000"
+  ano_base: 2000
+  verbetes: [V39]
+
+- id: CUL-034
+  categoria: cultura
+  descricao: "Atlas Linguístico do Maranhão (ALiMA)"
+  valor: "Projeto UFMA, desde 1996; documenta variação linguística do estado"
+  fonte: "UFMA / Conceição de Maria de Araujo Ramos"
+  ano_base: 1996
+  verbetes: [V62]
+
+- id: CUL-035
+  categoria: cultura
+  descricao: "Uso de 'tu' com conjugação correta no MA"
+  valor: "MA é um dos poucos estados que usa 'tu' com conjugação (tu foste, tu queres)"
+  fonte: "ALiMA / UFMA"
+  ano_base: 2022
+  verbetes: [V62]
+
+- id: CUL-036
+  categoria: cultura
+  descricao: "Domesticação do arroz africano (Oryza glaberrima)"
+  valor: "Delta interior do rio Níger, 3.500-2.500 a.C."
+  fonte: "Carney, Black Rice, Harvard UP, 2001"
+  ano_base: 2001
+  verbetes: [V38]
+
+# === HISTÓRIA ===
+
+- id: HIS-025
+  categoria: historia
+  descricao: "Criação do Estado do Maranhão (separado do Brasil)"
+  valor: "13 de junho de 1621, alvará de Filipe III"
+  fonte: "Historiografia"
+  ano_base: 1621
+  verbetes: [V25]
+
+- id: HIS-026
+  categoria: historia
+  descricao: "Capital transferida para Belém"
+  valor: "1751; Estado renomeado para Grão-Pará e Maranhão"
+  fonte: "Historiografia"
+  ano_base: 1751
+  verbetes: [V25]
+
+- id: HIS-027
+  categoria: historia
+  descricao: "Extinção do Estado separado por Pombal"
+  valor: "2 de agosto de 1774; reintegração ao Estado do Brasil"
+  fonte: "Historiografia"
+  ano_base: 1774
+  verbetes: [V25]
+
+- id: HIS-028
+  categoria: historia
+  descricao: "Expulsão dos jesuítas do Maranhão"
+  valor: "1759, por ordem do Marquês de Pombal"
+  fonte: "Legislação portuguesa"
+  ano_base: 1759
+  verbetes: [V25, V37]
+
+- id: HIS-029
+  categoria: historia
+  descricao: "Balaiada — maior revolta popular do MA"
+  valor: "1838-1841; líderes: Raimundo Gomes, Balaio, Negro Cosme"
+  fonte: "Assunção / Meireles"
+  ano_base: 1841
+  verbetes: [V35, V36]
+
+- id: HIS-030
+  categoria: historia
+  descricao: "Negro Cosme — escravizados mobilizados"
+  valor: "~3.000 escravizados reunidos no quilombo de Lagoa Amarela"
+  fonte: "Assunção, A Guerra dos Bem-te-vis"
+  ano_base: 1839
+  verbetes: [V35, V36]
+
+- id: HIS-031
+  categoria: historia
+  descricao: "Negro Cosme — execução"
+  valor: "Enforcado em 20 de setembro de 1842 em Itapecuru-Mirim"
+  fonte: "Meireles / Assunção"
+  ano_base: 1842
+  verbetes: [V36]
+
+- id: HIS-032
+  categoria: historia
+  descricao: "Africanos entrados no MA (total estimado)"
+  valor: "200.000-300.000 no período colonial"
+  fonte: "Assunção / Hawthorne / Carreira"
+  ano_base: 1850
+  verbetes: [V33]
+
+- id: HIS-033
+  categoria: historia
+  descricao: "Escravizados pós-Companhia entrados no MA"
+  valor: "77.083 (1788-1842)"
+  fonte: "Hawthorne, From Africa to Brazil"
+  ano_base: 1842
+  verbetes: [V33]
+
+- id: HIS-034
+  categoria: historia
+  descricao: "Vale do Itapecuru — proporção escravizada no auge"
+  valor: "Até 80-85% da população"
+  fonte: "Mota & Cunha; Viveiros"
+  ano_base: 1800
+  verbetes: [V33, V35]
+
+- id: HIS-035
+  categoria: historia
+  descricao: "Donana Jansen — maior proprietária de escravizados"
+  valor: "~1.500 escravizados"
+  fonte: "Tradição local / Viveiros"
+  ano_base: 1830
+  verbetes: [V33]
+
+- id: HIS-036
+  categoria: historia
+  descricao: "Lei de Terras de 1850 — exclusão fundiária"
+  valor: "Lei 601/1850; terra só por compra, não mais por posse"
+  fonte: "Legislação imperial"
+  ano_base: 1850
+  verbetes: [V37]
+
+- id: HIS-037
+  categoria: historia
+  descricao: "Alfredo Wagner — obra sobre terras tradicionais"
+  valor: "Terras de Preto, de Santo e de Índio (1989) — conceituação de territorialidades específicas do MA"
+  fonte: "Almeida, Alfredo Wagner, UFMA, 1989"
+  ano_base: 1989
+  verbetes: [V37]
+
+- id: HIS-038
+  categoria: historia
+  descricao: "Jerônimo de Albuquerque Maranhão — comandante em Guaxenduba"
+  valor: "Mameluco (filho de português + Tupinambá); primeiro 'brasileiro' a comandar expedição militar"
+  fonte: "Meireles, História do Maranhão"
+  ano_base: 1614
+  verbetes: [V24]
+
+- id: HIS-039
+  categoria: historia
+  descricao: "Sítios arqueológicos catalogados no MA"
+  valor: "300+"
+  fonte: "IPHAN / CNSA"
+  ano_base: 2023
+  verbetes: [V13]
+
+- id: HIS-040
+  categoria: historia
+  descricao: "Ocupação humana na Ilha de São Luís"
+  valor: "6.000+ anos"
+  fonte: "Agência Brasil / IPHAN"
+  ano_base: 2024
+  verbetes: [V13]
+
+- id: HIS-041
+  categoria: historia
+  descricao: "Sítio Chácara Rosane (São Luís)"
+  valor: "43 esqueletos humanos + ~100.000 artefatos"
+  fonte: "Agência Brasil / IPHAN"
+  ano_base: 2024
+  verbetes: [V13]
+
+- id: HIS-042
+  categoria: historia
+  descricao: "Estearias do Maranhão"
+  valor: "Palafitas pré-coloniais nos rios Pindaré e Maracu; ~1.000-1.500 d.C."
+  fonte: "Navarro, UFMA, 2018"
+  ano_base: 2018
+  verbetes: [V13]
+
+- id: HIS-043
+  categoria: historia
+  descricao: "Pinturas rupestres na Chapada das Mesas"
+  valor: "Painéis de 40+ metros de extensão"
+  fonte: "ResearchGate / pesquisas arqueológicas"
+  ano_base: 2019
+  verbetes: [V13]
+
+# === SOCIAL ===
+
+- id: SOC-009
+  categoria: social
+  descricao: "MIQCB — fundação"
+  valor: "1995 (Movimento Interestadual das Quebradeiras de Coco Babaçu)"
+  fonte: "MIQCB"
+  ano_base: 1995
+  verbetes: [V06]
+
+- id: SOC-010
+  categoria: social
+  descricao: "IDH do Maranhão"
+  valor: "0,676 — mais baixo do Brasil"
+  fonte: "PNUD/IBGE, Atlas do Desenvolvimento Humano"
+  ano_base: 2021
+  verbetes: [V94, V100]
+
+- id: SOC-011
+  categoria: social
+  descricao: "Esgoto tratado no MA"
+  valor: "3,92% da população (vs. 51,2% Brasil)"
+  fonte: "SNIS"
+  ano_base: 2022
+  verbetes: [V94]
+
+- id: SOC-012
+  categoria: social
+  descricao: "Analfabetismo no MA"
+  valor: "15,6% (15 anos+; vs. 5,6% Brasil)"
+  fonte: "IBGE, PNAD Contínua"
+  ano_base: 2022
+  verbetes: [V94, V100]
+
+- id: SOC-013
+  categoria: social
+  descricao: "Mortalidade infantil no MA"
+  valor: "15,2 por mil nascidos vivos (vs. 11,9 Brasil)"
+  fonte: "DataSUS/MS"
+  ano_base: 2021
+  verbetes: [V94]
+
+- id: SOC-014
+  categoria: social
+  descricao: "Trabalho informal no MA"
+  valor: "~60% da população ocupada"
+  fonte: "IBGE, PNAD Contínua"
+  ano_base: 2022
+  verbetes: [V94]
+
+- id: SOC-015
+  categoria: social
+  descricao: "Esperança de vida no MA"
+  valor: "71,4 anos (vs. 75,5 Brasil)"
+  fonte: "IBGE"
+  ano_base: 2021
+  verbetes: [V94]
+
+- id: SOC-016
+  categoria: social
+  descricao: "Índice de Gini do MA"
+  valor: "0,535 (vs. 0,518 Brasil)"
+  fonte: "IBGE, PNAD Contínua"
+  ano_base: 2022
+  verbetes: [V94]
+
+- id: SOC-017
+  categoria: social
+  descricao: "Evolução do IDH do MA (2000-2021)"
+  valor: "De 0,476 (2000) para 0,676 (2021) — +42% em 21 anos"
+  fonte: "PNUD/IBGE"
+  ano_base: 2021
+  verbetes: [V94]
+
+- id: SOC-018
+  categoria: social
+  descricao: "Analfabetismo no MA em 1950"
+  valor: "Estimado >70%"
+  fonte: "IBGE"
+  ano_base: 1950
+  verbetes: [V46]
+
+- id: SOC-019
+  categoria: social
+  descricao: "José Sarney — período no poder (família)"
+  valor: "Governador (1966-70), Presidente (1985-90), Senador; família no poder ~1966-2014"
+  fonte: "TSE / Historiografia"
+  ano_base: 2014
+  verbetes: [V92]
+
+- id: SOC-020
+  categoria: social
+  descricao: "Flávio Dino eleito governador — fim do sarneysmo"
+  valor: "2014, com 63,5% dos votos; primeira derrota em ~48 anos"
+  fonte: "TSE"
+  ano_base: 2014
+  verbetes: [V92]
+
+- id: SOC-021
+  categoria: social
+  descricao: "Inflação no fim do governo Sarney"
+  valor: "1.764,86% (IPCA acumulado 1990)"
+  fonte: "IBGE"
+  ano_base: 1990
+  verbetes: [V92]
+
+# === MEIO AMBIENTE ===
+
+- id: AMB-012
+  categoria: meio-ambiente
+  descricao: "Projeção climática para cerrado do MA (2050)"
+  valor: "Precipitação -15 a -25%; temperatura +2,5 a 3,5°C"
+  fonte: "IPCC AR6, cenário SSP3-7.0"
+  ano_base: 2021
+  verbetes: [V103]
+
+- id: AMB-013
+  categoria: meio-ambiente
+  descricao: "Desmatamento simultâneo em dois biomas no MA"
+  valor: "Cerrado ~1.600 km² + Amazônia ~600 km² (2022)"
+  fonte: "INPE/PRODES"
+  ano_base: 2022
+  verbetes: [V100]
+
+# === TURISMO ===
+
+- id: TUR-006
+  categoria: turismo
+  descricao: "Búfalos na Baixada Maranhense"
+  valor: "~95 mil cabeças — maior rebanho bubalino do Nordeste"
+  fonte: "IBGE / IMESC"
+  ano_base: 2022
+  verbetes: [V61]
+
+# === PROJEÇÕES ===
+
+- id: DEM-017
+  categoria: demografia
+  descricao: "Projeção populacional do MA (2030 e 2050)"
+  valor: "~7,3 milhões (2030); ~6,8-7,0 milhões (2050, crescimento negativo)"
+  fonte: "IBGE, Projeções da população, Revisão 2022"
+  ano_base: 2022
+  verbetes: [V103]
+
 # NOTA: Este banco é evolutivo. Cada verbete produzido
 # deve adicionar seus dados aqui. Conferir dados
 # contra fontes atualizadas antes de usar.
-# Total de entradas: 126
+# Total de entradas: 188
 # ============================================================

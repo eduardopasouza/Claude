@@ -36,6 +36,14 @@ Ações obrigatórias:
 
 **Output**: `verbetes/parte-XX/VXX-titulo/research.md`
 
+**⛔ GATE YAML OBRIGATÓRIO**: Antes de avançar para o outline, VERIFICAR que:
+1. Todo dado factual novo do research.md foi registrado em `banco-dados/dados-centrais.yaml`
+2. Dados existentes no banco foram referenciados (não duplicados)
+3. O campo `verbetes` de cada entrada YAML lista o verbete atual
+4. **Se o verbete foi produzido por agente**: o agente NÃO tem acesso ao banco YAML. O kernel DEVE extrair os dados do research.md e alimentar o banco ANTES de considerar o verbete concluído.
+
+**Regra reforçada (2026-04-01)**: A falha em alimentar o banco YAML nos 23 verbetes da Fase 3 mostrou que agentes em background não cumprem esta regra automaticamente. A responsabilidade é do kernel — não do agente.
+
 ### Etapa 2 — OUTLINE (outline.md)
 
 ```
@@ -213,7 +221,8 @@ V40 → V46 → V61 → V62 → V63 → V94 → V92 → V100 → V103
 ☐ Boxes embutidos (se aplicáveis)
 ☐ Mín. 2 reels produzidos
 ☐ visual.md com briefing triplo
-☐ Dados novos registrados no banco YAML
+☐ ⛔ Dados novos registrados no banco YAML (GATE — não avançar sem isso)
+☐ ⛔ Campo dados_yaml no frontmatter do texto.md preenchido com IDs do banco
 ☐ registro-producao.md atualizado
 ☐ changelog.md atualizado
 ☐ Nenhum dado sem fonte no texto
