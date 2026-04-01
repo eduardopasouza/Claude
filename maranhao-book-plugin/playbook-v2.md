@@ -553,11 +553,38 @@ Toda informação factual usada em mais de 1 verbete deve estar no banco central
 
 **Campos obrigatórios**:
 ```yaml
-id: DADO-XXX
-valor: "..."
-fonte: "..."
-ano_base: YYYY
-categoria: demografia | economia | geografia | historia | cultura
+- id: [CAT]-[NNN]        # Prefixo da categoria + número sequencial
+  categoria: [ver lista]  # geografia | demografia | indígena | quilombo | economia | cultura | história | social | meio-ambiente | turismo
+  descricao: "..."        # O que o dado descreve (frase curta)
+  valor: "..."            # O dado em si (número, percentual, fato)
+  fonte: "..."            # Fonte completa (autor/instituição, ano, documento)
+  ano_base: YYYY          # Ano de referência do dado
+  verbetes: [V01, V05]    # Lista de verbetes que usam este dado
+```
+
+**Prefixos por categoria**:
+`GEO` (geografia), `DEM` (demografia), `IND` (indígena), `QUI` (quilombo), `ECO` (economia), `CUL` (cultura), `HIS` (história), `SOC` (social), `AMB` (meio-ambiente), `TUR` (turismo)
+
+**Regra de indexação — quando registrar novo dado**:
+
+1. **Durante a pesquisa**: todo dado factual encontrado na web que tenha fonte verificável deve ser registrado no banco YAML, mesmo que só um verbete o use por enquanto
+2. **Verificação cruzada obrigatória**: antes de registrar, confrontar o dado com pelo menos 1 fonte adicional. Se houver divergência, registrar ambas as fontes e marcar com flag:
+   ```yaml
+   nota: "Divergência: fonte A diz X, fonte B diz Y. Adotado valor de fonte A (mais recente/oficial)."
+   ```
+3. **Confronto com banco existente**: antes de adicionar, verificar se o dado já existe no banco. Se existir, atualizar se a nova fonte for mais recente ou mais confiável. Nunca duplicar.
+4. **Numeração sequencial**: usar o próximo número disponível na categoria (ex: se último GEO é GEO-025, próximo é GEO-026)
+5. **Verbetes**: listar todos os verbetes que usam ou poderão usar o dado
+6. **Dados efêmeros**: dados que mudam anualmente (PIB, população, indicadores) devem ter `ano_base` explícito e nota na introdução do livro sobre data de corte
+
+**Hierarquia de confiabilidade das fontes**:
+```
+1. Fontes primárias (documentos originais, registros, mapas)
+2. Fontes acadêmicas (livros, teses, artigos peer-reviewed)
+3. Dados oficiais (IBGE, FUNAI, INPE, etc.)
+4. Fontes jornalísticas (reportagens investigativas, séries especiais)
+5. Fontes audiovisuais (documentários, palestras, canais especializados)
+6. Wikipedia → NUNCA como fonte final, apenas ponto de partida
 ```
 
 **Regra**: Evolutivo. Começar básico, expandir conforme verbetes são produzidos.
@@ -593,12 +620,13 @@ Todo visual do livro passa por briefing triplo: (1) descrição textual para des
 1. **1 verbete por vez** — pipeline completo antes de avançar
 2. **Web obrigatório** — toda pesquisa usa web search
 3. **3 fontes mínimo** — por afirmação factual
-4. **Banco YAML** — dados compartilhados vão no banco central
-5. **3 matrizes iguais** — indígena = africana = europeia em profundidade
-6. **Fio da água** — orgânico, nunca forçado
-7. **Dados + alma** — nunca dado sem contexto, nunca narrativa sem dado
-8. **Aprovação** — outline precisa de OK do autor antes de redigir
-9. **Review** — 3 etapas, checklist hierárquico
+4. **Verificação cruzada obrigatória** — todo dado pesquisado na web deve ser confrontado com pelo menos 1 fonte adicional antes de ser usado no texto
+5. **Banco YAML alimentado na pesquisa** — todo dado factual verificado deve ser registrado no banco central (`dados-centrais.yaml`) durante a fase de pesquisa, não depois. Confrontar com dados já existentes no banco para evitar duplicatas e contradições
+6. **3 matrizes iguais** — indígena = africana = europeia em profundidade
+7. **Fio da água** — orgânico, nunca forçado
+8. **Dados + alma** — nunca dado sem contexto, nunca narrativa sem dado
+9. **Aprovação** — outline precisa de OK do autor antes de redigir
+10. **Review** — 3 etapas, checklist hierárquico
 
 ---
 

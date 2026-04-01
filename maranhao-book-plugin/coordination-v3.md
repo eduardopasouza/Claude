@@ -157,7 +157,7 @@
 
 | # | Verbete | Tipo | Boxes sugeridos |
 |---|---------|------|-----------------|
-| 66 | **Bumba-meu-boi: o auto** | Verbete-âncora | Documento: descrições históricas |
+| 66 | **Bumba-meu-boi: o boi que morre e ressuscita** | Verbete-âncora | Documento: descrições históricas |
 | 67 | **Bumba-meu-boi: os sotaques** | Verbete complementar | Infográfico: comparativo dos sotaques |
 | 68 | **Tambor de Crioula** | Verbete próprio | Receita: comidas de terreiro |
 | 69 | **Reggae: a Jamaica brasileira** | Verbete forte | E no Brasil: só MA tem reggae assim |
@@ -399,7 +399,7 @@ maranhao-book-plugin/
 3. V14 — Os povos originários
 4. V23 — A França Equinocial
 5. V69 — Reggae: a Jamaica brasileira
-6. V66 — Bumba-meu-boi: o auto
+6. V66 — Bumba-meu-boi: o boi que morre e ressuscita
 7. V84 — Ferrovia Carajás: o paradoxo
 8. V50 — Centro Histórico: patrimônio, abandono e vida
 

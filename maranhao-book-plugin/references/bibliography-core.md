@@ -81,17 +81,22 @@
 
 ---
 
-## Organização por Livro/Capítulo
+## Organização por Parte (11 Partes)
 
-| Livro | Capítulos | Referências Primárias |
-|-------|-----------|----------------------|
-| I — A Terra | 1, 2 | Ab'Sáber, Feitosa/Trovão, ICMBio, INPE |
-| II — As Raízes | 3, 4, 5, 6 | Meireles, Lacroix, Assunção, Almeida, Gomes |
-| III — O Povo | 7, 8 | Ribeiro, Almeida, Ferretti M., ISA, Palmares |
-| IV — A Cultura | 9-13 | Ferretti S., Carvalho, Santos Neto, Moraes, Cascudo |
-| V — O Território | 14, 15 | Costa, Feitosa/Trovão, IPHAN |
-| VI — Economia e Política | 16, 17 | Furtado, Barbosa, Gonçalves, IBGE, IPEA |
-| VII — O Futuro | 18, Epílogo | Transversal + fontes atuais |
+| Parte | Nome | Verbetes | Referências Primárias |
+|-------|------|----------|----------------------|
+| I | O Chão | V01–V13 | Ab'Sáber, Feitosa/Trovão, Pinheiro, ICMBio, INPE |
+| II | Os Primeiros | V14–V21 | Ribeiro, ISA, FUNAI |
+| III | A Conquista | V22–V29 | Meireles, Lacroix, Ribeiro Jr., Viveiros, Gaioso |
+| IV | O Povo Negro | V30–V39 | Almeida, Gomes, Ferretti M., Santos, Palmares |
+| V | Apogeu e Queda | V40–V47 | Meireles, Viveiros, Furtado, Assunção, Coutinho |
+| VI | São Luís: A Ilha | V48–V56 | Costa, IPHAN, UNESCO, Gonçalves |
+| VII | O Povo e a Identidade | V57–V65 | Ribeiro, Cascudo, Ferretti S., Coutinho (gastr.) |
+| VIII | As Criações | V66–V81 | Carvalho, Azevedo Neto, Santos Neto, Moraes, Albernaz, Reis, Dias, Gullar, Montello |
+| IX | A Economia | V82–V91 | Furtado, Barbosa, Pinto, IBGE, IPEA |
+| X | O Estado e a Estrutura | V92–V99 | Barbosa, IBGE, IPEA, IMESC |
+| XI | O Maranhão no Mundo | V100–V105 | Transversal + fontes atuais + IPCC, IBGE projeções |
+| Epílogo | Quem é o Maranhão? | V106 | Transversal |
 
 ---
 
