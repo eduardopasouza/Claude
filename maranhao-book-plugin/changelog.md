@@ -20,6 +20,14 @@
 - Rotina de início de sessão atualizada: roadmap.md como prioridade 2 (antes do registro-producao)
 - Decisões registradas: V93 independente, V99 ambos, legacy reaproveitável, YouTube com regra
 
+### V02 — As Quatro Paisagens (Parte I)
+- Pipeline completo: research + outline + texto (4.300 palavras) + 3 reels + 3 visuais
+- Verbete-âncora da Parte I — YouTube sugerido
+- Boxes: E no Brasil (Pantanal do Nordeste?) + 2 glossários (Baixada Maranhense, MATOPIBA)
+- Cross-references: V01, V03, V04, V05, V06, V08, V09, V84
+- Fio da água: sim (rios Sul→Norte como sistema nervoso)
+- 3 visuais: mapa 4 paisagens, corte transversal W→E, díptico seca/cheia da Baixada
+
 ### V01 — Coordenadas: onde fica o Maranhão (Parte I)
 - Pipeline completo: research + outline (aprovado) + texto (3.200 palavras) + 2 reels + 2 visuais
 - Primeiro verbete da Fase 3

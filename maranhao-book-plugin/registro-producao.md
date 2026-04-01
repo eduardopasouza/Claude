@@ -11,13 +11,13 @@
 | Métrica | Valor |
 |---------|-------|
 | Total de verbetes | 106 |
-| Produzidos | 16 |
+| Produzidos | 17 |
 | Em produção | 0 |
-| Pendentes | 90 |
-| Palavras escritas | ~62.800 |
-| Reels produzidos | 47 |
-| Visuais produzidos | 40 |
-| Fase atual | Fase 3 — V01 concluído, próximo V02 |
+| Pendentes | 89 |
+| Palavras escritas | ~67.100 |
+| Reels produzidos | 50 |
+| Visuais produzidos | 43 |
+| Fase atual | Fase 3 — V01+V02 concluídos, próximo V06 |
 
 ---
 
@@ -61,7 +61,7 @@
 | # | Verbete | Tipo | Status | Palavras | Data |
 |---|---------|------|--------|----------|------|
 | V01 | Coordenadas: onde fica o Maranhão | Verbete-mapa | ✅ Pronto | 3.200 | 2026-04-01 |
-| V02 | As Quatro Paisagens | Verbete-âncora | ⏳ Pendente | — | — |
+| V02 | As Quatro Paisagens | Verbete-âncora | ✅ Pronto | 4.300 | 2026-04-01 |
 | V03 | Cerrado maranhense | Ecossistêmico | ⏳ Pendente | — | — |
 | V04 | Amazônia maranhense | Ecossistêmico | ⏳ Pendente | — | — |
 | V05 | Litoral e mangues | Ecossistêmico | ✅ Pronto | 3.700 | 2026-03-17 |
@@ -74,7 +74,7 @@
 | V12 | Delta das Américas | Verbete próprio | ⏳ Pendente | — | — |
 | V13 | Pré-história maranhense | Arqueologia | ⏳ Pendente | — | — |
 
-**Parte I**: 4/13 concluídos
+**Parte I**: 5/13 concluídos
 
 ---
 
@@ -409,6 +409,7 @@
 | 2026-03-17 | V85 | ✅ Pipeline completo | texto (3.100 palavras) + 3 reels + 2 visuais |
 | 2026-03-18 | V15 | ✅ Pipeline completo | texto (2.600 palavras) + 3 reels + 2 visuais |
 | 2026-04-01 | V01 | ✅ Pipeline completo | research + outline + texto (3.200 palavras) + 2 reels + 2 visuais. Primeiro verbete da Fase 3. Legacy reaproveitado. |
+| 2026-04-01 | V02 | ✅ Pipeline completo | research + outline + texto (4.300 palavras) + 3 reels + 3 visuais. Verbete-âncora da Parte I. YouTube sugerido. |
 
 ---
 

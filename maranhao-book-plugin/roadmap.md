@@ -1,7 +1,7 @@
 # Roadmap — Quem é o Maranhão?
 
 > Auto-atualizado ao final de cada verbete concluído. Fonte única de estado do projeto.
-> Última atualização: 2026-04-01 (V01 concluído)
+> Última atualização: 2026-04-01 (V01+V02 concluídos)
 
 ---
 
@@ -9,11 +9,11 @@
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Verbetes concluídos | 16 / 106 | 106 |
-| Progresso geral | 15,1% | 100% |
-| Palavras escritas | ~62.800 | ~300.000–400.000 |
-| Reels produzidos | 47 | ~250–320 |
-| Visuais produzidos | 40 | ~150–200 |
+| Verbetes concluídos | 17 / 106 | 106 |
+| Progresso geral | 16,0% | 100% |
+| Palavras escritas | ~67.100 | ~300.000–400.000 |
+| Reels produzidos | 50 | ~250–320 |
+| Visuais produzidos | 43 | ~150–200 |
 | YouTube produzidos | 8 | ~15–25 |
 | Entradas YAML | 126 | ~500–800 |
 | Fase atual | **Fase 3** (V01 concluído) | Fase 6 |
@@ -22,7 +22,7 @@
 
 | Parte | Nome | Total | Prontos | % | Barra |
 |-------|------|-------|---------|---|-------|
-| I | O Chão | 13 | 4 | 31% | `███░░░░░░░` |
+| I | O Chão | 13 | 5 | 38% | `████░░░░░░` |
 | II | Os Primeiros | 8 | 2 | 25% | `██░░░░░░░░` |
 | III | A Conquista | 8 | 1 | 13% | `█░░░░░░░░░` |
 | IV | O Povo Negro | 10 | 1 | 10% | `█░░░░░░░░░` |
@@ -42,8 +42,8 @@
 | Posição | Verbete | Parte | Bloco | Status |
 |---------|---------|-------|-------|--------|
 | ~~1~~ | ~~V01 — Coordenadas: onde fica o Maranhão~~ | I | 3A | ✅ Concluído |
-| **→ 2** | **V02 — As Quatro Paisagens** | I | 3A | ⏳ Próximo |
-| 3 | V06 — Mata dos Cocais | I | 3A | ⏳ Pendente |
+| ~~2~~ | ~~V02 — As Quatro Paisagens~~ | I | 3A | ✅ Concluído |
+| **→ 3** | **V06 — Mata dos Cocais** | I | 3A | ⏳ Próximo |
 | 4 | V13 — Pré-história maranhense | I | 3A | ⏳ Pendente |
 | 5 | V16 — Guajajara/Tenetehar | II | 3B | ⏳ Pendente |
 | 6 | V17 — Awá-Guajá | II | 3B | ⏳ Pendente |
@@ -88,6 +88,7 @@
 | 14 | 2026-03-17 | V85 — Babaçu | 3.100 | 3 | 2 | não | complementar |
 | 15 | 2026-03-18 | V15 — Tupinambá | 2.600 | 3 | 2 | não | complementar |
 | 16 | 2026-04-01 | V01 — Coordenadas | 3.200 | 2 | 2 | não | verbete-mapa |
+| 17 | 2026-04-01 | V02 — Quatro Paisagens | 4.300 | 3 | 3 | sugerido | âncora |
 
 ### Tendências
 
