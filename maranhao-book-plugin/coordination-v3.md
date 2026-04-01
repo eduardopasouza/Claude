@@ -61,7 +61,7 @@
 | 02 | **As Quatro Paisagens** | Verbete-âncora | Infográfico: 4 biomas sobrepostos |
 | 03 | **Cerrado maranhense** | Ecossistêmico | Fauna: lobo-guará, seriema |
 | 04 | **Amazônia maranhense** | Ecossistêmico | Fauna: onça, arara |
-| 05 | **Litoral e mangues** | Ecossistêmico | Dado: MA tem ~50% dos mangues do Brasil |
+| 05 | **Litoral e mangues** | Ecossistêmico | Dado: MA tem ~36% dos mangues do Brasil |
 | 06 | **Mata dos Cocais** | Ecossistêmico/identitário | Babaçu: a palmeira que é tudo |
 | 07 | **O Maranhão seco** | Ecossistêmico | Caatinga e semiárido surpresa |
 | 08 | **Rios, lagos e lagoas** | Verbete-âncora (fio da água) | Infográfico: bacia hidrográfica |

@@ -17,7 +17,7 @@
 | Palavras escritas | ~52.700 |
 | Reels produzidos | 45 |
 | Visuais produzidos | 38 |
-| Fase atual | Fase 2 — Completar partes cronológicas |
+| Fase atual | Fase 3 — Fases 1 e 2 concluídas (100%) |
 
 ---
 
@@ -29,8 +29,8 @@
 | V30 | 2 | A travessia: de onde vieram os africanos | IV | ✅ Pronto | 4.500 | 3 | 3 | 2026-03-17 |
 | V14 | 3 | Os povos originários do Maranhão | II | ✅ Pronto | 4.800 | 3 | 3 | 2026-03-17 |
 | V23 | 4 | A França Equinocial: o sonho francês | III | ✅ Pronto | 4.600 | 3 | 3 | 2026-03-17 |
-| V69 | 5 | Reggae: a Jamaica brasileira | VII | ✅ Pronto | 4.200 | 3 | 3 | 2026-03-17 |
-| V66 | 6 | Bumba-meu-boi: o boi que morre e ressuscita | VII | ✅ Pronto | 4.500 | 3 | 3 | 2026-03-17 |
+| V69 | 5 | Reggae: a Jamaica brasileira | VIII | ✅ Pronto | 4.200 | 3 | 3 | 2026-03-17 |
+| V66 | 6 | Bumba-meu-boi: o auto | VIII | ✅ Pronto | 4.500 | 3 | 3 | 2026-03-17 |
 | V84 | 7 | Ferrovia Carajás: o paradoxo dos $24 bilhões | IX | ✅ Pronto | 4.500 | 3 | 3 | 2026-03-17 |
 | V50 | 8 | Centro Histórico: patrimônio, abandono e vida | VI | ✅ Pronto | 4.300 | 3 | 3 | 2026-03-17 |
 
@@ -188,7 +188,7 @@
 
 | # | Verbete | Tipo | Status | Palavras | Data |
 |---|---------|------|--------|----------|------|
-| V66 | Bumba-meu-boi: o boi que morre e ressuscita | Verbete-âncora | ✅ Pronto | 4.500 | 2026-03-17 |
+| V66 | Bumba-meu-boi: o auto | Verbete-âncora | ✅ Pronto | 4.500 | 2026-03-17 |
 | V67 | Bumba-meu-boi: os sotaques | Verbete complementar | ✅ Pronto | 3.000 | 2026-03-17 |
 | V68 | Tambor de Crioula | Verbete próprio | ⏳ Pendente | — | — |
 | V69 | Reggae: a Jamaica brasileira | Verbete forte | ✅ Pronto | 4.200 | 2026-03-17 |

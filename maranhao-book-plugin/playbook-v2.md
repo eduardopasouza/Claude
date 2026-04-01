@@ -285,14 +285,17 @@ hashtags: ["#QuemEoMaranhao", "#MaranhaoXX"]
 **Pipeline visual**: SVGs simples + prompts IA + briefings arte final (3 camadas)
 
 #### Paleta maranhense
-| Cor | Hex sugerido | Uso |
-|-----|-------------|-----|
-| Azul-mar | #1B4F72 | Água, litoral, baía |
-| Verde-mangue | #1E8449 | Natureza, Amazônia, mangues |
-| Terracota | #BA4A00 | Terra, cerrado, história |
-| Dourado-babaçu | #D4AC0D | Cultura, riqueza, identidade |
-| Branco-areia | #F5F5DC | Lençóis, fundo, respiro |
-| Preto-mangue | #1C1C1C | Texto, contraste |
+> **Fonte autoritativa**: ver `style-guide-visual.md` para paleta completa e usos detalhados.
+
+| Cor | Hex | Uso |
+|-----|-----|-----|
+| Ocre | #C8952E | Cor-base, fundos, títulos |
+| Terracota | #B5533E | Destaques, acentos, boxes |
+| Verde-mata | #2D6A4F | Natureza, Amazônia, dados positivos |
+| Azul-mar | #1B4965 | Água, litoral, mapas |
+| Areia | #E8D5B7 | Fundo de boxes |
+| Creme | #FAF3E8 | Fundo de página |
+| Carvão | #2B2B2B | Texto, contraste, fundo vídeo |
 
 #### Template: `visual.md`
 
