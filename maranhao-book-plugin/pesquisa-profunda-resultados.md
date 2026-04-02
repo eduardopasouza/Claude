@@ -123,7 +123,29 @@
 | C11 Cultura aprofundada (reggae radiolas, Tambor Mina, Alcione, Baleiro) | ✅ |  |
 | C12 ANTAQ, ANM, CPT, ANEEL | ✅ |  |
 | C13 Conab safras, DataSUS, cultura náutica, Parcel, TSE | ✅ |  |
-| D1 Projeções IPCC/IBGE | ⏳ Próxima sessão |  |
+| D1 Projeções IPCC/IBGE/IPEA/Banco Mundial/EPE | ✅ Completa |  |
+
+## D1 — Projeções Climáticas, Demográficas e Econômicas
+
+| Dado | Valor | Fonte | URL |
+|------|-------|-------|-----|
+| IPCC AR6 NES: seca agrícola/ecológica +2°C (alta confiança) | IPCC | https://www.ipcc.ch/.../Fact_Sheet_Central_South_America.pdf |
+| MA Cerrado: +5,1°C, -19,2% a -31,2% precipitação | Fiocruz | https://saudeamanha.icict.fiocruz.br/ |
+| Trizidela do Vale: mais exposto mudança climática no MA | Fiocruz | idem |
+| UFMA: +0,9°C em 60 anos | UFMA | https://portalpadrao.ufma.br/ |
+| Artigo: "Mudanças climáticas no Maranhão" | UFGD/RBCLIMA | https://ojs.ufgd.edu.br/rbclima/article/view/19596 |
+| IBGE projeções populacionais MA (XLS) | IBGE | https://agenciadenoticias.ibge.gov.br/.../abe000d9.xls |
+| **MARANHÃO 2050**: Plano Estratégico (site completo) | Gov MA | https://maranhao2050.ma.gov.br/ |
+| MA 2050: Resumo Executivo (PDF) | Gov MA | https://maranhao2050.ma.gov.br/.../RESUMO-EXECUTIVO.pdf |
+| MA 2050: Indicadores e Metas (PDF) | Gov MA | https://maranhao2050.ma.gov.br/.../Compilado-de-indicadores.pdf |
+| MA 2050: Cenários (PDF) | Gov MA | https://maranhao2050.ma.gov.br/.../Produto-1.3.pdf |
+| IPEA: NE pode crescer mais que BR até 2030 | IPEA | https://www.ipea.gov.br/ |
+| IPEA: metas Agenda 2030 | IPEA | https://www.ipea.gov.br/ |
+| EPE: cenários econômicos 2030 (PDF) | EPE | https://www.epe.gov.br/ |
+| EPE: PNE 2055 — Potencial Recursos Energéticos | EPE | https://www.epe.gov.br/.../PNE-2055_Caderno-Recursos.pdf |
+| Atlas eólico+solar MA (Equatorial/Eosolar) | Aranda | https://www.arandanet.com.br/ |
+| Banco Mundial: Brazil Poverty Brief out/2024 | World Bank | https://documents.worldbank.org/ |
+| Banco Mundial: WDI Brasil | World Bank | https://databank.worldbank.org/ |
 
 ## C13 — Conab, DataSUS, Cultura Náutica, Parcel, TSE
 
