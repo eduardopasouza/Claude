@@ -124,7 +124,7 @@ A proporção de 78,1% de autodeclarados pretos e pardos no Maranhão (IBGE 2022
 10. SOUZA, Laura de Mello e. *O Diabo e a Terra de Santa Cruz*. São Paulo: Companhia das Letras, 1986.
 11. BECKERT, Sven. *Empire of Cotton: A Global History*. Vintage, 2015.
 12. INCRA/FCP. Relatórios de comunidades quilombolas certificadas. 2023.
-13. Trans-Atlantic Slave Trade Database (slavevoyages.org).
+13. Trans-Atlantic Slave Trade Database. Disponível em: <https://www.slavevoyages.org/>. Acesso em: 01/04/2026.
 
 ---
 

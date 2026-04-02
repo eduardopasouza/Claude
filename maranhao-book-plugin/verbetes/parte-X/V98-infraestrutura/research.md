@@ -24,7 +24,7 @@ fontes_consultadas: 12+
 | Abastecimento agua Sao Luis | CAEMA, intermitencia cronica |
 
 ## Fontes
-1. SNIS — Dados de saneamento 2022.
+1. SNIS — Dados de saneamento 2022. Trata Brasil: <https://tratabrasil.org.br/>. Gov MA: <https://www.ma.gov.br/noticias/>. Acesso em: 01/04/2026. [Esgoto tratado 13,6%; coleta 32,49%; agua urbana 76,29%]
 2. IBGE — Censo 2022, domicilios.
 3. ANATEL — Cobertura de internet por UF.
 4. FJP — Deficit habitacional 2022.

@@ -118,8 +118,8 @@ MA é o único estado que está simultaneamente no bioma Cerrado e no bioma Amaz
 
 ## Referências-chave
 
-1. IBGE. Censos Demográficos e Contas Regionais do Brasil, 2021.
-2. PNUD/IPEA. Atlas do Desenvolvimento Humano no Brasil.
+1. IBGE. Censos Demográficos e Contas Regionais do Brasil, 2021. Disponível em: <https://cidades.ibge.gov.br/brasil/ma/panorama>. Acesso em: 01/04/2026. [Pop. 6.776.699; area 329.651 km²]. PIB: <https://cidades.ibge.gov.br/brasil/ma/pesquisa/10060/60147>. [PIB per capita R$ 20.632,62 (2022)]
+2. PNUD/IPEA. Atlas do Desenvolvimento Humano no Brasil. Disponível em: <http://www.atlasbrasil.org.br/>. Acesso em: 01/04/2026.
 3. IBGE/PNAD Contínua. Síntese de Indicadores Sociais, 2023.
 4. INPE/PRODES. Taxas de desmatamento por estado, 2022.
 5. EMBRAPA. MATOPIBA: caracterização, agropecuária e dinâmicas territoriais.

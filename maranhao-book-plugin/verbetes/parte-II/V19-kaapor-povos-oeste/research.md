@@ -18,7 +18,7 @@ V19 apresenta os povos Tupi do oeste maranhense — especialmente os Ka'apor (ta
 |------|-------|-------|-----|
 | Ka'apor (Urubu-Ka'apor) — pop. | ~2.300 pessoas | SIASI/SESAI | 2023 |
 | Tronco linguístico | Tupi, família Tupi-Guarani | Rodrigues, A.D. | 2002 |
-| TI Alto Turiaçu — área | 530.525 hectares | FUNAI | 2024 |
+| TI Alto Turiaçu — área | 530.525 hectares | FUNAI; ZEE-MA. Disponível em: <https://zee.ma.gov.br/subsidio/html/indi.html>. Acesso em: 01/04/2026. | 2024 |
 | TI Alto Turiaçu — demarcação | Homologada em 1982 | FUNAI | 1982 |
 | Localização | Noroeste do MA (Zé Doca, Centro Novo, Maranhãozinho) | IBGE | 2024 |
 | Desmatamento no entorno | 76%+ da Amazônia maranhense destruída | MapBiomas | 2023 |

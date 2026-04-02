@@ -83,7 +83,7 @@ A colônia durou 3,5 anos. Jerônimo de Albuquerque Maranhão — primeiro mamel
 
 ## Fontes
 
-- D'Abbeville, *Histoire de la mission des Pères Capucins en l'Isle de Maragnan* (1614)
+- D'Abbeville, *Histoire de la mission des Pères Capucins en l'Isle de Maragnan* (1614). Disponível em: <https://www2.senado.leg.br/bdsf/bitstream/handle/id/576068/>. Acesso em: 01/04/2026.
 - D'Évreux, *Suitte de l'histoire* (1615, fragmentos)
 - Wikipedia EN/PT/FR: Equinoctial France, Daniel de La Touche, Batalha de Guaxenduba
 - Brasiliana Iconográfica: "Franceses no Maranhão e Tupinambás na França"

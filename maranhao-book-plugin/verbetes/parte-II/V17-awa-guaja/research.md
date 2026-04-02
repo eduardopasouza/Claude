@@ -98,8 +98,8 @@ Em 2012, a ONG britânica Survival International lançou a campanha global "Awá
 3. Gomes, Mércio Pereira. *Os índios e o Brasil*. Petrópolis: Vozes, 2012.
 4. Forline, Louis Carlos. "The Persistence and Cultural Transformation of the Guajá Indians." Ph.D. thesis, University of Florida, 1997.
 5. Ricardo, Carlos Alberto (ed.). *Povos Indígenas no Brasil*. Instituto Socioambiental (ISA), diversas edições.
-6. FUNAI. *Operação Awá: Relatório de Campo*. Brasília, 2014.
-7. d'Abbeville, Claude. *Histoire de la mission des pères capucins en l'Isle de Maragnan*. Paris, 1614. [Contexto regional]
+6. FUNAI. *Operação Awá: Relatório de Campo*. Brasília, 2014. ZEE-MA — TI Awá 118.000 ha: <https://zee.ma.gov.br/subsidio/html/indi.html>. Acesso em: 01/04/2026.
+7. d'Abbeville, Claude. *Histoire de la mission des pères capucins en l'Isle de Maragnan*. Paris, 1614. [Contexto regional]. Disponível em: <https://www2.senado.leg.br/bdsf/bitstream/handle/id/576068/>. Acesso em: 01/04/2026.
 8. Balée, William. *Footprints of the Forest: Ka'apor Ethnobotany*. Columbia University Press, 1994. [Comparação regional]
 9. Coimbra Jr., Carlos E.A. & Santos, Ricardo V. "Emerging Health Needs and Epidemiological Research in Indigenous Peoples in Brazil." In: *Lost Paradises and the Ethics of Research and Publication*. Oxford University Press, 2005.
 10. Ribeiro, Darcy. *Os índios e a civilização*. São Paulo: Companhia das Letras, 1996.

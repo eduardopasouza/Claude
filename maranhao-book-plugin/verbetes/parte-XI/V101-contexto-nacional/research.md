@@ -25,6 +25,6 @@ fontes_consultadas: 10+
 | Porto (calado) | 23m | — | 1o |
 
 ## Fontes
-1. IBGE — Dados comparativos por UF, 2022-2023.
+1. IBGE — Dados comparativos por UF, 2022-2023. Disponível em: <https://cidades.ibge.gov.br/brasil/ma/panorama>. Acesso em: 01/04/2026. [Pop. 6.776.699; area 329.651 km²]. PIB: <https://cidades.ibge.gov.br/brasil/ma/pesquisa/10060/60147>. [PIB R$ 139,789 bi; PIB per capita R$ 20.632,62 (2022)]
 2. PNUD — IDH por UF.
 3. INEP — IDEB por UF.
