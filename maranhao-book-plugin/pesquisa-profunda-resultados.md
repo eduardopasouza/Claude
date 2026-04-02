@@ -109,9 +109,11 @@
 | A3 Economia/Porto/Vale | ✅ Completa |  |
 | A4 Saneamento | ✅ Completa |  |
 | A5 FUNAI/FCP/ISA | ✅ Completa |  |
-| B1 Biblioteca Nacional/Hemeroteca | ⏳ Próxima sessão |  |
-| B2 UFMA/BDTD/SciELO | ⏳ Próxima sessão |  |
-| C1 IPHAN/UNESCO | ⏳ Próxima sessão |  |
+| B1 Fontes acadêmicas e primárias | ✅ Completa |  |
+| B2 Dados trabalho e conflitos | ✅ Completa |  |
+| C1 Fontes históricas | ✅ Completa |  |
+| C2 Fontes culturais e literárias | ✅ Completa |  |
+| D1 Projeções IPCC/IBGE | ⏳ Próxima sessão |  |
 
 ---
 
