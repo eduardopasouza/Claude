@@ -1,0 +1,54 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#2B2B2B"/>
+
+  <!-- Title -->
+  <text x="400" y="40" text-anchor="middle" font-size="20" font-weight="bold" fill="#FAF3E8">DESIGUALDADE: O PAINEL</text>
+  <text x="400" y="60" text-anchor="middle" font-size="11" fill="#888888">Maranhão em números — Dados IBGE/SNIS 2022-2024</text>
+
+  <!-- Grid of data cards -->
+  <!-- Card 1: IDH -->
+  <rect x="30" y="85" width="230" height="110" fill="#C1292E" rx="8" opacity="0.9"/>
+  <text x="145" y="125" text-anchor="middle" font-size="42" font-weight="bold" fill="#FAF3E8">0,676</text>
+  <text x="145" y="150" text-anchor="middle" font-size="11" fill="#FAF3E8">IDH (PNUD 2021)</text>
+  <text x="145" y="170" text-anchor="middle" font-size="9" fill="#E8D5B7">Entre os menores do Brasil</text>
+
+  <!-- Card 2: PIB per capita -->
+  <rect x="285" y="85" width="230" height="110" fill="#C8952E" rx="8" opacity="0.9"/>
+  <text x="400" y="120" text-anchor="middle" font-size="14" fill="#FAF3E8">PIB per capita</text>
+  <text x="400" y="150" text-anchor="middle" font-size="32" font-weight="bold" fill="#FAF3E8">R$ 20.632</text>
+  <text x="400" y="170" text-anchor="middle" font-size="9" fill="#E8D5B7">IBGE Contas Regionais 2022</text>
+
+  <!-- Card 3: Esgoto -->
+  <rect x="540" y="85" width="230" height="110" fill="#C1292E" rx="8" opacity="0.9"/>
+  <text x="655" y="120" text-anchor="middle" font-size="14" fill="#FAF3E8">Esgoto tratado</text>
+  <text x="655" y="150" text-anchor="middle" font-size="42" font-weight="bold" fill="#FAF3E8">13,6%</text>
+  <text x="655" y="170" text-anchor="middle" font-size="9" fill="#E8D5B7">SNIS/Trata Brasil 2022</text>
+
+  <!-- Card 4: Pobreza -->
+  <rect x="30" y="215" width="230" height="110" fill="#2D6A4F" rx="8" opacity="0.9"/>
+  <text x="145" y="250" text-anchor="middle" font-size="14" fill="#FAF3E8">Saíram da pobreza</text>
+  <text x="145" y="280" text-anchor="middle" font-size="32" font-weight="bold" fill="#FAF3E8">-372 mil</text>
+  <text x="145" y="300" text-anchor="middle" font-size="9" fill="#E8D5B7">2022→2023 (IBGE)</text>
+
+  <!-- Card 5: Porto -->
+  <rect x="285" y="215" width="230" height="110" fill="#1B4965" rx="8" opacity="0.9"/>
+  <text x="400" y="250" text-anchor="middle" font-size="14" fill="#FAF3E8">Complexo portuário</text>
+  <text x="400" y="280" text-anchor="middle" font-size="28" font-weight="bold" fill="#FAF3E8">200+ M ton</text>
+  <text x="400" y="300" text-anchor="middle" font-size="9" fill="#E8D5B7">Maior do Norte-Nordeste</text>
+
+  <!-- Card 6: Conflitos -->
+  <rect x="540" y="215" width="230" height="110" fill="#C1292E" rx="8" opacity="0.9"/>
+  <text x="655" y="250" text-anchor="middle" font-size="14" fill="#FAF3E8">Conflitos agrários</text>
+  <text x="655" y="280" text-anchor="middle" font-size="42" font-weight="bold" fill="#FAF3E8">363</text>
+  <text x="655" y="300" text-anchor="middle" font-size="9" fill="#E8D5B7">1º do Brasil (CPT 2024)</text>
+
+  <!-- Bottom paradox text -->
+  <rect x="30" y="345" width="740" height="70" fill="#C8952E" rx="8" opacity="0.15"/>
+  <text x="400" y="375" text-anchor="middle" font-size="14" fill="#C8952E" font-weight="bold">O PARADOXO</text>
+  <text x="400" y="395" text-anchor="middle" font-size="11" fill="#FAF3E8">Riqueza que passa. Indicadores que ficam. O padrão se repete há 300 anos.</text>
+
+  <!-- Footer -->
+  <text x="400" y="450" text-anchor="middle" font-size="9" fill="#888888">Fontes: IBGE Censo 2022, SNIS/Trata Brasil 2022, CPT 2024, ANTAQ 2024</text>
+  <text x="400" y="475" text-anchor="middle" font-size="8" font-weight="bold" fill="#C8952E">@quemeomaranhao — V94</text>
+</svg>
