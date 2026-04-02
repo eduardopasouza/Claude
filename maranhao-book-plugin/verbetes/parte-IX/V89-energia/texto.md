@@ -39,7 +39,7 @@ A Tucurui — no Para, nao no Maranhao — merece mencao porque foi construida e
 
 Olhe para o litoral maranhense num mapa de vento e voce entendera por que as torres estao chegando. A costa entre o Delta do Parnaiba e a Baia de Sao Marcos recebe ventos alisios constantes — velocidade media de 7 a 9 metros por segundo, com regularidade que faz inveja ao vento europeu.^6
 
-Em 2024, o Maranhao tinha mais de 4.500 MW de capacidade eolica instalada — concentrados em Paulino Neves, Delta do Parnaiba, Barreirinhas e Tutoia. Mais de cem parques eolicos pontuam a paisagem do litoral leste, cada um com dezenas de torres de 100 a 150 metros de altura.^7
+Em 2024, o Maranhao tinha mais de 3.500 MW de capacidade eolica instalada — concentrados em Paulino Neves, Delta do Parnaiba, Barreirinhas e Tutoia. Mais de cem parques eolicos pontuam a paisagem do litoral leste, cada um com dezenas de torres de 100 a 150 metros de altura.^7
 
 A eolica maranhense se beneficia de um fator que outros estados nordestinos nao tem na mesma medida: complementaridade sazonal. No Maranhao, o vento e mais forte no segundo semestre — justamente quando as chuvas (e portanto a geracao hidroeletrica) diminuem. Eolica e hidro se complementam como instrumentos numa orquestra.^8
 
@@ -67,13 +67,15 @@ O proximo capitulo pode ser offshore. A costa maranhense esta entre as areas pri
 
 | Fonte | Capacidade instalada | % do total |
 |-------|---------------------|------------|
-| Eolica | ~4.500 MW | ~55% |
-| Hidreletrica | ~1.500 MW | ~18% |
-| Termoeletrica (gas/diesel) | ~1.200 MW | ~15% |
-| Solar | ~500 MW | ~6% |
+| Eolica | ~3.500 MW | ~55% |
+| Hidreletrica | ~1.100 MW | ~17% |
+| Termoeletrica (gas/diesel) | ~900 MW | ~14% |
+| Solar | ~500 MW | ~8% |
 | Biomassa | ~300 MW | ~4% |
 | Outras | ~100 MW | ~2% |
-| **Total** | **~8.100 MW** | **100%** |
+| **Total** | **~6.400 MW** | **100%** |
+
+*Nota: a capacidade eolica cresce anualmente com novos parques sendo licenciados.*
 
 *Nota: O consumo do MA e de ~3.000-4.000 MW medio. O excedente vai para o SIN.*
 *Fonte: ANEEL/BIG, 2024*

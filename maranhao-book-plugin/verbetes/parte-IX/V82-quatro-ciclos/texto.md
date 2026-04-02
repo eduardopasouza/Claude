@@ -145,7 +145,7 @@ O contrafactual e util nao para lamentar, mas para entender: a industrializacao 
 <!-- BOX: mundo — Quem quebrou o ciclo extrativo -->
 ### Enquanto isso no mundo: quem quebrou o ciclo extrativo
 
-**Noruega**: descobriu petroleo no Mar do Norte em 1969. Em vez de exportar bruto, criou a Statoil (estatal), um fundo soberano (hoje com US$1,6 trilhao) e investiu os royalties em educacao, saude e infraestrutura. O petroleo vai acabar; o fundo, nao.
+**Noruega**: descobriu petroleo no Mar do Norte em 1969. Em vez de exportar bruto, criou a Statoil (estatal), um fundo soberano (hoje com mais de US$ 1,7 trilhao) e investiu os royalties em educacao, saude e infraestrutura. O petroleo vai acabar; o fundo, nao.
 
 **Botsuana**: descobriu diamantes em 1967, tres anos apos a independencia. Em vez de deixar a De Beers levar tudo, negociou uma joint venture 50-50 (Debswana) e investiu os lucros em educacao. Hoje tem o maior IDH da Africa Subsaariana entre paises sem litoral.
 

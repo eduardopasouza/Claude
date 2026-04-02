@@ -12,12 +12,12 @@ fontes_consultadas: 15+
 
 | Indicador | Valor |
 |-----------|-------|
-| Geracao eletrica no MA | ~3.500 MW capacidade instalada |
+| Geracao eletrica no MA | mais de 3.500 MW de capacidade instalada (cresce anualmente) |
 | Consumo vs. geracao | MA gera mais energia do que consome |
 | Hidreletrica Boa Esperanca (Parnaiba) | 237 MW, inaugurada 1970 |
 | Hidreletrica Estreito (Tocantins) | 1.087 MW, inaugurada 2012 |
 | Tucurui | No Para, mas alimenta MA via linhao |
-| Eolica: capacidade instalada MA (2024) | ~4.500 MW |
+| Eolica: capacidade instalada MA (2024) | mais de 3.500 MW (cresce anualmente) |
 | Parques eolicos MA | ~100+ (Delta, Paulino Neves, Barreirinhas, Tutoia) |
 | Solar: capacidade (2024) | ~500 MW (crescimento rapido) |
 | Linha de transmissao | Interligacao Norte-Nordeste passa pelo MA |

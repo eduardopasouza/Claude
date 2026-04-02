@@ -73,6 +73,33 @@
 
 ---
 
+## B1 — Fontes Acadêmicas e Primárias
+
+| Fonte | URL | Relevância |
+|-------|-----|------------|
+| Slave Voyages Database | https://www.slavevoyages.org/ | V30-V33: tráfico transatlântico para o MA |
+| "Atlantic Slave Trade to Maranhão, 1680-1846" (Taylor & Francis) | https://www.tandfonline.com/doi/abs/10.1080/01440390802486507 | V30, V33: volume, rotas, origens — FONTE DEFINITIVA |
+| D'Abbeville, "Missão dos Capuchinhos" (1614) | https://www2.senado.leg.br/bdsf/bitstream/handle/id/576068/ | V23, V24: França Equinocial |
+| Maria Firmina dos Reis, "Úrsula" (1859) | https://archive.org/details/ursula-2a-edicao | V76 |
+| BN Digital — Cartografia colonial | https://bndigital.bn.gov.br/dossies/biblioteca-virtual-da-cartografia-historica-do-seculo-xvi-ao-xviii/ | V22-V29 |
+| IMESC — Diagnóstico Socioeconômico | https://imesc.ma.gov.br/.../diagnostico_socioeconomico.pdf | TODOS |
+| IMESC — Atlas IDH | https://imesc.ma.gov.br/.../Atlas-mais-IDH.pdf | V94, V95 |
+| Atlas Brasil (IPEA/PNUD) | http://www.atlasbrasil.org.br/ | V94 |
+| Dossiê UNESCO São Luís | http://portal.iphan.gov.br/uploads/ckfinder/arquivos/Dossie%20SAO%20LUIS_pt.pdf | V50 |
+| UNESCO WHC 821 (São Luís) | https://whc.unesco.org/en/list/821/ | V50, V80 |
+| UNESCO ICH Bumba-meu-boi | https://ich.unesco.org/en/RL/cultural-complex-of-bumba-meu-boi-from-maranho-01510 | V66, V80 |
+
+## B2 — Dados de Trabalho e Conflitos
+
+| Dado | Valor | Fonte | URL |
+|------|-------|-------|-----|
+| Trabalho análogo escravidão MA 2024 | 82 resgatados | CPT/Ceuma | https://comunicar.ceuma.br/... |
+| Lista suja: 25 empregadores MA | 164 trabalhadores (MTE) | G1 | https://g1.globo.com/ma/... |
+| MTE resgate ago/2025 | 80 trabalhadores (carnaúba + pesca) | Gov MTE | https://www.gov.br/trabalho-e-emprego/... |
+| Brasil 2024: >2.000 resgatados | Nacional | CUT | https://www.cut.org.br/... |
+
+---
+
 ## Próximas fases
 
 | Fase | Fontes | Status |

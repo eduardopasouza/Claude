@@ -60,7 +60,7 @@ A receita da divisão de ferrosos da Vale em 2024 foi de 31,4 bilhões de dólar
 | Métrica | Valor |
 |---------|-------|
 | Minério de ferro transportado pela EFC (2024) | ~177 milhões de toneladas |
-| Valor estimado da carga em Ponta da Madeira | ~US$18-19 bilhões |
+| Valor estimado da carga em Ponta da Madeira | mais de US$ 15 bilhões |
 | PIB do Maranhão (2021) | R$125 bilhões (~US$24 bi) |
 | PIB per capita do MA (2021) | R$17.471 (menor do Brasil) |
 | CFEM recebida por Açailândia (out/2024) | ~R$2,9 milhões/mês |
@@ -100,7 +100,7 @@ A quilombola Santa Rosa dos Pretos, em Itapecuru-Mirim, viu seu único rio secar
 
 | País/Estado | Recurso | Mecanismo | Resultado |
 |---|---|---|---|
-| **Noruega** | Petróleo | Fundo Soberano (1990) | US$1,8 trilhão acumulados (2025) |
+| **Noruega** | Petróleo | Fundo Soberano (1990) | mais de US$ 1,7 trilhão acumulados (2025) |
 | **Chile** | Cobre | Codelco estatal (1971) | US$116 bilhões transferidos ao Estado |
 | **Botsuana** | Diamantes | Debswana (50/50 Estado/De Beers) | De mais pobre a renda média em 50 anos |
 | **Maranhão** | Ferro (trânsito) | CFEM (15% municípios afetados) | 51,6% de pobreza |
@@ -113,7 +113,7 @@ O Maranhão não é produtor — é corredor. A riqueza nasce no Pará e embarca
 <!-- BOX: contrafactual — E se o MA recebesse o que a Noruega recebe? -->
 ### E se...?
 
-E se o Maranhão recebesse uma parcela proporcional ao que transporta? Considere: o minério que passa pelo estado vale ~US$18 bilhões/ano. Se o MA ficasse com 5% desse valor — como taxa de trânsito, compensação ambiental ou participação nos lucros —, seriam US$900 milhões/ano, ou cerca de R$5 bilhões. Isso é mais do que o orçamento estadual de saúde ou educação. Se fosse investido num fundo soberano como o norueguês, em vinte anos o Maranhão teria acumulado dezenas de bilhões — o suficiente para deixar de ser o estado mais pobre do Brasil. Mas não recebe. O minério passa. O trem passa. A riqueza passa. E o Maranhão fica.
+E se o Maranhão recebesse uma parcela proporcional ao que transporta? Considere: o minério que passa pelo estado vale mais de US$ 15 bilhões/ano. Se o MA ficasse com 5% desse valor — como taxa de trânsito, compensação ambiental ou participação nos lucros —, seriam US$750 milhões/ano, ou cerca de R$5 bilhões. Isso é mais do que o orçamento estadual de saúde ou educação. Se fosse investido num fundo soberano como o norueguês, em vinte anos o Maranhão teria acumulado dezenas de bilhões — o suficiente para deixar de ser o estado mais pobre do Brasil. Mas não recebe. O minério passa. O trem passa. A riqueza passa. E o Maranhão fica.
 <!-- /BOX -->
 
 ---
@@ -157,7 +157,7 @@ A ferrovia é, ao mesmo tempo, a prova do que o Brasil pode construir e a prova 
 ¹⁷ Piquiá de Baixo, Açailândia. 20 anos de luta. Reassentamento iniciado ~2022.
 ¹⁸ Santa Rosa dos Pretos, Itapecuru-Mirim. Rio secou com duplicação.
 ¹⁹ MV Stellar Banner (2020): 295.000 t minério, 432,4 litros de óleo.
-²⁰ NBIM (Noruega): US$1,8 tri. Codelco (Chile): US$116 bi transferidos (1971-2020).
+²⁰ NBIM (Noruega): mais de US$ 1,7 tri. Codelco (Chile): US$116 bi transferidos (1971-2020).
 ²¹ China: ~110 Mt de Ponta da Madeira (jan-nov 2024). ~2/3 da carga.
 
 ---

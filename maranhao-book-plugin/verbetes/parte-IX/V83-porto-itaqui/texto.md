@@ -39,7 +39,7 @@ Em 1985, a Vale inaugurou o Terminal Maritimo de Ponta da Madeira, ponto final d
 
 Em 2014, veio o Tegram — Terminal de Graos do Maranhao — para escoar a soja e o milho que desciam pela Ferrovia Norte-Sul desde o cerrado de Goias, Tocantins e sul do Maranhao. O Arco Norte, estrategia federal para desafogar Santos e criar uma rota de exportacao pelo norte do pais, encontrou em Itaqui seu principal porto.^6
 
-Hoje, a area portuaria de Sao Luis — somando o porto publico, Ponta da Madeira e os terminais privados — movimenta cerca de 210 milhoes de toneladas por ano. E o maior complexo portuario do Norte-Nordeste.^7
+Hoje, a area portuaria de Sao Luis — somando o porto publico, Ponta da Madeira e os terminais privados — movimenta mais de 200 milhoes de toneladas por ano. E o maior complexo portuario do Norte-Nordeste.^7
 
 ---
 
@@ -59,7 +59,7 @@ O que voce percebe quando olha esses numeros e que Itaqui e, essencialmente, uma
 | Porto | Movimentacao (2023) | Calado | Principal carga |
 |-------|---------------------|--------|-----------------|
 | Santos (SP) | ~145 Mt (porto publico) | 15m (dragado) | Conteineres, graos, acucar |
-| Itaqui/Ponta da Madeira (MA) | ~210 Mt (area portuaria) | 23m (natural) | Minerio de ferro, graos |
+| Itaqui/Ponta da Madeira (MA) | ~200+ Mt (area portuaria) | 23m (natural) | Minerio de ferro, graos |
 | Paranagua (PR) | ~57 Mt | 12-14m | Graos, fertilizantes |
 | Tubarao (ES) | ~100 Mt | 21m | Minerio de ferro |
 | Rio Grande (RS) | ~40 Mt | 14m | Graos, conteineres |

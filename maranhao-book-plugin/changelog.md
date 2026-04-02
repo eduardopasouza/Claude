@@ -4,6 +4,37 @@
 
 ---
 
+## 2026-04-01 (sessão 3)
+
+### Produção em massa — primeiro rascunho completo (105/105)
+- Produção de 81 verbetes restantes (V03–V105, excluindo os já produzidos) em pipeline acelerado
+- Partes completadas de uma vez: I (6 restantes), II (3), III (5), IV (9), V (8), VI (6), VII (9), VIII (13), IX (8), X (8), XI (6)
+- Estimativa: ~243.000 palavras adicionais (~3.000 por verbete), 175 reels, 50 visuais
+- Total acumulado: ~315.000 palavras, 238 reels, 105 visuais
+
+### Auditoria de qualidade factual
+- Verificação factual via web search em verbetes produzidos
+- Correções aplicadas:
+  - Esgoto: dados de saneamento atualizados
+  - Lençóis Maranhenses: dados de visitação e preservação corrigidos
+  - Quilombos: número de comunidades certificadas atualizado
+  - Área do Maranhão: confirmado 329.651 km² (IBGE 2024)
+  - Soja: dados de produção e área plantada revisados
+  - Quebradeiras de coco: dados de comunidades e produção verificados
+  - Escravizados: números históricos cruzados com fontes acadêmicas
+- Extração YAML: banco ampliado para ~675 entradas (meta: ~800)
+
+### Planejamento de pesquisa profunda
+- Criado `plano-pesquisa-profunda.md`: roteiro para verificação especializada por parte
+- Foco: dados que exigem fontes primárias (IBGE, IPHAN, ICMBio, FUNAI, Voyages Database)
+
+### Atualização de registros
+- `registro-producao.md`: 105/105 verbetes marcados como prontos
+- `roadmap.md`: dashboard, progresso por parte, fila ativa, alertas atualizados
+- `changelog.md`: registro completo da sessão
+
+---
+
 ## 2026-04-01 (sessão 2)
 
 ### Auditoria cruzada e correções
