@@ -30,6 +30,13 @@ MATOPIBA e o acronimo para Maranhao, Tocantins, Piaui e Bahia — a ultima grand
 | PIB agropecuario mesorregiao sul MA | crescimento >200% em 20 anos |
 | Grilagem e conflitos | Comunidades geraizeiras, quilombolas, indigenas |
 | Decreto MATOPIBA | Decreto 8.447/2015 (Dilma) — Plano de Desenvolvimento Agropecuario |
+| Soja MA — valor 2024 | R$8,3 bi (+5,7%) | IMESC. Disponível em: <https://imesc.ma.gov.br/.../Desempenho-da-Agricultura-Maranhense-2024.pdf>. Acesso em: 01/04/2026. |
+| Soja FAEMA/SENAR 2023/24 | 4,4M ton, 1,3M ha | SENAR-MA. Disponível em: <https://senar-ma.org.br/>. Acesso em: 01/04/2026. |
+| Top 4 municipios soja | 53,3% producao (Balsas, Tasso Fragoso, S.R.Mangabeiras, Sambaiba) | IMESC. Disponível em: <https://imesc.ma.gov.br/>. Acesso em: 01/04/2026. |
+| VBP agropecuaria MA | R$25,2 bi | IBGE/FAEMA. Disponível em: <https://senar-ma.org.br/>. Acesso em: 01/04/2026. |
+| Rebanho bovino MA | 10.128.610 cabecas | IBGE PPM. Disponível em: <https://cidades.ibge.gov.br/>. Acesso em: 01/04/2026. |
+| MA lidera desmatamento BR 2024 | 598 ha/dia; 14 municipios top 50 | MapBiomas/G1. Disponível em: <https://g1.globo.com/ma/maranhao/noticia/2025/05/>. Acesso em: 01/04/2026. |
+| Arco Norte 2024 | 38% exportacoes BR soja+milho (+57%) | Conab. Disponível em: <https://www.gov.br/conab/>. Acesso em: 01/04/2026. |
 
 ## Fontes principais
 1. CONAB — Safra de graos 2023/2024.

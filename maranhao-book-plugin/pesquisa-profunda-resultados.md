@@ -119,7 +119,33 @@
 | C7 Turismo, comércio exterior, pecuária | ✅ Completa |  |
 | C8 Educação, energia, pesca, agro detalhado | ✅ Completa |  |
 | C9 Saúde, segurança, transporte, cultura, PIB municipal | ✅ Completa |  |
+| C10 História aprofundada (holandeses, Beckman, Cochrane, Vitorino, sírios) | ✅ |  |
+| C11 Cultura aprofundada (reggae radiolas, Tambor Mina, Alcione, Baleiro) | ✅ |  |
+| C12 ANTAQ, ANM, CPT, ANEEL | ✅ |  |
 | D1 Projeções IPCC/IBGE | ⏳ Próxima sessão |  |
+
+## C10-C12 — Dados aprofundados
+
+| Dado | Valor | Fonte | URL |
+|------|-------|-------|-----|
+| Maria Firmina nascimento | 11/mar/1822 (pesquisa 2017) ou 11/out/1825 (Literafro) | UFMG + elfikurten | letras.ufmg.br + elfikurten.com.br |
+| Sônia Guajajara | Decreto 31/jan/2023, Ministra, saiu mar/2026 | STF/Poder360 PDF | stf.jus.br + poder360.com.br |
+| São Luís 3 potências | Confirmado: única capital fundada franceses | Múltiplas | — |
+| Holandeses MA 1641-1644 | Artigo SciELO + PDF UEMA | SciELO/UEMA | scielo.br + outrostempos.uema.br |
+| Ana Jansen | 800 escravizados, 30+ propriedades | Ag. Pública | apublica.org |
+| Beckman 1684 | Contra Cia Comércio + jesuítas | Brasil Escola | brasilescola.uol.com.br |
+| Cochrane SL 1823 | Bloqueio naval, adesão 28/jul/1823 | CIM-MA + Arq.Nacional | cim.ma.gov.br + gov.br/arquivonacional |
+| Vitorino Freire | Artigo acadêmico UFF "Mundo Livre" | UFF | periodicos.uff.br |
+| Sírio-libaneses | Desde 1885 em SL, artigo UEMA | UEMA | outrostempos.uema.br |
+| Flávio Dino | Gov 2015-22, Min Justiça, STF 2024, CV oficial | STF | stf.jus.br |
+| Radiola Estrela do Som | Anos 80-90, Antônio José | Academia.edu | academia.edu |
+| Casa das Minas | ~1840s, Jeje, mais antigo | SciELO/Encyclopedia | scielo.br + encyclopedia.com |
+| Mário de Andrade 1938 | Registrou Tambor de Mina em SL | UFMA periódico | periodicoseletronicos.ufma.br |
+| ANTAQ Anuário 2024 | PDF completo dados portuários | ANTAQ/Gov | gov.br/antaq |
+| ANM produção mineral 2024 | R$220,5 bi | ANM | gov.br/anm |
+| CPT 2024: MA 1º em conflitos | 363 ocorrências | SMDH/CPT | smdh.org.br |
+| ANEEL SIGA | Dados abertos geração | ANEEL | dadosabertos.aneel.gov.br |
+| Diáspora MA | Saldo -129 mil (Censo 2022) | IBGE | — |
 
 ## C9 — Saúde, Segurança, Transporte, Cultura, PIB Municipal
 

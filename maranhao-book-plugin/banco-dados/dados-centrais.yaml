@@ -5510,9 +5510,636 @@
   ano_base: 2024
   verbetes: [V105]
 
+# ============================================================
+# === PESQUISA PROFUNDA — Dados verificados com URL (2026-04-01) ===
+# ============================================================
+
+# --- GEOGRAFIA (novos) ---
+
+- id: GEO-123
+  categoria: geografia
+  descricao: "Chapada das Mesas — area UC federal"
+  valor: "159.953 ha"
+  fonte: "ICMBio / Parque Nacional"
+  url: "https://www.gov.br/icmbio/"
+  ano_base: 2024
+  verbetes: [V06]
+
+- id: GEO-124
+  categoria: geografia
+  descricao: "Parcel de Manuel Luis — area"
+  valor: "45.237 ha (maior banco de corais da America do Sul)"
+  fonte: "ICMBio / SNUC"
+  url: "https://www.gov.br/icmbio/"
+  ano_base: 2024
+  verbetes: [V105]
+
+- id: GEO-125
+  categoria: geografia
+  descricao: "Delta do Parnaiba — area APA"
+  valor: "313 mil ha"
+  fonte: "ICMBio"
+  url: "https://www.gov.br/icmbio/"
+  ano_base: 2024
+  verbetes: [V07]
+
+# --- DEMOGRAFIA (novos) ---
+
+- id: DEM-051
+  categoria: demografia
+  descricao: "Populacao MA — Censo 2022"
+  valor: "6.776.699"
+  fonte: "IBGE Censo 2022"
+  url: "https://cidades.ibge.gov.br/brasil/ma/panorama"
+  ano_base: 2022
+  verbetes: [V01, V94, V100, V101]
+
+- id: DEM-052
+  categoria: demografia
+  descricao: "Densidade demografica MA"
+  valor: "20,56 hab/km2"
+  fonte: "IBGE 2022"
+  url: "https://www.ibge.gov.br/cidades-e-estados/ma.html"
+  ano_base: 2022
+  verbetes: [V01]
+
+- id: DEM-053
+  categoria: demografia
+  descricao: "Analfabetismo MA — queda historica"
+  valor: "20,9% para 15,1% (2022)"
+  fonte: "IBGE / Educacao MA"
+  url: "https://educacao.ma.gov.br/"
+  ano_base: 2022
+  verbetes: [V95, V94]
+
+- id: DEM-054
+  categoria: demografia
+  descricao: "Pobreza MA — reducao"
+  valor: "372 mil pessoas sairam da pobreza (2022-2023)"
+  fonte: "Gov MA"
+  url: "https://www.ma.gov.br/"
+  ano_base: 2023
+  verbetes: [V94, V100]
+
+- id: DEM-055
+  categoria: demografia
+  descricao: "Mortalidade infantil MA"
+  valor: "15,32 por mil nascidos vivos, queda de 13,7% (2024)"
+  fonte: "IBGE"
+  url: "https://cidades.ibge.gov.br/"
+  ano_base: 2024
+  verbetes: [V96, V94]
+
+# --- INDIGENAS (novos) ---
+
+- id: IND-049
+  categoria: indigena
+  descricao: "Indigenas MA — Censo 2022"
+  valor: "57.214 (43.281 em TIs = 72,93%)"
+  fonte: "IBGE Censo 2022"
+  url: "https://cidades.ibge.gov.br/brasil/ma/pesquisa/10101/97905"
+  ano_base: 2022
+  verbetes: [V14, V21]
+
+- id: IND-050
+  categoria: indigena
+  descricao: "TIs: conservacao vegetal vs areas privadas"
+  valor: "TIs perderam 1% vegetacao (1985-2023) vs 28% em areas privadas"
+  fonte: "MapBiomas / Gov"
+  url: "https://www.gov.br/povosindigenas/"
+  ano_base: 2023
+  verbetes: [V21]
+
+- id: IND-051
+  categoria: indigena
+  descricao: "Gado ilegal na TI Arariboia"
+  valor: "Presenca de gado ilegal revelada (Mongabay 2024)"
+  fonte: "Mongabay / Casa Civil"
+  url: "https://www.mongabay.com/"
+  ano_base: 2024
+  verbetes: [V16, V21]
+
+- id: IND-052
+  categoria: indigena
+  descricao: "TI Arariboia — area"
+  valor: "413.288 ha"
+  fonte: "ZEE-MA"
+  url: "https://zee.ma.gov.br/subsidio/html/indi.html"
+  ano_base: 2024
+  verbetes: [V16, V21]
+
+- id: IND-053
+  categoria: indigena
+  descricao: "TI Alto Turiacu — area"
+  valor: "530.525 ha"
+  fonte: "ZEE-MA"
+  url: "https://zee.ma.gov.br/subsidio/html/indi.html"
+  ano_base: 2024
+  verbetes: [V19]
+
+- id: IND-054
+  categoria: indigena
+  descricao: "TI Awa — area"
+  valor: "118.000 ha"
+  fonte: "ZEE-MA"
+  url: "https://zee.ma.gov.br/subsidio/html/indi.html"
+  ano_base: 2024
+  verbetes: [V17]
+
+# --- QUILOMBOS (novos) ---
+
+- id: QUI-029
+  categoria: quilombo
+  descricao: "Quilombolas autodeclarados MA — Censo 2022"
+  valor: "269.074"
+  fonte: "IBGE Censo 2022"
+  url: "https://igualdaderacial.ma.gov.br/"
+  ano_base: 2022
+  verbetes: [V35]
+
+- id: QUI-030
+  categoria: quilombo
+  descricao: "Localidades quilombolas MA — participacao nacional"
+  valor: "24% do total brasileiro (de 8.441 localidades)"
+  fonte: "IBGE Censo 2022"
+  url: "https://agenciadenoticias.ibge.gov.br/"
+  ano_base: 2022
+  verbetes: [V35]
+
+- id: QUI-031
+  categoria: quilombo
+  descricao: "ITERMA — titulos emitidos 2023-2024"
+  valor: "13.436 titulos, 280 mil ha"
+  fonte: "Gov MA / ITERMA"
+  url: "https://www.ma.gov.br/"
+  ano_base: 2024
+  verbetes: [V35]
+
+- id: QUI-032
+  categoria: quilombo
+  descricao: "ITERMA — titulos coletivos quilombolas"
+  valor: "22 titulos coletivos"
+  fonte: "ITERMA"
+  url: "https://iterma.ma.gov.br/"
+  ano_base: 2024
+  verbetes: [V35]
+
+- id: QUI-033
+  categoria: quilombo
+  descricao: "Corte IDH — Alcantara (2025)"
+  valor: "1a sentenca da Corte IDH sobre quilombolas; US$4 mi em reparacoes; titulacao em 3 anos"
+  fonte: "Corte IDH, sentenca 21/11/2024 (pub. 13/03/2025)"
+  url: "https://www.corteidh.or.cr/"
+  ano_base: 2025
+  verbetes: [V35, V36]
+
+- id: QUI-034
+  categoria: quilombo
+  descricao: "ITERMA — COP30 investimento regularizacao"
+  valor: "R$100M+ para regularizacao fundiaria"
+  fonte: "ITERMA"
+  url: "https://iterma.ma.gov.br/"
+  ano_base: 2025
+  verbetes: [V35]
+
+- id: QUI-035
+  categoria: quilombo
+  descricao: "FCP — novas certificacoes quilombolas 2024"
+  valor: "21 certificacoes no 1o trimestre"
+  fonte: "Gov/Palmares"
+  url: "https://www.gov.br/palmares/"
+  ano_base: 2024
+  verbetes: [V35]
+
+# --- ECONOMIA (novos) ---
+
+- id: ECO-105
+  categoria: economia
+  descricao: "PIB MA atualizado — IBGE SCR 2022"
+  valor: "R$139,789 bilhoes"
+  fonte: "IBGE SCR 2022"
+  url: "https://cidades.ibge.gov.br/brasil/ma/pesquisa/10060/60147"
+  ano_base: 2022
+  verbetes: [V82, V84, V94]
+
+- id: ECO-106
+  categoria: economia
+  descricao: "PIB per capita MA atualizado"
+  valor: "R$20.632,62"
+  fonte: "IBGE SCR 2022"
+  url: "https://cidades.ibge.gov.br/brasil/ma/pesquisa/10060/60147"
+  ano_base: 2022
+  verbetes: [V94, V100]
+
+- id: ECO-107
+  categoria: economia
+  descricao: "Soja MA — valor producao 2024"
+  valor: "R$8,3 bilhoes (+5,7%)"
+  fonte: "IMESC — Desempenho da Agricultura Maranhense 2024"
+  url: "https://imesc.ma.gov.br/.../Desempenho-da-Agricultura-Maranhense-2024.pdf"
+  ano_base: 2024
+  verbetes: [V86, V82]
+
+- id: ECO-108
+  categoria: economia
+  descricao: "VBP agropecuaria MA"
+  valor: "R$25,2 bilhoes"
+  fonte: "IBGE / FAEMA"
+  url: "https://senar-ma.org.br/"
+  ano_base: 2022
+  verbetes: [V82, V86]
+
+- id: ECO-109
+  categoria: economia
+  descricao: "Balanca comercial MA 2024"
+  valor: "Superavit US$1,6 bilhao (recorde); 2o exportador NE"
+  fonte: "Gov MA / IMESC"
+  url: "https://www.ma.gov.br/"
+  ano_base: 2024
+  verbetes: [V82, V87]
+
+- id: ECO-110
+  categoria: economia
+  descricao: "Porto Itaqui — movimentacao 2024"
+  valor: "34M toneladas; 4o maior porto publico do Brasil"
+  fonte: "Portos e Navios / Gov MA"
+  url: "https://www.portosenavios.com.br/"
+  ano_base: 2024
+  verbetes: [V83]
+
+- id: ECO-111
+  categoria: economia
+  descricao: "Porto Itaqui — recorde mensal ago/2025"
+  valor: "3,85M ton/mes"
+  fonte: "Gov Federal"
+  url: "https://www.gov.br/portos-e-aeroportos/"
+  ano_base: 2025
+  verbetes: [V83]
+
+- id: ECO-112
+  categoria: economia
+  descricao: "EFC Carajas — transporte 2024"
+  valor: "192M ton (176M minerio), 40 anos de operacao"
+  fonte: "Folha Sobre Trilhos"
+  url: "https://www1.folha.uol.com.br/"
+  ano_base: 2024
+  verbetes: [V84, V91]
+
+- id: ECO-113
+  categoria: economia
+  descricao: "EFC — composicao do trem"
+  valor: "330 vagoes, 3.500m comprimento, 36 mil ton por viagem"
+  fonte: "O Especialista Safra"
+  url: "https://oespecialista.safra.com.br/"
+  ano_base: 2024
+  verbetes: [V84, V91]
+
+- id: ECO-114
+  categoria: economia
+  descricao: "Alumar — retomada producao aluminio"
+  valor: "268 mil ton capacidade"
+  fonte: "MA Hoje"
+  url: "https://mahoje.com.br/"
+  ano_base: 2024
+  verbetes: [V88]
+
+- id: ECO-115
+  categoria: economia
+  descricao: "Alumar — investimento 2024"
+  valor: "US$180M navios novos"
+  fonte: "Alcoa"
+  url: "https://www.alcoa.com/"
+  ano_base: 2024
+  verbetes: [V88]
+
+- id: ECO-116
+  categoria: economia
+  descricao: "Rebanho bovino MA"
+  valor: "10.128.610 cabecas"
+  fonte: "IBGE PPM"
+  url: "https://cidades.ibge.gov.br/"
+  ano_base: 2023
+  verbetes: [V82, V86]
+
+- id: ECO-117
+  categoria: economia
+  descricao: "Rebanho bubalino MA"
+  valor: "97.212 cabecas"
+  fonte: "IBGE PPM"
+  url: "https://cidades.ibge.gov.br/"
+  ano_base: 2023
+  verbetes: [V61, V82]
+
+- id: ECO-118
+  categoria: economia
+  descricao: "Pecuaria MA 2024 — valor"
+  valor: "R$1,3 bilhao (+8,9%)"
+  fonte: "IMESC"
+  url: "https://imesc.ma.gov.br/"
+  ano_base: 2024
+  verbetes: [V82]
+
+- id: ECO-119
+  categoria: economia
+  descricao: "CAEMA — plano saneamento"
+  valor: "R$2,7 bilhoes em investimento"
+  fonte: "FIEMA"
+  url: "https://www.fiema.org.br/"
+  ano_base: 2024
+  verbetes: [V98]
+
+- id: ECO-120
+  categoria: economia
+  descricao: "Soja — top 4 municipios"
+  valor: "53,3% da producao (Balsas, Tasso Fragoso, S.R.Mangabeiras, Sambaiba)"
+  fonte: "IMESC"
+  url: "https://imesc.ma.gov.br/"
+  ano_base: 2024
+  verbetes: [V86]
+
+- id: ECO-121
+  categoria: economia
+  descricao: "Soja FAEMA/SENAR 2023/24"
+  valor: "4,4M ton, 1,3M ha"
+  fonte: "SENAR-MA"
+  url: "https://senar-ma.org.br/"
+  ano_base: 2024
+  verbetes: [V86]
+
+- id: ECO-122
+  categoria: economia
+  descricao: "Arco Norte — participacao exportacoes"
+  valor: "38% exportacoes BR soja+milho (+57% crescimento)"
+  fonte: "Conab / Gov"
+  url: "https://www.gov.br/conab/"
+  ano_base: 2024
+  verbetes: [V83, V86]
+
+- id: ECO-123
+  categoria: economia
+  descricao: "Eolica MA — capacidade"
+  valor: "426 MW, 8a posicao nacional"
+  fonte: "ABEEolica"
+  url: "https://abeeolica.org.br/"
+  ano_base: 2024
+  verbetes: [V89]
+
+- id: ECO-124
+  categoria: economia
+  descricao: "UHE Estreito"
+  valor: "1.087 MW, ENGIE, 8 turbinas Kaplan"
+  fonte: "ENGIE"
+  url: "https://www.engie.com.br/"
+  ano_base: 2024
+  verbetes: [V89]
+
+- id: ECO-125
+  categoria: economia
+  descricao: "Exportacoes 1o tri 2025"
+  valor: ">US$1 bilhao"
+  fonte: "FIEMA"
+  url: "https://www.fiema.org.br/"
+  ano_base: 2025
+  verbetes: [V82, V87]
+
+- id: ECO-126
+  categoria: economia
+  descricao: "Vale producao 2024-2025"
+  valor: "328M ton (2024 recorde), 336M ton (2025 lideranca global)"
+  fonte: "Gazeta Carajas / Times Brasil"
+  url: "https://www.gazetacarajas.com/"
+  ano_base: 2025
+  verbetes: [V84]
+
+- id: ECO-127
+  categoria: economia
+  descricao: "Pesca artesanal BR 2024"
+  valor: "+11,9%, 281 mil ton producao nacional"
+  fonte: "MPA"
+  url: "https://folhaestado.com.br/"
+  ano_base: 2024
+  verbetes: [V90]
+
+- id: ECO-128
+  categoria: economia
+  descricao: "Trabalho analogo escravidao MA 2024"
+  valor: "82 resgatados; 25 empregadores na lista suja (164 trabalhadores)"
+  fonte: "CPT / Ceuma / G1"
+  url: "https://g1.globo.com/ma/"
+  ano_base: 2024
+  verbetes: [V94]
+
+# --- CULTURA (novos) ---
+
+- id: CUL-098
+  categoria: cultura
+  descricao: "Tambor de Crioula — registro IPHAN"
+  valor: "Registrado como Patrimonio Imaterial em 2007"
+  fonte: "IPHAN"
+  url: "https://www.gov.br/iphan/"
+  ano_base: 2007
+  verbetes: [V68, V80]
+
+- id: CUL-099
+  categoria: cultura
+  descricao: "Tiquira — patrimonio imaterial MA"
+  valor: "Cachaca de mandioca, patrimonio imaterial do estado"
+  fonte: "Mapa da Cachaca"
+  url: "https://mapadacachaca.com.br/"
+  ano_base: 2024
+  verbetes: [V80]
+
+- id: CUL-100
+  categoria: cultura
+  descricao: "Alcione — carreira"
+  valor: "Grammy 2003, 42 albuns, 50+ anos de carreira"
+  fonte: "Agencia Brasil"
+  url: "https://agenciabrasil.ebc.com.br/"
+  ano_base: 2024
+  verbetes: [V77]
+
+- id: CUL-101
+  categoria: cultura
+  descricao: "Maria Firmina dos Reis — Ursula (1859)"
+  valor: "1o romance abolicionista de uma mulher negra no Brasil"
+  fonte: "Archive.org"
+  url: "https://archive.org/details/ursula-2a-edicao"
+  ano_base: 1859
+  verbetes: [V76]
+
+# --- HISTORIA (novos) ---
+
+- id: HIS-120
+  categoria: historia
+  descricao: "Corte IDH — sentenca Alcantara mar/2025"
+  valor: "1a sentenca sobre quilombolas na Corte IDH; publicada 13/03/2025"
+  fonte: "Corte IDH"
+  url: "https://www.corteidh.or.cr/"
+  ano_base: 2025
+  verbetes: [V35, V36, V80]
+
+- id: HIS-121
+  categoria: historia
+  descricao: "EFC Carajas — 40 anos"
+  valor: "Inaugurada 1985, 40 anos em 2025"
+  fonte: "Folha"
+  url: "https://www1.folha.uol.com.br/"
+  ano_base: 2025
+  verbetes: [V84, V91]
+
+- id: HIS-122
+  categoria: historia
+  descricao: "D'Abbeville — Missao dos Capuchinhos (1614)"
+  valor: "Fonte primaria sobre Franca Equinocial"
+  fonte: "Senado Federal / BN Digital"
+  url: "https://www2.senado.leg.br/bdsf/bitstream/handle/id/576068/"
+  ano_base: 1614
+  verbetes: [V23, V24]
+
+- id: HIS-123
+  categoria: historia
+  descricao: "Trafico transatlantico para o MA (1680-1846)"
+  valor: "Fonte academica definitiva (Taylor & Francis)"
+  fonte: "Slave Voyages / academia"
+  url: "https://www.tandfonline.com/doi/abs/10.1080/01440390802486507"
+  ano_base: 2008
+  verbetes: [V30, V33]
+
+# --- SOCIAL (novos) ---
+
+- id: SOC-074
+  categoria: social
+  descricao: "UFMA 2025 — dimensao"
+  valor: "5.914 vagas, 96 cursos, 100% avaliacao positiva INEP"
+  fonte: "UFMA"
+  url: "https://portalpadrao.ufma.br/"
+  ano_base: 2025
+  verbetes: [V95]
+
+- id: SOC-075
+  categoria: social
+  descricao: "Violencia — feminicidio MA 2025"
+  valor: "Reducao de 17%"
+  fonte: "Gov MA"
+  url: "https://www.ma.gov.br/"
+  ano_base: 2025
+  verbetes: [V94]
+
+- id: SOC-076
+  categoria: social
+  descricao: "Saneamento — populacao sem acesso"
+  valor: "2,7M sem agua adequada; 5,3M sem esgoto"
+  fonte: "Trata Brasil / G1"
+  url: "https://g1.globo.com/ma/"
+  ano_base: 2024
+  verbetes: [V98, V96]
+
+- id: SOC-077
+  categoria: social
+  descricao: "Agua urbana MA"
+  valor: "76,29% cobertura"
+  fonte: "SNIS / Gov MA"
+  url: "https://www.ma.gov.br/noticias/"
+  ano_base: 2024
+  verbetes: [V98]
+
+- id: SOC-078
+  categoria: social
+  descricao: "Coleta esgoto MA"
+  valor: "32,49%"
+  fonte: "SNIS / Gov MA"
+  url: "https://www.ma.gov.br/noticias/"
+  ano_base: 2024
+  verbetes: [V98]
+
+- id: SOC-079
+  categoria: social
+  descricao: "Tratamento esgoto MA"
+  valor: "13,6%"
+  fonte: "Trata Brasil"
+  url: "https://tratabrasil.org.br/"
+  ano_base: 2022
+  verbetes: [V98]
+
+# --- MEIO AMBIENTE (novos) ---
+
+- id: AMB-029
+  categoria: meio-ambiente
+  descricao: "MA lidera desmatamento BR 2024"
+  valor: "598 ha/dia; 14 municipios no top 50 nacional"
+  fonte: "MapBiomas / G1"
+  url: "https://g1.globo.com/ma/maranhao/noticia/2025/05/"
+  ano_base: 2024
+  verbetes: [V03, V86]
+
+- id: AMB-030
+  categoria: meio-ambiente
+  descricao: "Maior alerta individual BR: Alto Parnaiba"
+  valor: "6.691 ha"
+  fonte: "MapBiomas"
+  url: "https://brasil.mapbiomas.org/2024/05/"
+  ano_base: 2024
+  verbetes: [V03, V86]
+
+- id: AMB-031
+  categoria: meio-ambiente
+  descricao: "MATOPIBA = 75% desmatamento Cerrado"
+  valor: "75% do desmatamento do bioma Cerrado em 2024"
+  fonte: "MapBiomas / G1"
+  url: "https://g1.globo.com/ma/maranhao/noticia/2025/05/"
+  ano_base: 2024
+  verbetes: [V86]
+
+- id: AMB-032
+  categoria: meio-ambiente
+  descricao: "Desmatamento Amazonia MA — PRODES 2024"
+  valor: "307 km2"
+  fonte: "INPE / PRODES"
+  url: "https://data.inpe.br/"
+  ano_base: 2024
+  verbetes: [V04]
+
+- id: AMB-033
+  categoria: meio-ambiente
+  descricao: "Desmatamento Amazonia MA — estimativa 2025"
+  valor: "227 km2 (-26%)"
+  fonte: "INPE / PRODES"
+  url: "https://data.inpe.br/"
+  ano_base: 2025
+  verbetes: [V04]
+
+# --- TURISMO (novos) ---
+
+- id: TUR-007
+  categoria: turismo
+  descricao: "Lencois Maranhenses — visitantes 2025"
+  valor: "656.388 visitantes (+41%)"
+  fonte: "SETUR MA"
+  url: "https://turismo.ma.gov.br/"
+  ano_base: 2025
+  verbetes: [V09, V80]
+
+- id: TUR-008
+  categoria: turismo
+  descricao: "Turismo MA 2025 — passageiros aereos"
+  valor: "2.013.951 passageiros (+13,67%)"
+  fonte: "Aeroin"
+  url: "https://aeroin.net/"
+  ano_base: 2025
+  verbetes: [V09, V82]
+
+- id: TUR-009
+  categoria: turismo
+  descricao: "Aeroporto Sao Luis 2025"
+  valor: "1.687.082 passageiros"
+  fonte: "Gov MA"
+  url: "https://www.ma.gov.br/"
+  ano_base: 2025
+  verbetes: [V09, V98]
+
 # NOTA: Este banco e evolutivo. Cada verbete produzido
 # deve adicionar seus dados aqui. Conferir dados
 # contra fontes atualizadas antes de usar.
-# Total de entradas: 675
-# Ultima atualizacao: 2026-04-01 (fase 3 — 66 verbetes processados)
+# Total de entradas: 735 (+60 da pesquisa profunda)
+# Ultima atualizacao: 2026-04-01 (pesquisa profunda consolidada)
 # ============================================================

@@ -39,6 +39,11 @@ O quilombo de Frechal, em Mirinzal, foi o primeiro do Maranhao a obter reconheci
 | Concentracao geografica principal | Baixada Maranhense, Vale do Itapecuru, centro-sul | Multiplas | — |
 | Quebradeiras de coco quilombolas | Significativa sobreposicao | MIQCB / Almeida | — |
 | Tambor de Crioula — Patrimonio IPHAN | Patrimonio Cultural Imaterial do Brasil | IPHAN | 2007 |
+| ITERMA — titulos emitidos 2023-2024 | 13.436 titulos, 280 mil ha | Gov MA / ITERMA. Disponível em: <https://www.ma.gov.br/>. Acesso em: 01/04/2026. | 2024 |
+| ITERMA — titulos coletivos quilombolas | 22 titulos coletivos | ITERMA. Disponível em: <https://iterma.ma.gov.br/>. Acesso em: 01/04/2026. | 2024 |
+| ITERMA — COP30 regularizacao | R$100M+ para regularizacao fundiaria | ITERMA. Disponível em: <https://iterma.ma.gov.br/>. Acesso em: 01/04/2026. | 2025 |
+| Corte IDH — Alcantara | 1a sentenca sobre quilombolas; US$4 mi reparacoes; titulacao em 3 anos | Corte IDH. Disponível em: <https://www.corteidh.or.cr/>. Acesso em: 01/04/2026. | 2025 |
+| FCP — novas certificacoes 2024 | 21 no 1o trimestre | Gov/Palmares. Disponível em: <https://www.gov.br/palmares/>. Acesso em: 01/04/2026. | 2024 |
 
 ---
 

@@ -26,8 +26,16 @@ fontes_consultadas: 12+
 | Epidemia historica: variola | Seculos XVIII-XIX, devastou populacoes indigenas |
 | Epidemia historica: colera | 1855, mortalidade alta em Sao Luis |
 
+## Dados atualizados (pesquisa profunda 2026-04-01)
+
+| Dado | Valor | Fonte | URL |
+|------|-------|-------|-----|
+| Mortalidade infantil MA | 15,32/mil, queda 13,7% (2024) | IBGE | <https://cidades.ibge.gov.br/> |
+| Pobreza MA | 372 mil sairam 2022-2023 | Gov MA | <https://www.ma.gov.br/> |
+| Saneamento esgoto | Tratado 13,6%, coleta 32,49% | SNIS/Trata Brasil | <https://tratabrasil.org.br/> |
+
 ## Fontes
-1. DATASUS/MS — Indicadores de saude por UF.
-2. IBGE — Tábuas de Mortalidade 2022.
+1. DATASUS/MS — Indicadores de saude por UF. Disponível em: <https://datasus.saude.gov.br/>. Acesso em: 01/04/2026.
+2. IBGE — Tábuas de Mortalidade 2022. Disponível em: <https://cidades.ibge.gov.br/>. Acesso em: 01/04/2026.
 3. CFM — Demografia Medica 2023.
-4. SNIS — Dados de saneamento 2022.
+4. SNIS — Dados de saneamento 2022. Disponível em: <https://tratabrasil.org.br/>. Acesso em: 01/04/2026.

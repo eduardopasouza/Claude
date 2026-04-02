@@ -261,9 +261,12 @@
 |------|-----------|----------|
 | 2019 | ~141.000 | — |
 | 2024 | ~440.000 | +191% vs 2019 |
-| 2025 | ~650.000 | +400% vs 2019 (recorde histórico) |
+| 2025 | 656.388 | +41% vs 2024; +365% vs 2019 (recorde histórico) |
 
-(Fonte: ICMBio / Agência Brasil / Radioagência Nacional, 2026)
+(Fontes: ICMBio / Agência Brasil / Radioagência Nacional, 2026; SETUR-MA: <https://turismo.ma.gov.br/>)
+
+**Turismo aéreo MA 2025**: 2.013.951 passageiros (+13,67%). Fonte: Aeroin <https://aeroin.net/>
+**Aeroporto SL 2025**: 1.687.082 passageiros. Fonte: Gov MA <https://www.ma.gov.br/>
 
 ### 5.4 Ameaças e Impactos
 

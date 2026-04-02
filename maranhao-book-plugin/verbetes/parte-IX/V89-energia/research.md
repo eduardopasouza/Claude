@@ -25,9 +25,19 @@ fontes_consultadas: 15+
 | Potencial eolico offshore | Costa maranhense em estudo para parques offshore |
 | Biomassa | Babacu, cana, eucalipto (menor escala) |
 
+## Dados atualizados (pesquisa profunda 2026-04-01)
+
+| Dado | Valor | Fonte | URL |
+|------|-------|-------|-----|
+| UHE Estreito | 1.087 MW, ENGIE, 8 turbinas Kaplan | ENGIE | <https://www.engie.com.br/> |
+| Eolica MA — capacidade | 426 MW, 8a posicao nacional | ABEEolica | <https://abeeolica.org.br/> |
+| Brasil eolica 2024 | 33,73 GW, 76 parques novos | ABEEolica PDF | <https://abeeolica.org.br/> |
+| MA capacidade eletrica 2013 | 2.309 MW total | ResearchGate | rsdjournal.org |
+
 ## Fontes
 1. ANEEL — Banco de Informacoes de Geracao (BIG), 2024.
 2. ONS — Dados de geracao e consumo por subsistema.
 3. EPE — Plano Decenal de Energia 2032.
-4. ABEEolica — Atlas Eolico do Brasil.
+4. ABEEolica — Atlas Eolico do Brasil. Disponível em: <https://abeeolica.org.br/>. Acesso em: 01/04/2026.
 5. IBAMA — Licenciamento de parques eolicos e offshore.
+6. ENGIE — UHE Estreito. Disponível em: <https://www.engie.com.br/>. Acesso em: 01/04/2026.
