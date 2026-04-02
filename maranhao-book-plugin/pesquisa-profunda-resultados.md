@@ -115,7 +115,27 @@
 | C2 Fontes culturais e literárias | ✅ Completa |  |
 | C3 Economia/Indústria | ✅ Completa |  |
 | C4 Biografias e literatura | ✅ Completa |  |
+| C6 Órgãos governamentais MA | ✅ Completa |  |
 | D1 Projeções IPCC/IBGE | ⏳ Próxima sessão |  |
+
+## C6 — Órgãos Governamentais do Maranhão
+
+| Dado | Valor | Fonte | URL |
+|------|-------|-------|-----|
+| IMESC: Desempenho Agricultura MA 2024 | Soja R$8,3bi +5,7% | IMESC PDF | https://imesc.ma.gov.br/.../Desempenho-da-Agricultura-Maranhense-2024.pdf |
+| FAEMA/SENAR: soja 2023/24 | 4,4M ton, 1,3M ha | SENAR-MA | https://senar-ma.org.br/ |
+| VBP agropecuária MA 2022 | R$25,2 bilhões | IBGE/FAEMA | senar-ma.org.br |
+| PIB MA 2025 | +4,0%, acima NE e BR | FIEMA/IMESC | fiema.org.br |
+| Indústria MA 2025 | -5,1% produção física | FIEMA | https://www.fiema.org.br/ |
+| ITERMA: títulos 2023-24 | 13.436 títulos, 280 mil ha | Gov MA | https://www.ma.gov.br/ |
+| ITERMA: quilombolas | 22 títulos coletivos | ITERMA | https://iterma.ma.gov.br/ |
+| ITERMA: COP30 | R$100M+ regularização | ITERMA | https://iterma.ma.gov.br/ |
+| Gov MA: saneamento 2024 | R$350M obras CAEMA | Gov MA | https://www.ma.gov.br/ |
+| Gov MA: violência 2025 | Feminicídio -17% | Gov MA | https://www.ma.gov.br/ |
+| EMAP: agenda ambiental | PDF 2024-2025 | EMAP | https://www.portodoitaqui.com/ |
+| IMESC: Boletim Social 2025 | Educação dados | IMESC | https://imesc.ma.gov.br/ |
+| IMESC: economia 2025 | PIB +3,7% (1º sem) | IMESC | https://imesc.ma.gov.br/ |
+| EFC Carajás 2024 | 192M ton, 40 anos | Folha | https://www1.folha.uol.com.br/ |
 
 ## C3 — Economia, Energia, Indústria, Ferrovia
 
