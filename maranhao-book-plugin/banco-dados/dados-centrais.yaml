@@ -55,6 +55,7 @@
   url: "https://imesc.ma.gov.br/wp-content/uploads/2025/11/MANGUEZAIS-DA-ILHA-DO-MARANHAO-Dinamicas-e-Servicos-ecossistemicos.pdf"
   url_verificada: true
   dado_literal_na_pagina: "505.490,12 hectares, o que representa cerca de 36,13%"
+  nota: "IMESC 2025 e ICMBio Atlas 2018 citam 36%. Novo mapeamento IBAMA 2024 (total Brasil = 1.229.644 ha) daria ~41%. Divergência metodológica. Livro usa 36% (fonte IMESC/ICMBio mais citada)."
   ano_base: 2021
   verbetes: [V02, V05]
 
@@ -67,7 +68,10 @@
   url_verificada: true
   dado_literal_na_pagina: "área estimada em 155.000 ha (cento e cinqüenta e cinco mil hectares)"
   ano_base: 1981
-  nota: "Corrigido de 156.562 para 155.000 (decreto de criação). UNESCO/SGB citam 156.562 incluindo buffer zone."
+  nota: "Decreto 1981: 155.000 ha (estimativa). UNESCO WHC 1611 (2024): 156.562 ha (área do property). Ambos corretos para definições diferentes. Livro usa 155.000 (decreto) com nota sobre 156.562 (UNESCO)."
+  url_alt: "https://whc.unesco.org/en/list/1611/"
+  url_alt_verificada: true
+  dado_literal_url_alt: "The property comprises an area of 156,562 ha"
   verbetes: [V09, V10, V80, V102]
 
 - id: GEO-006
@@ -106,9 +110,12 @@
 - id: GEO-009
   categoria: geografia
   descricao: "Área das Reentrâncias Maranhenses (APA)"
-  valor: "2.631.260 hectares"
-  fonte: "Decreto Estadual 11.901/1991"
-  url: "sem URL - fonte legislativa"
+  valor: "2.631.260 hectares (Wikipedia); 2.680.911 ha (ISA)"
+  fonte: "Decreto Estadual nº 11.901, de 11/06/1991"
+  url: "https://documentacao.socioambiental.org/ato_normativo/UC/304_20100823_150533.pdf"
+  url_verificada: true
+  dado_literal_na_pagina: "Decreto nº 11.901 de 11 de junho de 1991 — texto completo"
+  nota: "Divergência: Wikipedia cita 2.631.260 ha, ISA cita 2.680.911 ha. PDF do decreto original disponível no ISA."
   ano_base: 1991
   verbetes: [V02, V05, V90]
 
@@ -127,9 +134,12 @@
 - id: GEO-011
   categoria: geografia
   descricao: "Área total de manguezal no Brasil"
-  valor: "~1,4 milhão de hectares"
-  fonte: "ICMBio, Atlas dos Manguezais"
-  url: "https://www.gov.br/icmbio/"
+  valor: "1.229.644 hectares (mapeamento 2024)"
+  fonte: "IBAMA/MMA, Mapeamento dos Manguezais Brasileiros 2024 (lançado mar/2026)"
+  url: "https://www.gov.br/ibama/pt-br/assuntos/noticias/2026/ibama-e-mma-lancam-novo-mapeamento-e-identificam-1-2-milhao-de-hectares-de-manguezais-no-brasil"
+  url_verificada: true
+  dado_literal_na_pagina: "1.229.644 hectares de manguezais [...] 82% da área total em Unidades de Conservação"
+  nota: "Corrigido de ~1,4M para 1.229.644 ha (1,2M). Dado mais recente: mapeamento IBAMA/MMA mar/2026. Atlas 2018 do ICMBio é versão anterior."
   ano_base: 2018
   verbetes: [V05]
 
@@ -137,9 +147,11 @@
   categoria: geografia
   descricao: "Lagoas anuais nos Lençóis Maranhenses"
   valor: "~7.500 lagoas sazonais"
-  fonte: "SGB / UNESCO"
-  url: "https://whc.unesco.org/"
+  fonte: "SGB / fontes diversas"
+  url: "NÃO VERIFICADO — número '7.500' não encontrado literalmente em nenhuma fonte primária consultada. UNESCO WHC 1611 não cita número específico de lagoas."
+  url_verificada: false
   ano_base: 2024
+  nota: "Número amplamente citado na mídia mas sem fonte primária rastreável. UNESCO WHC diz apenas 'lagoons of various colours, shapes, sizes and depths'. Manter com cautela."
   verbetes: [V09, V10]
 
 - id: GEO-013
