@@ -46,20 +46,25 @@
 - id: GEO-004
   categoria: geografia
   descricao: "Proporção de mangues do Brasil no MA"
-  valor: "36%"
-  fonte: "MapBiomas / ICMBio"
-  url: "https://www.gov.br/icmbio/"
+  valor: "36,13% (505.490,12 hectares)"
+  fonte: "ICMBio, Atlas dos Manguezais do Brasil; IMESC, Manguezais da Ilha do Maranhão (2025)"
+  url: "https://imesc.ma.gov.br/wp-content/uploads/2025/11/MANGUEZAIS-DA-ILHA-DO-MARANHAO-Dinamicas-e-Servicos-ecossistemicos.pdf"
+  url_verificada: true
+  dado_literal_na_pagina: "505.490,12 hectares, o que representa cerca de 36,13%"
   ano_base: 2021
   verbetes: [V02, V05]
 
 - id: GEO-005
   categoria: geografia
   descricao: "Área dos Lençóis Maranhenses (Parque Nacional)"
-  valor: "156.562 hectares"
-  fonte: "UNESCO / ICMBio"
-  url: "https://whc.unesco.org/"
-  ano_base: 2024
-  verbetes: [V09, V10, V102]
+  valor: "155.000 hectares"
+  fonte: "Decreto Federal nº 86.060, de 2 de junho de 1981"
+  url: "https://www2.camara.leg.br/legin/fed/decret/1980-1987/decreto-86060-2-junho-1981-435499-publicacaooriginal-1-pe.html"
+  url_verificada: true
+  dado_literal_na_pagina: "área estimada em 155.000 ha (cento e cinqüenta e cinco mil hectares)"
+  ano_base: 1981
+  nota: "Corrigido de 156.562 para 155.000 (decreto de criação). UNESCO/SGB citam 156.562 incluindo buffer zone."
+  verbetes: [V09, V10, V80, V102]
 
 - id: GEO-006
   categoria: geografia
@@ -100,9 +105,12 @@
 - id: GEO-010
   categoria: geografia
   descricao: "Área de manguezal no Maranhão"
-  valor: "480.000-500.000 hectares"
-  fonte: "ICMBio / MapBiomas"
-  url: "https://www.gov.br/icmbio/"
+  valor: "505.490,12 hectares"
+  fonte: "ICMBio, Atlas dos Manguezais do Brasil; IMESC (2025)"
+  url: "https://imesc.ma.gov.br/wp-content/uploads/2025/11/MANGUEZAIS-DA-ILHA-DO-MARANHAO-Dinamicas-e-Servicos-ecossistemicos.pdf"
+  url_verificada: true
+  dado_literal_na_pagina: "505.490,12 hectares"
+  nota: "Corrigido de faixa 480-500 mil para valor exato 505.490,12 ha (IMESC 2025)"
   ano_base: 2021
   verbetes: [V05]
 
