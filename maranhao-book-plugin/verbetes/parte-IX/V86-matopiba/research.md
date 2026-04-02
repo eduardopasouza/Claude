@@ -33,9 +33,10 @@ MATOPIBA e o acronimo para Maranhao, Tocantins, Piaui e Bahia — a ultima grand
 
 ## Fontes principais
 1. CONAB — Safra de graos 2023/2024.
-2. PRODES Cerrado/INPE — Monitoramento de desmatamento.
-3. MapBiomas — Dados de uso do solo, colecao 8.
+2. PRODES Cerrado/INPE — Monitoramento de desmatamento. Disponível em: <https://data.inpe.br/>. Acesso em: 01/04/2026.
+3. MapBiomas — Dados de uso do solo, colecao 8. Disponível em: <https://brasil.mapbiomas.org/2024/05/>. Acesso em: 01/04/2026. [MATOPIBA = 75% desmatamento Cerrado em 2024]
 4. IBGE — Producao Agricola Municipal, serie historica.
 5. Ministério da Agricultura — Plano MATOPIBA.
 6. CPT — Conflitos no campo, relatorio anual.
 7. Pitta, Fabio T. *O Brasil dos Agrocombustiveis*. Annablume, 2021.
+8. G1 Maranhão — MA lidera desmatamento BR 2024; 14 municipios no top 50; MATOPIBA = 75% do desmatamento do Cerrado. Disponível em: <https://g1.globo.com/ma/maranhao/noticia/2025/05/>. Acesso em: 01/04/2026.

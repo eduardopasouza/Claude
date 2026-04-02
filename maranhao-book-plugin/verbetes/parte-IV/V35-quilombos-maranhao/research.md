@@ -24,8 +24,10 @@ O quilombo de Frechal, em Mirinzal, foi o primeiro do Maranhao a obter reconheci
 
 | Dado | Valor | Fonte | Ano |
 |------|-------|-------|-----|
-| Comunidades quilombolas certificadas no MA | 1.152 | Fundacao Cultural Palmares | 2024 |
-| Posicao do MA no ranking nacional | 1o lugar (mais quilombos do Brasil) | FCP | 2024 |
+| Comunidades quilombolas certificadas no MA | 1.152 | Fundacao Cultural Palmares. Disponível em: <https://www.gov.br/palmares/>. Acesso em: 01/04/2026. | 2024 |
+| Posicao do MA no ranking nacional | 1o lugar (mais quilombos do Brasil) | FCP. Disponível em: <https://www.gov.br/palmares/>. Acesso em: 01/04/2026. | 2024 |
+| Quilombolas autodeclarados no MA | 269.074 | IBGE Censo 2022. Disponível em: <https://igualdaderacial.ma.gov.br/>. Acesso em: 01/04/2026. | 2022 |
+| Localidades quilombolas MA | 24% do BR (de 8.441) | IBGE Censo 2022. Disponível em: <https://agenciadenoticias.ibge.gov.br/>. Acesso em: 01/04/2026. | 2022 |
 | Comunidades quilombolas em Alcantara | 200+ | INCRA / Mabe | — |
 | Populacao escravizada no MA (1821) | 55,3% (84.534 de 152.893) | Pereira do Lago | 1821 |
 | Art. 68 ADCT — direito a terra | Constituicao Federal 1988 | CF/88 | 1988 |
@@ -150,7 +152,7 @@ O quilombo de Frechal, em Mirinzal (Baixada Maranhense), foi o primeiro do Maran
 
 ## Fontes principais
 
-1. Fundacao Cultural Palmares — Certidoes expedidas, dados 2024
+1. Fundacao Cultural Palmares — Certidoes expedidas, dados 2024. Disponível em: <https://www.gov.br/palmares/>. Acesso em: 01/04/2026.
 2. ALMEIDA, Alfredo Wagner Berno de. *Terras de Preto, Terras de Santo, Terras de Indio*. UFMA, 2006
 3. ASSUNCAO, Matthias Rohrig. *De Caboclos a Bem-ti-vis: formacao do campesinato numa sociedade escravista*. Annablume, 2015
 4. HAWTHORNE, Walter. *From Africa to Brazil: Culture, Identity, and an Atlantic Slave Trade, 1600-1830*. Cambridge UP, 2010

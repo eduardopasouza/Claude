@@ -85,3 +85,8 @@ Descoberta em 1967 por geólogo brasileiro. US Steel saiu em 1977. PGC: 900.000 
 - Vale 4Q24 Results; IBGE; ANM; ANTT
 - Agência Pública; Mongabay; National Geographic
 - Survival International; Wikipedia EN/PT; ANPTrilhos
+
+### Fontes verificadas (pesquisa profunda 01/04/2026)
+- IBGE SCR 2022 — PIB MA R$ 139,789 bilhoes. Disponível em: <https://cidades.ibge.gov.br/brasil/ma/pesquisa/10060/60147>. Acesso em: 01/04/2026.
+- Gazeta Carajas — Vale producao 2024: 328M ton (recorde). Disponível em: <https://www.gazetacarajas.com/>. Acesso em: 01/04/2026.
+- Times Brasil — Vale producao 2025: 336M ton (lideranca global). Disponível em: <https://timesbrasil.com.br/>. Acesso em: 01/04/2026.

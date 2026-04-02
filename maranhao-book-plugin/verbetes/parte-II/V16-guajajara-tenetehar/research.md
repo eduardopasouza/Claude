@@ -80,9 +80,9 @@ A TI Arariboia e alvo cronico de invasao madeireira, grilagem e incendios crimin
 
 ## Fontes primarias e secundarias
 
-1. IBGE. Censo Demografico 2022 — Indigenas. Populacao Guajajara ~27-30 mil.
+1. IBGE. Censo Demografico 2022 — Indigenas. Populacao Guajajara ~27-30 mil. Disponível em: <https://cidades.ibge.gov.br/brasil/ma/pesquisa/10101/97905>. Acesso em: 01/04/2026.
 2. ISA — Instituto Socioambiental. Povos Indigenas no Brasil: Guajajara/Tenetehar. Verbete enciclopedico.
-3. FUNAI. Terras Indigenas — dados territoriais (Arariboia, Caru, Pindare, Governador).
+3. FUNAI. Terras Indigenas — dados territoriais (Arariboia, Caru, Pindare, Governador). ZEE-MA: <https://zee.ma.gov.br/subsidio/html/indi.html>. Acesso em: 01/04/2026. [TI Arariboia 413.288 ha]
 4. GOMES, Mercio Pereira. *O indio na historia: o povo Tenetehar em busca da liberdade*. Petropolis: Vozes, 2002.
 5. ZANNONI, Claudio. *Conflito e coesao: o dinamismo Tenetehar*. Brasilia: CIMI, 1999.
 6. PRODES/INPE. Dados de desmatamento na Amazonia Legal — Maranhao.

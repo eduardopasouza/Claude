@@ -285,7 +285,7 @@ Após 1815 (proibição ao norte do Equador): 62,9% dos escravos passaram a vir 
 
 ### Artigos acadêmicos
 
-8. DOMINGUES DA SILVA, Daniel B. "The Atlantic Slave Trade to Maranhão, 1680-1846". *Slavery & Abolition*, v. 29, n. 4, 2008, pp. 477-501.
+8. DOMINGUES DA SILVA, Daniel B. "The Atlantic Slave Trade to Maranhão, 1680-1846". *Slavery & Abolition*, v. 29, n. 4, 2008, pp. 477-501. Disponível em: <https://www.tandfonline.com/doi/abs/10.1080/01440390802486507>. Acesso em: 01/04/2026.
 9. MOTA, Antonia da Silva; BARROSO, Daniel. "Economia e demografia da escravidão no Maranhão e no Grão-Pará". *Revista de História*, n. 176, 2017.
 10. MOTA, Antonia da Silva; CUNHA, Maísa. "No âmago da africanização: pessoas negras e de cor nos mapas populacionais do MA colonial (1798-1821)". *Rev. Bras. Estudos de Pop.*, v. 34, n. 3, 2017.
 11. BARROSO JUNIOR, Reinaldo. *Nas rotas do Atlântico equatorial: tráfico de escravos rizicultores da Alta-Guiné para o Maranhão (1770-1800)*. Dissertação, UFBA.
@@ -296,7 +296,7 @@ Após 1815 (proibição ao norte do Equador): 62,9% dos escravos passaram a vir 
 
 ### Bases de dados e patrimônio
 
-16. Trans-Atlantic Slave Trade Database — slavevoyages.org
+16. Trans-Atlantic Slave Trade Database. Disponível em: <https://www.slavevoyages.org/>. Acesso em: 01/04/2026.
 17. IPHAN. *Dossiê: Tambor de Crioula do Maranhão*.
 18. IPHAN. Bem Cultural Registrado: Tambor de Crioula.
 

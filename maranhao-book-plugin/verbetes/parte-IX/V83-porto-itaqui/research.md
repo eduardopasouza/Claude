@@ -21,7 +21,7 @@ O Porto do Itaqui, em Sao Luis, e o 4o maior porto publico do Brasil em moviment
 | Movimentacao total area portuaria (2023) | ~210 Mt |
 | Terminal Ponta da Madeira (Vale) | ~168 Mt (minerio, 2024) |
 | Tegram (graos) | ~10 Mt (2023) |
-| Porto publico Itaqui | ~18-20 Mt (2023) |
+| Porto publico Itaqui | ~34 Mt (2024); recorde ago/2025: 3,85M ton/mes |
 | Bercos de atracacao (porto publico) | 9 |
 | Administracao | EMAP (Empresa Maranhense de Administracao Portuaria) |
 | Inauguracao porto publico | 1974 |
@@ -53,3 +53,6 @@ O Porto do Itaqui, em Sao Luis, e o 4o maior porto publico do Brasil em moviment
 4. MDIC — Comex Stat, exportacoes por porto.
 5. Tegram — Dados operacionais 2023.
 6. MTPA — Plano Nacional de Logistica Portuaria, 2023.
+7. Portos e Navios — Porto Itaqui 2024 (34M toneladas). Disponível em: <https://www.portosenavios.com.br/>. Acesso em: 01/04/2026.
+8. Gov MA — Porto Itaqui 4o maior porto publico. Disponível em: <https://www.ma.gov.br/>. Acesso em: 01/04/2026.
+9. Gov Federal — Recorde agosto/2025 (3,85M ton/mes). Disponível em: <https://www.gov.br/portos-e-aeroportos/>. Acesso em: 01/04/2026.

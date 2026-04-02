@@ -16,7 +16,7 @@ O Bumba-meu-boi do Maranhão é a maior manifestação de cultura popular do est
 
 | Dado | Valor |
 |------|-------|
-| UNESCO | Patrimônio Imaterial da Humanidade, dezembro 2019 |
+| UNESCO | Patrimônio Imaterial da Humanidade, dezembro 2019. Disponível em: <https://ich.unesco.org/en/RL/cultural-complex-of-bumba-meu-boi-from-maranho-01510>. Acesso em: 01/04/2026. |
 | IPHAN | Patrimônio Cultural do Brasil, 2011 |
 | Grupos no Maranhão | 450+ (100+ em São Luís) |
 | Sotaques | 5 principais: matraca, zabumba, orquestra, baixada, costa-de-mão (+alternativo) |
@@ -52,7 +52,7 @@ O Bumba-meu-boi do Maranhão é a maior manifestação de cultura popular do est
 
 ## Fontes
 
-1. UNESCO ICH — Cultural Complex of Bumba-meu-boi from Maranhão (RL/01510)
+1. UNESCO ICH — Cultural Complex of Bumba-meu-boi from Maranhão (RL/01510). Disponível em: <https://ich.unesco.org/en/RL/cultural-complex-of-bumba-meu-boi-from-maranho-01510>. Acesso em: 01/04/2026.
 2. IPHAN — Complexo Cultural do Bumba-meu-boi do Maranhão
 3. Wikipedia PT — Bumba meu boi do Maranhão
 4. Wikipedia PT — Festejo de São Pedro e São Marçal em São Luís

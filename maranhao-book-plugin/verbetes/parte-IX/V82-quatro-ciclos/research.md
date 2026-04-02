@@ -95,7 +95,7 @@ Todos os ciclos compartilham:
 1. Meireles, Mario M. *Historia do Maranhao*. EDUFMA, 2001.
 2. Viveiros, Jeronimo de. *Historia do Comercio do Maranhao*. 1954.
 3. Chambouleyron, Rafael. "Povoamento, Ocupacao e Agricultura na Amazonia Colonial." 2010.
-4. IBGE — Contas Regionais 2022.
+4. IBGE — Contas Regionais 2022. PIB MA: R$ 139,789 bilhoes; PIB per capita: R$ 20.632,62. Disponível em: <https://cidades.ibge.gov.br/brasil/ma/pesquisa/10060/60147>. Acesso em: 01/04/2026.
 5. MDIC — Comex Stat, exportacoes MA, 2023.
 6. CONAB — Safra de graos, 2023/2024.
 7. Vale S.A. — Relatorio Anual 2024.

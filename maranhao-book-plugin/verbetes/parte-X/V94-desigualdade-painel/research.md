@@ -18,9 +18,9 @@ Este e o verbete mais duro do livro. O Maranhao ocupa a ultima ou penultima posi
 |------|-------|-------|-----|
 | IDH Maranhao | 0,676 — mais baixo do Brasil | PNUD/IBGE, Atlas do Desenvolvimento Humano | 2021 |
 | IDH Brasil | 0,754 | PNUD/IBGE | 2021 |
-| PIB per capita MA | R$ 15.757 — 2o mais baixo (acima do PI) | IBGE, Contas Regionais | 2021 |
+| PIB per capita MA | R$ 20.632,62 (2022); R$ 15.757 (2021) | IBGE SCR 2022. Disponível em: <https://cidades.ibge.gov.br/brasil/ma/pesquisa/10060/60147>. Acesso em: 01/04/2026. | 2022 |
 | PIB per capita Brasil | R$ 40.688 | IBGE | 2021 |
-| Esgoto tratado MA | 13,6% do esgoto tratado (coleta: 32,49%) | SNIS/Trata Brasil | 2022 |
+| Esgoto tratado MA | 13,6% do esgoto tratado (coleta: 32,49%) | SNIS/Trata Brasil. Disponível em: <https://tratabrasil.org.br/>. Acesso em: 01/04/2026. Coleta: <https://www.ma.gov.br/noticias/>. | 2022 |
 | Esgoto tratado Brasil | 51,2% | SNIS | 2022 |
 | Analfabetismo MA | 15,6% (15 anos+) | IBGE, PNAD Continua | 2022 |
 | Analfabetismo Brasil | 5,6% | IBGE | 2022 |
@@ -33,7 +33,7 @@ Este e o verbete mais duro do livro. O Maranhao ocupa a ultima ou penultima posi
 | Energia eletrica | MA e superavitario — produz mais do que consome | ONS/EPE | 2023 |
 | Indice de Gini MA | 0,535 | IBGE, PNAD Continua | 2022 |
 | Indice de Gini Brasil | 0,518 | IBGE | 2022 |
-| Populacao MA | ~7,15 milhoes | IBGE, Censo 2022 | 2022 |
+| Populacao MA | 6.776.699 | IBGE Censo 2022. Disponível em: <https://cidades.ibge.gov.br/brasil/ma/panorama>. Acesso em: 01/04/2026. | 2022 |
 | % em zona rural | 36,9% — um dos mais altos do Brasil | IBGE, Censo 2022 | 2022 |
 | Trabalho informal MA | ~60% da populacao ocupada | IBGE, PNAD Continua | 2022 |
 | Esperanca de vida MA | 71,4 anos | IBGE | 2021 |
@@ -130,12 +130,12 @@ O MA e o PI se alternam na lanterna da maioria dos indicadores. Mas o PI nao tem
 
 ## Fontes
 
-1. IBGE. Censo Demografico 2022.
+1. IBGE. Censo Demografico 2022. Disponível em: <https://cidades.ibge.gov.br/brasil/ma/panorama>. Acesso em: 01/04/2026. [Pop. 6.776.699]
 2. IBGE. PNAD Continua 2022 — Educacao, Renda, Trabalho.
 3. IBGE. Sintese de Indicadores Sociais 2023.
-4. IBGE. Contas Regionais do Brasil 2021.
-5. PNUD/IBGE. Atlas do Desenvolvimento Humano no Brasil. 2021.
-6. SNIS. Diagnostico dos Servicos de Agua e Esgotos. 2022.
+4. IBGE. Contas Regionais do Brasil 2021/2022. PIB MA: R$ 139,789 bilhoes; PIB per capita: R$ 20.632,62. Disponível em: <https://cidades.ibge.gov.br/brasil/ma/pesquisa/10060/60147>. Acesso em: 01/04/2026.
+5. PNUD/IBGE. Atlas do Desenvolvimento Humano no Brasil. 2021. Disponível em: <http://www.atlasbrasil.org.br/>. Acesso em: 01/04/2026.
+6. SNIS. Diagnostico dos Servicos de Agua e Esgotos. 2022. Trata Brasil: <https://tratabrasil.org.br/>. Gov MA: <https://www.ma.gov.br/noticias/>. Acesso em: 01/04/2026. [Esgoto tratado 13,6%; coleta 32,49%; agua urbana 76,29%]
 7. DataSUS/Ministerio da Saude. Indicadores de Mortalidade. 2021.
 8. DataSUS/CNES. Cadastro Nacional de Estabelecimentos de Saude. 2023.
 9. ANTAQ. Anuario Estatistico Portuario. 2023.

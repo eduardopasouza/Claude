@@ -21,6 +21,7 @@ Verbete literário dedicado inteiramente a Maria Firmina dos Reis (1822-1917) �
 | Redescoberta | Anos 1970, Horácio de Almeida / Zahidé Muzart |
 | Edição Penguin | 2018, edição comemorativa de Úrsula |
 ## Fontes: Muzart (1999); Duarte (2011); Reis, Úrsula, ed. crítica.
+- Maria Firmina dos Reis, *Úrsula* (1859), 2a edição. Disponível em: <https://archive.org/details/ursula-2a-edicao>. Acesso em: 01/04/2026.
 
 
 
