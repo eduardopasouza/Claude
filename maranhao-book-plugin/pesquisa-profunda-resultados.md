@@ -124,6 +124,55 @@
 | C12 ANTAQ, ANM, CPT, ANEEL | ✅ |  |
 | C13 Conab safras, DataSUS, cultura náutica, Parcel, TSE | ✅ |  |
 | D1 Projeções IPCC/IBGE/IPEA/Banco Mundial/EPE | ✅ Completa |  |
+| E1 Verificação literal URL por URL | 🔄 Em andamento |  |
+
+## E1 — Verificação Literal de URLs (dado por dado)
+
+### IBGE Cidades e Estados MA (ibge.gov.br/cidades-e-estados/ma.html)
+Dados extraídos literalmente da página em 02/04/2026:
+| Dado | Valor literal | Entrada YAML |
+|------|--------------|-------------|
+| Área | 329.651,463 km² | GEO-001 ✅ corrigido |
+| População censo | 6.776.699 | DEM-001 ✅ corrigido |
+| Densidade | 20,56 hab/km² | DEM-012 |
+| Pop. estimada 2024 | 7.018.211 | 📝 NOVO |
+| Matrículas fundamental | 1.021.612 | 📝 NOVO |
+| IDH | 0,676 | SOC-010 ✅ |
+| Receitas brutas 2023 | R$ 40.039.596.273 | 📝 NOVO |
+| Despesas brutas 2023 | R$ 29.390.219.743 | 📝 NOVO |
+| Rendimento per capita | R$ 1.219 | 📝 NOVO |
+| Veículos | 2.248.041 | 📝 NOVO |
+
+### IBGE SCR 2022 (cidades.ibge.gov.br/brasil/ma/pesquisa/10060/60147)
+| Dado | Valor literal | Entrada YAML |
+|------|--------------|-------------|
+| PIB | R$ 139.789 (x 1.000.000) | ECO-001 ✅ corrigido |
+| PIB per capita | R$ 20.632,62 | ECO-001 nota |
+
+### Atlas Brasil (atlasbrasil.org.br/perfil/uf/29)
+| Dado | Valor literal | Entrada YAML |
+|------|--------------|-------------|
+| IDHM | 0,676 — Médio | SOC-010 ✅ |
+
+### Porto do Itaqui oficial (portodoitaqui.com)
+Dados da página /localizacao:
+| Dado | Valor literal | Entrada YAML |
+|------|--------------|-------------|
+| Área EMAP | 5.100.000 m² | 📝 NOVO |
+| Coordenadas | 02°34'-02°36'S / 44°21'-44°24'W | 📝 NOVO |
+| "Maior complexo da AL em movimentação" | Afirmação oficial | CONFIRMA |
+| Redução 6 dias vs Sul/Sudeste | Afirmação oficial | CONFIRMA |
+
+Dados da página /infraestrutura:
+| Dado | Valor literal | Entrada YAML |
+|------|--------------|-------------|
+| Canal profundidade | 23m | CONFIRMA banco |
+| Canal largura | 500m | 📝 NOVO |
+| Calado máximo | 22,3m | 📝 NOVO |
+| Canal comprimento | 101km | 📝 NOVO |
+| 9 berços | 12 a 19m | 📝 NOVO |
+| EFC extensão | 892km | CONFIRMA |
+| FTL extensão | 4.238km | 📝 NOVO |
 
 ## D1 — Projeções Climáticas, Demográficas e Econômicas
 
