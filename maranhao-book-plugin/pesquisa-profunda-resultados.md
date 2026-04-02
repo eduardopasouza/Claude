@@ -117,7 +117,21 @@
 | C4 Biografias e literatura | ✅ Completa |  |
 | C6 Órgãos governamentais MA | ✅ Completa |  |
 | C7 Turismo, comércio exterior, pecuária | ✅ Completa |  |
+| C8 Educação, energia, pesca, agro detalhado | ✅ Completa |  |
 | D1 Projeções IPCC/IBGE | ⏳ Próxima sessão |  |
+
+## C8 — Educação, Energia, Pesca, Agro detalhado
+
+| Dado | Valor | Fonte | URL |
+|------|-------|-------|-----|
+| UFMA 2025 | 5.914 vagas, 96 cursos | UFMA | https://portalpadrao.ufma.br/ |
+| UFMA qualidade | 100% avaliação positiva INEP 2024-25 | UFMA | https://portalpadrao.ufma.br/ |
+| UHE Estreito | 1.087 MW, ENGIE, 8 turbinas Kaplan | ENGIE | https://www.engie.com.br/ |
+| MA capacidade elétrica 2013 | 2.309 MW total | ResearchGate | rsdjournal.org |
+| Soja top 4 municípios | 53,3% produção (Balsas, Tasso Fragoso, S.R.Mangabeiras, Sambaíba) | IMESC PDF | https://imesc.ma.gov.br/ |
+| Balsas | 203.577 ha soja | Agrolink | https://www.agrolink.com.br/ |
+| IMESC pesca Raposa | Nota Técnica PDF | IMESC | https://imesc.ma.gov.br/ |
+| Pesca artesanal BR 2024 | +11,9%, 281 mil ton | MPA | folhaestado.com.br |
 
 ## C7 — Turismo, Comércio Exterior, Pecuária, Saneamento
 
