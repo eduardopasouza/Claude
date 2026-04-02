@@ -122,7 +122,34 @@
 | C10 História aprofundada (holandeses, Beckman, Cochrane, Vitorino, sírios) | ✅ |  |
 | C11 Cultura aprofundada (reggae radiolas, Tambor Mina, Alcione, Baleiro) | ✅ |  |
 | C12 ANTAQ, ANM, CPT, ANEEL | ✅ |  |
+| C13 Conab safras, DataSUS, cultura náutica, Parcel, TSE | ✅ |  |
 | D1 Projeções IPCC/IBGE | ⏳ Próxima sessão |  |
+
+## C13 — Conab, DataSUS, Cultura Náutica, Parcel, TSE
+
+| Dado | Valor | Fonte | URL |
+|------|-------|-------|-----|
+| MA safra 24/25 | 8,79 M ton grãos (+18,6%) | Conab/Gov | https://www.gov.br/secom/ |
+| Conab e-book safra | PDF completo | Conab | https://www.gov.br/conab/ |
+| Mortalidade infantil 2023 | 14,8 por mil | AmazôniaLegal em Dados | https://amazonialegalemdados.info/ |
+| IBGE mortalidade série | Dados municipais | IBGE | https://cidades.ibge.gov.br/ |
+| DataSUS mortalidade MA | TabNet dados | DataSUS | http://tabnet.datasus.gov.br/ |
+| Cultura náutica MA | Artigo acadêmico técnicas | Eumed.net | https://www.eumed.net/ |
+| Parcel corais e hidróides | Artigo SciELO | SciELO | https://www.scielo.br/ |
+| Parcel ameaça offshore oil | 53 espécies em risco | Mongabay | https://news.mongabay.com/ |
+| SEMA diagnóstico Parcel | PDF oficial | SEMA-MA | https://www.sema.ma.gov.br/ |
+| Família Sarney poder | Artigo Legal Amazônia | Legal Amazônia | https://legal-amazonia.org/ |
+| TRE-MA eleições históricas | Dados desde 1945 | TRE-MA | https://www.tre-ma.jus.br/ |
+
+## Verificações Cruzadas Concluídas
+
+| Dado | Resultado | Fonte definitiva |
+|------|-----------|-----------------|
+| Maria Firmina nascimento | **11/mar/1822** (pesquisa 2017 revelou; antes: 11/out/1825) | elfikurten.com.br + MultiRio |
+| Sônia Guajajara | **Ministra** (Decreto 31/jan/2023), saiu mar/2026 | STF CV oficial |
+| São Luís 3 potências | **Confirmado**: única capital fundada por franceses | Múltiplas fontes |
+| Babaçu 60+ produtos | **Estimativa sem fonte exaustiva** — manter com nota | EJAtlas/One Earth |
+| Porto Itaqui ranking | **4º maior porto público** (não 2º) | Gov MA 2024 |
 
 ## C10-C12 — Dados aprofundados
 
