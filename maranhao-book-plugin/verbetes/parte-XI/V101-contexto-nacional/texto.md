@@ -36,11 +36,11 @@ Ultimo e primeiro ao mesmo tempo. Essa e a posicao do Maranhao no Brasil.
 | IDH (2021) | 0,639 | 0,754 | 27o (ultimo) |
 | Pobreza (2023) | 51,6% | 31,6% | 1o (maior) |
 | Analfabetismo (2022) | 14,5% | 5,6% | 1o (maior) |
-| Esgoto tratado | 3,92% | ~55% | 27o (ultimo) |
+| Esgoto tratado | 13,6% | ~55% | 27o (ultimo) |
 | Mortalidade infantil | 15,2/mil | 11,4/mil | 26o |
 | Expectativa de vida | 72,5 anos | 75,5 anos | 26o |
 | IDEB EM (2021) | 3,6 | 4,2 | 27o (ultimo) |
-| Area | 331.983 km2 | — | 8o maior |
+| Area | 329.651 km2 | — | 8o maior |
 | Exportacoes | US$9,5 bi | — | ~10o |
 
 *Fontes: IBGE, PNUD, INEP, SNIS, MDIC — 2021-2023*
@@ -53,12 +53,12 @@ O PIB per capita maranhense e 39% da media nacional. O analfabetismo e quase tre
 
 ## Os indicadores de recurso
 
-Agora olhe o outro lado. O Maranhao tem 331.983 quilometros quadrados — tao grande quanto a Alemanha. Tem 640 quilometros de litoral, 23 metros de calado portuario natural, duas ferrovias de carga, quatro biomas (amazonia, cerrado, caatinga, costeiro), rios navegaveis, energia eolica e solar em abundancia, e uma posicao geografica privilegiada para o comercio com Europa, Africa e Asia.^3
+Agora olhe o outro lado. O Maranhao tem 329.651 quilometros quadrados — tao grande quanto a Alemanha. Tem 640 quilometros de litoral, 23 metros de calado portuario natural, duas ferrovias de carga, quatro biomas (amazonia, cerrado, caatinga, costeiro), rios navegaveis, energia eolica e solar em abundancia, e uma posicao geografica privilegiada para o comercio com Europa, Africa e Asia.^3
 
 <!-- BOX: curiosidade — O MA e a Alemanha -->
 ### O MA e tao grande quanto a Alemanha
 
-A area do Maranhao — 331.983 km2 — e praticamente identica a da Alemanha (357.114 km2). A Alemanha tem 84 milhoes de habitantes, a quarta maior economia do mundo, e investe mais em pesquisa do que o PIB inteiro do Maranhao. O Maranhao tem 7 milhoes de habitantes e o menor PIB per capita do Brasil.
+A area do Maranhao — 329.651 km2 — e praticamente identica a da Alemanha (357.114 km2). A Alemanha tem 84 milhoes de habitantes, a quarta maior economia do mundo, e investe mais em pesquisa do que o PIB inteiro do Maranhao. O Maranhao tem 6.776.699 habitantes (Censo 2022) e o menor PIB per capita do Brasil.
 
 O tamanho nao e destino. E o que voce faz com ele.
 

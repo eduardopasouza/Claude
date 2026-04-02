@@ -17,9 +17,9 @@ status: rascunho
 
 # Saude publica: epidemias e indicadores
 
-Tres virgula noventa e dois por cento. Esse e o percentual de domicilios maranhenses com esgoto tratado. Tres virgula noventa e dois. Num pais onde a media ja e vergonhosa — 55% —, o Maranhao consegue ser quase vinte vezes pior.^1
+Treze virgula seis por cento. Esse e o percentual de esgoto tratado no Maranhao. A coleta alcanca apenas 32,49% da populacao. Num pais onde a media ja e vergonhosa — 55% —, o Maranhao segue entre os piores.^1 Fonte: SNIS/Trata Brasil, dados 2022.
 
-Quando voce le que a mortalidade infantil no Maranhao e 30% acima da media nacional, que ha menos da metade dos medicos per capita do que em Sao Paulo, que comunidades inteiras do interior nao tem posto de saude — a causa nao e um misterio. E 3,92%.
+Quando voce le que a mortalidade infantil no Maranhao e 30% acima da media nacional, que ha menos da metade dos medicos per capita do que em Sao Paulo, que comunidades inteiras do interior nao tem posto de saude — a causa nao e um misterio. E 13,6% de esgoto tratado e 32,49% de coleta.
 
 Saude publica comeca no esgoto. E o esgoto do Maranhao vai para o rio, para a vala, para o mangue.
 
@@ -61,7 +61,7 @@ Leitos hospitalares: 1,8 por mil habitantes — abaixo da media nacional e muito
 | Expectativa de vida | 72,5 anos | 75,5 anos |
 | Medicos por mil hab | 1,2 | 2,4 |
 | Leitos por mil hab | 1,8 | 2,1 |
-| Esgoto tratado | 3,92% | ~55% |
+| Esgoto tratado | 13,6% | ~55% |
 | Cobertura ESF | ~85% | ~75% |
 | Dengue (casos/100 mil) | ~400 | ~300 |
 

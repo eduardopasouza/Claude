@@ -9,7 +9,7 @@ posicao: meia-pagina
 
 ## 1. Briefing para designer
 **O que e**: Dashboard com 6 indicadores comparativos lado a lado: MA (carvao escuro) vs. Brasil (cinza medio).
-**Dados**: Mortalidade infantil 15,2 vs 11,4. Expectativa de vida 72,5 vs 75,5. Medicos/mil 1,2 vs 2,4. Leitos/mil 1,8 vs 2,1. Esgoto 3,92% vs 55%. ESF 85% vs 75%.
+**Dados**: Mortalidade infantil 15,2 vs 11,4. Expectativa de vida 72,5 vs 75,5. Medicos/mil 1,2 vs 2,4. Leitos/mil 1,8 vs 2,1. Esgoto 13,6% vs 55%. ESF 85% vs 75%.
 **Paleta**: Carvao #2B2B2B para MA, cinza #999 para Brasil.
 **Tamanho**: Meia pagina.
 

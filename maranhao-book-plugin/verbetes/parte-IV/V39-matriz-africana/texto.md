@@ -137,7 +137,7 @@ A capoeira angola -- a vertente mais proxima das raizes africanas, anterior a ca
 
 E ha os quilombos.
 
-O Maranhao tem o maior numero de comunidades quilombolas certificadas do Brasil: 653 comunidades reconhecidas pela Fundacao Cultural Palmares. Seiscentas e cinquenta e tres.^17^ Nao sao vestigios arqueologicos. Sao comunidades vivas -- com moradores, liderancas, rocas, festas, conflitos fundiarios, demandas por titulacao de terra. O quilombo maranhense nao e so memoria de resistencia: e resistencia presente, cotidiana, em andamento.
+O Maranhao tem o maior numero de comunidades quilombolas certificadas do Brasil: 1.152 comunidades reconhecidas pela Fundacao Cultural Palmares. Mil cento e cinquenta e duas.^17^ Nao sao vestigios arqueologicos. Sao comunidades vivas -- com moradores, liderancas, rocas, festas, conflitos fundiarios, demandas por titulacao de terra. O quilombo maranhense nao e so memoria de resistencia: e resistencia presente, cotidiana, em andamento.
 
 Os quilombos do Maranhao ja foram contados em V35 e V37. Aqui, no verbete de sintese, o que importa registrar e a escala: nenhum outro estado brasileiro tem tantas comunidades que desceram diretamente do gesto de fuga, de recusa, de construcao de um mundo proprio fora do alcance do senhor. A Africa que veio para o Maranhao nao apenas sobreviveu. Fez territorio.
 

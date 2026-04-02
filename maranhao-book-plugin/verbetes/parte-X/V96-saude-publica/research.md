@@ -22,7 +22,7 @@ fontes_consultadas: 12+
 | Doenca de Chagas: historico | Presente no interior, declinio com combate ao barbeiro |
 | COVID-19 mortes MA | ~11.000 (acumulado) |
 | Hospital principal | HUUFMA (Hospital Universitario) |
-| Saneamento basico | Esgoto tratado: 3,92% (um dos piores do Brasil) |
+| Saneamento basico | Esgoto tratado: 13,6% (coleta: 32,49%) — Fonte: SNIS/Trata Brasil, dados 2022 |
 | Epidemia historica: variola | Seculos XVIII-XIX, devastou populacoes indigenas |
 | Epidemia historica: colera | 1855, mortalidade alta em Sao Luis |
 

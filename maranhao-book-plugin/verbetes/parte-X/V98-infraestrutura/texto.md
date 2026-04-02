@@ -48,7 +48,7 @@ Mas eletricidade e o minimo. O que vem depois — agua, esgoto, moradia, conecti
 |----------------|-----------|--------------|
 | Energia eletrica | ~99% | ~99,8% |
 | Agua encanada | ~75% | ~84% |
-| Esgoto tratado | 3,92% | ~55% |
+| Esgoto tratado | 13,6% | ~55% |
 | Coleta de lixo | ~65% | ~85% |
 | Internet banda larga | ~40% | ~60% |
 | Pavimentacao urbana | Parcial | — |
@@ -56,7 +56,7 @@ Mas eletricidade e o minimo. O que vem depois — agua, esgoto, moradia, conecti
 
 *Fontes: SNIS, IBGE Censo 2022, ANATEL, FJP*
 
-**Esgoto**: 3,92% de tratamento e um numero que precisa ser repetido ate que doa. Em Sao Luis, a capital, o esgoto de bairros inteiros vai para igarapes que desaguam na Baia de Sao Marcos. No interior, o padrao e fossa rudimentar ou nada.^3
+**Esgoto**: 13,6% de tratamento (coleta de 32,49%) e um numero que precisa ser repetido ate que doa. Fonte: SNIS/Trata Brasil, dados 2022. Em Sao Luis, a capital, o esgoto de bairros inteiros vai para igarapes que desaguam na Baia de Sao Marcos. No interior, o padrao e fossa rudimentar ou nada.^3
 
 **Agua**: A CAEMA — Companhia de Aguas e Esgotos do Maranhao — fornece agua com intermitencia cronica. Em bairros perifericos de Sao Luis, a agua chega a cada dois ou tres dias. No interior, pocos artesianos e cisterhas sao a norma.
 

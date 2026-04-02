@@ -36,7 +36,7 @@
   valor: "640 km"
   fonte: "IBGE"
   ano_base: 2022
-  verbetes: [V02, V05, V48]
+  verbetes: [V02, V05, V48, V90, V104]
 
 - id: GEO-004
   categoria: geografia
@@ -52,7 +52,7 @@
   valor: "156.562 hectares"
   fonte: "UNESCO / ICMBio"
   ano_base: 2024
-  verbetes: [V09, V10]
+  verbetes: [V09, V10, V102]
 
 - id: GEO-006
   categoria: geografia
@@ -68,7 +68,7 @@
   valor: "até 7-8 metros"
   fonte: "Turismo São Luís / fontes oceanográficas"
   ano_base: 2022
-  verbetes: [V05]
+  verbetes: [V05, V48, V49, V104]
 
 - id: GEO-008
   categoria: geografia
@@ -84,7 +84,7 @@
   valor: "2.631.260 hectares"
   fonte: "Decreto Estadual 11.901/1991"
   ano_base: 1991
-  verbetes: [V02, V05]
+  verbetes: [V02, V05, V90]
 
 - id: GEO-010
   categoria: geografia
@@ -148,7 +148,7 @@
   valor: "46 espécies de água doce"
   fonte: "UFMA"
   ano_base: 2024
-  verbetes: [V09]
+  verbetes: [V09, V11]
 
 - id: GEO-018
   categoria: geografia
@@ -240,7 +240,7 @@
   valor: "1.108.975"
   fonte: "IBGE Censo"
   ano_base: 2022
-  verbetes: [V48]
+  verbetes: [V48, V53]
 
 - id: DEM-004
   categoria: demografia
@@ -296,7 +296,7 @@
   valor: "34,88 por mil nascidos vivos (~3x média nacional)"
   fonte: "IBGE"
   ano_base: 2022
-  verbetes: [V54, V55]
+  verbetes: [V54, V55, V101]
 
 - id: DEM-011
   categoria: demografia
@@ -404,7 +404,7 @@
   valor: "6 (Guajajara, Canela, Ka'apor, Krikati, Awá, Gavião)"
   fonte: "ISA / IBGE"
   ano_base: 2022
-  verbetes: [V14]
+  verbetes: [V14, V20]
 
 - id: IND-013
   categoria: indigena
@@ -580,7 +580,7 @@
   valor: "177 milhões de toneladas"
   fonte: "ANPTrilhos / Vale"
   ano_base: 2024
-  verbetes: [V84]
+  verbetes: [V82, V84, V88, V102]
 
 - id: ECO-010
   categoria: economia
@@ -628,7 +628,7 @@
   valor: "Açailândia ~R$ 2,9 mi/mês; São Luís ~R$ 2,8 mi/mês"
   fonte: "ANM"
   ano_base: 2024
-  verbetes: [V84]
+  verbetes: [V82, V84]
 
 - id: ECO-016
   categoria: economia
@@ -940,7 +940,7 @@
   valor: "8 de setembro de 1612"
   fonte: "D'Abbeville, Histoire de la mission, 1614"
   ano_base: 1612
-  verbetes: [V23, V48, V15]
+  verbetes: [V15, V23, V48, V56, V57]
 
 - id: HIS-002
   categoria: historia
@@ -956,7 +956,7 @@
   valor: "1859 — 1º romance de mulher brasileira"
   fonte: "Historiografia literária"
   ano_base: 1859
-  verbetes: [V76]
+  verbetes: [V65, V76]
 
 - id: HIS-004
   categoria: historia
@@ -972,7 +972,7 @@
   valor: "19 de novembro de 1614; vitória portuguesa apesar de inferioridade numérica"
   fonte: "Historiografia"
   ano_base: 1614
-  verbetes: [V23, V24]
+  verbetes: [V23, V24, V56]
 
 - id: HIS-006
   categoria: historia
@@ -988,7 +988,7 @@
   valor: "Criada por alvará régio de 7 de junho de 1755; monopólio de 20 anos"
   fonte: "Historiografia / Carreira"
   ano_base: 1755
-  verbetes: [V14, V25, V30, V33, V38, V40, V54]
+  verbetes: [V14, V25, V30, V33, V38, V40, V54, V57]
 
 - id: HIS-008
   categoria: historia
@@ -1112,7 +1112,7 @@
   valor: "300.000+ mulheres; ~90% do contingente é feminino"
   fonte: "MIQCB / IBGE"
   ano_base: 2022
-  verbetes: [V06, V85]
+  verbetes: [V06, V65, V85]
 
 - id: SOC-002
   categoria: social
@@ -1120,7 +1120,7 @@
   valor: "Lago do Junco (MA), Lei nº 05/1997"
   fonte: "MIQCB"
   ano_base: 1997
-  verbetes: [V06, V85]
+  verbetes: [V06, V65, V85]
 
 - id: SOC-003
   categoria: social
@@ -1359,7 +1359,7 @@
   valor: "181 de 217 (79,3% do território)"
   fonte: "IBGE / Portal Amazônia"
   ano_base: 2024
-  verbetes: [V01, V02]
+  verbetes: [V01, V02, V04]
 
 - id: GEO-029
   categoria: geografia
@@ -1413,7 +1413,7 @@
   valor: "~20.000 km²"
   fonte: "APA/IBGE"
   ano_base: 2000
-  verbetes: [V02, V61]
+  verbetes: [V02, V08, V61]
 
 - id: GEO-034
   categoria: geografia
@@ -1421,7 +1421,7 @@
   valor: "1.775.035 ha; Sítio Ramsar desde 2000"
   fonte: "Ramsar Convention"
   ano_base: 2000
-  verbetes: [V02]
+  verbetes: [V02, V08]
 
 - id: GEO-035
   categoria: geografia
@@ -1437,7 +1437,7 @@
   valor: "159.952 ha"
   fonte: "ICMBio"
   ano_base: 2005
-  verbetes: [V02]
+  verbetes: [V02, V03]
 
 - id: GEO-037
   categoria: geografia
@@ -1445,7 +1445,7 @@
   valor: "341.650 ha; 70-80% alterada"
   fonte: "ICMBio"
   ano_base: 1988
-  verbetes: [V02]
+  verbetes: [V02, V04]
 
 - id: GEO-038
   categoria: geografia
@@ -1487,7 +1487,7 @@
   valor: "~36,9% — uma das maiores do Brasil"
   fonte: "IBGE Censo 2022"
   ano_base: 2022
-  verbetes: [V61, V94]
+  verbetes: [V59, V61, V94]
 
 - id: DEM-016
   categoria: demografia
@@ -1545,7 +1545,7 @@
   valor: "\"The most threatened tribe on Earth\" (2012)"
   fonte: "Survival International"
   ano_base: 2012
-  verbetes: [V17, V21]
+  verbetes: [V17, V20, V21]
 
 - id: IND-023
   categoria: indigena
@@ -1753,7 +1753,7 @@
   valor: "1759, por ordem do Marquês de Pombal"
   fonte: "Legislação portuguesa"
   ano_base: 1759
-  verbetes: [V25, V37]
+  verbetes: [V25, V27, V28, V37]
 
 - id: HIS-029
   categoria: historia
@@ -1907,7 +1907,7 @@
   valor: "15,6% (15 anos+; vs. 5,6% Brasil)"
   fonte: "IBGE, PNAD Contínua"
   ano_base: 2022
-  verbetes: [V94, V100]
+  verbetes: [V47, V94, V100]
 
 - id: SOC-013
   categoria: social
@@ -2019,8 +2019,3500 @@
   ano_base: 2022
   verbetes: [V103]
 
-# NOTA: Este banco é evolutivo. Cada verbete produzido
+
+# === GEOGRAFIA (novos de verbetes fase 3) ===
+
+- id: GEO-040
+  categoria: geografia
+  descricao: "Área de Cerrado no MA"
+  valor: "~65% do território (~214.000 km²)"
+  fonte: "IBGE/MapBiomas"
+  ano_base: 2023
+  verbetes: [V03]
+
+- id: GEO-041
+  categoria: geografia
+  descricao: "Cerrado no Brasil"
+  valor: "2.036.448 km² (23,9% do território nacional)"
+  fonte: "IBGE"
+  ano_base: 2024
+  verbetes: [V03]
+
+- id: GEO-042
+  categoria: geografia
+  descricao: "Espécies vegetais no Cerrado"
+  valor: "12.356 catalogadas (44% endêmicas)"
+  fonte: "Mendonça et al., Flora do Cerrado"
+  ano_base: 2023
+  verbetes: [V03]
+
+- id: GEO-043
+  categoria: geografia
+  descricao: "Amazônia no MA — área original"
+  valor: "~34% do território (~112.000 km²)"
+  fonte: "IBGE"
+  ano_base: 2024
+  verbetes: [V04]
+
+- id: GEO-044
+  categoria: geografia
+  descricao: "TI Alto Turiaçu — área"
+  valor: "530.525 hectares"
+  fonte: "FUNAI"
+  ano_base: 2024
+  verbetes: [V04]
+
+- id: GEO-045
+  categoria: geografia
+  descricao: "TI Caru — área"
+  valor: "172.667 hectares"
+  fonte: "FUNAI"
+  ano_base: 2024
+  verbetes: [V04]
+
+- id: GEO-046
+  categoria: geografia
+  descricao: "Caatinga no MA"
+  valor: "~1% do território (~3.300 km²)"
+  fonte: "IBGE"
+  ano_base: 2024
+  verbetes: [V07]
+
+- id: GEO-047
+  categoria: geografia
+  descricao: "Rio Parnaíba (fronteira leste)"
+  valor: "Delimita MA/PI, ~1.400 km"
+  fonte: "ANA"
+  ano_base: 2022
+  verbetes: [V07]
+
+- id: GEO-048
+  categoria: geografia
+  descricao: "Bioma Caatinga (BR)"
+  valor: "844.453 km², exclusivo do Brasil"
+  fonte: "IBGE"
+  ano_base: 2024
+  verbetes: [V07]
+
+- id: GEO-049
+  categoria: geografia
+  descricao: "Municípios propostos Semiárido"
+  valor: "~45 municípios (PL 2.492/2019; critérios Sudene)"
+  fonte: "FAMEM/Sudene"
+  ano_base: 2024
+  verbetes: [V07]
+
+- id: GEO-050
+  categoria: geografia
+  descricao: "Secas históricas MA leste"
+  valor: "1877-78, 1915, 1932, 1958, 1979, 1998, 2012"
+  fonte: "Sudene/histórico"
+  ano_base: 2024
+  verbetes: [V07]
+
+- id: GEO-051
+  categoria: geografia
+  descricao: "Precipitação sertão leste"
+  valor: "600-900 mm/ano"
+  fonte: "INMET"
+  ano_base: 2023
+  verbetes: [V07]
+
+- id: GEO-052
+  categoria: geografia
+  descricao: "Precipitação São Luís"
+  valor: "2.000-2.200 mm/ano"
+  fonte: "INMET"
+  ano_base: 2023
+  verbetes: [V07]
+
+- id: GEO-053
+  categoria: geografia
+  descricao: "Rio Itapecuru — extensão"
+  valor: "~1.050 km (mais longo integralmente no MA)"
+  fonte: "ANA"
+  ano_base: 2022
+  verbetes: [V08]
+
+- id: GEO-054
+  categoria: geografia
+  descricao: "Rio Parnaíba — extensão total"
+  valor: "~1.400 km (fronteira MA/PI)"
+  fonte: "ANA"
+  ano_base: 2022
+  verbetes: [V08]
+
+- id: GEO-055
+  categoria: geografia
+  descricao: "Rio Tocantins (fronteira parcial)"
+  valor: "~2.700 km total (parcial no MA)"
+  fonte: "ANA"
+  ano_base: 2022
+  verbetes: [V08]
+
+- id: GEO-056
+  categoria: geografia
+  descricao: "Lago Açu (Viana)"
+  valor: "Maior lago da Baixada, ~7 km² na cheia"
+  fonte: "NuGeo-UEMA"
+  ano_base: 2022
+  verbetes: [V08]
+
+- id: GEO-057
+  categoria: geografia
+  descricao: "Bacias hidrográficas no MA"
+  valor: "12 (classificação ANA/SEMA)"
+  fonte: "ANA/SEMA-MA"
+  ano_base: 2022
+  verbetes: [V08]
+
+- id: GEO-058
+  categoria: geografia
+  descricao: "Rio Mearim — extensão"
+  valor: "~930 km"
+  fonte: "ANA"
+  ano_base: 2022
+  verbetes: [V08]
+
+- id: GEO-059
+  categoria: geografia
+  descricao: "Rio Pindaré — extensão"
+  valor: "~686 km"
+  fonte: "ANA"
+  ano_base: 2022
+  verbetes: [V08]
+
+- id: GEO-060
+  categoria: geografia
+  descricao: "Localização"
+  valor: "~86 km ao norte de Cururupu (MA)"
+  fonte: "ICMBio/SEMA-MA"
+  ano_base: 2022
+  verbetes: [V11]
+
+- id: GEO-061
+  categoria: geografia
+  descricao: "Área do Parcel"
+  valor: "~34.556 hectares (banco de corais)"
+  fonte: "SEMA-MA"
+  ano_base: 1991
+  verbetes: [V11]
+
+- id: GEO-062
+  categoria: geografia
+  descricao: "Distância de São Luís"
+  valor: "~160 km por mar"
+  fonte: "Marinha"
+  ano_base: 2022
+  verbetes: [V11]
+
+- id: GEO-063
+  categoria: geografia
+  descricao: "Parque Estadual Marinho"
+  valor: "Decreto 11.902, 11/06/1991"
+  fonte: "SEMA-MA"
+  ano_base: 1991
+  verbetes: [V11]
+
+- id: GEO-064
+  categoria: geografia
+  descricao: "Navio mais famoso"
+  valor: "HMS Douro (vapor britânico, 1843)"
+  fonte: "Marinha/arqueologia"
+  ano_base: 2023
+  verbetes: [V11]
+
+- id: GEO-065
+  categoria: geografia
+  descricao: "Outros naufrágios notáveis"
+  valor: "Orient (1893), Rosário (século XVIII)"
+  fonte: "Marinha/arqueologia"
+  ano_base: 2023
+  verbetes: [V11]
+
+- id: GEO-066
+  categoria: geografia
+  descricao: "Coordenadas"
+  valor: "~00°46'S, 44°16'W"
+  fonte: "Marinha do Brasil"
+  ano_base: 2022
+  verbetes: [V11]
+
+- id: GEO-067
+  categoria: geografia
+  descricao: "APA Delta do Parnaíba"
+  valor: "313.809 hectares (criada em 1996)"
+  fonte: "ICMBio/MMA"
+  ano_base: 1996
+  verbetes: [V12]
+
+- id: GEO-068
+  categoria: geografia
+  descricao: "Área do delta"
+  valor: "~2.700 km²"
+  fonte: "IBGE/CPRM"
+  ano_base: 2022
+  verbetes: [V12]
+
+- id: GEO-069
+  categoria: geografia
+  descricao: "Ilha principal"
+  valor: "Ilha Grande de Santa Isabel (~1.600 km²)"
+  fonte: "IBGE"
+  ano_base: 2022
+  verbetes: [V12]
+
+- id: GEO-070
+  categoria: geografia
+  descricao: "Número de ilhas"
+  valor: "73 ilhas mapeadas"
+  fonte: "IBGE"
+  ano_base: 2022
+  verbetes: [V12]
+
+- id: GEO-071
+  categoria: geografia
+  descricao: "Rio Parnaíba — extensão"
+  valor: "~1.400 km"
+  fonte: "ANA"
+  ano_base: 2022
+  verbetes: [V12]
+
+- id: GEO-072
+  categoria: geografia
+  descricao: "Espécies de aves"
+  valor: "200+ espécies registradas"
+  fonte: "ICMBio/ornitólogos"
+  ano_base: 2022
+  verbetes: [V12]
+
+- id: GEO-073
+  categoria: geografia
+  descricao: "Braços do delta"
+  valor: "5 braços principais (Igaraçu, Santa Rosa, Melancieira, Caju, Tutóia)"
+  fonte: "ANA/CPRM"
+  ano_base: 2022
+  verbetes: [V12]
+
+- id: GEO-074
+  categoria: geografia
+  descricao: "TI Alto Turiaçu — área"
+  valor: "530.525 hectares"
+  fonte: "FUNAI"
+  ano_base: 2024
+  verbetes: [V19]
+
+- id: GEO-075
+  categoria: geografia
+  descricao: "Extensão"
+  valor: "~1.050 km"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V34]
+
+- id: GEO-076
+  categoria: geografia
+  descricao: "Foz"
+  valor: "Baía de São José, próximo a São Luís"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V34]
+
+- id: GEO-077
+  categoria: geografia
+  descricao: "Classificação"
+  valor: "Maior rio inteiramente maranhense"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V34]
+
+- id: GEO-078
+  categoria: geografia
+  descricao: "Morte"
+  valor: "1 set 1977, Rio de Janeiro"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V47]
+
+- id: GEO-079
+  categoria: geografia
+  descricao: "Chegada ao MA"
+  valor: "Decada de 1930 (como funcionario federal)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V47]
+
+- id: GEO-080
+  categoria: geografia
+  descricao: "Estreito dos Mosquitos"
+  valor: "Separa ilha do continente (~2 km)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V48]
+
+- id: GEO-081
+  categoria: geografia
+  descricao: "Ponte Bandeira Tribuzzi"
+  valor: "2014, segunda ponte"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V48]
+
+- id: GEO-082
+  categoria: geografia
+  descricao: "Area da ilha"
+  valor: "831,7 km2"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V48]
+
+- id: GEO-083
+  categoria: geografia
+  descricao: "Municipios na ilha"
+  valor: "4 (Sao Luis, Sao Jose de Ribamar, Paco do Lumiar, Raposa)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V48]
+
+- id: GEO-084
+  categoria: geografia
+  descricao: "Altitude maxima"
+  valor: "~60 m (relevo baixo)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V48]
+
+- id: GEO-085
+  categoria: geografia
+  descricao: "Area da baia"
+  valor: "~700 km2 (estimativa)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V49]
+
+- id: GEO-086
+  categoria: geografia
+  descricao: "Profundidade natural"
+  valor: "23 m (calado)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V49]
+
+- id: GEO-087
+  categoria: geografia
+  descricao: "Segunda maior variacao de mare do Brasil"
+  valor: "Sim (atras de alguns pontos do Amapa)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V49]
+
+- id: GEO-088
+  categoria: geografia
+  descricao: "Area tombada"
+  valor: "~250 hectares"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V51]
+
+- id: GEO-089
+  categoria: geografia
+  descricao: "Imoveis no centro historico"
+  valor: "~3.500 (estimativa)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V51]
+
+- id: GEO-090
+  categoria: geografia
+  descricao: "Fachadas azulejadas"
+  valor: "Centenas (nao ha inventario preciso)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V51]
+
+- id: GEO-091
+  categoria: geografia
+  descricao: "Funcao pratica"
+  valor: "Protecao contra umidade, isolamento termico"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V51]
+
+- id: GEO-092
+  categoria: geografia
+  descricao: "Umidade relativa"
+  valor: "70-95% (dispersao de luz)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V52]
+
+- id: GEO-093
+  categoria: geografia
+  descricao: "Latitude"
+  valor: "~2o30'S (quase equatorial)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V52]
+
+- id: GEO-094
+  categoria: geografia
+  descricao: "Duracao media do crepusculo"
+  valor: "20-30 minutos (tropicos, rapido)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V52]
+
+- id: GEO-095
+  categoria: geografia
+  descricao: "Horario medio (junho)"
+  valor: "~17:45"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V52]
+
+- id: GEO-096
+  categoria: geografia
+  descricao: "Horario medio (dezembro)"
+  valor: "~18:15"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V52]
+
+- id: GEO-097
+  categoria: geografia
+  descricao: "Orientacao da baia"
+  valor: "Oeste-noroeste (sol se poe sobre a agua)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V52]
+
+- id: GEO-098
+  categoria: geografia
+  descricao: "Melhor epoca"
+  valor: "Junho-novembro (menos nuvens, ceu limpo)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V52]
+
+- id: GEO-099
+  categoria: geografia
+  descricao: "Taxa de homicidios (2022)"
+  valor: "~35-40 por 100 mil hab (concentrados na periferia)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V53]
+
+- id: GEO-100
+  categoria: geografia
+  descricao: "Distancia centro-periferia"
+  valor: "15-25 km"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V53]
+
+- id: GEO-101
+  categoria: geografia
+  descricao: "Bairros perifericos principais"
+  valor: "Cidade Olimpica, Anjo da Guarda, Coroadinho, Liberdade, Sa Viana, Vila Embratel"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V53]
+
+- id: GEO-102
+  categoria: geografia
+  descricao: "Frente pastoril nordestina (séc. XVII-XVIII)"
+  valor: "Cearenses e baianos pelo sertão maranhense"
+  fonte: "Cabral da Costa, 2006"
+  ano_base: 2024
+  verbetes: [V59]
+
+- id: GEO-103
+  categoria: geografia
+  descricao: "Construção de Brasília"
+  valor: "1956-1960 — milhares de nordestinos (MA incluído)"
+  fonte: "IBGE / Holston"
+  ano_base: 1960
+  verbetes: [V60]
+
+- id: GEO-104
+  categoria: geografia
+  descricao: "Maranhenses fora do MA"
+  valor: "~1 milhão (estimativa)"
+  fonte: "IBGE Censo 2022 / fluxos"
+  ano_base: 2022
+  verbetes: [V60]
+
+- id: GEO-105
+  categoria: geografia
+  descricao: "Troncos de madeira"
+  valor: "Tambores tradicionalmente feitos de tronco de mangue ou sororó escavado"
+  fonte: "Tradição"
+  ano_base: 2024
+  verbetes: [V68]
+
+- id: GEO-106
+  categoria: geografia
+  descricao: "Morte"
+  valor: "04/12/2016, Rio de Janeiro"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V75]
+
+- id: GEO-107
+  categoria: geografia
+  descricao: "Morte"
+  valor: "21/03/2006, Rio de Janeiro"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V77]
+
+- id: GEO-108
+  categoria: geografia
+  descricao: "Alumar (aluminio)"
+  valor: "Consorcio Alcoa/BHP/Rio Tinto, Sao Luis"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V88]
+
+- id: GEO-109
+  categoria: geografia
+  descricao: "Parques eolicos MA"
+  valor: "~100+ (Delta, Paulino Neves, Barreirinhas, Tutoia)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V89]
+
+- id: GEO-110
+  categoria: geografia
+  descricao: "Camboas"
+  valor: "Armadilhas de pedra, tecnica pre-colonial"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V90]
+
+- id: GEO-111
+  categoria: geografia
+  descricao: "Comunidades pesqueiras"
+  valor: "Centenas ao longo do litoral e rios"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V90]
+
+- id: GEO-112
+  categoria: geografia
+  descricao: "BR-226"
+  valor: "Liga interior do MA ao litoral"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V91]
+
+- id: GEO-113
+  categoria: geografia
+  descricao: "Rio Mearim"
+  valor: "~800 km, principal hidrovia historica"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V97]
+
+- id: GEO-114
+  categoria: geografia
+  descricao: "Rio Itapecuru"
+  valor: "~1.050 km, navegavel em trechos"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V97]
+
+- id: GEO-115
+  categoria: geografia
+  descricao: "Maior municipio (area)"
+  valor: "Caxias (~5.200 km2)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V99]
+
+- id: GEO-116
+  categoria: geografia
+  descricao: "Area territorial"
+  valor: "331.983 km2"
+  fonte: "—"
+  ano_base: 2024
+  verbetes: [V101]
+
+- id: GEO-117
+  categoria: geografia
+  descricao: "Biodiversidade"
+  valor: "4 biomas, Amazonia+Cerrado+Caatinga+Costeiro"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V102]
+
+- id: GEO-118
+  categoria: geografia
+  descricao: "Mangues"
+  valor: "Maior area continua das Americas (Reentrâncias)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V102]
+
+- id: GEO-119
+  categoria: geografia
+  descricao: "Estaleiros artesanais"
+  valor: "Dezenas ao longo do litoral e rios"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V104]
+
+- id: GEO-120
+  categoria: geografia
+  descricao: "Parcel Manuel Luis"
+  valor: "~46 km2, 150 km da costa"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V105]
+
+- id: GEO-121
+  categoria: geografia
+  descricao: "Zona Economica Exclusiva"
+  valor: "200 milhas nauticas — MA tem trecho significativo"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V105]
+
+- id: GEO-122
+  categoria: geografia
+  descricao: "Profundidade Parcel"
+  valor: "20-30 m"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V105]
+
+
+# === DEMOGRAFIA (novos de verbetes fase 3) ===
+
+- id: DEM-018
+  categoria: demografia
+  descricao: "Vazio europeu subsequente"
+  valor: "1536-1612 (~77 anos)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V22]
+
+- id: DEM-019
+  categoria: demografia
+  descricao: "População escravizada"
+  valor: "Até 80% no vale (1821)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V34]
+
+- id: DEM-020
+  categoria: demografia
+  descricao: "Populacao do MA (1823)"
+  valor: "~200.000 (est.)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V42]
+
+- id: DEM-021
+  categoria: demografia
+  descricao: "Populacao do MA (1950)"
+  valor: "~1,6 milhao"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V47]
+
+- id: DEM-022
+  categoria: demografia
+  descricao: "Populacao total da ilha"
+  valor: "~1,5 milhao (est. 2024)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V48]
+
+- id: DEM-023
+  categoria: demografia
+  descricao: "'Atenas Brasileira' — apogeu letrado"
+  valor: "Séc. XIX, especialmente 1850-1880"
+  fonte: "Historiografia maranhense"
+  ano_base: 2024
+  verbetes: [V57]
+
+- id: DEM-024
+  categoria: demografia
+  descricao: "Início da imigração"
+  valor: "Década de 1880"
+  fonte: "Truzzi, 2008"
+  ano_base: 2024
+  verbetes: [V58]
+
+- id: DEM-025
+  categoria: demografia
+  descricao: "Pico migratório"
+  valor: "1900-1930"
+  fonte: "Truzzi / Knowlton"
+  ano_base: 2024
+  verbetes: [V58]
+
+- id: DEM-026
+  categoria: demografia
+  descricao: "Origem predominante"
+  valor: "Líbano (cristãos maronitas e ortodoxos), Síria"
+  fonte: "Truzzi, 2008"
+  ano_base: 2024
+  verbetes: [V58]
+
+- id: DEM-027
+  categoria: demografia
+  descricao: "Motivo da migração"
+  valor: "Perseguição otomana, crise econômica no Monte Líbano"
+  fonte: "Hourani & Shehadi, 1992"
+  ano_base: 2024
+  verbetes: [V58]
+
+- id: DEM-028
+  categoria: demografia
+  descricao: "Rota de chegada"
+  valor: "Belém → interior do MA via rios, ou direto a São Luís"
+  fonte: "Relatos orais / Truzzi"
+  ano_base: 2024
+  verbetes: [V58]
+
+- id: DEM-029
+  categoria: demografia
+  descricao: "Concentração em São Luís"
+  valor: "Rua Grande, Praia Grande, mercados"
+  fonte: "Tradição local"
+  ano_base: 2024
+  verbetes: [V58]
+
+- id: DEM-030
+  categoria: demografia
+  descricao: "Imperatriz como polo de atração"
+  valor: "Crescimento 500% entre 1960-1990"
+  fonte: "IBGE censos"
+  ano_base: 2024
+  verbetes: [V59]
+
+- id: DEM-031
+  categoria: demografia
+  descricao: "Migração para a capital"
+  valor: "São Luís cresceu de 250 mil (1970) para 1,1 milhão (2022)"
+  fonte: "IBGE"
+  ano_base: 2022
+  verbetes: [V59]
+
+- id: DEM-032
+  categoria: demografia
+  descricao: "Migração cearense pós-secas"
+  valor: "1877, 1915, 1932 — ondas de retirantes"
+  fonte: "IBGE / registros históricos"
+  ano_base: 2024
+  verbetes: [V59]
+
+- id: DEM-033
+  categoria: demografia
+  descricao: "Colonização dirigida (COLONE)"
+  valor: "Assentamentos no sul do MA (1960-1980)"
+  fonte: "INCRA / Asselin, 2009"
+  ano_base: 2024
+  verbetes: [V59]
+
+- id: DEM-034
+  categoria: demografia
+  descricao: "Conflitos fundiários"
+  valor: "1.200+ assassinatos no campo (MA líder nacional)"
+  fonte: "CPT, 2020"
+  ano_base: 2024
+  verbetes: [V59]
+
+- id: DEM-035
+  categoria: demografia
+  descricao: "Deslocamento por grandes projetos"
+  valor: "Carajás, Alumar, Alcoa (1980s)"
+  fonte: "Costa, 2006"
+  ano_base: 2024
+  verbetes: [V59]
+
+- id: DEM-036
+  categoria: demografia
+  descricao: "Principal destino"
+  valor: "São Paulo (estado) — ~350-400 mil"
+  fonte: "IBGE migração"
+  ano_base: 2010
+  verbetes: [V60]
+
+- id: DEM-037
+  categoria: demografia
+  descricao: "Segundo destino"
+  valor: "Pará — ~150-200 mil"
+  fonte: "IBGE migração"
+  ano_base: 2010
+  verbetes: [V60]
+
+- id: DEM-038
+  categoria: demografia
+  descricao: "Terceiro destino"
+  valor: "Distrito Federal/Goiás — ~100-150 mil"
+  fonte: "IBGE migração"
+  ano_base: 2010
+  verbetes: [V60]
+
+- id: DEM-039
+  categoria: demografia
+  descricao: "Pico emigratório"
+  valor: "Décadas de 1970-1990"
+  fonte: "IBGE censos"
+  ano_base: 2024
+  verbetes: [V60]
+
+- id: DEM-040
+  categoria: demografia
+  descricao: "Taxa de emigração líquida"
+  valor: "MA perde mais gente do que recebe há 50+ anos"
+  fonte: "IBGE"
+  ano_base: 2024
+  verbetes: [V60]
+
+- id: DEM-041
+  categoria: demografia
+  descricao: "% católicos no MA"
+  valor: "~72% (declínio contínuo)"
+  fonte: "IBGE Censo 2010"
+  ano_base: 2010
+  verbetes: [V64]
+
+- id: DEM-042
+  categoria: demografia
+  descricao: "% evangélicos no MA"
+  valor: "~17% (crescimento acelerado)"
+  fonte: "IBGE Censo 2010"
+  ano_base: 2010
+  verbetes: [V64]
+
+- id: DEM-043
+  categoria: demografia
+  descricao: "% religiões afro-brasileiras (declarado)"
+  valor: "<1% (sub-declaração massiva)"
+  fonte: "IBGE"
+  ano_base: 2010
+  verbetes: [V64]
+
+- id: DEM-044
+  categoria: demografia
+  descricao: "Casa das Minas (Querebentã)"
+  valor: "Fundada séc. XIX — jeje (fon/ewe)"
+  fonte: "Ferretti, 1996"
+  ano_base: 2024
+  verbetes: [V64]
+
+- id: DEM-045
+  categoria: demografia
+  descricao: "Casa de Nagô"
+  valor: "Fundada séc. XIX — nagô (yorubá)"
+  fonte: "Ferretti, 1996"
+  ano_base: 2024
+  verbetes: [V64]
+
+- id: DEM-046
+  categoria: demografia
+  descricao: "% mulheres chefes de família no MA"
+  valor: "~45% (crescente)"
+  fonte: "IBGE/PNAD"
+  ano_base: 2022
+  verbetes: [V65]
+
+- id: DEM-047
+  categoria: demografia
+  descricao: "Alcione Nazareth"
+  valor: "'Marrom', nascida SLZ 1947, cantora"
+  fonte: "Público"
+  ano_base: 1947
+  verbetes: [V65]
+
+- id: DEM-048
+  categoria: demografia
+  descricao: "MIQCB"
+  valor: "Movimento Interestadual das Quebradeiras"
+  fonte: "Fundado 1991"
+  ano_base: 1991
+  verbetes: [V65]
+
+- id: DEM-049
+  categoria: demografia
+  descricao: "Maior municipio (populacao)"
+  valor: "Sao Luis (~1,1 milhao)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V99]
+
+- id: DEM-050
+  categoria: demografia
+  descricao: "Populacao"
+  valor: "7,1 milhoes"
+  fonte: "203 milhoes"
+  ano_base: 2024
+  verbetes: [V101]
+
+
+# === INDIGENA (novos de verbetes fase 3) ===
+
+- id: IND-027
+  categoria: indigena
+  descricao: "TI Awá-Guajá — área"
+  valor: "116.582 hectares"
+  fonte: "FUNAI"
+  ano_base: 2024
+  verbetes: [V04]
+
+- id: IND-028
+  categoria: indigena
+  descricao: "TI Canela — área"
+  valor: "125.212 hectares (Fernando Falcão/Barra do Corda)"
+  fonte: "FUNAI"
+  ano_base: 2024
+  verbetes: [V18]
+
+- id: IND-029
+  categoria: indigena
+  descricao: "TI Krikati — área"
+  valor: "146.000 hectares (Montes Altos/Sítio Novo)"
+  fonte: "FUNAI"
+  ano_base: 2024
+  verbetes: [V18]
+
+- id: IND-030
+  categoria: indigena
+  descricao: "Curt Nimuendajú"
+  valor: "Etnólogo alemão que documentou os Timbira (1929-1944)"
+  fonte: "Nimuendajú, 1946"
+  ano_base: 1946
+  verbetes: [V18]
+
+- id: IND-031
+  categoria: indigena
+  descricao: "Canela-Ramkokamekrá — pop."
+  valor: "~2.800 pessoas"
+  fonte: "SIASI/SESAI"
+  ano_base: 2023
+  verbetes: [V18]
+
+- id: IND-032
+  categoria: indigena
+  descricao: "Canela-Apãniekrá — pop."
+  valor: "~1.100 pessoas"
+  fonte: "SIASI/SESAI"
+  ano_base: 2023
+  verbetes: [V18]
+
+- id: IND-033
+  categoria: indigena
+  descricao: "Gavião (Pukobiyé) — pop."
+  valor: "~900 pessoas"
+  fonte: "SIASI/SESAI"
+  ano_base: 2023
+  verbetes: [V18]
+
+- id: IND-034
+  categoria: indigena
+  descricao: "TI Alto Turiaçu — demarcação"
+  valor: "Homologada em 1982"
+  fonte: "FUNAI"
+  ano_base: 1982
+  verbetes: [V19]
+
+- id: IND-035
+  categoria: indigena
+  descricao: "Vigilância Ka'apor"
+  valor: "Patrulhas organizadas desde 2012/2013"
+  fonte: "ISA/Greenpeace"
+  ano_base: 2014
+  verbetes: [V19]
+
+- id: IND-036
+  categoria: indigena
+  descricao: "Operação Hileia Pátria"
+  valor: "Operação PF/IBAMA na TI Alto Turiaçu (2014)"
+  fonte: "PF/IBAMA"
+  ano_base: 2014
+  verbetes: [V19]
+
+- id: IND-037
+  categoria: indigena
+  descricao: "Darcy Ribeiro"
+  valor: "Pesquisou os Ka'apor nos anos 1940-50"
+  fonte: "Ribeiro, D."
+  ano_base: 1996
+  verbetes: [V19]
+
+- id: IND-038
+  categoria: indigena
+  descricao: "Ka'apor (Urubu-Ka'apor) — pop."
+  valor: "~2.300 pessoas"
+  fonte: "SIASI/SESAI"
+  ano_base: 2023
+  verbetes: [V19]
+
+- id: IND-039
+  categoria: indigena
+  descricao: "Troncos linguísticos presentes"
+  valor: "2 (Tupi, Macro-Jê) + isolados"
+  fonte: "Rodrigues, A.D."
+  ano_base: 2002
+  verbetes: [V20]
+
+- id: IND-040
+  categoria: indigena
+  descricao: "Tenetehara (Guajajara) — falantes"
+  valor: "~30.000+ (língua mais falada do MA)"
+  fonte: "ISA"
+  ano_base: 2024
+  verbetes: [V20]
+
+- id: IND-041
+  categoria: indigena
+  descricao: "Canela — falantes"
+  valor: "~3.900 (Ramkokamekrá + Apãniekrá)"
+  fonte: "ISA"
+  ano_base: 2024
+  verbetes: [V20]
+
+- id: IND-042
+  categoria: indigena
+  descricao: "Awá-Guajá — falantes"
+  valor: "~350 (contato) + isolados"
+  fonte: "FUNAI/ISA"
+  ano_base: 2024
+  verbetes: [V20]
+
+- id: IND-043
+  categoria: indigena
+  descricao: "Ka'apor — falantes"
+  valor: "~2.300"
+  fonte: "ISA"
+  ano_base: 2024
+  verbetes: [V20]
+
+- id: IND-044
+  categoria: indigena
+  descricao: "Família Jê (Macro-Jê) — línguas"
+  valor: "Canela, Krikati, Gavião (Pukobiyé), Krahô (TO) — 'dialetos Timbira'"
+  fonte: "Rodrigues/Melatti"
+  ano_base: 2002
+  verbetes: [V20]
+
+- id: IND-045
+  categoria: indigena
+  descricao: "Família Tupi-Guarani (Tupi) — línguas"
+  valor: "Ka'apor, Tenetehara (Guajajara/Tembé), Guajá, Awá"
+  fonte: "Rodrigues"
+  ano_base: 2002
+  verbetes: [V20]
+
+- id: IND-046
+  categoria: indigena
+  descricao: "Legado demográfico"
+  valor: "MA passou de ~90% indígena/mestiça para 55% negra/parda em 1821"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V28]
+
+- id: IND-047
+  categoria: indigena
+  descricao: "Sônia Guajajara"
+  valor: "Guajajara/Tenetehara, Min. Povos Indígenas 2023"
+  fonte: "Público"
+  ano_base: 2023
+  verbetes: [V65]
+
+- id: IND-048
+  categoria: indigena
+  descricao: "Tribos de índio"
+  valor: "Blocos que simulam indígenas (Tupinambás, Guaxendubas)"
+  fonte: "Tradição local"
+  ano_base: 2024
+  verbetes: [V71]
+
+
+# === QUILOMBO (novos de verbetes fase 3) ===
+
+- id: QUI-013
+  categoria: quilombo
+  descricao: "Escravizados traficados"
+  valor: "~31.317 embarcados (24.985 sobreviventes) durante período da Cia."
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V28]
+
+- id: QUI-014
+  categoria: quilombo
+  descricao: "Documentação Inquisição"
+  valor: "19+ referências, pico 1750-1775 (Souza)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V31]
+
+- id: QUI-015
+  categoria: quilombo
+  descricao: "Percentual do tráfico para MA"
+  valor: "88%"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V31]
+
+- id: QUI-016
+  categoria: quilombo
+  descricao: "Período principal"
+  valor: "1755-1820"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V31]
+
+- id: QUI-017
+  categoria: quilombo
+  descricao: "Região de origem"
+  valor: "Alta Guiné (Senegâmbia)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V31]
+
+- id: QUI-018
+  categoria: quilombo
+  descricao: "País atual"
+  valor: "Guiné-Bissau"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V31]
+
+- id: QUI-019
+  categoria: quilombo
+  descricao: "Percentual MA"
+  valor: "~12% Angola/Congo (período da Companhia)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V32]
+
+- id: QUI-020
+  categoria: quilombo
+  descricao: "Período principal MA"
+  valor: "Pós-1810 (segunda onda)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V32]
+
+- id: QUI-021
+  categoria: quilombo
+  descricao: "Golfo do Benin (Costa da Mina)"
+  valor: "Atuais Gana, Togo, Benin, Nigéria"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V32]
+
+- id: QUI-022
+  categoria: quilombo
+  descricao: "Povos embarcados"
+  valor: "Jeje (Fon), Nagô (Iorubá), Mina (genérico)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V32]
+
+- id: QUI-023
+  categoria: quilombo
+  descricao: "Casa de Nagô"
+  valor: "Tradição Iorubá, São Luís"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V32]
+
+- id: QUI-024
+  categoria: quilombo
+  descricao: "África Central"
+  valor: "Angola, Congo, Benguela"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V32]
+
+- id: QUI-025
+  categoria: quilombo
+  descricao: "Nascente"
+  valor: "Serra da Croeira, sudoeste do MA"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V34]
+
+- id: QUI-026
+  categoria: quilombo
+  descricao: "Escravizados"
+  valor: "Dezenas a centenas (registros variaveis)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V45]
+
+- id: QUI-027
+  categoria: quilombo
+  descricao: "São Benedito"
+  valor: "Santo padroeiro — Tambor de Crioula é frequentemente pagamento de promessa"
+  fonte: "Tradição"
+  ano_base: 2024
+  verbetes: [V68]
+
+- id: QUI-028
+  categoria: quilombo
+  descricao: "Tambor de crioula no carnaval"
+  valor: "Presença em blocos e circuitos de rua"
+  fonte: "Tradição"
+  ano_base: 2024
+  verbetes: [V71]
+
+
+# === ECONOMIA (novos de verbetes fase 3) ===
+
+- id: ECO-030
+  categoria: economia
+  descricao: "MATOPIBA — área total"
+  valor: "73 milhões de hectares"
+  fonte: "Embrapa"
+  ano_base: 2015
+  verbetes: [V03]
+
+- id: ECO-031
+  categoria: economia
+  descricao: "Soja no MA — área plantada"
+  valor: "3,2 milhões de hectares"
+  fonte: "CONAB"
+  ano_base: 2024
+  verbetes: [V03]
+
+- id: ECO-032
+  categoria: economia
+  descricao: "Soja no MA — produção"
+  valor: "10,8 milhões de toneladas"
+  fonte: "CONAB"
+  ano_base: 2024
+  verbetes: [V03]
+
+- id: ECO-033
+  categoria: economia
+  descricao: "Cabral em Porto Seguro"
+  valor: "22/04/1500"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V22]
+
+- id: ECO-034
+  categoria: economia
+  descricao: "Nome oficial"
+  valor: "Companhia Geral de Comércio do Grão-Pará e Maranhão"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V28]
+
+- id: ECO-035
+  categoria: economia
+  descricao: "Azulejos"
+  valor: "Sécs. XVIII-XIX, maioria importada de Lisboa e Porto"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V29]
+
+- id: ECO-036
+  categoria: economia
+  descricao: "Distância de captura"
+  valor: "Maioria: raio de 16 km dos portos (Hawthorne)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V31]
+
+- id: ECO-037
+  categoria: economia
+  descricao: "Portos de embarque"
+  valor: "Bissau, Cacheu"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V31]
+
+- id: ECO-038
+  categoria: economia
+  descricao: "Exportacao de algodao (pico)"
+  valor: "2a provincia exportadora do Brasil (anos 1810-1820)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V41]
+
+- id: ECO-039
+  categoria: economia
+  descricao: "Exportacao de algodao do MA (1860)"
+  valor: "~10.000 toneladas (est.)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V44]
+
+- id: ECO-040
+  categoria: economia
+  descricao: "Propriedades"
+  valor: "Fazendas no Itapecuru, casas em Sao Luis, comercio"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V45]
+
+- id: ECO-041
+  categoria: economia
+  descricao: "Exportacao de minerio (Itaqui/Ponta da Madeira)"
+  valor: "~180 milhoes t/ano (Vale)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V49]
+
+- id: ECO-042
+  categoria: economia
+  descricao: "Navios/ano (Itaqui)"
+  valor: "~2.000+"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V49]
+
+- id: ECO-043
+  categoria: economia
+  descricao: "Porto do Itaqui"
+  valor: "Porto mais profundo do Brasil"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V49]
+
+- id: ECO-044
+  categoria: economia
+  descricao: "Exportacao de graos"
+  valor: "Terminal da Tegram, Cargill, outros"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V49]
+
+- id: ECO-045
+  categoria: economia
+  descricao: "Mercadores portugueses no algodão"
+  valor: "Controle de ~80% da exportação séc. XVIII-XIX"
+  fonte: "Faria, 2001"
+  ano_base: 2024
+  verbetes: [V57]
+
+- id: ECO-046
+  categoria: economia
+  descricao: "Atividade inicial"
+  valor: "Mascates (comércio ambulante, prestações)"
+  fonte: "Truzzi, 2008"
+  ano_base: 2024
+  verbetes: [V58]
+
+- id: ECO-047
+  categoria: economia
+  descricao: "PIB MA (2022)"
+  valor: "R$128 bilhoes"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V82]
+
+- id: ECO-048
+  categoria: economia
+  descricao: "PIB per capita MA (2022)"
+  valor: "R$18.127 (menor do Brasil)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V82]
+
+- id: ECO-049
+  categoria: economia
+  descricao: "Exportacoes MA (2023)"
+  valor: "~US$9,5 bilhoes"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V82]
+
+- id: ECO-050
+  categoria: economia
+  descricao: "Principal produto exportado"
+  valor: "Minerio de ferro (~50% do valor)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V82]
+
+- id: ECO-051
+  categoria: economia
+  descricao: "Soja MA (2023)"
+  valor: "~4,2 milhoes de toneladas"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V82]
+
+- id: ECO-052
+  categoria: economia
+  descricao: "Area plantada soja MA"
+  valor: "~1,2 milhao de hectares"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V82]
+
+- id: ECO-053
+  categoria: economia
+  descricao: "Babacu: producao MA"
+  valor: "~95% da producao nacional"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V82]
+
+- id: ECO-054
+  categoria: economia
+  descricao: "Distancia para Europa/EUA"
+  valor: "~1.500 km menor que Santos"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V83]
+
+- id: ECO-055
+  categoria: economia
+  descricao: "Principal carga"
+  valor: "Minerio de ferro (~80% do volume total)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V83]
+
+- id: ECO-056
+  categoria: economia
+  descricao: "Terminal Ponta da Madeira (Vale)"
+  valor: "~168 Mt (minerio, 2024)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V83]
+
+- id: ECO-057
+  categoria: economia
+  descricao: "Tegram (graos)"
+  valor: "~10 Mt (2023)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V83]
+
+- id: ECO-058
+  categoria: economia
+  descricao: "Porto publico Itaqui"
+  valor: "~18-20 Mt (2023)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V83]
+
+- id: ECO-059
+  categoria: economia
+  descricao: "Calado natural"
+  valor: "23 metros (maior do Brasil)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V83]
+
+- id: ECO-060
+  categoria: economia
+  descricao: "Navios Valemax"
+  valor: "400.000 TPB, 362m comprimento"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V83]
+
+- id: ECO-061
+  categoria: economia
+  descricao: "Area total MATOPIBA"
+  valor: "73 milhoes de hectares"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V86]
+
+- id: ECO-062
+  categoria: economia
+  descricao: "Area plantada soja MA (2023)"
+  valor: "~1,2 milhao ha"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V86]
+
+- id: ECO-063
+  categoria: economia
+  descricao: "Producao soja MA (2023)"
+  valor: "~4,2 milhoes t"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V86]
+
+- id: ECO-064
+  categoria: economia
+  descricao: "Area plantada soja MA (2000)"
+  valor: "~300 mil ha"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V86]
+
+- id: ECO-065
+  categoria: economia
+  descricao: "Desmatamento cerrado MATOPIBA (2022)"
+  valor: "~500 mil ha (PRODES Cerrado)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V86]
+
+- id: ECO-066
+  categoria: economia
+  descricao: "Soja: principal destino"
+  valor: "China (~70%)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V86]
+
+- id: ECO-067
+  categoria: economia
+  descricao: "Exportacoes MA (2023)"
+  valor: "~US$9,5 bilhoes"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V87]
+
+- id: ECO-068
+  categoria: economia
+  descricao: "Importacoes MA (2023)"
+  valor: "~US$3,5 bilhoes"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V87]
+
+- id: ECO-069
+  categoria: economia
+  descricao: "Saldo comercial"
+  valor: "~US$6 bilhoes (superavitario)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V87]
+
+- id: ECO-070
+  categoria: economia
+  descricao: "Principal parceiro (China)"
+  valor: "~55% das exportacoes"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V87]
+
+- id: ECO-071
+  categoria: economia
+  descricao: "Minerio de ferro (% exportacoes)"
+  valor: "~50%"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V87]
+
+- id: ECO-072
+  categoria: economia
+  descricao: "Soja e derivados (% exportacoes)"
+  valor: "~20%"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V87]
+
+- id: ECO-073
+  categoria: economia
+  descricao: "Alumina (% exportacoes)"
+  valor: "~8%"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V87]
+
+- id: ECO-074
+  categoria: economia
+  descricao: "Alumar: capacidade aluminio"
+  valor: "Suspensa desde 2015 (alto custo energia)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V88]
+
+- id: ECO-075
+  categoria: economia
+  descricao: "Participacao industrial no PIB MA"
+  valor: "~18%"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V88]
+
+- id: ECO-076
+  categoria: economia
+  descricao: "Alumar: capacidade alumina"
+  valor: "~3,5 Mt/ano"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V88]
+
+- id: ECO-077
+  categoria: economia
+  descricao: "Ferro-gusa"
+  valor: "~8 siderurgicas em Acailandia e Maraba, producao com carvao vegetal"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V88]
+
+- id: ECO-078
+  categoria: economia
+  descricao: "Celulose"
+  valor: "Suzano: planta em Imperatriz, ~1,5 Mt/ano"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V88]
+
+- id: ECO-079
+  categoria: economia
+  descricao: "Empregos industria formal MA"
+  valor: "~80.000 (RAIS)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V88]
+
+- id: ECO-080
+  categoria: economia
+  descricao: "Hidreletrica Boa Esperanca (Parnaiba)"
+  valor: "237 MW, inaugurada 1970"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V89]
+
+- id: ECO-081
+  categoria: economia
+  descricao: "Hidreletrica Estreito (Tocantins)"
+  valor: "1.087 MW, inaugurada 2012"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V89]
+
+- id: ECO-082
+  categoria: economia
+  descricao: "Geracao eletrica no MA"
+  valor: "~3.500 MW capacidade instalada"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V89]
+
+- id: ECO-083
+  categoria: economia
+  descricao: "Solar: capacidade (2024)"
+  valor: "~500 MW (crescimento rapido)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V89]
+
+- id: ECO-084
+  categoria: economia
+  descricao: "Eolica: capacidade instalada MA (2024)"
+  valor: "~4.500 MW"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V89]
+
+- id: ECO-085
+  categoria: economia
+  descricao: "Consumo vs. geracao"
+  valor: "MA gera mais energia do que consome"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V89]
+
+- id: ECO-086
+  categoria: economia
+  descricao: "Producao pesqueira MA"
+  valor: "~100.000 t/ano (artesanal + industrial)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V90]
+
+- id: ECO-087
+  categoria: economia
+  descricao: "Ranking nacional"
+  valor: "2o ou 3o maior produtor pesqueiro"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V90]
+
+- id: ECO-088
+  categoria: economia
+  descricao: "Pescadores artesanais registrados"
+  valor: "~130.000"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V90]
+
+- id: ECO-089
+  categoria: economia
+  descricao: "Caranguejo-uca"
+  valor: "MA e maior produtor nacional"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V90]
+
+- id: ECO-090
+  categoria: economia
+  descricao: "Camarao"
+  valor: "Especie principal: camarao-rosa, captura artesanal"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V90]
+
+- id: ECO-091
+  categoria: economia
+  descricao: "Participacao Arco Norte (graos)"
+  valor: ">35% das exportacoes brasileiras (2023)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V91]
+
+- id: ECO-092
+  categoria: economia
+  descricao: "EFC (Estrada de Ferro Carajas)"
+  valor: "892 km, Carajas (PA)→Sao Luis"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V91]
+
+- id: ECO-093
+  categoria: economia
+  descricao: "FNS (Ferrovia Norte-Sul)"
+  valor: "~1.550 km, Anapolis (GO)→Itaqui (MA)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V91]
+
+- id: ECO-094
+  categoria: economia
+  descricao: "Porto de Itaqui/Ponta da Madeira"
+  valor: "~210 Mt/ano"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V91]
+
+- id: ECO-095
+  categoria: economia
+  descricao: "BR-010 (Belem-Brasilia)"
+  valor: "Corta o MA norte-sul"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V91]
+
+- id: ECO-096
+  categoria: economia
+  descricao: "BR-135"
+  valor: "Sao Luis-Balsas-Barreiras (BA)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V91]
+
+- id: ECO-097
+  categoria: economia
+  descricao: "Energia eletrica"
+  valor: "~99% (universalizacao quase completa)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V98]
+
+- id: ECO-098
+  categoria: economia
+  descricao: "Habitacao: deficit"
+  valor: "~300.000 unidades"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V98]
+
+- id: ECO-099
+  categoria: economia
+  descricao: "PIB per capita"
+  valor: "R$18.127"
+  fonte: "R$46.155"
+  ano_base: 2024
+  verbetes: [V101]
+
+- id: ECO-100
+  categoria: economia
+  descricao: "Soja"
+  valor: "Hub de exportacao do Arco Norte (alimenta China)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V102]
+
+- id: ECO-101
+  categoria: economia
+  descricao: "Energia"
+  valor: "Potencial eólico e solar de escala global"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V102]
+
+- id: ECO-102
+  categoria: economia
+  descricao: "Pescadores com embarcacao propria"
+  valor: "Maioria artesanal"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V104]
+
+- id: ECO-103
+  categoria: economia
+  descricao: "Eolica offshore"
+  valor: "Projetos em estudo, costa MA e area prioritaria"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V105]
+
+- id: ECO-104
+  categoria: economia
+  descricao: "Petroleo"
+  valor: "Bacia do Parnaiba (terrestre/marinha): potencial gas natural"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V105]
+
+
+# === CULTURA (novos de verbetes fase 3) ===
+
+- id: CUL-037
+  categoria: cultura
+  descricao: "Marco arquitetônico"
+  valor: "Centro Histórico de São Luís (UNESCO 1997)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V29]
+
+- id: CUL-038
+  categoria: cultura
+  descricao: "Goncalves Dias — nascimento"
+  valor: "10 ago 1823, Caxias, MA"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V41]
+
+- id: CUL-039
+  categoria: cultura
+  descricao: "Sotero dos Reis — Curso de Literatura"
+  valor: "1866-1873, 5 volumes"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V41]
+
+- id: CUL-040
+  categoria: cultura
+  descricao: "Nascimento"
+  valor: "1787 (Alcantara ou Sao Luis — debatido)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V45]
+
+- id: CUL-041
+  categoria: cultura
+  descricao: "Nascimento"
+  valor: "7 out 1903, Pedra/PE"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V47]
+
+- id: CUL-042
+  categoria: cultura
+  descricao: "Tombamento IPHAN"
+  valor: "1974 (centro historico)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V51]
+
+- id: CUL-043
+  categoria: cultura
+  descricao: "UNESCO"
+  valor: "1997 (Patrimonio Mundial)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V51]
+
+- id: CUL-044
+  categoria: cultura
+  descricao: "Casas de azulejo — patrimônio UNESCO"
+  valor: "Centro histórico de São Luís (1997)"
+  fonte: "UNESCO WHC 821"
+  ano_base: 1997
+  verbetes: [V57]
+
+- id: CUL-045
+  categoria: cultura
+  descricao: "Azulejos portugueses em São Luís"
+  valor: "~3.500 fachadas catalogadas"
+  fonte: "IPHAN / Andrès, 1998"
+  ano_base: 1998
+  verbetes: [V57]
+
+- id: CUL-046
+  categoria: cultura
+  descricao: "% sem religião"
+  valor: "~6%"
+  fonte: "IBGE Censo 2010"
+  ano_base: 2010
+  verbetes: [V64]
+
+- id: CUL-047
+  categoria: cultura
+  descricao: "Terreiros de Tambor de Mina em SLZ"
+  valor: "~500-1.000 (estimativas variam)"
+  fonte: "Ferretti, 2000"
+  ano_base: 2024
+  verbetes: [V64]
+
+- id: CUL-048
+  categoria: cultura
+  descricao: "Úrsula (romance)"
+  valor: "1859, primeiro romance de autora negra no Brasil"
+  fonte: "Reis, 1859"
+  ano_base: 1859
+  verbetes: [V65]
+
+- id: CUL-049
+  categoria: cultura
+  descricao: "Grupos ativos em SLZ"
+  valor: "50+ (estimativa)"
+  fonte: "IPHAN / registros"
+  ano_base: 2024
+  verbetes: [V68]
+
+- id: CUL-050
+  categoria: cultura
+  descricao: "Registro IPHAN"
+  valor: "Patrimônio Imaterial do Brasil"
+  fonte: "IPHAN"
+  ano_base: 2007
+  verbetes: [V68]
+
+- id: CUL-051
+  categoria: cultura
+  descricao: "Tambores"
+  valor: "Três: grande (rufador), meião (socador), pequeno (crivador)"
+  fonte: "Ferretti / IPHAN"
+  ano_base: 2024
+  verbetes: [V68]
+
+- id: CUL-052
+  categoria: cultura
+  descricao: "Coreiras"
+  valor: "Mulheres dançarinas — a punga é feminina"
+  fonte: "Tradição"
+  ano_base: 2024
+  verbetes: [V68]
+
+- id: CUL-053
+  categoria: cultura
+  descricao: "Punga / Umbigada"
+  valor: "Movimento ritual: toque de barriga entre coreiras"
+  fonte: "Tradição"
+  ano_base: 2024
+  verbetes: [V68]
+
+- id: CUL-054
+  categoria: cultura
+  descricao: "Origem europeia"
+  valor: "Portugal, séc. XIII — Rainha Isabel"
+  fonte: "Tradição"
+  ano_base: 2024
+  verbetes: [V70]
+
+- id: CUL-055
+  categoria: cultura
+  descricao: "Caixeiras"
+  valor: "Mulheres que conduzem o ritual com caixas (tambores retangulares)"
+  fonte: "IPHAN / Barbosa"
+  ano_base: 2024
+  verbetes: [V70]
+
+- id: CUL-056
+  categoria: cultura
+  descricao: "Duração"
+  valor: "Semanas (preparação + festa + encerramento)"
+  fonte: "Tradição"
+  ano_base: 2024
+  verbetes: [V70]
+
+- id: CUL-057
+  categoria: cultura
+  descricao: "Imperador/Imperatriz"
+  valor: "Crianças coroadas durante a festa"
+  fonte: "Tradição"
+  ano_base: 2024
+  verbetes: [V70]
+
+- id: CUL-058
+  categoria: cultura
+  descricao: "Tribuna"
+  valor: "Espaço sagrado com altar, bandeira do Divino, trono"
+  fonte: "Tradição"
+  ano_base: 2024
+  verbetes: [V70]
+
+- id: CUL-059
+  categoria: cultura
+  descricao: "Elementos afro"
+  valor: "Tambores, cantos polirrítmicos, referências a encantados"
+  fonte: "Ferretti / Barbosa"
+  ano_base: 2024
+  verbetes: [V70]
+
+- id: CUL-060
+  categoria: cultura
+  descricao: "Blocos tradicionais"
+  valor: "Fuzileiros da Fuzarca (1936), Bicho Terra, Os Foliões"
+  fonte: "Registros culturais"
+  ano_base: 2024
+  verbetes: [V71]
+
+- id: CUL-061
+  categoria: cultura
+  descricao: "Pré-carnaval"
+  valor: "Maior que o carnaval oficial — semanas de festas prévias"
+  fonte: "Jornalismo local"
+  ano_base: 2024
+  verbetes: [V71]
+
+- id: CUL-062
+  categoria: cultura
+  descricao: "Casinha da Roça"
+  valor: "Bloco tradicional de temática rural"
+  fonte: "Tradição local"
+  ano_base: 2024
+  verbetes: [V71]
+
+- id: CUL-063
+  categoria: cultura
+  descricao: "Sem sambódromo"
+  valor: "São Luís não tem desfile organizado estilo Rio"
+  fonte: "—"
+  ano_base: 2024
+  verbetes: [V71]
+
+- id: CUL-064
+  categoria: cultura
+  descricao: "Carnaval de rua"
+  valor: "Predominância de blocos de bairro, corsos, marchinhas"
+  fonte: "Tradição"
+  ano_base: 2024
+  verbetes: [V71]
+
+- id: CUL-065
+  categoria: cultura
+  descricao: "Mês"
+  valor: "Festa principal"
+  fonte: "Tipo"
+  ano_base: 2024
+  verbetes: [V72]
+
+- id: CUL-066
+  categoria: cultura
+  descricao: "Janeiro"
+  valor: "Festa de São Sebastião / Marujada"
+  fonte: "Religiosa-popular"
+  ano_base: 2024
+  verbetes: [V72]
+
+- id: CUL-067
+  categoria: cultura
+  descricao: "Fevereiro-Março"
+  valor: "Pré-Carnaval + Carnaval"
+  fonte: "Profana"
+  ano_base: 2024
+  verbetes: [V72]
+
+- id: CUL-068
+  categoria: cultura
+  descricao: "Março-Abril"
+  valor: "Semana Santa, Procissões"
+  fonte: "Religiosa"
+  ano_base: 2024
+  verbetes: [V72]
+
+- id: CUL-069
+  categoria: cultura
+  descricao: "Maio-Junho"
+  valor: "Festa do Divino Espírito Santo"
+  fonte: "Sincrética"
+  ano_base: 2024
+  verbetes: [V72]
+
+- id: CUL-070
+  categoria: cultura
+  descricao: "Junho"
+  valor: "São João + Bumba-meu-boi (abertura)"
+  fonte: "Sincrética-popular"
+  ano_base: 2024
+  verbetes: [V72]
+
+- id: CUL-071
+  categoria: cultura
+  descricao: "Nascimento"
+  valor: "10/08/1823, Caxias, MA"
+  fonte: "Biografias"
+  ano_base: 1823
+  verbetes: [V73]
+
+- id: CUL-072
+  categoria: cultura
+  descricao: "'Canção do Exílio'"
+  valor: "1843, escrita em Coimbra"
+  fonte: "Primeiros Cantos, 1847"
+  ano_base: 1843
+  verbetes: [V73]
+
+- id: CUL-073
+  categoria: cultura
+  descricao: "'I-Juca-Pirama'"
+  valor: "Poema indianista, publicado em Últimos Cantos (1851)"
+  fonte: "1851"
+  ano_base: 1851
+  verbetes: [V73]
+
+- id: CUL-074
+  categoria: cultura
+  descricao: "Primeiros Cantos"
+  valor: "1847 — elogiado por Alexandre Herculano"
+  fonte: "Bibliog."
+  ano_base: 1847
+  verbetes: [V73]
+
+- id: CUL-075
+  categoria: cultura
+  descricao: "Nascimento"
+  valor: "14/04/1857, São Luís, MA"
+  fonte: "Biografias"
+  ano_base: 1857
+  verbetes: [V74]
+
+- id: CUL-076
+  categoria: cultura
+  descricao: "Morte"
+  valor: "21/01/1913, Buenos Aires, Argentina"
+  fonte: "Biografias"
+  ano_base: 1913
+  verbetes: [V74]
+
+- id: CUL-077
+  categoria: cultura
+  descricao: "*O Mulato*"
+  valor: "1881 — primeiro romance naturalista brasileiro"
+  fonte: "Bibliog."
+  ano_base: 1881
+  verbetes: [V74]
+
+- id: CUL-078
+  categoria: cultura
+  descricao: "*O Cortiço*"
+  valor: "1890 — obra-prima do Naturalismo"
+  fonte: "Bibliog."
+  ano_base: 1890
+  verbetes: [V74]
+
+- id: CUL-079
+  categoria: cultura
+  descricao: "Irmão"
+  valor: "Artur Azevedo (1855-1908), dramaturgo"
+  fonte: "Biografias"
+  ano_base: 2024
+  verbetes: [V74]
+
+- id: CUL-080
+  categoria: cultura
+  descricao: "*Casa de Pensão*"
+  valor: "1884"
+  fonte: "Bibliog."
+  ano_base: 1884
+  verbetes: [V74]
+
+- id: CUL-081
+  categoria: cultura
+  descricao: "Carreira diplomática"
+  valor: "Cônsul em Vigo, Nápoles, Assunção, Buenos Aires"
+  fonte: "MRE"
+  ano_base: 2024
+  verbetes: [V74]
+
+- id: CUL-082
+  categoria: cultura
+  descricao: "Nascimento"
+  valor: "10/09/1930, São Luís, MA"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V75]
+
+- id: CUL-083
+  categoria: cultura
+  descricao: "Poema Sujo"
+  valor: "1976, escrito em Buenos Aires durante exílio"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V75]
+
+- id: CUL-084
+  categoria: cultura
+  descricao: "A Luta Corporal"
+  valor: "1954, primeiro livro importante"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V75]
+
+- id: CUL-085
+  categoria: cultura
+  descricao: "Exílio"
+  valor: "1971-1977 (Chile, Peru, Argentina, URSS)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V75]
+
+- id: CUL-086
+  categoria: cultura
+  descricao: "Nascimento"
+  valor: "11/03/1822, São Luís, MA"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V76]
+
+- id: CUL-087
+  categoria: cultura
+  descricao: "Morte"
+  valor: "11/11/1917, Guimarães, MA"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V76]
+
+- id: CUL-088
+  categoria: cultura
+  descricao: "Úrsula"
+  valor: "1859, primeiro romance de autora negra no Brasil"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V76]
+
+- id: CUL-089
+  categoria: cultura
+  descricao: "Gupeva"
+  valor: "1861, novela indianista"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V76]
+
+- id: CUL-090
+  categoria: cultura
+  descricao: "Hino da Libertação"
+  valor: "1888, composição para celebrar a Abolição"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V76]
+
+- id: CUL-091
+  categoria: cultura
+  descricao: "Redescoberta"
+  valor: "Anos 1970, Horácio de Almeida / Zahidé Muzart"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V76]
+
+- id: CUL-092
+  categoria: cultura
+  descricao: "Nascimento"
+  valor: "21/08/1917, São Luís"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V77]
+
+- id: CUL-093
+  categoria: cultura
+  descricao: "Diários"
+  valor: "15 volumes publicados"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V77]
+
+- id: CUL-094
+  categoria: cultura
+  descricao: "Os Tambores de São Luís"
+  valor: "1975"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V77]
+
+- id: CUL-095
+  categoria: cultura
+  descricao: "Cais da Sagração"
+  valor: "1971"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V77]
+
+- id: CUL-096
+  categoria: cultura
+  descricao: "Cultura"
+  valor: "Bumba-meu-boi (Patrimônio Imaterial UNESCO), reggae"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V102]
+
+- id: CUL-097
+  categoria: cultura
+  descricao: "Patrimônio"
+  valor: "Centro Histórico de São Luís (Patrimônio Mundial UNESCO)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V102]
+
+
+# === HISTORIA (novos de verbetes fase 3) ===
+
+- id: HIS-044
+  categoria: historia
+  descricao: "Pinzón na costa"
+  valor: "Janeiro-fevereiro 1500"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V22]
+
+- id: HIS-045
+  categoria: historia
+  descricao: "Diego de Lepe"
+  valor: "Fevereiro 1500"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V22]
+
+- id: HIS-046
+  categoria: historia
+  descricao: "Contrato Fernão de Noronha"
+  valor: "1501-1505, pau-brasil"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V22]
+
+- id: HIS-047
+  categoria: historia
+  descricao: "Capitania do Maranhão"
+  valor: "Doada 1535 a Aires da Cunha + João de Barros"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V22]
+
+- id: HIS-048
+  categoria: historia
+  descricao: "Naufrágio"
+  valor: "1535-1536, Baixios de São Roque"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V22]
+
+- id: HIS-049
+  categoria: historia
+  descricao: "Início da ocupação"
+  valor: "25/11/1641"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V26]
+
+- id: HIS-050
+  categoria: historia
+  descricao: "Fim da ocupação"
+  valor: "28/02/1644"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V26]
+
+- id: HIS-051
+  categoria: historia
+  descricao: "Contexto"
+  valor: "WIC já controlava Pernambuco (1630-1654); União Ibérica acabara em 1640"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V26]
+
+- id: HIS-052
+  categoria: historia
+  descricao: "Duração"
+  valor: "~2 anos e 3 meses"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V26]
+
+- id: HIS-053
+  categoria: historia
+  descricao: "Força invasora"
+  valor: "~2.000 soldados, 18-20 navios"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V26]
+
+- id: HIS-054
+  categoria: historia
+  descricao: "Guarnição portuguesa"
+  valor: "~200 soldados"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V26]
+
+- id: HIS-055
+  categoria: historia
+  descricao: "Consequência"
+  valor: "São Luís = única capital controlada por 3 potências europeias"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V26]
+
+- id: HIS-056
+  categoria: historia
+  descricao: "Chegada de Vieira ao MA"
+  valor: "Janeiro de 1653"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V27]
+
+- id: HIS-057
+  categoria: historia
+  descricao: "Sermão da 1ª Dominga da Quaresma"
+  valor: "Março de 1653, São Luís"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V27]
+
+- id: HIS-058
+  categoria: historia
+  descricao: "Sermão de Santo Antônio aos Peixes"
+  valor: "13/06/1654, São Luís"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V27]
+
+- id: HIS-059
+  categoria: historia
+  descricao: "Inquisição contra Vieira"
+  valor: "1663-1667, Coimbra"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V27]
+
+- id: HIS-060
+  categoria: historia
+  descricao: "Vieira nasce"
+  valor: "Lisboa, 06/02/1608"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V27]
+
+- id: HIS-061
+  categoria: historia
+  descricao: "Vieira morre"
+  valor: "Salvador, 18/07/1697"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V27]
+
+- id: HIS-062
+  categoria: historia
+  descricao: "Missões jesuíticas no MA"
+  valor: "~50 aldeamentos"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V27]
+
+- id: HIS-063
+  categoria: historia
+  descricao: "Criação"
+  valor: "7 de junho de 1755"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V28]
+
+- id: HIS-064
+  categoria: historia
+  descricao: "Dissolução"
+  valor: "1778 (liquidação até 1814)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V28]
+
+- id: HIS-065
+  categoria: historia
+  descricao: "Capital inicial"
+  valor: "480 contos de réis"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V28]
+
+- id: HIS-066
+  categoria: historia
+  descricao: "Mortalidade na travessia"
+  valor: "~20%"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V28]
+
+- id: HIS-067
+  categoria: historia
+  descricao: "Início do domínio"
+  valor: "1615 (reconquista de São Luís)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V29]
+
+- id: HIS-068
+  categoria: historia
+  descricao: "Fim do domínio colonial"
+  valor: "1822 (independência)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V29]
+
+- id: HIS-069
+  categoria: historia
+  descricao: "Duração"
+  valor: "207 anos"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V29]
+
+- id: HIS-070
+  categoria: historia
+  descricao: "Origens dos colonos"
+  valor: "Açores, Minho, Trás-os-Montes, Madeira, Lisboa"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V29]
+
+- id: HIS-071
+  categoria: historia
+  descricao: "Língua"
+  valor: "Português com sotaque maranhense (considerado 'mais correto' — mito)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V29]
+
+- id: HIS-072
+  categoria: historia
+  descricao: "Casa das Minas"
+  valor: "Fundação: ~1840s, São Luís. Tradição Jeje-Daomeana"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V32]
+
+- id: HIS-073
+  categoria: historia
+  descricao: "Balaiada"
+  valor: "1838-1841, epicentro no vale do Itapecuru"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V34]
+
+- id: HIS-074
+  categoria: historia
+  descricao: "Economia colonial"
+  valor: "Algodão, arroz (séc. XVIII-XIX)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V34]
+
+- id: HIS-075
+  categoria: historia
+  descricao: "Periodo aureo"
+  valor: "c. 1830-1870"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V41]
+
+- id: HIS-076
+  categoria: historia
+  descricao: "Goncalves Dias — morte"
+  valor: "3 nov 1864, naufragio do Ville de Boulogne"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V41]
+
+- id: HIS-077
+  categoria: historia
+  descricao: "Odorico Mendes — traducao da Iliada"
+  valor: "publicada em 1874 (postuma)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V41]
+
+- id: HIS-078
+  categoria: historia
+  descricao: "Odorico Mendes — traducao da Eneida"
+  valor: "publicada em 1854"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V41]
+
+- id: HIS-079
+  categoria: historia
+  descricao: "Independencia do Brasil"
+  valor: "7 set 1822"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V42]
+
+- id: HIS-080
+  categoria: historia
+  descricao: "Adesao do MA"
+  valor: "28 jul 1823"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V42]
+
+- id: HIS-081
+  categoria: historia
+  descricao: "Lord Cochrane (Thomas Cochrane)"
+  valor: "1775-1860, escoces"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V42]
+
+- id: HIS-082
+  categoria: historia
+  descricao: "Agostinho de Frais"
+  valor: "ultimo presidente da Junta, fugiu em jul 1823"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V42]
+
+- id: HIS-083
+  categoria: historia
+  descricao: "Intervalo"
+  valor: "10 meses e 21 dias"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V42]
+
+- id: HIS-084
+  categoria: historia
+  descricao: "Esquadra imperial"
+  valor: "~8 navios"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V42]
+
+- id: HIS-085
+  categoria: historia
+  descricao: "Data da revolta"
+  valor: "24 fevereiro 1684"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V43]
+
+- id: HIS-086
+  categoria: historia
+  descricao: "Duração do governo rebelde"
+  valor: "~1 ano (fev 1684 a meados 1685)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V43]
+
+- id: HIS-087
+  categoria: historia
+  descricao: "Execucao de Beckman"
+  valor: "2 nov 1685, enforcado em Sao Luis"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V43]
+
+- id: HIS-088
+  categoria: historia
+  descricao: "Companhia de Comercio"
+  valor: "Extinta em 1685 (resultado direto da revolta)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V43]
+
+- id: HIS-089
+  categoria: historia
+  descricao: "Populacao colonial do MA (1680s)"
+  valor: "~2.000-3.000 colonos portugueses"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V43]
+
+- id: HIS-090
+  categoria: historia
+  descricao: "Lider principal"
+  valor: "Manuel Beckman (Bequimao)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V43]
+
+- id: HIS-091
+  categoria: historia
+  descricao: "Co-lider"
+  valor: "Tomas Beckman (irmao)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V43]
+
+- id: HIS-092
+  categoria: historia
+  descricao: "Producao de algodao dos EUA (pre-guerra)"
+  valor: "~75% da oferta mundial"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V44]
+
+- id: HIS-093
+  categoria: historia
+  descricao: "Bloqueio naval da Uniao"
+  valor: "1861 em diante"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V44]
+
+- id: HIS-094
+  categoria: historia
+  descricao: "Preco do algodao (Liverpool) — antes"
+  valor: "~6-7 pence/libra (1860)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V44]
+
+- id: HIS-095
+  categoria: historia
+  descricao: "Preco do algodao (Liverpool) — pico"
+  valor: "~27 pence/libra (1864)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V44]
+
+- id: HIS-096
+  categoria: historia
+  descricao: "Fim do boom"
+  valor: "1865 (fim da guerra)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V44]
+
+- id: HIS-097
+  categoria: historia
+  descricao: "Algodao americano retorna"
+  valor: "1866-1870, retomada gradual"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V44]
+
+- id: HIS-098
+  categoria: historia
+  descricao: "Morte"
+  valor: "1869, Sao Luis"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V45]
+
+- id: HIS-099
+  categoria: historia
+  descricao: "Maridos"
+  valor: "3 (Isidoro Rodrigues Pereira, Ildefonso Jose Pereira, Roberto Jansen Muller?)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V45]
+
+- id: HIS-100
+  categoria: historia
+  descricao: "Nome completo"
+  valor: "Ana Jansen Pereira de Sousa"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V45]
+
+- id: HIS-101
+  categoria: historia
+  descricao: "Reputacao em vida"
+  valor: "Mulher de negocios temida e respeitada"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V45]
+
+- id: HIS-102
+  categoria: historia
+  descricao: "Periodo de dominio"
+  valor: "~1945-1965"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V47]
+
+- id: HIS-103
+  categoria: historia
+  descricao: "Origem principal"
+  valor: "Fabricas portuguesas (seculo XVIII-XIX)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V51]
+
+- id: HIS-104
+  categoria: historia
+  descricao: "Fundacao francesa"
+  valor: "8 set 1612 (La Ravardiere, Razilly)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V56]
+
+- id: HIS-105
+  categoria: historia
+  descricao: "Expulsao francesa"
+  valor: "Janeiro 1615"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V56]
+
+- id: HIS-106
+  categoria: historia
+  descricao: "Invasao holandesa"
+  valor: "Nov 1641 (WIC)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V56]
+
+- id: HIS-107
+  categoria: historia
+  descricao: "Dominio holandes"
+  valor: "1641-1644 (3 anos)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V56]
+
+- id: HIS-108
+  categoria: historia
+  descricao: "Expulsao holandesa"
+  valor: "Fev 1644 (revolta local + tropas portuguesas)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V56]
+
+- id: HIS-109
+  categoria: historia
+  descricao: "Dominio portugues I"
+  valor: "1615-1641"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V56]
+
+- id: HIS-110
+  categoria: historia
+  descricao: "Dominio portugues II"
+  valor: "1644-1822"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V56]
+
+- id: HIS-111
+  categoria: historia
+  descricao: "Expulsão dos franceses"
+  valor: "Novembro de 1615"
+  fonte: "Jerônimo de Albuquerque"
+  ano_base: 1615
+  verbetes: [V57]
+
+- id: HIS-112
+  categoria: historia
+  descricao: "Ocupação holandesa"
+  valor: "1641-1644"
+  fonte: "WIC / Companhia das Índias Ocidentais"
+  ano_base: 1641
+  verbetes: [V57]
+
+- id: HIS-113
+  categoria: historia
+  descricao: "Sobrenomes portugueses predominantes no MA"
+  valor: "Silva, Santos, Souza, Oliveira, Pereira"
+  fonte: "IBGE / nomes"
+  ano_base: 2010
+  verbetes: [V57]
+
+- id: HIS-114
+  categoria: historia
+  descricao: "Chegada ao MA"
+  valor: "Colonização portuguesa, séc. XVII-XVIII"
+  fonte: "Meireles"
+  ano_base: 2024
+  verbetes: [V70]
+
+- id: HIS-115
+  categoria: historia
+  descricao: "Setembro"
+  valor: "Independência do MA (28/jul) / festas cívicas"
+  fonte: "Cívica"
+  ano_base: 2024
+  verbetes: [V72]
+
+- id: HIS-116
+  categoria: historia
+  descricao: "Morte"
+  valor: "03/11/1864, naufrágio do Ville de Boulogne, costa do MA"
+  fonte: "Biografias"
+  ano_base: 1864
+  verbetes: [V73]
+
+- id: HIS-117
+  categoria: historia
+  descricao: "Expedição científica"
+  valor: "Comissão Científica de Exploração (1859-1861)"
+  fonte: "Biografias"
+  ano_base: 1859
+  verbetes: [V73]
+
+- id: HIS-118
+  categoria: historia
+  descricao: "Neoconcretismo"
+  valor: "Co-fundador (1959), com Lygia Clark e Hélio Oiticica"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V75]
+
+- id: HIS-119
+  categoria: historia
+  descricao: "Liceu Maranhense"
+  valor: "Fundado 1838, um dos mais antigos do Brasil"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V95]
+
+
+# === SOCIAL (novos de verbetes fase 3) ===
+
+- id: SOC-022
+  categoria: social
+  descricao: "TI Governador — área"
+  valor: "41.644 hectares (Amarante/Montes Altos)"
+  fonte: "FUNAI"
+  ano_base: 2024
+  verbetes: [V18]
+
+- id: SOC-023
+  categoria: social
+  descricao: "Cargos"
+  valor: "Senador (1947-1971), lider politico sem mandato executivo direto"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V47]
+
+- id: SOC-024
+  categoria: social
+  descricao: "Ruptura com Sarney"
+  valor: "1965 — Sarney vence o candidato vitorinista"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V47]
+
+- id: SOC-025
+  categoria: social
+  descricao: "Ponte do Sao Francisco"
+  valor: "1970, primeira conexao rodoviaria"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V48]
+
+- id: SOC-026
+  categoria: social
+  descricao: "Saneamento basico"
+  valor: "~50% da cidade com esgoto tratado"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V53]
+
+- id: SOC-027
+  categoria: social
+  descricao: "IDH-M Sao Luis (medio)"
+  valor: "0,768 (2010)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V53]
+
+- id: SOC-028
+  categoria: social
+  descricao: "IDH estimado Coroadinho"
+  valor: "~0,45-0,50"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V53]
+
+- id: SOC-029
+  categoria: social
+  descricao: "IDH estimado Renascenca/Calhau"
+  valor: "~0,90"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V53]
+
+- id: SOC-030
+  categoria: social
+  descricao: "Ana Jansen"
+  valor: "1787-1869, 'Rainha do Maranhão', escravocrata e política"
+  fonte: "Meireles"
+  ano_base: 2024
+  verbetes: [V65]
+
+- id: SOC-031
+  categoria: social
+  descricao: "Maria Aragão"
+  valor: "1910-1991, médica, comunista, resistência política"
+  fonte: "Biografias"
+  ano_base: 2024
+  verbetes: [V65]
+
+- id: SOC-032
+  categoria: social
+  descricao: "Formação"
+  valor: "Direito, Universidade de Coimbra (1840-1845)"
+  fonte: "Biografias"
+  ano_base: 1845
+  verbetes: [V73]
+
+- id: SOC-033
+  categoria: social
+  descricao: "ABL"
+  valor: "Eleito em 2014"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V75]
+
+- id: SOC-034
+  categoria: social
+  descricao: "Escola mista"
+  valor: "Fundou primeira escola mista do MA (1880)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V76]
+
+- id: SOC-035
+  categoria: social
+  descricao: "ABL"
+  valor: "Eleito 1954"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V77]
+
+- id: SOC-036
+  categoria: social
+  descricao: "Jose Sarney"
+  valor: "Presidente 1985-1990, senador 1991-2015"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V93]
+
+- id: SOC-037
+  categoria: social
+  descricao: "Sarney: presidente do Senado"
+  valor: "3 mandatos (1995-97, 2003-05, 2009-13)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V93]
+
+- id: SOC-038
+  categoria: social
+  descricao: "Roseana Sarney"
+  valor: "Governadora MA 1995-2002, 2009-2014"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V93]
+
+- id: SOC-039
+  categoria: social
+  descricao: "Vitorino Freire"
+  valor: "Senador, oligarca 1945-1965"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V93]
+
+- id: SOC-040
+  categoria: social
+  descricao: "Flavio Dino"
+  valor: "Governador 2015-2022, Ministro da Justica 2023, STF 2023"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V93]
+
+- id: SOC-041
+  categoria: social
+  descricao: "Maranhenses no STF"
+  valor: "Flavio Dino (2023-presente)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V93]
+
+- id: SOC-042
+  categoria: social
+  descricao: "Bancada MA na Camara"
+  valor: "18 deputados federais"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V93]
+
+- id: SOC-043
+  categoria: social
+  descricao: "Taxa analfabetismo MA (2022)"
+  valor: "~14,5% (maior do Brasil, media nacional 5,6%)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V95]
+
+- id: SOC-044
+  categoria: social
+  descricao: "Abandono escolar EM"
+  valor: "~8% (entre os maiores)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V95]
+
+- id: SOC-045
+  categoria: social
+  descricao: "UFMA"
+  valor: "Fundada 1966, ~25.000 alunos"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V95]
+
+- id: SOC-046
+  categoria: social
+  descricao: "IDEB anos iniciais MA (2021)"
+  valor: "5,1 (meta: 5,7; media nacional: 5,8)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V95]
+
+- id: SOC-047
+  categoria: social
+  descricao: "IDEB anos finais MA (2021)"
+  valor: "4,2 (media nacional: 5,1)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V95]
+
+- id: SOC-048
+  categoria: social
+  descricao: "IDEB ensino medio MA (2021)"
+  valor: "3,6 (media nacional: 4,2)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V95]
+
+- id: SOC-049
+  categoria: social
+  descricao: "Mortalidade infantil MA (2022)"
+  valor: "~15,2 por mil nascidos vivos (media BR: 11,4)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V96]
+
+- id: SOC-050
+  categoria: social
+  descricao: "Dengue: casos anuais (media)"
+  valor: "~30-50 mil"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V96]
+
+- id: SOC-051
+  categoria: social
+  descricao: "Saneamento basico"
+  valor: "Esgoto tratado: 3,92% (um dos piores do Brasil)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V96]
+
+- id: SOC-052
+  categoria: social
+  descricao: "Epidemia historica: colera"
+  valor: "1855, mortalidade alta em Sao Luis"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V96]
+
+- id: SOC-053
+  categoria: social
+  descricao: "Expectativa de vida MA"
+  valor: "~72,5 anos (media BR: 75,5)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V96]
+
+- id: SOC-054
+  categoria: social
+  descricao: "Leitos hospitalares por mil hab"
+  valor: "~1,8 (media BR: 2,1; OMS recomenda: 3,0)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V96]
+
+- id: SOC-055
+  categoria: social
+  descricao: "Cobertura ESF (Estrategia Saude da Familia)"
+  valor: "~85%"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V96]
+
+- id: SOC-056
+  categoria: social
+  descricao: "Rodovias estaduais"
+  valor: "~12.000 km"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V97]
+
+- id: SOC-057
+  categoria: social
+  descricao: "Condicao (CNT 2023)"
+  valor: "Entre os piores do Brasil (>50% regular/ruim)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V97]
+
+- id: SOC-058
+  categoria: social
+  descricao: "Rodovias federais no MA"
+  valor: "~6.000 km"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V97]
+
+- id: SOC-059
+  categoria: social
+  descricao: "Rios navegaveis"
+  valor: "Mearim, Pindare, Itapecuru, Turiacu, Gurupi"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V97]
+
+- id: SOC-060
+  categoria: social
+  descricao: "Transporte fluvial"
+  valor: "Unica opcao para dezenas de comunidades"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V97]
+
+- id: SOC-061
+  categoria: social
+  descricao: "Esgoto tratado MA"
+  valor: "3,92% (pior do Brasil)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V98]
+
+- id: SOC-062
+  categoria: social
+  descricao: "Agua tratada"
+  valor: "~75% dos domicilios (Brasil: ~84%)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V98]
+
+- id: SOC-063
+  categoria: social
+  descricao: "Coleta de lixo"
+  valor: "~65% (Brasil: ~85%)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V98]
+
+- id: SOC-064
+  categoria: social
+  descricao: "Internet banda larga"
+  valor: "~40% dos domicilios (Brasil: ~60%)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V98]
+
+- id: SOC-065
+  categoria: social
+  descricao: "Habitacao: domicilios precarios"
+  valor: "~15%"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V98]
+
+- id: SOC-066
+  categoria: social
+  descricao: "Municipios com <20 mil hab"
+  valor: "~150 (70%)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V99]
+
+- id: SOC-067
+  categoria: social
+  descricao: "Menor municipio (pop)"
+  valor: "Satubinha (~12.000)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V99]
+
+- id: SOC-068
+  categoria: social
+  descricao: "IDH mais alto"
+  valor: "Sao Luis (0,768)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V99]
+
+- id: SOC-069
+  categoria: social
+  descricao: "IDH mais baixo"
+  valor: "Fernando Falcao (0,443)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V99]
+
+- id: SOC-070
+  categoria: social
+  descricao: "Total municipios MA"
+  valor: "217"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V99]
+
+- id: SOC-071
+  categoria: social
+  descricao: "Pobreza"
+  valor: "51,6%"
+  fonte: "31,6%"
+  ano_base: 2024
+  verbetes: [V101]
+
+- id: SOC-072
+  categoria: social
+  descricao: "Analfabetismo"
+  valor: "14,5%"
+  fonte: "5,6%"
+  ano_base: 2024
+  verbetes: [V101]
+
+- id: SOC-073
+  categoria: social
+  descricao: "Esgoto tratado"
+  valor: "3,92%"
+  fonte: "~55%"
+  ano_base: 2024
+  verbetes: [V101]
+
+
+# === MEIO-AMBIENTE (novos de verbetes fase 3) ===
+
+- id: AMB-014
+  categoria: meio-ambiente
+  descricao: "Desmatamento acumulado (Cerrado BR)"
+  valor: "49,9% da vegetação original perdida"
+  fonte: "MapBiomas"
+  ano_base: 2023
+  verbetes: [V03]
+
+- id: AMB-015
+  categoria: meio-ambiente
+  descricao: "Desmatamento acumulado"
+  valor: "76% da cobertura original perdida"
+  fonte: "MapBiomas/INPE"
+  ano_base: 2023
+  verbetes: [V04]
+
+- id: AMB-016
+  categoria: meio-ambiente
+  descricao: "REBIO Gurupi — desmatamento interno"
+  valor: "~30% da área invadida/desmatada"
+  fonte: "MapBiomas/ICMBio"
+  ano_base: 2023
+  verbetes: [V04]
+
+- id: AMB-017
+  categoria: meio-ambiente
+  descricao: "Taxa de desmatamento MA (2022)"
+  valor: "~600 km² (entre os maiores da Amazônia Legal)"
+  fonte: "INPE/PRODES"
+  ano_base: 2023
+  verbetes: [V04]
+
+- id: AMB-018
+  categoria: meio-ambiente
+  descricao: "Desmatamento no entorno"
+  valor: "76%+ da Amazônia maranhense destruída"
+  fonte: "MapBiomas"
+  ano_base: 2023
+  verbetes: [V19]
+
+- id: AMB-019
+  categoria: meio-ambiente
+  descricao: "Desmatamento acumulado cerrado MA"
+  valor: "~40% da cobertura original"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V86]
+
+- id: AMB-020
+  categoria: meio-ambiente
+  descricao: "Exportacoes"
+  valor: "US$9,5 bi"
+  fonte: "US$339 bi"
+  ano_base: 2024
+  verbetes: [V101]
+
+- id: AMB-021
+  categoria: meio-ambiente
+  descricao: "Dimensao"
+  valor: "Relevância"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V102]
+
+- id: AMB-022
+  categoria: meio-ambiente
+  descricao: "Rios navegaveis"
+  valor: "Mearim, Itapecuru, Pindare, Turiacu, Gurupi"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V104]
+
+- id: AMB-023
+  categoria: meio-ambiente
+  descricao: "Embarcacoes tradicionais"
+  valor: "Canoas, botes, igarites, baleeiras, veleiros"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V104]
+
+- id: AMB-024
+  categoria: meio-ambiente
+  descricao: "Material principal"
+  valor: "Madeira (cedro, angelim, virola)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V104]
+
+- id: AMB-025
+  categoria: meio-ambiente
+  descricao: "Tecnica de construcao"
+  valor: "Cavername e tabulamento, sem projeto escrito"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V104]
+
+- id: AMB-026
+  categoria: meio-ambiente
+  descricao: "Regata de canoas"
+  valor: "Tradicao em comunidades ribeirinhas"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V104]
+
+- id: AMB-027
+  categoria: meio-ambiente
+  descricao: "Status protecao"
+  valor: "APA desde 1999 (Decreto s/n)"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V105]
+
+- id: AMB-028
+  categoria: meio-ambiente
+  descricao: "Corais"
+  valor: "Corais-cerebro, gorgonias, esponjas, mais de 60 espécies"
+  fonte: "Pesquisa verbete"
+  ano_base: 2024
+  verbetes: [V105]
+
+# NOTA: Este banco e evolutivo. Cada verbete produzido
 # deve adicionar seus dados aqui. Conferir dados
 # contra fontes atualizadas antes de usar.
-# Total de entradas: 188
+# Total de entradas: 675
+# Ultima atualizacao: 2026-04-01 (fase 3 — 66 verbetes processados)
 # ============================================================

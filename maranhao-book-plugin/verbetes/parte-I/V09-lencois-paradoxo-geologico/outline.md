@@ -23,7 +23,7 @@ Os Lençóis Maranhenses são o único campo de dunas tropical do planeta com mi
 - Provocação: isso não deveria existir. E quase não existe em nenhum outro lugar do planeta.
 
 ### 2. BLOCO 1 — "O que seus olhos veem" (dimensões e escala)
-- 156.562 hectares / ~1.550 km² de parque
+- 155.000 hectares / ~1.550 km² de parque (Decreto 86.060/1981; UNESCO/SGB cita 156.562 ha incluindo zona de amortecimento)
 - Campo de dunas ativo de 90.000 ha — maior da América do Sul
 - Dunas de até 40-50 metros (prédio de 13 andares)
 - Cadeias de barcanas de até 75 km de comprimento

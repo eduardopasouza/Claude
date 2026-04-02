@@ -20,7 +20,7 @@ Este e o verbete mais duro do livro. O Maranhao ocupa a ultima ou penultima posi
 | IDH Brasil | 0,754 | PNUD/IBGE | 2021 |
 | PIB per capita MA | R$ 15.757 — 2o mais baixo (acima do PI) | IBGE, Contas Regionais | 2021 |
 | PIB per capita Brasil | R$ 40.688 | IBGE | 2021 |
-| Esgoto tratado MA | 3,92% da populacao | SNIS (Sistema Nacional de Informacoes sobre Saneamento) | 2022 |
+| Esgoto tratado MA | 13,6% do esgoto tratado (coleta: 32,49%) | SNIS/Trata Brasil | 2022 |
 | Esgoto tratado Brasil | 51,2% | SNIS | 2022 |
 | Analfabetismo MA | 15,6% (15 anos+) | IBGE, PNAD Continua | 2022 |
 | Analfabetismo Brasil | 5,6% | IBGE | 2022 |
@@ -49,7 +49,7 @@ Este e o verbete mais duro do livro. O Maranhao ocupa a ultima ou penultima posi
 
 ### O paradoxo central
 
-O Maranhao e o estado que mais exporta minerio de ferro no Brasil — mas onde metade da populacao vive abaixo da linha de pobreza. O segundo maior porto do pais esta num estado onde menos de 4% da populacao tem esgoto tratado. Navios graneleiros de 400 mil toneladas atracam a 500 metros de palafitas sem agua encanada.
+O Maranhao e o estado que mais exporta minerio de ferro no Brasil — mas onde metade da populacao vive abaixo da linha de pobreza. O segundo maior porto do pais esta num estado onde apenas 13,6% do esgoto e tratado (Fonte: SNIS/Trata Brasil, dados 2022). Navios graneleiros de 400 mil toneladas atracam a 500 metros de palafitas sem agua encanada.
 
 Esse nao e um paradoxo recente. E a repeticao de um padrao historico: o ciclo do algodao (V40) enriqueceu uma elite e deixou a maioria na miseria. O ciclo do babacu (V85) extraiu riqueza sem distribuir. A ferrovia de Carajas (V84) movimenta bilhoes e deixa poeira. A constante e a mesma: riqueza produzida no Maranhao que nao fica no Maranhao — e quando fica, nao chega a maioria.
 
@@ -57,7 +57,7 @@ Esse nao e um paradoxo recente. E a repeticao de um padrao historico: o ciclo do
 
 **IDH**: O Maranhao tem IDH 0,676 — classificado como "medio" pela ONU, mas o mais baixo entre todos os 27 estados brasileiros. Para comparacao: o IDH do Distrito Federal e 0,824. A diferenca entre o MA e o DF e maior do que a diferenca entre o DF e a Noruega. Dentro do mesmo pais.
 
-**Saneamento**: 3,92% de esgoto tratado. Isso significa que 96% dos dejetos humanos de 7 milhoes de pessoas vao para rios, lencois freaticos ou fossas rudimentares. O dado e tao brutal que parece erro — mas e oficial, publicado pelo SNIS em 2022. O Amapa (6,4%) e o Para (5,3%) estao melhores. O Maranhao esta pior que todos.
+**Saneamento**: 13,6% do esgoto e tratado, e a coleta alcanca apenas 32,49% da populacao. Isso significa que a grande maioria dos dejetos humanos de 7 milhoes de pessoas vai para rios, lencois freaticos ou fossas rudimentares. O dado e oficial, publicado pelo SNIS/Trata Brasil em 2022. O Maranhao esta entre os piores do pais. Fonte: SNIS/Trata Brasil, dados 2022.
 
 **Educacao**: Analfabetismo de 15,6% e quase tres vezes a media nacional. Mas o dado mais revelador e o analfabetismo funcional — pessoas que sabem assinar o nome mas nao conseguem interpretar um texto simples. As estimativas chegam a 30%.
 
@@ -88,7 +88,7 @@ Toda essa riqueza gera PIB — mas um PIB que nao se traduz em indicadores socia
 |-----------|----|----|----|----|--------|
 | IDH | 0,676 | 0,697 | 0,684 | 0,735 | 0,754 |
 | Analfabetismo | 15,6% | 14,5% | 14,4% | 11,8% | 5,6% |
-| Esgoto tratado | 3,92% | 12,3% | 28,1% | 32,5% | 51,2% |
+| Esgoto tratado | 13,6% | 12,3% | 28,1% | 32,5% | 51,2% |
 | Mortalidade infantil | 15,2 | 14,8 | 14,1 | 12,3 | 11,9 |
 | PIB per capita | 15.757 | 15.432 | 18.236 | 19.381 | 40.688 |
 

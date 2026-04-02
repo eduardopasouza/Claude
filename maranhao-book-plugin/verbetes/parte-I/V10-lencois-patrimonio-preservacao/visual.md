@@ -134,7 +134,7 @@ posicao: meia-página
 ## 1. Briefing para designer
 **O que é**: Mapa editorial do Parque Nacional dos Lençóis Maranhenses mostrando os limites do parque, comunidades internas, pontos de entrada e ícones de ameaças. Meia página. Estilo cartográfico DK (Dorling Kindersley) — limpo, informativo, com ícones simbólicos.
 **Dados**:
-- Limite do parque: polígono 156.562 ha, costa norte (Oceano Atlântico)
+- Limite do parque: polígono 155.000 ha (Decreto 86.060/1981), costa norte (Oceano Atlântico)
 - Comunidades internas:
   - Queimada dos Britos (centro do campo de dunas) — ícone de oásis/comunidade
   - Outras 16 comunidades distribuídas (indicar com pontos menores)
@@ -178,7 +178,7 @@ posicao: meia-página
   <!-- Limite do parque -->
   <polygon points="80,100 520,100 540,160 500,260 420,280 180,280 60,240 50,160"
            fill="#F5F5DC" stroke="#1B4F72" stroke-width="2" stroke-dasharray="8,4"/>
-  <text x="300" y="135" text-anchor="middle" fill="#1B4F72" font-size="10" font-style="italic">PARQUE NACIONAL DOS LENÇÓIS MARANHENSES — 156.562 ha</text>
+  <text x="300" y="135" text-anchor="middle" fill="#1B4F72" font-size="10" font-style="italic">PARQUE NACIONAL DOS LENÇÓIS MARANHENSES — 155.000 ha</text>
 
   <!-- Rios -->
   <path d="M480,100 Q470,180 460,280 L455,340" fill="none" stroke="#1B4F72" stroke-width="2"/>

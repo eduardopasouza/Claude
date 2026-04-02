@@ -40,7 +40,7 @@ Essa historia tem nome. Tres nomes, na verdade. E sao nomes que so existem no Ma
 
 **Terras de Preto** sao territorios ocupados por comunidades negras descendentes de escravizados que exercem posse coletiva da terra sem titulo formal. As origens variam. Alguns sao quilombos historicos -- comunidades formadas por fugitivos da escravidao que se embrenharam nas matas e varzeas do interior. Outros nasceram de doacoes informais: senhores que, ao morrer, deixavam pedacos de terra para escravizados de confianca, por testamento oral ou simplesmente por abandono. Outros, ainda, sao o resultado da inercia: escravizados que permaneceram nas fazendas apos 1888 porque ninguem os expulsou, e ninguem lhes deu papel.^3
 
-A Fundacao Cultural Palmares certificou 868 comunidades quilombolas no Maranhao -- o segundo maior numero do Brasil, atras apenas da Bahia.^4 Mas "comunidade quilombola certificada" e "comunidade com titulo de propriedade" sao coisas muito diferentes. O certificado e um reconhecimento identitario. O titulo e a garantia juridica sobre a terra. Entre um e outro, existe um abismo burocratico que pode levar decadas para ser atravessado -- quando e atravessado.
+A Fundacao Cultural Palmares certificou 1.152 comunidades quilombolas no Maranhao -- o maior numero do Brasil.^4 Mas "comunidade quilombola certificada" e "comunidade com titulo de propriedade" sao coisas muito diferentes. O certificado e um reconhecimento identitario. O titulo e a garantia juridica sobre a terra. Entre um e outro, existe um abismo burocratico que pode levar decadas para ser atravessado -- quando e atravessado.
 
 **Terras de Santo** sao algo que so faz sentido quando voce entende a historia religiosa do Maranhao colonial. As ordens catolicas -- jesuitas, carmelitas, mercedarios, ursulinas -- possuiam imensas propriedades rurais no estado. Fazendas inteiras operadas com mao de obra escravizada e indigena. Quando o Marques de Pombal expulsou os jesuitas em 1759, essas terras ficaram orfas.^5 Os padres foram. Os escravizados ficaram. Os agregados ficaram. As capelas ficaram.
 
@@ -105,7 +105,7 @@ A Constituicao de 1988 trouxe o artigo 68 do Ato das Disposicoes Constitucionais
 
 > "Aos remanescentes das comunidades dos quilombos que estejam ocupando suas terras e reconhecido a propriedade definitiva, devendo o Estado emitir-lhes os titulos respectivos."
 
-Trinta e sete palavras. Trinta e sete anos depois, o Maranhao -- com 868 comunidades certificadas -- tem cerca de quarenta titulos emitidos.^11
+Trinta e sete palavras. Trinta e sete anos depois, o Maranhao -- com 1.152 comunidades certificadas -- tem cerca de quarenta titulos emitidos.^11
 <!-- /BOX -->
 
 O Decreto 4.887, de 2003, regulamentou o processo de titulacao e introduziu o criterio de autoatribuicao: a propria comunidade define se e quilombola. Foi um avanco conceitual enorme. Mas o processo continua dependendo do INCRA, que nao tem orcamento, nao tem pessoal e enfrenta resistencia politica em cada etapa.

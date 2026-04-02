@@ -43,8 +43,8 @@ posicao: pagina-inteira
   <text x="587" y="242" font-size="13" fill="#888888">R$ 40.688</text>
   <!-- Esgoto -->
   <text x="30" y="285" font-size="14" fill="#FFFFFF" font-weight="bold">Esgoto tratado</text>
-  <rect x="180" y="270" width="31" height="18" fill="#C1292E" rx="3"/>
-  <text x="218" y="285" font-size="13" fill="#C1292E">3,9%</text>
+  <rect x="180" y="270" width="109" height="18" fill="#C1292E" rx="3"/>
+  <text x="218" y="285" font-size="13" fill="#C1292E">13,6%</text>
   <rect x="180" y="292" width="410" height="18" fill="#888888" rx="3"/>
   <text x="597" y="307" font-size="13" fill="#888888">51,2%</text>
   <!-- Analfabetismo -->
@@ -133,8 +133,8 @@ posicao: pagina-inteira
 # Visual V94-C: O paradoxo — o que exporta vs. o que falta
 
 ## 1. Briefing para designer
-**O que e**: Infografico split-screen de pagina inteira. Lado esquerdo: "O QUE O MARANHAO EXPORTA" — minerio de ferro (icone de trem/navio), soja (icone de graos), energia eletrica (icone de torre), aluminio. Com valores em dolares/toneladas. Lado direito: "O QUE FALTA NO MARANHAO" — esgoto (3,92%), escolas (IDEB 4,1), hospitais (1,8 leitos/mil), empregos formais (60% informal). Separados por uma linha vertical no centro. Impacto visual maximo: riqueza de um lado, pobreza de indicadores do outro.
-**Dados**: Exportacoes: ~US$ 15 bi em commodities via Itaqui. Energia: superavitario. Soja: milhoes de toneladas. Falta: 96% sem esgoto, 15,6% analfabetos, 50% abaixo da linha de pobreza.
+**O que e**: Infografico split-screen de pagina inteira. Lado esquerdo: "O QUE O MARANHAO EXPORTA" — minerio de ferro (icone de trem/navio), soja (icone de graos), energia eletrica (icone de torre), aluminio. Com valores em dolares/toneladas. Lado direito: "O QUE FALTA NO MARANHAO" — esgoto (13,6% tratado), escolas (IDEB 4,1), hospitais (1,8 leitos/mil), empregos formais (60% informal). Separados por uma linha vertical no centro. Impacto visual maximo: riqueza de um lado, pobreza de indicadores do outro.
+**Dados**: Exportacoes: ~US$ 15 bi em commodities via Itaqui. Energia: superavitario. Soja: milhoes de toneladas. Falta: 86,4% de esgoto sem tratamento, 15,6% analfabetos, 50% abaixo da linha de pobreza.
 **Paleta**: Lado esquerdo: fundo Verde-mata escuro (#1A3A2A), dados em dourado/branco. Lado direito: fundo Vermelho-bumba escuro (#5A1015), dados em branco. Linha central em Ocre (#C8952E).
 **Tamanho**: Pagina inteira (23x28cm)
 

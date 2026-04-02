@@ -18,8 +18,8 @@ hashtags: ["#QuemEoMaranhao", "#Maranhao", "#Desigualdade", "#DadosBrasil"]
 "Um. IDH 0,676. O mais baixo do Brasil."
 **TELA**: "IDH: 0,676" (numero grande, fundo preto, vermelho)
 
-"Dois. Esgoto tratado: 3,92%. Noventa e seis por cento sem."
-**TELA**: "ESGOTO: 3,92%" (mesmo formato)
+"Dois. Esgoto tratado: 13,6%. Coleta de esgoto: 32,49%. O resto vai pro rio."
+**TELA**: "ESGOTO TRATADO: 13,6%" (mesmo formato)
 
 "Tres. Analfabetismo: 15,6%. Quase tres vezes a media nacional."
 **TELA**: "ANALFABETISMO: 15,6%"

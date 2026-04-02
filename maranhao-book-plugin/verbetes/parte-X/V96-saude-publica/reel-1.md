@@ -6,13 +6,13 @@ formato: pergunta-resposta-surpresa
 hashtags: ["#QuemEoMaranhao", "#Saude", "#Saneamento", "#Maranhao"]
 ---
 
-# Reel V96-1: 3,92% de esgoto tratado
+# Reel V96-1: 13,6% de esgoto tratado
 
 ## HOOK (0-3s)
-**TELA**: "3,92%. Esse e o percentual de esgoto tratado no Maranhao."
+**TELA**: "13,6%. Esse e o percentual de esgoto tratado no Maranhao. Fonte: SNIS/Trata Brasil, dados 2022."
 
 ## DESENVOLVIMENTO (3-45s)
-**NARRACAO**: "A media do Brasil ja e vergonhosa: 55%. O Maranhao tem 3,92%. Quase vinte vezes pior."
+**NARRACAO**: "A media do Brasil ja e vergonhosa: 55%. O Maranhao tem 13,6% de esgoto tratado. Coleta de esgoto: 32,49%. Fonte: SNIS/Trata Brasil, dados 2022."
 
 "Metade dos medicos per capita de Sao Paulo. Mortalidade infantil 30% acima da media nacional. Municipios inteiros sem maternidade."
 

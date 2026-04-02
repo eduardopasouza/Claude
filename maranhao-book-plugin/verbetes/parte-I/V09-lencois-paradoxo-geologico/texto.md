@@ -32,7 +32,7 @@ Agora olhe para baixo.
 
 Entre as dunas, nos vales que elas formam, há lagoas. Milhares delas. Azuis, verdes, turquesa — cores que nenhum deserto deveria ter. A água é doce, cristalina, morna. Há peixes. Há tartarugas. Há esponjas. Há gente morando. Há vida onde, por toda lógica, só deveria haver areia e silêncio.
 
-Esse lugar existe. Chama-se Parque Nacional dos Lençóis Maranhenses — 156.562 hectares na costa leste do Maranhão, entre os municípios de Barreirinhas, Santo Amaro e Primeira Cruz (↗ V01).³ É o maior campo de dunas ativo da América do Sul. É, desde julho de 2024, Patrimônio Natural da Humanidade pela UNESCO. E é, provavelmente, o fenômeno geológico mais contraintuitivo do planeta.
+Esse lugar existe. Chama-se Parque Nacional dos Lençóis Maranhenses — 155.000 hectares na costa leste do Maranhão (Decreto 86.060/1981; UNESCO/SGB cita 156.562 ha incluindo zona de amortecimento), entre os municípios de Barreirinhas, Santo Amaro e Primeira Cruz (↗ V01).³ É o maior campo de dunas ativo da América do Sul. É, desde julho de 2024, Patrimônio Natural da Humanidade pela UNESCO. E é, provavelmente, o fenômeno geológico mais contraintuitivo do planeta.
 
 Porque aqui chove. Chove com a fúria do trópico. Chove entre 1.200 e 2.000 milímetros por ano — precipitação quase trezentas vezes maior que a do Saara, num lugar que parece o Saara.⁴
 
@@ -224,7 +224,7 @@ Os Lençóis Maranhenses são a prova de que a aparência engana — e de que a 
 
 ² UNESCO World Heritage Centre. Lençóis Maranhenses National Park, List nº 1611. Documento de avaliação, 2024. Dunas de até 40–50 m, cadeias de barcanas de até 75 km, avanço de 20+ km para o interior.
 
-³ UNESCO, 2024. Área: 156.562 ha. Municípios: Barreirinhas, Santo Amaro do Maranhão e Primeira Cruz.
+³ Decreto 86.060/1981. Área oficial do parque: 155.000 ha. UNESCO/SGB cita 156.562 ha incluindo zona de amortecimento. Municípios: Barreirinhas, Santo Amaro do Maranhão e Primeira Cruz.
 
 ⁴ Fontes divergentes: Wikipedia/Smithsonian: ~1.200 mm; SGB: até 2.000 mm; Parteli/FAPESP: ~1.980 mm. Saara: ~25 mm/ano. Razão: ~300×. PlanetaEXO; SGB, 2024.
 

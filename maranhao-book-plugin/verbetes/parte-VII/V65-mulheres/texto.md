@@ -53,7 +53,7 @@ Nascida em São Luís, professora primária em Guimarães. Publicou *Úrsula* em
 
 Saia de São Luís e entre no Maranhão das palmeiras. No Médio Mearim, na Baixada, no sul — onde o babaçu cobre o horizonte como um exército verde —, quem sustenta famílias inteiras é a mulher que acorda antes do sol, pega o machado e sai para quebrar coco.⁵
 
-São aproximadamente 400 mil mulheres entre Maranhão, Tocantins, Pará e Piauí. No Maranhão, são a maioria. O trabalho é braçal: a mulher senta no chão, segura o coco de babaçu com uma mão, bate com o machado na outra e extrai a amêndoa. Da amêndoa sai o óleo — para cozinhar, para sabão, para cosmético. Da casca sai carvão. Da palha sai artesanato. A palmeira inteira é economia — e a economia está nas mãos delas (↗ V06).
+São aproximadamente 300 mil mulheres no Maranhão, e outras dezenas de milhares em Tocantins, Pará e Piauí. O trabalho é braçal: a mulher senta no chão, segura o coco de babaçu com uma mão, bate com o machado na outra e extrai a amêndoa. Da amêndoa sai o óleo — para cozinhar, para sabão, para cosmético. Da casca sai carvão. Da palha sai artesanato. A palmeira inteira é economia — e a economia está nas mãos delas (↗ V06).
 
 O salto veio nos anos 1990. Em 1991, as quebradeiras fundaram o MIQCB — Movimento Interestadual das Quebradeiras de Coco Babaçu.⁶ O que era trabalho invisível virou luta política. Reivindicaram acesso livre aos babaçuais — que fazendeiros cercavam como propriedade privada, impedindo as mulheres de colher o que a palmeira dava de graça. A resposta foram as Leis do Babaçu Livre, aprovadas em pelo menos 17 municípios do Maranhão: legislações que garantem às quebradeiras o direito de entrar em qualquer propriedade para coletar coco babaçu.⁷
 
@@ -62,8 +62,7 @@ O salto veio nos anos 1990. Em 1991, as quebradeiras fundaram o MIQCB — Movime
 <!-- BOX: dados — Quebradeiras de coco em números -->
 ### Quebradeiras de coco em números
 
-- **~400.000** mulheres quebradeiras entre MA, TO, PA e PI
-- **~300.000** só no Maranhão (estimativa MIQCB)
+- **~300.000** mulheres quebradeiras no Maranhão (estimativa MIQCB)
 - **17** municípios do MA com Lei do Babaçu Livre
 - **1991**: fundação do MIQCB
 - **Produtos**: óleo de babaçu, carvão, farinha de mesocarpo, artesanato de palha
@@ -111,7 +110,7 @@ E há as que estão construindo agora: escritoras, artistas, ativistas, cientist
 
 ## O paradoxo
 
-Este verbete não pode fechar sem nomear a contradição. O Maranhão que produziu Maria Firmina dos Reis, 400 mil quebradeiras de coco, caixeiras que conduzem rituais centenários, Sônia Guajajara na lista da TIME e Alcione no panteão do samba — esse mesmo Maranhão registra taxas de feminicídio acima da média nacional. Registra violência doméstica endêmica. Registra gravidez adolescente entre as mais altas do país.¹³
+Este verbete não pode fechar sem nomear a contradição. O Maranhão que produziu Maria Firmina dos Reis, 300 mil quebradeiras de coco, caixeiras que conduzem rituais centenários, Sônia Guajajara na lista da TIME e Alcione no panteão do samba — esse mesmo Maranhão registra taxas de feminicídio acima da média nacional. Registra violência doméstica endêmica. Registra gravidez adolescente entre as mais altas do país.¹³
 
 Protagonismo e violência coexistem — e a coexistência não é acidental. É estrutural. As mulheres que mais fizeram pelo Maranhão são, frequentemente, as que menos receberam do Maranhão. Maria Firmina morreu pobre. As quebradeiras ganham menos de um salário mínimo. As caixeiras do Divino não são remuneradas. As pajoas do interior curam de graça.
 

@@ -47,7 +47,7 @@ thumbnail_idea: "Imagem aérea de drone das dunas brancas com lagoas turquesa, t
 - **Infográficos**:
   - Comparação precipitação Saara vs. Lençóis (25mm vs. 1.200-2.000mm)
   - Tabela comparativa: Lençóis vs. Saara vs. Namib vs. White Sands vs. Huacachina
-  - Dados do parque: 156.562 ha, ~7.500 lagoas, 46 espécies de peixes, 90.000 ha de dunas ativas
+  - Dados do parque: 155.000 ha (Decreto 86.060/1981), ~7.500 lagoas, 46 espécies de peixes, 90.000 ha de dunas ativas
   - Timeline de visitantes: 2019-2025
 - **Referências visuais**: Imagens aéreas de drone (estilo DJI Mavic), cenas de Vormir de Vingadores: Guerra Infinita, fotografias de Eric Parteli em campo, imagens de satélite Copernicus/Sentinel
 - **Timestamps para descrição**:

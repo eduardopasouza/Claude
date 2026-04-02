@@ -12,7 +12,7 @@ boxes:
   - tipo: patrimonio
     titulo: "Tambor de Crioula (IPHAN 2007)"
   - tipo: patrimonio
-    titulo: "Lençóis Maranhenses (candidatura)"
+    titulo: "Lençóis Maranhenses (UNESCO 2024)"
   - tipo: reflexao
     titulo: "O paradoxo da ruína"
 cross_references: [V09, V50, V66]
@@ -53,9 +53,9 @@ Registrado pelo IPHAN no Livro das Formas de Expressão em 2007. Três tambores,
 <!-- /BOX -->
 
 <!-- BOX: patrimonio — Lençóis Maranhenses (candidatura) -->
-### Lençóis Maranhenses — candidatura a Patrimônio Natural
+### Lençóis Maranhenses — Patrimônio Natural da Humanidade (2024)
 
-O Parque Nacional dos Lençóis Maranhenses — 155 mil hectares de dunas com lagoas de água doce — é candidato a Patrimônio Natural da Humanidade. O processo está em andamento. Se aprovado, será o primeiro Patrimônio Natural do Maranhão reconhecido pela UNESCO. A paisagem é única no mundo: dunas de areia branca com lagoas azuis e verdes que aparecem na estação chuvosa e desaparecem na seca (↗ V09).⁵
+O Parque Nacional dos Lençóis Maranhenses — 155 mil hectares de dunas com lagoas de água doce — foi inscrito como Patrimônio Natural da Humanidade pela UNESCO em julho de 2024. É o primeiro Patrimônio Natural do Maranhão reconhecido pela UNESCO. A paisagem é única no mundo: dunas de areia branca com lagoas azuis e verdes que aparecem na estação chuvosa e desaparecem na seca (↗ V09).⁵
 
 <!-- /BOX -->
 
@@ -92,7 +92,7 @@ O patrimônio maranhense é real — a cultura é viva, a arquitetura é extraor
 ² IPHAN — inventário de bens tombados em São Luís; relatórios de conservação.
 ³ UNESCO — Complexo Cultural do Bumba-meu-boi do Maranhão (inscrito 2019).
 ⁴ IPHAN — Registro do Tambor de Crioula (2007).
-⁵ Candidatura dos Lençóis Maranhenses a Patrimônio Natural — MMA/UNESCO.
+⁵ UNESCO — Lençóis Maranhenses, Patrimônio Natural da Humanidade (inscrito julho 2024).
 ⁶ A concentração de patrimônios no MA é comparável à de estados como BA e MG.
 ⁷ O paradoxo entre tombamento e deterioração é tema de debate no IPHAN e na academia.
 ⁸ A distância entre reconhecimento e proteção efetiva é problema nacional, não apenas maranhense.

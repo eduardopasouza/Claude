@@ -19,7 +19,7 @@ O Maranhao e o estado mais paradoxal do Brasil: riquissimo em recursos, ultimo e
 
 1. **Abertura** (gancho do paradoxo): Voce esta no Porto de Itaqui, segundo maior do Brasil. Um navio graneleiro de 400 mil toneladas atraca carregado de minerio que vale bilhoes. A 500 metros, do outro lado da cerca, uma familia vive em palafita sem esgoto. O numero que resume o Maranhao nao e o IDH. E a distancia entre o porto e a palafita.
 
-2. **Bloco 1 — O painel dos numeros**: Apresentacao fria, sistematica. IDH (ultimo). PIB per capita (penultimo). Esgoto (3,92%). Analfabetismo (15,6%). Mortalidade infantil. Esperanca de vida. Gini. Cada dado com comparacao (MA vs. Brasil, MA vs. NE, MA vs. pares). Formato: narrativa curta + tabela + nota de rodape.
+2. **Bloco 1 — O painel dos numeros**: Apresentacao fria, sistematica. IDH (ultimo). PIB per capita (penultimo). Esgoto (13,6%). Analfabetismo (15,6%). Mortalidade infantil. Esperanca de vida. Gini. Cada dado com comparacao (MA vs. Brasil, MA vs. NE, MA vs. pares). Formato: narrativa curta + tabela + nota de rodape.
 
 3. **Bloco 2 — O paradoxo da riqueza**: O que o MA *tem*. Porto de Itaqui. Carajas. MATOPIBA. Superavit energetico. Tres biomas. 640 km de litoral. A riqueza existe — nao se traduz em indicadores. Padrao historico: algodao (V40), babacu (V85), Carajas (V84). Riqueza que nao fica.
 

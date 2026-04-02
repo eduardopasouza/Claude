@@ -133,7 +133,7 @@ posicao: corpo
 - Municípios: Barreirinhas, Santo Amaro do Maranhão, Primeira Cruz
 - Rios: Preguiças, Negro, Periá
 - Comunidades: Queimada dos Britos (centro), Atins (costa), Mandacaru, Caburé
-- Área do parque: 156.562 ha
+- Área do parque: 155.000 ha (Decreto 86.060/1981)
 - São Luís marcada como referência (capital)
 - Oceano Atlântico ao norte
 **Referência de estilo**: Mapa esquemático limpo, estilo editorial (não Google Maps)

@@ -15,7 +15,7 @@ reels: 2
 A saude publica maranhense carrega cicatrizes de seculos de epidemias e decadas de subinvestimento. Com 1,2 medico por mil habitantes (metade da media nacional), esgoto tratado em menos de 4% dos domicilios e mortalidade infantil 30% acima da media brasileira, os numeros revelam um sistema que salva vidas com muito menos do que deveria ter.
 
 ## Estrutura
-### 1. ABERTURA — 3,92%
+### 1. ABERTURA — 13,6%
 ### 2. BLOCO 1 — As epidemias historicas (variola, colera, malaria)
 ### 3. BLOCO 2 — O SUS maranhense hoje (medicos, leitos, ESF)
 ### 4. BLOCO 3 — Mortalidade infantil e expectativa de vida

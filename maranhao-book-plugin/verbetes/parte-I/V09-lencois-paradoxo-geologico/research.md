@@ -13,7 +13,7 @@
 - **Localização**: Costa leste do Maranhão, região Nordeste do Brasil, em zona de transição entre os biomas Cerrado, Caatinga e Amazônia (UNESCO, 2024)
 - **Coordenadas**: Inscrito na Lista do Patrimônio Mundial da UNESCO sob nº 1611 (UNESCO WHC, 2024)
 - **Municípios**: Barreirinhas, Santo Amaro do Maranhão e Primeira Cruz (ICMBio)
-- **Área total do Parque Nacional**: 156.562 hectares / ~1.550 km² (UNESCO, 2024)
+- **Área total do Parque Nacional**: 155.000 hectares / ~1.550 km² (Decreto 86.060/1981; UNESCO/SGB cita 156.562 ha incluindo zona de amortecimento)
 - **Campo de dunas ativo**: Aproximadamente 90.000 ha (~1.026 km²) — o maior campo de dunas ativo da América do Sul (UFPA; UNESCO, 2024)
 - **Depósitos eólicos estabilizados adjacentes**: Cerca de 19.000 km² cobrindo rochas do embasamento (UFPA)
 - **Linha costeira**: 80 km de praias ao longo do litoral atlântico (UNESCO, 2024); outras fontes citam 70 km
@@ -245,7 +245,7 @@
 - **Origem da proposta**: Projeto RADAMBRASIL, atendendo reivindicações da comunidade científica e instituições ambientais do Maranhão (WikiParques)
 - **Categoria**: Unidade de Conservação de Proteção Integral
 - **Administração**: ICMBio (Instituto Chico Mendes de Conservação da Biodiversidade)
-- **Área**: 155.000-156.562 hectares (variação conforme a fonte)
+- **Área**: 155.000 hectares (Decreto 86.060/1981; UNESCO/SGB cita 156.562 ha incluindo zona de amortecimento)
 
 ### 5.2 Reconhecimento UNESCO
 

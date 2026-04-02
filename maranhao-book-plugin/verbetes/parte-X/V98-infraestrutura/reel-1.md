@@ -14,7 +14,7 @@ hashtags: ["#QuemEoMaranhao", "#Infraestrutura", "#Saneamento", "#Maranhao"]
 ## DESENVOLVIMENTO (3-45s)
 **NARRACAO**: "Ferrovias de 10 bilhoes de reais. Porto de aguas profundas. 4.500 megawatts de eolica. A infraestrutura de exportacao funciona."
 
-"Esgoto tratado: 3,92%. Deficit habitacional: 300 mil moradias. Internet no interior: menos de 20%."
+"Esgoto tratado: 13,6%. Coleta de esgoto: 32,49%. Deficit habitacional: 300 mil moradias. Internet no interior: menos de 20%."
 
 "O Maranhao construiu a logistica para a soja e o minerio sairem. Nao construiu o basico para a populacao ficar."
 

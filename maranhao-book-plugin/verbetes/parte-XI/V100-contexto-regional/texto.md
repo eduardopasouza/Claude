@@ -35,7 +35,7 @@ O Maranhão é geograficamente inclassificável. Pertence ao Nordeste por conven
 
 Essa posição de transição deveria ser uma vantagem. Quatro biomas significam diversidade ecológica, múltiplas vocações econômicas, acesso a diferentes mercados. Na prática, significam também quatro frentes de desmatamento, quatro realidades sociais distintas e uma dificuldade monumental de governança integrada.
 
-O Maranhão é o segundo maior estado do Nordeste em área — 331.983 km², menor apenas que a Bahia — e o quarto em população, com cerca de 7,1 milhões de habitantes.³ É grande. Mas tamanho, como a comparação vai mostrar, não se traduz automaticamente em resultado.
+O Maranhão é o segundo maior estado do Nordeste em área — 329.651 km², menor apenas que a Bahia — e o quarto em população, com 6.776.699 habitantes (Censo 2022).³ É grande. Mas tamanho, como a comparação vai mostrar, não se traduz automaticamente em resultado.
 
 ---
 

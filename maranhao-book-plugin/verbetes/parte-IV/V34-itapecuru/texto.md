@@ -39,7 +39,7 @@ Depois de 1755, quando milhares de africanos escravizados começaram a desembarc
 
 Em poucas décadas, o vale do Itapecuru tornou-se o coração da economia maranhense. Caxias, no alto curso, era a segunda cidade do estado. Codó, Coroatá, Itapecuru-Mirim, Rosário — todas às margens ou nas proximidades do rio — cresceram como centros de produção algodoeira e arrozeira.⁴
 
-E o preço é mensurável. No censo de 1821, o vale do Itapecuru tinha até oitenta por cento de sua população composta por pessoas "de cor" — escravizados e libertos.⁵ Oitenta por cento. Num vale onde a classe dominante era uma minoria de fazendeiros brancos que controlavam a terra, a água e as pessoas.
+E o preço é mensurável. No censo de 1821, o vale do Itapecuru tinha até oitenta e cinco por cento de sua população composta por pessoas "de cor" — escravizados e libertos.⁵ Oitenta e cinco por cento. Num vale onde a classe dominante era uma minoria de fazendeiros brancos que controlavam a terra, a água e as pessoas.
 
 Chamaram-se a si mesmos de "barões do algodão" — e o título não era apenas simbólico. Alguns receberam títulos nobiliárquicos do Império. Construíram casas-grandes com varandas largas voltadas para o rio. Importaram luxo de Lisboa e Paris. E mantiveram o sistema funcionando com o trabalho forçado de Balanta, Mandinga, Banto e seus descendentes.
 

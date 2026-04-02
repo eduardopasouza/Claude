@@ -17,7 +17,7 @@ status: rascunho
 
 # Desigualdade: o painel
 
-> IDH 0,676. Esgoto tratado: 3,92%. Porto de Itaqui: 2o maior do Brasil.
+> IDH 0,676. Esgoto tratado: 13,6%. Porto de Itaqui: 2o maior do Brasil.
 > Os tres numeros sao do mesmo estado.
 
 Voce esta no Porto de Itaqui, na Baia de Sao Marcos. Um navio capesize — desses que carregam 400 mil toneladas de minerio de ferro — atraca lentamente no terminal da Vale. O minerio veio de Carajas, no sudeste do Para, por 892 quilometros de ferrovia que cortam o Maranhao de ponta a ponta (→ V84). O navio vai zarpar para a China. A carga vale centenas de milhoes de dolares. Itaqui e o segundo maior porto do Brasil em volume: 246 milhoes de toneladas em 2023. Soja, minerio, celulose, graos — a riqueza do Brasil Central passa por aqui antes de virar numero no comercio exterior.
@@ -36,7 +36,7 @@ Vamos aos dados. Sem comentario, sem adjetivo, sem analise. Primeiro os numeros.
 
 **PIB per capita** (2021): Maranhao R$ 15.757. Brasil R$ 40.688. O maranhense medio produz — ou, mais precisamente, a economia maranhense gera por habitante — menos da metade da media brasileira. So o Piaui esta abaixo.²
 
-**Saneamento** (2022): 3,92% da populacao do Maranhao tem acesso a esgoto tratado. Tres virgula noventa e dois por cento. Isso significa que 96 de cada 100 maranhenses despejam seus dejetos em fossas rudimentares, valas, rios ou diretamente no solo. O dado nao e de uma ONG alarmista — e do SNIS, o sistema oficial do governo federal. A media brasileira e 51,2%. O Amapa, segundo pior, tem 6,4%. O Maranhao esta sozinho no fundo.³
+**Saneamento** (2022): 13,6% do esgoto do Maranhao e tratado — e a coleta alcanca apenas 32,49% da populacao. Isso significa que a imensa maioria dos maranhenses despeja seus dejetos em fossas rudimentares, valas, rios ou diretamente no solo. O dado nao e de uma ONG alarmista — e do SNIS/Trata Brasil, o sistema oficial do governo federal. A media brasileira e 51,2%. O Maranhao esta entre os piores do pais.³ Fonte: SNIS/Trata Brasil, dados 2022.
 
 **Analfabetismo** (2022): 15,6% da populacao acima de 15 anos nao sabe ler nem escrever. A media brasileira e 5,6% — quase um terco. E o analfabetismo funcional — pessoas que decodificam letras mas nao interpretam um paragrafo — estimado em torno de 30%, nao aparece nessa estatistica.⁴
 
@@ -76,7 +76,7 @@ O padrao nao e novo. O algodao (→ V40) fez o mesmo no seculo XIX: enriqueceu u
 |-----------|----|----|----|----|--------|
 | IDH (2021) | 0,676 | 0,697 | 0,684 | 0,735 | 0,754 |
 | PIB per capita (R$, 2021) | 15.757 | 15.432 | 18.236 | 19.381 | 40.688 |
-| Esgoto tratado (%) | 3,92 | 12,3 | 28,1 | 32,5 | 51,2 |
+| Esgoto tratado (%) | 13,6 | 12,3 | 28,1 | 32,5 | 51,2 |
 | Analfabetismo (%) | 15,6 | 14,5 | 14,4 | 11,8 | 5,6 |
 | Mortalidade infantil (por mil) | 15,2 | 14,8 | 14,1 | 12,3 | 11,9 |
 | Esperanca de vida (anos) | 71,4 | 72,1 | 72,3 | 73,8 | 75,5 |
@@ -117,7 +117,7 @@ Um exercicio. A CFEM (Compensacao Financeira pela Exploracao Mineral) e paga ao 
 
 Se o criterio fosse pelo porto de exportacao — ou pela extensao de ferrovia em territorio estadual — o Maranhao receberia centenas de milhoes adicionais por ano. O suficiente para, em uma decada, universalizar o saneamento basico em Sao Luis. O suficiente para zerar o deficit de leitos hospitalares. O suficiente para mudar o padrao.
 
-O exercicio e teorico. A legislacao e a que esta. Mas o contraste e revelador: o minerio de Carajas gera um dos maiores fluxos de riqueza mineral do planeta — e o estado por onde ele passa tem 3,92% de esgoto tratado.
+O exercicio e teorico. A legislacao e a que esta. Mas o contraste e revelador: o minerio de Carajas gera um dos maiores fluxos de riqueza mineral do planeta — e o estado por onde ele passa tem 13,6% de esgoto tratado. Fonte: SNIS/Trata Brasil, dados 2022.
 <!-- /BOX -->
 
 <!-- BOX: documento — O que o PNUD escreveu -->

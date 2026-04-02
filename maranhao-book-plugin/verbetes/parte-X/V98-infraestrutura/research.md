@@ -12,7 +12,7 @@ fontes_consultadas: 12+
 
 | Indicador | Valor |
 |-----------|-------|
-| Esgoto tratado MA | 3,92% (pior do Brasil) |
+| Esgoto tratado MA | 13,6% (coleta: 32,49%) — Fonte: SNIS/Trata Brasil, dados 2022 |
 | Agua tratada | ~75% dos domicilios (Brasil: ~84%) |
 | Coleta de lixo | ~65% (Brasil: ~85%) |
 | Energia eletrica | ~99% (universalizacao quase completa) |
