@@ -29,17 +29,21 @@
   categoria: geografia
   descricao: "Posição em área entre estados brasileiros"
   valor: "8º maior"
-  fonte: "IBGE"
-  url: "https://cidades.ibge.gov.br/brasil/ma/panorama"
-  ano_base: 2022
+  fonte: "IBGE, Áreas Territoriais (ordenação por área dos 27 UFs)"
+  url: "https://www.ibge.gov.br/geociencias/organizacao-do-territorio/estrutura-territorial/15761-areas-dos-municipios"
+  url_verificada: false
+  nota: "Ranking inferido por ordenação das áreas estaduais no IBGE. GZH confirma: '8) Maranhão, 329.651,496 km²'. URL IBGE é página geral de áreas — não lista ranking diretamente."
+  ano_base: 2024
   verbetes: [V01]
 
 - id: GEO-003
   categoria: geografia
   descricao: "Extensão do litoral maranhense"
-  valor: "640 km"
-  fonte: "IBGE"
-  url: "https://cidades.ibge.gov.br/brasil/ma/panorama"
+  valor: "640 km (linha reta); ~2.240 km (com reentrâncias)"
+  fonte: "IBGE / fontes diversas"
+  url: "NÃO VERIFICADO — dado amplamente citado sem URL específica que mostre '640 km' literalmente"
+  url_verificada: false
+  nota: "O valor 640 km em linha reta é citado em múltiplas fontes mas nenhuma com URL primária rastreável. O valor com reentrâncias (~2.240 km) aparece em fontes como Britannica."
   ano_base: 2022
   verbetes: [V02, V05, V48, V90, V104]
 
@@ -69,18 +73,24 @@
 - id: GEO-006
   categoria: geografia
   descricao: "Naufrágios no Parcel de Manuel Luís"
-  valor: "200+"
-  fonte: "Marinha do Brasil / ICMBio"
-  url: "https://www.gov.br/icmbio/"
+  valor: "~200 (estimativa — levantamento oficial não confirma o número exato)"
+  fonte: "Relatos diversos; Naufragios do Brasil (lista parcial); ISA/Socioambiental"
+  url: "https://www.naufragiosdobrasil.com.br/regiao/maranhao/parcel-manoel-luis/"
+  url_verificada: true
+  dado_literal_na_pagina: "Lista parcial de naufrágios documentados (Altamar 1960, Fragata portuguesa 1820, Ilha Grande 1962)"
+  nota: "O número '200+' é amplamente citado mas NÃO confirmado por levantamento oficial. Fonte Instagram: 'relatos apontam cerca de 200 naufrágios, o levantamento oficial não confirma esse número'."
   ano_base: 2020
   verbetes: [V11, V105]
 
 - id: GEO-007
   categoria: geografia
   descricao: "Amplitude de maré na Baía de São Marcos"
-  valor: "até 7-8 metros"
-  fonte: "Turismo São Luís / fontes oceanográficas"
-  url: "sem URL - verificar"
+  valor: "até 7,2 m (preia-mar máxima registrada); ~8 m citado em fontes gerais"
+  fonte: "Tábua de Marés (registro); Wikipedia (ref. acadêmicas); Oceano Para Leigos"
+  url: "https://tabuademares.com/br/maranhao/baia-de-sao-marcos"
+  url_verificada: true
+  dado_literal_na_pagina: "preia-mar máxima registrada nas tabelas de marés de Baía de São Marcos que é de 7,2 m"
+  nota: "Fontes variam entre 7 e 8 metros. Tábua de Marés registra 7,2m. Wikipedia cita ~8m para 'litoral norte do Maranhão'."
   ano_base: 2022
   verbetes: [V05, V48, V49, V104]
 
