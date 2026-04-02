@@ -118,7 +118,27 @@
 | C6 Órgãos governamentais MA | ✅ Completa |  |
 | C7 Turismo, comércio exterior, pecuária | ✅ Completa |  |
 | C8 Educação, energia, pesca, agro detalhado | ✅ Completa |  |
+| C9 Saúde, segurança, transporte, cultura, PIB municipal | ✅ Completa |  |
 | D1 Projeções IPCC/IBGE | ⏳ Próxima sessão |  |
+
+## C9 — Saúde, Segurança, Transporte, Cultura, PIB Municipal
+
+| Dado | Valor | Fonte | URL |
+|------|-------|-------|-----|
+| UTIs mortalidade MA | 42,36%→21,48% (2021→2025) | Gov MA | https://www.ma.gov.br/ |
+| Segurança 2025 | -5,5% crimes violentos, feminicídio -17% | SSP-MA | https://www.ssp.ma.gov.br/ |
+| Drogas apreendidas 2025 | 9,6 ton (+290%) | SSP-MA | ssp.ma.gov.br |
+| Frota veículos MA 2024 | 2.232.758 (+72 mil) | Detran/G1 | g1.globo.com |
+| Rodovias estaduais | 5.800 km, R$430M manutenção | Gov MA | https://www.ma.gov.br/ |
+| São João MA 2025 | 800+ atrações, 60 dias, 80 mil/dia | O Globo | oglobo.globo.com |
+| IMESC São João (PDF) | Tradições juninas | IMESC | https://imesc.ma.gov.br/ |
+| Alcione | 21/nov/1947, São Luís, 50+ anos carreira | IMMuB | https://immub.org/ |
+| Zeca Baleiro | 11/abr/1966, Arari, MPB/rock/forró | Diversas | — |
+| IMESC PIB Municipal 2023 | Top 7 = 50,1% PIB (SL 28,4%) | IMESC PDF | https://imesc.ma.gov.br/ |
+| PIB per capita SL | R$32.739 | IBGE | https://cidades.ibge.gov.br/ |
+| PIB per capita Balsas | R$49.800 (3x média MA) | Portal Balsas | portaldebalsas.com.br |
+| VLI 2025 | 43,5 bi TKU (+4%), lucro R$1,40 bi | Forbes | https://forbes.com.br/ |
+| VLI grãos 2025 | 23M ton (+16%) | UOL | — |
 
 ## C8 — Educação, Energia, Pesca, Agro detalhado
 
