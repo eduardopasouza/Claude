@@ -17,10 +17,10 @@ status: rascunho
 
 # Desigualdade: o painel
 
-> IDH 0,676. Esgoto tratado: 13,6%. Porto de Itaqui: 2o maior do Brasil.
+> IDH 0,676. Esgoto tratado: 13,6%. Porto de Itaqui: 4o maior porto publico do Brasil.
 > Os tres numeros sao do mesmo estado.
 
-Voce esta no Porto de Itaqui, na Baia de Sao Marcos. Um navio capesize — desses que carregam 400 mil toneladas de minerio de ferro — atraca lentamente no terminal da Vale. O minerio veio de Carajas, no sudeste do Para, por 892 quilometros de ferrovia que cortam o Maranhao de ponta a ponta (→ V84). O navio vai zarpar para a China. A carga vale centenas de milhoes de dolares. Itaqui e o segundo maior porto do Brasil em volume: 246 milhoes de toneladas em 2023. Soja, minerio, celulose, graos — a riqueza do Brasil Central passa por aqui antes de virar numero no comercio exterior.
+Voce esta no Porto de Itaqui, na Baia de Sao Marcos. Um navio capesize — desses que carregam 400 mil toneladas de minerio de ferro — atraca lentamente no terminal da Vale. O minerio veio de Carajas, no sudeste do Para, por 892 quilometros de ferrovia que cortam o Maranhao de ponta a ponta (→ V84). O navio vai zarpar para a China. A carga vale centenas de milhoes de dolares. O complexo portuario de Sao Luis (Itaqui + Ponta da Madeira + Alumar) e o maior do Norte-Nordeste; so o porto publico de Itaqui movimentou 34 milhoes de toneladas em 2024 (4o maior porto publico do pais). Somando os terminais privados, a area portuaria movimentou 246 milhoes de toneladas em 2023. Soja, minerio, celulose, graos — a riqueza do Brasil Central passa por aqui antes de virar numero no comercio exterior.
 
 A 500 metros do terminal, do outro lado de uma cerca, uma familia mora em palafita sobre um mangue. Nao tem esgoto. A agua vem de um poco artesanal que ninguem testou. As criancas caminham descalcas sobre uma passarela de tabuas.
 
@@ -56,7 +56,7 @@ Os numeros estao na mesa. Sao frios. Nao acusam. Nao pedem desculpa. Existem.
 
 Agora olhe o outro lado.
 
-O Maranhao e o segundo maior exportador de minerio de ferro do Brasil — via Porto de Itaqui. Aproximadamente US$ 15 bilhoes em commodities transitam anualmente pelo estado.⁷ O corredor Norte de exportacao (ferrovia Carajas + Itaqui) e um dos mais eficientes do mundo.
+O Maranhao e um dos maiores exportadores de minerio de ferro do Brasil — via complexo portuario de Sao Luis (Itaqui + Ponta da Madeira). Aproximadamente US$ 15 bilhoes em commodities transitam anualmente pelo estado.⁷ O corredor Norte de exportacao (ferrovia Carajas + Itaqui) e um dos mais eficientes do mundo.
 
 O Maranhao e **superavitario em energia eletrica**: produz mais do que consome. Hidreletricas (Tucurui abastece via linhao, Boa Esperanca no Parnaiba), parques eolicos no litoral leste (Delta do Parnaiba, Barreirinhas, Paulino Neves), termeletricas a gas. O estado fornece energia para outros estados do Nordeste.⁸
 
@@ -83,7 +83,7 @@ O padrao nao e novo. O algodao (→ V40) fez o mesmo no seculo XIX: enriqueceu u
 | Gini | 0,535 | 0,521 | 0,510 | 0,505 | 0,518 |
 | Trabalho informal (%) | ~60 | ~58 | ~52 | ~48 | ~39 |
 
-O Maranhao e o Piaui se alternam na lanterna de quase todos os indicadores. Mas ha uma diferenca fundamental: o Piaui nao tem Porto de Itaqui. Nao tem ferrovia de Carajas. Nao tem MATOPIBA. Nao tem superavit energetico. O Piaui e pobre num sentido mais direto — tem menos. O Maranhao e pobre num sentido mais perverso — tem muito, e mesmo assim.
+O Maranhao e o Piaui se alternam na lanterna de quase todos os indicadores. Mas ha uma diferenca fundamental: o Piaui nao tem o complexo portuario de Sao Luis. Nao tem ferrovia de Carajas. Nao tem MATOPIBA. Nao tem superavit energetico. O Piaui e pobre num sentido mais direto — tem menos. O Maranhao e pobre num sentido mais perverso — tem muito, e mesmo assim.
 
 <!-- LAYOUT: tabela estilizada em pagina inteira, cores Carvao + Vermelho-bumba para piores indicadores, Verde-mata para melhores -->
 

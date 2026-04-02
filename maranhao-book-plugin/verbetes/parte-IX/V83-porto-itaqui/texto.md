@@ -19,7 +19,7 @@ status: rascunho
 
 # Porto de Itaqui: a porta do Arco Norte
 
-Vinte e tres metros. Esse e o numero que explica por que o segundo maior porto do Brasil fica num dos estados mais pobres. Vinte e tres metros de profundidade natural — o calado da Baia de Sao Marcos, em Sao Luis do Maranhao — sao suficientes para receber os maiores navios cargueiros ja construidos pela humanidade sem que uma unica draga precise tocar o fundo.^1
+Vinte e tres metros. Esse e o numero que explica por que o 4o maior porto publico do Brasil fica num dos estados mais pobres. Vinte e tres metros de profundidade natural — o calado da Baia de Sao Marcos, em Sao Luis do Maranhao — sao suficientes para receber os maiores navios cargueiros ja construidos pela humanidade sem que uma unica draga precise tocar o fundo.^1
 
 Santos, o maior porto do pais, tem 15 metros. Precisa de dragagem constante — um custo de centenas de milhoes de reais por ano. Paranagua tem 12. Rio Grande, 14. O calado natural de Itaqui e uma vantagem geologica que nenhum investimento poderia replicar: a Baia de Sao Marcos, um estuario de 100 quilometros de extensao e ate 4 quilometros de largura, foi escavada por correntes oceanicas durante milhoes de anos.^2
 
@@ -39,7 +39,7 @@ Em 1985, a Vale inaugurou o Terminal Maritimo de Ponta da Madeira, ponto final d
 
 Em 2014, veio o Tegram — Terminal de Graos do Maranhao — para escoar a soja e o milho que desciam pela Ferrovia Norte-Sul desde o cerrado de Goias, Tocantins e sul do Maranhao. O Arco Norte, estrategia federal para desafogar Santos e criar uma rota de exportacao pelo norte do pais, encontrou em Itaqui seu principal porto.^6
 
-Hoje, a area portuaria de Sao Luis — somando o porto publico, Ponta da Madeira e os terminais privados — movimenta cerca de 210 milhoes de toneladas por ano. E a segunda maior concentracao portuaria do Brasil.^7
+Hoje, a area portuaria de Sao Luis — somando o porto publico, Ponta da Madeira e os terminais privados — movimenta cerca de 210 milhoes de toneladas por ano. E o maior complexo portuario do Norte-Nordeste.^7
 
 ---
 
@@ -87,7 +87,7 @@ O resultado: a participacao do Arco Norte na exportacao brasileira de graos salt
 
 **Shanghai (China)**: maior porto do mundo em conteineres. E tambem a maior zona de livre comercio da China, com industrias de transformacao que agregam valor antes da reexportacao.
 
-**Itaqui (Maranhao)**: segundo maior em volume bruto no Brasil. Exporta materia-prima. Nao tem zona de processamento industrial significativa. A riqueza transita; nao transforma.
+**Itaqui (Maranhao)**: 4o maior porto publico do Brasil (34 Mt em 2024); o complexo portuario de Sao Luis (Itaqui + Ponta da Madeira + Alumar) e o maior do Norte-Nordeste. Exporta materia-prima. Nao tem zona de processamento industrial significativa. A riqueza transita; nao transforma.
 
 A diferenca entre um porto-corredor e um porto-polo e a diferenca entre escoar e produzir.
 
@@ -112,7 +112,7 @@ O calado esta la. A posicao geografica esta la. As ferrovias estao chegando. Mas
 
 Uma zona de processamento de graos — esmagadoras de soja, fabricas de racao, plantas de biodiesel — transformaria Itaqui de um corredor em um polo. O minerio e mais dificil de processar localmente (exige siderurgica de grande porte), mas a soja e viavel. O problema nao e tecnico. E de investimento, de politica industrial e de decisao.^13
 
-Voce pode olhar para Itaqui de duas maneiras. A primeira: e o segundo maior porto do Brasil, ponto de saida de um dos maiores corredores logisticos do hemisferio, com calado que nenhum concorrente replica. Motivo de orgulho.
+Voce pode olhar para Itaqui de duas maneiras. A primeira: e o 4o maior porto publico do Brasil e o coracao do maior complexo portuario do Norte-Nordeste, ponto de saida de um dos maiores corredores logisticos do hemisferio, com calado que nenhum concorrente replica. Motivo de orgulho.
 
 A segunda: e a porta mais eficiente por onde a riqueza do Maranhao sai. Motivo de reflexao.
 

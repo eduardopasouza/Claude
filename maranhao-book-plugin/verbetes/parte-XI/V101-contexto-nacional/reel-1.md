@@ -9,7 +9,7 @@ hashtags: ["#QuemEoMaranhao", "#Brasil", "#Indicadores", "#Maranhao"]
 # Reel V101-1: Ultimo e primeiro ao mesmo tempo
 
 ## HOOK (0-3s)
-**TELA**: "Ultimo em PIB per capita. Primeiro em pobreza. Segundo maior porto do pais."
+**TELA**: "Ultimo em PIB per capita. Primeiro em pobreza. Maior complexo portuario do Norte-Nordeste."
 
 ## DESENVOLVIMENTO (3-45s)
 **NARRACAO**: "O Maranhao e ultimo em quase todo indicador social: IDH, educacao, saneamento, renda. E primeiro em quase todo indicador de recurso: porto, energia, area, exportacoes."

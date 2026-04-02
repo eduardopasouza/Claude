@@ -19,7 +19,7 @@ status: rascunho
 
 Ultimo em PIB per capita. Ultimo em IDH. Primeiro em pobreza. Primeiro em analfabetismo. Ultimo em saneamento. Essas sao as posicoes do Maranhao nos rankings nacionais — e voce ja ouviu esses numeros tantas vezes neste livro que talvez esteja anestesiado.^1
 
-Mas agora coloque ao lado: oitavo maior estado em area territorial. Decimo em populacao. Segundo maior porto do pais. Mais de 4.500 megawatts de energia eolica. Exportacoes de 9,5 bilhoes de dolares. Dois dos maiores biomas do planeta.
+Mas agora coloque ao lado: oitavo maior estado em area territorial. Decimo em populacao. Maior complexo portuario do Norte-Nordeste. Mais de 4.500 megawatts de energia eolica. Exportacoes de 9,5 bilhoes de dolares. Dois dos maiores biomas do planeta.
 
 Ultimo e primeiro ao mesmo tempo. Essa e a posicao do Maranhao no Brasil.
 

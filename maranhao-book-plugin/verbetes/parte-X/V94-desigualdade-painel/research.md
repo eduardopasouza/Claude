@@ -28,7 +28,7 @@ Este e o verbete mais duro do livro. O Maranhao ocupa a ultima ou penultima posi
 | Mortalidade infantil Brasil | 11,9 por mil | DataSUS/MS | 2021 |
 | Populacao abaixo da linha de pobreza MA | ~50% (R$ 497/mes) | IBGE, Sintese de Indicadores Sociais | 2022 |
 | Populacao abaixo da linha de pobreza Brasil | ~29% | IBGE | 2022 |
-| Porto de Itaqui | 2o maior porto do Brasil em volume de carga | ANTAQ | 2023 |
+| Porto de Itaqui (publico) | 4o maior porto publico do Brasil (~34 Mt em 2024); complexo portuario de Sao Luis e o maior do Norte-Nordeste | ANTAQ / Gov MA / Portos e Navios | 2024 |
 | Exportacoes de minerio (Carajas) | ~US$ 15 bilhoes/ano transitam pelo MA | MDIC/Comex Stat | 2023 |
 | Energia eletrica | MA e superavitario — produz mais do que consome | ONS/EPE | 2023 |
 | Indice de Gini MA | 0,535 | IBGE, PNAD Continua | 2022 |
@@ -49,7 +49,7 @@ Este e o verbete mais duro do livro. O Maranhao ocupa a ultima ou penultima posi
 
 ### O paradoxo central
 
-O Maranhao e o estado que mais exporta minerio de ferro no Brasil — mas onde metade da populacao vive abaixo da linha de pobreza. O segundo maior porto do pais esta num estado onde apenas 13,6% do esgoto e tratado (Fonte: SNIS/Trata Brasil, dados 2022). Navios graneleiros de 400 mil toneladas atracam a 500 metros de palafitas sem agua encanada.
+O Maranhao e o estado que mais exporta minerio de ferro no Brasil — mas onde metade da populacao vive abaixo da linha de pobreza. O 4o maior porto publico do pais esta num estado onde apenas 13,6% do esgoto e tratado (Fonte: SNIS/Trata Brasil, dados 2022). Navios graneleiros de 400 mil toneladas atracam a 500 metros de palafitas sem agua encanada.
 
 Esse nao e um paradoxo recente. E a repeticao de um padrao historico: o ciclo do algodao (V40) enriqueceu uma elite e deixou a maioria na miseria. O ciclo do babacu (V85) extraiu riqueza sem distribuir. A ferrovia de Carajas (V84) movimenta bilhoes e deixa poeira. A constante e a mesma: riqueza produzida no Maranhao que nao fica no Maranhao — e quando fica, nao chega a maioria.
 
@@ -78,7 +78,7 @@ O Maranhao esta melhorando mais rapido que a media brasileira — mas partiu tao
 
 ### O paradoxo da riqueza
 
-Porto de Itaqui: 2o maior do Brasil em volume de carga (246 milhoes de toneladas em 2023). Por ele passam soja do MATOPIBA, minerio de Carajas, graos do cerrado. Superavit energetico: o MA produz mais energia do que consome (hidreletricas de Tucurui e Boa Esperanca, parques eolicos no litoral). Reservas minerais: ferro, aluminio, ouro. Biodiversidade: tres biomas (Amazonia, Cerrado, Caatinga) + litoral de 640 km.
+Porto de Itaqui: 4o maior porto publico do Brasil (~34 Mt em 2024; Dados 2024, Gov MA / Portos e Navios). O complexo portuario de Sao Luis (Itaqui + Ponta da Madeira + Alumar) e o maior do Norte-Nordeste (246 milhoes de toneladas em 2023). Por ele passam soja do MATOPIBA, minerio de Carajas, graos do cerrado. Superavit energetico: o MA produz mais energia do que consome (hidreletricas de Tucurui e Boa Esperanca, parques eolicos no litoral). Reservas minerais: ferro, aluminio, ouro. Biodiversidade: tres biomas (Amazonia, Cerrado, Caatinga) + litoral de 640 km.
 
 Toda essa riqueza gera PIB — mas um PIB que nao se traduz em indicadores sociais. O minerio de Carajas e extraido no PA/MA mas os royalties fluem para a Vale e seus acionistas. A soja do MATOPIBA enriquece produtores (muitos de fora) mas gera poucos empregos. O porto exporta commodities — e importa pouco do que a populacao local precisa.
 
@@ -92,7 +92,7 @@ Toda essa riqueza gera PIB — mas um PIB que nao se traduz em indicadores socia
 | Mortalidade infantil | 15,2 | 14,8 | 14,1 | 12,3 | 11,9 |
 | PIB per capita | 15.757 | 15.432 | 18.236 | 19.381 | 40.688 |
 
-O MA e o PI se alternam na lanterna da maioria dos indicadores. Mas o PI nao tem porto, nao tem Carajas, nao tem MATOPIBA. O paradoxo maranhense e mais agudo: mais riqueza bruta, piores indicadores proporcionais.
+O MA e o PI se alternam na lanterna da maioria dos indicadores. Mas o PI nao tem o complexo portuario de Sao Luis, nao tem Carajas, nao tem MATOPIBA. O paradoxo maranhense e mais agudo: mais riqueza bruta, piores indicadores proporcionais.
 
 ## Dados comparativos
 

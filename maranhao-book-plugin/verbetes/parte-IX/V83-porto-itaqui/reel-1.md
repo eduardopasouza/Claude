@@ -9,7 +9,7 @@ hashtags: ["#QuemEoMaranhao", "#PortoItaqui", "#ArcoNorte", "#Maranhao"]
 # Reel V83-1: O porto mais fundo do Brasil
 
 ## HOOK (0-3s)
-**TELA**: "O segundo maior porto do Brasil nao precisa de dragagem."
+**TELA**: "O 4o maior porto publico do Brasil nao precisa de dragagem."
 
 ## DESENVOLVIMENTO (3-45s)
 **NARRACAO**: "Santos, o maior porto do pais, tem 15 metros de calado — e precisa de dragagem constante, custando centenas de milhoes por ano."

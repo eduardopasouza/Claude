@@ -12,7 +12,7 @@ reels: 2
 # Outline — V83: Porto de Itaqui
 
 ## Tese
-A Baia de Sao Marcos tem 23 metros de profundidade natural — o suficiente para receber os maiores navios cargueiros do planeta sem uma unica dragagem. Essa vantagem geologica fez de Itaqui o segundo maior porto do Brasil e a porta de saida do corredor logistico que conecta o cerrado brasileiro ao mundo.
+A Baia de Sao Marcos tem 23 metros de profundidade natural — o suficiente para receber os maiores navios cargueiros do planeta sem uma unica dragagem. Essa vantagem geologica fez de Itaqui o 4o maior porto publico do Brasil — e o complexo portuario de Sao Luis, o maior do Norte-Nordeste — a porta de saida do corredor logistico que conecta o cerrado brasileiro ao mundo.
 
 ## Estrutura
 ### 1. ABERTURA — 23 metros

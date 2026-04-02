@@ -10,7 +10,7 @@ fontes_consultadas: 20+
 
 ## Resumo executivo
 
-O Porto do Itaqui, em Sao Luis, e o segundo maior porto do Brasil em movimentacao de cargas (superado apenas por Santos) e o porto publico com maior calado natural do pais — 23 metros, suficiente para receber navios Valemax de 400.000 TPB. Localizado na Baia de Sao Marcos, opera como porta de saida do Arco Norte, escoando minerio de ferro (via EFC/Vale), graos (via Tegram/FNS), combustiveis e celulose. Em 2023, movimentou cerca de 210 milhoes de toneladas (somando terminais publicos e privados da area portuaria).
+O Porto do Itaqui, em Sao Luis, e o 4o maior porto publico do Brasil em movimentacao de cargas (cerca de 34 Mt em 2024) e o porto publico com maior calado natural do pais. O complexo portuario de Sao Luis (Itaqui + Ponta da Madeira/Vale + Alumar) e o maior do Norte-Nordeste — 23 metros, suficiente para receber navios Valemax de 400.000 TPB. Localizado na Baia de Sao Marcos, opera como porta de saida do Arco Norte, escoando minerio de ferro (via EFC/Vale), graos (via Tegram/FNS), combustiveis e celulose. Em 2023, movimentou cerca de 210 milhoes de toneladas (somando terminais publicos e privados da area portuaria).
 
 ## Dados-chave
 

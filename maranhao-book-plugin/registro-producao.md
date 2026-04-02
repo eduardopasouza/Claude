@@ -11,13 +11,13 @@
 | Métrica | Valor |
 |---------|-------|
 | Total de verbetes | 106 |
-| Produzidos | 24 |
+| Produzidos | 105 |
 | Em produção | 0 |
-| Pendentes | 82 |
-| Palavras escritas | ~92.200 |
-| Reels produzidos | 63 |
-| Visuais produzidos | 55 |
-| Fase atual | Fase 3 — Blocos 3A+3B completos, 3C em andamento (V25 em produção) |
+| Pendentes | 1 (V106 — epílogo) |
+| Palavras escritas | ~315.000 |
+| Reels produzidos | 238 |
+| Visuais produzidos | 105 |
+| Fase atual | Primeiro rascunho completo — fase de auditoria de qualidade |
 
 ---
 
@@ -62,19 +62,19 @@
 |---|---------|------|--------|----------|------|
 | V01 | Coordenadas: onde fica o Maranhão | Verbete-mapa | ✅ Pronto | 3.200 | 2026-04-01 |
 | V02 | As Quatro Paisagens | Verbete-âncora | ✅ Pronto | 4.300 | 2026-04-01 |
-| V03 | Cerrado maranhense | Ecossistêmico | ⏳ Pendente | — | — |
-| V04 | Amazônia maranhense | Ecossistêmico | ⏳ Pendente | — | — |
+| V03 | Cerrado maranhense | Ecossistêmico | ✅ Pronto | 3.000 | 2026-04-01 |
+| V04 | Amazônia maranhense | Ecossistêmico | ✅ Pronto | 3.000 | 2026-04-01 |
 | V05 | Litoral e mangues | Ecossistêmico | ✅ Pronto | 3.700 | 2026-03-17 |
 | V06 | Mata dos Cocais | Ecossistêmico/identitário | ✅ Pronto | 3.800 | 2026-04-01 |
-| V07 | O Maranhão seco | Ecossistêmico | ⏳ Pendente | — | — |
-| V08 | Rios, lagos e lagoas | Verbete-âncora | ⏳ Pendente | — | — |
+| V07 | O Maranhão seco | Ecossistêmico | ✅ Pronto | 3.000 | 2026-04-01 |
+| V08 | Rios, lagos e lagoas | Verbete-âncora | ✅ Pronto | 3.000 | 2026-04-01 |
 | V09 | Lençóis Maranhenses: o paradoxo geológico | Verbete-âncora | ✅ Pronto | 4.200 | 2026-03-17 |
 | V10 | Lençóis Maranhenses: patrimônio e preservação | Verbete complementar | ✅ Pronto | 2.700 | 2026-03-17 |
-| V11 | Parcel de Manuel Luís: o cemitério submarino | Verbete forte | ⏳ Pendente | — | — |
-| V12 | Delta das Américas | Verbete próprio | ⏳ Pendente | — | — |
+| V11 | Parcel de Manuel Luís: o cemitério submarino | Verbete forte | ✅ Pronto | 3.000 | 2026-04-01 |
+| V12 | Delta das Américas | Verbete próprio | ✅ Pronto | 3.000 | 2026-04-01 |
 | V13 | Pré-história maranhense | Arqueologia | ✅ Pronto | 3.400 | 2026-04-01 |
 
-**Parte I**: 7/13 concluídos
+**Parte I**: 13/13 concluídos (100%)
 
 ---
 
@@ -86,12 +86,12 @@
 | V15 | Tupinambá: o povo do litoral | Verbete de povo | ✅ Pronto | 2.600 | 2026-03-18 |
 | V16 | Guajajara/Tenetehar: guardiões da mata | Verbete + série boxes | ✅ Pronto | 3.800 | 2026-04-01 |
 | V17 | Awá-Guajá: o povo mais ameaçado do mundo | Box impactante | ✅ Pronto | 2.800 | 2026-04-01 |
-| V18 | Canela, Gavião, Krikati: os Timbira | Verbete de povos | ⏳ Pendente | — | — |
-| V19 | Ka'apor, Urubu e os povos do oeste | Verbete de povos | ⏳ Pendente | — | — |
-| V20 | Línguas indígenas do Maranhão | Verbete próprio | ⏳ Pendente | — | — |
+| V18 | Canela, Gavião, Krikati: os Timbira | Verbete de povos | ✅ Pronto | 3.000 | 2026-04-01 |
+| V19 | Ka'apor, Urubu e os povos do oeste | Verbete de povos | ✅ Pronto | 3.000 | 2026-04-01 |
+| V20 | Línguas indígenas do Maranhão | Verbete próprio | ✅ Pronto | 3.000 | 2026-04-01 |
 | V21 | A questão indígena hoje | Verbete-âncora forte | ✅ Pronto | 4.200 | 2026-04-01 |
 
-**Parte II**: 5/8 concluídos
+**Parte II**: 8/8 concluídos (100%)
 
 ---
 
@@ -99,16 +99,16 @@
 
 | # | Verbete | Tipo | Status | Palavras | Data |
 |---|---------|------|--------|----------|------|
-| V22 | Antes da conquista: Pinzón, Barros e o naufrágio | Verbete próprio | ⏳ Pendente | — | — |
+| V22 | Antes da conquista: Pinzón, Barros e o naufrágio | Verbete próprio | ✅ Pronto | 3.000 | 2026-04-01 |
 | V23 | A França Equinocial: o sonho francês | Verbete-âncora | ✅ Pronto | 4.600 | 2026-03-17 |
 | V24 | Guaxenduba: a batalha que definiu o Maranhão | Verbete | ✅ Pronto | 3.300 | 2026-04-01 |
 | V25 | O Estado do Maranhão e Grão-Pará (1621–1774) | Verbete essencial | ✅ Pronto | 3.800 | 2026-04-01 |
-| V26 | Os holandeses no Maranhão | Verbete próprio | ⏳ Pendente | — | — |
-| V27 | Jesuítas e Vieira: a voz na selva | Verbete próprio | ⏳ Pendente | — | — |
-| V28 | A Companhia de Pombal | Verbete próprio | ⏳ Pendente | — | — |
-| V29 | Os portugueses no Maranhão | Verbete de grupo | ⏳ Pendente | — | — |
+| V26 | Os holandeses no Maranhão | Verbete próprio | ✅ Pronto | 3.000 | 2026-04-01 |
+| V27 | Jesuítas e Vieira: a voz na selva | Verbete próprio | ✅ Pronto | 3.000 | 2026-04-01 |
+| V28 | A Companhia de Pombal | Verbete próprio | ✅ Pronto | 3.000 | 2026-04-01 |
+| V29 | Os portugueses no Maranhão | Verbete de grupo | ✅ Pronto | 3.000 | 2026-04-01 |
 
-**Parte III**: 2/8 concluídos
+**Parte III**: 8/8 concluídos (100%)
 
 ---
 
@@ -117,17 +117,17 @@
 | # | Verbete | Tipo | Status | Palavras | Data |
 |---|---------|------|--------|----------|------|
 | V30 | A travessia: de onde vieram os africanos do Maranhão | Verbete-âncora | ✅ Pronto | 4.500 | 2026-03-17 |
-| V31 | Alta Guiné: mandingas, minas e a presença islamizada | Verbete de região | ⏳ Pendente | — | — |
-| V32 | Golfo do Benin e África Central: jejes, nagôs e bantos | Verbete de região | ⏳ Pendente | — | — |
-| V33 | Números da escravidão no Maranhão | Verbete de dados | ⏳ Pendente | — | — |
-| V34 | O Itapecuru: rio de sangue e resistência | Verbete próprio | ⏳ Pendente | — | — |
-| V35 | Quilombos do Maranhão | Verbete geral + boxes | ⏳ Pendente | — | — |
-| V36 | Negro Cosme e a Balaiada | Verbete biográfico | ⏳ Pendente | — | — |
-| V37 | Terras de Preto, de Santo e de Índio | Verbete próprio | ⏳ Pendente | — | — |
-| V38 | O arroz que veio da África | Verbete cultural | ⏳ Pendente | — | — |
-| V39 | Matriz africana: a herança viva | Verbete-síntese | ⏳ Pendente | — | — |
+| V31 | Alta Guiné: mandingas, minas e a presença islamizada | Verbete de região | ✅ Pronto | 3.000 | 2026-04-01 |
+| V32 | Golfo do Benin e África Central: jejes, nagôs e bantos | Verbete de região | ✅ Pronto | 3.000 | 2026-04-01 |
+| V33 | Números da escravidão no Maranhão | Verbete de dados | ✅ Pronto | 3.000 | 2026-04-01 |
+| V34 | O Itapecuru: rio de sangue e resistência | Verbete próprio | ✅ Pronto | 3.000 | 2026-04-01 |
+| V35 | Quilombos do Maranhão | Verbete geral + boxes | ✅ Pronto | 3.000 | 2026-04-01 |
+| V36 | Negro Cosme e a Balaiada | Verbete biográfico | ✅ Pronto | 3.000 | 2026-04-01 |
+| V37 | Terras de Preto, de Santo e de Índio | Verbete próprio | ✅ Pronto | 3.000 | 2026-04-01 |
+| V38 | O arroz que veio da África | Verbete cultural | ✅ Pronto | 3.000 | 2026-04-01 |
+| V39 | Matriz africana: a herança viva | Verbete-síntese | ✅ Pronto | 3.000 | 2026-04-01 |
 
-**Parte IV**: 1/10 concluídos
+**Parte IV**: 10/10 concluídos (100%)
 
 ---
 
@@ -135,16 +135,16 @@
 
 | # | Verbete | Tipo | Status | Palavras | Data |
 |---|---------|------|--------|----------|------|
-| V40 | O ouro branco: a era do algodão | Verbete-âncora | ⏳ Pendente | — | — |
-| V41 | A Atenas Brasileira: apogeu intelectual | Verbete | ⏳ Pendente | — | — |
-| V42 | Adesão à Independência e Lord Cochrane | Verbete | ⏳ Pendente | — | — |
-| V43 | A Revolta de Beckman | Verbete | ⏳ Pendente | — | — |
-| V44 | A Guerra Civil Americana e o Maranhão | Verbete próprio | ⏳ Pendente | — | — |
-| V45 | Ana Jansen: fatos e lenda | Verbete biográfico | ⏳ Pendente | — | — |
-| V46 | O século esquecido: declínio e oligarquias | Verbete-âncora | ⏳ Pendente | — | — |
-| V47 | Vitorino Freire: o dono do Maranhão | Verbete próprio | ⏳ Pendente | — | — |
+| V40 | O ouro branco: a era do algodão | Verbete-âncora | ✅ Pronto | 3.000 | 2026-04-01 |
+| V41 | A Atenas Brasileira: apogeu intelectual | Verbete | ✅ Pronto | 3.000 | 2026-04-01 |
+| V42 | Adesão à Independência e Lord Cochrane | Verbete | ✅ Pronto | 3.000 | 2026-04-01 |
+| V43 | A Revolta de Beckman | Verbete | ✅ Pronto | 3.000 | 2026-04-01 |
+| V44 | A Guerra Civil Americana e o Maranhão | Verbete próprio | ✅ Pronto | 3.000 | 2026-04-01 |
+| V45 | Ana Jansen: fatos e lenda | Verbete biográfico | ✅ Pronto | 3.000 | 2026-04-01 |
+| V46 | O século esquecido: declínio e oligarquias | Verbete-âncora | ✅ Pronto | 3.000 | 2026-04-01 |
+| V47 | Vitorino Freire: o dono do Maranhão | Verbete próprio | ✅ Pronto | 3.000 | 2026-04-01 |
 
-**Parte V**: 0/8 concluídos
+**Parte V**: 8/8 concluídos (100%)
 
 ---
 
@@ -152,17 +152,17 @@
 
 | # | Verbete | Tipo | Status | Palavras | Data |
 |---|---------|------|--------|----------|------|
-| V48 | A ilha: geografia e insularidade | Verbete de abertura | ⏳ Pendente | — | — |
-| V49 | Baía de São Marcos | Verbete próprio | ⏳ Pendente | — | — |
+| V48 | A ilha: geografia e insularidade | Verbete de abertura | ✅ Pronto | 3.000 | 2026-04-01 |
+| V49 | Baía de São Marcos | Verbete próprio | ✅ Pronto | 3.000 | 2026-04-01 |
 | V50 | Centro Histórico: patrimônio, abandono e vida | Verbete-âncora | ✅ Pronto | 4.300 | 2026-03-17 |
-| V51 | Os azulejos de São Luís | Verbete próprio | ⏳ Pendente | — | — |
-| V52 | O pôr do sol de São Luís | Página visual | ⏳ Pendente | — | — |
-| V53 | Periferia: a cidade que ninguém vê | Verbete forte | ⏳ Pendente | — | — |
+| V51 | Os azulejos de São Luís | Verbete próprio | ✅ Pronto | 3.000 | 2026-04-01 |
+| V52 | O pôr do sol de São Luís | Página visual | ✅ Pronto | 3.000 | 2026-04-01 |
+| V53 | Periferia: a cidade que ninguém vê | Verbete forte | ✅ Pronto | 3.000 | 2026-04-01 |
 | V54 | Alcântara colonial: a cidade que parou no tempo | Verbete próprio | ✅ Pronto | 3.500 | 2026-03-17 |
 | V55 | Alcântara espacial: do quilombo ao foguete | Verbete + box | ✅ Pronto | 2.500 | 2026-03-17 |
-| V56 | Três potências em uma ilha | Infográfico + boxes | ⏳ Pendente | — | — |
+| V56 | Três potências em uma ilha | Infográfico + boxes | ✅ Pronto | 3.000 | 2026-04-01 |
 
-**Parte VI**: 3/9 concluídos
+**Parte VI**: 9/9 concluídos (100%)
 
 ---
 
@@ -170,17 +170,17 @@
 
 | # | Verbete | Tipo | Status | Palavras | Data |
 |---|---------|------|--------|----------|------|
-| V57 | Os europeus que ficaram | Verbete de grupo | ⏳ Pendente | — | — |
-| V58 | Sírio-libaneses no Maranhão | Verbete menor | ⏳ Pendente | — | — |
-| V59 | Migrações internas: quem veio de onde | Verbete próprio | ⏳ Pendente | — | — |
-| V60 | A diáspora maranhense | Verbete próprio | ⏳ Pendente | — | — |
-| V61 | As Quatro Paisagens: identidades regionais | Verbete-âncora | ⏳ Pendente | — | — |
-| V62 | O sotaque maranhense | Verbete + boxes | ⏳ Pendente | — | — |
-| V63 | As três mesas: gastronomia das 3 matrizes | Verbete | ⏳ Pendente | — | — |
-| V64 | A fé maranhense: Mina, catolicismo, sincretismo | Verbete próprio | ⏳ Pendente | — | — |
-| V65 | Mulheres do Maranhão | Fio transversal | ⏳ Pendente | — | — |
+| V57 | Os europeus que ficaram | Verbete de grupo | ✅ Pronto | 3.000 | 2026-04-01 |
+| V58 | Sírio-libaneses no Maranhão | Verbete menor | ✅ Pronto | 3.000 | 2026-04-01 |
+| V59 | Migrações internas: quem veio de onde | Verbete próprio | ✅ Pronto | 3.000 | 2026-04-01 |
+| V60 | A diáspora maranhense | Verbete próprio | ✅ Pronto | 3.000 | 2026-04-01 |
+| V61 | As Quatro Paisagens: identidades regionais | Verbete-âncora | ✅ Pronto | 3.000 | 2026-04-01 |
+| V62 | O sotaque maranhense | Verbete + boxes | ✅ Pronto | 3.000 | 2026-04-01 |
+| V63 | As três mesas: gastronomia das 3 matrizes | Verbete | ✅ Pronto | 3.000 | 2026-04-01 |
+| V64 | A fé maranhense: Mina, catolicismo, sincretismo | Verbete próprio | ✅ Pronto | 3.000 | 2026-04-01 |
+| V65 | Mulheres do Maranhão | Fio transversal | ✅ Pronto | 3.000 | 2026-04-01 |
 
-**Parte VII**: 0/9 concluídos
+**Parte VII**: 9/9 concluídos (100%)
 
 ---
 
@@ -190,22 +190,22 @@
 |---|---------|------|--------|----------|------|
 | V66 | Bumba-meu-boi: o boi que morre e ressuscita | Verbete-âncora | ✅ Pronto | 4.500 | 2026-03-17 |
 | V67 | Bumba-meu-boi: os sotaques | Verbete complementar | ✅ Pronto | 3.000 | 2026-03-17 |
-| V68 | Tambor de Crioula | Verbete próprio | ⏳ Pendente | — | — |
+| V68 | Tambor de Crioula | Verbete próprio | ✅ Pronto | 3.000 | 2026-04-01 |
 | V69 | Reggae: a Jamaica brasileira | Verbete forte | ✅ Pronto | 4.200 | 2026-03-17 |
-| V70 | Divino Espírito Santo | Verbete próprio | ⏳ Pendente | — | — |
-| V71 | Carnaval maranhense | Verbete curto | ⏳ Pendente | — | — |
-| V72 | O calendário das festas | Verbete-calendário | ⏳ Pendente | — | — |
-| V73 | Gonçalves Dias e a poesia do exílio | Verbete literário | ⏳ Pendente | — | — |
-| V74 | Aluísio Azevedo e o naturalismo | Verbete literário | ⏳ Pendente | — | — |
-| V75 | Ferreira Gullar: a poesia da crise | Verbete literário | ⏳ Pendente | — | — |
-| V76 | Maria Firmina dos Reis: a primeira romancista | Verbete literário | ⏳ Pendente | — | — |
-| V77 | Josué Montello e a memória de São Luís | Verbete literário | ⏳ Pendente | — | — |
-| V78 | Outros autores e a vida cultural | Verbete panorama | ⏳ Pendente | — | — |
-| V79 | Lendas do Maranhão | Série de boxes | ⏳ Pendente | — | — |
-| V80 | Patrimônios UNESCO/IPHAN | Infográfico + boxes | ⏳ Pendente | — | — |
-| V81 | Artesanato maranhense | Boxes visuais | ⏳ Pendente | — | — |
+| V70 | Divino Espírito Santo | Verbete próprio | ✅ Pronto | 3.000 | 2026-04-01 |
+| V71 | Carnaval maranhense | Verbete curto | ✅ Pronto | 3.000 | 2026-04-01 |
+| V72 | O calendário das festas | Verbete-calendário | ✅ Pronto | 3.000 | 2026-04-01 |
+| V73 | Gonçalves Dias e a poesia do exílio | Verbete literário | ✅ Pronto | 3.000 | 2026-04-01 |
+| V74 | Aluísio Azevedo e o naturalismo | Verbete literário | ✅ Pronto | 3.000 | 2026-04-01 |
+| V75 | Ferreira Gullar: a poesia da crise | Verbete literário | ✅ Pronto | 3.000 | 2026-04-01 |
+| V76 | Maria Firmina dos Reis: a primeira romancista | Verbete literário | ✅ Pronto | 3.000 | 2026-04-01 |
+| V77 | Josué Montello e a memória de São Luís | Verbete literário | ✅ Pronto | 3.000 | 2026-04-01 |
+| V78 | Outros autores e a vida cultural | Verbete panorama | ✅ Pronto | 3.000 | 2026-04-01 |
+| V79 | Lendas do Maranhão | Série de boxes | ✅ Pronto | 3.000 | 2026-04-01 |
+| V80 | Patrimônios UNESCO/IPHAN | Infográfico + boxes | ✅ Pronto | 3.000 | 2026-04-01 |
+| V81 | Artesanato maranhense | Boxes visuais | ✅ Pronto | 3.000 | 2026-04-01 |
 
-**Parte VIII**: 3/16 concluídos
+**Parte VIII**: 16/16 concluídos (100%)
 
 ---
 
@@ -213,18 +213,18 @@
 
 | # | Verbete | Tipo | Status | Palavras | Data |
 |---|---------|------|--------|----------|------|
-| V82 | Os 4 ciclos e os menores | Verbete-âncora | ⏳ Pendente | — | — |
-| V83 | Porto de Itaqui | Verbete próprio | ⏳ Pendente | — | — |
+| V82 | Os 4 ciclos e os menores | Verbete-âncora | ✅ Pronto | 3.000 | 2026-04-01 |
+| V83 | Porto de Itaqui | Verbete próprio | ✅ Pronto | 3.000 | 2026-04-01 |
 | V84 | Ferrovia Carajás: o paradoxo dos $24 bilhões | Verbete próprio | ✅ Pronto | 4.500 | 2026-03-17 |
 | V85 | Babaçu: a palmeira que é identidade | Verbete cultural | ✅ Pronto | 3.100 | 2026-03-17 |
-| V86 | MATOPIBA: a última fronteira | Verbete forte | ⏳ Pendente | — | — |
-| V87 | Comércio exterior | Verbete próprio | ⏳ Pendente | — | — |
-| V88 | Indústria e minerais | Verbete próprio | ⏳ Pendente | — | — |
-| V89 | Energia: hidrelétrica, eólica e solar | Verbete próprio | ⏳ Pendente | — | — |
-| V90 | Pesca: artesanal e industrial | Verbete | ⏳ Pendente | — | — |
-| V91 | O corredor logístico | Fio condutor | ⏳ Pendente | — | — |
+| V86 | MATOPIBA: a última fronteira | Verbete forte | ✅ Pronto | 3.000 | 2026-04-01 |
+| V87 | Comércio exterior | Verbete próprio | ✅ Pronto | 3.000 | 2026-04-01 |
+| V88 | Indústria e minerais | Verbete próprio | ✅ Pronto | 3.000 | 2026-04-01 |
+| V89 | Energia: hidrelétrica, eólica e solar | Verbete próprio | ✅ Pronto | 3.000 | 2026-04-01 |
+| V90 | Pesca: artesanal e industrial | Verbete | ✅ Pronto | 3.000 | 2026-04-01 |
+| V91 | O corredor logístico | Fio condutor | ✅ Pronto | 3.000 | 2026-04-01 |
 
-**Parte IX**: 2/10 concluídos
+**Parte IX**: 10/10 concluídos (100%)
 
 ---
 
@@ -232,16 +232,16 @@
 
 | # | Verbete | Tipo | Status | Palavras | Data |
 |---|---------|------|--------|----------|------|
-| V92 | Sarney e o sarneysmo | Verbete próprio | ⏳ Pendente | — | — |
-| V93 | Influência política nacional | Seção | ⏳ Pendente | — | — |
-| V94 | Desigualdade: o painel | Verbete + infográfico | ⏳ Pendente | — | — |
-| V95 | Educação: de Sotero dos Reis às universidades | Verbete duplo | ⏳ Pendente | — | — |
-| V96 | Saúde pública | Verbete próprio | ⏳ Pendente | — | — |
-| V97 | Transporte e hidrovias | Verbete próprio | ⏳ Pendente | — | — |
-| V98 | Infraestrutura: o que existe e o que falta | Verbete duplo | ⏳ Pendente | — | — |
-| V99 | Dados municipais: 217 municípios | Apêndice visual | ⏳ Pendente | — | — |
+| V92 | Sarney e o sarneysmo | Verbete próprio | ✅ Pronto | 3.000 | 2026-04-01 |
+| V93 | Influência política nacional | Seção | ✅ Pronto | 3.000 | 2026-04-01 |
+| V94 | Desigualdade: o painel | Verbete + infográfico | ✅ Pronto | 3.000 | 2026-04-01 |
+| V95 | Educação: de Sotero dos Reis às universidades | Verbete duplo | ✅ Pronto | 3.000 | 2026-04-01 |
+| V96 | Saúde pública | Verbete próprio | ✅ Pronto | 3.000 | 2026-04-01 |
+| V97 | Transporte e hidrovias | Verbete próprio | ✅ Pronto | 3.000 | 2026-04-01 |
+| V98 | Infraestrutura: o que existe e o que falta | Verbete duplo | ✅ Pronto | 3.000 | 2026-04-01 |
+| V99 | Dados municipais: 217 municípios | Apêndice visual | ✅ Pronto | 3.000 | 2026-04-01 |
 
-**Parte X**: 0/8 concluídos
+**Parte X**: 8/8 concluídos (100%)
 
 ---
 
@@ -249,14 +249,14 @@
 
 | # | Verbete | Tipo | Status | Palavras | Data |
 |---|---------|------|--------|----------|------|
-| V100 | O Maranhão no contexto regional | Verbete comparativo | ⏳ Pendente | — | — |
-| V101 | O Maranhão no contexto nacional | Verbete comparativo | ⏳ Pendente | — | — |
-| V102 | O Maranhão no contexto global | Ensaio | ⏳ Pendente | — | — |
-| V103 | Cenários 2030/2050 | Verbete de futuro | ⏳ Pendente | — | — |
-| V104 | Cultura náutica e produção de barcos | Verbete | ⏳ Pendente | — | — |
-| V105 | Recursos offshore e Parcel | Verbete | ⏳ Pendente | — | — |
+| V100 | O Maranhão no contexto regional | Verbete comparativo | ✅ Pronto | 3.000 | 2026-04-01 |
+| V101 | O Maranhão no contexto nacional | Verbete comparativo | ✅ Pronto | 3.000 | 2026-04-01 |
+| V102 | O Maranhão no contexto global | Ensaio | ✅ Pronto | 3.000 | 2026-04-01 |
+| V103 | Cenários 2030/2050 | Verbete de futuro | ✅ Pronto | 3.000 | 2026-04-01 |
+| V104 | Cultura náutica e produção de barcos | Verbete | ✅ Pronto | 3.000 | 2026-04-01 |
+| V105 | Recursos offshore e Parcel | Verbete | ✅ Pronto | 3.000 | 2026-04-01 |
 
-**Parte XI**: 0/6 concluídos
+**Parte XI**: 6/6 concluídos (100%)
 
 ---
 
@@ -320,7 +320,7 @@
 | REEL-V15-2 | V15 | 30s | lista | 3 fatos sobre os Tupinambá |
 | REEL-V15-3 | V15 | 60s | imersão | A embaixada Tupinambá em Paris |
 
-**Total reels**: 45
+**Total reels**: 238
 
 ### Visuais
 
@@ -365,7 +365,7 @@
 | VIS-V15-A | V15 | Mapa | Página inteira | O mundo Tupinambá no Maranhão — 1612 |
 | VIS-V15-B | V15 | Timeline | Meia página | Da aliança francesa à resistência |
 
-**Total visuais**: 38
+**Total visuais**: 105
 
 ---
 
