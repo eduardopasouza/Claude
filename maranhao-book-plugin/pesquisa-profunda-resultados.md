@@ -116,7 +116,25 @@
 | C3 Economia/Indústria | ✅ Completa |  |
 | C4 Biografias e literatura | ✅ Completa |  |
 | C6 Órgãos governamentais MA | ✅ Completa |  |
+| C7 Turismo, comércio exterior, pecuária | ✅ Completa |  |
 | D1 Projeções IPCC/IBGE | ⏳ Próxima sessão |  |
+
+## C7 — Turismo, Comércio Exterior, Pecuária, Saneamento
+
+| Dado | Valor | Fonte | URL |
+|------|-------|-------|-----|
+| Lençóis 2025 | 656.388 visitantes (+41%) | SETUR MA | https://turismo.ma.gov.br/ |
+| Turismo MA 2025 | 2.013.951 passageiros (+13,67%) | Aeroin | https://aeroin.net/ |
+| Aeroporto SL 2025 | 1.687.082 passageiros | Gov MA | https://www.ma.gov.br/ |
+| Balança comercial 2024 | Superávit US$1,6 bi (recorde) | Gov MA/IMESC | https://www.ma.gov.br/ |
+| MA 2º exportador NE | 2024 | Gov MA | https://www.ma.gov.br/ |
+| IMESC Boletim Com. Ext. | PDFs 1º e 2º sem 2024 | IMESC | https://imesc.ma.gov.br/ |
+| Exportações 1º tri 2025 | >US$1 bi | FIEMA | https://www.fiema.org.br/ |
+| Rebanho bovino MA | 10.128.610 cabeças | IBGE PPM | https://cidades.ibge.gov.br/ |
+| Rebanho bubalino MA | 97.212 cabeças | IBGE PPM | https://cidades.ibge.gov.br/ |
+| Pecuária MA 2024 | R$1,3 bi (+8,9%) | IMESC PDF | https://imesc.ma.gov.br/ |
+| CAEMA plano saneamento | R$2,7 bilhões | FIEMA | https://www.fiema.org.br/ |
+| MA sem água+esgoto | 2,7M + 5,3M pessoas | Trata Brasil | g1.globo.com |
 
 ## C6 — Órgãos Governamentais do Maranhão
 
