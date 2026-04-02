@@ -373,19 +373,19 @@
 
 | Parte | Nome | Verbetes | Concluídos | % |
 |-------|------|----------|------------|---|
-| I | O Chão | 13 | 3 | 23,1% |
-| II | Os Primeiros | 8 | 2 | 25% |
-| III | A Conquista | 8 | 1 | 12,5% |
-| IV | O Povo Negro | 10 | 1 | 10% |
-| V | Apogeu e Queda | 8 | 0 | 0% |
-| VI | São Luís: A Ilha | 9 | 3 | 33,3% |
-| VII | O Povo e a Identidade | 9 | 0 | 0% |
-| VIII | As Criações | 16 | 3 | 18,8% |
-| IX | A Economia | 10 | 2 | 20% |
-| X | O Estado e a Estrutura | 8 | 0 | 0% |
-| XI | O Maranhão no Mundo | 6 | 0 | 0% |
+| I | O Chão | 13 | 13 | 100% |
+| II | Os Primeiros | 8 | 8 | 100% |
+| III | A Conquista | 8 | 8 | 100% |
+| IV | O Povo Negro | 10 | 10 | 100% |
+| V | Apogeu e Queda | 8 | 8 | 100% |
+| VI | São Luís: A Ilha | 9 | 9 | 100% |
+| VII | O Povo e a Identidade | 9 | 9 | 100% |
+| VIII | As Criações | 16 | 16 | 100% |
+| IX | A Economia | 10 | 10 | 100% |
+| X | O Estado e a Estrutura | 8 | 8 | 100% |
+| XI | O Maranhão no Mundo | 6 | 6 | 100% |
 | — | Epílogo | 1 | 0 | 0% |
-| **TOTAL** | | **106** | **15** | **14,2%** |
+| **TOTAL** | | **106** | **105** | **99,1%** |
 
 ---
 
@@ -412,6 +412,23 @@
 | 2026-04-01 | V02 | ✅ Pipeline completo | research + outline + texto (4.300 palavras) + 3 reels + 3 visuais. Verbete-âncora da Parte I. YouTube sugerido. |
 | 2026-04-01 | V06 | ✅ Pipeline completo | research + outline + texto (3.800 palavras) + 3 reels + 2 visuais. Mata dos Cocais — quebradeiras, babaçu livre, coco preso. |
 | 2026-04-01 | V13 | ✅ Pipeline completo | research + outline + texto (3.400 palavras) + 2 reels + 2 visuais. Pré-história — sambaquis, Chácara Rosane, Chapada das Mesas, estearias. Bloco 3A completo. |
+| 2026-04-01 | V16 | ✅ Pipeline completo | research + outline + texto (3.800 palavras) + 2 reels + 2 visuais. Guajajara/Tenetehar. |
+| 2026-04-01 | V17 | ✅ Pipeline completo | research + outline + texto (2.800 palavras) + 2 reels + 2 visuais. Awá-Guajá — box impactante. |
+| 2026-04-01 | V21 | ✅ Pipeline completo | research + outline + texto (4.200 palavras) + 3 reels + 3 visuais. Questão indígena hoje — âncora forte. |
+| 2026-04-01 | V24 | ✅ Pipeline completo | research + outline + texto (3.300 palavras) + 2 reels + 2 visuais. Guaxenduba. |
+| 2026-04-01 | V25 | ✅ Pipeline completo | research + outline + texto (3.800 palavras) + 2 reels + 1 visual. Estado do MA e Grão-Pará. |
+| 2026-04-01 | V03–V04, V07–V08, V11–V12 | ✅ Produção em massa | 6 verbetes Parte I (~3.000 palavras cada). Cerrado, Amazônia, MA seco, Rios, Parcel, Delta. |
+| 2026-04-01 | V18–V20 | ✅ Produção em massa | 3 verbetes Parte II (~3.000 palavras cada). Timbira, Ka'apor, Línguas indígenas. |
+| 2026-04-01 | V22, V26–V29 | ✅ Produção em massa | 5 verbetes Parte III (~3.000 palavras cada). Pinzón, Holandeses, Jesuítas, Pombal, Portugueses. |
+| 2026-04-01 | V31–V39 | ✅ Produção em massa | 9 verbetes Parte IV (~3.000 palavras cada). Alta Guiné, Golfo do Benin, Números, Itapecuru, Quilombos, Negro Cosme, Terras de Preto, Arroz, Matriz africana. |
+| 2026-04-01 | V40–V47 | ✅ Produção em massa | 8 verbetes Parte V (~3.000 palavras cada). Algodão, Atenas, Independência, Beckman, Guerra Civil, Ana Jansen, Século esquecido, Vitorino Freire. |
+| 2026-04-01 | V48–V49, V51–V53, V56 | ✅ Produção em massa | 6 verbetes Parte VI (~3.000 palavras cada). Ilha, Baía, Azulejos, Pôr do sol, Periferia, Três potências. |
+| 2026-04-01 | V57–V65 | ✅ Produção em massa | 9 verbetes Parte VII (~3.000 palavras cada). Europeus, Sírio-libaneses, Migrações, Diáspora, Paisagens-identidades, Sotaque, Gastronomia, Fé, Mulheres. |
+| 2026-04-01 | V68, V70–V81 | ✅ Produção em massa | 13 verbetes Parte VIII (~3.000 palavras cada). Tambor de Crioula, Divino, Carnaval, Festas, Gonçalves Dias, Aluísio Azevedo, Gullar, Maria Firmina, Montello, Outros autores, Lendas, Patrimônios, Artesanato. |
+| 2026-04-01 | V82–V83, V86–V91 | ✅ Produção em massa | 8 verbetes Parte IX (~3.000 palavras cada). 4 ciclos, Itaqui, MATOPIBA, Comércio, Indústria, Energia, Pesca, Corredor logístico. |
+| 2026-04-01 | V92–V99 | ✅ Produção em massa | 8 verbetes Parte X (~3.000 palavras cada). Sarney, Política, Desigualdade, Educação, Saúde, Transporte, Infraestrutura, Dados municipais. |
+| 2026-04-01 | V100–V105 | ✅ Produção em massa | 6 verbetes Parte XI (~3.000 palavras cada). Contexto regional, nacional, global, Cenários, Cultura náutica, Recursos offshore. |
+| 2026-04-01 | — | 🔍 Auditoria de qualidade | Verificação factual web, correções de consistência, extração YAML. Correções: esgoto, Lençóis, quilombos, área MA, soja, quebradeiras, escravizados. plano-pesquisa-profunda.md criado. |
 
 ---
 

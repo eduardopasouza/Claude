@@ -1,7 +1,7 @@
 # Roadmap — Quem é o Maranhão?
 
 > Auto-atualizado ao final de cada verbete concluído. Fonte única de estado do projeto.
-> Última atualização: 2026-04-01 (23/106 — Blocos 3A+3B completos, 3C em andamento)
+> Última atualização: 2026-04-01 (105/106 — primeiro rascunho completo, auditoria de qualidade em andamento)
 
 ---
 
@@ -9,30 +9,30 @@
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Verbetes concluídos | 23 / 106 | 106 |
-| Progresso geral | 21,7% | 100% |
-| Palavras escritas | ~88.400 | ~300.000–400.000 |
-| Reels produzidos | 63 | ~250–320 |
-| Visuais produzidos | 55 | ~150–200 |
+| Verbetes concluídos | 105 / 106 | 106 |
+| Progresso geral | 99,1% | 100% |
+| Palavras escritas | ~315.000 | ~300.000–400.000 |
+| Reels produzidos | 238 | ~250–320 |
+| Visuais produzidos | 105 | ~150–200 |
 | YouTube produzidos | 8 | ~15–25 |
-| Entradas YAML | 126 | ~500–800 |
-| Fase atual | **Fase 3** (V01 concluído) | Fase 6 |
+| Entradas YAML | 675 | ~500–800 |
+| Fase atual | **Primeiro rascunho completo** — auditoria de qualidade | Fase 6 |
 
 ### Progresso por Parte
 
 | Parte | Nome | Total | Prontos | % | Barra |
 |-------|------|-------|---------|---|-------|
-| I | O Chão | 13 | 7 | 54% | `█████░░░░░` |
-| II | Os Primeiros | 8 | 5 | 63% | `██████░░░░` |
-| III | A Conquista | 8 | 2 | 25% | `██░░░░░░░░` |
-| IV | O Povo Negro | 10 | 1 | 10% | `█░░░░░░░░░` |
-| V | Apogeu e Queda | 8 | 0 | 0% | `░░░░░░░░░░` |
-| VI | São Luís: A Ilha | 9 | 3 | 33% | `███░░░░░░░` |
-| VII | O Povo e a Identidade | 9 | 0 | 0% | `░░░░░░░░░░` |
-| VIII | As Criações | 16 | 3 | 19% | `██░░░░░░░░` |
-| IX | A Economia | 10 | 2 | 20% | `██░░░░░░░░` |
-| X | O Estado e a Estrutura | 8 | 0 | 0% | `░░░░░░░░░░` |
-| XI | O Maranhão no Mundo | 6 | 0 | 0% | `░░░░░░░░░░` |
+| I | O Chão | 13 | 13 | 100% | `██████████` |
+| II | Os Primeiros | 8 | 8 | 100% | `██████████` |
+| III | A Conquista | 8 | 8 | 100% | `██████████` |
+| IV | O Povo Negro | 10 | 10 | 100% | `██████████` |
+| V | Apogeu e Queda | 8 | 8 | 100% | `██████████` |
+| VI | São Luís: A Ilha | 9 | 9 | 100% | `██████████` |
+| VII | O Povo e a Identidade | 9 | 9 | 100% | `██████████` |
+| VIII | As Criações | 16 | 16 | 100% | `██████████` |
+| IX | A Economia | 10 | 10 | 100% | `██████████` |
+| X | O Estado e a Estrutura | 8 | 8 | 100% | `██████████` |
+| XI | O Maranhão no Mundo | 6 | 6 | 100% | `██████████` |
 | — | Epílogo | 1 | 0 | 0% | `░░░░░░░░░░` |
 
 ---
