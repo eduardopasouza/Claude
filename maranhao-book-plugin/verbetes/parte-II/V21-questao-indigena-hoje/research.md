@@ -16,14 +16,14 @@ V21 é o verbete-âncora forte que fecha a Parte II. Enquanto V14-V20 contam a h
 
 | Dado | Valor | Fonte | Ano |
 |------|-------|-------|-----|
-| População indígena no MA | 57.214 pessoas | IBGE Censo 2022 | 2022 |
-| % vivendo em Terras Indígenas | 72,93% | IBGE Censo 2022 | 2022 |
-| Residentes em TIs no MA | 43.281 pessoas | IBGE Censo 2022 | 2022 |
+| População indígena no MA | 57.214 pessoas | IBGE Censo 2022. Disponível em: <https://cidades.ibge.gov.br/brasil/ma/pesquisa/10101/97905>. Acesso em: 01/04/2026. | 2022 |
+| % vivendo em Terras Indígenas | 72,93% | IBGE Censo 2022. Disponível em: <https://cidades.ibge.gov.br/brasil/ma/pesquisa/10101/97905>. Acesso em: 01/04/2026. | 2022 |
+| Residentes em TIs no MA | 43.281 pessoas | IBGE Censo 2022. Disponível em: <https://cidades.ibge.gov.br/brasil/ma/pesquisa/10101/97905>. Acesso em: 01/04/2026. | 2022 |
 | Posição no Nordeste | 3º (após BA: 229.103 e PE: 106.634) | IBGE | 2022 |
 | Crescimento 2010-2022 | +40,27% em TIs | IBGE | 2022 |
 | TI mais populosa do MA | Cana Brava/Guajajaras (Jenipapo dos Vieiras, Grajaú, Barra do Corda) | IBGE | 2022 |
 | Povos principais | Guajajara/Tenetehar, Ka'apor, Awá-Guajá, Canela, Gavião, Krikati, Urubu-Kaapor, Timbira | FUNAI/ISA | 2024 |
-| Floresta em TIs | 52% da floresta remanescente do MA | ISA | 2022 |
+| Floresta em TIs | 52% da floresta remanescente do MA; TIs perderam apenas 1% vegetação 1985-2023 vs. 28% em privadas | ISA; MapBiomas/Gov.br. Disponível em: <https://www.gov.br/povosindigenas/>. Acesso em: 01/04/2026. | 2022-2023 |
 | Amazônia perdida no MA | 76% da cobertura original | ScienceDirect | 2020 |
 | Guardiões da Floresta | Grupo de vigilância Guajajara, criado ~2012 | Mongabay/mídia | 2019 |
 | Paulo Paulino Guajajara | Guardião assassinado em nov/2019 | Mongabay | 2019 |
@@ -59,7 +59,7 @@ O MA destruiu 76% da sua Amazônia. Os 24% que restam estão majoritariamente em
 - ↗ V84 — Ferrovia Carajás (impacto nos territórios)
 
 ## Fontes
-1. IBGE. *Censo 2022 — Povos Indígenas*. Disponível em: cidades.ibge.gov.br.
+1. IBGE. *Censo 2022 — Povos Indígenas*. Disponível em: <https://cidades.ibge.gov.br/brasil/ma/pesquisa/10101/97905>. Acesso em: 01/04/2026. [57.214 indígenas; 43.281 em TIs (72,93%)]
 2. Wikipedia. *Povos indígenas do Maranhão*. (ponto de partida, dados verificados com IBGE)
 3. Opinião em Pauta. *Maranhão é 3º estado com maior população indígena do Nordeste*. 2024.
 4. ISA (Instituto Socioambiental). *Terras Indígenas do Maranhão*. 2022.

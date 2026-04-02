@@ -22,12 +22,12 @@ O V04 conta a história da Amazônia que o Maranhão destruiu — 76% da cobertu
 | REBIO Gurupi — área | 271.197 hectares | ICMBio | 2024 |
 | REBIO Gurupi — criação | Decreto 95.614, 12/01/1988 | MMA | 1988 |
 | REBIO Gurupi — desmatamento interno | ~30% da área invadida/desmatada | MapBiomas/ICMBio | 2023 |
-| TI Alto Turiaçu — área | 530.525 hectares | FUNAI | 2024 |
+| TI Alto Turiaçu — área | 530.525 hectares | FUNAI; ZEE-MA. Disponível em: <https://zee.ma.gov.br/subsidio/html/indi.html>. Acesso em: 01/04/2026. | 2024 |
 | TI Caru — área | 172.667 hectares | FUNAI | 2024 |
 | TI Awá-Guajá — área | 116.582 hectares | FUNAI | 2024 |
 | Povo Awá-Guajá | ~520 indivíduos (mais ameaçado do mundo segundo Survival) | Survival International/FUNAI | 2023 |
 | Madeira ilegal — MA | Principal porta de saída de madeira ilegal da Amazônia | IBAMA/PF | 2022 |
-| Taxa de desmatamento MA (2022) | ~600 km² (entre os maiores da Amazônia Legal) | INPE/PRODES | 2023 |
+| Taxa de desmatamento MA (2022) | ~600 km² (entre os maiores da Amazônia Legal); 307 km² em 2024; est. 227 km² em 2025 (-26%) | INPE/PRODES. Disponível em: <https://data.inpe.br/>. Acesso em: 01/04/2026. | 2023-2025 |
 | Municípios críticos | Santa Luzia, Açailândia, Buriticupu, Amarante | INPE | 2023 |
 | Arco do desmatamento MA | Faixa que avança de sudeste para noroeste | MapBiomas | 2023 |
 | Precipitação anual (oeste MA) | 1.800-2.200 mm | INMET | 2023 |
@@ -62,7 +62,7 @@ O caso mais dramático é o dos Awá-Guajá — considerados pela Survival Inter
 
 ## Fontes recomendadas
 
-- INPE/PRODES. Monitoramento da floresta amazônica por satélite. 2023.
+- INPE/PRODES. Monitoramento da floresta amazônica por satélite. 2023. Disponível em: <https://data.inpe.br/>. Acesso em: 01/04/2026. [Desmatamento Amazônia MA: 307 km² (2024); estimativa 2025: 227 km² (-26%)]
 - MapBiomas. Coleção 8 — Amazônia. 2023.
 - ICMBio. Plano de manejo da REBIO Gurupi. 2012 (atualização 2022).
 - Survival International. "The Awá." 2023.

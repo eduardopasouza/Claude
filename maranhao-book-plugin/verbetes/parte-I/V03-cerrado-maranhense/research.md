@@ -67,9 +67,10 @@ O Parque Nacional da Chapada das Mesas é o cartão-postal do Cerrado maranhense
 
 - Ab'Sáber, Aziz. *Os domínios de natureza no Brasil*. 2003.
 - Mendonça, R.C. et al. "Flora vascular do bioma Cerrado." In: *Cerrado: ecologia e flora*. Embrapa, 2008 (atualização 2023).
-- MapBiomas. Coleção 8 — Cerrado. 2023.
-- INPE/PRODES-Cerrado. Desmatamento no Cerrado 2022-2023.
+- MapBiomas. Coleção 8 — Cerrado. 2023. Disponível em: <https://brasil.mapbiomas.org/>. Acesso em: 01/04/2026. Dados de desmatamento 2024 em: <https://brasil.mapbiomas.org/2024/05/>. Acesso em: 01/04/2026.
+- INPE/PRODES-Cerrado. Desmatamento no Cerrado 2022-2023. Disponível em: <https://data.inpe.br/>. Acesso em: 01/04/2026.
 - Embrapa. "MATOPIBA: delimitação, caracterização, desafios e oportunidades." 2015.
 - ICMBio. Plano de manejo da Chapada das Mesas. 2006.
 - CONAB. Acompanhamento da safra brasileira — grãos. v.11, n.8, mai 2024.
 - ANA. Atlas Brasil — Abastecimento urbano de água. 2022.
+- G1 Maranhão. MA lidera desmatamento no Brasil em 2024 (598 ha/dia). Disponível em: <https://g1.globo.com/ma/maranhao/noticia/2025/05/>. Acesso em: 01/04/2026. [14 municípios MA no top 50; maior alerta: Alto Parnaíba 6.691 ha]

@@ -17,13 +17,13 @@ O V01 abre o livro inteiro. Precisa fazer três coisas: (1) situar o Maranhão n
 
 | Dado | Valor | Fonte | Ano |
 |------|-------|-------|-----|
-| Área territorial | 329.651,478 km² | IBGE (atualização 2024) | 2024 |
+| Área territorial | 329.651,478 km² | IBGE (atualização 2024). Disponível em: <https://www.ibge.gov.br/cidades-e-estados/ma.html>. Acesso em: 01/04/2026. | 2024 |
 | Área territorial (anterior) | 331.937,450 km² | IBGE | 2022 |
 | Posição em área entre estados | 8º maior do Brasil | IBGE | 2024 |
 | Posição no Nordeste | 2º maior (após Bahia) | IBGE | 2024 |
 | Coordenadas extremas | ~1°S a ~10°S lat; ~41°W a ~48°W long | IBGE | 2022 |
 | Coordenadas de São Luís | 2°31'S, 44°18'W | IBGE | 2022 |
-| Municípios | 217 | IBGE | 2024 |
+| Municípios | 217 | IBGE. Disponível em: <https://cidades.ibge.gov.br/brasil/ma>. Acesso em: 01/04/2026. | 2024 |
 | Fronteiras terrestres | Piauí (L), Tocantins (S/SO), Pará (O) | IBGE | 2024 |
 | Fronteira norte | Oceano Atlântico | — | — |
 | Rios-fronteira | Parnaíba (MA/PI), Gurupi (MA/PA), Tocantins (MA/TO parcial) | IBGE/NuGeo UEMA | 2022 |
@@ -31,8 +31,8 @@ O V01 abre o livro inteiro. Precisa fazer três coisas: (1) situar o Maranhão n
 | Biomas | Cerrado ~65%, Amazônia ~34%, Caatinga ~1% | IBGE | 2019/2024 |
 | Amazônia Legal | 181 de 217 municípios (79,3% do território) | IBGE | 2024 |
 | Semiárido | ~45 municípios propostos para inclusão (PL 2.492/2019) | FAMEM/Sudene | 2024 |
-| População | 6.776.699 (Censo 2022); estimada 7.018.211 (2025) | IBGE | 2022/2025 |
-| Densidade demográfica | 20,56 hab/km² | IBGE | 2022 |
+| População | 6.776.699 (Censo 2022); estimada 7.018.211 (2025) | IBGE. Disponível em: <https://cidades.ibge.gov.br/brasil/ma/panorama>. Acesso em: 01/04/2026. | 2022/2025 |
+| Densidade demográfica | 20,56 hab/km² | IBGE. Disponível em: <https://www.ibge.gov.br/cidades-e-estados/ma.html>. Acesso em: 01/04/2026. | 2022 |
 | IDH | 0,676 (menor do Brasil) | IBGE/PNUD | 2021 |
 | % do território brasileiro | 3,90% | IBGE | 2024 |
 | Comparação de área | Equivalente à Itália (301.338 km²) | — | — |
@@ -109,7 +109,7 @@ Mas o padrão se repete: a riqueza passa, não para (↗ V84).
 
 ## Fontes
 
-1. IBGE. *Cidades e Estados — Maranhão*. Disponível em: <https://www.ibge.gov.br/cidades-e-estados/ma.html>. Acesso em: 01/04/2026.
+1. IBGE. *Cidades e Estados — Maranhão*. Disponível em: <https://www.ibge.gov.br/cidades-e-estados/ma.html>. Acesso em: 01/04/2026. [Fonte verificada: área 329.651,478 km², densidade 20,56 hab/km²]
 2. IBGE. *Biomas*. Disponível em: <https://www.ibge.gov.br/geociencias/informacoes-ambientais/vegetacao/15842-biomas.html>. Acesso em: 01/04/2026.
 3. IBGE. *Amazônia Legal*. Disponível em: <https://www.ibge.gov.br/geociencias/cartas-e-mapas/mapas-regionais/15819-amazonia-legal.html>. Acesso em: 01/04/2026.
 4. IBGE. *Semiárido Brasileiro*. Disponível em: <https://www.ibge.gov.br/geociencias/organizacao-do-territorio/estrutura-territorial/15974-semiarido-brasileiro.html>. Acesso em: 01/04/2026.
@@ -121,7 +121,7 @@ Mas o padrão se repete: a riqueza passa, não para (↗ V84).
 10. Lei 1.806, de 6 de janeiro de 1953. Criação da Amazônia Legal.
 11. Resolução CONDEL/SUDENE nº 176, de 3 de janeiro de 2024. Delimitação do Semiárido.
 12. PL 2.492/2019 (Senado Federal). Inclusão de municípios maranhenses no Semiárido.
-13. IBGE. *Censo Demográfico 2022*. Disponível em: <https://censo2022.ibge.gov.br>. Acesso em: 01/04/2026.
+13. IBGE. *Censo Demográfico 2022*. Disponível em: <https://censo2022.ibge.gov.br>. Acesso em: 01/04/2026. Dados complementares em: <https://cidades.ibge.gov.br/brasil/ma/panorama> [população 6.776.699] e <https://cidades.ibge.gov.br/brasil/ma> [217 municípios].
 14. Legacy: cap-01-a-encruzilhada/research.md (sessão de 2026-03-09) — dados verificados e reaproveitados.
 15. Britannica. *Maranhão*. Disponível em: <https://www.britannica.com/place/Maranhao>. Acesso em: 01/04/2026.
 16. ScienceDirect. *Amazon forest on the edge of collapse in Maranhão*. 2020. DOI: 10.1016/j.landusepol.2020.104799.

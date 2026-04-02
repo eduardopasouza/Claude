@@ -18,8 +18,8 @@ Hoje, o Censo 2022 do IBGE registra 57.214 indígenas no Maranhão em pelo menos
 
 | Dado | Valor |
 |------|-------|
-| Pop. indígena (Censo 2022) | 57.214 |
-| % em Terras Indígenas | 72,93% |
+| Pop. indígena (Censo 2022) | 57.214 | IBGE Censo 2022. Disponível em: <https://cidades.ibge.gov.br/brasil/ma/pesquisa/10101/97905>. Acesso em: 01/04/2026. |
+| % em Terras Indígenas | 72,93% | IBGE Censo 2022. Disponível em: <https://cidades.ibge.gov.br/brasil/ma/pesquisa/10101/97905>. Acesso em: 01/04/2026. |
 | Nº de TIs | ~20 identificadas; 17 demarcadas |
 | Localidades indígenas | 750 (4º estado do Brasil) |
 | Pop. pré-contato estimada | ~250.000 em ~30 grupos |
@@ -114,12 +114,14 @@ Hoje, o Censo 2022 do IBGE registra 57.214 indígenas no Maranhão em pelo menos
 
 ## Fontes
 
-- Censo IBGE 2022 — Indígenas
+- Censo IBGE 2022 — Indígenas. Disponível em: <https://cidades.ibge.gov.br/brasil/ma/pesquisa/10101/97905>. Acesso em: 01/04/2026. [57.214 indígenas; 43.281 em TIs (72,93%)]
 - Survival International — Awá campaign
 - ISA (Instituto Socioambiental) — Povos Indígenas no Brasil
 - FUNAI — Terras Indígenas
+- ZEE-MA — Dados de TIs. Disponível em: <https://zee.ma.gov.br/subsidio/html/indi.html>. Acesso em: 01/04/2026. [TI Arariboia 413.288 ha; TI Alto Turiaçu 530.525 ha; TI Awá 118.000 ha]
 - CIMI — Relatório Violência contra Povos Indígenas
 - Hawthorne, *From Africa to Brazil* (Cambridge UP, 2010)
-- Claude d'Abbeville, *Histoire de la Mission des Pères Capucins* (1614)
+- Claude d'Abbeville, *Histoire de la Mission des Pères Capucins* (1614). Disponível em: <https://www2.senado.leg.br/bdsf/bitstream/handle/id/576068/>. Acesso em: 01/04/2026.
 - Gomes, *Os índios e o Brasil* (2012)
 - PIB Socioambiental — fichas por povo
+- Gov.br/Povos Indígenas. Disponível em: <https://www.gov.br/povosindigenas/>. Acesso em: 01/04/2026. [TIs perderam apenas 1% vegetação 1985-2023, vs. 28% em terras privadas]
