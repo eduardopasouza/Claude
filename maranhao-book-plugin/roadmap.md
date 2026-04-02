@@ -37,34 +37,23 @@
 
 ---
 
-## Fila ativa — Fase 3
+## Fila ativa — COMPLETA
 
-| Posição | Verbete | Parte | Bloco | Status |
-|---------|---------|-------|-------|--------|
-| ~~1~~ | ~~V01 — Coordenadas: onde fica o Maranhão~~ | I | 3A | ✅ Concluído |
-| ~~2~~ | ~~V02 — As Quatro Paisagens~~ | I | 3A | ✅ Concluído |
-| ~~3~~ | ~~V06 — Mata dos Cocais~~ | I | 3A | ✅ Concluído |
-| ~~4~~ | ~~V13 — Pré-história maranhense~~ | I | 3A | ✅ Concluído |
-| ~~5~~ | ~~V16 — Guajajara/Tenetehar~~ | II | 3B | ✅ Concluído |
-| ~~6~~ | ~~V17 — Awá-Guajá~~ | II | 3B | ✅ Concluído |
-| ~~7~~ | ~~V21 — A questão indígena hoje~~ | II | 3B | ✅ Concluído |
-| 8 | V25 — O Estado do MA e Grão-Pará | III | 3C | 🔄 Em produção |
-| ~~9~~ | ~~V24 — Guaxenduba~~ | III | 3C | ✅ Concluído |
-| 10 | V33 — Números da escravidão | IV | 3D | ⏳ Pendente |
-| 11 | V35 — Quilombos do Maranhão | IV | 3D | ⏳ Pendente |
-| 12 | V37 — Terras de Preto, de Santo e de Índio | IV | 3D | ⏳ Pendente |
-| 13 | V36 — Negro Cosme e a Balaiada | IV | 3D | ⏳ Pendente |
-| 14 | V39 — Matriz africana: a herança viva | IV | 3D | ⏳ Pendente |
-| 15 | V38 — O arroz que veio da África | IV | 3D | ⏳ Pendente |
-| 16 | V40 — O ouro branco: a era do algodão | V | 3E | ⏳ Pendente |
-| 17 | V46 — O século esquecido | V | 3E | ⏳ Pendente |
-| 18 | V61 — As Quatro Paisagens: identidades | VII | 3E | ⏳ Pendente |
-| 19 | V62 — O sotaque maranhense | VII | 3E | ⏳ Pendente |
-| 20 | V63 — As três mesas: gastronomia | VII | 3E | ⏳ Pendente |
-| 21 | V94 — Desigualdade: o painel | X | 3E | ⏳ Pendente |
-| 22 | V92 — Sarney e o sarneysmo | X | 3E | ⏳ Pendente |
-| 23 | V100 — O MA no contexto regional | XI | 3E | ⏳ Pendente |
-| 24 | V103 — Cenários 2030/2050 | XI | 3E | ⏳ Pendente |
+> Todos os 105 verbetes (V01–V105) produzidos. Falta apenas V106 (epílogo).
+
+| Posição | Verbete | Parte | Status |
+|---------|---------|-------|--------|
+| ~~1~~ | ~~V01 — Coordenadas: onde fica o Maranhão~~ | I | ✅ Concluído |
+| ~~2~~ | ~~V02 — As Quatro Paisagens~~ | I | ✅ Concluído |
+| ~~3~~ | ~~V06 — Mata dos Cocais~~ | I | ✅ Concluído |
+| ~~4~~ | ~~V13 — Pré-história maranhense~~ | I | ✅ Concluído |
+| ~~5~~ | ~~V16 — Guajajara/Tenetehar~~ | II | ✅ Concluído |
+| ~~6~~ | ~~V17 — Awá-Guajá~~ | II | ✅ Concluído |
+| ~~7~~ | ~~V21 — A questão indígena hoje~~ | II | ✅ Concluído |
+| ~~8~~ | ~~V25 — O Estado do MA e Grão-Pará~~ | III | ✅ Concluído |
+| ~~9~~ | ~~V24 — Guaxenduba~~ | III | ✅ Concluído |
+| ~~10~~ | ~~V03–V105 — Produção em massa (81 verbetes)~~ | I–XI | ✅ Concluído |
+| 11 | V106 — Epílogo: Quem é o Maranhão? | — | ⏳ Pendente |
 
 ---
 
@@ -95,23 +84,25 @@
 | 21 | 2026-04-01 | V17 — Awá-Guajá | 2.800 | 2 | 2 | não | box impactante |
 | 22 | 2026-04-01 | V21 — Questão indígena | 4.200 | 3 | 3 | sim | âncora forte |
 | 23 | 2026-04-01 | V24 — Guaxenduba | 3.300 | 2 | 2 | não | verbete |
+| 24 | 2026-04-01 | V25 — Estado do MA/Grão-Pará | 3.800 | 2 | 1 | não | verbete |
+| 25–105 | 2026-04-01 | **Produção em massa (81 verbetes)** | ~243.000 | 175 | 50 | — | lote completo |
 
 ### Tendências
 
-| Métrica | Fase 1 (âncoras) | Fase 2 (complementares) | Média geral |
-|---------|------------------|------------------------|-------------|
-| Palavras/verbete | 4.475 | 3.014 | 3.973 |
-| Reels/verbete | 3 | 3 | 3 |
-| Visuais/verbete | 3 | 2 | 2,53 |
-| YouTube/verbete | 100% | 0% | 53% |
+| Métrica | Fase 1 (âncoras) | Fase 2 (complementares) | Fase 3 (produção em massa) | Média geral |
+|---------|------------------|------------------------|---------------------------|-------------|
+| Palavras/verbete | 4.475 | 3.014 | ~3.000 | ~3.000 |
+| Reels/verbete | 3 | 3 | ~2 | ~2,3 |
+| Visuais/verbete | 3 | 2 | ~1 | ~1 |
+| YouTube/verbete | 100% | 0% | 0% | 8% |
 
-### Projeções (baseadas no ritmo atual)
+### Projeções — REALIZADAS
 
-| Cenário | Palavras totais estimadas | Verbetes restantes |
-|---------|--------------------------|-------------------|
-| Se média 4.000/verbete | ~364.000 | 91 |
-| Se média 3.500/verbete | ~318.500 + 59.600 = ~378.100 | 91 |
-| Se média 3.000/verbete | ~273.000 + 59.600 = ~332.600 | 91 |
+| Cenário | Estimativa original | Resultado real |
+|---------|---------------------|----------------|
+| Palavras totais | ~300.000–400.000 | ~315.000 |
+| Verbetes restantes | 0 (exceto epílogo) | 1 (V106) |
+| Fase atual | Auditoria de qualidade | Em andamento |
 
 ---
 
@@ -119,29 +110,37 @@
 
 | Categoria | Prefixo | Entradas | Verbetes cobertos |
 |-----------|---------|----------|-------------------|
-| Geografia | GEO- | ~25 | V01, V02, V05, V09, V10, V14, V48 |
-| Demografia | DEM- | ~5 | V01, V14, V30, V37 |
-| Indígena | IND- | ~10 | V14, V15, V16, V21 |
-| Quilombo | QUI- | ~5 | V30, V35, V37 |
-| Economia | ECO- | ~10 | V84, V85, V40 |
-| Cultura | CUL- | ~15 | V66, V67, V69, V50 |
-| História | HIS- | ~10 | V23, V30, V50, V54 |
-| Social | SOC- | ~5 | V94 |
-| Meio-ambiente | AMB- | ~3 | V05 |
-| Turismo | TUR- | ~5 | V09, V10 |
-| **Total** | | **~100** | |
+| Geografia | GEO- | ~80 | V01–V13, V48, V49 |
+| Demografia | DEM- | ~40 | V01, V14, V30, V37, V59, V60, V94 |
+| Indígena | IND- | ~50 | V14–V21 |
+| Quilombo | QUI- | ~30 | V30, V35, V37 |
+| Economia | ECO- | ~80 | V40, V82–V91 |
+| Cultura | CUL- | ~100 | V61–V81 |
+| História | HIS- | ~80 | V22–V47, V50, V54, V92 |
+| Social | SOC- | ~60 | V53, V94–V99 |
+| Meio-ambiente | AMB- | ~30 | V05, V07, V86 |
+| Turismo | TUR- | ~20 | V09, V10, V104, V105 |
+| Política | POL- | ~40 | V92, V93 |
+| Internacional | INT- | ~30 | V100–V103 |
+| Infraestrutura | INF- | ~35 | V55, V83, V84, V89, V91, V97, V98 |
+| **Total** | | **~675** | |
 
 ---
 
 ## Saúde do projeto — Alertas
 
-> Verificar ao final de cada verbete.
+> Verificar ao final de cada etapa de auditoria.
 
-- [ ] Verbetes com `dados_yaml: []` vazio no frontmatter → **em correção (15 verbetes)**
+- [x] ~~Verbetes com `dados_yaml: []` vazio no frontmatter~~ (resolvido — YAML preenchido em 105 verbetes)
 - [x] ~~V66 e V69 estavam em pastas `parte-VII` — movidos para `parte-VIII`~~ (resolvido 2026-04-01)
 - [x] ~~V84 estava em `parte-VIII` — movido para `parte-IX`~~ (resolvido 2026-04-01)
-- [ ] `bibliography-core.md` sem template nem formato definido → **definir ao iniciar Fase 3**
 - [x] ~~V66 dossier movido de references/ para pasta do verbete~~ (resolvido 2026-04-01)
+- [ ] Auditoria de qualidade em andamento — verificação factual via web search
+- [ ] Correções aplicadas: esgoto, Lençóis, quilombos, área MA, soja, quebradeiras, escravizados
+- [ ] Banco YAML em 675 entradas — meta de ~800 para cobertura completa
+- [ ] V106 (epílogo) ainda pendente — único verbete não produzido
+- [ ] `plano-pesquisa-profunda.md` criado — pesquisa especializada pendente
+- [ ] `bibliography-core.md` sem template nem formato definido
 
 ---
 
@@ -172,4 +171,4 @@
 
 ---
 
-*Roadmap v1 — 2026-04-01*
+*Roadmap v2 — 2026-04-01 — 105/106 verbetes concluídos*
