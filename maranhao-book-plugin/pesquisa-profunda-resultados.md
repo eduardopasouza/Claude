@@ -113,7 +113,38 @@
 | B2 Dados trabalho e conflitos | ✅ Completa |  |
 | C1 Fontes históricas | ✅ Completa |  |
 | C2 Fontes culturais e literárias | ✅ Completa |  |
+| C3 Economia/Indústria | ✅ Completa |  |
+| C4 Biografias e literatura | ✅ Completa |  |
 | D1 Projeções IPCC/IBGE | ⏳ Próxima sessão |  |
+
+## C3 — Economia, Energia, Indústria, Ferrovia
+
+| Dado | Valor | Fonte | URL |
+|------|-------|-------|-----|
+| Alumar retomada | 268k ton capacidade | MA Hoje | https://mahoje.com.br/ |
+| Alumar investimento | US$180M navios novos 2024 | Alcoa.com | https://www.alcoa.com/ |
+| Eólica MA | 426 MW, 8ª posição BR | ABEEólica/Blog | blogdodesenvolvimento.com.br |
+| Brasil eólica 2024 | 33,73 GW, 76 parques novos | ABEEólica PDF | https://abeeolica.org.br/ |
+| EFC Carajás 2024 | 192M ton (176M minério), 40 anos | Folha Sobre Trilhos | https://www1.folha.uol.com.br/ |
+| EFC trem | 330 vagões, 3.500m, 36k ton | O Especialista Safra | oespecialista.safra.com.br |
+| Arco Norte 2024 | 38% exportações BR soja+milho, +57% | Conab/Gov | https://www.gov.br/conab/ |
+| BNB artigo Arco Norte | PDF acadêmico | BNB Revista | https://www.bnb.gov.br/revista/ |
+
+## C4 — Biografias, Literatura, Gastronomia
+
+| Dado | Valor | Fonte | URL |
+|------|-------|-------|-----|
+| Sarney mandatos | Dep.fed/Gov/Sen/Pres | Senado Federal | https://www25.senado.leg.br/ |
+| Sarney ficha FGV | Atlas Histórico | FGV | https://atlas.fgv.br/verbete/4909 |
+| Alcione | Grammy 2003, 42 álbuns, 50+ anos | Agência Brasil | https://agenciabrasil.ebc.com.br/ |
+| Montello | 1917-2006, Tambores 1975 | Wikipedia | https://pt.wikipedia.org/ |
+| Aluísio Azevedo | 1857-1913, O Mulato 1881 | eBiografia | https://www.ebiografia.com/ |
+| Tiquira | Patrimônio Imaterial MA | Mapa da Cachaça | https://mapadacachaca.com.br/ |
+| Juçara ≠ Açaí | Espécies diferentes | Portal Amazônia | https://portalamazonia.com/ |
+| Analfabetismo MA | 20,9%→15,1% (2022) | IBGE/Educação MA | educacao.ma.gov.br |
+| Pobreza MA | 372 mil saíram 2022→2023 | Gov MA | https://www.ma.gov.br/ |
+| Mortalidade infantil | 15,32/mil, queda 13,7% 2024 | IBGE | https://cidades.ibge.gov.br/ |
+| Maria Firmina | Nascimento diverge: 1822 vs 1825 | UFMG Literafro | https://www.letras.ufmg.br/ |
 
 ---
 
