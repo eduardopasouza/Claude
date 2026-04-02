@@ -28,7 +28,7 @@ Imagine um trem. Trezentos e trinta vagões. Três vírgula três quilômetros d
 
 A carga que esse trem carrega num único dia — cerca de 485 mil toneladas — vale aproximadamente 53 milhões de dólares ao preço internacional do minério de ferro.³
 
-O estado pelo qual ele passa — o Maranhão, com 600 dos 892 quilômetros de trilho — é o mais pobre do Brasil.⁴ Metade da população vive abaixo da linha de pobreza. O PIB per capita é o menor de todos os 27 estados. E o que o Maranhão recebe em royalties minerais por toda essa carga que cruza seu território é, em média, algo como 5 milhões de reais por mês, somando São Luís e Açailândia.⁵
+O estado pelo qual ele passa — o Maranhão, com 600 dos 892 quilômetros de trilho — é um dos mais pobres do Brasil.⁴ Metade da população vive abaixo da linha de pobreza. O PIB per capita está entre os menores de todos os 27 estados. E o que o Maranhão recebe em royalties minerais por toda essa carga que cruza seu território é, em média, algo como 5 milhões de reais por mês, somando São Luís e Açailândia.⁵
 
 Cinquenta e três milhões de dólares por dia nos trilhos. Cinco milhões de reais por mês no caixa.
 
@@ -62,7 +62,7 @@ A receita da divisão de ferrosos da Vale em 2024 foi de 31,4 bilhões de dólar
 | Minério de ferro transportado pela EFC (2024) | ~177 milhões de toneladas |
 | Valor estimado da carga em Ponta da Madeira | mais de US$ 15 bilhões |
 | PIB do Maranhão (2021) | R$125 bilhões (~US$24 bi) |
-| PIB per capita do MA (2021) | R$17.471 (menor do Brasil) |
+| PIB per capita do MA (2022) | R$ 20.632 (entre os menores do Brasil; IBGE, Contas Regionais 2022) |
 | CFEM recebida por Açailândia (out/2024) | ~R$2,9 milhões/mês |
 | CFEM recebida por São Luís (out/2024) | ~R$2,8 milhões/mês |
 | Lucro da Vale (2021) | US$24 bilhões |
@@ -122,7 +122,7 @@ E se o Maranhão recebesse uma parcela proporcional ao que transporta? Considere
 
 A Estrada de Ferro Carajás é uma das obras de engenharia mais impressionantes da América do Sul. Os trens são dos mais longos do mundo em operação regular. O terminal de Ponta da Madeira é um dos maiores da Terra. O minério de Carajás — com teor de 66,5%, o mais puro do planeta — alimenta a infraestrutura da China, que compra dois terços da carga.²¹
 
-E é também uma linha que divide. De um lado, os números da Vale — 31 bilhões em receita, 15 bilhões em EBITDA, navios de 400 mil toneladas. Do outro, os números do Maranhão — 51,6% de pobreza, R$17 mil de renda per capita, 47 mortos nos trilhos, pó de ferro nos pulmões das crianças de Vila Maranhão.
+E é também uma linha que divide. De um lado, os números da Vale — 31 bilhões em receita, 15 bilhões em EBITDA, navios de 400 mil toneladas. Do outro, os números do Maranhão — 51,6% de pobreza, R$20 mil de renda per capita, 47 mortos nos trilhos, pó de ferro nos pulmões das crianças de Vila Maranhão.
 
 Há algo de obsceno na geometria: o trem mais rico do Brasil cruza o estado mais pobre do Brasil. Todo dia. Trinta e cinco vezes. Trezentos e trinta vagões de cada vez. O minério parte. A pobreza fica.
 
@@ -141,7 +141,7 @@ A ferrovia é, ao mesmo tempo, a prova do que o Brasil pode construir e a prova 
 ¹ Survival International. Awá-Guajá: "barulho do terror."
 ² Vale. EFC: 330 vagões, 3,3-3,5 km, 40.000 t/viagem. ~35 trens simultâneos.
 ³ Cálculo: ~485.000 t/dia × ~US$110/t = ~US$53 milhões/dia.
-⁴ IBGE. MA: menor PIB per capita, 51,6% de pobreza (2023).
+⁴ IBGE. MA: entre os menores PIB per capita do país; 51,6% de pobreza (2023). PIB per capita R$ 20.632 (IBGE, Contas Regionais 2022).
 ⁵ ANM. CFEM: Açailândia ~R$2,9 mi/mês; São Luís ~R$2,8 mi/mês (out/2024).
 ⁶ EFC inaugurada em 28/02/1985. Programa Grande Carajás decretado em 24/11/1980.
 ⁷ Descoberta de Carajás (31/07/1967). Breno dos Santos. 66,5% Fe.

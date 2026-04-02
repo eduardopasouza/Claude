@@ -17,7 +17,7 @@ status: rascunho
 
 # Comercio exterior: o que o Maranhao vende ao mundo
 
-Nove virgula cinco bilhoes de dolares. Esse foi o valor que o Maranhao exportou em 2023 — mais do que o PIB de sessenta paises. O estado mais pobre do Brasil, pelo critério de renda per capita, e tambem um dos maiores exportadores.^1
+Nove virgula cinco bilhoes de dolares. Esse foi o valor que o Maranhao exportou em 2023 — mais do que o PIB de sessenta paises. Um dos estados mais pobres do Brasil, pelo criterio de renda per capita, e tambem um dos maiores exportadores.^1
 
 Se isso te parece contraditorio, e porque e. E entender a contradicao exige abrir a caixa e olhar o que esta dentro.
 
@@ -85,7 +85,7 @@ A diferenca nao e de recurso. E de decisao.
 
 ## O superavit que nao enriquece
 
-Seis bilhoes de dolares de superavit comercial. E o que o maranhense medio ve disso? O PIB per capita do estado e o menor do Brasil. A renda mediana e metade da media nacional. O IDH e o mais baixo do pais.^7
+Seis bilhoes de dolares de superavit comercial. E o que o maranhense medio ve disso? O PIB per capita do estado esta entre os menores do Brasil. A renda mediana e metade da media nacional. O IDH e o mais baixo do pais.^7
 
 O superavit comercial do Maranhao e o superavit da Vale, da Cargill, da Suzano, da Glencore. Empresas cujas sedes estao em Sao Paulo, Rio de Janeiro, Suica. Os impostos sobre exportacao sao zerados (Lei Kandir). A CFEM e irrisoria. Os empregos diretos sao mecanizados e pouco numerosos.^8
 

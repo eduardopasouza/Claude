@@ -93,7 +93,7 @@ E junto ao ferro, a soja. A fronteira agricola MATOPIBA — Maranhao, Tocantins,
 
 O padrao e identico ao do algodao: materia-prima bruta, exportada sem processamento, por uma cadeia de valor que comeca e termina fora do Maranhao. A soja maranhense nao vira oleo nem racao no Maranhao. Vira commodity no porto.
 
-**O que ficou ate agora**: desmatamento do cerrado, concentracao fundiaria, comunidades tradicionais deslocadas, e PIB per capita que continua sendo o menor do Brasil.
+**O que ficou ate agora**: desmatamento do cerrado, concentracao fundiaria, comunidades tradicionais deslocadas, e PIB per capita que continua entre os menores do Brasil.
 
 > *Leia mais em* **V84 — Ferrovia Carajas** *e* **V86 — MATOPIBA** *→*
 
@@ -149,7 +149,7 @@ O contrafactual e util nao para lamentar, mas para entender: a industrializacao 
 
 **Botsuana**: descobriu diamantes em 1967, tres anos apos a independencia. Em vez de deixar a De Beers levar tudo, negociou uma joint venture 50-50 (Debswana) e investiu os lucros em educacao. Hoje tem o maior IDH da Africa Subsaariana entre paises sem litoral.
 
-**Maranhao**: descobriu minerio de ferro em 1967. Construiu uma ferrovia. Privatizou a empresa. Recebe royalties que nao cobrem o custo ambiental. PIB per capita: menor do Brasil.
+**Maranhao**: descobriu minerio de ferro em 1967. Construiu uma ferrovia. Privatizou a empresa. Recebe royalties que nao cobrem o custo ambiental. PIB per capita: entre os menores do Brasil.
 
 A diferenca nao e geologica. E politica.
 

@@ -34,7 +34,7 @@ Vamos aos dados. Sem comentario, sem adjetivo, sem analise. Primeiro os numeros.
 
 **IDH** (Indice de Desenvolvimento Humano, 2021): Maranhao 0,676. Brasil 0,754. O IDH do Maranhao e o mais baixo entre os 27 estados brasileiros. Para colocar em escala: o Distrito Federal tem 0,824. A diferenca entre o Maranhao e o DF (0,148 pontos) e maior do que a diferenca entre o DF e a Noruega (0,037 pontos na epoca). Dentro do mesmo pais.¹
 
-**PIB per capita** (2021): Maranhao R$ 15.757. Brasil R$ 40.688. O maranhense medio produz — ou, mais precisamente, a economia maranhense gera por habitante — menos da metade da media brasileira. So o Piaui esta abaixo.²
+**PIB per capita** (2022): Maranhao R$ 20.632. Brasil R$ 46.155. O maranhense medio produz — ou, mais precisamente, a economia maranhense gera por habitante — menos da metade da media brasileira, situando-se entre os menores do pais.² Fonte: IBGE, Contas Regionais 2022.
 
 **Saneamento** (2022): 13,6% do esgoto do Maranhao e tratado — e a coleta alcanca apenas 32,49% da populacao. Isso significa que a imensa maioria dos maranhenses despeja seus dejetos em fossas rudimentares, valas, rios ou diretamente no solo. O dado nao e de uma ONG alarmista — e do SNIS/Trata Brasil, o sistema oficial do governo federal. A media brasileira e 51,2%. O Maranhao esta entre os piores do pais.³ Fonte: SNIS/Trata Brasil, dados 2022.
 
@@ -75,7 +75,7 @@ O padrao nao e novo. O algodao (→ V40) fez o mesmo no seculo XIX: enriqueceu u
 | Indicador | MA | PI | AL | CE | Brasil |
 |-----------|----|----|----|----|--------|
 | IDH (2021) | 0,676 | 0,697 | 0,684 | 0,735 | 0,754 |
-| PIB per capita (R$, 2021) | 15.757 | 15.432 | 18.236 | 19.381 | 40.688 |
+| PIB per capita (R$, 2022) | 20.632 | — | — | — | 46.155 |
 | Esgoto tratado (%) | 13,6 | 12,3 | 28,1 | 32,5 | 51,2 |
 | Analfabetismo (%) | 15,6 | 14,5 | 14,4 | 11,8 | 5,6 |
 | Mortalidade infantil (por mil) | 15,2 | 14,8 | 14,1 | 12,3 | 11,9 |
