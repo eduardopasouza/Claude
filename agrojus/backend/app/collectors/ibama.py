@@ -7,12 +7,15 @@ Fontes:
 - Consulta de autuações: dados abertos CSV
 """
 
+import logging
 import csv
 import io
 from typing import Optional
 
 from app.collectors.base import BaseCollector
 from app.models.schemas import IBAMAEmbargo
+
+logger = logging.getLogger("agrojus")
 
 
 class IBAMACollector(BaseCollector):
@@ -42,7 +45,7 @@ class IBAMACollector(BaseCollector):
                 )
             return embargos
         except Exception as e:
-            print(f"[IBAMA] Error searching embargos for {cpf_cnpj}: {e}")
+            logger.warning("%s: %s", type(e).__name__, e)
             return []
 
     async def search_embargos_by_municipality(
@@ -64,7 +67,7 @@ class IBAMACollector(BaseCollector):
                 )
             return embargos
         except Exception as e:
-            print(f"[IBAMA] Error searching embargos for {municipality}/{state}: {e}")
+            logger.warning("%s: %s", type(e).__name__, e)
             return []
 
     async def _fetch_embargos_csv(
@@ -120,7 +123,7 @@ class IBAMACollector(BaseCollector):
 
             return results
         except Exception as e:
-            print(f"[IBAMA] Error fetching embargos CSV: {e}")
+            logger.warning("%s: %s", type(e).__name__, e)
             return []
 
     @staticmethod

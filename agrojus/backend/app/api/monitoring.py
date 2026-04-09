@@ -54,10 +54,14 @@ async def get_alerts(
     cpf_cnpj: Optional[str] = None,
     car_code: Optional[str] = None,
     unread_only: bool = False,
+    skip: int = 0,
+    limit: int = 50,
 ):
-    """Retorna alertas de monitoramento."""
-    alerts = _monitoring.get_alerts(cpf_cnpj, car_code, unread_only)
-    return {"alerts": alerts, "total": len(alerts)}
+    """Retorna alertas de monitoramento com paginacao."""
+    all_alerts = _monitoring.get_alerts(cpf_cnpj, car_code, unread_only)
+    total = len(all_alerts)
+    page = all_alerts[skip:skip + limit]
+    return {"alerts": page, "total": total, "skip": skip, "limit": limit}
 
 
 @router.put("/alerts/{alert_id}/read")

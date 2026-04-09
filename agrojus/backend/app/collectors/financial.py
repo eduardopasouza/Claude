@@ -8,10 +8,13 @@ Fontes:
 - BNDES: Operações de financiamento
 """
 
+import logging
 from typing import Optional
 
 from app.collectors.base import BaseCollector
 from app.models.schemas import RuralCreditRecord, LandPriceData, FinancialSummary
+
+logger = logging.getLogger("agrojus")
 
 
 class FinancialDataCollector(BaseCollector):
@@ -88,7 +91,7 @@ class FinancialDataCollector(BaseCollector):
                 )
             return records
         except Exception as e:
-            print(f"[FINANCIAL] Error fetching SICOR data: {e}")
+            logger.warning("%s: %s", type(e).__name__, e)
             return []
 
     async def get_land_prices(

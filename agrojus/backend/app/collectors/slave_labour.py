@@ -7,10 +7,13 @@ Fontes:
 - Portal da Transparência: https://portaldatransparencia.gov.br
 """
 
+import logging
 from typing import Optional
 
 from app.collectors.base import BaseCollector
 from app.models.schemas import SlaveLabourEntry
+
+logger = logging.getLogger("agrojus")
 
 
 class SlaveLabourCollector(BaseCollector):
@@ -38,7 +41,7 @@ class SlaveLabourCollector(BaseCollector):
             )
             return entries
         except Exception as e:
-            print(f"[SLAVE_LABOUR] Error searching for {cpf_cnpj}: {e}")
+            logger.warning("%s: %s", type(e).__name__, e)
             return []
 
     async def search_by_name(self, name: str) -> list[SlaveLabourEntry]:
@@ -55,7 +58,7 @@ class SlaveLabourCollector(BaseCollector):
             )
             return entries
         except Exception as e:
-            print(f"[SLAVE_LABOUR] Error searching for name {name}: {e}")
+            logger.warning("%s: %s", type(e).__name__, e)
             return []
 
     async def search_by_municipality(self, municipality: str, state: str) -> list[SlaveLabourEntry]:
@@ -74,7 +77,7 @@ class SlaveLabourCollector(BaseCollector):
             )
             return entries
         except Exception as e:
-            print(f"[SLAVE_LABOUR] Error searching for {municipality}/{state}: {e}")
+            logger.warning("%s: %s", type(e).__name__, e)
             return []
 
     async def _fetch_slave_labour_data(
@@ -125,9 +128,9 @@ class SlaveLabourCollector(BaseCollector):
                     count += 1
 
             # In production, these would be stored in the database
-            print(f"[SLAVE_LABOUR] Imported {count} records from {csv_path}")
+            logger.info("%s: %s", type(e).__name__, e)
         except Exception as e:
-            print(f"[SLAVE_LABOUR] Error importing CSV: {e}")
+            logger.warning("%s: %s", type(e).__name__, e)
 
         return count
 

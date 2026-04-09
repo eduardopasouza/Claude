@@ -7,12 +7,15 @@ Fontes:
 - Download de shapefiles por município
 """
 
+import logging
 import httpx
 from typing import Optional
 
 from app.collectors.base import BaseCollector
 from app.models.schemas import CARData
 from app.config import settings
+
+logger = logging.getLogger("agrojus")
 
 
 class SICARCollector(BaseCollector):
@@ -35,7 +38,7 @@ class SICARCollector(BaseCollector):
                 self._set_cached(f"car:{car_code}", data.model_dump())
             return data
         except Exception as e:
-            print(f"[SICAR] Error fetching CAR {car_code}: {e}")
+            logger.warning("%s: %s", type(e).__name__, e)
             return None
 
     async def _fetch_car_data(self, car_code: str) -> Optional[CARData]:
@@ -109,7 +112,7 @@ class SICARCollector(BaseCollector):
                     import json
                     return json.dumps(geometry)
         except Exception as e:
-            print(f"[SICAR WFS] Error fetching geometry for {car_code}: {e}")
+            logger.info("%s: %s", type(e).__name__, e)
 
         return None
 
@@ -152,5 +155,5 @@ class SICARCollector(BaseCollector):
                 )
             return results
         except Exception as e:
-            print(f"[SICAR] Error searching municipality {municipality}/{state}: {e}")
+            logger.warning("%s: %s", type(e).__name__, e)
             return []

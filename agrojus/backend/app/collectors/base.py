@@ -1,3 +1,4 @@
+import logging
 import httpx
 import json
 import hashlib
@@ -6,6 +7,8 @@ from pathlib import Path
 from typing import Optional
 
 from app.config import settings
+
+logger = logging.getLogger("agrojus.collectors")
 
 
 class BaseCollector:
