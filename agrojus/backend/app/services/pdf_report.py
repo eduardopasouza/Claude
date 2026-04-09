@@ -113,8 +113,28 @@ class PDFReportGenerator:
             alignment=TA_CENTER,
         ))
 
+    @staticmethod
+    def _safe(value, default="N/A") -> str:
+        """Retorna valor formatado ou default se nulo."""
+        if value is None:
+            return default
+        return str(value)
+
+    @staticmethod
+    def _safe_float_fmt(value, decimals=2, default="N/A") -> str:
+        """Formata float ou retorna default se nulo."""
+        if value is None:
+            return default
+        try:
+            return f"{float(value):,.{decimals}f}"
+        except (ValueError, TypeError):
+            return default
+
     def generate(self, report: DueDiligenceReport) -> bytes:
         """Gera o PDF do relatório e retorna os bytes."""
+        import logging
+        logger = logging.getLogger("agrojus.pdf")
+
         buffer = io.BytesIO()
 
         doc = SimpleDocTemplate(
@@ -127,18 +147,32 @@ class PDFReportGenerator:
         )
 
         elements = []
-        elements.extend(self._build_header(report))
-        elements.extend(self._build_risk_summary(report))
-        elements.extend(self._build_property_section(report))
-        elements.extend(self._build_registry_section(report))
-        elements.extend(self._build_owner_section(report))
-        elements.extend(self._build_environmental_section(report))
-        elements.extend(self._build_labour_section(report))
-        elements.extend(self._build_overlap_section(report))
-        elements.extend(self._build_financial_section(report))
-        elements.extend(self._build_details_section(report))
-        elements.extend(self._build_sources_section(report))
-        elements.extend(self._build_footer(report))
+        # Cada seção é protegida contra campos nulos
+        section_builders = [
+            self._build_header,
+            self._build_risk_summary,
+            self._build_property_section,
+            self._build_registry_section,
+            self._build_owner_section,
+            self._build_environmental_section,
+            self._build_labour_section,
+            self._build_overlap_section,
+            self._build_financial_section,
+            self._build_details_section,
+            self._build_sources_section,
+            self._build_footer,
+        ]
+        for builder in section_builders:
+            try:
+                elements.extend(builder(report))
+            except Exception as e:
+                logger.warning("PDF section %s failed: %s", builder.__name__, e)
+                # Adiciona mensagem de erro na seção em vez de crashar
+                elements.append(Paragraph(
+                    f"Secao indisponivel: {builder.__name__}",
+                    self.styles["SmallGray"],
+                ))
+                elements.append(Spacer(1, 10))
 
         doc.build(elements)
         return buffer.getvalue()
@@ -253,13 +287,13 @@ class PDFReportGenerator:
         if report.property_info:
             pi = report.property_info
             data = [
-                ["Codigo CAR:", pi.car_code or "N/A"],
-                ["Status CAR:", pi.status or "N/A"],
-                ["Area Total (ha):", f"{pi.area_total_ha:.2f}" if pi.area_total_ha else "N/A"],
-                ["APP (ha):", f"{pi.area_app_ha:.2f}" if pi.area_app_ha else "N/A"],
-                ["Reserva Legal (ha):", f"{pi.area_reserva_legal_ha:.2f}" if pi.area_reserva_legal_ha else "N/A"],
-                ["Municipio:", pi.municipality or "N/A"],
-                ["UF:", pi.state or "N/A"],
+                ["Codigo CAR:", self._safe(pi.car_code)],
+                ["Status CAR:", self._safe(pi.status)],
+                ["Area Total (ha):", self._safe_float_fmt(pi.area_total_ha)],
+                ["APP (ha):", self._safe_float_fmt(pi.area_app_ha)],
+                ["Reserva Legal (ha):", self._safe_float_fmt(pi.area_reserva_legal_ha)],
+                ["Municipio:", self._safe(pi.municipality)],
+                ["UF:", self._safe(pi.state)],
             ]
         else:
             data = [["Dados do CAR:", "Nao encontrados"]]
@@ -267,10 +301,10 @@ class PDFReportGenerator:
         if report.sigef_info:
             si = report.sigef_info
             data.append(["", ""])  # separator
-            data.append(["Parcela SIGEF:", si.parcel_code or "N/A"])
+            data.append(["Parcela SIGEF:", self._safe(si.parcel_code)])
             data.append(["Certificada:", "Sim" if si.certified else "Nao"])
-            data.append(["Area SIGEF (ha):", f"{si.area_ha:.2f}" if si.area_ha else "N/A"])
-            data.append(["Data Certificacao:", si.certification_date or "N/A"])
+            data.append(["Area SIGEF (ha):", self._safe_float_fmt(si.area_ha)])
+            data.append(["Data Certificacao:", self._safe(si.certification_date)])
 
         table = Table(data, colWidths=[6 * cm, 11 * cm])
         table.setStyle(TableStyle([
@@ -336,7 +370,7 @@ class PDFReportGenerator:
             for embargo in report.ibama_embargos[:5]:
                 data = [
                     ["Auto de Infracao:", embargo.auto_infracao or "N/A"],
-                    ["Area Embargada (ha):", f"{embargo.area_embargada_ha:.2f}" if embargo.area_embargada_ha else "N/A"],
+                    ["Area Embargada (ha):", self._safe_float_fmt(embargo.area_embargada_ha)],
                     ["Data:", embargo.data_embargo or "N/A"],
                     ["Descricao:", embargo.descricao or "N/A"],
                     ["Status:", embargo.status or "N/A"],
@@ -478,7 +512,7 @@ class PDFReportGenerator:
             data.append(["NIRF:", si.nirf or "N/A"])
             data.append(["Nome do Imovel:", si.property_name or "N/A"])
             data.append(["Classificacao:", si.classification or "N/A"])
-            data.append(["Modulos Fiscais:", f"{si.modules_fiscais:.1f}" if si.modules_fiscais else "N/A"])
+            data.append(["Modulos Fiscais:", self._safe_float_fmt(si.modules_fiscais, 1)])
 
         if report.ccir_info:
             ci = report.ccir_info
@@ -492,7 +526,7 @@ class PDFReportGenerator:
             data.append(["--- ITR ---", ""])
             data.append(["NIRF:", it.nirf or "N/A"])
             data.append(["Ano:", str(it.year) if it.year else "N/A"])
-            data.append(["VTI (R$):", f"{it.vti:,.2f}" if it.vti else "N/A"])
+            data.append(["VTI (R$):", self._safe_float_fmt(it.vti)])
             data.append(["Status Pagamento:", it.status_pagamento or "N/A"])
 
         if data:
@@ -521,17 +555,17 @@ class PDFReportGenerator:
         data = []
 
         if fs.total_credit_amount and fs.total_credit_amount > 0:
-            data.append(["Credito Rural Total:", f"R$ {fs.total_credit_amount:,.2f}"])
+            data.append(["Credito Rural Total:", f"R$ {self._safe_float_fmt(fs.total_credit_amount)}"])
             data.append(["Operacoes:", str(len(fs.rural_credits))])
 
         if fs.avg_land_price_per_ha:
-            data.append(["Preco Medio Terra (regiao):", f"R$ {fs.avg_land_price_per_ha:,.2f}/ha"])
+            data.append(["Preco Medio Terra (regiao):", f"R$ {self._safe_float_fmt(fs.avg_land_price_per_ha)}/ha"])
 
         if fs.land_prices:
             for lp in fs.land_prices[:3]:
                 data.append([
                     f"  {lp.land_type or 'Terra'}:",
-                    f"R$ {lp.price_per_ha:,.2f}/ha" if lp.price_per_ha else "N/A",
+                    f"R$ {self._safe_float_fmt(lp.price_per_ha)}/ha" if lp.price_per_ha else "N/A",
                 ])
 
         if data:
