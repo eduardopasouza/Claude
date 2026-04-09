@@ -3,7 +3,7 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     app_name: str = "AgroJus API"
-    app_version: str = "0.2.0"
+    app_version: str = "0.3.0"
     debug: bool = True
 
     # Database
