@@ -1,142 +1,133 @@
 # Teste Real de Acesso às Fontes de Dados — AgroJus
 
-Data do teste: 2026-04-09
+Data do teste: 2026-04-09 (2 rodadas)
 Ambiente: servidor Linux, acesso direto à internet
 
 ---
 
-## RESULTADOS DOS TESTES
+## RESULTADOS CONSOLIDADOS
 
-### ✅ FUNCIONA — Testado e confirmado
+### ✅ FUNCIONA — Testado com dados reais
 
-| # | Fonte | Teste | Resultado | Notas |
-|---|-------|-------|-----------|-------|
-| 1 | **BrasilAPI (CNPJ)** | GET /api/cnpj/v1/00000000000191 | HTTP 200, 20KB, 0.19s | Retorna dados completos: sócios, CNAE, endereço, capital social |
-| 2 | **IBGE/SIDRA (PAM)** | GET /values/t/5457/n6/5107925/v/216/... | HTTP 200 | Retorna produção agrícola de Sorriso-MT. Variável v/35 NÃO existe (erro 400); usar v/214, v/215, v/216 |
-| 3 | **SICOR/BCB (Crédito Rural)** | OData CusteioMunicipioProduto | HTTP 200 | Funciona! Campo correto: `codIbge` (não `codMunic`). Retorna milho, bovinos, soja em Sorriso-MT com valores reais (R$602K milho, R$7.5M bovinos) |
-| 4 | **IBAMA Embargos (ZIP)** | Download termo_embargo_csv.zip | HTTP 206 (partial content OK) | **URL mudou!** Antiga: /SICAFI/embargo/Embargo.csv. Nova: /SIFISC/termo_embargo/termo_embargo/termo_embargo_csv.zip |
-| 5 | **IBAMA Coordenadas** | Download coordenadas.csv | HTTP 200 | CSV com LAT, LON, WKT de cada embargo. Atualizado em 2026-04-08! Contém POINT geometry |
-| 6 | **IBAMA Auto Infração** | Download auto_infracao_csv.zip | HTTP 206 | Disponível para download |
-| 7 | **SIGEF Portal** | GET sigef.incra.gov.br | HTTP 200, 2.7s | Portal acessível |
-| 8 | **TST CNDT** | GET cndt-certidao.tst.jus.br | HTTP 200, 1.2s | Portal acessível para scraping |
-| 9 | **MapBiomas Alerta** | GET plataforma.alerta.mapbiomas.org | HTTP 200, 0.9s | Plataforma acessível |
+| # | Fonte | Teste Real | HTTP | Dados Obtidos |
+|---|-------|-----------|------|---------------|
+| 1 | **BrasilAPI (CNPJ)** | Banco do Brasil | 200, 0.19s | Sócios, CNAE, capital social, endereço. COMPLETO |
+| 2 | **IBGE/SIDRA (PAM)** | Sorriso-MT, soja | 200 | Produção agrícola. **Variáveis: v/214, v/215, v/216** |
+| 3 | **SICOR/BCB** | Crédito Sorriso 2024 | 200 | Milho R$602K, Bovinos R$7.5M. **Endpoint: CusteioMunicipioProduto, campo: codIbge** |
+| 4 | **IBAMA Embargos ZIP** | Download | 206 | **URL nova**: /SIFISC/termo_embargo/...zip |
+| 5 | **IBAMA Coordenadas** | Download CSV | 200 | LAT, LON, WKT (POINT). **Atualizado 2026-04-08!** |
+| 6 | **IBAMA Autos Infração** | Download ZIP | 206 | Disponível: /SIFISC/auto_infracao/...zip |
+| 7 | **FUNAI GeoServer WFS** | Terras Indígenas | 200, 2.4s | **655 TIs em tempo real!** GeoJSON com geometria. Campos: nome, etnia, UF, município, fase, área(ha) |
+| 8 | **TST CNDT** | Portal | 200, 1.2s | Acessível para scraping por CPF/CNPJ |
+| 9 | **ANA Dados Abertos** | Portal | 200 | Outorgas WebApp disponível |
+| 10 | **ANM Geo Portal** | ArcGIS REST | 200 | No ar. Serviço "grade" exposto |
+| 11 | **SPU Dados Abertos** | dados.gov.br | 200 | Imóveis da União disponíveis |
+| 12 | **CONAB Portal** | Portal informações | 200 | Acessível |
+| 13 | **TerraBrasilis (INPE)** | Portal | 200 | No ar. WMS lento (10s+) |
+| 14 | **Portal Transparência** | Download page | 200 | Página de download acessível |
+| 15 | **SIGEF Portal** | sigef.incra.gov.br | 200 | Portal no ar |
 
-### ⚠️ PARCIAL — Funciona com ressalvas
+### ⚠️ PARCIAL — Requer ação adicional
 
-| # | Fonte | Teste | Resultado | Problema |
-|---|-------|-------|-----------|---------|
-| 10 | **SICAR/CAR WFS** | GetCapabilities | HTTP 503 | WFS estava fora no momento do teste. Pode ser instabilidade temporária — o SICAR é conhecido por ficar fora periodicamente |
-| 11 | **SIGEF/INCRA WFS** | GetCapabilities | HTTP 404 | URL pode ter mudado. O Acervo Fundiário pode ter migrado endpoint |
-| 12 | **DataJud/CNJ** | GET base URL | HTTP 401 | API funciona mas **requer chave API** (cadastro gratuito). Sem chave = 401 |
-| 13 | **IBAMA API Embargo Individual** | GET /wkt?seqTad=1 | HTTP 404 | API corpgateway-api.ibama.gov.br não respondeu. Pode ter sido descontinuada ou mudado URL |
+| # | Fonte | Resultado | O que precisa |
+|---|-------|-----------|--------------|
+| 16 | **SICAR/CAR** | **503 em TUDO** | Fora do ar (instabilidade crônica). Cache agressivo + retry |
+| 17 | **SIGEF WFS/WMS** | **404** | Endpoints /geoserver/ removidos/migrados. Investigar novo path |
+| 18 | **DataJud/CNJ** | **401** | Requer chave API (cadastro gratuito em datajud-wiki.cnj.jus.br) |
+| 19 | **MapBiomas GraphQL** | Schema público, dados **requerem token** | 100+ campos disponíveis. Solicitar token de acesso |
+| 20 | **CEPEA** | **403 Cloudflare** | Domínio mudou → cepea.org.br + Cloudflare. Precisa Playwright |
+| 21 | **ANM Cadastro Mineiro** | **Timeout 10s** | Lento. Testar com timeout maior |
 
-### ❌ NÃO ACESSÍVEL — Bloqueado ou indisponível neste ambiente
+### ❌ BLOQUEADO neste ambiente
 
-| # | Fonte | Teste | Resultado | Motivo |
-|---|-------|-------|-----------|--------|
-| 14 | **Portal Transparência API** | GET CEIS | HTTP 000 (timeout/block) | Provavelmente bloqueio de IP de datacenter ou requer chave API |
-| 15 | **PGFN Lista Devedores** | GET listadevedores.pgfn.gov.br | HTTP 000 (connection reset) | Bloqueio de IP ou proteção contra bots |
-| 16 | **CENPROT Nacional** | GET pesquisaprotesto.com.br | HTTP 403 | Bloqueio explícito (proteção anti-bot) |
-| 17 | **ANA Dados Abertos** | GET dadosabertos.ana.gov.br | Não testado (timeout anterior) | Precisa testar de outro ambiente |
-| 18 | **ANM Geo Portal** | GET geo.anm.gov.br | Não testado | Precisa testar |
-
-### 📋 NÃO TESTADO — Requer ação manual
-
-| # | Fonte | O que precisa |
-|---|-------|--------------|
-| 19 | **FUNAI (Shapefiles TI)** | Download manual do portal Gov.br |
-| 20 | **ICMBio (Shapefiles UC)** | Download manual do portal Gov.br |
-| 21 | **CEPEA (Cotações)** | Scraping do site — funcional mas depende do layout HTML |
-| 22 | **CONAB** | Download manual de relatórios |
-| 23 | **CVM (FIAGRO)** | Download de dados abertos |
-| 24 | **ZARC/MAPA** | Download de dados abertos |
-| 25 | **PGFN (CSV devedores)** | Download manual do portal dados abertos |
-| 26 | **CND Federal** | Scraping com captcha |
-| 27 | **FGTS/CRF** | Scraping com captcha |
+| # | Fonte | HTTP | Alternativa |
+|---|-------|------|-------------|
+| 22 | **Portal Transparência API** | timeout | Chave API ou outra rede |
+| 23 | **PGFN Devedores** | conn reset | CSVs via dados.gov.br |
+| 24 | **CENPROT Protestos** | 403 | Playwright (tem captcha) |
+| 25 | **ICMBio UCs** | 404 no path testado | Buscar URL atualizada |
+| 26 | **ANA GeoServer SNIRH** | 403 | Outra rede |
+| 27 | **MAPA dados.agricultura** | 403 | Outra rede |
 
 ---
 
-## CORREÇÕES NECESSÁRIAS NO CÓDIGO
+## DESCOBERTAS CHAVE
 
-### 1. IBAMA — URLs erradas
+### 1. FUNAI GeoServer WFS — 655 TIs em tempo real
 ```
-ERRADO: https://dadosabertos.ibama.gov.br/dados/SICAFI/embargo/Embargo.csv
-CERTO:  https://dadosabertos.ibama.gov.br/dados/SIFISC/termo_embargo/termo_embargo/termo_embargo_csv.zip
+URL: https://geoserver.funai.gov.br/geoserver/Funai/ows
+     ?service=WFS&version=1.0.0&request=GetFeature
+     &typeName=Funai:tis_poligonais&outputFormat=application/json
+Autenticação: NENHUMA
+Dados: 655 TIs com geometria GeoJSON
+Campos: terrai_nome, etnia_nome, municipio_nome, uf_sigla,
+        superficie_perimetro_ha, fase_ti, modalidade_ti
+CRS: EPSG:4674 (SIRGAS 2000) — reprojetar para 4326
+```
+**Substitui importação manual de shapefile. Query em tempo real.**
 
-NOVO CSV de coordenadas (com geometria!):
-        https://dadosabertos.ibama.gov.br/dados/SIFISC/termo_embargo/coordenadas/coordenadas.csv
+### 2. MapBiomas Alerta GraphQL — 100+ campos
+```
+URL: https://plataforma.alerta.mapbiomas.org/api/graphql
+Schema: PÚBLICO (introspecção livre)
+Dados: REQUEREM TOKEN
+Campos: alertCode, areaHa, geometryWkt, detectedAt, publishedAt,
+        crossedIndigenousLands(Area), crossedConservationUnits(Area),
+        crossedEmbargoes(Total), crossedQuilombos(Area),
+        crossedSettlements(Area), crossedRuralProperties,
+        ruralPropertiesTotal, deforestationClasses, sources...
+```
+**Se conseguir token: desmatamento + cruzamento com tudo numa fonte.**
 
-CSV de Autos de Infração:
-        https://dadosabertos.ibama.gov.br/dados/SIFISC/auto_infracao/auto_infracao/auto_infracao_csv.zip
+### 3. CEPEA mudou domínio + Cloudflare
+```
+ANTES: www.cepea.esalq.usp.br → redireciona
+AGORA: www.cepea.org.br → HTTP 403 (Cloudflare challenge)
+SOLUÇÃO: Playwright (browser headless) em vez de httpx
 ```
 
-### 2. IBGE/SIDRA — Variáveis erradas
+### 4. IBAMA tem 3 CSVs separados (não 1)
 ```
-ERRADO: v/35 (não existe na tabela 5457)
-CERTO:  v/214 (área colhida), v/215 (área plantada), v/216 (quantidade produzida)
-```
-
-### 3. SICOR/BCB — Endpoint e campo errados
-```
-ERRADO: endpoint "RecursosMunicipios", campo "cdMunicipio"
-CERTO:  endpoint "CusteioMunicipioProduto", campo "codIbge"
-
-Endpoints disponíveis: CusteioMunicipioProduto, InvestMunicipioProduto,
-ComercRegiaoUFProduto, ProgramaSubprogramaRegiaoUF, etc.
+Embargos: /SIFISC/termo_embargo/termo_embargo/termo_embargo_csv.zip
+Coordenadas: /SIFISC/termo_embargo/coordenadas/coordenadas.csv  ← TEM WKT!
+Autos de Infração: /SIFISC/auto_infracao/auto_infracao/auto_infracao_csv.zip
 ```
 
-### 4. SICAR WFS — Pode estar instável
-O WFS do SICAR retornou 503. Precisa de retry com backoff e fallback.
-
-### 5. SIGEF WFS — URL pode ter mudado
-O Acervo Fundiário retornou 404 no WFS. Verificar se migrou.
+### 5. SICAR fora do ar, SIGEF WFS migrou
+SICAR: 503 em todos endpoints. Problema crônico.
+SIGEF: /geoserver/ retorna 404. Novo endpoint desconhecido.
 
 ---
 
-## CAMADAS DO MAPA ONR (referência para replicarmos)
+## URLs CORRETAS CONFIRMADAS
 
-Com base na pesquisa do manual e do site, o ONR tinha/tem as seguintes categorias de camadas:
+```python
+# FUNAI WFS (TIs) — FUNCIONA ✅
+FUNAI_WFS = "https://geoserver.funai.gov.br/geoserver/Funai/ows"
 
-### Registro de Imóveis
-- Código Nacional de Matrícula
-- Competência registral (qual cartório atende cada região)
-- Imóveis rurais georreferenciados (SIGEF/SNCI)
-- Lotes e quadras (parcelamento do solo)
+# BrasilAPI CNPJ — FUNCIONA ✅
+BRASILAPI_CNPJ = "https://brasilapi.com.br/api/cnpj/v1/{cnpj}"
 
-### Ambiental
-- APP (Áreas de Preservação Permanente)
-- Biomas
-- CAR (Cadastro Ambiental Rural)
-- Desmatamento (PRODES/DETER)
-- Incêndios florestais
-- Exploração florestal
-- Uso restrito
+# IBGE/SIDRA PAM — FUNCIONA ✅ (variáveis corrigidas)
+SIDRA_PAM = "https://apisidra.ibge.gov.br/values/t/5457/n6/{codIbge}/v/214,215,216/p/last%201/c782/39,33,9,31/f/n"
 
-### Fundiário
-- Terras indígenas (FUNAI)
-- Quilombos (INCRA)
-- Unidades de conservação (ICMBio)
-- Assentamentos (INCRA)
-- Imóveis públicos (SPU)
-- MATOPIBA (aptidão)
+# SICOR/BCB Crédito Rural — FUNCIONA ✅ (endpoint e campo corrigidos)
+SICOR_CUSTEIO = "https://olinda.bcb.gov.br/olinda/servico/SICOR/versao/v2/odata/CusteioMunicipioProduto?$filter=AnoEmissao eq '{ano}' and codIbge eq '{codIbge}'&$format=json"
 
-### Infraestrutura
-- Energia
-- Transporte
-- Logística
+# IBAMA Embargos — FUNCIONA ✅ (URLs atualizadas)
+IBAMA_EMBARGOS_ZIP = "https://dadosabertos.ibama.gov.br/dados/SIFISC/termo_embargo/termo_embargo/termo_embargo_csv.zip"
+IBAMA_COORDS_CSV = "https://dadosabertos.ibama.gov.br/dados/SIFISC/termo_embargo/coordenadas/coordenadas.csv"
+IBAMA_AUTOS_ZIP = "https://dadosabertos.ibama.gov.br/dados/SIFISC/auto_infracao/auto_infracao/auto_infracao_csv.zip"
 
-### Mineração
-- Processos minerários (SIGMINE/ANM)
+# TST CNDT — FUNCIONA ✅ (scraping)
+TST_CNDT = "https://cndt-certidao.tst.jus.br/"
 
-### Agronegócio
-- Crédito rural
-- Potencial agrícola
-- Características do solo
+# MapBiomas GraphQL — SCHEMA PÚBLICO, DADOS REQUEREM TOKEN ⚠️
+MAPBIOMAS_GRAPHQL = "https://plataforma.alerta.mapbiomas.org/api/graphql"
 
-### Outros
-- Limites territoriais (estados, municípios)
-- Google Street View integrado
+# CEPEA — PRECISA PLAYWRIGHT ⚠️
+CEPEA_SOJA = "https://www.cepea.org.br/br/indicador/soja.aspx"
 
-**Nota**: O ONR declarava ter 184 camadas. Muitas podem ter sido removidas
-por questões de manutenção dos dados ou acordos com as fontes.
-Precisamos confirmar quais existem hoje acessando o mapa diretamente.
+# SICAR — FORA DO AR ❌
+# SIGEF WFS — MIGROU ❌
+```
