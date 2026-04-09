@@ -18,9 +18,9 @@ from app.models.schemas import IBAMAEmbargo
 class IBAMACollector(BaseCollector):
     """Coleta dados de embargos e infrações ambientais do IBAMA."""
 
-    EMBARGOS_ZIP_URL = "https://dadosabertos.ibama.gov.br/dados/SIFISC/termo_embargo/termo_embargo/termo_embargo_csv.zip"
+    EMBARGOS_CSV_URL = "https://dadosabertos.ibama.gov.br/dados/SIFISC/termo_embargo/termo_embargo/termo_embargo.csv"
     EMBARGOS_COORDS_URL = "https://dadosabertos.ibama.gov.br/dados/SIFISC/termo_embargo/coordenadas/coordenadas.csv"
-    AUTUACOES_ZIP_URL = "https://dadosabertos.ibama.gov.br/dados/SIFISC/auto_infracao/auto_infracao/auto_infracao_csv.zip"
+    AUTUACOES_CSV_URL = "https://dadosabertos.ibama.gov.br/dados/SIFISC/auto_infracao/auto_infracao/auto_infracao.csv"
 
     def __init__(self):
         super().__init__("ibama")
@@ -80,7 +80,7 @@ class IBAMACollector(BaseCollector):
         armazenado no banco de dados. Para o MVP, fazemos a busca direta.
         """
         try:
-            response = await self._http_get(self.EMBARGOS_URL, timeout=120.0)
+            response = await self._http_get(self.EMBARGOS_CSV_URL, timeout=120.0)
             content = response.text
 
             reader = csv.DictReader(io.StringIO(content), delimiter=";")

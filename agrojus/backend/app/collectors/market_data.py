@@ -38,44 +38,14 @@ class MarketDataCollector(BaseCollector):
         super().__init__("market")
 
     async def get_latest_quotes(self) -> list[MarketQuote]:
-        """Busca cotações mais recentes de todas as commodities."""
-        cached = self._get_cached("latest_quotes")
-        if cached:
-            return [MarketQuote(**item) for item in cached]
-
-        quotes = []
-        for key, info in CEPEA_INDICATORS.items():
-            try:
-                quote = await self._fetch_cepea_indicator(key, info)
-                if quote:
-                    quotes.append(quote)
-            except Exception as e:
-                print(f"[MARKET] Error fetching {key}: {e}")
-
-        if quotes:
-            self._set_cached("latest_quotes", [q.model_dump() for q in quotes])
-
-        return quotes
-
-    async def _fetch_cepea_indicator(self, key: str, info: dict) -> Optional[MarketQuote]:
         """
-        Busca indicador CEPEA.
+        Busca cotações mais recentes de todas as commodities.
 
-        Note: CEPEA não tem API pública oficial. Em produção, os dados seriam
-        obtidos via scraping do site do CEPEA ou de fontes que republicam
-        (como Notícias Agrícolas ou Agrolink).
+        Delega ao CEPEACollector que faz scraping real do site CEPEA/ESALQ.
         """
-        # Placeholder - in production this would scrape CEPEA or use
-        # an aggregator that provides this data
-        return MarketQuote(
-            commodity=info["name"],
-            price=0.0,
-            unit=info["unit"],
-            date="",
-            source="CEPEA/ESALQ",
-            variation_pct=None,
-            location="Brasil",
-        )
+        from app.collectors.cepea import CEPEACollector
+        cepea = CEPEACollector()
+        return await cepea.get_all_quotes()
 
     async def get_production_by_municipality(
         self, municipality_code: str

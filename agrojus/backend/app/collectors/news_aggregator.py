@@ -13,7 +13,10 @@ Fontes:
 from typing import Optional
 from datetime import datetime
 
-import feedparser
+try:
+    import feedparser
+except ImportError:
+    feedparser = None
 
 from app.collectors.base import BaseCollector
 from app.models.schemas import NewsArticle
@@ -101,6 +104,10 @@ class NewsAggregator(BaseCollector):
 
     async def _fetch_feed(self, source_name: str, feed_url: str) -> list[NewsArticle]:
         """Busca e parseia um feed RSS individual."""
+        if feedparser is None:
+            print(f"[NEWS] feedparser not installed, skipping {source_name}")
+            return []
+
         try:
             response = await self._http_get(feed_url, timeout=15.0)
             feed = feedparser.parse(response.text)
