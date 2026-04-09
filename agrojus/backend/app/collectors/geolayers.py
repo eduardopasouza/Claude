@@ -8,10 +8,13 @@ Fontes testadas e confirmadas:
 - IBGE: Biomas, solos, vegetação via shapefile download
 """
 
+import logging
 from typing import Optional
 import json
 
 from app.collectors.base import BaseCollector
+
+logger = logging.getLogger("agrojus")
 
 
 class FUNAICollector(BaseCollector):
@@ -50,7 +53,7 @@ class FUNAICollector(BaseCollector):
             self._set_cached("all_tis", data)
             return data
         except Exception as e:
-            print(f"[FUNAI] Error fetching TIs: {e}")
+            logger.warning("%s: %s", type(e).__name__, e)
             return {"type": "FeatureCollection", "features": []}
 
     async def check_overlap_ti(self, lat: float, lon: float, buffer_km: float = 0.1) -> list[dict]:
@@ -91,7 +94,7 @@ class FUNAICollector(BaseCollector):
             self._set_cached(f"overlap:{lat}:{lon}", results)
             return results
         except Exception as e:
-            print(f"[FUNAI] Error checking overlap: {e}")
+            logger.warning("%s: %s", type(e).__name__, e)
             return []
 
     async def search_by_state(self, uf: str) -> list[dict]:
@@ -126,7 +129,7 @@ class FUNAICollector(BaseCollector):
             self._set_cached(f"tis_uf:{uf}", results)
             return results
         except Exception as e:
-            print(f"[FUNAI] Error searching TIs in {uf}: {e}")
+            logger.warning("%s: %s", type(e).__name__, e)
             return []
 
 
@@ -187,7 +190,7 @@ class TerraBrasilisCollector(BaseCollector):
             self._set_cached(cache_key, data)
             return data
         except Exception as e:
-            print(f"[TERRABRASILIS] Error fetching DETER {biome}: {e}")
+            logger.warning("%s: %s", type(e).__name__, e)
             return {"type": "FeatureCollection", "features": []}
 
     async def check_deforestation(self, lat: float, lon: float, radius_km: float = 5.0) -> list[dict]:
@@ -232,5 +235,5 @@ class TerraBrasilisCollector(BaseCollector):
             self._set_cached("biomas", data)
             return data
         except Exception as e:
-            print(f"[TERRABRASILIS] Error fetching biomes: {e}")
+            logger.warning("%s: %s", type(e).__name__, e)
             return {"type": "FeatureCollection", "features": []}

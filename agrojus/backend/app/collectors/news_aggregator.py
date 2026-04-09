@@ -10,6 +10,7 @@ Fontes:
 - Embrapa
 """
 
+import logging
 from typing import Optional
 from datetime import datetime
 
@@ -20,6 +21,8 @@ except ImportError:
 
 from app.collectors.base import BaseCollector
 from app.models.schemas import NewsArticle
+
+logger = logging.getLogger("agrojus")
 
 
 # RSS feed URLs dos principais portais agro
@@ -67,7 +70,7 @@ class NewsAggregator(BaseCollector):
                 articles = await self._fetch_feed(source_name, feed_url)
                 all_articles.extend(articles)
             except Exception as e:
-                print(f"[NEWS] Error fetching {source_name}: {e}")
+                logger.warning("%s: %s", type(e).__name__, e)
 
         # Sort by date (most recent first)
         all_articles.sort(
@@ -105,7 +108,7 @@ class NewsAggregator(BaseCollector):
     async def _fetch_feed(self, source_name: str, feed_url: str) -> list[NewsArticle]:
         """Busca e parseia um feed RSS individual."""
         if feedparser is None:
-            print(f"[NEWS] feedparser not installed, skipping {source_name}")
+            logger.info("%s: %s", type(e).__name__, e)
             return []
 
         try:
@@ -149,7 +152,7 @@ class NewsAggregator(BaseCollector):
 
             return articles
         except Exception as e:
-            print(f"[NEWS] Error parsing feed {source_name}: {e}")
+            logger.warning("%s: %s", type(e).__name__, e)
             return []
 
     def _classify_article(self, title: str, summary: str) -> str:

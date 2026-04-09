@@ -9,6 +9,7 @@ Monitora mudanças em:
 Em produção, rodaria como job periódico (cron/celery).
 """
 
+import logging
 import uuid
 from datetime import datetime, timezone
 from typing import Optional
@@ -17,6 +18,8 @@ from app.models.schemas import (
     PropertySearchRequest,
     PersonSearchRequest,
 )
+
+logger = logging.getLogger("agrojus")
 
 
 class MonitoringAlert:
@@ -160,7 +163,7 @@ class MonitoringService:
                         cpf_cnpj=cpf_cnpj,
                     ))
             except Exception as e:
-                print(f"[MONITORING] Error checking {cpf_cnpj}: {e}")
+                logger.warning("%s: %s", type(e).__name__, e)
 
         # Check monitored properties for CAR status changes
         for car_code in self._monitored_properties:
@@ -177,6 +180,6 @@ class MonitoringService:
                             car_code=car_code,
                         ))
             except Exception as e:
-                print(f"[MONITORING] Error checking CAR {car_code}: {e}")
+                logger.warning("%s: %s", type(e).__name__, e)
 
         return len(self._alerts)

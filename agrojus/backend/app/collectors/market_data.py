@@ -7,10 +7,13 @@ Fontes:
 - IBGE/SIDRA: produção agrícola municipal
 """
 
+import logging
 from typing import Optional
 
 from app.collectors.base import BaseCollector
 from app.models.schemas import MarketQuote
+
+logger = logging.getLogger("agrojus")
 
 
 # CEPEA indicator URLs (public data)
@@ -78,7 +81,7 @@ class MarketDataCollector(BaseCollector):
                 self._set_cached(f"production:{municipality_code}", result)
             return result
         except Exception as e:
-            print(f"[MARKET] Error fetching SIDRA data for {municipality_code}: {e}")
+            logger.warning("%s: %s", type(e).__name__, e)
             return {}
 
     def _parse_sidra_response(self, data: list) -> dict:

@@ -6,11 +6,14 @@ Fontes:
 - ReceitaWS: https://www.receitaws.com.br/v1/cnpj/{cnpj} (alternativa)
 """
 
+import logging
 from typing import Optional
 
 from app.collectors.base import BaseCollector
 from app.models.schemas import CNPJData
 from app.config import settings
+
+logger = logging.getLogger("agrojus")
 
 
 class ReceitaFederalCollector(BaseCollector):
@@ -35,7 +38,7 @@ class ReceitaFederalCollector(BaseCollector):
                 self._set_cached(f"cnpj:{cnpj_clean}", data.model_dump())
             return data
         except Exception as e:
-            print(f"[RECEITA] Error fetching CNPJ {cnpj}: {e}")
+            logger.warning("%s: %s", type(e).__name__, e)
             return None
 
     async def _fetch_cnpj_brasilapi(self, cnpj: str) -> Optional[CNPJData]:

@@ -5,11 +5,14 @@ Scraping ético do site do CEPEA para obter indicadores de preços
 agropecuários atualizados (soja, milho, boi gordo, café, etc).
 """
 
+import logging
 from typing import Optional
 from datetime import datetime
 
 from app.collectors.base import BaseCollector
 from app.models.schemas import MarketQuote
+
+logger = logging.getLogger("agrojus")
 
 
 CEPEA_INDICATORS = {
@@ -80,7 +83,7 @@ class CEPEACollector(BaseCollector):
                 if quote:
                     quotes.append(quote)
             except Exception as e:
-                print(f"[CEPEA] Error scraping {key}: {e}")
+                logger.warning("%s: %s", type(e).__name__, e)
 
         if quotes:
             self._set_cached("all_quotes", [q.model_dump() for q in quotes])
@@ -116,7 +119,7 @@ class CEPEACollector(BaseCollector):
 
             return self._parse_cepea_page(key, info, response.text)
         except Exception as e:
-            print(f"[CEPEA] Error fetching {key}: {e}")
+            logger.warning("%s: %s", type(e).__name__, e)
             return None
 
     def _parse_cepea_page(self, key: str, info: dict, html: str) -> Optional[MarketQuote]:

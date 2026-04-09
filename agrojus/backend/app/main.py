@@ -1,25 +1,30 @@
+import logging
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
+from app.logging_config import setup_logging
 from app.api import search, report, map_data, market, news, auth, monitoring, smart_search, geo, lawsuits
+
+setup_logging("DEBUG" if settings.debug else "INFO")
+logger = logging.getLogger("agrojus")
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Startup / shutdown lifecycle."""
-    # Startup: ensure data directories exist
     from pathlib import Path
     Path(settings.data_dir).mkdir(parents=True, exist_ok=True)
     Path(settings.cache_dir).mkdir(parents=True, exist_ok=True)
     Path(settings.shapefile_dir).mkdir(parents=True, exist_ok=True)
+    logger.info("AgroJus API v%s started", settings.app_version)
     yield
-    # Shutdown: dispose DB engine
     from app.models.database import _engine
     if _engine:
         _engine.dispose()
+    logger.info("AgroJus API shutdown")
 
 
 app = FastAPI(

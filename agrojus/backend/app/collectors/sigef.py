@@ -7,11 +7,14 @@ Fontes:
 - API SIGEF: https://sigef.incra.gov.br/api/v1/
 """
 
+import logging
 from typing import Optional
 
 from app.collectors.base import BaseCollector
 from app.models.schemas import SIGEFData
 from app.config import settings
+
+logger = logging.getLogger("agrojus")
 
 
 class SIGEFCollector(BaseCollector):
@@ -34,7 +37,7 @@ class SIGEFCollector(BaseCollector):
                 self._set_cached(f"parcel:{parcel_code}", data.model_dump())
             return data
         except Exception as e:
-            print(f"[SIGEF] Error fetching parcel {parcel_code}: {e}")
+            logger.warning("%s: %s", type(e).__name__, e)
             return None
 
     async def _fetch_parcel_api(self, parcel_code: str) -> Optional[SIGEFData]:
@@ -107,7 +110,7 @@ class SIGEFCollector(BaseCollector):
                 )
             return results
         except Exception as e:
-            print(f"[SIGEF] Error searching by location ({lat}, {lon}): {e}")
+            logger.warning("%s: %s", type(e).__name__, e)
             return []
 
     async def get_geometry_wfs(self, parcel_code: str) -> Optional[str]:
@@ -131,6 +134,6 @@ class SIGEFCollector(BaseCollector):
                     import json
                     return json.dumps(geometry)
         except Exception as e:
-            print(f"[SIGEF WFS] Error fetching geometry for {parcel_code}: {e}")
+            logger.info("%s: %s", type(e).__name__, e)
 
         return None

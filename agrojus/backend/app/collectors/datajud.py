@@ -8,10 +8,13 @@ API pública: https://datajud-wiki.cnj.jus.br/
 Permite buscar processos por CPF/CNPJ do envolvido, assunto, tribunal, etc.
 """
 
+import logging
 from typing import Optional
 
 from app.collectors.base import BaseCollector
 from app.models.schemas import LawsuitRecord
+
+logger = logging.getLogger("agrojus")
 
 
 # Tribunais disponíveis no DataJud
@@ -90,7 +93,7 @@ class DataJudCollector(BaseCollector):
                 records = await self._search_tribunal(clean, tribunal, max_results)
                 all_records.extend(records)
             except Exception as e:
-                print(f"[DATAJUD] Error searching {tribunal}: {e}")
+                logger.warning("%s: %s", type(e).__name__, e)
 
         if all_records:
             self._set_cached(
@@ -121,7 +124,7 @@ class DataJudCollector(BaseCollector):
                 self._set_cached(cache_key, [r.model_dump() for r in records])
             return records
         except Exception as e:
-            print(f"[DATAJUD] Error searching subject {subject_code} in {tribunal}: {e}")
+            logger.warning("%s: %s", type(e).__name__, e)
             return []
 
     async def _search_tribunal(
@@ -164,11 +167,11 @@ class DataJudCollector(BaseCollector):
                 if response.status_code == 200:
                     return self._parse_datajud_response(response.json(), tribunal)
                 elif response.status_code == 401:
-                    print(f"[DATAJUD] API key required for {tribunal}")
+                    logger.info("%s: %s", type(e).__name__, e)
                 else:
-                    print(f"[DATAJUD] {tribunal} returned {response.status_code}")
+                    logger.info("%s: %s", type(e).__name__, e)
         except Exception as e:
-            print(f"[DATAJUD] Connection error for {tribunal}: {e}")
+            logger.info("%s: %s", type(e).__name__, e)
 
         return []
 

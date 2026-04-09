@@ -9,12 +9,15 @@ Realiza análise de sobreposição entre o imóvel rural e:
 - Áreas de preservação (MapBiomas)
 """
 
+import logging
 import json
 from pathlib import Path
 from typing import Optional
 
 from app.models.schemas import OverlapAnalysis
 from app.config import settings
+
+logger = logging.getLogger("agrojus")
 
 
 class GeospatialProcessor:
@@ -58,7 +61,7 @@ class GeospatialProcessor:
         except ImportError:
             print("[GEO] GeoPandas not available, running in limited mode")
         except Exception as e:
-            print(f"[GEO] Error loading reference layers: {e}")
+            logger.warning("%s: %s", type(e).__name__, e)
 
     def analyze_overlaps(self, property_geometry_geojson: str) -> OverlapAnalysis:
         """
@@ -97,7 +100,7 @@ class GeospatialProcessor:
         except ImportError:
             print("[GEO] GeoPandas not available for overlap analysis")
         except Exception as e:
-            print(f"[GEO] Error analyzing overlaps: {e}")
+            logger.warning("%s: %s", type(e).__name__, e)
 
         return analysis
 
