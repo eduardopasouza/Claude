@@ -79,6 +79,22 @@ class RegionSearchRequest(BaseModel):
 
 # --- Data Models ---
 
+class LawsuitRecord(BaseModel):
+    """Registro de processo judicial (DataJud/CNJ)."""
+    case_number: Optional[str] = None
+    tribunal: Optional[str] = None
+    court: Optional[str] = None
+    municipality: Optional[str] = None
+    state: Optional[str] = None
+    subjects: list[str] = []
+    class_name: Optional[str] = None
+    filing_date: Optional[str] = None
+    last_update: Optional[str] = None
+    status: Optional[str] = None
+    degree: Optional[str] = None
+    system: Optional[str] = None
+
+
 class CARData(BaseModel):
     car_code: str
     status: Optional[str] = None
@@ -278,6 +294,9 @@ class DueDiligenceReport(BaseModel):
     # Questões trabalhistas
     slave_labour: list[SlaveLabourEntry] = []
 
+    # Processos judiciais
+    lawsuits: list[LawsuitRecord] = []
+
     # Análise geoespacial
     overlap_analysis: Optional[OverlapAnalysis] = None
 
@@ -310,6 +329,9 @@ class PersonDossier(BaseModel):
 
     # Questões trabalhistas
     slave_labour: list[SlaveLabourEntry] = []
+
+    # Processos judiciais
+    lawsuits: list[LawsuitRecord] = []
 
     # Dados financeiros
     financial_summary: Optional[FinancialSummary] = None
