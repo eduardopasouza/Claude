@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_DB: agrojus
+      POSTGRES_USER: agrojus
+      POSTGRES_PASSWORD: agrojus
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://agrojus:agrojus@db:5432/agrojus
+      DEBUG: "true"
+    depends_on:
+      - db
+    volumes:
+      - ./backend:/app
+      - ./data:/app/data
+
+volumes:
+  pgdata:
