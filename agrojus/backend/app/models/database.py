@@ -1,8 +1,8 @@
 from sqlalchemy import (
     Column, String, Float, Integer, Boolean, DateTime, Text, JSON,
-    create_engine, Index
+    create_engine, Index, ForeignKey
 )
-from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.orm import declarative_base, sessionmaker, relationship
 from geoalchemy2 import Geometry
 from datetime import datetime, timezone
 
@@ -12,26 +12,95 @@ Base = declarative_base()
 
 
 class Property(Base):
+    """Imóvel rural com todos os identificadores possíveis."""
     __tablename__ = "properties"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
+
+    # Identificadores do imóvel (cada um indexado para busca rápida)
     car_code = Column(String(100), unique=True, index=True)
+    matricula = Column(String(100), index=True)
+    sncr_code = Column(String(100), index=True)
+    nirf = Column(String(50), index=True)
+    ccir = Column(String(50), index=True)
     sigef_code = Column(String(100), index=True)
+    itr_number = Column(String(50), index=True)
+
+    # Dados cadastrais
+    property_name = Column(String(500))
     area_total_ha = Column(Float)
+    area_app_ha = Column(Float)
+    area_reserva_legal_ha = Column(Float)
+    area_uso_consolidado_ha = Column(Float)
+    area_remanescente_ha = Column(Float)
     municipality = Column(String(200))
+    municipality_code = Column(String(10))
     state = Column(String(2))
+    comarca = Column(String(200))
+    cartorio = Column(String(500))
+    classification = Column(String(100))  # Pequena/média/grande propriedade
+    modules_fiscais = Column(Float)
+
+    # Proprietário
     owner_name = Column(String(500))
     owner_cpf_cnpj = Column(String(20), index=True)
-    geometry = Column(Geometry("MULTIPOLYGON", srid=4326))
+
+    # Status
     car_status = Column(String(50))
     sigef_certified = Column(Boolean, default=False)
+    ccir_valid = Column(Boolean)
+    has_onus = Column(Boolean)  # Gravames na matrícula
+    onus_description = Column(Text)
+
+    # Geoespacial
+    geometry = Column(Geometry("MULTIPOLYGON", srid=4326))
+
+    # ITR
+    itr_vti = Column(Float)  # Valor da Terra Nua
+    itr_status = Column(String(50))
+
+    # Metadados
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
     updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
     raw_data = Column(JSON)
 
     __table_args__ = (
         Index("idx_properties_municipality_state", "municipality", "state"),
+        Index("idx_properties_owner", "owner_cpf_cnpj"),
     )
+
+
+class Person(Base):
+    """Pessoa física ou jurídica monitorada."""
+    __tablename__ = "persons"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    cpf_cnpj = Column(String(20), unique=True, index=True)
+    person_type = Column(String(2))  # PF ou PJ
+    name = Column(String(500), index=True)
+    trade_name = Column(String(500))  # Nome fantasia (PJ)
+    registration_status = Column(String(50))
+    cnae_principal = Column(String(200))
+    address = Column(Text)
+    municipality = Column(String(200))
+    state = Column(String(2))
+    capital_social = Column(Float)
+    partners = Column(JSON)  # Lista de sócios
+
+    # Monitoramento
+    monitored = Column(Boolean, default=False)
+    last_checked_at = Column(DateTime)
+    alert_on_change = Column(Boolean, default=False)
+
+    # Contadores (cache para consulta rápida)
+    properties_count = Column(Integer, default=0)
+    embargos_count = Column(Integer, default=0)
+    lawsuits_count = Column(Integer, default=0)
+    slave_labour_records = Column(Integer, default=0)
+
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
+    raw_data = Column(JSON)
 
 
 class EnvironmentalAlert(Base):
@@ -39,6 +108,7 @@ class EnvironmentalAlert(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     property_car_code = Column(String(100), index=True)
+    cpf_cnpj = Column(String(20), index=True)
     alert_type = Column(String(50))  # embargo, deforestation, overlap_uc, overlap_ti
     source = Column(String(50))  # ibama, inpe, icmbio, funai
     description = Column(Text)
@@ -54,15 +124,59 @@ class LegalRecord(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     cpf_cnpj = Column(String(20), index=True)
-    record_type = Column(String(50))  # lawsuit, debt, protest, slave_labour
-    source = Column(String(100))  # tribunal name, ibama, mte
+    record_type = Column(String(50))  # lawsuit, debt, protest, slave_labour, certificate
+    source = Column(String(100))  # tribunal name, ibama, mte, receita
     case_number = Column(String(100))
     description = Column(Text)
     amount = Column(Float)
     status = Column(String(50))
     date_filed = Column(DateTime)
+    municipality = Column(String(200))
+    state = Column(String(2))
     raw_data = Column(JSON)
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
+
+class RuralCredit(Base):
+    """Crédito rural (dados do SICOR/BCB)."""
+    __tablename__ = "rural_credits"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    cpf_cnpj = Column(String(20), index=True)
+    contract_number = Column(String(100))
+    bank = Column(String(200))
+    credit_line = Column(String(100))  # PRONAF, PRONAMP, etc.
+    purpose = Column(String(100))  # Custeio, investimento, comercialização
+    amount = Column(Float)
+    municipality = Column(String(200))
+    state = Column(String(2))
+    year = Column(Integer)
+    crop = Column(String(100))
+    raw_data = Column(JSON)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
+    __table_args__ = (
+        Index("idx_rural_credits_cpf_year", "cpf_cnpj", "year"),
+    )
+
+
+class LandPrice(Base):
+    """Preços de terra por região."""
+    __tablename__ = "land_prices"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    municipality = Column(String(200))
+    municipality_code = Column(String(10))
+    state = Column(String(2))
+    land_type = Column(String(100))  # Lavoura, pastagem, cerrado, mata
+    price_per_ha = Column(Float)
+    source = Column(String(100))
+    reference_date = Column(DateTime)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
+    __table_args__ = (
+        Index("idx_land_prices_location", "municipality", "state"),
+    )
 
 
 class MarketData(Base):
@@ -81,6 +195,21 @@ class MarketData(Base):
     __table_args__ = (
         Index("idx_market_commodity_date", "commodity", "date"),
     )
+
+
+class MonitoringAlert(Base):
+    """Alertas de monitoramento (mudanças detectadas)."""
+    __tablename__ = "monitoring_alerts"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    cpf_cnpj = Column(String(20), index=True)
+    property_car_code = Column(String(100), index=True)
+    alert_type = Column(String(100))  # new_lawsuit, new_embargo, car_change, price_change
+    title = Column(String(500))
+    description = Column(Text)
+    severity = Column(String(20))  # info, warning, critical
+    read = Column(Boolean, default=False)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
 
 
 class CachedQuery(Base):

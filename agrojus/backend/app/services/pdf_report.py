@@ -126,11 +126,14 @@ class PDFReportGenerator:
         elements.extend(self._build_header(report))
         elements.extend(self._build_risk_summary(report))
         elements.extend(self._build_property_section(report))
+        elements.extend(self._build_registry_section(report))
         elements.extend(self._build_owner_section(report))
         elements.extend(self._build_environmental_section(report))
         elements.extend(self._build_labour_section(report))
         elements.extend(self._build_overlap_section(report))
+        elements.extend(self._build_financial_section(report))
         elements.extend(self._build_details_section(report))
+        elements.extend(self._build_sources_section(report))
         elements.extend(self._build_footer(report))
 
         doc.build(elements)
@@ -140,10 +143,18 @@ class PDFReportGenerator:
         elements = []
 
         elements.append(Paragraph("AGROJUS", self.styles["CustomTitle"]))
-        elements.append(Paragraph(
+
+        persona_labels = {
+            "buyer": "Relatorio para Comprador de Imovel Rural",
+            "lawyer": "Relatorio de Diligencia Juridica",
+            "investor": "Relatorio de Analise para Investidor",
+            "farmer": "Relatorio para Agropecuarista",
+        }
+        subtitle = persona_labels.get(
+            report.persona.value if report.persona else "",
             "Relatorio de Due Diligence Rural",
-            self.styles["Heading3"],
-        ))
+        )
+        elements.append(Paragraph(subtitle, self.styles["Heading3"]))
         elements.append(Spacer(1, 10))
 
         header_data = [
@@ -153,6 +164,14 @@ class PDFReportGenerator:
 
         if report.property_info and report.property_info.car_code:
             header_data.append(["Codigo CAR:", report.property_info.car_code])
+        if report.matricula_info and report.matricula_info.matricula_number:
+            header_data.append(["Matricula:", report.matricula_info.matricula_number])
+        if report.sncr_info and report.sncr_info.sncr_code:
+            header_data.append(["SNCR:", report.sncr_info.sncr_code])
+        if report.sncr_info and report.sncr_info.nirf:
+            header_data.append(["NIRF:", report.sncr_info.nirf])
+        if report.ccir_info and report.ccir_info.ccir_number:
+            header_data.append(["CCIR:", report.ccir_info.ccir_number])
 
         if report.property_info and report.property_info.municipality:
             loc = f"{report.property_info.municipality}/{report.property_info.state or ''}"
@@ -187,6 +206,7 @@ class PDFReportGenerator:
             ["Ambiental", _risk_label(rs.environmental)],
             ["Juridico", _risk_label(rs.legal)],
             ["Trabalhista", _risk_label(rs.labor)],
+            ["Financeiro", _risk_label(rs.financial)],
         ]
 
         table = Table(risk_data, colWidths=[9 * cm, 8 * cm])
@@ -419,6 +439,125 @@ class PDFReportGenerator:
                 self.styles["BodyCustom"],
             ))
 
+        elements.append(Spacer(1, 15))
+        return elements
+
+    def _build_registry_section(self, report: DueDiligenceReport) -> list:
+        """Seção de dados registrais (matrícula, SNCR, CCIR, ITR)."""
+        elements = []
+
+        has_registry = (
+            report.matricula_info or report.sncr_info
+            or report.ccir_info or report.itr_info
+        )
+        if not has_registry:
+            return elements
+
+        elements.append(Paragraph("DADOS REGISTRAIS E CADASTRAIS", self.styles["SectionTitle"]))
+
+        data = []
+
+        if report.matricula_info:
+            mi = report.matricula_info
+            data.append(["--- MATRICULA ---", ""])
+            data.append(["Numero:", mi.matricula_number or "N/A"])
+            data.append(["Cartorio:", mi.cartorio or "N/A"])
+            data.append(["Comarca:", mi.comarca or "N/A"])
+            data.append(["Onus/Gravames:", "SIM" if mi.has_onus else "NAO" if mi.has_onus is not None else "N/A"])
+            if mi.onus_description:
+                data.append(["Descricao:", mi.onus_description])
+
+        if report.sncr_info:
+            si = report.sncr_info
+            data.append(["--- SNCR/INCRA ---", ""])
+            data.append(["Codigo SNCR:", si.sncr_code or "N/A"])
+            data.append(["NIRF:", si.nirf or "N/A"])
+            data.append(["Nome do Imovel:", si.property_name or "N/A"])
+            data.append(["Classificacao:", si.classification or "N/A"])
+            data.append(["Modulos Fiscais:", f"{si.modules_fiscais:.1f}" if si.modules_fiscais else "N/A"])
+
+        if report.ccir_info:
+            ci = report.ccir_info
+            data.append(["--- CCIR ---", ""])
+            data.append(["Numero CCIR:", ci.ccir_number or "N/A"])
+            data.append(["Valido:", "SIM" if ci.valid else "NAO" if ci.valid is not None else "N/A"])
+            data.append(["Vencimento:", ci.expiration_date or "N/A"])
+
+        if report.itr_info:
+            it = report.itr_info
+            data.append(["--- ITR ---", ""])
+            data.append(["NIRF:", it.nirf or "N/A"])
+            data.append(["Ano:", str(it.year) if it.year else "N/A"])
+            data.append(["VTI (R$):", f"{it.vti:,.2f}" if it.vti else "N/A"])
+            data.append(["Status Pagamento:", it.status_pagamento or "N/A"])
+
+        if data:
+            table = Table(data, colWidths=[6 * cm, 11 * cm])
+            table.setStyle(TableStyle([
+                ("FONTNAME", (0, 0), (0, -1), "Helvetica-Bold"),
+                ("FONTSIZE", (0, 0), (-1, -1), 9),
+                ("TEXTCOLOR", (0, 0), (0, -1), GRAY),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
+            ]))
+            elements.append(table)
+
+        elements.append(Spacer(1, 15))
+        return elements
+
+    def _build_financial_section(self, report: DueDiligenceReport) -> list:
+        """Seção de dados financeiros (crédito rural, preços de terra)."""
+        elements = []
+
+        if not report.financial_summary:
+            return elements
+
+        elements.append(Paragraph("DADOS FINANCEIROS", self.styles["SectionTitle"]))
+
+        fs = report.financial_summary
+        data = []
+
+        if fs.total_credit_amount and fs.total_credit_amount > 0:
+            data.append(["Credito Rural Total:", f"R$ {fs.total_credit_amount:,.2f}"])
+            data.append(["Operacoes:", str(len(fs.rural_credits))])
+
+        if fs.avg_land_price_per_ha:
+            data.append(["Preco Medio Terra (regiao):", f"R$ {fs.avg_land_price_per_ha:,.2f}/ha"])
+
+        if fs.land_prices:
+            for lp in fs.land_prices[:3]:
+                data.append([
+                    f"  {lp.land_type or 'Terra'}:",
+                    f"R$ {lp.price_per_ha:,.2f}/ha" if lp.price_per_ha else "N/A",
+                ])
+
+        if data:
+            table = Table(data, colWidths=[6 * cm, 11 * cm])
+            table.setStyle(TableStyle([
+                ("FONTNAME", (0, 0), (0, -1), "Helvetica-Bold"),
+                ("FONTSIZE", (0, 0), (-1, -1), 9),
+                ("TEXTCOLOR", (0, 0), (0, -1), GRAY),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
+            ]))
+            elements.append(table)
+        else:
+            elements.append(Paragraph(
+                "Dados financeiros nao disponiveis para esta consulta.",
+                self.styles["BodyCustom"],
+            ))
+
+        elements.append(Spacer(1, 15))
+        return elements
+
+    def _build_sources_section(self, report: DueDiligenceReport) -> list:
+        """Seção de fontes consultadas."""
+        elements = []
+
+        if not report.sources_consulted:
+            return elements
+
+        elements.append(Paragraph("FONTES CONSULTADAS", self.styles["SectionTitle"]))
+        for source in report.sources_consulted:
+            elements.append(Paragraph(f"- {source}", self.styles["BodyCustom"]))
         elements.append(Spacer(1, 15))
         return elements
 
