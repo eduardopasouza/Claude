@@ -62,7 +62,8 @@ class DataJudCollector(BaseCollector):
 
     def __init__(self):
         super().__init__("datajud")
-        self.api_key = ""  # API pública, mas requer cadastro para chave
+        from app.config import settings
+        self.api_key = settings.datajud_api_key
 
     async def search_by_cpf_cnpj(
         self,
