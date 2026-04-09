@@ -35,14 +35,18 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+# IMPORTANTE: ordem inversa no Starlette - o ULTIMO adicionado roda PRIMEIRO.
+# CORS deve ser o mais externo para que TODAS as respostas tenham headers CORS,
+# inclusive 429 do rate limiter.
+app.add_middleware(RateLimitMiddleware)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["X-RateLimit-Remaining-Searches", "X-RateLimit-Remaining-Reports"],
 )
-app.add_middleware(RateLimitMiddleware)
 
 # API routes
 app.include_router(auth.router, prefix="/api/v1/auth", tags=["auth"])
