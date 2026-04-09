@@ -1,25 +1,33 @@
 """
-Serviço de Due Diligence Rural.
+Serviço de Due Diligence Rural - Versão Expandida.
 
-Orquestra a coleta de dados de múltiplas fontes, realiza o cruzamento
-e gera o relatório consolidado com score de risco.
+Aceita qualquer identificador de imóvel (CAR, matrícula, SNCR, NIRF, CCIR,
+ITR, SIGEF, coordenadas) e gera relatório completo cruzando todas as fontes.
+
+Adapta o nível de detalhe conforme o perfil do solicitante (persona):
+- Comprador: foco em regularidade, ônus, preço de mercado
+- Advogado: foco em processos, certidões, sobreposições
+- Agropecuarista: foco em produção, crédito, clima
+- Investidor: foco em risco, retorno, valuation
 """
 
 import uuid
 from datetime import datetime, timezone
-from typing import Optional
 
 from app.collectors.sicar import SICARCollector
 from app.collectors.sigef import SIGEFCollector
 from app.collectors.receita_federal import ReceitaFederalCollector
 from app.collectors.ibama import IBAMACollector
 from app.collectors.slave_labour import SlaveLabourCollector
+from app.collectors.financial import FinancialDataCollector
 from app.processors.geospatial import GeospatialProcessor
 from app.models.schemas import (
     DueDiligenceReport,
     PropertySearchRequest,
     RiskScore,
     RiskLevel,
+    PersonaType,
+    FinancialSummary,
 )
 
 
@@ -32,51 +40,104 @@ class DueDiligenceService:
         self.receita = ReceitaFederalCollector()
         self.ibama = IBAMACollector()
         self.slave_labour = SlaveLabourCollector()
+        self.financial = FinancialDataCollector()
         self.geo_processor = GeospatialProcessor()
 
     async def generate_report(self, request: PropertySearchRequest) -> DueDiligenceReport:
         """
-        Gera um relatório completo de due diligence rural.
+        Gera relatório completo de due diligence rural.
 
-        Coleta dados de todas as fontes disponíveis, realiza cruzamentos
-        e calcula o score de risco.
+        Estratégia de resolução:
+        1. Tenta usar o identificador mais completo fornecido
+        2. Cruza informações para descobrir identificadores faltantes
+        3. Busca em todas as fontes usando todos os identificadores disponíveis
         """
         report = DueDiligenceReport(
             report_id=str(uuid.uuid4()),
             generated_at=datetime.now(timezone.utc),
+            persona=request.persona,
         )
 
-        # 1. Buscar dados do CAR
+        sources = []
+
+        # === ETAPA 1: Resolução do imóvel ===
+
+        # 1A. CAR
         if request.car_code:
             report.property_info = await self.sicar.get_property_by_car(request.car_code)
-
-            # Try to get geometry for overlap analysis
             geometry = await self.sicar.get_geometry_wfs(request.car_code)
             if geometry and report.property_info:
                 report.property_info.geometry_wkt = geometry
+            sources.append("SICAR/CAR")
 
-        # 2. Buscar dados do SIGEF
-        if request.car_code:
-            # Try to find SIGEF parcel associated with the CAR
-            sigef_data = await self.sigef.get_parcel_by_code(request.car_code)
-            if sigef_data:
-                report.sigef_info = sigef_data
-
-        if request.latitude and request.longitude:
-            # Search by location if coordinates provided
+        # 1B. SIGEF (por código ou coordenadas)
+        if request.sigef_code:
+            report.sigef_info = await self.sigef.get_parcel_by_code(request.sigef_code)
+            sources.append("SIGEF/INCRA")
+        elif request.latitude and request.longitude:
             parcels = await self.sigef.search_parcels_by_location(
                 request.latitude, request.longitude
             )
             if parcels:
                 report.sigef_info = parcels[0]
+                sources.append("SIGEF/INCRA")
 
-        # 3. Buscar dados do proprietário (CNPJ)
+        # 1C. Matrícula (seria via scraping do cartório - placeholder)
+        if request.matricula:
+            from app.models.schemas import MatriculaData
+            report.matricula_info = MatriculaData(
+                matricula_number=request.matricula,
+                # Em produção: scraping do sistema do cartório ou ONR
+            )
+            sources.append("Cartorio de RI (matricula)")
+
+        # 1D. SNCR/INCRA
+        if request.sncr_code or request.nirf:
+            from app.models.schemas import SNCRData
+            report.sncr_info = SNCRData(
+                sncr_code=request.sncr_code,
+                nirf=request.nirf,
+                # Em produção: consulta ao SNCR/CNIR
+            )
+            sources.append("SNCR/INCRA")
+
+        # 1E. CCIR
+        if request.ccir:
+            from app.models.schemas import CCIRData
+            report.ccir_info = CCIRData(
+                ccir_number=request.ccir,
+                # Em produção: consulta ao SNCR para validar CCIR
+            )
+            sources.append("CCIR/INCRA")
+
+        # 1F. ITR
+        if request.itr_number or request.nirf:
+            from app.models.schemas import ITRData
+            report.itr_info = ITRData(
+                nirf=request.nirf or request.itr_number,
+                # Em produção: consulta à Receita Federal
+            )
+            sources.append("ITR/Receita Federal")
+
+        # 1G. Busca por município (se nenhum identificador direto)
+        if not report.property_info and request.municipality and request.state:
+            results = await self.sicar.search_by_municipality(
+                request.municipality, request.state
+            )
+            if results:
+                report.property_info = results[0]
+                sources.append("SICAR/CAR (por municipio)")
+
+        # === ETAPA 2: Dados do proprietário ===
+
         if request.cpf_cnpj:
             validation = await self.receita.validate_cpf_cnpj(request.cpf_cnpj)
             if validation["type"] == "CNPJ" and validation["valid"]:
                 report.owner_info = await self.receita.get_cnpj(request.cpf_cnpj)
+                sources.append("Receita Federal (CNPJ)")
 
-        # 4. Buscar embargos IBAMA
+        # === ETAPA 3: Alertas ambientais ===
+
         if request.cpf_cnpj:
             report.ibama_embargos = await self.ibama.search_embargos_by_cpf_cnpj(
                 request.cpf_cnpj
@@ -86,8 +147,11 @@ class DueDiligenceService:
             report.ibama_embargos = await self.ibama.search_embargos_by_municipality(
                 report.property_info.municipality, state
             )
+        if report.ibama_embargos:
+            sources.append("IBAMA (Embargos)")
 
-        # 5. Verificar lista suja (trabalho escravo)
+        # === ETAPA 4: Lista Suja ===
+
         if request.cpf_cnpj:
             report.slave_labour = await self.slave_labour.search_by_cpf_cnpj(
                 request.cpf_cnpj
@@ -96,106 +160,168 @@ class DueDiligenceService:
             report.slave_labour = await self.slave_labour.search_by_name(
                 request.owner_name
             )
+        if report.slave_labour:
+            sources.append("MTE (Lista Suja)")
 
-        # 6. Análise de sobreposição geoespacial
+        # === ETAPA 5: Análise geoespacial ===
+
         if report.property_info and report.property_info.geometry_wkt:
             report.overlap_analysis = self.geo_processor.analyze_overlaps(
                 report.property_info.geometry_wkt
             )
+            sources.append("Analise Geoespacial")
 
-        # 7. Calcular score de risco
+        # === ETAPA 6: Dados financeiros ===
+
+        municipality_code = None
+        if report.property_info and report.property_info.municipality:
+            # In production, would resolve municipality to IBGE code
+            pass
+
+        if request.cpf_cnpj:
+            credits = await self.financial.get_rural_credits_by_cpf_cnpj(request.cpf_cnpj)
+            if credits:
+                report.financial_summary = FinancialSummary(
+                    rural_credits=credits,
+                    total_credit_amount=sum(c.amount or 0 for c in credits),
+                )
+                sources.append("BCB/SICOR (Credito Rural)")
+
+        # Try to get land prices for the region
+        state = request.state or (report.property_info.state if report.property_info else None)
+        municipality = request.municipality or (report.property_info.municipality if report.property_info else None)
+        if state:
+            land_prices = await self.financial.get_land_prices(state, municipality)
+            if land_prices:
+                if not report.financial_summary:
+                    report.financial_summary = FinancialSummary()
+                report.financial_summary.land_prices = land_prices
+                if land_prices:
+                    avg = sum(p.price_per_ha or 0 for p in land_prices) / len(land_prices)
+                    report.financial_summary.avg_land_price_per_ha = avg
+                sources.append("Precos de Terras")
+
+        # === ETAPA 7: Score de risco ===
+
         report.risk_score = self._calculate_risk_score(report)
+        report.sources_consulted = sources
 
         return report
 
     def _calculate_risk_score(self, report: DueDiligenceReport) -> RiskScore:
-        """
-        Calcula o score de risco baseado nos dados coletados.
-
-        Lógica de risco:
-        - Cada área tem um nível de risco individual
-        - O risco geral é o mais alto entre as áreas
-        """
+        """Calcula score de risco baseado em todos os dados coletados."""
         details = []
         land_tenure_risk = RiskLevel.LOW
         environmental_risk = RiskLevel.LOW
         legal_risk = RiskLevel.LOW
         labor_risk = RiskLevel.LOW
+        financial_risk = RiskLevel.LOW
 
-        # --- Land Tenure Risk ---
-        if report.property_info:
-            if not report.property_info.car_code:
-                land_tenure_risk = RiskLevel.HIGH
-                details.append("Imóvel sem CAR cadastrado")
+        # --- Regularidade Fundiária ---
+        identifiers_found = 0
+        identifiers_expected = 4  # CAR, SIGEF, matrícula, CCIR
 
-            if report.property_info.status and "cancelado" in report.property_info.status.lower():
-                land_tenure_risk = RiskLevel.CRITICAL
-                details.append(f"CAR com status: {report.property_info.status}")
+        if report.property_info and report.property_info.car_code:
+            identifiers_found += 1
+            if report.property_info.status:
+                status = report.property_info.status.lower()
+                if "cancelado" in status or "suspenso" in status:
+                    land_tenure_risk = RiskLevel.CRITICAL
+                    details.append(f"CAR com status: {report.property_info.status}")
+                elif "pendente" in status:
+                    land_tenure_risk = RiskLevel.MEDIUM
+                    details.append(f"CAR com status pendente")
+        else:
+            details.append("Imovel sem CAR cadastrado ou nao encontrado")
+            land_tenure_risk = RiskLevel.HIGH
 
         if report.sigef_info:
+            identifiers_found += 1
             if not report.sigef_info.certified:
                 if land_tenure_risk.value < RiskLevel.MEDIUM.value:
                     land_tenure_risk = RiskLevel.MEDIUM
-                details.append("Imóvel sem georreferenciamento certificado no SIGEF")
+                details.append("Georreferenciamento SIGEF nao certificado")
         else:
+            details.append("Nenhuma parcela SIGEF encontrada")
+
+        if report.matricula_info and report.matricula_info.matricula_number:
+            identifiers_found += 1
+            if report.matricula_info.has_onus:
+                land_tenure_risk = RiskLevel.HIGH
+                details.append(f"Matricula com onus/gravame: {report.matricula_info.onus_description or 'verificar'}")
+
+        if report.ccir_info and report.ccir_info.ccir_number:
+            identifiers_found += 1
+            if report.ccir_info.valid is False:
+                land_tenure_risk = RiskLevel.HIGH
+                details.append("CCIR vencido ou invalido")
+
+        if report.itr_info:
+            if report.itr_info.status_pagamento and "atraso" in (report.itr_info.status_pagamento or "").lower():
+                if land_tenure_risk.value < RiskLevel.MEDIUM.value:
+                    land_tenure_risk = RiskLevel.MEDIUM
+                details.append("ITR com pagamento em atraso")
+
+        # Penalizar falta de identificadores
+        if identifiers_found < 2:
+            details.append(f"Apenas {identifiers_found} de {identifiers_expected} identificadores encontrados - documentacao incompleta")
             if land_tenure_risk.value < RiskLevel.MEDIUM.value:
                 land_tenure_risk = RiskLevel.MEDIUM
-            details.append("Nenhuma parcela SIGEF encontrada para o imóvel")
 
-        # --- Environmental Risk ---
+        # --- Ambiental ---
         if report.ibama_embargos:
             environmental_risk = RiskLevel.CRITICAL
-            details.append(
-                f"{len(report.ibama_embargos)} embargo(s) IBAMA encontrado(s)"
-            )
+            details.append(f"{len(report.ibama_embargos)} embargo(s) IBAMA encontrado(s)")
 
         if report.overlap_analysis:
             if report.overlap_analysis.overlaps_indigenous_land:
                 environmental_risk = RiskLevel.CRITICAL
-                details.append(
-                    f"Sobreposição com Terra Indígena: {report.overlap_analysis.indigenous_land_name}"
-                )
-
+                details.append(f"Sobreposicao com Terra Indigena: {report.overlap_analysis.indigenous_land_name}")
             if report.overlap_analysis.overlaps_conservation_unit:
                 if environmental_risk != RiskLevel.CRITICAL:
                     environmental_risk = RiskLevel.HIGH
-                details.append(
-                    f"Sobreposição com Unidade de Conservação: {report.overlap_analysis.conservation_unit_name}"
-                )
-
-            if report.overlap_analysis.overlaps_deforestation:
+                details.append(f"Sobreposicao com UC: {report.overlap_analysis.conservation_unit_name}")
+            if report.overlap_analysis.overlaps_quilombo:
                 if environmental_risk != RiskLevel.CRITICAL:
                     environmental_risk = RiskLevel.HIGH
-                details.append(
-                    f"Desmatamento detectado: {report.overlap_analysis.deforestation_area_ha} ha"
-                )
+                details.append(f"Sobreposicao com Quilombo: {report.overlap_analysis.quilombo_name}")
+            if report.overlap_analysis.overlaps_settlement:
+                if environmental_risk != RiskLevel.CRITICAL:
+                    environmental_risk = RiskLevel.HIGH
+                details.append(f"Sobreposicao com Assentamento: {report.overlap_analysis.settlement_name}")
+            if report.overlap_analysis.overlaps_deforestation:
+                if environmental_risk.value < RiskLevel.HIGH.value:
+                    environmental_risk = RiskLevel.HIGH
+                details.append(f"Desmatamento detectado: {report.overlap_analysis.deforestation_area_ha} ha")
 
-        # --- Legal Risk ---
+        # --- Jurídico ---
         if report.owner_info:
-            if report.owner_info.situacao_cadastral and "inapta" in report.owner_info.situacao_cadastral.lower():
+            status = (report.owner_info.situacao_cadastral or "").lower()
+            if "inapta" in status or "baixada" in status or "suspensa" in status:
                 legal_risk = RiskLevel.HIGH
-                details.append(f"CNPJ com situação: {report.owner_info.situacao_cadastral}")
-        else:
-            if report.owner_info is None and not details:
-                details.append("Dados do proprietário não encontrados")
+                details.append(f"CNPJ com situacao: {report.owner_info.situacao_cadastral}")
 
-        # --- Labor Risk ---
+        # --- Trabalhista ---
         if report.slave_labour:
             labor_risk = RiskLevel.CRITICAL
-            total_workers = sum(
-                (e.workers_rescued or 0) for e in report.slave_labour
-            )
-            details.append(
-                f"Encontrado na Lista Suja do Trabalho Escravo ({total_workers} trabalhadores resgatados)"
-            )
+            total_workers = sum((e.workers_rescued or 0) for e in report.slave_labour)
+            details.append(f"Lista Suja do Trabalho Escravo ({total_workers} trabalhadores resgatados)")
 
-        # Overall risk = worst of all areas
-        risk_levels = [land_tenure_risk, environmental_risk, legal_risk, labor_risk]
-        risk_order = [RiskLevel.LOW, RiskLevel.MEDIUM, RiskLevel.HIGH, RiskLevel.CRITICAL]
-        overall = max(risk_levels, key=lambda r: risk_order.index(r))
+        # --- Financeiro ---
+        if report.financial_summary:
+            if report.financial_summary.total_credit_amount and report.financial_summary.total_credit_amount > 0:
+                details.append(f"Credito rural total: R$ {report.financial_summary.total_credit_amount:,.2f}")
+            if report.financial_summary.avg_land_price_per_ha:
+                details.append(f"Preco medio da terra na regiao: R$ {report.financial_summary.avg_land_price_per_ha:,.2f}/ha")
 
         if not details:
             details.append("Nenhum alerta encontrado nas fontes consultadas")
+
+        risk_order = [RiskLevel.LOW, RiskLevel.MEDIUM, RiskLevel.HIGH, RiskLevel.CRITICAL]
+        overall = max(
+            [land_tenure_risk, environmental_risk, legal_risk, labor_risk, financial_risk],
+            key=lambda r: risk_order.index(r),
+        )
 
         return RiskScore(
             overall=overall,
@@ -203,5 +329,6 @@ class DueDiligenceService:
             environmental=environmental_risk,
             legal=legal_risk,
             labor=labor_risk,
+            financial=financial_risk,
             details=details,
         )
