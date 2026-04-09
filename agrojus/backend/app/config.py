@@ -1,9 +1,14 @@
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+    )
+
     app_name: str = "AgroJus API"
-    app_version: str = "0.3.0"
+    app_version: str = "0.4.0"
     debug: bool = True
 
     # Database
@@ -36,10 +41,6 @@ class Settings(BaseSettings):
 
     # Cache TTL (seconds)
     cache_ttl: int = 86400  # 24 hours
-
-    class Config:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
 
 
 settings = Settings()
