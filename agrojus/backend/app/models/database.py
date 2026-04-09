@@ -1,10 +1,18 @@
+from contextlib import asynccontextmanager
+from typing import AsyncGenerator
+
 from sqlalchemy import (
     Column, String, Float, Integer, Boolean, DateTime, Text, JSON,
     create_engine, Index, ForeignKey
 )
-from sqlalchemy.orm import declarative_base, sessionmaker, relationship
-from geoalchemy2 import Geometry
+from sqlalchemy.orm import declarative_base, sessionmaker, relationship, Session
 from datetime import datetime, timezone
+
+try:
+    from geoalchemy2 import Geometry
+except ImportError:
+    # Fallback: use Text column when GeoAlchemy2 is not available
+    from sqlalchemy import Text as Geometry  # noqa: N812
 
 from app.config import settings
 
@@ -212,6 +220,22 @@ class MonitoringAlert(Base):
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
 
 
+class User(Base):
+    """Usuário da plataforma."""
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    email = Column(String(255), unique=True, index=True, nullable=False)
+    name = Column(String(255), nullable=False)
+    password_hash = Column(String(500), nullable=False)
+    cpf_cnpj = Column(String(20), index=True)
+    plan = Column(String(20), default="free")  # free, basic, pro, enterprise
+    reports_used_this_month = Column(Integer, default=0)
+    is_active = Column(Boolean, default=True)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
+
+
 class CachedQuery(Base):
     __tablename__ = "cached_queries"
 
@@ -227,14 +251,46 @@ class CachedQuery(Base):
     )
 
 
+# --- Engine & Session ---
+
+_engine = None
+_SessionLocal = None
+
+
 def get_engine():
-    return create_engine(settings.database_url, echo=settings.debug)
+    global _engine
+    if _engine is None:
+        _engine = create_engine(
+            settings.database_url,
+            echo=settings.debug,
+            pool_pre_ping=True,
+            pool_size=5,
+            max_overflow=10,
+        )
+    return _engine
 
 
-def get_session():
-    engine = get_engine()
-    Session = sessionmaker(bind=engine)
-    return Session()
+def get_session_factory():
+    global _SessionLocal
+    if _SessionLocal is None:
+        _SessionLocal = sessionmaker(bind=get_engine(), autoflush=False)
+    return _SessionLocal
+
+
+def get_db() -> Session:
+    """FastAPI dependency: yields a DB session per request."""
+    SessionLocal = get_session_factory()
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+
+def get_session() -> Session:
+    """Get a standalone DB session (for scripts/CLI)."""
+    SessionLocal = get_session_factory()
+    return SessionLocal()
 
 
 def create_tables():

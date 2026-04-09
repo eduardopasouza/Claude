@@ -38,44 +38,14 @@ class MarketDataCollector(BaseCollector):
         super().__init__("market")
 
     async def get_latest_quotes(self) -> list[MarketQuote]:
-        """Busca cotações mais recentes de todas as commodities."""
-        cached = self._get_cached("latest_quotes")
-        if cached:
-            return [MarketQuote(**item) for item in cached]
-
-        quotes = []
-        for key, info in CEPEA_INDICATORS.items():
-            try:
-                quote = await self._fetch_cepea_indicator(key, info)
-                if quote:
-                    quotes.append(quote)
-            except Exception as e:
-                print(f"[MARKET] Error fetching {key}: {e}")
-
-        if quotes:
-            self._set_cached("latest_quotes", [q.model_dump() for q in quotes])
-
-        return quotes
-
-    async def _fetch_cepea_indicator(self, key: str, info: dict) -> Optional[MarketQuote]:
         """
-        Busca indicador CEPEA.
+        Busca cotações mais recentes de todas as commodities.
 
-        Note: CEPEA não tem API pública oficial. Em produção, os dados seriam
-        obtidos via scraping do site do CEPEA ou de fontes que republicam
-        (como Notícias Agrícolas ou Agrolink).
+        Delega ao CEPEACollector que faz scraping real do site CEPEA/ESALQ.
         """
-        # Placeholder - in production this would scrape CEPEA or use
-        # an aggregator that provides this data
-        return MarketQuote(
-            commodity=info["name"],
-            price=0.0,
-            unit=info["unit"],
-            date="",
-            source="CEPEA/ESALQ",
-            variation_pct=None,
-            location="Brasil",
-        )
+        from app.collectors.cepea import CEPEACollector
+        cepea = CEPEACollector()
+        return await cepea.get_all_quotes()
 
     async def get_production_by_municipality(
         self, municipality_code: str
@@ -92,10 +62,12 @@ class MarketDataCollector(BaseCollector):
         try:
             # PAM - Table 5457 (production, area, yield by municipality)
             # Main crops: soja (39), milho (33), cafe (9), cana (31)
+            # v/214=area colhida, v/215=area plantada, v/216=quantidade produzida
+            # c782: 39=soja, 33=milho, 9=cafe, 31=cana
             url = (
                 f"{SIDRA_BASE_URL}/t/5457/n6/{municipality_code}"
-                f"/v/35,216,112/p/last%201/c782/39,33,9,31"
-                f"/f/u"
+                f"/v/214,215,216/p/last%201/c782/39,33,9,31"
+                f"/f/n"
             )
 
             response = await self._http_get(url, timeout=30.0)

@@ -10,6 +10,7 @@ from typing import Optional
 
 from app.collectors.market_data import MarketDataCollector
 from app.collectors.financial import FinancialDataCollector
+from app.collectors.cepea import CEPEACollector
 
 router = APIRouter()
 
@@ -18,10 +19,22 @@ router = APIRouter()
 
 @router.get("/quotes")
 async def get_latest_quotes():
-    """Retorna cotações mais recentes de commodities agrícolas (CEPEA, B3, CME)."""
-    collector = MarketDataCollector()
-    quotes = await collector.get_latest_quotes()
-    return {"quotes": quotes, "source": "CEPEA/ESALQ"}
+    """Retorna cotações mais recentes de commodities agrícolas (CEPEA/ESALQ)."""
+    cepea = CEPEACollector()
+    quotes = await cepea.get_all_quotes()
+    return {"quotes": quotes, "source": "CEPEA/ESALQ", "total": len(quotes)}
+
+
+@router.get("/quotes/{commodity}")
+async def get_commodity_quote(commodity: str):
+    """Retorna cotação de uma commodity específica."""
+    cepea = CEPEACollector()
+    quote = await cepea.get_quote(commodity)
+    if quote:
+        return {"quote": quote, "source": "CEPEA/ESALQ"}
+    return {"error": f"Commodity '{commodity}' nao encontrada", "available": list(
+        ["soja", "milho", "boi_gordo", "cafe_arabica", "algodao", "arroz", "trigo", "acucar", "etanol_hidratado"]
+    )}
 
 
 # === Produção Agrícola ===

@@ -6,6 +6,7 @@ build/
 .env
 *.db
 data/cache/
+backend/data/cache/
 data/shapefiles/*.shp
 data/shapefiles/*.dbf
 data/shapefiles/*.shx

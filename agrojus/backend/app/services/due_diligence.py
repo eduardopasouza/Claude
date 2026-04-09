@@ -20,6 +20,7 @@ from app.collectors.receita_federal import ReceitaFederalCollector
 from app.collectors.ibama import IBAMACollector
 from app.collectors.slave_labour import SlaveLabourCollector
 from app.collectors.financial import FinancialDataCollector
+from app.collectors.datajud import DataJudCollector
 from app.processors.geospatial import GeospatialProcessor
 from app.models.schemas import (
     DueDiligenceReport,
@@ -41,6 +42,7 @@ class DueDiligenceService:
         self.ibama = IBAMACollector()
         self.slave_labour = SlaveLabourCollector()
         self.financial = FinancialDataCollector()
+        self.datajud = DataJudCollector()
         self.geo_processor = GeospatialProcessor()
 
     async def generate_report(self, request: PropertySearchRequest) -> DueDiligenceReport:
@@ -163,6 +165,15 @@ class DueDiligenceService:
         if report.slave_labour:
             sources.append("MTE (Lista Suja)")
 
+        # === ETAPA 4B: Processos judiciais (DataJud/CNJ) ===
+
+        if request.cpf_cnpj:
+            report.lawsuits = await self.datajud.search_by_cpf_cnpj(
+                request.cpf_cnpj
+            )
+            if report.lawsuits:
+                sources.append("DataJud/CNJ (Processos Judiciais)")
+
         # === ETAPA 5: Análise geoespacial ===
 
         if report.property_info and report.property_info.geometry_wkt:
@@ -208,6 +219,17 @@ class DueDiligenceService:
 
         return report
 
+    @staticmethod
+    def _risk_severity(level: RiskLevel) -> int:
+        """Returns numeric severity for risk comparison (higher = worse)."""
+        return {RiskLevel.LOW: 0, RiskLevel.MEDIUM: 1, RiskLevel.HIGH: 2, RiskLevel.CRITICAL: 3}[level]
+
+    def _escalate(self, current: RiskLevel, minimum: RiskLevel) -> RiskLevel:
+        """Escalate risk level to at least `minimum`, never downgrade."""
+        if self._risk_severity(current) < self._risk_severity(minimum):
+            return minimum
+        return current
+
     def _calculate_risk_score(self, report: DueDiligenceReport) -> RiskScore:
         """Calcula score de risco baseado em todos os dados coletados."""
         details = []
@@ -226,20 +248,19 @@ class DueDiligenceService:
             if report.property_info.status:
                 status = report.property_info.status.lower()
                 if "cancelado" in status or "suspenso" in status:
-                    land_tenure_risk = RiskLevel.CRITICAL
+                    land_tenure_risk = self._escalate(land_tenure_risk, RiskLevel.CRITICAL)
                     details.append(f"CAR com status: {report.property_info.status}")
                 elif "pendente" in status:
-                    land_tenure_risk = RiskLevel.MEDIUM
+                    land_tenure_risk = self._escalate(land_tenure_risk, RiskLevel.MEDIUM)
                     details.append(f"CAR com status pendente")
         else:
             details.append("Imovel sem CAR cadastrado ou nao encontrado")
-            land_tenure_risk = RiskLevel.HIGH
+            land_tenure_risk = self._escalate(land_tenure_risk, RiskLevel.HIGH)
 
         if report.sigef_info:
             identifiers_found += 1
             if not report.sigef_info.certified:
-                if land_tenure_risk.value < RiskLevel.MEDIUM.value:
-                    land_tenure_risk = RiskLevel.MEDIUM
+                land_tenure_risk = self._escalate(land_tenure_risk, RiskLevel.MEDIUM)
                 details.append("Georreferenciamento SIGEF nao certificado")
         else:
             details.append("Nenhuma parcela SIGEF encontrada")
@@ -247,59 +268,75 @@ class DueDiligenceService:
         if report.matricula_info and report.matricula_info.matricula_number:
             identifiers_found += 1
             if report.matricula_info.has_onus:
-                land_tenure_risk = RiskLevel.HIGH
+                land_tenure_risk = self._escalate(land_tenure_risk, RiskLevel.HIGH)
                 details.append(f"Matricula com onus/gravame: {report.matricula_info.onus_description or 'verificar'}")
 
         if report.ccir_info and report.ccir_info.ccir_number:
             identifiers_found += 1
             if report.ccir_info.valid is False:
-                land_tenure_risk = RiskLevel.HIGH
+                land_tenure_risk = self._escalate(land_tenure_risk, RiskLevel.HIGH)
                 details.append("CCIR vencido ou invalido")
 
         if report.itr_info:
             if report.itr_info.status_pagamento and "atraso" in (report.itr_info.status_pagamento or "").lower():
-                if land_tenure_risk.value < RiskLevel.MEDIUM.value:
-                    land_tenure_risk = RiskLevel.MEDIUM
+                land_tenure_risk = self._escalate(land_tenure_risk, RiskLevel.MEDIUM)
                 details.append("ITR com pagamento em atraso")
 
         # Penalizar falta de identificadores
         if identifiers_found < 2:
             details.append(f"Apenas {identifiers_found} de {identifiers_expected} identificadores encontrados - documentacao incompleta")
-            if land_tenure_risk.value < RiskLevel.MEDIUM.value:
-                land_tenure_risk = RiskLevel.MEDIUM
+            land_tenure_risk = self._escalate(land_tenure_risk, RiskLevel.MEDIUM)
 
         # --- Ambiental ---
         if report.ibama_embargos:
-            environmental_risk = RiskLevel.CRITICAL
+            environmental_risk = self._escalate(environmental_risk, RiskLevel.CRITICAL)
             details.append(f"{len(report.ibama_embargos)} embargo(s) IBAMA encontrado(s)")
 
         if report.overlap_analysis:
             if report.overlap_analysis.overlaps_indigenous_land:
-                environmental_risk = RiskLevel.CRITICAL
+                environmental_risk = self._escalate(environmental_risk, RiskLevel.CRITICAL)
                 details.append(f"Sobreposicao com Terra Indigena: {report.overlap_analysis.indigenous_land_name}")
             if report.overlap_analysis.overlaps_conservation_unit:
-                if environmental_risk != RiskLevel.CRITICAL:
-                    environmental_risk = RiskLevel.HIGH
+                environmental_risk = self._escalate(environmental_risk, RiskLevel.HIGH)
                 details.append(f"Sobreposicao com UC: {report.overlap_analysis.conservation_unit_name}")
             if report.overlap_analysis.overlaps_quilombo:
-                if environmental_risk != RiskLevel.CRITICAL:
-                    environmental_risk = RiskLevel.HIGH
+                environmental_risk = self._escalate(environmental_risk, RiskLevel.HIGH)
                 details.append(f"Sobreposicao com Quilombo: {report.overlap_analysis.quilombo_name}")
             if report.overlap_analysis.overlaps_settlement:
-                if environmental_risk != RiskLevel.CRITICAL:
-                    environmental_risk = RiskLevel.HIGH
+                environmental_risk = self._escalate(environmental_risk, RiskLevel.HIGH)
                 details.append(f"Sobreposicao com Assentamento: {report.overlap_analysis.settlement_name}")
             if report.overlap_analysis.overlaps_deforestation:
-                if environmental_risk.value < RiskLevel.HIGH.value:
-                    environmental_risk = RiskLevel.HIGH
+                environmental_risk = self._escalate(environmental_risk, RiskLevel.HIGH)
                 details.append(f"Desmatamento detectado: {report.overlap_analysis.deforestation_area_ha} ha")
 
         # --- Jurídico ---
         if report.owner_info:
             status = (report.owner_info.situacao_cadastral or "").lower()
             if "inapta" in status or "baixada" in status or "suspensa" in status:
-                legal_risk = RiskLevel.HIGH
+                legal_risk = self._escalate(legal_risk, RiskLevel.HIGH)
                 details.append(f"CNPJ com situacao: {report.owner_info.situacao_cadastral}")
+
+        # --- Processos Judiciais ---
+        if report.lawsuits:
+            lawsuit_count = len(report.lawsuits)
+            if lawsuit_count >= 5:
+                legal_risk = self._escalate(legal_risk, RiskLevel.HIGH)
+            elif lawsuit_count >= 1:
+                legal_risk = self._escalate(legal_risk, RiskLevel.MEDIUM)
+            details.append(f"{lawsuit_count} processo(s) judicial(is) encontrado(s) no DataJud")
+
+            # Check for specific concerning subjects
+            for lawsuit in report.lawsuits:
+                for subject in lawsuit.subjects:
+                    subject_lower = subject.lower()
+                    if any(kw in subject_lower for kw in ["ambiental", "desmatamento", "embargo"]):
+                        environmental_risk = self._escalate(environmental_risk, RiskLevel.HIGH)
+                        details.append(f"Processo ambiental: {lawsuit.case_number}")
+                        break
+                    if any(kw in subject_lower for kw in ["possessoria", "usucapiao", "reintegracao"]):
+                        land_tenure_risk = self._escalate(land_tenure_risk, RiskLevel.HIGH)
+                        details.append(f"Disputa possessoria: {lawsuit.case_number}")
+                        break
 
         # --- Trabalhista ---
         if report.slave_labour:
@@ -317,10 +354,9 @@ class DueDiligenceService:
         if not details:
             details.append("Nenhum alerta encontrado nas fontes consultadas")
 
-        risk_order = [RiskLevel.LOW, RiskLevel.MEDIUM, RiskLevel.HIGH, RiskLevel.CRITICAL]
         overall = max(
             [land_tenure_risk, environmental_risk, legal_risk, labor_risk, financial_risk],
-            key=lambda r: risk_order.index(r),
+            key=lambda r: self._risk_severity(r),
         )
 
         return RiskScore(

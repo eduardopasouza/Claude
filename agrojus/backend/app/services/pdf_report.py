@@ -8,64 +8,68 @@ análise de risco e recomendações.
 import io
 from datetime import datetime
 
-from reportlab.lib.pagesizes import A4
-from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.lib.units import cm
-from reportlab.lib.colors import HexColor
-from reportlab.platypus import (
-    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak
-)
-from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_JUSTIFY
+try:
+    from reportlab.lib.pagesizes import A4
+    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+    from reportlab.lib.units import cm
+    from reportlab.lib.colors import HexColor
+    from reportlab.platypus import (
+        SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak
+    )
+    from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_JUSTIFY
+    HAS_REPORTLAB = True
+except ImportError:
+    HAS_REPORTLAB = False
 
 from app.models.schemas import DueDiligenceReport, RiskLevel
 
 
-# Brand colors
-GREEN = HexColor("#2D6A4F")
-RED = HexColor("#D62828")
-YELLOW = HexColor("#F77F00")
-GRAY = HexColor("#6C757D")
-LIGHT_GREEN = HexColor("#D8F3DC")
-LIGHT_RED = HexColor("#FFCDD2")
-LIGHT_YELLOW = HexColor("#FFF3CD")
-WHITE = HexColor("#FFFFFF")
-DARK = HexColor("#212529")
+# Brand colors (only available when reportlab is installed)
+if HAS_REPORTLAB:
+    GREEN = HexColor("#2D6A4F")
+    RED = HexColor("#D62828")
+    YELLOW = HexColor("#F77F00")
+    GRAY = HexColor("#6C757D")
+    LIGHT_GREEN = HexColor("#D8F3DC")
+    LIGHT_RED = HexColor("#FFCDD2")
+    LIGHT_YELLOW = HexColor("#FFF3CD")
+    WHITE = HexColor("#FFFFFF")
+    DARK = HexColor("#212529")
 
+    def _risk_color(risk: RiskLevel):
+        if risk == RiskLevel.CRITICAL:
+            return RED
+        elif risk == RiskLevel.HIGH:
+            return HexColor("#E63946")
+        elif risk == RiskLevel.MEDIUM:
+            return YELLOW
+        return GREEN
 
-def _risk_color(risk: RiskLevel) -> HexColor:
-    if risk == RiskLevel.CRITICAL:
-        return RED
-    elif risk == RiskLevel.HIGH:
-        return HexColor("#E63946")
-    elif risk == RiskLevel.MEDIUM:
-        return YELLOW
-    return GREEN
+    def _risk_label(risk: RiskLevel) -> str:
+        labels = {
+            RiskLevel.LOW: "BAIXO",
+            RiskLevel.MEDIUM: "MEDIO",
+            RiskLevel.HIGH: "ALTO",
+            RiskLevel.CRITICAL: "CRITICO",
+        }
+        return labels.get(risk, "N/A")
 
-
-def _risk_label(risk: RiskLevel) -> str:
-    labels = {
-        RiskLevel.LOW: "BAIXO",
-        RiskLevel.MEDIUM: "MEDIO",
-        RiskLevel.HIGH: "ALTO",
-        RiskLevel.CRITICAL: "CRITICO",
-    }
-    return labels.get(risk, "N/A")
-
-
-def _risk_bg(risk: RiskLevel) -> HexColor:
-    if risk == RiskLevel.CRITICAL:
-        return LIGHT_RED
-    elif risk == RiskLevel.HIGH:
-        return LIGHT_RED
-    elif risk == RiskLevel.MEDIUM:
-        return LIGHT_YELLOW
-    return LIGHT_GREEN
+    def _risk_bg(risk: RiskLevel):
+        if risk == RiskLevel.CRITICAL:
+            return LIGHT_RED
+        elif risk == RiskLevel.HIGH:
+            return LIGHT_RED
+        elif risk == RiskLevel.MEDIUM:
+            return LIGHT_YELLOW
+        return LIGHT_GREEN
 
 
 class PDFReportGenerator:
     """Gera relatórios PDF de Due Diligence Rural."""
 
     def __init__(self):
+        if not HAS_REPORTLAB:
+            raise ImportError("reportlab is required for PDF generation. Install with: pip install reportlab")
         self.styles = getSampleStyleSheet()
         self._setup_custom_styles()
 
