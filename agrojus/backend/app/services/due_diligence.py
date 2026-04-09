@@ -20,6 +20,7 @@ from app.collectors.receita_federal import ReceitaFederalCollector
 from app.collectors.ibama import IBAMACollector
 from app.collectors.slave_labour import SlaveLabourCollector
 from app.collectors.financial import FinancialDataCollector
+from app.collectors.datajud import DataJudCollector
 from app.processors.geospatial import GeospatialProcessor
 from app.models.schemas import (
     DueDiligenceReport,
@@ -41,6 +42,7 @@ class DueDiligenceService:
         self.ibama = IBAMACollector()
         self.slave_labour = SlaveLabourCollector()
         self.financial = FinancialDataCollector()
+        self.datajud = DataJudCollector()
         self.geo_processor = GeospatialProcessor()
 
     async def generate_report(self, request: PropertySearchRequest) -> DueDiligenceReport:
@@ -162,6 +164,15 @@ class DueDiligenceService:
             )
         if report.slave_labour:
             sources.append("MTE (Lista Suja)")
+
+        # === ETAPA 4B: Processos judiciais (DataJud/CNJ) ===
+
+        if request.cpf_cnpj:
+            report.lawsuits = await self.datajud.search_by_cpf_cnpj(
+                request.cpf_cnpj
+            )
+            if report.lawsuits:
+                sources.append("DataJud/CNJ (Processos Judiciais)")
 
         # === ETAPA 5: Análise geoespacial ===
 
@@ -300,6 +311,30 @@ class DueDiligenceService:
             if "inapta" in status or "baixada" in status or "suspensa" in status:
                 legal_risk = RiskLevel.HIGH
                 details.append(f"CNPJ com situacao: {report.owner_info.situacao_cadastral}")
+
+        # --- Processos Judiciais ---
+        if report.lawsuits:
+            lawsuit_count = len(report.lawsuits)
+            if lawsuit_count >= 5:
+                legal_risk = RiskLevel.HIGH
+            elif lawsuit_count >= 1:
+                if legal_risk.value < RiskLevel.MEDIUM.value:
+                    legal_risk = RiskLevel.MEDIUM
+            details.append(f"{lawsuit_count} processo(s) judicial(is) encontrado(s) no DataJud")
+
+            # Check for specific concerning subjects
+            for lawsuit in report.lawsuits:
+                for subject in lawsuit.subjects:
+                    subject_lower = subject.lower()
+                    if any(kw in subject_lower for kw in ["ambiental", "desmatamento", "embargo"]):
+                        if environmental_risk.value < RiskLevel.HIGH.value:
+                            environmental_risk = RiskLevel.HIGH
+                        details.append(f"Processo ambiental: {lawsuit.case_number}")
+                        break
+                    if any(kw in subject_lower for kw in ["possessoria", "usucapiao", "reintegracao"]):
+                        land_tenure_risk = RiskLevel.HIGH
+                        details.append(f"Disputa possessoria: {lawsuit.case_number}")
+                        break
 
         # --- Trabalhista ---
         if report.slave_labour:

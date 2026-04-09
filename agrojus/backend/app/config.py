@@ -1,14 +1,16 @@
 from pydantic_settings import BaseSettings
-from typing import Optional
 
 
 class Settings(BaseSettings):
     app_name: str = "AgroJus API"
-    app_version: str = "0.1.0"
+    app_version: str = "0.2.0"
     debug: bool = True
 
     # Database
     database_url: str = "postgresql://agrojus:agrojus@localhost:5432/agrojus"
+
+    # JWT Auth
+    jwt_secret: str = "agrojus-dev-secret-change-in-production"
 
     # External APIs
     receita_federal_url: str = "https://brasilapi.com.br/api/cnpj/v1"
@@ -23,6 +25,9 @@ class Settings(BaseSettings):
 
     # IBAMA
     ibama_embargos_url: str = "https://dadosabertos.ibama.gov.br"
+
+    # DataJud/CNJ
+    datajud_api_key: str = ""
 
     # Data directories
     data_dir: str = "data"

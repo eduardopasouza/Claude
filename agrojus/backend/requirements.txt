@@ -34,6 +34,9 @@ numpy==2.2.1
 # RSS Feed Aggregation
 feedparser==6.0.11
 
+# Authentication
+PyJWT==2.10.1
+
 # Utilities
 python-dotenv==1.0.1
 pydantic==2.10.3
