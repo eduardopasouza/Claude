@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
 from app.logging_config import setup_logging
+from app.middleware.rate_limit import RateLimitMiddleware
 from app.api import search, report, map_data, market, news, auth, monitoring, smart_search, geo, lawsuits
 
 setup_logging("DEBUG" if settings.debug else "INFO")
@@ -41,6 +42,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.add_middleware(RateLimitMiddleware)
 
 # API routes
 app.include_router(auth.router, prefix="/api/v1/auth", tags=["auth"])

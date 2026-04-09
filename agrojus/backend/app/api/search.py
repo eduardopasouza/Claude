@@ -5,10 +5,12 @@ Aceita qualquer identificador de imóvel ou pessoa e retorna dados cruzados.
 """
 
 from fastapi import APIRouter, HTTPException
+from typing import Optional
 
 from app.collectors.sicar import SICARCollector
 from app.collectors.sigef import SIGEFCollector
 from app.collectors.receita_federal import ReceitaFederalCollector
+from app.collectors.slave_labour import SlaveLabourCollector
 from app.models.schemas import PropertySearchRequest, PersonSearchRequest, RegionSearchRequest
 
 router = APIRouter()
@@ -113,3 +115,46 @@ async def validate_document(document: str):
     """Valida um CPF ou CNPJ e retorna tipo."""
     receita = ReceitaFederalCollector()
     return await receita.validate_cpf_cnpj(document)
+
+
+@router.get("/lista-suja/{cpf_cnpj}")
+async def search_slave_labour(cpf_cnpj: str):
+    """Busca um CPF/CNPJ na Lista Suja do Trabalho Escravo (MTE)."""
+    collector = SlaveLabourCollector()
+    results = await collector.search_by_cpf_cnpj(cpf_cnpj)
+    return {
+        "source": "MTE (Lista Suja)",
+        "cpf_cnpj": cpf_cnpj,
+        "found": len(results) > 0,
+        "total": len(results),
+        "records": results,
+    }
+
+
+@router.get("/lista-suja")
+async def list_slave_labour(
+    municipality: Optional[str] = None,
+    state: Optional[str] = None,
+    name: Optional[str] = None,
+    skip: int = 0,
+    limit: int = 50,
+):
+    """Lista registros da Lista Suja, com filtros opcionais."""
+    collector = SlaveLabourCollector()
+
+    if name:
+        results = await collector.search_by_name(name)
+    elif state:
+        results = await collector.search_by_municipality(municipality or "", state)
+    else:
+        results = await collector.get_all()
+
+    total = len(results)
+    page = results[skip:skip + limit]
+    return {
+        "source": "MTE (Lista Suja)",
+        "total": total,
+        "skip": skip,
+        "limit": limit,
+        "records": page,
+    }
