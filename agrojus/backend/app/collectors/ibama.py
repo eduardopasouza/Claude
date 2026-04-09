@@ -18,8 +18,9 @@ from app.models.schemas import IBAMAEmbargo
 class IBAMACollector(BaseCollector):
     """Coleta dados de embargos e infrações ambientais do IBAMA."""
 
-    EMBARGOS_URL = "https://dadosabertos.ibama.gov.br/dados/SICAFI/embargo/Embargo.csv"
-    AUTUACOES_URL = "https://dadosabertos.ibama.gov.br/dados/SICAFI/autuacao/Autuacao.csv"
+    EMBARGOS_ZIP_URL = "https://dadosabertos.ibama.gov.br/dados/SIFISC/termo_embargo/termo_embargo/termo_embargo_csv.zip"
+    EMBARGOS_COORDS_URL = "https://dadosabertos.ibama.gov.br/dados/SIFISC/termo_embargo/coordenadas/coordenadas.csv"
+    AUTUACOES_ZIP_URL = "https://dadosabertos.ibama.gov.br/dados/SIFISC/auto_infracao/auto_infracao/auto_infracao_csv.zip"
 
     def __init__(self):
         super().__init__("ibama")

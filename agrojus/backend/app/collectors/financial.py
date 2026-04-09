@@ -56,10 +56,10 @@ class FinancialDataCollector(BaseCollector):
             return [RuralCreditRecord(**item) for item in cached]
 
         try:
-            # SICOR OData API - aggregate by municipality
+            # SICOR OData API - CusteioMunicipioProduto (correct endpoint)
             url = (
-                f"{self.SICOR_API_URL}/RecursosMunicipios"
-                f"?$filter=AnoEmissao eq '{year}' and cdMunicipio eq '{municipality_code}'"
+                f"{self.SICOR_API_URL}/CusteioMunicipioProduto"
+                f"?$filter=AnoEmissao eq '{year}' and codIbge eq '{municipality_code}'"
                 f"&$format=json"
                 f"&$top=100"
             )
@@ -70,14 +70,14 @@ class FinancialDataCollector(BaseCollector):
             records = []
             for item in data.get("value", []):
                 record = RuralCreditRecord(
-                    bank=item.get("InstituicaoFinanceira"),
-                    credit_line=item.get("Programa"),
-                    purpose=item.get("Finalidade"),
-                    amount=self._safe_float(item.get("VlCusteio", "0")),
+                    bank=None,
+                    credit_line=item.get("cdPrograma"),
+                    purpose="Custeio",
+                    amount=self._safe_float(item.get("VlCusteio", 0)),
                     municipality=item.get("Municipio"),
-                    state=item.get("UF"),
+                    state=None,
                     year=year,
-                    crop=item.get("Produto"),
+                    crop=item.get("nomeProduto", "").strip('"'),
                 )
                 records.append(record)
 
