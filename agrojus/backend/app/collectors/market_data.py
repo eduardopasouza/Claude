@@ -92,10 +92,12 @@ class MarketDataCollector(BaseCollector):
         try:
             # PAM - Table 5457 (production, area, yield by municipality)
             # Main crops: soja (39), milho (33), cafe (9), cana (31)
+            # v/214=area colhida, v/215=area plantada, v/216=quantidade produzida
+            # c782: 39=soja, 33=milho, 9=cafe, 31=cana
             url = (
                 f"{SIDRA_BASE_URL}/t/5457/n6/{municipality_code}"
-                f"/v/35,216,112/p/last%201/c782/39,33,9,31"
-                f"/f/u"
+                f"/v/214,215,216/p/last%201/c782/39,33,9,31"
+                f"/f/n"
             )
 
             response = await self._http_get(url, timeout=30.0)
