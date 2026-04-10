@@ -34,6 +34,9 @@ class Settings(BaseSettings):
     # DataJud/CNJ
     datajud_api_key: str = ""
 
+    # SERPRO API (CPF/CNPJ premium)
+    serpro_api_token: str = ""
+
     # Data directories
     data_dir: str = "data"
     shapefile_dir: str = "data/shapefiles"
