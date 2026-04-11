@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AgroJus — Inteligência Fundiária, Jurídica e de Mercado para o Agronegócio" />
+  <title>AgroJus — Inteligência Agro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <div class="logo-icon">⚖</div>
+        <div>
+          <h1 class="logo-text">AgroJus</h1>
+          <span class="logo-sub">Inteligência Agro</span>
+        </div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <button class="nav-item active" data-panel="dashboard" id="nav-dashboard">
+        <span class="nav-icon">📊</span> Dashboard
+      </button>
+      <button class="nav-item" data-panel="consulta" id="nav-consulta">
+        <span class="nav-icon">🔍</span> Consulta Unificada
+      </button>
+      <button class="nav-item" data-panel="mapa" id="nav-mapa">
+        <span class="nav-icon">🗺️</span> Mapa GIS
+      </button>
+      <button class="nav-item" data-panel="compliance" id="nav-compliance">
+        <span class="nav-icon">✅</span> Compliance
+      </button>
+      <button class="nav-item" data-panel="mercado" id="nav-mercado">
+        <span class="nav-icon">📈</span> Mercado
+      </button>
+      <button class="nav-item" data-panel="noticias" id="nav-noticias">
+        <span class="nav-icon">📰</span> Notícias
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="api-status" id="api-status">
+        <span class="status-dot offline"></span>
+        <span>API Offline</span>
+      </div>
+      <span class="version">v0.5.0</span>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main" id="main-content">
+
+    <!-- Dashboard Panel -->
+    <section class="panel active" id="panel-dashboard">
+      <header class="panel-header">
+        <h2>Dashboard</h2>
+        <span class="panel-badge" id="badge-plan">Plano Free</span>
+      </header>
+
+      <div class="stats-grid" id="stats-grid">
+        <div class="stat-card" id="stat-sources">
+          <div class="stat-value">13</div>
+          <div class="stat-label">Fontes de Dados</div>
+          <div class="stat-trend up">11 online</div>
+        </div>
+        <div class="stat-card" id="stat-searches">
+          <div class="stat-value" id="searches-remaining">—</div>
+          <div class="stat-label">Buscas Restantes</div>
+          <div class="stat-trend">hoje</div>
+        </div>
+        <div class="stat-card" id="stat-reports">
+          <div class="stat-value" id="reports-remaining">—</div>
+          <div class="stat-label">Relatórios Restantes</div>
+          <div class="stat-trend">este mês</div>
+        </div>
+        <div class="stat-card" id="stat-api-status">
+          <div class="stat-value" id="api-latency">—</div>
+          <div class="stat-label">Latência API</div>
+          <div class="stat-trend" id="api-version">—</div>
+        </div>
+      </div>
+
+      <!-- Quick Search -->
+      <div class="quick-search-card" id="quick-search">
+        <h3>Busca Rápida</h3>
+        <div class="search-row">
+          <input type="text" class="input-main" id="input-quick-search" placeholder="CPF, CNPJ, nome ou CAR..." />
+          <button class="btn-primary" id="btn-quick-search">Buscar</button>
+        </div>
+      </div>
+
+      <!-- Recent News -->
+      <div class="news-card" id="news-panel">
+        <h3>Notícias Agro</h3>
+        <div class="news-list" id="news-list">
+          <div class="skeleton-line"></div>
+          <div class="skeleton-line short"></div>
+          <div class="skeleton-line"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Consulta Unificada Panel -->
+    <section class="panel" id="panel-consulta">
+      <header class="panel-header">
+        <h2>Consulta Unificada</h2>
+        <span class="panel-badge">Todas as Fontes</span>
+      </header>
+
+      <div class="consulta-form">
+        <div class="form-group">
+          <label for="input-cpf-cnpj">CPF ou CNPJ</label>
+          <input type="text" class="input-main" id="input-cpf-cnpj" placeholder="Digite CPF (11 dígitos) ou CNPJ (14 dígitos)..." />
+        </div>
+        <button class="btn-primary btn-lg" id="btn-consulta">Executar Consulta Completa</button>
+      </div>
+
+      <div class="consulta-results" id="consulta-results" style="display:none;">
+        <div class="risk-badge-bar" id="risk-bar"></div>
+        <div class="sections-grid" id="sections-grid"></div>
+      </div>
+    </section>
+
+    <!-- Mapa GIS Panel -->
+    <section class="panel" id="panel-mapa">
+      <header class="panel-header">
+        <h2>Mapa GIS</h2>
+        <div class="map-controls">
+          <select class="select-layer" id="select-layer">
+            <option value="">Camadas...</option>
+            <option value="terras_indigenas">Terras Indígenas</option>
+            <option value="desmatamento">Alertas Desmatamento</option>
+            <option value="municipios">Municípios</option>
+          </select>
+          <input type="text" class="input-uf" id="input-uf" placeholder="UF" maxlength="2" />
+          <button class="btn-secondary" id="btn-load-layer">Carregar</button>
+        </div>
+      </header>
+      <div class="map-container" id="map-container"></div>
+      <div class="map-info" id="map-info">
+        <span>Clique direito no mapa para analisar uma região</span>
+      </div>
+    </section>
+
+    <!-- Compliance Panel -->
+    <section class="panel" id="panel-compliance">
+      <header class="panel-header">
+        <h2>Compliance</h2>
+        <span class="panel-badge">MCR 2.9 / EUDR</span>
+      </header>
+      <div class="compliance-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="comp-cpf">CPF/CNPJ</label>
+            <input type="text" class="input-main" id="comp-cpf" placeholder="CPF ou CNPJ" />
+          </div>
+          <div class="form-group">
+            <label for="comp-car">Código CAR</label>
+            <input type="text" class="input-main" id="comp-car" placeholder="MA-2100055-abc123" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="comp-lat">Latitude</label>
+            <input type="number" class="input-main" id="comp-lat" placeholder="-5.0" step="0.0001" />
+          </div>
+          <div class="form-group">
+            <label for="comp-lon">Longitude</label>
+            <input type="number" class="input-main" id="comp-lon" placeholder="-44.0" step="0.0001" />
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-primary" id="btn-mcr29">Verificar MCR 2.9</button>
+          <button class="btn-secondary" id="btn-eudr">Verificar EUDR</button>
+        </div>
+      </div>
+      <div class="compliance-results" id="compliance-results" style="display:none;"></div>
+    </section>
+
+    <!-- Mercado Panel -->
+    <section class="panel" id="panel-mercado">
+      <header class="panel-header">
+        <h2>Mercado & Indicadores</h2>
+      </header>
+      <div class="market-grid" id="market-grid">
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+      </div>
+    </section>
+
+    <!-- Noticias Panel -->
+    <section class="panel" id="panel-noticias">
+      <header class="panel-header">
+        <h2>Notícias do Agronegócio</h2>
+        <div class="news-filters">
+          <button class="filter-btn active" data-filter="all">Todas</button>
+          <button class="filter-btn" data-filter="juridico">Jurídico</button>
+          <button class="filter-btn" data-filter="mercado">Mercado</button>
+        </div>
+      </header>
+      <div class="news-full-list" id="news-full-list">
+        <div class="skeleton-line"></div>
+        <div class="skeleton-line short"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
