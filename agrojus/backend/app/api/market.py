@@ -150,3 +150,31 @@ async def get_fiagro_funds():
     collector = FinancialDataCollector()
     funds = await collector.get_fiagro_funds()
     return {"source": "CVM", "funds": funds}
+
+
+# === Indicadores Economicos (BCB - dados reais) ===
+
+@router.get("/indicators")
+async def get_economic_indicators():
+    """
+    Indicadores economicos em TEMPO REAL do Banco Central.
+
+    Retorna: SELIC, dolar, IPCA, IGP-M, CDI — dados atualizados diariamente.
+    """
+    from app.collectors.bcb import BCBCollector
+    bcb = BCBCollector()
+    indicators = await bcb.get_indicators_summary()
+    return {"source": "Banco Central do Brasil", "indicators": indicators}
+
+
+@router.get("/indicators/{serie}")
+async def get_indicator_serie(serie: str, ultimos: int = 30):
+    """
+    Serie temporal de um indicador do BCB.
+
+    Series: selic, dolar, ipca, igpm, cdi, poupanca, tr.
+    """
+    from app.collectors.bcb import BCBCollector
+    bcb = BCBCollector()
+    data = await bcb.get_serie(serie, ultimos=ultimos)
+    return data
