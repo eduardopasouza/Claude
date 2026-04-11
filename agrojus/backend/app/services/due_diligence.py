@@ -27,7 +27,6 @@ from app.models.schemas import (
     PropertySearchRequest,
     RiskScore,
     RiskLevel,
-    PersonaType,
     FinancialSummary,
 )
 
@@ -184,7 +183,6 @@ class DueDiligenceService:
 
         # === ETAPA 6: Dados financeiros ===
 
-        municipality_code = None
         if report.property_info and report.property_info.municipality:
             # In production, would resolve municipality to IBGE code
             pass
@@ -252,7 +250,7 @@ class DueDiligenceService:
                     details.append(f"CAR com status: {report.property_info.status}")
                 elif "pendente" in status:
                     land_tenure_risk = self._escalate(land_tenure_risk, RiskLevel.MEDIUM)
-                    details.append(f"CAR com status pendente")
+                    details.append("CAR com status pendente")
         else:
             details.append("Imovel sem CAR cadastrado ou nao encontrado")
             land_tenure_risk = self._escalate(land_tenure_risk, RiskLevel.HIGH)

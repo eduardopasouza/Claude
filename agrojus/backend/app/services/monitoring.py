@@ -12,12 +12,7 @@ Em produção, rodaria como job periódico (cron/celery).
 import logging
 import uuid
 from datetime import datetime, timezone
-from typing import Optional
 
-from app.models.schemas import (
-    PropertySearchRequest,
-    PersonSearchRequest,
-)
 
 logger = logging.getLogger("agrojus")
 
@@ -157,7 +152,7 @@ class MonitoringService:
                 if embargos:
                     self._alerts.append(MonitoringAlert(
                         alert_type="new_embargo",
-                        title=f"Novo embargo IBAMA detectado",
+                        title="Novo embargo IBAMA detectado",
                         description=f"{len(embargos)} embargo(s) encontrado(s) para CPF/CNPJ {cpf_cnpj}",
                         severity="critical",
                         cpf_cnpj=cpf_cnpj,
@@ -174,7 +169,7 @@ class MonitoringService:
                     if "cancelado" in status or "suspenso" in status:
                         self._alerts.append(MonitoringAlert(
                             alert_type="car_status_change",
-                            title=f"Alteracao no status do CAR",
+                            title="Alteracao no status do CAR",
                             description=f"CAR {car_code} com status: {car_data.status}",
                             severity="warning",
                             car_code=car_code,

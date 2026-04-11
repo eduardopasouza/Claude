@@ -9,7 +9,6 @@ camadas do mapa e para o backend saber onde buscar cada dado.
 """
 
 import logging
-from typing import Optional
 
 logger = logging.getLogger("agrojus")
 

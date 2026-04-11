@@ -17,7 +17,6 @@ Ambas as verificacoes usam as mesmas fontes que o AgroJus ja integra:
 FUNAI (TIs), INPE/DETER (desmatamento), IBAMA (embargos), MTE (lista suja).
 """
 
-import asyncio
 import logging
 import uuid
 from datetime import datetime, timezone
@@ -87,7 +86,6 @@ async def check_mcr29_compliance(request: ComplianceRequest):
     restricted = False
 
     # --- Check 1: CAR ativo ---
-    car_status = "unknown"
     if request.car_code:
         # Quando SICAR voltar, consultar status real
         checks.append({
@@ -195,7 +193,7 @@ async def check_mcr29_compliance(request: ComplianceRequest):
             checks.append({
                 "check": "Lista Suja trabalho escravo",
                 "status": "blocked",
-                "detail": f"CPF/CNPJ encontrado na Lista Suja do MTE. Credito rural bloqueado.",
+                "detail": "CPF/CNPJ encontrado na Lista Suja do MTE. Credito rural bloqueado.",
                 "regulation": "MCR 2-2-9, item 1-A: Vedado credito a empregadores na lista do trabalho escravo.",
             })
             blocked = True
@@ -267,7 +265,7 @@ async def check_eudr_compliance(request: ComplianceRequest):
         })
 
         # Buscar municipio
-        ibge = IBGECollector()
+        IBGECollector()
         # Reverse geocode via Nominatim
         import httpx
         try:

@@ -8,7 +8,6 @@ Fontes:
 """
 
 import logging
-from typing import Optional
 
 from app.collectors.base import BaseCollector
 from app.models.schemas import MarketQuote

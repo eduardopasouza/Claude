@@ -9,8 +9,6 @@ Fontes testadas e confirmadas:
 """
 
 import logging
-from typing import Optional
-import json
 
 from app.collectors.base import BaseCollector
 

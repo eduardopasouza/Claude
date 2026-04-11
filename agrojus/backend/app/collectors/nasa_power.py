@@ -14,7 +14,6 @@ Dados disponiveis para qualquer ponto do planeta:
 """
 
 import logging
-from typing import Optional
 from datetime import datetime, timedelta
 
 from app.collectors.base import BaseCollector

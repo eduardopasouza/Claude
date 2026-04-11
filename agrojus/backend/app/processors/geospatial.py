@@ -76,7 +76,7 @@ class GeospatialProcessor:
             return analysis
 
         try:
-            import geopandas as gpd
+            import geopandas as gpd  # noqa: F401
             from shapely.geometry import shape
 
             geometry = shape(json.loads(property_geometry_geojson))

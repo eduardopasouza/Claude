@@ -23,7 +23,6 @@ from datetime import datetime, timezone
 
 from fastapi import APIRouter
 from pydantic import BaseModel, Field
-from typing import Optional
 
 from app.collectors.receita_federal import ReceitaFederalCollector
 from app.collectors.ibama import IBAMACollector
@@ -32,7 +31,6 @@ from app.collectors.datajud import DataJudCollector
 from app.collectors.financial import FinancialDataCollector
 from app.collectors.cpf import CPFCollector
 from app.collectors.protestos import ProtestosCollector
-from app.models.schemas import RiskLevel
 
 logger = logging.getLogger("agrojus.consulta")
 router = APIRouter()
