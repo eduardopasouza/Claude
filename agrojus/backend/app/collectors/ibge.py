@@ -183,3 +183,170 @@ class IBGECollector(BaseCollector):
         except Exception as e:
             logger.warning("IBGE SIDRA failed: %s", e)
             return {"municipio_code": codigo_municipio, "culturas": []}
+
+    async def get_serie_historica_producao(
+        self, codigo_municipio: str, cultura_code: str = "39", anos: int = 10
+    ) -> dict:
+        """
+        Serie historica de producao agricola (PAM/SIDRA).
+
+        Retorna area colhida, area plantada, quantidade produzida,
+        valor da producao e rendimento medio (kg/ha) por ano.
+
+        Codigos de cultura: 39=soja, 33=milho, 9=cafe, 31=cana,
+        3=algodao, 40=arroz, 45=trigo, 15=feijao, 2713=sorgo.
+        """
+        cache_key = f"serie_hist:{codigo_municipio}:{cultura_code}:{anos}"
+        cached = self._get_cached(cache_key)
+        if cached:
+            return cached
+
+        try:
+            # v/214=area colhida, v/215=area plantada, v/216=qtd produzida,
+            # v/112=rendimento medio, v/215=valor producao
+            url = (
+                f"{self.SIDRA_URL}/t/5457/n6/{codigo_municipio}"
+                f"/v/214,215,216,112/p/last%20{anos}/c782/{cultura_code}/f/n"
+            )
+            response = await self._http_get(url, timeout=15.0)
+            raw = response.json()
+
+            # Organizar por ano
+            anos_data = {}
+            if len(raw) > 1:
+                for row in raw[1:]:
+                    ano = row.get("D3N", "")
+                    variavel = row.get("D2N", "")
+                    valor = row.get("V", "0")
+                    unidade = row.get("MN", "")
+
+                    if ano not in anos_data:
+                        anos_data[ano] = {"ano": ano}
+                    anos_data[ano][variavel] = {"valor": valor, "unidade": unidade}
+
+            result = {
+                "municipio_code": codigo_municipio,
+                "cultura_code": cultura_code,
+                "anos": anos,
+                "serie": list(anos_data.values()),
+                "total_anos": len(anos_data),
+                "source": "IBGE/SIDRA (PAM - Tabela 5457)",
+            }
+
+            self._set_cached(cache_key, result)
+            return result
+        except Exception as e:
+            logger.warning("IBGE serie historica failed: %s", e)
+            return {"municipio_code": codigo_municipio, "serie": [], "error": str(e)}
+
+    async def get_pecuaria_municipal(
+        self, codigo_municipio: str, anos: int = 5
+    ) -> dict:
+        """
+        Dados de pecuaria municipal (PPM/SIDRA).
+
+        Tabela 3939: efetivo de rebanho.
+        Codigos: 2670=bovinos, 2672=bubalinos, 2675=equinos,
+        2681=suinos, 2683=caprinos, 2684=ovinos, 2682=galinaceos.
+        """
+        cache_key = f"pecuaria:{codigo_municipio}:{anos}"
+        cached = self._get_cached(cache_key)
+        if cached:
+            return cached
+
+        try:
+            url = (
+                f"{self.SIDRA_URL}/t/3939/n6/{codigo_municipio}"
+                f"/v/105/p/last%20{anos}/c79/2670,2672,2675,2681,2683,2684/f/n"
+            )
+            response = await self._http_get(url, timeout=15.0)
+            raw = response.json()
+
+            rebanhos = {}
+            if len(raw) > 1:
+                for row in raw[1:]:
+                    tipo = row.get("D4N", "")
+                    ano = row.get("D3N", "")
+                    valor = row.get("V", "0")
+
+                    if tipo not in rebanhos:
+                        rebanhos[tipo] = []
+                    rebanhos[tipo].append({"ano": ano, "quantidade": valor, "unidade": "Cabecas"})
+
+            result = {
+                "municipio_code": codigo_municipio,
+                "rebanhos": rebanhos,
+                "anos": anos,
+                "source": "IBGE/SIDRA (PPM - Tabela 3939)",
+            }
+
+            self._set_cached(cache_key, result)
+            return result
+        except Exception as e:
+            logger.warning("IBGE pecuaria failed: %s", e)
+            return {"municipio_code": codigo_municipio, "rebanhos": {}, "error": str(e)}
+
+    async def get_censo_agropecuario(self, codigo_municipio: str) -> dict:
+        """
+        Dados do Censo Agropecuario 2017 (SIDRA).
+
+        Retorna: numero de estabelecimentos, area, despesas,
+        uso do solo, mao de obra.
+        """
+        cache_key = f"censo_agro:{codigo_municipio}"
+        cached = self._get_cached(cache_key)
+        if cached:
+            return cached
+
+        result = {
+            "municipio_code": codigo_municipio,
+            "ano": 2017,
+            "dados": {},
+            "source": "IBGE/SIDRA (Censo Agropecuario 2017)",
+        }
+
+        try:
+            # Tabela 6855 - Estabelecimentos e preparo do solo
+            url1 = f"{self.SIDRA_URL}/t/6855/n6/{codigo_municipio}/v/all/p/2017/f/n"
+            r1 = await self._http_get(url1, timeout=15.0)
+            data1 = r1.json()
+            if len(data1) > 1:
+                result["dados"]["preparo_solo"] = [
+                    {"variavel": row.get("D2N", ""), "valor": row.get("V", "0"), "unidade": row.get("MN", "")}
+                    for row in data1[1:]
+                ]
+
+            # Tabela 6899 - Despesas
+            url2 = f"{self.SIDRA_URL}/t/6899/n6/{codigo_municipio}/v/all/p/2017/f/n"
+            r2 = await self._http_get(url2, timeout=15.0)
+            data2 = r2.json()
+            if len(data2) > 1:
+                result["dados"]["despesas"] = [
+                    {"variavel": row.get("D2N", ""), "valor": row.get("V", "0"), "unidade": row.get("MN", "")}
+                    for row in data2[1:]
+                ]
+
+            # Tabela 6780 - Producao vegetal
+            url3 = f"{self.SIDRA_URL}/t/6780/n6/{codigo_municipio}/v/all/p/2017/f/n"
+            r3 = await self._http_get(url3, timeout=15.0)
+            data3 = r3.json()
+            if len(data3) > 1:
+                result["dados"]["producao_vegetal"] = [
+                    {"variavel": row.get("D2N", ""), "valor": row.get("V", "0"), "unidade": row.get("MN", "")}
+                    for row in data3[1:]
+                ]
+
+            self._set_cached(cache_key, result)
+        except Exception as e:
+            logger.warning("IBGE censo agro failed: %s", e)
+            result["error"] = str(e)
+
+        return result
+
+    # Mapa de nomes de culturas para codigos SIDRA
+    CULTURA_CODES = {
+        "soja": "39", "milho": "33", "cafe": "9", "cana": "31",
+        "algodao": "3", "arroz": "40", "trigo": "45", "feijao": "15",
+        "sorgo": "2713", "mandioca": "2558", "laranja": "487",
+        "banana": "2558", "cacau": "161",
+    }
