@@ -37,6 +37,9 @@ class Settings(BaseSettings):
     # SERPRO API (CPF/CNPJ premium)
     serpro_api_token: str = ""
 
+    # OpenAI — Codex 5.4 (Code Reviewer agent)
+    openai_api_key: str = ""
+
     # Data directories
     data_dir: str = "data"
     shapefile_dir: str = "data/shapefiles"
