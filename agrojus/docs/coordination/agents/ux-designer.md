@@ -1,6 +1,6 @@
 # UX/Product Designer — Estado
 
-Modelo: A definir
+Modelo: Gemini 3.1 Pro
 Ultima atualizacao: 2026-04-11
 
 ## Responsabilidade

@@ -13,14 +13,15 @@ O desenvolvimento do AgroJus e distribuido entre 7 agentes autonomos que se comu
 |---|--------|-------------------|------------------|
 | 1 | **Supra Gerente** | Claude Opus 4.6 | Priorizacao, coordenacao, docs de handoff, roadmap |
 | 2 | **Dev Backend** | Claude Opus 4.6 (Claude Code) | Codigo FastAPI, endpoints, services, models |
-| 3 | **Dev Frontend** | Antigravity (Gemini 2.5 Pro) | Next.js 14, React, Leaflet, UI/UX |
+| 3 | **Dev Frontend** | Antigravity (Gemini 3.1 Pro) | Next.js 14, React, Leaflet, UI/UX |
 | 4 | **QA & Testes** | Claude Opus 4.6 | Cobertura, testes de resiliencia, CI config |
 | 5 | **Data Engineer** | Claude Opus 4.6 | Novos collectors, imports CSV, fontes publicas |
 | 6 | **DevOps** | Claude Opus 4.6 | Docker, PostgreSQL, deploy, CI/CD pipeline |
 | 7 | **Pesquisador** | Claude Opus 4.6 | APIs gov, fontes de dados, benchmarks concorrentes |
-| 8 | **UX/Product Designer** | A definir | Wireframes, fluxos, UX copy, consistencia visual |
+| 8 | **UX/Product Designer** | Gemini 3.1 Pro | Wireframes, fluxos, UX copy, consistencia visual |
 | 9 | **Tech Writer** | Claude Opus 4.6 | Documentacao tecnica, API docs, changelog, guias |
 | 10 | **Security Reviewer** | Claude Opus 4.6 | Audit OWASP, JWT, input validation, dependencias |
+| 11 | **Code Reviewer** | Claude Codex 5.4 | Revisao de codigo, mente externa, quality gates |
 
 ## Estrutura de Comunicacao
 
