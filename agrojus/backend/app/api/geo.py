@@ -19,6 +19,8 @@ import httpx
 
 from app.collectors.geolayers import FUNAICollector, TerraBrasilisCollector
 from app.collectors.ibge import IBGECollector
+from app.collectors.nasa_power import NASAPowerCollector
+from app.collectors.camadas import get_active_layers, get_all_layers, get_layers_by_category
 
 logger = logging.getLogger("agrojus.geo")
 router = APIRouter()
@@ -340,6 +342,56 @@ async def get_producao_agricola(codigo: str):
     ibge = IBGECollector()
     data = await ibge.get_producao_agricola(codigo)
     return {"source": "IBGE/SIDRA (PAM)", "data": data}
+
+
+@router.get("/estados/{uf}/municipios")
+async def get_municipios_estado(uf: str):
+    """Retorna GeoJSON com malha de todos os municipios de um estado."""
+    ibge = IBGECollector()
+    data = await ibge.get_malha_estado(uf)
+    total = len(data.get("features", []))
+    return {"source": "IBGE", "uf": uf.upper(), "total": total, "data": data}
+
+
+# --- Clima (NASA POWER - dados reais globais) ---
+
+@router.get("/clima")
+async def get_climate_data(lat: float, lon: float, days: int = 30):
+    """
+    Dados climaticos REAIS para qualquer coordenada (NASA POWER).
+
+    Retorna: temperatura (min/max/media), precipitacao acumulada,
+    dias de chuva, radiacao solar, umidade, vento.
+    Periodo: ultimos N dias (default 30).
+    """
+    nasa = NASAPowerCollector()
+    data = await nasa.get_climate_data(lat, lon, days=days)
+    return data
+
+
+# --- Catalogo de camadas ---
+
+@router.get("/catalogo")
+async def get_layer_catalog(category: Optional[str] = None, active_only: bool = False):
+    """
+    Catalogo completo de TODAS as camadas geoespaciais disponiveis.
+
+    Categorias: fundiario, ambiental, administrativo, infraestrutura,
+    hidrografia, solo, clima, financeiro, mineracao, energia.
+    """
+    if active_only:
+        layers = get_active_layers()
+    elif category:
+        layers = get_layers_by_category(category)
+    else:
+        layers = get_all_layers()
+
+    categories = list(set(l.get("category", "") for l in layers))
+    return {
+        "total": len(layers),
+        "categories": sorted(categories),
+        "layers": layers,
+    }
 
 
 @router.get("/estados/{uf}/municipios")
