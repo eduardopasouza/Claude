@@ -344,6 +344,54 @@ async def get_producao_agricola(codigo: str):
     return {"source": "IBGE/SIDRA (PAM)", "data": data}
 
 
+@router.get("/municipios/{codigo}/producao/historico")
+async def get_serie_historica_producao(
+    codigo: str,
+    cultura: str = "soja",
+    anos: int = 10,
+):
+    """
+    Serie historica de producao agricola (IBGE/SIDRA/PAM) — DADOS REAIS.
+
+    Retorna evolucao anual de: area colhida (ha), area plantada (ha),
+    quantidade produzida (t), rendimento medio (kg/ha).
+
+    Culturas: soja, milho, cafe, cana, algodao, arroz, trigo, feijao, sorgo.
+    Periodo: ultimos N anos (default 10).
+    """
+    ibge = IBGECollector()
+    cultura_code = ibge.CULTURA_CODES.get(cultura.lower(), cultura)
+    data = await ibge.get_serie_historica_producao(codigo, cultura_code, anos)
+    data["cultura"] = cultura
+    return data
+
+
+@router.get("/municipios/{codigo}/pecuaria")
+async def get_pecuaria_municipal(codigo: str, anos: int = 5):
+    """
+    Dados de pecuaria municipal (IBGE/SIDRA/PPM) — DADOS REAIS.
+
+    Retorna efetivo de rebanho: bovinos, bubalinos, equinos,
+    suinos, caprinos, ovinos. Ultimos N anos.
+    """
+    ibge = IBGECollector()
+    data = await ibge.get_pecuaria_municipal(codigo, anos)
+    return data
+
+
+@router.get("/municipios/{codigo}/censo-agro")
+async def get_censo_agropecuario(codigo: str):
+    """
+    Dados do Censo Agropecuario 2017 (IBGE/SIDRA) — DADOS REAIS.
+
+    Retorna: numero de estabelecimentos, preparo do solo,
+    despesas, producao vegetal.
+    """
+    ibge = IBGECollector()
+    data = await ibge.get_censo_agropecuario(codigo)
+    return data
+
+
 @router.get("/estados/{uf}/municipios")
 async def get_municipios_estado(uf: str):
     """Retorna GeoJSON com malha de todos os municipios de um estado."""
