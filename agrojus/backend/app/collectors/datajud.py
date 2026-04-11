@@ -168,9 +168,9 @@ class DataJudCollector(BaseCollector):
                 if response.status_code == 200:
                     return self._parse_datajud_response(response.json(), tribunal)
                 elif response.status_code == 401:
-                    logger.info("%s: %s", type(e).__name__, e)
+                    logger.info("DataJud %s: HTTP 401 Unauthorized", tribunal)
                 else:
-                    logger.info("%s: %s", type(e).__name__, e)
+                    logger.info("DataJud %s: HTTP %d", tribunal, response.status_code)
         except Exception as e:
             logger.info("%s: %s", type(e).__name__, e)
 
