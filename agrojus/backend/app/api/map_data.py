@@ -1,7 +1,6 @@
 """Rotas de dados geoespaciais para o mapa interativo."""
 
 from fastapi import APIRouter, HTTPException
-from typing import Optional
 
 from app.collectors.sicar import SICARCollector
 from app.collectors.sigef import SIGEFCollector

@@ -11,7 +11,7 @@ from app.collectors.sicar import SICARCollector
 from app.collectors.sigef import SIGEFCollector
 from app.collectors.receita_federal import ReceitaFederalCollector
 from app.collectors.slave_labour import SlaveLabourCollector
-from app.models.schemas import PropertySearchRequest, PersonSearchRequest, RegionSearchRequest
+from app.models.schemas import PropertySearchRequest
 
 router = APIRouter()
 

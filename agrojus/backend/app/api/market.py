@@ -11,7 +11,6 @@ desenvolver com dados estruturados.
 
 from fastapi import APIRouter
 from typing import Optional
-from datetime import datetime
 
 from app.collectors.market_data import MarketDataCollector
 from app.collectors.financial import FinancialDataCollector

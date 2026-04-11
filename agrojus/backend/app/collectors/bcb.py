@@ -14,7 +14,6 @@ Dados disponiveis:
 """
 
 import logging
-from typing import Optional
 
 from app.collectors.base import BaseCollector
 

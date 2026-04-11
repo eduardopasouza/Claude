@@ -6,7 +6,6 @@ análise de risco e recomendações.
 """
 
 import io
-from datetime import datetime
 
 try:
     from reportlab.lib.pagesizes import A4
@@ -14,9 +13,9 @@ try:
     from reportlab.lib.units import cm
     from reportlab.lib.colors import HexColor
     from reportlab.platypus import (
-        SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak
+        SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak  # noqa: F401
     )
-    from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_JUSTIFY
+    from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_JUSTIFY  # noqa: F401
     HAS_REPORTLAB = True
 except ImportError:
     HAS_REPORTLAB = False
@@ -400,7 +399,7 @@ class PDFReportGenerator:
 
         if report.slave_labour:
             elements.append(Paragraph(
-                f"ATENCAO: Proprietario encontrado na Lista Suja do Trabalho Escravo",
+                "ATENCAO: Proprietario encontrado na Lista Suja do Trabalho Escravo",
                 self.styles["RiskHigh"],
             ))
             for entry in report.slave_labour:

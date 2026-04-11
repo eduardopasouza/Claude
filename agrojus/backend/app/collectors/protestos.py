@@ -81,7 +81,7 @@ class ProtestosCollector(BaseCollector):
             if response.status_code == 200:
                 # Parse response for protest data
                 from bs4 import BeautifulSoup
-                soup = BeautifulSoup(response.text, "html.parser")
+                BeautifulSoup(response.text, "html.parser")
                 # Structure depends on site layout
                 logger.info("CENPROT accessible, parsing...")
                 return None  # Will be implemented when access is available

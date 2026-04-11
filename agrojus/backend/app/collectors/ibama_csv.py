@@ -2,7 +2,6 @@
 import csv
 import logging
 from pathlib import Path
-from typing import Optional
 
 logger = logging.getLogger("agrojus.collectors.ibama_csv")
 

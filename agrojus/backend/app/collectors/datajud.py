@@ -9,7 +9,6 @@ Permite buscar processos por CPF/CNPJ do envolvido, assunto, tribunal, etc.
 """
 
 import logging
-from typing import Optional
 
 from app.collectors.base import BaseCollector
 from app.models.schemas import LawsuitRecord

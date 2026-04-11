@@ -164,8 +164,8 @@ async def _get_municipio_ibge(lat: float, lon: float) -> dict | None:
     try:
         async with httpx.AsyncClient(timeout=10, follow_redirects=True) as client:
             # IBGE API de localidades por coordenadas
-            r = await client.get(
-                f"https://servicodados.ibge.gov.br/api/v1/localidades/municipios",
+            await client.get(
+                "https://servicodados.ibge.gov.br/api/v1/localidades/municipios",
             )
             # A API do IBGE nao tem busca por coordenada direta,
             # usar reversegeocode alternativo
@@ -477,18 +477,10 @@ async def get_layer_catalog(category: Optional[str] = None, active_only: bool = 
     else:
         layers = get_all_layers()
 
-    categories = list(set(l.get("category", "") for l in layers))
+    categories = list(set(layer.get("category", "") for layer in layers))
     return {
         "total": len(layers),
         "categories": sorted(categories),
         "layers": layers,
     }
 
-
-@router.get("/estados/{uf}/municipios")
-async def get_municipios_estado(uf: str):
-    """Retorna GeoJSON com malha de todos os municipios de um estado."""
-    ibge = IBGECollector()
-    data = await ibge.get_malha_estado(uf)
-    total = len(data.get("features", []))
-    return {"source": "IBGE", "uf": uf.upper(), "total": total, "data": data}

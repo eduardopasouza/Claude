@@ -44,7 +44,7 @@ class SICARCollector(BaseCollector):
     async def _fetch_car_data(self, car_code: str) -> Optional[CARData]:
         """Consulta dados do imóvel no SICAR via API pública."""
         # Extract state code from CAR code (first 2 chars are state IBGE code)
-        state_code = car_code[:2]
+        car_code[:2]
 
         url = f"{self.public_url}/publico/imoveis/index"
         params = {

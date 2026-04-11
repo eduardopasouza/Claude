@@ -11,7 +11,6 @@ Fontes:
 """
 
 import logging
-from typing import Optional
 from datetime import datetime
 
 try:
@@ -108,7 +107,7 @@ class NewsAggregator(BaseCollector):
     async def _fetch_feed(self, source_name: str, feed_url: str) -> list[NewsArticle]:
         """Busca e parseia um feed RSS individual."""
         if feedparser is None:
-            logger.info("%s: %s", type(e).__name__, e)
+            logger.info("feedparser not installed, skipping RSS feed: %s", source_name)
             return []
 
         try:

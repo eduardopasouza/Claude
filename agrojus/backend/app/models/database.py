@@ -1,11 +1,9 @@
-from contextlib import asynccontextmanager
-from typing import AsyncGenerator
 
 from sqlalchemy import (
     Column, String, Float, Integer, Boolean, DateTime, Text, JSON,
-    create_engine, Index, ForeignKey
+    create_engine, Index
 )
-from sqlalchemy.orm import declarative_base, sessionmaker, relationship, Session
+from sqlalchemy.orm import declarative_base, sessionmaker, Session
 from datetime import datetime, timezone
 
 try:

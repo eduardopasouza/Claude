@@ -21,7 +21,6 @@ Uso:
 import sys
 import csv
 import io
-import json
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -260,7 +259,7 @@ def show_stats():
         ))
         layers = [row[0] for row in result]
         if layers:
-            print(f"\n  Camadas geoespaciais importadas:")
+            print("\n  Camadas geoespaciais importadas:")
             for layer in layers:
                 result = session.execute(text(f"SELECT COUNT(*) FROM {layer}"))
                 count = result.scalar()
