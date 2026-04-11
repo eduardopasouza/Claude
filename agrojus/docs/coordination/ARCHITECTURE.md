@@ -18,6 +18,9 @@ O desenvolvimento do AgroJus e distribuido entre 7 agentes autonomos que se comu
 | 5 | **Data Engineer** | Claude Opus 4.6 | Novos collectors, imports CSV, fontes publicas |
 | 6 | **DevOps** | Claude Opus 4.6 | Docker, PostgreSQL, deploy, CI/CD pipeline |
 | 7 | **Pesquisador** | Claude Opus 4.6 | APIs gov, fontes de dados, benchmarks concorrentes |
+| 8 | **UX/Product Designer** | A definir | Wireframes, fluxos, UX copy, consistencia visual |
+| 9 | **Tech Writer** | Claude Opus 4.6 | Documentacao tecnica, API docs, changelog, guias |
+| 10 | **Security Reviewer** | Claude Opus 4.6 | Audit OWASP, JWT, input validation, dependencias |
 
 ## Estrutura de Comunicacao
 
@@ -35,7 +38,10 @@ agrojus/docs/coordination/
 │   ├── qa.md               ← Cobertura, falhas, plano
 │   ├── data-engineer.md    ← Fontes integradas/pendentes
 │   ├── devops.md           ← Infra, deploy, ambientes
-│   └── researcher.md       ← Fontes descobertas, APIs testadas
+│   ├── researcher.md       ← Fontes descobertas, APIs testadas
+│   ├── ux-designer.md      ← Wireframes, fluxos, UX copy
+│   ├── tech-writer.md      ← Docs tecnicas, changelog, guias
+│   └── security.md         ← Audit OWASP, vulnerabilidades
 ```
 
 ## Fluxo de Trabalho
