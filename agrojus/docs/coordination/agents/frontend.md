@@ -1,6 +1,6 @@
 # Dev Frontend (Antigravity) — Estado
 
-Modelo: Gemini 2.5 Pro (Antigravity)
+Modelo: Gemini 3.1 Pro (Antigravity)
 Ultima atualizacao: 2026-04-11
 
 ## Estado Atual
