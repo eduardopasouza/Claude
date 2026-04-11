@@ -229,6 +229,22 @@ LAYER_CATALOG = {
         "status": "available_download",
         "description": "Zoneamento de aptidao agricola (classes 1-6)",
     },
+    "zee_estados": {
+        "name": "Zoneamento Ecologico-Economico (ZEE)",
+        "category": "solo",
+        "source": "Governos estaduais",
+        "format": "Shapefile/WFS (por estado)",
+        "auth_required": False,
+        "status": "available_download",
+        "description": "ZEE define zonas de uso e restricao por estado. Disponiveis: DF, PA, BA, PR, AC, MT, MA, RO",
+        "urls_por_estado": {
+            "DF": "https://zee.df.gov.br/mapas/",
+            "PA": "https://www.semas.pa.gov.br/diretorias/digeo/zee/",
+            "BA": "https://zee.ba.gov.br/",
+            "PR": "https://www.iat.pr.gov.br/Pagina/Zoneamento-Ecologico-Economico-ZEE",
+            "AC": "http://www.zee.ac.gov.br/",
+        },
+    },
 
     # === CLIMA ===
     "estacoes_meteorologicas": {

@@ -48,8 +48,12 @@ async def analyze_point(lat: float, lon: float, radius_km: float = 5.0):
     deter_task = tb.check_deforestation(lat, lon, radius_km=radius_km)
     municipio_task = _get_municipio_ibge(lat, lon)
 
-    tis, deter_alerts, municipio_info = await asyncio.gather(
-        ti_task, deter_task, municipio_task,
+    # Clima em paralelo tambem
+    nasa = NASAPowerCollector()
+    clima_task = nasa.get_climate_data(lat, lon, days=30, parameters="temperature,precipitation")
+
+    tis, deter_alerts, municipio_info, clima_data = await asyncio.gather(
+        ti_task, deter_task, municipio_task, clima_task,
         return_exceptions=True,
     )
 
@@ -63,6 +67,9 @@ async def analyze_point(lat: float, lon: float, radius_km: float = 5.0):
     if isinstance(municipio_info, Exception):
         logger.warning("IBGE query failed: %s", municipio_info)
         municipio_info = None
+    if isinstance(clima_data, Exception):
+        logger.warning("NASA POWER query failed: %s", clima_data)
+        clima_data = None
 
     # Montar analise de sobreposicao
     overlaps = []
@@ -102,17 +109,53 @@ async def analyze_point(lat: float, lon: float, radius_km: float = 5.0):
     else:
         overall_risk = "low"
 
+    # Jurisdicao automatica baseada no estado
+    from app.services.jurisdicao import get_jurisdicao, get_reserva_legal_info
+    jurisdicao_info = None
+    reserva_legal = None
+    if municipio_info and municipio_info.get("estado"):
+        # Mapear nome do estado para UF
+        estado_uf_map = {
+            "Acre": "AC", "Alagoas": "AL", "Amapá": "AP", "Amazonas": "AM",
+            "Bahia": "BA", "Ceará": "CE", "Distrito Federal": "DF",
+            "Espírito Santo": "ES", "Goiás": "GO", "Maranhão": "MA",
+            "Mato Grosso": "MT", "Mato Grosso do Sul": "MS", "Minas Gerais": "MG",
+            "Pará": "PA", "Paraíba": "PB", "Paraná": "PR", "Pernambuco": "PE",
+            "Piauí": "PI", "Rio de Janeiro": "RJ", "Rio Grande do Norte": "RN",
+            "Rio Grande do Sul": "RS", "Rondônia": "RO", "Roraima": "RR",
+            "Santa Catarina": "SC", "São Paulo": "SP", "Sergipe": "SE",
+            "Tocantins": "TO",
+        }
+        uf = estado_uf_map.get(municipio_info["estado"], "")
+        if uf:
+            jurisdicao_info = get_jurisdicao(uf)
+            reserva_legal = get_reserva_legal_info(uf)
+
+    # Resumo climatico
+    clima_resumo = None
+    if isinstance(clima_data, dict) and "summary" in clima_data:
+        s = clima_data["summary"]
+        clima_resumo = {
+            "temp_media_c": s.get("T2M", {}).get("mean"),
+            "chuva_acumulada_mm": s.get("precipitation_total_mm"),
+            "dias_chuva": s.get("rainy_days"),
+            "periodo": clima_data.get("period"),
+        }
+
     return {
         "coordinates": {"lat": lat, "lon": lon, "radius_km": radius_km},
         "municipio": municipio_info,
         "overall_risk": overall_risk,
         "risk_flags": risk_flags if risk_flags else ["Nenhuma sobreposicao detectada"],
         "overlaps": overlaps,
+        "jurisdicao": jurisdicao_info,
+        "reserva_legal": reserva_legal,
+        "clima": clima_resumo,
         "summary": {
             "terras_indigenas": len(tis) if isinstance(tis, list) else 0,
             "alertas_desmatamento": len(deter_alerts) if isinstance(deter_alerts, list) else 0,
         },
-        "sources": ["FUNAI GeoServer", "INPE/TerraBrasilis", "IBGE"],
+        "sources": ["FUNAI GeoServer", "INPE/TerraBrasilis", "IBGE", "NASA POWER", "Jurisdição Legal"],
     }
 
 
