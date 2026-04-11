@@ -1,0 +1,35 @@
+# Environment variables — NUNCA commitar
+.env
+.env.local
+.env.production
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+*.egg-info/
+venv/
+.venv/
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+npm-debug.log*
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Dados grandes (baixados em runtime)
+agrojus/backend/data/reference/*.csv
+agrojus/backend/data/shapefiles/
