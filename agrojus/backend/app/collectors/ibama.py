@@ -1,5 +1,18 @@
 """
-Coletor de dados do IBAMA (embargos e infrações ambientais).
+Coletor de dados do IBAMA — embargos, autuacoes, licenciamento e mais.
+
+O IBAMA disponibiliza 13+ datasets em dadosabertos.ibama.gov.br:
+- Embargos ambientais (areas embargadas)
+- Autuacoes (autos de infracao)
+- Apreensoes
+- Licenciamento ambiental federal
+- CTF (Cadastro Tecnico Federal)
+- SINAFLOR (controle de flora)
+- DOF (Documento de Origem Florestal)
+- Comercializacao de agrotoxicos
+- GTA (fauna silvestre)
+- CITES (importacao/exportacao)
+- Planos de manejo florestal
 
 Fontes:
 - Dados abertos IBAMA: https://dadosabertos.ibama.gov.br
