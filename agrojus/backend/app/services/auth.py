@@ -72,19 +72,27 @@ def verify_password(password: str, stored: str) -> bool:
 
 
 def create_token(user_id: int, email: str, plan: str) -> str:
+    now = datetime.now(timezone.utc)
     payload = {
         "sub": str(user_id),
         "email": email,
         "plan": plan,
-        "exp": datetime.now(timezone.utc) + timedelta(hours=JWT_EXPIRATION_HOURS),
-        "iat": datetime.now(timezone.utc),
+        "iss": "agrojus-api",
+        "aud": "agrojus-client",
+        "exp": now + timedelta(hours=JWT_EXPIRATION_HOURS),
+        "iat": now,
     }
     return jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
 
 
 def decode_token(token: str) -> Optional[dict]:
     try:
-        payload = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
+        payload = jwt.decode(
+            token, JWT_SECRET,
+            algorithms=[JWT_ALGORITHM],
+            issuer="agrojus-api",
+            audience="agrojus-client",
+        )
         return payload
     except jwt.ExpiredSignatureError:
         return None

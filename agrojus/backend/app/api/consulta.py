@@ -57,7 +57,15 @@ async def consulta_unificada(request: ConsultaUnificadaRequest):
     Fontes consultadas: Receita Federal, IBAMA, MTE (Lista Suja),
     DataJud/CNJ, SICOR/BCB, CENPROT.
     """
-    clean = request.cpf_cnpj.replace(".", "").replace("/", "").replace("-", "")
+    import re
+    clean = re.sub(r"[.\-/]", "", request.cpf_cnpj)
+
+    # Validate format: CPF = 11 digits, CNPJ = 14 digits
+    if not re.fullmatch(r"\d{11}|\d{14}", clean):
+        return {
+            "error": "CPF/CNPJ invalido — deve conter 11 (CPF) ou 14 (CNPJ) digitos",
+            "cpf_cnpj": request.cpf_cnpj,
+        }
 
     # Detectar tipo
     receita = ReceitaFederalCollector()
