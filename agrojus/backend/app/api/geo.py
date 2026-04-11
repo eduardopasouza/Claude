@@ -18,6 +18,7 @@ from typing import Optional
 import httpx
 
 from app.collectors.geolayers import FUNAICollector, TerraBrasilisCollector
+from app.collectors.ibge import IBGECollector
 
 logger = logging.getLogger("agrojus.geo")
 router = APIRouter()
@@ -220,10 +221,19 @@ async def get_layer_geojson(
         data["total"] = len(data.get("features", []))
         return data
 
+    elif layer_id == "municipios":
+        if not uf:
+            return {"error": "Parametro 'uf' obrigatorio para camada municipios"}
+        ibge = IBGECollector()
+        data = await ibge.get_malha_estado(uf)
+        data["source"] = "IBGE"
+        data["total"] = len(data.get("features", []))
+        return data
+
     else:
         return {
             "error": f"Camada '{layer_id}' nao encontrada",
-            "available": ["terras_indigenas", "desmatamento", "desmatamento_cerrado"],
+            "available": ["terras_indigenas", "desmatamento", "desmatamento_cerrado", "municipios"],
         }
 
 
@@ -289,3 +299,53 @@ async def get_biomes():
     tb = TerraBrasilisCollector()
     data = await tb.get_biomes_geojson()
     return {"source": "INPE/TerraBrasilis", "data": data}
+
+
+# --- IBGE (Municipios, malhas, producao) ---
+
+@router.get("/municipios/busca")
+async def buscar_municipio(nome: str):
+    """Busca municipios por nome. Retorna codigo IBGE, nome, UF."""
+    ibge = IBGECollector()
+    results = await ibge.buscar_municipio_por_nome(nome)
+    return {"source": "IBGE", "total": len(results), "municipios": results}
+
+
+@router.get("/municipios/{codigo}")
+async def get_municipio(codigo: str):
+    """Retorna dados de um municipio pelo codigo IBGE."""
+    ibge = IBGECollector()
+    data = await ibge.get_municipio_by_code(codigo)
+    if data:
+        return {"source": "IBGE", "data": data}
+    return {"error": "Municipio nao encontrado"}
+
+
+@router.get("/municipios/{codigo}/malha")
+async def get_malha_municipio(codigo: str):
+    """Retorna GeoJSON com contorno do municipio (para Leaflet)."""
+    ibge = IBGECollector()
+    data = await ibge.get_malha_municipio(codigo)
+    return data
+
+
+@router.get("/municipios/{codigo}/producao")
+async def get_producao_agricola(codigo: str):
+    """
+    Dados reais de producao agricola do municipio (IBGE/SIDRA/PAM).
+
+    Retorna area colhida, area plantada e quantidade produzida
+    para soja, milho, cafe, cana e algodao.
+    """
+    ibge = IBGECollector()
+    data = await ibge.get_producao_agricola(codigo)
+    return {"source": "IBGE/SIDRA (PAM)", "data": data}
+
+
+@router.get("/estados/{uf}/municipios")
+async def get_municipios_estado(uf: str):
+    """Retorna GeoJSON com malha de todos os municipios de um estado."""
+    ibge = IBGECollector()
+    data = await ibge.get_malha_estado(uf)
+    total = len(data.get("features", []))
+    return {"source": "IBGE", "uf": uf.upper(), "total": total, "data": data}
