@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     )
 
     app_name: str = "AgroJus API"
-    app_version: str = "0.4.0"
+    app_version: str = "0.5.0"
     debug: bool = True
 
     # Database
