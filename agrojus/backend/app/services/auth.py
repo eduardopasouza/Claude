@@ -15,9 +15,25 @@ from pydantic import BaseModel, Field
 from app.config import settings
 
 
+import logging as _auth_logging
+
+_auth_logger = _auth_logging.getLogger("agrojus.auth")
+
 JWT_SECRET = settings.jwt_secret
 JWT_ALGORITHM = "HS256"
 JWT_EXPIRATION_HOURS = 24
+
+# Warn if JWT secret is the default dev value
+if JWT_SECRET == "agrojus-dev-secret-change-in-production":
+    _auth_logger.warning(
+        "JWT_SECRET is using the default dev value. "
+        "Set JWT_SECRET env var to a strong random string (32+ chars) in production."
+    )
+elif len(JWT_SECRET) < 32:
+    _auth_logger.warning(
+        "JWT_SECRET is too short (%d chars). Use 32+ characters for production security.",
+        len(JWT_SECRET),
+    )
 
 
 class UserRegister(BaseModel):

@@ -171,9 +171,38 @@ async def register(data: UserRegister):
     )
 
 
+# Login rate limiting — prevent brute force
+import time
+from collections import defaultdict
+from threading import Lock
+
+_login_attempts: dict[str, list[float]] = defaultdict(list)
+_login_lock = Lock()
+_LOGIN_MAX_ATTEMPTS = 5
+_LOGIN_WINDOW_SECONDS = 300  # 5 minutes
+
+
+def _check_login_rate(email: str) -> bool:
+    """Returns True if login attempt is allowed, False if rate limited."""
+    with _login_lock:
+        now = time.time()
+        cutoff = now - _LOGIN_WINDOW_SECONDS
+        _login_attempts[email] = [t for t in _login_attempts[email] if t > cutoff]
+        if len(_login_attempts[email]) >= _LOGIN_MAX_ATTEMPTS:
+            return False
+        _login_attempts[email].append(now)
+        return True
+
+
 @router.post("/login", response_model=TokenResponse)
 async def login(data: UserLogin):
     """Autentica um usuario e retorna JWT."""
+    if not _check_login_rate(data.email):
+        raise HTTPException(
+            status_code=429,
+            detail=f"Muitas tentativas de login. Aguarde {_LOGIN_WINDOW_SECONDS // 60} minutos.",
+        )
+
     user = find_user(data.email)
     if not user:
         raise HTTPException(status_code=401, detail="Credenciais invalidas")

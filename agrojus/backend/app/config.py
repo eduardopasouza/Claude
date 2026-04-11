@@ -14,8 +14,9 @@ class Settings(BaseSettings):
     # Database
     database_url: str = "postgresql://agrojus:agrojus@localhost:5432/agrojus"
 
-    # JWT Auth
+    # JWT Auth — MUST be overridden via JWT_SECRET env var in production
     jwt_secret: str = "agrojus-dev-secret-change-in-production"
+    jwt_secret_min_length: int = 32
 
     # External APIs
     receita_federal_url: str = "https://brasilapi.com.br/api/cnpj/v1"
