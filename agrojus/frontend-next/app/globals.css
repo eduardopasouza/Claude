@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@layer base {
+  :root {
+    --background: #0A0F0D;
+    --foreground: #F0FDF4;
+    --muted-foreground: #5F7A6E;
+    --border: #1A2420;
+    --agrojus-bg-glass: rgba(17, 25, 22, 0.85);
+    --agrojus-emerald-glow: rgba(16, 185, 129, 0.15);
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Outfit', sans-serif;
+  }
+
+  code, pre {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+}
+
+/* Glassmorphism utility */
+.glass {
+  backdrop-filter: blur(16px);
+  background: var(--agrojus-bg-glass);
+  border: 1px solid var(--border);
+}
+
+/* Glow on hover */
+.glow-hover:hover {
+  box-shadow: 0 0 20px var(--agrojus-emerald-glow);
+}
+
+/* Scrollbar dark */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--background); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
