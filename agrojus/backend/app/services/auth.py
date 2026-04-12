@@ -23,6 +23,12 @@ JWT_SECRET = settings.jwt_secret
 JWT_ALGORITHM = "HS256"
 JWT_EXPIRATION_HOURS = 24
 
+if len(JWT_SECRET) < settings.jwt_secret_min_length:
+    _auth_logger.warning(
+        "JWT_SECRET too short (%d chars, min %d). Set JWT_SECRET env var in production!",
+        len(JWT_SECRET), settings.jwt_secret_min_length,
+    )
+
 # Warn if JWT secret is the default dev value
 if JWT_SECRET == "agrojus-dev-secret-change-in-production":
     _auth_logger.warning(
