@@ -1,18 +1,41 @@
+# Python
 __pycache__/
 *.py[cod]
 *.egg-info/
 dist/
 build/
+.coverage
+.pytest_cache/
+.ruff_cache/
+
+# Environment
 .env
 *.db
+
+# Data (large files)
 data/cache/
 backend/data/cache/
 data/shapefiles/*.shp
 data/shapefiles/*.dbf
 data/shapefiles/*.shx
 data/shapefiles/*.prj
+data/mapbiomas_credito/*.gpkg
+data/downloads/**/*.zip
+data/downloads/**/*.gpkg
+
+# Frontend
 node_modules/
 .next/
 .vercel/
+
+# OS
 *.log
 .DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Project trash
+_lixo/

@@ -24,7 +24,6 @@ services:
     volumes:
       - ./backend:/app
       - ./data:/app/data
-      - ./downloads:/downloads
 
 volumes:
   pgdata:
