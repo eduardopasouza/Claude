@@ -127,6 +127,16 @@ Em vez de baixar e parsear CSVs sujos de cada portal, você executa SQL diretame
 | Cruzar 3 arquivos manualmente | JOIN em SQL direto |
 | Dados de 2019 porque atualizou | Pipeline automático → sempre atualizado |
 
+### Formas de acesso (verificado na doc oficial 15/04/2026)
+
+| Método | Detalhes |
+|---|---|
+| **BigQuery (SQL)** | 1TB grátis/mês. Requer GCP project. Queries em segundos |
+| **Python** | `pip install basedosdados` → `bd.read_sql(query, billing_project_id)` |
+| **R** | Pacote R disponível |
+| **Download CSV** | Direto no site, mas apenas tabelas <200k linhas |
+| **Mecanismo de busca** | `basedosdados.org/search` → buscar por tema |
+
 ### Situação atual (15/04/2026)
 
 ```
@@ -302,19 +312,43 @@ O MapBiomas tem **38 anos de histórico** de cada metro quadrado do Brasil — i
 - EUDR: exportador precisa provar que produto não veio de área desmatada pós-2020
 - Valuation: saber se terra é soja, pasto ou floresta muda tudo no preço/ha
 
-**Como acessar:**
+**Como acessar (4 métodos confirmados no site oficial):**
+
+**Método 1 — Download direto GeoTIFF (VERIFICADO 15/04/2026):**
+```
+# Cobertura Brasil 2024 (30m):
+https://storage.googleapis.com/mapbiomas-public/initiatives/brasil/collection_10/lulc/coverage/brazil_coverage_2024.tif
+
+# Cobertura 10 metros (Sentinel-2, Collection 2 Beta):
+https://storage.googleapis.com/mapbiomas-public/initiatives/brasil/lulc_10m/collection_2/integration/mapbiomas_10m_collection2_integration_v1-classification_2023.tif
+
+# ⚠️ Tamanhos: 3-15GB por bioma. Usar COG ou GEE para consulta pontual.
+```
+
+**Método 2 — GEE Asset (requer conta Google Earth Engine):**
 ```python
-# GEE Asset (requer conta Google Earth Engine)
+# Coverage (Collection 10.1) — CONFIRMADO
 asset = "projects/mapbiomas-public/assets/brazil/lulc/collection10_1/mapbiomas_brazil_collection10_1_coverage_v1"
 
-# Download direto por bioma/ano (GeoTIFF 30m):
-# Amazônia 2023: storage.googleapis.com/mapbiomas-public/brasil/collection-10/lclu/coverage/amazonia_coverage_col10_2023.tif
-# Cerrado 2023: .../cerrado_coverage_col10_2023.tif
-# Mata Atlântica 2023: .../mata_atlantica_coverage_col10_2023.tif
-# Caatinga, Pampa, Pantanal: idem
+# Deforestation & Secondary Vegetation (Collection 10.1)
+asset_defor = "projects/mapbiomas-public/assets/brazil/lulc/collection10/mapbiomas_brazil_collection10_deforestation_secondary_vegetation_v2"
+```
 
-# ⚠️ Tamanhos: cada arquivo GeoTIFF = 3-15GB por bioma
-# Usar cloud-optimized GeoTIFF (COG) ou GEE para consulta pontual
+**Método 3 — Toolkit GEE (interface interativa para download custom):**
+```
+# Land use and cover:
+https://code.earthengine.google.com/?accept_repo=users/mapbiomas/user-toolkit&scriptPath=users/mapbiomas/user-toolkit:mapbiomas-user-toolkit-lulc.js
+
+# Deforestation:
+https://code.earthengine.google.com/?accept_repo=users/mapbiomas/user-toolkit&scriptPath=users/mapbiomas/user-toolkit:mapbiomas-user-toolkit-deforestation-regeneration.js
+
+# Instruções: https://github.com/mapbiomas/user-toolkit
+```
+
+**Método 4 — Plataforma MapBiomas (download via interface web):**
+```
+https://plataforma.brasil.mapbiomas.org  →  "Criar análise" → download
+https://brasil.mapbiomas.org/wp-content/uploads/sites/4/2025/10/how_to_download_maps_MapBiomas_platform_PT_EN_v4.pdf
 ```
 
 **Legenda de classes (parcial):**
@@ -347,8 +381,17 @@ https://tiles.mapbiomas.org/collections/{coleção}/coverage/tiles/{z}/{x}/{y}.p
 **O que é:** Mesmo conceito da Col.10 mas com **10m de resolução** (Sentinel-2, desde 2016).
 Resolução 9× maior — diferencia variedades de culturas, detalha APP ripária.
 
-**Acesso:** GEE Asset (precisa de conta GEE aprovada)
-**Tamanho:** Muito maior que o 30m — processar em cloud
+**Acesso (VERIFICADO):**
+```
+# GEE Asset:
+projects/mapbiomas-public/assets/brazil/lulc_10m/collection2/mapbiomas_10m_collection2_integration_v1
+
+# Download direto GeoTIFF (2023):
+https://storage.googleapis.com/mapbiomas-public/initiatives/brasil/lulc_10m/collection_2/integration/mapbiomas_10m_collection2_integration_v1-classification_2023.tif
+
+# Toolkit GEE:
+https://code.earthengine.google.com/?accept_repo=users/mapbiomas/user-toolkit&scriptPath=users/mapbiomas/user-toolkit:mapbiomas-user-toolkit-lulc.js
+```
 **Status:** Nenhum concorrente usa isso publicamente.
 
 ---
@@ -363,10 +406,31 @@ Mapeia **onde e quando** o Brasil pegou fogo.
 - Fogo em APP = infração ambiental mesmo que não seja desmatamento
 - Fogo recorrente em pasto = manejo inadequado
 
-**Acesso:**
+**Acesso (VERIFICADO — URLs reais do site oficial):**
 ```
-# Download mensal: storage.googleapis.com/mapbiomas-public/brasil/fire/collection-4/...
-# GEE Asset: projects/mapbiomas-public/assets/brazil/fire/collection-4/...
+# Download direto GeoTIFF — Annual burned 2024:
+https://storage.googleapis.com/mapbiomas-public/initiatives/brasil/collection_9/fire-col4/annual_burned/mapbiomas_fire_col4_br_annual_burned_2024.tif
+
+# Vetorial (shapefile zip):
+https://storage.googleapis.com/mapbiomas-public/initiatives/brasil/collection_9/fire-col4/annual_burned_vectors_v1/mapbiomas_fire_col4_br_annual_burned_2024.zip
+
+# Monthly burned 2024:
+https://storage.googleapis.com/mapbiomas-public/initiatives/brasil/collection_9/fire-col4/monthly_burned_v1/mapbiomas_fire_col4_br_monthly_burned_2024.tif
+
+# Accumulated burned 1985-2024:
+https://storage.googleapis.com/mapbiomas-public/initiatives/brasil/collection_9/fire-col4/accumulated_burned_v1/mapbiomas_fire_col4_br_accumulated_burned_1985_2024.tif
+
+# Fire frequency:
+https://storage.googleapis.com/mapbiomas-public/initiatives/brasil/collection_9/fire-col4/fire_frequency_v1/mapbiomas_fire_col4_br_fire_frequency_1985_2024.tif
+
+# GEE Assets:
+projects/mapbiomas-public/assets/brazil/fire/collection4/mapbiomas_fire_collection4_annual_burned_v1
+projects/mapbiomas-public/assets/brazil/fire/collection4/mapbiomas_fire_collection4_monthly_burned_v1
+projects/mapbiomas-public/assets/brazil/fire/collection4/mapbiomas_fire_collection4_fire_frequency_v1
+projects/mapbiomas-public/assets/brazil/fire/collection4/mapbiomas_fire_collection4_year_last_fire_v1
+
+# Fire Monitor (mensal — quase tempo real):
+projects/mapbiomas-public/assets/brazil/fire/monitor/mapbiomas_fire_monthly_burned_v1
 ```
 
 ---
@@ -478,7 +542,15 @@ Nenhum concorrente tem isso automatizado.
 - Base para análise de outorga de água
 
 **Status:** ❌ Não baixado ainda
-**Como acessar:** GEE Asset `projects/mapbiomas-public/assets/brazil/water/...`
+**Como acessar (VERIFICADO):**
+```
+# GEE Assets:
+projects/mapbiomas-public/assets/brazil/water/collection4/mapbiomas_brazil_collection4_water_v3
+projects/mapbiomas-public/assets/brazil/water/collection4/mapbiomas_brazil_collection4_water_bodies_v1
+
+# Toolkit GEE:
+https://code.earthengine.google.com/?accept_repo=users/mapbiomas/user-toolkit&scriptPath=users/mapbiomas/user-toolkit:mapbiomas-user-toolkit-water.js
+```
 
 ---
 
@@ -493,7 +565,20 @@ Nenhum concorrente tem isso automatizado.
 - Aptidão agrícola: argiloso (soja) vs arenoso (pastagem) mudam o preço radicalmente
 
 **Status:** ❌ Não explorado — **nenhum concorrente usa isso**
-**Como acessar:** GEE Asset (conta necessária)
+**Como acessar (VERIFICADO):**
+```
+# GEE Assets — Soil Organic Carbon Stock:
+projects/mapbiomas-public/assets/brazil/soil/collection2/mapbiomas_soil_collection2_soc_kgc_m2_000_030cm
+projects/mapbiomas-public/assets/brazil/soil/collection2/mapbiomas_soil_collection2_soc_tc_ha_000_030cm
+
+# GEE Assets — Soil Texture:
+projects/mapbiomas-public/assets/brazil/soil/collection2/mapbiomas_soil_collection2_granulometry_clay_percentage
+projects/mapbiomas-public/assets/brazil/soil/collection2/mapbiomas_soil_collection2_granulometry_sand_percentage
+projects/mapbiomas-public/assets/brazil/soil/collection2/mapbiomas_soil_collection2_textural_classes
+
+# Toolkit GEE:
+https://code.earthengine.google.com/?accept_repo=users/mapbiomas/user-toolkit&scriptPath=users/mapbiomas/user-toolkit:mapbiomas-user-toolkit-soil.js
+```
 
 ---
 
@@ -505,15 +590,73 @@ Nenhum concorrente tem isso automatizado.
 A regulação europeia exige conformidade em dois níveis: **sem desmatamento** E **sem degradação**. Nossos concorrentes verificam o primeiro, mas não o segundo.
 
 **Status:** ❌ Não explorado — diferencial exclusivo
+**Como acessar (VERIFICADO):**
+```
+# Toolkit GEE:
+https://code.earthengine.google.com/?accept_repo=users/mapbiomas/user-toolkit&scriptPath=users/mapbiomas/user-toolkit:mapbiomas-user-toolkit-degradation.js
+```
 
 ---
 
-#### 13–18. Cacau, Mosaicos, Referências, Pontos, Camadas Auxiliares
+#### 13–18. Atmosfera, Risco Climático, Cacau, Mosaicos, Infraestrutura, Camadas
 
+**13. MapBiomas Atmosfera (NOVO — verificado 15/04/2026):**
+```
+# Temperatura do ar (anual + mensal + anomalia):
+projects/mapbiomas-public/assets/brazil/atmosphere/collection1/mapbiomas_brazil_collection1_air_temperature_annual_v2
+projects/mapbiomas-public/assets/brazil/atmosphere/collection1/mapbiomas_brazil_collection1_air_temperature_monthly_v2
+projects/mapbiomas-public/assets/brazil/atmosphere/collection1/mapbiomas_brazil_collection1_temperature_anomaly_monthly_v2
+
+# Precipitação:
+projects/mapbiomas-public/assets/brazil/atmosphere/collection1/mapbiomas_brazil_collection1_precipitation_annual_v2
+projects/mapbiomas-public/assets/brazil/atmosphere/collection1/mapbiomas_brazil_collection1_precipitation_monthly_v2
+
+# Pressão de vapor / Qualidade do ar (PM10, PM2.5):
+projects/mapbiomas-public/assets/brazil/atmosphere/collection1/mapbiomas_brazil_collection1_vapor_pressure_deficit_annual_v2
+projects/mapbiomas-public/assets/brazil/atmosphere/collection1/mapbiomas_brazil_collection1_pm10_annual_v2
+projects/mapbiomas-public/assets/brazil/atmosphere/collection1/mapbiomas_brazil_collection1_pm2p5_annual_v2
+```
+
+**14. MapBiomas Risco Climático (NOVO — verificado 15/04/2026):**
+```
+# Deslizamento urbano, inundação, segurança hídrica:
+projects/mapbiomas-public/assets/brazil/climate_risk/collection1/mapbiomas_brazil_collection1_urban_landslide_risk_v1
+projects/mapbiomas-public/assets/brazil/climate_risk/collection1/mapbiomas_brazil_collection1_urban_flood_risk_v1
+projects/mapbiomas-public/assets/brazil/climate_risk/collection1/mapbiomas_brazil_collection1_water_security_index_v1
+```
+
+**15. MapBiomas Agricultura (Collection 10 — verificado):**
+```
+# Sistemas de irrigação:
+projects/mapbiomas-public/assets/brazil/lulc/collection10/mapbiomas_brazil_collection10_agriculture_irrigation_systems_v3
+# Frequência de cultivo (média + anual):
+projects/mapbiomas-public/assets/brazil/lulc/collection10/mapbiomas_brazil_collection10_agriculture_number_cycles_mean_v2
+projects/mapbiomas-public/assets/brazil/lulc/collection10/mapbiomas_brazil_collection10_agriculture_number_cycles_v2
+```
+
+**16. MapBiomas Pastagem (Collection 10 — verificado):**
+```
+# Vigor, idade, biomassa:
+projects/mapbiomas-public/assets/brazil/lulc/collection10/mapbiomas_brazil_collection10_pasture_vigor_v3
+projects/mapbiomas-public/assets/brazil/lulc/collection10/mapbiomas_brazil_collection10_pasture_age_v2
+projects/mapbiomas-public/assets/brazil/lulc/collection10/mapbiomas_brazil_collection10_pasture_biomass_v2
+```
+
+**17. MapBiomas Mineração (Collection 10 — verificado):**
+```
+projects/mapbiomas-public/assets/brazil/lulc/collection10/mapbiomas_brazil_collection10_mining_substances_v3
+```
+
+**Outras (nicho):**
 - **Cacau:** mapeamento específico Sul da Bahia — nicho EUDR chocolateiros
-- **Mosaicos Landsat:** imagens brutas sem classificação — para análise própria
+- **Mosaicos Landsat:** `projects/nexgenmap/MapBiomas2/LANDSAT/BRAZIL/mosaics-2` — imagens brutas desde 1985
 - **Pontos de validação:** dados de campo para checar acurácia
-- **Camadas Auxiliares:** biomas, estados, bacias — suporte cartográfico
+- **Recifes costeiros:** [vetor](https://drive.google.com/file/d/1NiydJsMhc-IO2SDSrlFvu2Yu53AUcGl6/view) + [raster](https://drive.google.com/file/d/1zxzqVmqEuFbS6wpDiWJYHIxrut7jQ8yQ/view)
+
+**Ferramentas adicionais verificadas:**
+- **QGIS Plugin:** disponível — instalar diretamente no QGIS via gerenciador de plugins
+- **GitHub (códigos de processamento):** https://github.com/mapbiomas/brazil-all-initiatives
+- **User Toolkit GitHub:** https://github.com/mapbiomas/user-toolkit
 
 ---
 
@@ -842,5 +985,19 @@ estaduais (ARISP em SP, ARIEMS no MS, etc.) que ainda existed antes do mapa.onr.
 
 ---
 
-*AgroJus — Pesquisa de Fontes de Dados v1.0 — 2026-04-15*
+## 12. PLATAFORMAS DE MONITORES MAPBIOMAS (URLs verificadas)
+
+| Monitor | URL | O que monitora |
+|---|---|---|
+| **Alerta** | `plataforma.alerta.mapbiomas.org` | Alertas de desmatamento validados com laudo |
+| **Crédito Rural** | `plataforma.creditorural.mapbiomas.org` | Parcelas de financiamento x desmatamento |
+| **Fogo Mensal** | `plataforma.monitorfogo.mapbiomas.org` | Queimadas mensais tempo quase-real |
+| **Recuperação** | `plataforma.recuperacao.mapbiomas.org` | Áreas em regeneração de vegetação |
+| **Mineração** | `plataforma.monitormineracao.mapbiomas.org` | Garimpo ilegal por satélite |
+| **Plataforma principal** | `plataforma.brasil.mapbiomas.org` | Mapa interativo de cobertura e uso |
+
+---
+
+*AgroJus — Pesquisa de Fontes de Dados v2.0 — 2026-04-15*
+*Atualizado com URLs verificados dos sites oficiais de MapBiomas, BasedosDados e dados.gov.br*
 *Este documento deve ser revisado e expandido a cada sessão de pesquisa*
