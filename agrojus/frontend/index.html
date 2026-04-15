@@ -12,7 +12,71 @@
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body class="enterprise-light">
-  
+
+  <!-- ═══ LOGIN OVERLAY ═══════════════════════════════════════════════ -->
+  <div id="login-overlay" class="login-overlay" style="display:none">
+    <div class="login-card glass-card">
+      <div class="login-brand">
+        <span class="login-brand-iso">⚖</span>
+        <div>
+          <h1>AgroJus</h1>
+          <span>ENTERPRISE PLATFORM</span>
+        </div>
+      </div>
+
+      <div id="login-tabs" class="login-tabs">
+        <button class="login-tab active" data-tab="login">Entrar</button>
+        <button class="login-tab" data-tab="register">Criar Conta</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form" class="auth-form" autocomplete="on">
+        <div class="auth-field">
+          <label>E-mail profissional</label>
+          <input id="login-email" type="email" placeholder="nome@empresa.com.br" required autocomplete="email" />
+        </div>
+        <div class="auth-field">
+          <label>Senha</label>
+          <input id="login-password" type="password" placeholder="••••••••" required autocomplete="current-password" />
+        </div>
+        <div id="login-error" class="auth-error" style="display:none"></div>
+        <button type="submit" class="auth-submit" id="login-submit">Acessar Plataforma</button>
+        <p class="auth-hint">Ambiente seguro • Dados criptografados • JWT Auth</p>
+      </form>
+
+      <!-- Register Form -->
+      <form id="register-form" class="auth-form" style="display:none" autocomplete="on">
+        <div class="auth-field">
+          <label>Nome completo</label>
+          <input id="reg-name" type="text" placeholder="João da Silva" required />
+        </div>
+        <div class="auth-field">
+          <label>E-mail profissional</label>
+          <input id="reg-email" type="email" placeholder="nome@empresa.com.br" required autocomplete="email" />
+        </div>
+        <div class="auth-field">
+          <label>CPF / CNPJ</label>
+          <input id="reg-cpf" type="text" placeholder="000.000.000-00 ou 00.000.000/0001-00" />
+        </div>
+        <div class="auth-field">
+          <label>Senha (mín. 8 caracteres)</label>
+          <input id="reg-password" type="password" placeholder="••••••••" required minlength="8" autocomplete="new-password" />
+        </div>
+        <div class="auth-field">
+          <label>Plano</label>
+          <select id="reg-plan">
+            <option value="free">Gratuito — 10 consultas/dia</option>
+            <option value="pro">Pro — Ilimitado (R$299/mês)</option>
+            <option value="enterprise">Enterprise — Multi-usuário</option>
+          </select>
+        </div>
+        <div id="reg-error" class="auth-error" style="display:none"></div>
+        <button type="submit" class="auth-submit" id="reg-submit">Criar Conta Gratuita</button>
+      </form>
+    </div>
+  </div>
+  <!-- ════════════════════════════════════════════════════════════════ -->
+
   <!-- Sleek Sidebar Navigation -->
   <aside class="glass-sidebar" id="sidebar">
     <div class="sidebar-top">
@@ -49,6 +113,17 @@
     </nav>
 
     <div class="sidebar-bottom">
+      <!-- User badge (shown when logged in) -->
+      <div id="user-badge" class="user-badge" style="display:none">
+        <div class="user-avatar" id="user-avatar">U</div>
+        <div class="user-info">
+          <span class="user-name" id="user-name">Usuário</span>
+          <span class="user-plan" id="user-plan">free</span>
+        </div>
+        <button class="logout-btn" id="logout-btn" title="Sair">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5-5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
+        </button>
+      </div>
       <div class="system-status" id="api-status">
         <div class="pulse-ring"><div class="status-orb offline"></div></div>
         <div class="status-info">
@@ -248,5 +323,137 @@
   </main>
 
   <script type="module" src="/main.js"></script>
+
+  <script>
+  /* ─── Auth Layer ──────────────────────────────────────────────────── */
+  const API = 'http://localhost:8000';
+  const TOKEN_KEY = 'agrojus_token';
+  const USER_KEY  = 'agrojus_user';
+
+  function getToken() { return localStorage.getItem(TOKEN_KEY); }
+  function getUser()  { try { return JSON.parse(localStorage.getItem(USER_KEY)); } catch { return null; } }
+
+  function showLoginOverlay() {
+    document.getElementById('login-overlay').style.display = 'flex';
+  }
+  function hideLoginOverlay() {
+    document.getElementById('login-overlay').style.display = 'none';
+  }
+
+  function updateUserBadge(user) {
+    if (!user) return;
+    const badge = document.getElementById('user-badge');
+    badge.style.display = 'flex';
+    document.getElementById('user-name').textContent = user.name || user.email;
+    document.getElementById('user-plan').textContent = (user.plan || 'free').toUpperCase();
+    const initial = (user.name || user.email || 'U')[0].toUpperCase();
+    document.getElementById('user-avatar').textContent = initial;
+  }
+
+  // Tab switching
+  document.querySelectorAll('.login-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.login-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const tab = btn.dataset.tab;
+      document.getElementById('login-form').style.display    = tab === 'login'    ? 'flex' : 'none';
+      document.getElementById('register-form').style.display = tab === 'register' ? 'flex' : 'none';
+      document.getElementById('login-error').style.display = 'none';
+      document.getElementById('reg-error').style.display = 'none';
+    });
+  });
+
+  // Login form
+  document.getElementById('login-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('login-submit');
+    const errEl = document.getElementById('login-error');
+    btn.textContent = 'Autenticando…';
+    btn.disabled = true;
+    errEl.style.display = 'none';
+    try {
+      const res = await fetch(`${API}/api/v1/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email:    document.getElementById('login-email').value,
+          password: document.getElementById('login-password').value,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || 'Credenciais inválidas');
+      localStorage.setItem(TOKEN_KEY, data.access_token);
+      localStorage.setItem(USER_KEY, JSON.stringify(data.user));
+      updateUserBadge(data.user);
+      hideLoginOverlay();
+    } catch(err) {
+      errEl.textContent = err.message;
+      errEl.style.display = 'block';
+    } finally {
+      btn.textContent = 'Acessar Plataforma';
+      btn.disabled = false;
+    }
+  });
+
+  // Register form
+  document.getElementById('register-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('reg-submit');
+    const errEl = document.getElementById('reg-error');
+    btn.textContent = 'Criando conta…';
+    btn.disabled = true;
+    errEl.style.display = 'none';
+    try {
+      const res = await fetch(`${API}/api/v1/auth/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email:    document.getElementById('reg-email').value,
+          password: document.getElementById('reg-password').value,
+          name:     document.getElementById('reg-name').value,
+          cpf_cnpj: document.getElementById('reg-cpf').value,
+          plan:     document.getElementById('reg-plan').value,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || 'Erro ao criar conta');
+      localStorage.setItem(TOKEN_KEY, data.access_token);
+      localStorage.setItem(USER_KEY, JSON.stringify(data.user));
+      updateUserBadge(data.user);
+      hideLoginOverlay();
+    } catch(err) {
+      errEl.textContent = err.message;
+      errEl.style.display = 'block';
+    } finally {
+      btn.textContent = 'Criar Conta Gratuita';
+      btn.disabled = false;
+    }
+  });
+
+  // Logout
+  document.getElementById('logout-btn').addEventListener('click', () => {
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(USER_KEY);
+    document.getElementById('user-badge').style.display = 'none';
+    showLoginOverlay();
+  });
+
+  // Init: check token
+  window.addEventListener('DOMContentLoaded', () => {
+    const token = getToken();
+    const user  = getUser();
+    if (token && user) {
+      updateUserBadge(user);
+      // silent verify
+      fetch(`${API}/api/v1/auth/me`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      }).then(r => {
+        if (!r.ok) { localStorage.removeItem(TOKEN_KEY); showLoginOverlay(); }
+      }).catch(() => {});
+    } else {
+      showLoginOverlay();
+    }
+  });
+  </script>
 </body>
 </html>
