@@ -95,7 +95,7 @@ LAYER_CATALOG = {
 
     # === AMBIENTAL ===
     "desmatamento_deter": {
-        "name": "Alertas DETER (Desmatamento)",
+        "name": "Alertas DETER Amazônia (Desmatamento)",
         "category": "ambiental",
         "source": "INPE/TerraBrasilis",
         "wfs_url": "https://terrabrasilis.dpi.inpe.br/geoserver/deter-amz/wfs",
@@ -103,18 +103,31 @@ LAYER_CATALOG = {
         "format": "WFS/GeoJSON",
         "auth_required": False,
         "status": "active",
-        "description": "Alertas de desmatamento em tempo real (Amazonia e Cerrado)",
+        "total_records": 50000,
+        "description": "50.000+ alertas de desmatamento em tempo real — Amazônia (INPE)",
+    },
+    "desmatamento_cerrado": {
+        "name": "Alertas DETER Cerrado (Desmatamento)",
+        "category": "ambiental",
+        "source": "INPE/TerraBrasilis",
+        "wfs_url": "https://terrabrasilis.dpi.inpe.br/geoserver/deter-cerrado/wfs",
+        "layer_name": "deter-cerrado:deter_cerrado",
+        "postgis_table": "geo_deter_cerrado",
+        "format": "PostGIS/GeoJSON",
+        "auth_required": False,
+        "status": "active",
+        "total_records": 50000,
+        "description": "50.000 alertas de desmatamento no Cerrado — dados locais PostGIS (INPE)",
     },
     "unidades_conservacao": {
-        "name": "Unidades de Conservacao",
+        "name": "Unidades de Conservação (ICMBio)",
         "category": "ambiental",
         "source": "ICMBio/MMA",
-        "wfs_url": "https://geoserver.icmbio.gov.br/geoserver/wfs",
-        "format": "WFS/GeoJSON",
+        "download_url": "https://www.gov.br/icmbio/pt-br/assuntos/monitoramento/geoprocessamento",
+        "format": "Shapefile (download)",
         "auth_required": False,
-        "status": "blocked_proxy",
-        "description": "UCs federais e estaduais (parques, APAs, reservas)",
-        "alternative_url": "https://dados.gov.br/dados/conjuntos-dados/unidades-de-conservacao",
+        "status": "available_download",
+        "description": "UC federais e estaduais (parques nacionais, APAs, reservas biológicas)",
     },
     "biomas": {
         "name": "Biomas Brasileiros",
@@ -193,17 +206,29 @@ LAYER_CATALOG = {
         "description": "Processos minerarios, areas de concessao",
     },
 
-    # === HIDROGRAFIA ===
+    # === HIDROGRAFIA / ANA ===
     "hidrografia": {
-        "name": "Hidrografia (rios, lagos)",
+        "name": "Hidrografia (rios, lagos) — ANA",
         "category": "hidrografia",
-        "source": "ANA",
+        "source": "ANA/SNIRH",
         "wfs_url": "https://metadados.snirh.gov.br/geoserver/wfs",
+        "csw_url": "https://metadados.snirh.gov.br/geonetwork/srv/eng/csw",
         "format": "WFS/GeoJSON",
         "auth_required": False,
         "status": "blocked_proxy",
         "alternative_url": "https://dados.gov.br/dados/conjuntos-dados/base-hidrografica-ottocodificada-da-ana",
-        "description": "Rede hidrografica Otto-codificada",
+        "description": "Rede hidrográfica Otto-codificada — 218 datasets disponíveis no CSW",
+    },
+    "ana_outorgas": {
+        "name": "Outorgas de Uso de Água (ANA)",
+        "category": "hidrografia",
+        "source": "ANA/SNIRH",
+        "csw_url": "https://metadados.snirh.gov.br/geonetwork/srv/eng/csw",
+        "format": "CSW/WFS",
+        "auth_required": False,
+        "status": "available_etl",
+        "etl_script": "backend/scripts/etl_ana_outorgas.py",
+        "description": "Outorgas de direito de uso de recursos hídricos por bacia — 218 registros na ANA",
     },
 
     # === SOLO ===

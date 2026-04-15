@@ -259,10 +259,10 @@ async def get_layer_geojson(
                 logger.warning("FUNAI WFS error: %s", e)
                 return {"type": "FeatureCollection", "features": [], "error": str(e)}
 
-    elif layer_id in ("desmatamento", "desmatamento_cerrado"):
-        biome = "cerrado" if "cerrado" in layer_id else "amazonia"
+    elif layer_id == "desmatamento":
+        # DETER Amazônia via TerraBrasilis WFS
         tb = TerraBrasilisCollector()
-        data = await tb.get_deter_alerts(biome=biome, bbox=bbox, max_features=max_features)
+        data = await tb.get_deter_alerts(biome="amazonia", bbox=bbox, max_features=max_features)
         data["source"] = "INPE/TerraBrasilis"
         data["total"] = len(data.get("features", []))
         return data
@@ -327,11 +327,92 @@ async def get_layer_geojson(
         except Exception as e:
             return {"type": "FeatureCollection", "features": [], "error": str(e)}
 
+    elif layer_id == "desmatamento_cerrado":
+        from app.models.database import get_session
+        from sqlalchemy import text
+
+        bbox_filter = ""
+        params: dict = {"limit": max_features}
+        if bbox:
+            try:
+                west, south, east, north = [float(x) for x in bbox.split(",")]
+                bbox_filter = "WHERE ST_Intersects(geometry, ST_MakeEnvelope(:west, :south, :east, :north, 4326))"
+                params.update({"west": west, "south": south, "east": east, "north": north})
+            except Exception:
+                pass
+
+        query = f"""
+        SELECT json_build_object(
+            'type', 'FeatureCollection',
+            'features', coalesce(json_agg(ST_AsGeoJSON(t.*)::json), '[]'::json)
+        )
+        FROM (
+            SELECT classname, view_date, sensor, satellite,
+                   areauckm AS area_uc_km2, areatotalkm AS area_total_km2,
+                   municipality, uf, geometry AS geom
+            FROM geo_deter_cerrado
+            {bbox_filter}
+            LIMIT :limit
+        ) as t;
+        """
+        db = get_session()
+        try:
+            result = db.execute(text(query), params).scalar()
+            if result:
+                result["source"] = "INPE/TerraBrasilis (PostGIS local)"
+                result["total"] = len(result.get("features", []))
+                return result
+        except Exception as e:
+            logger.error("DETER Cerrado PostGIS error: %s", e)
+        finally:
+            db.close()
+        return {"type": "FeatureCollection", "features": [], "source": "geo_deter_cerrado"}
+
+    elif layer_id == "embargos_mte":
+        from app.models.database import get_session
+        from sqlalchemy import text
+
+        query = """
+        SELECT json_build_object(
+            'type', 'FeatureCollection',
+            'features', coalesce(json_agg(
+                json_build_object(
+                    'type', 'Feature',
+                    'geometry', null,
+                    'properties', json_build_object(
+                        'cpf_cnpj', cpf_cnpj,
+                        'source', source,
+                        'description', description,
+                        'created_at', created_at
+                    )
+                )
+            ), '[]'::json)
+        )
+        FROM environmental_alerts
+        WHERE source = 'MTE'
+        LIMIT :limit;
+        """
+        db = get_session()
+        try:
+            result = db.execute(text(query), {"limit": max_features}).scalar()
+            if result:
+                result["source"] = "MTE Lista Suja"
+                result["total"] = len(result.get("features", []))
+                return result
+        except Exception as e:
+            return {"type": "FeatureCollection", "features": [], "error": str(e)}
+        finally:
+            db.close()
+
     else:
         return {
             "error": f"Camada '{layer_id}' nao encontrada",
-            "available": ["terras_indigenas", "desmatamento", "desmatamento_cerrado", "municipios"],
+            "available": [
+                "terras_indigenas", "desmatamento", "desmatamento_cerrado",
+                "municipios", "parcelas_financiamento", "embargos", "embargos_mte"
+            ],
         }
+
 
 
 # --- Terras Indígenas (FUNAI) ---
