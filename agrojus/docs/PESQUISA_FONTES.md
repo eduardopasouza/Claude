@@ -1139,6 +1139,115 @@ Classificação automática por keywords:
 - "geral": tudo o resto
 ```
 
+### Agrolink — Análise Profunda (verificado 15/04/2026)
+
+**Portal:** `https://www.agrolink.com.br/`
+**RSS (já no collector):** `https://www.agrolink.com.br/rss/noticias.xml`
+
+A Agrolink é MUITO mais rica do que apenas notícias. É um ecossistema completo:
+
+#### Cotações estruturadas por categoria (URLs verificadas)
+```
+GRÃOS (com subdivisão por praça):
+- Arroz:   agrolink.com.br/cotacoes/graos/arroz/
+- Feijão:  agrolink.com.br/cotacoes/graos/feijao/
+- Café:    agrolink.com.br/cotacoes/graos/cafe/
+- Milho:   agrolink.com.br/cotacoes/graos/milho/
+- Soja:    agrolink.com.br/cotacoes/graos/soja/
+- Trigo:   agrolink.com.br/cotacoes/graos/trigo/
+
+CARNES (6 espécies):
+- Aves:     agrolink.com.br/cotacoes/carnes/aves/
+- Bovinos:  agrolink.com.br/cotacoes/carnes/bovinos/
+- Bubalinos: agrolink.com.br/cotacoes/carnes/bubalinos/
+- Caprinos: agrolink.com.br/cotacoes/carnes/caprinos/
+- Ovinos:   agrolink.com.br/cotacoes/carnes/ovinos/
+- Suínos:   agrolink.com.br/cotacoes/carnes/suinos/
+
+DIVERSOS:
+- Algodão:  agrolink.com.br/cotacoes/diversos/algodao/
+- Alho:     agrolink.com.br/cotacoes/diversos/alho/
+- Batata:   agrolink.com.br/cotacoes/diversos/batata/
+- Cana:     agrolink.com.br/cotacoes/diversos/cana/
+- Leite:    agrolink.com.br/cotacoes/diversos/leite/
+- Mandioca: agrolink.com.br/cotacoes/diversos/mandioca/
+
+HORTALIÇAS + CEASAS:
+- Hortaliças: agrolink.com.br/cotacoes/hortalicas/
+- Ceasas:     agrolink.com.br/cotacoes/ceasa/busca
+
+ANÁLISES DE MERCADO:
+- agrolink.com.br/cotacoes/analise/lista/
+```
+
+#### Ferramentas exclusivas Agrolink
+```
+1. AGROTEMPO — Previsão do tempo agro
+   URL: agrolink.com.br/agrotempo/
+   O que tem: Previsão por região agrícola, mapas de chuva, temperatura
+   → Complementa NASA POWER com dados mais "user-friendly"
+
+2. AGROLINKFITO — Base de defensivos agrícolas
+   URL: agrolink.com.br/agrolinkfito/
+   O que tem: Base completa de agrotóxicos registrados, bulas, doses
+   → Relevância: compliance de uso correto de defensivos
+
+3. BIOLÓGICOS — Defensivos biológicos
+   URL: agrolink.com.br/biologicos/
+   → ESG: agricultor que usa biológicos = perfil mais sustentável
+
+4. FERTILIZANTES — Preços e informações
+   URL: agrolink.com.br/fertilizantes/
+   → Custo de produção: preço NPK impacta margem do produtor
+
+5. CARBONO — Mercado de carbono
+   URL: agrolink.com.br/carbono/
+   → Relevância para valuation: potencial de créditos de carbono
+
+6. SEMENTES — Tecnologias e preços
+   URL: agrolink.com.br/sementes/
+   → Custo de produção e estimativa de produtividade
+
+7. CLASSIFICADOS — Máquinas e insumos
+   URL: agrolink.com.br/classificados/
+   → Termômetro de mercado de máquinas usadas
+
+8. A VOZ DO MERCADO — Opinião de analistas
+   URL: agrolink.com.br/avozdomercado/
+   → Inteligência de mercado de especialistas
+
+9. CONVERSOR DE UNIDADES
+   URL: agrolink.com.br/conversao/
+   → Útil para API: converter sacas→kg→tons, alqueires→hectares
+
+10. REGIONAL — Conteúdo por estado/região
+    URL: agrolink.com.br/regional/
+    → Segmentação geográfica de informações
+```
+
+#### Seções AGRO por cultura (conteúdo técnico)
+```
+Culturas com páginas dedicadas:
+- Algodão, Arroz, Café, Cana-de-Açúcar, Feijão,
+  Hortifruti, Milho, Soja, Trigo + "Outros"
+
+Pecuária com subdivisões:
+- Aves, Bovinos, Ovinos, Suínos + "Outros"
+
+Cada cultura tem: notícias, cotações, problemas/pragas, 
+sementes, pós-colheita específicos
+```
+
+#### Estratégia de integração Agrolink no AgroJus
+```
+Nível 1 (já feito): RSS de notícias
+Nível 2 (próximo): Scraping de cotações por cultura + praça
+Nível 3 (futuro): Integrar Agrotempo no painel de clima
+Nível 4 (diferencial): Cruzar cotação regional com MapBiomas
+  → "Esta região plantou soja, preço atual R$X/saca, estimativa
+     de produção Y toneladas, valor estimado R$ Z"
+```
+
 ### Notícias Agrícolas — Cobertura temática verificada
 ```
 Categorias editoriais confirmadas (25+ temas):
