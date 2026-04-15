@@ -2,7 +2,12 @@
 
 > **Este documento é o briefing primário.** Leia ANTES de qualquer código.
 > Consolida: produto, concorrentes, fontes de dados, APIs, pendências e padrões de acesso.
-> Versão: 1.0 — 2026-04-15
+> Versão: 2.0 — 2026-04-15
+>
+> **Documentos complementares obrigatórios:**
+> - `docs/PESQUISA_FONTES.md` — guia técnico profundo de cada fonte de dados
+> - `docs/coordination/ROADMAP.md` — status de cada módulo e pendências
+> - `docs/HANDOFF_2026-04-15.md` — estado técnico atual do sistema
 
 ---
 
