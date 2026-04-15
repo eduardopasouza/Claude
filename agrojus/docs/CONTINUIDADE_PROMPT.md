@@ -6,8 +6,9 @@ Você está assumindo o desenvolvimento do **AgroJus**, uma plataforma de inteli
 
 - **Repositório:** `c:/Users/eduar/OneDrive/Escritório/_Pessoal/AgroJus/Claude/agrojus`
 - **Branch Git:** `claude/continue-backend-dev-sVLGG`
-- **Último commit:** `39c737d` — feat: DETER Cerrado + catalogo camadas + ETLs ANA/SICOR
-- **Handoff completo:** `docs/HANDOFF_2026-04-15.md` (leia este arquivo primeiro)
+- **Último commit:** `c2aae7e` — feat: login overlay UI + handoff v2 + CSS auth
+- **Handoff completo:** `docs/HANDOFF_2026-04-15.md`
+- **⭐ LEIA PRIMEIRO:** `docs/CONTEXTO_COMPLETO.md` — contexto de produto, concorrentes, todas as fontes de dados
 
 ---
 
