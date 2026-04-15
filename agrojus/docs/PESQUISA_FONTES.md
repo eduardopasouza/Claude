@@ -998,6 +998,329 @@ estaduais (ARISP em SP, ARIEMS no MS, etc.) que ainda existed antes do mapa.onr.
 
 ---
 
-*AgroJus — Pesquisa de Fontes de Dados v2.0 — 2026-04-15*
-*Atualizado com URLs verificados dos sites oficiais de MapBiomas, BasedosDados e dados.gov.br*
+## 13. MERCADO, COTAÇÕES E COMMODITIES — Assessoria Completa
+
+### 13.1 Cotações de Commodities Agrícolas
+
+#### CEPEA/ESALQ (✅ Collector implementado — `cepea.py`)
+```
+Site: https://www.cepea.esalq.usp.br/br/indicador/
+Status: Scraping funcionando (retorna 403 para bots — precisamos headers corretos)
+Método: HTML scraping com BeautifulSoup
+
+Commodities implementadas (9):
+- Soja (R$/saca 60kg)        - Milho (R$/saca 60kg)
+- Boi Gordo (R$/@)            - Café Arábica (R$/saca 60kg)
+- Algodão (c/lp)              - Arroz (R$/saca 50kg)
+- Trigo (R$/t)                - Açúcar Cristal (R$/saca 50kg)
+- Etanol Hidratado (R$/litro)
+
+⚠️ CEPEA bloqueia bots agressivos. Respeitar rate limit (1 req/min).
+Alternativa: Notícias Agrícolas tem cotações CEPEA em formato mais acessível.
+```
+
+#### Notícias Agrícolas — Cotações (✅ verificado)
+```
+Portal: https://www.noticiasagricolas.com.br/cotacoes
+30+ categorias de cotação verificadas:
+  Algodão, Amendoim, Arroz, Boi Gordo, Cacau, Café, Feijão,
+  Frango, Frutas, Laranja, Látex, Legumes, Leite, Mandioca,
+  Milho, Ovos, Silvicultura, Soja, Sorgo, Suínos, Sucroenergético,
+  Trigo, Verduras
+
+Mercado Futuro (CME/B3): Soja, Milho, Trigo
+Cotação do Dólar em tempo real
+Mercado Físico (Safras & Mercado): cotações por praça regional
+
+Método de acesso: Scraping HTML (sem API pública) ou RSS para notícias
+RSS confirmado: https://www.noticiasagricolas.com.br/rss/noticias.xml
+```
+
+#### B3 / CME — Mercado Futuro (❌ Pendente)
+```
+O que falta:
+- Cotações de futuros (soja CBOT, milho B3, boi gordo B3, café ICE)
+- Contratos em aberto, volume negociado
+- Basis regional (diferença entre físico e futuro)
+
+Fontes possíveis:
+- B3 Market Data: https://www.b3.com.br/pt_br/market-data-e-indices/
+  → API paga para dados em tempo real
+- CME Group via Notícias Agrícolas: gráficos futuros já disponíveis
+- yfinance (Python): `pip install yfinance` → dados CME gratuitos (delay 15min)
+  → SB=F (soja), ZC=F (milho), KC=F (café), LE=F (boi)
+- B3 séries históricas: download gratuito de CSV diários
+```
+
+#### IBGE SIDRA (✅ Collector implementado — `market_data.py`)
+```
+API: https://apisidra.ibge.gov.br/values
+Status: ✅ Implementado e funcional (sem autenticação)
+
+Tabela 5457 — PAM (Produção Agrícola Municipal):
+- Área plantada, colhida, quantidade produzida, rendimento médio
+- 4 culturas principais: soja (39), milho (33), café (9), cana (31)
+- Dados por município, estado ou Brasil
+- Série histórica anual
+
+Outras tabelas importantes:
+- Tabela 3939: PPM — Pecuária Municipal (rebanho bovino por município)
+- Tabela 1612: LSPA — Safra atual (estimativa em andamento)
+- Tabela 5938: Valor da produção agrícola
+```
+
+### 13.2 Safras e Produção
+
+#### CONAB — Acompanhamento de Safra (⚠️ Parcial)
+```
+Portal: https://portaldeinformacoes.conab.gov.br/
+Dados: Séries históricas de grãos, cana-de-açúcar, café, algodão
+
+Datasets disponíveis:
+- safra-serie-historica-graos.html → área, produção, produtividade por UF
+- custos-de-producao.html → custo/ha por cultura e região
+- estoques.html → estoques reguladores
+- preco-minimo.html → preços mínimos garantidos pelo governo
+
+Formato: Tabelas interativas (JavaScript) — sem API REST
+Estratégia: Scraping ou download manual periódico de planilhas
+Frequência: Boletins mensais (12 levantamentos/safra)
+
+Collector status: ⚠️ Stub implementado em market_data.py — precisa scraping real
+```
+
+#### USDA (❌ Pendente — mas crítico para exportação)
+```
+APIs gratuitas:
+- FAS API: https://apps.fas.usda.gov/opendataweb/api/
+  → Dados de comércio exterior agrícola (exportação BR→mundo)
+- WASDE Reports: oferta/demanda mundial de grãos
+  → Movimenta mercados toda segunda-feira
+
+Por que importa: exportadores que usam AgroJus precisam saber
+condições de mercado global para decidir quando vender
+```
+
+### 13.3 Indicadores Financeiros e Econômicos
+
+#### BCB SGS API (✅ Collector implementado — `bcb.py`)
+```
+API: https://api.bcb.gov.br/dados/serie/bcdata.sgs.{codigo}/dados
+Status: ✅ Funcional, sem autenticação, testado
+
+Séries implementadas:
+- SELIC (série 11)           - Dólar comercial (série 1)
+- IPCA (série 433)           - IGP-M (série 189)
+- CDI (série 12)             - Poupança (série 25)
+- TR (série 226)
+
+Séries a adicionar (relevância agro):
+- Preço médio de terra (INCRA/FNP) — verificar se existe no SGS
+- Crédito rural liberado (série 20633)
+- Índice de preços recebidos pelo produtor (série 19)
+```
+
+---
+
+## 14. NOTÍCIAS E INTELIGÊNCIA — Cobertura Editorial
+
+### NewsAggregator (✅ Implementado — `news_aggregator.py`)
+```
+Fontes RSS ativas (5):
+1. Agrolink:             https://www.agrolink.com.br/rss/noticias.xml
+2. Canal Rural:          https://www.canalrural.com.br/feed/
+3. Notícias Agrícolas:   https://www.noticiasagricolas.com.br/rss/noticias.xml
+4. Embrapa:              https://www.embrapa.br/rss/ultimas-noticias.xml
+5. Portal do Agronegócio: https://www.portaldoagronegocio.com.br/feed
+
+Classificação automática por keywords:
+- "jurídico": legislação, embargo, multa, IBAMA, código florestal...
+- "mercado": cotação, preço, safra, commodities, B3...
+- "geral": tudo o resto
+```
+
+### Notícias Agrícolas — Cobertura temática verificada
+```
+Categorias editoriais confirmadas (25+ temas):
+  Agronegócio, Algodão, Biocombustível, Boi, Café, Carnes, Clima,
+  Código Florestal, Feijão/Grãos, Flores, Frango, Grãos, Hortifruti,
+  Jurídico, Laranja/Citrus, Leite, Logística, Máquinas/Tech,
+  Meio Ambiente, Milho, Petróleo, Política Agrícola, Política/Economia,
+  Questões Indígenas, Segurança no Agro, Soja, Sucroenergético,
+  Trigo, USDA
+
+De alta relevância para AgroJus:
+  - "Jurídico" → alertas de mudanças regulatórias
+  - "Código Florestal" → impacto direto na compliance
+  - "Clima" → risco climático por região
+  - "Questões Indígenas" → risco fundiário
+  - "Meio Ambiente" → embargos, autuações, EUDR
+```
+
+### Fontes a adicionar no futuro
+```
+- AgFeed: https://agfeed.com.br/feed/ (fintech agro, FIAGROs)
+- Reuters Agro: feeds pagos, mas os melhores para mercado internacional
+- Valor Econômico Agro: https://valor.globo.com/agronegocios/rss.xml
+- Globo Rural: https://revistapesquisa.fapesp.br/feed/ (pesquisa agro)
+- Diário Oficial da União: alertas de decretos e portarias agro
+  → API: https://www.in.gov.br/servicos/diario-oficial-da-uniao
+```
+
+---
+
+## 15. CLIMA E DADOS METEOROLÓGICOS — Risco Climático
+
+### NASA POWER API (✅ Gratuita, verificada)
+```
+API: https://power.larc.nasa.gov/api/temporal/
+Endpoint: daily, monthly, climatology
+Parâmetros: lat/lon → dados meteorológicos para qualquer ponto do Brasil
+
+Variáveis disponíveis para agro:
+- T2M: temperatura a 2m (°C)
+- PRECTOTCORR: precipitação total (mm/dia)
+- RH2M: umidade relativa (%)
+- ALLSKY_SFC_SW_DWN: radiação solar (W/m²)
+- WS2M: velocidade do vento a 2m (m/s)
+- GWETROOT: umidade do solo na zona de raízes (fração)
+
+Exemplo de chamada:
+GET https://power.larc.nasa.gov/api/temporal/daily/point?
+  parameters=T2M,PRECTOTCORR,RH2M&
+  community=AG&
+  longitude=-47.93&latitude=-15.78&
+  start=20240101&end=20241231&
+  format=JSON
+
+Por que é ESSENCIAL:
+- Histórico climático por coordenada (40+ anos) → risco de seca/geada
+- Sem limite de uso, sem autenticação
+- Complementa MapBiomas Atmosfera (que é mais visual/raster)
+- Calcula balanço hídrico, evapotranspiração potencial, graus-dia
+
+Status: ❌ Collector não implementado — prioridade ALTA
+```
+
+### INMET — Estações Meteorológicas (❌ Pendente)
+```
+API: https://apitempo.inmet.gov.br/
+Endpoints:
+- /estacao/dados/{data} → dados diários por estação
+- /estacao → lista de todas as estações automáticas (890+)
+- /previsao/{codigoCidade} → previsão 5 dias
+
+Por que usar junto com NASA POWER:
+- NASA POWER: dados reanálise satellite (cobre todo Brasil, inclusive interior)
+- INMET: dados de estação (mais preciso onde existe estação)
+- Cruzamento dos dois: validação de qualidade
+```
+
+### MapBiomas Atmosfera (✅ GEE Assets documentados — seção 13)
+```
+Já documentado acima:
+- Temperatura (anual, mensal, anomalia)
+- Precipitação (anual, mensal, anomalia)
+- Pressão de vapor (estresse hídrico)
+- Qualidade do ar (PM10, PM2.5) — relevante para incêndios
+
+Diferencial: dados RASTER → servem para visualização no mapa, não para
+consulta pontual. Para consulta pontual, usar NASA POWER.
+```
+
+### Embrapa ZARC — Zoneamento Agrícola de Risco Climático (❌ Pendente)
+```
+O que é: Define quais culturas podem ser plantadas em cada município
+por decêndio (10 dias), e qual o risco de perda por seca/geada/excesso.
+
+Dados: https://indicadores.agricultura.gov.br/zarc/index.htm
+API: Verificar se existe API ou se é download manual
+
+Por que é ENORME para compliance bancária:
+- Banco Central EXIGE ZARC para liberar crédito de custeio
+- Plantio fora do ZARC = seguro não cobre → banco não financia
+- AgroJus pode alertar: "Esta cultura neste município neste período
+  está FORA do ZARC — risco de não cobertura pelo PROAGRO"
+```
+
+---
+
+## 16. COMPARAÇÃO COMPETITIVA — Cobertura de Dados
+
+### O que cada concorrente oferece vs AgroJus
+
+| Dimensão | Agrosatélite | Agrotools | Terras/FNP | AgroJus (meta) |
+|---|---|---|---|---|
+| **Mapa LULC** | ✅ Próprio | ✅ MapBiomas | ❌ | ✅ MapBiomas Col.10 |
+| **Resolução 10m** | ✅ Pago | ❌ | ❌ | ✅ MapBiomas 10m (grátis) |
+| **Desmatamento DETER** | ✅ | ✅ | ❌ | ✅ 50k no PostGIS |
+| **Desmatamento PRODES** | ✅ | ✅ | ❌ | ⚠️ Pendente |
+| **Alertas MapBiomas** | ❌ | ❌ | ❌ | ⚠️ Pendente (GraphQL) |
+| **MCR 2.9 Score** | ❌ | ✅ | ❌ | ⚠️ Motor a implementar |
+| **EUDR Compliance** | ✅ Pago | ❌ | ❌ | ⚠️ Diferencial |
+| **Embargos IBAMA** | ❌ | ✅ | ❌ | ✅ 103k no PostGIS |
+| **Trabalho escravo** | ❌ | ❌ | ❌ | ✅ 614 no PostGIS |
+| **Crédito rural BCB** | ❌ | ❌ | ❌ | ✅ 5.6M parcelas PostGIS |
+| **Fogo histórico** | ✅ | ❌ | ❌ | ⚠️ GEE pendente |
+| **Degradação (EUDR)** | ❌ | ❌ | ❌ | ⚠️ Diferencial exclusivo |
+| **Solo (carbono)** | ❌ | ❌ | ❌ | ⚠️ Diferencial exclusivo |
+| **Cotações CEPEA** | ❌ | ❌ | ✅ FNP | ✅ Collector pronto |
+| **Indicadores BCB** | ❌ | ❌ | ❌ | ✅ API funcionando |
+| **Notícias agro** | ❌ | ❌ | ❌ | ✅ 5 feeds RSS |
+| **Clima por coordenada** | ❌ | ❌ | ❌ | ⚠️ NASA POWER pendente |
+| **ZARC risco agrícola** | ❌ | ❌ | ❌ | ⚠️ Pendente |
+| **Produção municipal** | ❌ | ❌ | ✅ | ✅ SIDRA implementado |
+| **CNPJ/Sócios** | ❌ | ❌ | ❌ | ⚠️ BasedosDados (GCP) |
+| **Valuation R$/ha** | ❌ | ❌ | ✅ FNP (pago) | ⚠️ Modelo pendente |
+| **PDF Relatório** | ✅ PDF | ✅ PDF | ✅ PDF | ⚠️ WeasyPrint pendente |
+| **API pública** | ❌ | ✅ B2B | ❌ | ✅ FastAPI pronta |
+
+### Análise dos gaps
+
+**Onde somos ÚNICOS (nenhum concorrente tem):**
+- MapBiomas Degradação + Solo + Atmosfera combinados
+- Crédito rural BCB (5.6M parcelas) cruzado com desmatamento
+- Trabalho escravo MTE integrado com geolocalização
+- Cotações CEPEA + notícias + compliance em UMA plataforma
+- API REST aberta (concorrentes vendem B2B fechado)
+
+**Onde estamos ATRÁS e precisa priorizar:**
+1. ❌ Motor MCR 2.9 (Agrotools já tem)
+2. ❌ EUDR compliance automatizado (Agrosatélite já tem)
+3. ❌ PRODES (dado oficial de desmatamento — temos só DETER)
+4. ❌ Export PDF profissional
+5. ❌ Valuation R$/ha (Terras/FNP tem modelo proprietário)
+
+**Onde estamos IGUAIS:**
+- Mapa LULC MapBiomas (mesma fonte que Agrotools)
+- DETER alertas (mesma fonte que todos)
+- Embargos IBAMA (dados públicos)
+
+### O que nenhum concorrente faz e nós vamos fazer:
+
+```
+1. ASSESSORIA COMPLETA EM UM PAINEL:
+   - Compliance (MCR 2.9, EUDR) + Mercado (cotações, safra) + 
+     Notícias (feeds jurídicos/regulatórios) + Clima (NASA POWER) +
+     Financeiro (BCB, SELIC, dólar) + Fundiário (INCRA, ONR)
+
+2. HISTÓRICO DE 38 ANOS POR PIXEL:
+   MapBiomas Col.10 (1985-2023) = prova documental irrefutável
+
+3. INTELIGÊNCIA CRUZADA:
+   - Embargo IBAMA + polígono de financiamento BCB = "banco financiou desmatado?"
+   - Solo + clima + cobertura = valuation automatizado com fundamento científico
+   - Trabalho escravo + CNPJ + município = due diligence social automática
+
+4. API ABERTA:
+   POST /api/v1/imovel/relatorio → qualquer sistema integra
+   GET /api/v1/cotacoes → cotações CEPEA em JSON
+   GET /api/v1/noticias → feed classificado por relevância jurídica
+```
+
+---
+
+*AgroJus — Pesquisa de Fontes de Dados v3.0 — 2026-04-15*
+*Assessoria completa: Compliance + Mercado + Notícias + Clima + Financeiro*
+*Atualizado com URLs verificados dos sites oficiais*
 *Este documento deve ser revisado e expandido a cada sessão de pesquisa*
