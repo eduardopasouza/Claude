@@ -1,260 +1,150 @@
-# PROMPT DE CONTINUIDADE — AgroJus Enterprise
+# AgroJus — Prompt de Continuidade para Nova Sessão
 
-## Contexto do Projeto
-
-Você está assumindo o desenvolvimento do **AgroJus**, uma plataforma de inteligência agropecuária enterprise para o mercado brasileiro.
-
-- **Repositório:** `c:/Users/eduar/OneDrive/Escritório/_Pessoal/AgroJus/Claude/agrojus`
-- **Branch Git:** `claude/continue-backend-dev-sVLGG`
-- **Último commit:** `c2aae7e` — feat: login overlay UI + handoff v2 + CSS auth
-- **Handoff completo:** `docs/HANDOFF_2026-04-15.md`
-- **⭐ LEIA PRIMEIRO:** `docs/CONTEXTO_COMPLETO.md` — contexto de produto, concorrentes, todas as fontes de dados
+> **Leia este arquivo primeiro.** É o ponto de entrada para qualquer nova sessão de desenvolvimento.
+> Atualizado: 2026-04-15 (03:27 BRT)
 
 ---
 
-## O Que É o AgroJus
-
-Plataforma SaaS B2B de inteligência fundiária, ambiental e de mercado para:
-- **Bancos e Cooperativas de Crédito Rural** — compliance MCR 2.9 (BCB), auditoria EUDR
-- **Traders e Exportadores** — monitoramento de commodities e cadeia de fornecimento limpa
-- **Escritórios Jurídicos Rurais** — dossiê consolidado de CPF/CNPJ (IBAMA, MTE, DataJud)
-- **Fintechs Agro** — motor de score de risco ambiental e trabalhista
-
-**Diferencial:** cruzamento em tempo real de 15+ bases de dados oficiais (IBAMA, FUNAI, MapBiomas, INPE DETER Amazônia **+ Cerrado**, MTE, BCB, IBGE, Yahoo Finance, NASA POWER) em uma única API REST.
-
----
-
-## Stack Tecnológico
-
-| Camada | Tecnologia |
-|---|---|
-| Backend API | FastAPI + SQLAlchemy + Uvicorn |
-| Banco de Dados | PostgreSQL 15 + PostGIS |
-| Frontend Principal | Vanilla JS + Vite + Leaflet (GIS Engine v2) |
-| Infraestrutura | Docker Compose (containers: `db` + `backend`) |
-| ETL / Coleta | Python scripts (pdfplumber, httpx, geopandas, ogr2ogr) |
-
----
-
-## Estado Atual do Banco de Dados (2026-04-15)
+## 🚀 Como retomar o trabalho
 
 ```bash
-docker exec agrojus-backend-1 python scripts/db_status.py
-docker exec agrojus-backend-1 python scripts/db_inventory.py  # inventário completo
-```
-
-| Tabela | Registros | Source | Status |
-|---|---|---|---|
-| `environmental_alerts` (IBAMA) | **103.668** | dadosabertos.ibama.gov.br | ✅ |
-| `environmental_alerts` (MTE) | **614** | gov.br/trabalho | ✅ |
-| `mapbiomas_credito_rural` | **5.614.207** | MapBiomas GPKG | ✅ |
-| `mapbiomas_agriculture_cycles` | **15.180** | MapBiomas Stats | ✅ |
-| `mapbiomas_coverage_states` | **953** | MapBiomas Stats | ✅ |
-| `mapbiomas_irrigation_stats` | **7.174** | MapBiomas Stats | ✅ |
-| `mapbiomas_mining_stats` | **1.294** | MapBiomas Stats | ✅ |
-| `mapbiomas_pasture_age` | **1.911** | MapBiomas Stats | ✅ |
-| `mapbiomas_pasture_vigor` | **147** | MapBiomas Stats | ✅ |
-| `geo_terras_indigenas` | **655** | FUNAI WFS | ✅ |
-| `geo_deter_amazonia` | **50.000** | INPE TerraBrasilis WFS | ✅ |
-| `geo_deter_cerrado` | **50.000** | INPE TerraBrasilis WFS | ✅ **NOVO** |
-| `geo_armazens_silos` | **16.676** | MapBiomas | ✅ |
-| `geo_frigorificos` | **207** | MapBiomas | ✅ |
-| `geo_rodovias_federais` | **14.255** | MapBiomas | ✅ |
-| `geo_ferrovias` | **2.244** | MapBiomas | ✅ |
-| `geo_portos` | **35** | MapBiomas | ✅ |
-| `market_quotes` | **24** | Yahoo Finance CBOT/CME | ✅ |
-| `rural_credits` | **0** | BCB SICOR (em manutenção) | ⏳ |
-| `ana_outorgas` | **0** | ANA SNIRH (ETL criado) | ⏳ |
-| `properties` | **0** | SICAR (~40 GB) | ⬜ |
-
----
-
-## APIs Funcionando (http://localhost:8000)
-
-```
-GET  /api/v1/dashboard/metrics              → KPIs reais: 8 indicadores + geo_summary
-GET  /api/v1/market/quotes                  → 10 cotações CBOT/CME em BRL
-GET  /api/v1/compliance/dossier/{cpf_cnpj}  → Dossiê CPF/CNPJ (IBAMA + MTE)
-GET  /api/v1/geo/layers/{id}/geojson        → GeoJSON PostGIS para mapa Leaflet
-GET  /api/v1/geo/layers/desmatamento_cerrado/geojson → DETER Cerrado (50k polígonos locais)
-GET  /api/v1/geo/analyze-point              → Análise coordenada (risco, FUNAI, DETER, clima)
-GET  /api/v1/geo/catalogo                   → Catálogo completo de 20+ camadas (status real)
-GET  /api/v1/geo/municipios/{cod}/producao  → PAM SIDRA (soja, milho, café...)
-GET  /api/v1/geo/clima                      → NASA POWER (any coordinate)
-GET  /docs                                  → Swagger UI completo
-```
-
----
-
-## Frontend GIS Engine v2 (http://localhost:5173)
-
-- **Basemap Switcher:** Satélite / Terreno / OSM
-- **Multi-layer Overlay:** Embargos + TI + DETER + Cerrado + Crédito Rural
-- **Right-click → Análise de Ponto:** risco, município, FUNAI, DETER, clima, jurisdição
-- **Bounding Box Search:** Shift+drag → alertas na região
-- **Coord Picker:** click esquerdo copia lat,lon
-- **Legenda Dinâmica** com botão ✕ por camada
-
-**Camadas disponíveis no select do mapa:**
-- `desmatamento` → DETER Amazônia (WFS em tempo real)
-- `desmatamento_cerrado` → DETER Cerrado (50k polígonos PostGIS local ✅)
-- `embargos` → 103k IBAMA polígonos
-- `terras_indigenas` → FUNAI WFS
-- `parcelas_financiamento` → 5.6M MapBiomas
-- `municipios` → Malha IBGE
-
----
-
-## Diagnóstico de Fontes de Dados
-
-### O que funciona sem credenciais ✅
-| Fonte | Endpoint | Dados |
-|---|---|---|
-| IBAMA Embargos | dadosabertos.ibama.gov.br | 103k polígonos |
-| MTE Lista Suja | gov.br/trabalho-e-emprego | 614 CPF/CNPJ |
-| INPE DETER Amazônia | terrabrasilis.dpi.inpe.br WFS | 50k polígonos |
-| INPE DETER Cerrado | terrabrasilis.dpi.inpe.br WFS | 50k polígonos |
-| MapBiomas (GPKG/Stats) | storage.googleapis.com | 5.6M+ registros |
-| FUNAI | geoserver.funai.gov.br WFS | 655 TIs |
-| Yahoo Finance | query1.finance.yahoo.com | 10 commodities CBOT/CME |
-| NASA POWER | power.larc.nasa.gov | Clima em qualquer coord |
-| IBGE SIDRA | apisidra.ibge.gov.br | PAM/PPM por município |
-| BasedosDados GraphQL | backend.basedosdados.org | Metadados (dados precisam GCP) |
-
-### Bloqueado / Requer credencial ⚠️
-| Fonte | Bloqueador | Solução |
-|---|---|---|
-| dados.gov.br CKAN | Retorna 401 (migrou plataforma) | usar URLs diretas por dataset |
-| BasedosDados BigQuery | Requer `GCP_PROJECT_ID` | adicionar ao .env → 1TB/mês grátis |
-| BCB SICOR OData | 503 Service Unavailable (manutenção) | tentar novamente em outro horário |
-| ANA SNIRH Outorgas | Endpoints de arquivo 404 | descobrir URL correta no portal |
-| ICMBio UCs | DNS falha do container Docker | baixar manualmente do ICMBio |
-| SICAR/CAR | ~40 GB por estado | download manual prioritário |
-
----
-
-## ROADMAP — Estado e Próximas Tarefas
-
-### ✅ FASE 7 — Base de Dados Core (CONCLUÍDA)
-
-- [x] **7.1** ETL Lista Suja MTE — 4 → 614 registros (parser regex + pdfplumber)
-- [x] **7.2** Scraper de cotações — Yahoo Finance CBOT/CME (10 commodities, câmbio HG Brasil)
-- [x] **7.3** `GET /api/v1/dashboard/metrics` — 8 KPIs reais do PostgreSQL + geo_summary
-
-### ✅ FASE 7.5 — Expansão de Dados (CONCLUÍDA NESTA SESSÃO)
-
-- [x] **7.5.1** DETER Cerrado → tabela `geo_deter_cerrado` (50k polígonos via WFS)
-- [x] **7.5.2** Layer `/layers/desmatamento_cerrado/geojson` via PostGIS com bbox filter
-- [x] **7.5.3** Catálogo de camadas expandido (`camadas.py`) com 20+ fontes catalogadas
-- [x] **7.5.4** Dashboard metrics expandido: DETER Amazônia+Cerrado, TIs, armazéns, frigoríficos
-- [x] **7.5.5** ETLs criados: `etl_deter_cerrado.py`, `etl_ana_outorgas.py`, `etl_sicor_bcb.py`
-- [x] **7.5.6** Catalogadores: `bd_catalog.py` (BasedosDados GraphQL), `catalog_data_sources.py`
-- [x] **7.5.7** `db_inventory.py` — inventário completo de todas as tabelas com contagens
-
-### 🔴 FASE 8 — Integração Dados Externos (PRÓXIMA PRIORIDADE)
-
-**8.1 — BasedosDados / BigQuery** ← **MÁXIMA PRIORIDADE**
-- Requer: `GCP_PROJECT_ID` no `.env` (criar projeto gratuito em console.cloud.google.com)
-- Tabelas de alto valor:
-  - `basedosdados.cnpj.Empresas` (2.7 bilhões de linhas) — enrichment CNPJ completo
-  - `basedosdados.cnpj.Estabelecimentos` (2.8 bilhões) — razão social, CNAE, endereço
-  - `basedosdados.censo_agropecuario.Municipio` (20k linhas) — PAM por município
-  - `basedosdados.trabalho_escravo` — complementar ao MTE
-- Arquivo: `backend/scripts/etl_basedosdados.py` (já existe, precisa GCP)
-
-**8.2 — BCB SICOR Crédito Rural** ← Alta prioridade
-- O OData retornou 503 (manutenção) — tentar novamente
-- Arquivo: `backend/scripts/etl_sicor_bcb.py`
-- Alternativa: bulk download em `dadosabertos.bcb.gov.br`
-
-**8.3 — ANA Outorgas de Água**
-- ETL escrito em `etl_ana_outorgas.py` — precisar descobrir URL correta do arquivo ZIP
-- Portal: https://metadados.snirh.gov.br
-
-**8.4 — IBAMA Autos de Infração (~300k multas)**
-- CSV de `dadosabertos.ibama.gov.br` retorna apenas 4 linhas (bug do portal)
-- Alternativa: buscar URL de download completo via Transparência.gov.br
-
-### 🟡 FASE 9 — Login e Controle de Acesso
-- 9.1 Tela de Login → `POST /api/v1/auth/login` (JWT)
-- 9.2 Rate Limiting por API Key (`slowapi`)
-- 9.3 Hardening `JWT_SECRET` via `.env`
-
-### 🟡 FASE 10 — Relatórios e Export
-- 10.1 Export PDF do Dossiê (`WeasyPrint`)
-- 10.2 Export PNG do mapa (`leaflet-image`)
-
-### 🟢 FASE 11 — Features Enterprise
-- 11.1 Motor de Score de Risco (0-100) combinando IBAMA + MTE + DataJud + sobreposição TI
-- 11.2 Alertas em Tempo Real via WebSocket (novos embargos sem refresh)
-- 11.3 Next.js Frontend Enterprise (migração gradual)
-
----
-
-## Como Iniciar o Ambiente
-
-```bash
+# 1. Subir infraestrutura
 cd "c:/Users/eduar/OneDrive/Escritório/_Pessoal/AgroJus/Claude/agrojus"
-
-# 1. Subir containers (PostgreSQL + FastAPI)
 docker compose up -d
 
-# 2. Verificar saúde e inventário do banco
-docker exec agrojus-backend-1 python scripts/db_status.py
+# 2. Verificar banco de dados
 docker exec agrojus-backend-1 python scripts/db_inventory.py
 
-# 3. Iniciar frontend Vite
-cd frontend && npm run dev
+# 3. Subir frontend
+cd frontend && npm run dev   # → http://localhost:5173
 
-# 4. Acessar
-# Frontend:  http://localhost:5173
-# Backend:   http://localhost:8000
-# Swagger:   http://localhost:8000/docs
-# Dashboard: http://localhost:8000/api/v1/dashboard/metrics
+# 4. Verificar backend
+curl http://localhost:8000/api/v1/dashboard/metrics
 ```
 
 ---
 
-## Scripts ETL Disponíveis
+## 📁 Mapa de Documentação
 
-| Script | Função | Status |
+| Documento | O que contém | Quando ler |
 |---|---|---|
-| `etl_mte_escravo.py` | Lista Suja MTE (PDF → 614 registros) | ✅ Funcional |
-| `fetch_market_prices.py` | Cotações CBOT/CME via Yahoo Finance | ✅ Funcional |
-| `etl_geo_sources.py` | Geo layers (DETER, TI, infraestrutura) | ✅ Funcional |
-| `etl_deter_cerrado.py` | DETER Cerrado via WFS → PostGIS | ✅ Funcional |
-| `etl_mapbiomas_credito.py` | 5.6M parcelas crédito rural | ✅ Funcional |
-| `etl_basedosdados.py` | BigQuery (PAM, CNPJ) | ⚠️ Precisa GCP_PROJECT_ID |
-| `etl_sicor_bcb.py` | Crédito Rural BCB OData | ⚠️ BCB em manutenção |
-| `etl_ana_outorgas.py` | Outorgas ANA SNIRH | ⚠️ URL de download pendente |
-| `etl_ibama_infracoes.py` | Autos de Infração IBAMA | ⚠️ CSV do portal tem 4 linhas (bug) |
-| `db_inventory.py` | Inventário completo do banco | ✅ Funcional |
-| `bd_catalog.py` | Catálogo tabelas BasedosDados.org | ✅ Funcional |
+| `docs/CONTEXTO_COMPLETO.md` | **Briefing primário** — produto, 5 módulos, concorrentes, fontes, padrões de código | **Sempre, em primeiro lugar** |
+| `docs/PESQUISA_FONTES.md` | Guia técnico profundo de CADA fonte de dados — dados.gov, basedosdados, MapBiomas 18 produtos, IBAMA, ANA, BCB, ONR | Antes de qualquer ETL |
+| `docs/coordination/ROADMAP.md` | Status dos 5 módulos + 30 pendências de dados + 14 pendências de código | Para decidir o que fazer |
+| `docs/HANDOFF_2026-04-15.md` | Estado técnico atual do sistema — tabelas, APIs, commits | Para entender onde parou |
+| `docs/ARCHITECTURE.md` | Arquitetura técnica da plataforma | Antes de mudanças estruturais |
+| `docs/FRONTEND_SPEC.md` | Especificação detalhada do frontend | Antes de trabalho no frontend |
+| `docs/coordination/API_CONTRACT.md` | Contrato de API backend↔frontend | Antes de criar/modificar endpoints |
+| `docs/coordination/BACKLOG.md` | Backlog de tarefas de curto prazo | Para micro-tarefas do dia |
+| `docs/coordination/DECISIONS.md` | Decisões técnicas tomadas e justificativas | Para entender por que as coisas são como são |
 
 ---
 
-## Credenciais e Variáveis de Ambiente
+## 🔑 Informações de Acesso
 
-| Serviço | Detalhes |
+| Serviço | Valor |
 |---|---|
-| PostgreSQL | host: `localhost:5432` · db: `agrojus` · user: `agrojus` · pass: `agrojus` |
+| PostgreSQL | `localhost:5432` / db: `agrojus` / user: `agrojus` / pass: `agrojus` |
 | Backend API | `http://localhost:8000` |
+| Swagger UI | `http://localhost:8000/docs` |
 | Frontend | `http://localhost:5173` |
-| GCP / BigQuery | ❌ **Não configurado** — adicionar `GCP_PROJECT_ID` ao `.env` |
+| Branch Git | `claude/continue-backend-dev-sVLGG` |
 
 ---
 
-## Instruções para o Agente de IA
+## ⚡ Estado Atual da Plataforma (2026-04-15)
 
-1. **Leia primeiro** `docs/HANDOFF_2026-04-15.md` + este arquivo
-2. **Verifique o estado** com `docker exec agrojus-backend-1 python scripts/db_inventory.py`
-3. **Prioridade 1:** Obter `GCP_PROJECT_ID` do usuário e rodar `etl_basedosdados.py` (CNPJ + PAM)
-4. **Prioridade 2:** Tentar BCB SICOR novamente (`etl_sicor_bcb.py`) — pode ter saído da manutenção
-5. **Prioridade 3:** Implementar Fase 9 (Login/JWT) para tornar a plataforma multi-tenant
-6. **Nunca usar mock data** — toda informação vem do PostgreSQL ou APIs reais
-7. **Commits atômicos** com mensagens descritivas em português
-8. **Ao finalizar:** atualizar este arquivo + `docs/HANDOFF_2026-04-15.md`
+### Backend — Operacional ✅
+- FastAPI + PostGIS rodando em Docker
+- 19 tabelas com dados reais (103k IBAMA, 614 MTE, 50k DETER Amazônia, 50k DETER Cerrado, 5.6M crédito rural, 655 TIs, 16k armazéns...)
+- Auth JWT completo (login, registro, rate limiting)
+- Dashboard metrics com 8 KPIs reais
+- Layer GIS serving do PostGIS local (20+ camadas)
+
+### Frontend — Funcional ✅ (login em progresso)
+- GIS Map Engine v2 com Leaflet — multi-layer, análise de ponto, bbox search
+- Login overlay UI adicionado (needs browser test)
+- KPI cards, market feed, news feed, compliance view
+
+### Dados — Parcialmente bloqueados ⏳
+- BCB SICOR: 503 manutenção
+- BasedosDados BigQuery: requer GCP_PROJECT_ID do usuário
+- ANA Outorgas: URL de download pendente
+- ICMBio UCs: download manual pendente
 
 ---
 
-*AgroJus Enterprise — Prompt de Continuidade v2.0 — 2026-04-15 (atualizado às 02:50 BRT)*
+## 🎯 Próximos Passos Recomendados
+
+### IMEDIATO — 1 sessão
+1. **Testar login no browser** `http://localhost:5173` → fluxo completo (register → badge → logout)
+2. **BasedosDados**: usuário criar projeto GCP grátis em `console.cloud.google.com`
+3. **Motor Score MCR 2.9**: implementar checklist IBAMA + DETER + CAR + TI
+
+### CURTO PRAZO — 2-3 sessões
+4. `POST /api/v1/imovel/relatorio` — motor central do Módulo 1
+5. **PRODES** — carregar desmatamento anual consolidado (WFS TerraBrasilis)
+6. **MapBiomas Alerta** — criar conta + implementar GraphQL collector
+7. **Export PDF** — WeasyPrint para relatório de conformidade
+
+### MÉDIO PRAZO — 1-2 semanas
+8. **Valuation R$/ha** — modelo preditivo por município
+9. **DataJud/CNJ** — processos judiciais por CPF/CNPJ
+10. **APScheduler** — cotações automáticas 09h e 18h BRT
+
+---
+
+## ⚠️ Avisos Críticos
+
+> **JWT_SECRET** ainda é o valor padrão de dev — adicionar ao `.env` antes de deploy
+
+> **GCP_PROJECT_ID** não configurado — bloqueia BasedosDados BigQuery
+
+> **MapBiomas Alerta** — conta não criada — bloqueia laudos técnicos de desmatamento
+
+> **DETER**: temos apenas 50k alertas (limite do WFS). Total real: 800k Amazônia + 200k Cerrado.
+> Baixar arquivo completo em `terrabrasilis.dpi.inpe.br/downloads/`
+
+---
+
+## 🧹 Estrutura de Arquivos (após limpeza 15/04/2026)
+
+```
+docs/
+├── CONTEXTO_COMPLETO.md     ← LEIA PRIMEIRO (briefing de produto)
+├── PESQUISA_FONTES.md       ← Guia técnico de cada fonte de dados
+├── CONTINUIDADE_PROMPT.md   ← Este arquivo
+├── HANDOFF_2026-04-15.md    ← Estado técnico atual
+├── ARCHITECTURE.md          ← Arquitetura de sistema
+├── FRONTEND_SPEC.md         ← Spec do frontend
+├── API.md                   ← Documentação de API
+├── _archive/                ← Docs obsoletos (não apagar)
+├── coordination/
+│   ├── ROADMAP.md           ← Status dos módulos e pendências
+│   ├── API_CONTRACT.md      ← Contrato backend↔frontend
+│   ├── BACKLOG.md           ← Tarefas de curto prazo
+│   ├── DECISIONS.md         ← Decisões técnicas
+│   ├── BRIEFING_ANTIGRAVITY.md ← Briefing para o agente IA
+│   └── agents/              ← Instruções por agente
+└── plans/
+    ├── 2026-04-11-fase1-consolidacao.md
+    ├── 2026-04-11-frontend-nextjs14-design.md
+    └── 2026-04-11-frontend-phase1-scaffold-core.md
+
+backend/
+├── app/
+│   ├── api/         ← Rotas FastAPI (geo, compliance, market, dashboard, auth)
+│   ├── collectors/  ← Coletores de dados externos
+│   └── models/      ← SQLAlchemy models
+└── scripts/         ← ETLs e scripts de manutenção
+
+frontend/
+├── index.html       ← App principal + login overlay
+├── main.js          ← Lógica principal + GIS Engine
+├── style.css        ← Design system completo
+└── src/components/  ← Componentes JS (GisMap, etc.)
+```
+
+---
+
+*AgroJus Enterprise — Continuidade Prompt v3.0 — 2026-04-15*

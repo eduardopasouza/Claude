@@ -1,61 +1,63 @@
-# AgroJus — Handoff entre Agentes
+# AgroJus — Handoff de Contexto (coordination)
 
-Mensagens entre agentes. Formato: `### ORIGEM -> DESTINO` com data.
-Cada agente le as mensagens destinadas a ele ao iniciar sessao.
-Mensagens resolvidas sao movidas para o final em "## Arquivo".
-
----
-
-## 2026-04-11
-
-### GERENTE -> TODOS
-Arquitetura multi-agente aprovada. Cada agente deve:
-1. Ler seu arquivo em `agents/[nome].md` ao iniciar
-2. Ler este HANDOFF.md filtrando mensagens para si
-3. Atualizar `agents/[nome].md` ao final da sessao
-4. Escrever aqui se precisar de algo de outro agente
-
-### GERENTE -> DATA-ENGINEER
-Prioridade AGORA (Fase 1):
-1. Importar IBAMA embargos coordenadas (CSV 8MB)
-2. Importar Lista Suja completa (CSV Portal Transparencia)
-3. Baixar shapefiles UCs (ICMBio) e Quilombolas (INCRA)
-Quando pronto, atualizar agents/data-engineer.md.
-
-### GERENTE -> QA
-Prioridade AGORA (Fase 1):
-1. Medir cobertura atual com pytest-cov
-2. Adicionar testes para: compliance, jurisdicao, clima, BCB, consulta unificada
-3. Adicionar testes de resiliencia (timeout, 500, JSON invalido)
-
-### GERENTE -> DEVOPS
-Prioridade AGORA (Fase 1):
-1. Testar docker-compose.yml existente
-2. Garantir PostgreSQL + PostGIS subindo
-3. Testar Alembic migrations contra banco real
-4. Configurar GitHub Actions basico (lint + pytest)
-
-### GERENTE -> PESQUISADOR
-Prioridade AGORA:
-1. Cadastrar API key DataJud/CNJ (gratuita, 5 min)
-2. Testar se SICAR e SIGEF voltaram ao ar
-3. Validar as 13 fontes reais — quais ainda respondem?
-
-### GERENTE -> BACKEND
-Aguardar Data Engineer entregar collectors UCs/Quilombolas.
-Enquanto isso:
-1. Preparar endpoints GET /geo/unidades-conservacao e /geo/quilombolas
-2. Revisar API_CONTRACT.md quando Gerente criar
-
-### GERENTE -> FRONTEND
-API_CONTRACT.md sera criado em breve.
-Prioridades quando contrato estiver pronto:
-1. Integrar analyze-point no right-click do Leaflet
-2. Painel de camadas toggle
-3. Paginas de compliance e jurisdicao
+> Este é o handoff de coordenação entre agentes/sessões.
+> Para o handoff técnico completo, veja: `docs/HANDOFF_2026-04-15.md`
+> Para o contexto de produto completo, veja: `docs/CONTEXTO_COMPLETO.md`
+> Atualizado: 2026-04-15
 
 ---
 
-## Arquivo (resolvidos)
+## Estado de Desenvolvimento — Fase Atual
 
-(vazio)
+**Fase:** 7.5 concluída → iniciando Módulo 1 (Relatório de Conformidade)
+**Versão:** v0.7.0
+**Branch:** `claude/continue-backend-dev-sVLGG`
+**Último commit:** `42d6413` — docs: PESQUISA_FONTES.md
+
+---
+
+## O que está funcional
+
+```
+✅ Infrastructure: Docker Compose (backend FastAPI + PostgreSQL/PostGIS)
+✅ Auth: JWT login/register (backend completo, frontend overlay adicionado)
+✅ GIS Engine v2: Leaflet multi-layer, análise de ponto, bbox search
+✅ Dashboard: 8 KPIs reais de PostgreSQL + cotações Yahoo Finance
+✅ Compliance API: /dossier/{cpf_cnpj} (IBAMA + MTE)
+✅ Geo API: /layers/{id}/geojson (20+ camadas do PostGIS)
+✅ Market API: /quotes (10 commodities CBOT/CME em BRL)
+✅ NASA POWER: clima por coordenada
+✅ IBGE SIDRA: produção agrícola por município
+```
+
+## O que está bloqueado / pendente
+
+```
+⏳ BasedosDados BigQuery → precisa GCP_PROJECT_ID (ação do usuário)
+⏳ BCB SICOR → 503 manutenção BCB
+⏳ ANA Outorgas → URL de download desconhecida
+⚠️ ICMBio UCs → download manual pendente (DNS falha no container)
+❌ Score MCR 2.9 → não implementado
+❌ POST /api/v1/imovel/relatorio → não implementado
+❌ MapBiomas Alerta → conta não criada
+❌ PRODES full → só 50k do WFS, precisamos 800k+
+```
+
+## Próxima tarefa de desenvolvimento
+
+**Módulo 1 — Relatório de Conformidade:**
+```
+POST /api/v1/imovel/relatorio
+Input:  { tipo: "car"|"geojson"|"cpf_cnpj", valor: "..." }
+Output: Score MCR 2.9 + Score EUDR + Embargos + TIs + DETER + Crédito + Logística + PDF
+```
+
+---
+
+## Agentes e Responsabilidades
+
+| Agente | Foco |
+|---|---|
+| **Antigravity (Claude/Gemini)** | Desenvolvimento full-stack — código, ETLs, APIs, frontend |
+| **Supra Gerente** | Coordenação, decisões de produto, roadmap |
+| **Usuário (Eduardo)** | Fornece credenciais (GCP), valida dados, testa no browser |
