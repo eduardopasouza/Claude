@@ -68,11 +68,43 @@ def get_dashboard_metrics(db: Session = Depends(get_db)):
     except Exception:
         users_total = 0
 
+    # ── Geo Layers — Alertas DETER ───────────────────────────────────────────
+    deter_amazonia = db.execute(
+        text("SELECT COUNT(*) FROM geo_deter_amazonia")
+    ).scalar() or 0
+
+    deter_cerrado = db.execute(
+        text("SELECT COUNT(*) FROM geo_deter_cerrado")
+    ).scalar() or 0
+
+    # ── Geo Layers — Terras Indígenas ─────────────────────────────────────────
+    terras_indigenas = db.execute(
+        text("SELECT COUNT(*) FROM geo_terras_indigenas")
+    ).scalar() or 0
+
+    # ── Infraestrutura Logística ──────────────────────────────────────────────
+    armazens = db.execute(
+        text("SELECT COUNT(*) FROM geo_armazens_silos")
+    ).scalar() or 0
+
+    frigorificos = db.execute(
+        text("SELECT COUNT(*) FROM geo_frigorificos")
+    ).scalar() or 0
+
+    # ── MapBiomas Stats ───────────────────────────────────────────────────────
+    try:
+        area_irrigada_ha = db.execute(
+            text("SELECT SUM(\"2023\") FROM mapbiomas_irrigation_stats")
+        ).scalar() or 0
+    except Exception:
+        area_irrigada_ha = 0
+
+
     # ── Latência do banco ─────────────────────────────────────────────────────
     t1 = time.perf_counter()
     db_latency_ms = round((t1 - t0) * 1000, 1)
 
-    # ── Cotações recentes (últimas 5 para sparkline) ─────────────────────────
+    # ── Cotações recentes (últimas 10 para cards) ────────────────────────────
     recent_quotes_raw = db.execute(
         text("""
             SELECT product, price_brl, date
@@ -86,6 +118,7 @@ def get_dashboard_metrics(db: Session = Depends(get_db)):
         {"product": row[0], "price_brl": row[1], "date": str(row[2])}
         for row in recent_quotes_raw
     ]
+
 
     # ── Últimos embargos IBAMA ────────────────────────────────────────────────
     recent_embargos_raw = db.execute(
@@ -134,11 +167,36 @@ def get_dashboard_metrics(db: Session = Depends(get_db)):
                 "label": "Parcelas MapBiomas",
                 "icon": "🌿",
             },
+            "deter_alertas": {
+                "amazonia": deter_amazonia,
+                "cerrado": deter_cerrado,
+                "total": deter_amazonia + deter_cerrado,
+                "label": "Alertas Desmatamento (DETER)",
+                "icon": "🌳",
+            },
+            "terras_indigenas": {
+                "total": terras_indigenas,
+                "label": "Terras Indígenas (FUNAI)",
+                "icon": "🏛",
+            },
+            "infraestrutura": {
+                "armazens": armazens,
+                "frigorificos": frigorificos,
+                "label": "Infraestrutura Logística",
+                "icon": "🏭",
+            },
             "users": {
                 "total": users_total,
                 "label": "Usuários Cadastrados",
                 "icon": "👤",
             },
+        },
+        "geo_summary": {
+            "total_environmental_alerts": ibama_total + mte_total,
+            "total_deter_alerts": deter_amazonia + deter_cerrado,
+            "total_terras_indigenas": terras_indigenas,
+            "total_credito_rural_parcelas": credito_rural_total,
+            "area_irrigada_ha": round(float(area_irrigada_ha), 0) if area_irrigada_ha else 0,
         },
         "recent_quotes": recent_quotes,
         "recent_embargos": recent_embargos,
