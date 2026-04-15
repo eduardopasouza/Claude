@@ -51,18 +51,23 @@ def search_properties(
     conditions = []
     params = {}
 
+    # Usa sicar_completo (BigQuery, 79M) se existir, senao geo_car (WFS, 135k)
+    table = _get_car_table(engine)
+    has_municipio = table == "geo_car"
+
     if q:
-        conditions.append(
-            "(cod_imovel ILIKE :q OR municipio ILIKE :q_mun)"
-        )
+        if has_municipio:
+            conditions.append("(cod_imovel ILIKE :q OR municipio ILIKE :q_mun)")
+            params["q_mun"] = f"%{q}%"
+        else:
+            conditions.append("cod_imovel ILIKE :q")
         params["q"] = f"%{q}%"
-        params["q_mun"] = f"%{q}%"
 
     if uf:
         conditions.append("uf = :uf")
         params["uf"] = uf.upper()
 
-    if municipio:
+    if municipio and has_municipio:
         conditions.append("municipio ILIKE :municipio")
         params["municipio"] = f"%{municipio}%"
 
@@ -83,14 +88,13 @@ def search_properties(
     params["limit"] = page_size
     params["offset"] = offset
 
-    # Usa sicar_completo (BigQuery, 79M) se existir, senao geo_car (WFS, 135k)
-    table = _get_car_table(engine)
+    municipio_col = "municipio" if has_municipio else "'' as municipio"
 
     sql_count = f"SELECT COUNT(*) FROM {table} {where}"
     sql_data = f"""
         SELECT
             cod_imovel,
-            {'municipio' if table == 'geo_car' else "''" + ' as municipio'},
+            {municipio_col},
             uf,
             area,
             COALESCE(status_imovel, '') as status,
