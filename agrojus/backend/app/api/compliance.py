@@ -419,3 +419,61 @@ def _is_after_cutoff(date_str: str, cutoff: str) -> bool:
     except Exception:
         pass
     return False
+
+
+@router.get("/dossier/{cpf_cnpj}")
+async def get_dossier(cpf_cnpj: str):
+    """
+    Retorna o dossiê consolidado de Compliance de uma entidade (CPF/CNPJ).
+    Varre o PostgreSQL (environmental_alerts) verificando IBAMA e Lista Suja MTE.
+    """
+    from app.models.database import get_session, EnvironmentalAlert
+    from sqlalchemy import or_
+    import copy
+
+    clean = cpf_cnpj.replace(".", "").replace("/", "").replace("-", "")
+    
+    with get_session() as db:
+        alerts = db.query(EnvironmentalAlert).filter(
+            EnvironmentalAlert.cpf_cnpj == clean
+        ).all()
+        
+    mte_records = []
+    ibama_records = []
+    
+    for a in alerts:
+        # Avoid circular dependencies by cloning dictionary
+        data_clean = copy.deepcopy(a.raw_data) if a.raw_data else {}
+        
+        if a.source == "MTE":
+            mte_records.append({
+                "type": a.alert_type,
+                "description": a.description,
+                "date": str(a.created_at),
+                "data": data_clean
+            })
+        elif a.source == "IBAMA":
+            ibama_records.append({
+                "type": a.alert_type,
+                "description": a.description,
+                "data": data_clean
+            })
+            
+    risk = "BAIXO"
+    if mte_records:
+        risk = "CRÍTICO (Exclusão Imediata)"
+    elif ibama_records:
+        risk = "MÉDIO/ALTO (Avaliar Restrições)"
+        
+    return {
+        "entity": cpf_cnpj,
+        "overall_risk": risk,
+        "summary": {
+            "mte_slave_labor_occurrences": len(mte_records),
+            "ibama_embargoes_or_infractions": len(ibama_records)
+        },
+        "records": {
+            "mte": mte_records,
+            "ibama": ibama_records
+        }
+    }

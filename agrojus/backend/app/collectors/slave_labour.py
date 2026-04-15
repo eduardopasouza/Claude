@@ -46,14 +46,33 @@ class SlaveLabourCollector(BaseCollector):
         super().__init__("slave_labour")
 
     async def search_by_cpf_cnpj(self, cpf_cnpj: str) -> list[SlaveLabourEntry]:
-        """Busca registros na lista suja por CPF/CNPJ."""
+        """Busca registros na lista suja por CPF/CNPJ no PostgreSQL."""
         clean = cpf_cnpj.replace(".", "").replace("/", "").replace("-", "")
 
         cached = self._get_cached(f"slave:{clean}")
         if cached:
             return [SlaveLabourEntry(**item) for item in cached]
 
-        entries = self._search_reference_data(cpf_cnpj_filter=clean)
+        from app.models.database import SessionLocal, LegalRecord
+        with SessionLocal() as db:
+             records = db.query(LegalRecord).filter(
+                 LegalRecord.record_type == "slave_labour",
+                 LegalRecord.cpf_cnpj == clean
+             ).all()
+             
+             entries = []
+             for r in records:
+                 row = r.raw_data or {}
+                 entries.append(SlaveLabourEntry(
+                     employer_name=row.get("EMPREGADOR") or "Desconhecido",
+                     cpf_cnpj=r.cpf_cnpj,
+                     establishment=row.get("ESTABELECIMENTO") or "Desconhecido",
+                     municipality=r.municipality,
+                     state=r.state,
+                     workers_rescued=int(row.get("TRABALHADORES ENVOLVIDOS") or 0),
+                     inspection_date=row.get("DATA DA FISCALIZAÇÃO") or ""
+                 ))
+
         self._set_cached(f"slave:{clean}", [e.model_dump() for e in entries])
         return entries
 

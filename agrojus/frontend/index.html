@@ -4,213 +4,236 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="AgroJus — Inteligência Fundiária, Jurídica e de Mercado para o Agronegócio" />
-  <title>AgroJus — Inteligência Agro</title>
+  <title>AgroJus — Enterprise</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="/style.css" />
 </head>
-<body>
-  <!-- Sidebar -->
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <div class="logo">
-        <div class="logo-icon">⚖</div>
-        <div>
-          <h1 class="logo-text">AgroJus</h1>
-          <span class="logo-sub">Inteligência Agro</span>
+<body class="enterprise-light">
+  
+  <!-- Sleek Sidebar Navigation -->
+  <aside class="glass-sidebar" id="sidebar">
+    <div class="sidebar-top">
+      <div class="brand">
+        <div class="brand-iso">⚖</div>
+        <div class="brand-text">
+          <h1>AgroJus</h1>
+          <span>ENTERPRISE</span>
         </div>
       </div>
     </div>
 
-    <nav class="nav">
-      <button class="nav-item active" data-panel="dashboard" id="nav-dashboard">
-        <span class="nav-icon">📊</span> Dashboard
+    <nav class="nav-menu">
+      <button class="nav-action active" data-view="dashboard">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+        <span class="nav-label">Dashboard</span>
       </button>
-      <button class="nav-item" data-panel="consulta" id="nav-consulta">
-        <span class="nav-icon">🔍</span> Consulta Unificada
+      <button class="nav-action" data-view="consulta">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <span class="nav-label">Consulta DeepSearch</span>
       </button>
-      <button class="nav-item" data-panel="mapa" id="nav-mapa">
-        <span class="nav-icon">🗺️</span> Mapa GIS
+      <button class="nav-action" data-view="mapa">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg>
+        <span class="nav-label">GIS Map Bioma</span>
       </button>
-      <button class="nav-item" data-panel="compliance" id="nav-compliance">
-        <span class="nav-icon">✅</span> Compliance
+      <button class="nav-action" data-view="compliance">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+        <span class="nav-label">Compliance EUDR</span>
       </button>
-      <button class="nav-item" data-panel="mercado" id="nav-mercado">
-        <span class="nav-icon">📈</span> Mercado
-      </button>
-      <button class="nav-item" data-panel="noticias" id="nav-noticias">
-        <span class="nav-icon">📰</span> Notícias
+      <button class="nav-action" data-view="mercado">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+        <span class="nav-label">Mercado & Agro</span>
       </button>
     </nav>
 
-    <div class="sidebar-footer">
-      <div class="api-status" id="api-status">
-        <span class="status-dot offline"></span>
-        <span>API Offline</span>
+    <div class="sidebar-bottom">
+      <div class="system-status" id="api-status">
+        <div class="pulse-ring"><div class="status-orb offline"></div></div>
+        <div class="status-info">
+           <span class="status-text">OFFLINE</span>
+           <span class="status-ping">0ms</span>
+        </div>
       </div>
-      <span class="version">v0.5.0</span>
     </div>
   </aside>
 
-  <!-- Main Content -->
-  <main class="main" id="main-content">
+  <!-- App Stage -->
+  <main class="app-stage">
+    
+    <!-- DASHBOARD VIEW -->
+    <div class="view-panel active" id="view-dashboard">
+       <header class="view-heading">
+          <h2>Overview Platform</h2>
+          <div class="ribbon-btn">Premium Tier Active</div>
+       </header>
+       
+       <div class="kpi-grid">
+         <div class="kpi-card">
+           <p class="kpi-title">Data Sources</p>
+           <h3 class="kpi-metric">13<span class="kpi-sub"> APIs</span></h3>
+           <div class="kpi-trend positive">11/13 Healthy</div>
+         </div>
+         <div class="kpi-card">
+           <p class="kpi-title">Searches</p>
+           <h3 class="kpi-metric" id="dash-searches">—</h3>
+           <div class="kpi-trend">Quota 24h</div>
+         </div>
+         <div class="kpi-card">
+           <p class="kpi-title">MCR 2.9 Calls</p>
+           <h3 class="kpi-metric" id="dash-reports">—</h3>
+           <div class="kpi-trend">Quota Mês</div>
+         </div>
+         <div class="kpi-card">
+           <p class="kpi-title">Sys Latency</p>
+           <h3 class="kpi-metric" id="dash-latency">—<span class="kpi-sub">ms</span></h3>
+           <div class="kpi-trend positive">Realtime P99</div>
+         </div>
+       </div>
 
-    <!-- Dashboard Panel -->
-    <section class="panel active" id="panel-dashboard">
-      <header class="panel-header">
-        <h2>Dashboard</h2>
-        <span class="panel-badge" id="badge-plan">Plano Free</span>
-      </header>
+       <div class="omnibar-container" id="quick-search-box">
+         <div class="omnibar-icon">⌕</div>
+         <input type="text" class="omnibar-input" id="omni-input" placeholder="Deep Search: CPF, CNPJ, CAR, Doc..." />
+         <button class="btn-glow" id="omni-btn">Search</button>
+       </div>
 
-      <div class="stats-grid" id="stats-grid">
-        <div class="stat-card" id="stat-sources">
-          <div class="stat-value">13</div>
-          <div class="stat-label">Fontes de Dados</div>
-          <div class="stat-trend up">11 online</div>
-        </div>
-        <div class="stat-card" id="stat-searches">
-          <div class="stat-value" id="searches-remaining">—</div>
-          <div class="stat-label">Buscas Restantes</div>
-          <div class="stat-trend">hoje</div>
-        </div>
-        <div class="stat-card" id="stat-reports">
-          <div class="stat-value" id="reports-remaining">—</div>
-          <div class="stat-label">Relatórios Restantes</div>
-          <div class="stat-trend">este mês</div>
-        </div>
-        <div class="stat-card" id="stat-api-status">
-          <div class="stat-value" id="api-latency">—</div>
-          <div class="stat-label">Latência API</div>
-          <div class="stat-trend" id="api-version">—</div>
-        </div>
-      </div>
-
-      <!-- Quick Search -->
-      <div class="quick-search-card" id="quick-search">
-        <h3>Busca Rápida</h3>
-        <div class="search-row">
-          <input type="text" class="input-main" id="input-quick-search" placeholder="CPF, CNPJ, nome ou CAR..." />
-          <button class="btn-primary" id="btn-quick-search">Buscar</button>
-        </div>
-      </div>
-
-      <!-- Recent News -->
-      <div class="news-card" id="news-panel">
-        <h3>Notícias Agro</h3>
-        <div class="news-list" id="news-list">
-          <div class="skeleton-line"></div>
-          <div class="skeleton-line short"></div>
-          <div class="skeleton-line"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Consulta Unificada Panel -->
-    <section class="panel" id="panel-consulta">
-      <header class="panel-header">
-        <h2>Consulta Unificada</h2>
-        <span class="panel-badge">Todas as Fontes</span>
-      </header>
-
-      <div class="consulta-form">
-        <div class="form-group">
-          <label for="input-cpf-cnpj">CPF ou CNPJ</label>
-          <input type="text" class="input-main" id="input-cpf-cnpj" placeholder="Digite CPF (11 dígitos) ou CNPJ (14 dígitos)..." />
-        </div>
-        <button class="btn-primary btn-lg" id="btn-consulta">Executar Consulta Completa</button>
-      </div>
-
-      <div class="consulta-results" id="consulta-results" style="display:none;">
-        <div class="risk-badge-bar" id="risk-bar"></div>
-        <div class="sections-grid" id="sections-grid"></div>
-      </div>
-    </section>
-
-    <!-- Mapa GIS Panel -->
-    <section class="panel" id="panel-mapa">
-      <header class="panel-header">
-        <h2>Mapa GIS</h2>
-        <div class="map-controls">
-          <select class="select-layer" id="select-layer">
-            <option value="">Camadas...</option>
-            <option value="terras_indigenas">Terras Indígenas</option>
-            <option value="desmatamento">Alertas Desmatamento</option>
-            <option value="municipios">Municípios</option>
-          </select>
-          <input type="text" class="input-uf" id="input-uf" placeholder="UF" maxlength="2" />
-          <button class="btn-secondary" id="btn-load-layer">Carregar</button>
-        </div>
-      </header>
-      <div class="map-container" id="map-container"></div>
-      <div class="map-info" id="map-info">
-        <span>Clique direito no mapa para analisar uma região</span>
-      </div>
-    </section>
-
-    <!-- Compliance Panel -->
-    <section class="panel" id="panel-compliance">
-      <header class="panel-header">
-        <h2>Compliance</h2>
-        <span class="panel-badge">MCR 2.9 / EUDR</span>
-      </header>
-      <div class="compliance-form">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="comp-cpf">CPF/CNPJ</label>
-            <input type="text" class="input-main" id="comp-cpf" placeholder="CPF ou CNPJ" />
+       <div class="news-feed-module">
+          <div class="module-header">
+            <h3>Intel Feed (Agro)</h3>
           </div>
-          <div class="form-group">
-            <label for="comp-car">Código CAR</label>
-            <input type="text" class="input-main" id="comp-car" placeholder="MA-2100055-abc123" />
+          <div class="news-list" id="dash-news-list">
+             <div class="skel-row"></div><div class="skel-row short"></div>
           </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="comp-lat">Latitude</label>
-            <input type="number" class="input-main" id="comp-lat" placeholder="-5.0" step="0.0001" />
-          </div>
-          <div class="form-group">
-            <label for="comp-lon">Longitude</label>
-            <input type="number" class="input-main" id="comp-lon" placeholder="-44.0" step="0.0001" />
-          </div>
-        </div>
-        <div class="btn-row">
-          <button class="btn-primary" id="btn-mcr29">Verificar MCR 2.9</button>
-          <button class="btn-secondary" id="btn-eudr">Verificar EUDR</button>
-        </div>
-      </div>
-      <div class="compliance-results" id="compliance-results" style="display:none;"></div>
-    </section>
+       </div>
+    </div>
 
-    <!-- Mercado Panel -->
-    <section class="panel" id="panel-mercado">
-      <header class="panel-header">
-        <h2>Mercado & Indicadores</h2>
+    <!-- CONSULTA VIEW -->
+    <div class="view-panel" id="view-consulta">
+      <header class="view-heading">
+        <h2>Consulta DeepSearch</h2>
+        <div class="ribbon-btn outline">Engine: AgroJus DataBrain</div>
       </header>
-      <div class="market-grid" id="market-grid">
-        <div class="skeleton-card"></div>
-        <div class="skeleton-card"></div>
-        <div class="skeleton-card"></div>
-      </div>
-    </section>
 
-    <!-- Noticias Panel -->
-    <section class="panel" id="panel-noticias">
-      <header class="panel-header">
-        <h2>Notícias do Agronegócio</h2>
-        <div class="news-filters">
-          <button class="filter-btn active" data-filter="all">Todas</button>
-          <button class="filter-btn" data-filter="juridico">Jurídico</button>
-          <button class="filter-btn" data-filter="mercado">Mercado</button>
+      <div class="glass-form-island">
+        <label>Identificador Alvo (CPF/CNPJ)</label>
+        <div class="search-compound">
+           <input type="text" class="input-ultra" id="deep-cpf-input" placeholder="Execute a busca profunda com 11 ou 14 algarismos..." />
+           <button class="btn-glow huge" id="deep-search-btn">Auditar</button>
         </div>
-      </header>
-      <div class="news-full-list" id="news-full-list">
-        <div class="skeleton-line"></div>
-        <div class="skeleton-line short"></div>
       </div>
-    </section>
+
+      <div id="deep-results-area" class="results-area" style="display:none;">
+         <div class="risk-matrix">
+            <div class="matrix-cell" id="risk-overall">
+               <span class="lbl">Risco Geral</span>
+               <h4 class="val">—</h4>
+            </div>
+            <div class="matrix-cell" id="risk-env">
+              <span class="lbl">Socioambiental</span>
+              <h4 class="val">—</h4>
+            </div>
+            <div class="matrix-cell" id="risk-legal">
+              <span class="lbl">Jurídico</span>
+              <h4 class="val">—</h4>
+            </div>
+            <div class="matrix-cell" id="risk-fin">
+              <span class="lbl">Financeiro</span>
+              <h4 class="val">—</h4>
+            </div>
+         </div>
+         
+         <div class="data-blocks-grid" id="deep-sections-grid">
+            <!-- Bloques preenchidos via JS -->
+         </div>
+      </div>
+    </div>
+
+    <!-- MAPA VIEW -->
+    <div class="view-panel no-padding" id="view-mapa">
+      <div id="gis-map" class="map-root"></div>
+      <div class="map-hud-overlay">
+        <div class="hud-topbar glass-hud">
+           <select class="hud-select" id="gis-basemap" title="Mapa Base">
+              <option value="satellite">🛰 Satélite</option>
+              <option value="terrain">⛰ Terreno</option>
+              <option value="osm">🗺 OpenStreetMap</option>
+           </select>
+           <div class="hud-divider"></div>
+           <select class="hud-select" id="gis-layer">
+              <option value="">+ Camada Geográfica</option>
+              <optgroup label="Ambiental">
+                <option value="embargos">🔴 Embargos IBAMA (103k)</option>
+                <option value="desmatamento">🔥 Desmatamento Amazônia (DETER)</option>
+                <option value="desmatamento_cerrado">🔥 Desmatamento Cerrado (DETER)</option>
+                <option value="terras_indigenas">🟡 Terras Indígenas (FUNAI)</option>
+              </optgroup>
+              <optgroup label="Financeiro">
+                <option value="parcelas_financiamento">🟢 Crédito Rural (5.6M parcelas)</option>
+              </optgroup>
+              <optgroup label="Administrativo">
+                <option value="municipios">⬜ Malha Municipal (IBGE)</option>
+              </optgroup>
+           </select>
+           <input type="text" class="hud-input mini" id="gis-uf" placeholder="UF" maxlength="2" />
+           <button class="btn-glow slim" id="gis-load-btn">Renderizar</button>
+           <button class="btn-secondary slim" id="gis-clear-btn">Limpar</button>
+        </div>
+        <div class="hud-infobox glass-hud" id="gis-hud-info">
+           AgroJus GIS Engine v2. Click esquerdo = copiar coordenada. Click direito = análise de ponto. Shift+drag = busca BBox.
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPLIANCE VIEW -->
+    <div class="view-panel" id="view-compliance">
+       <header class="view-heading">
+        <h2>Compliance Engine</h2>
+        <div class="ribbon-btn outline">MCR 2.9 (BCB) / EU Deforestation Reg</div>
+      </header>
+
+      <div class="glass-form-island">
+         <div class="grid-form-2">
+            <div class="input-slot">
+              <label>Identificador Doc</label>
+              <input type="text" id="comp-doc" class="input-ultra slim" placeholder="CPF / CNPJ" />
+            </div>
+            <div class="input-slot">
+              <label>Registro SICAR</label>
+              <input type="text" id="comp-car" class="input-ultra slim" placeholder="Número do CAR" />
+            </div>
+            <div class="input-slot">
+              <label>Latitude Geodésica</label>
+              <input type="number" id="comp-lat" class="input-ultra slim" placeholder="-5.1234" step="0.0001" />
+            </div>
+            <div class="input-slot">
+              <label>Longitude Geodésica</label>
+              <input type="number" id="comp-lon" class="input-ultra slim" placeholder="-44.1234" step="0.0001" />
+            </div>
+         </div>
+         <div class="actions-row mt-15">
+            <button class="btn-glow block" id="btn-run-mcr29">Auditar MCR 2.9</button>
+            <button class="btn-secondary block" id="btn-run-eudr">Auditar EUDR (Soja)</button>
+         </div>
+      </div>
+
+      <div id="compliance-results-box" class="data-blocks-grid mt-20" style="display:none;">
+         <div class="section-block full">
+            <h5>Compliance Trace</h5>
+            <pre id="compliance-trace-pre"></pre>
+         </div>
+      </div>
+    </div>
+
+    <!-- MERCADO VIEW -->
+    <div class="view-panel" id="view-mercado">
+       <header class="view-heading">
+        <h2>Commodities & Câmbio</h2>
+      </header>
+      <div class="market-ticker-grid" id="market-ticker-grid">
+         <div class="skel-box"></div><div class="skel-box"></div><div class="skel-box"></div>
+      </div>
+    </div>
 
   </main>
 

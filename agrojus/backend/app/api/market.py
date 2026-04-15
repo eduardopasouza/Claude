@@ -35,28 +35,50 @@ _REFERENCE_QUOTES = [
 
 
 # === Cotações ===
+from fastapi import Depends
+from sqlalchemy.orm import Session
+from sqlalchemy import text
+from app.models.database import get_db
 
 @router.get("/quotes")
-async def get_latest_quotes():
+async def get_latest_quotes(db: Session = Depends(get_db)):
     """
-    Retorna cotações mais recentes de commodities agrícolas.
-
-    Tenta buscar dados reais do CEPEA/ESALQ via scraping.
-    Se falhar, retorna dados de referência com flag `is_reference: true`.
+    Retorna cotações mais recentes de commodities agrícolas reais do CEPEA/Agrolink
+    coletadas via Scraper diário no banco de dados.
     """
-    cepea = CEPEACollector()
-    quotes = await cepea.get_all_quotes()
-
-    if quotes:
-        return {"quotes": quotes, "source": "CEPEA/ESALQ", "total": len(quotes), "is_reference": False}
-
-    # Fallback: dados de referencia realistas
-    return {
-        "quotes": _REFERENCE_QUOTES,
-        "source": "CEPEA/ESALQ (referencia)",
-        "total": len(_REFERENCE_QUOTES),
-        "is_reference": True,
-    }
+    try:
+        # Pega a ultima data de cada produto na tabela real
+        query = text("""
+            SELECT product as commodity, price_brl as price, 'R$' as unit, date as date_str, index_name as source, 'BR' as location
+            FROM market_quotes
+            WHERE (product, date) IN (
+                SELECT product, MAX(date)
+                FROM market_quotes
+                GROUP BY product
+            )
+        """)
+        result = db.execute(query).fetchall()
+        
+        quotes = []
+        for row in result:
+            quotes.append({
+                "commodity": row.commodity,
+                "price": row.price,
+                "unit": row.unit,
+                "date": str(row.date_str),
+                "source": row.source,
+                "variation_pct": 0.0, # Implementar calc d-1 depois
+                "location": row.location
+            })
+            
+        if quotes:
+            return {"quotes": quotes, "source": "DATABASE", "total": len(quotes), "is_reference": False}
+        else:
+            return {"quotes": _REFERENCE_QUOTES, "source": "Mock (Banco Vazio)", "is_reference": True}
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        return {"quotes": _REFERENCE_QUOTES, "source": "Mock Fallback", "is_reference": True}
 
 
 @router.get("/quotes/{commodity}")

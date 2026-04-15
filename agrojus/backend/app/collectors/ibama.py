@@ -51,31 +51,40 @@ _REFERENCE_EMBARGOS = [
 class IBAMACollector(BaseCollector):
     """Coleta dados de embargos e infrações ambientais do IBAMA."""
 
-    EMBARGOS_CSV_URL = "https://dadosabertos.ibama.gov.br/dados/SIFISC/termo_embargo/termo_embargo/termo_embargo.csv"
-    EMBARGOS_COORDS_URL = "https://dadosabertos.ibama.gov.br/dados/SIFISC/termo_embargo/coordenadas/coordenadas.csv"
-    AUTUACOES_CSV_URL = "https://dadosabertos.ibama.gov.br/dados/SIFISC/auto_infracao/auto_infracao/auto_infracao.csv"
-
     def __init__(self):
         super().__init__("ibama")
 
     async def search_embargos_by_cpf_cnpj(self, cpf_cnpj: str) -> list[IBAMAEmbargo]:
-        """Busca embargos IBAMA por CPF/CNPJ."""
+        """Busca embargos IBAMA por CPF/CNPJ no banco PostgreSQL."""
         clean = cpf_cnpj.replace(".", "").replace("/", "").replace("-", "")
 
         cached = self._get_cached(f"embargo_cpf:{clean}")
         if cached:
             return [IBAMAEmbargo(**item) for item in cached]
 
-        # Busca local primeiro (rapido)
-        results = self._search_reference(cpf_cnpj_filter=clean)
+        from app.models.database import SessionLocal, EnvironmentalAlert
+        
+        with SessionLocal() as db:
+            records = db.query(EnvironmentalAlert).filter(
+                EnvironmentalAlert.source == "IBAMA",
+                EnvironmentalAlert.cpf_cnpj == clean
+            ).all()
 
-        # Se nao encontrar localmente, tenta CSV remoto
-        if not results:
-            try:
-                results = await self._fetch_embargos_csv(cpf_cnpj_filter=clean)
-            except Exception as e:
-                logger.warning("IBAMA CSV fetch failed: %s", e)
-
+            results = []
+            for r in records:
+                row = r.raw_data or {}
+                results.append(IBAMAEmbargo(
+                    auto_infracao=r.property_car_code or row.get("NUM_TAD", ""),
+                    cpf_cnpj=r.cpf_cnpj,
+                    nome=row.get("NOME", "Desconhecido"),
+                    municipio=row.get("MUNICIPIO", "Desconhecido"),
+                    uf=row.get("UF", ""),
+                    area_embargada_ha=0.0,  # Preenchimento basico relacional
+                    data_embargo=row.get("DATA_TAD", ""),
+                    descricao=row.get("DESCARACTERIZACAO", ""),
+                    status=row.get("SITUACAO", "")
+                ))
+        
         if results:
             self._set_cached(f"embargo_cpf:{clean}", [e.model_dump() for e in results])
         return results
@@ -83,53 +92,40 @@ class IBAMACollector(BaseCollector):
     async def search_embargos_by_municipality(
         self, municipality: str, state: str
     ) -> list[IBAMAEmbargo]:
-        """Busca embargos IBAMA por município."""
+        """Busca embargos IBAMA por município no banco PostgreSQL."""
         cached = self._get_cached(f"embargo_mun:{state}:{municipality}")
         if cached:
             return [IBAMAEmbargo(**item) for item in cached]
-
-        results = self._search_reference(
-            municipality_filter=municipality, state_filter=state
-        )
-
-        if not results:
-            try:
-                results = await self._fetch_embargos_csv(
-                    municipality_filter=municipality, state_filter=state
-                )
-            except Exception as e:
-                logger.warning("IBAMA CSV fetch failed: %s", e)
+        
+        from app.models.database import SessionLocal, EnvironmentalAlert
+        
+        with SessionLocal() as db:
+            records = db.query(EnvironmentalAlert).filter(
+                EnvironmentalAlert.source == "IBAMA"
+            ).all()
+            
+            # Filter in memory as municipality is in JSON raw_data or Description string
+            results = []
+            for r in records:
+                row = r.raw_data or {}
+                if municipality.lower() in str(row.get("MUNICIPIO", "")).lower() and state.upper() == str(row.get("UF", "")).upper():
+                    results.append(IBAMAEmbargo(
+                        auto_infracao=r.property_car_code or row.get("NUM_TAD", ""),
+                        cpf_cnpj=r.cpf_cnpj or "",
+                        nome=row.get("NOME", "Desconhecido"),
+                        municipio=row.get("MUNICIPIO", "Desconhecido"),
+                        uf=row.get("UF", ""),
+                        area_embargada_ha=0.0,
+                        data_embargo=row.get("DATA_TAD", ""),
+                        descricao=row.get("DESCARACTERIZACAO", ""),
+                        status=row.get("SITUACAO", "")
+                    ))
 
         if results:
             self._set_cached(
                 f"embargo_mun:{state}:{municipality}",
                 [e.model_dump() for e in results],
             )
-        return results
-
-    def _search_reference(
-        self,
-        cpf_cnpj_filter: str = None,
-        municipality_filter: str = None,
-        state_filter: str = None,
-    ) -> list[IBAMAEmbargo]:
-        """Busca no dataset de referência local (rápido)."""
-        results = []
-        for embargo in _REFERENCE_EMBARGOS:
-            if cpf_cnpj_filter:
-                emb_cpf = (embargo.cpf_cnpj or "").replace(".", "").replace("/", "").replace("-", "")
-                if emb_cpf != cpf_cnpj_filter:
-                    continue
-
-            if municipality_filter:
-                if municipality_filter.lower() not in (embargo.municipio or "").lower():
-                    continue
-
-            if state_filter:
-                if state_filter.upper() != (embargo.uf or "").upper():
-                    continue
-
-            results.append(embargo)
         return results
 
     async def _fetch_embargos_csv(

@@ -208,6 +208,7 @@ async def get_layer_geojson(
     - `terras_indigenas`: Terras Indigenas (FUNAI WFS)
     - `desmatamento`: Alertas DETER Amazonia (INPE WFS)
     - `desmatamento_cerrado`: Alertas DETER Cerrado (INPE WFS)
+    - `parcelas_financiamento`: Parcelas de Crédito Rural (PostGIS Banco Real)
 
     Parametros:
     - bbox: bounding box (west,south,east,north)
@@ -274,6 +275,57 @@ async def get_layer_geojson(
         data["source"] = "IBGE"
         data["total"] = len(data.get("features", []))
         return data
+
+    elif layer_id == "parcelas_financiamento":
+        from app.models.database import get_session
+        from sqlalchemy import text
+        import json
+        
+        query = """
+        SELECT json_build_object(
+            'type', 'FeatureCollection',
+            'features', coalesce(json_agg(ST_AsGeoJSON(t.*)::json), '[]'::json)
+        )
+        FROM (
+            SELECT p.id, p.geom
+            FROM mapbiomas_credito_rural p
+            LIMIT :limit
+        ) as t;
+        """
+        try:
+            with get_session() as db:
+                result = db.execute(text(query), {"limit": max_features}).scalar()
+                if result and result.get("features"):
+                    return result
+                return {"type": "FeatureCollection", "features": []}
+        except Exception as e:
+            logger.error(f"Erro BD parcelas: {e}")
+            return {"error": "Tabela de financiamentos ainda não foi importada (Execute OGR2OGR)."}
+
+    elif layer_id == "embargos":
+        from app.models.database import get_session
+        from sqlalchemy import text
+        
+        query = """
+        SELECT json_build_object(
+            'type', 'FeatureCollection',
+            'features', coalesce(json_agg(ST_AsGeoJSON(t.*)::json), '[]'::json)
+        )
+        FROM (
+            SELECT cpf_cnpj, source, alert_type, geometry as geom
+            FROM environmental_alerts
+            WHERE source = 'IBAMA' AND geometry IS NOT NULL
+            LIMIT :limit
+        ) as t;
+        """
+        try:
+            with get_session() as db:
+                result = db.execute(text(query), {"limit": max_features}).scalar()
+                if result and result.get("features"):
+                    return result
+                return {"type": "FeatureCollection", "features": []}
+        except Exception as e:
+            return {"type": "FeatureCollection", "features": [], "error": str(e)}
 
     else:
         return {
