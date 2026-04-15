@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
 from app.logging_config import setup_logging
 from app.middleware.rate_limit import RateLimitMiddleware
-from app.api import search, report, map_data, market, news, auth, monitoring, smart_search, geo, lawsuits, consulta, compliance, jurisdicao
+from app.api import search, report, map_data, market, news, auth, monitoring, smart_search, geo, lawsuits, consulta, compliance, jurisdicao, dashboard
 
 setup_logging("DEBUG" if settings.debug else "INFO")
 logger = logging.getLogger("agrojus")
@@ -62,6 +62,7 @@ app.include_router(consulta.router, prefix="/api/v1/consulta", tags=["consulta-u
 app.include_router(compliance.router, prefix="/api/v1/compliance", tags=["compliance"])
 app.include_router(jurisdicao.router, prefix="/api/v1/jurisdicao", tags=["jurisdicao"])
 app.include_router(monitoring.router, prefix="/api/v1/monitoring", tags=["monitoring"])
+app.include_router(dashboard.router, prefix="/api/v1/dashboard", tags=["dashboard"])
 
 
 @app.get("/")
@@ -81,6 +82,7 @@ async def root():
             "news": "/api/v1/news",
             "lawsuits": "/api/v1/lawsuits",
             "monitoring": "/api/v1/monitoring",
+            "dashboard": "/api/v1/dashboard",
         },
     }
 

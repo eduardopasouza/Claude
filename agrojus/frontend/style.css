@@ -128,9 +128,11 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spac
 .kpi-card:hover { border-color: rgba(0,0,0,0.1); transform: translateY(-3px); box-shadow: var(--shadow-float); }
 .kpi-title { font-size: 13px; color: var(--text-muted); font-weight: 600; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px;}
 .kpi-metric { font-size: 32px; font-weight: 800; color: var(--text-pure); display: flex; align-items: baseline; gap: 4px; }
+.kpi-metric--sm { font-size: 18px; font-weight: 700; }
 .kpi-sub { font-size: 14px; color: var(--text-dim); font-weight: 500; }
 .kpi-trend { font-size: 12px; color: var(--text-dim); margin-top: 12px; font-weight: 500; }
 .kpi-trend.positive { color: var(--emerald-400); font-weight: 600; }
+.kpi-trend.warning  { color: var(--amber-400); font-weight: 600; }
 
 /* --- OmniBar --- */
 .omnibar-container {

@@ -1,0 +1,145 @@
+"""
+dashboard.py — Endpoint de métricas agregadas do AgroJus Dashboard.
+GET /api/v1/dashboard/metrics retorna contagens reais do PostgreSQL + latência.
+"""
+import time
+import logging
+from datetime import datetime, timezone, timedelta
+
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+from sqlalchemy import text
+
+from app.models.database import get_db
+
+logger = logging.getLogger(__name__)
+router = APIRouter()
+
+
+@router.get("/metrics")
+def get_dashboard_metrics(db: Session = Depends(get_db)):
+    """
+    Retorna KPIs reais do banco de dados para os cards do dashboard.
+    Todas as contagens vêm diretamente do PostgreSQL — sem mock.
+    """
+    t0 = time.perf_counter()
+
+    # ── Embargos IBAMA ────────────────────────────────────────────────────────
+    ibama_total = db.execute(
+        text("SELECT COUNT(*) FROM environmental_alerts WHERE source = 'IBAMA'")
+    ).scalar() or 0
+
+    ibama_last_30d = db.execute(
+        text("""
+            SELECT COUNT(*) FROM environmental_alerts
+            WHERE source = 'IBAMA'
+              AND created_at >= NOW() - INTERVAL '30 days'
+        """)
+    ).scalar() or 0
+
+    # ── Lista Suja MTE ────────────────────────────────────────────────────────
+    mte_total = db.execute(
+        text("SELECT COUNT(*) FROM environmental_alerts WHERE source = 'MTE'")
+    ).scalar() or 0
+
+    # ── Cotações de Mercado ───────────────────────────────────────────────────
+    market_total = db.execute(
+        text("SELECT COUNT(*) FROM market_quotes")
+    ).scalar() or 0
+
+    market_last_date = db.execute(
+        text("SELECT MAX(date) FROM market_quotes")
+    ).scalar()
+
+    market_products = db.execute(
+        text("SELECT COUNT(DISTINCT product) FROM market_quotes")
+    ).scalar() or 0
+
+    # ── Crédito Rural MapBiomas ───────────────────────────────────────────────
+    credito_rural_total = db.execute(
+        text("SELECT COUNT(*) FROM mapbiomas_credito_rural")
+    ).scalar() or 0
+
+    # ── Usuários (se tabela existir) ──────────────────────────────────────────
+    try:
+        users_total = db.execute(
+            text("SELECT COUNT(*) FROM users")
+        ).scalar() or 0
+    except Exception:
+        users_total = 0
+
+    # ── Latência do banco ─────────────────────────────────────────────────────
+    t1 = time.perf_counter()
+    db_latency_ms = round((t1 - t0) * 1000, 1)
+
+    # ── Cotações recentes (últimas 5 para sparkline) ─────────────────────────
+    recent_quotes_raw = db.execute(
+        text("""
+            SELECT product, price_brl, date
+            FROM market_quotes
+            ORDER BY date DESC, id DESC
+            LIMIT 10
+        """)
+    ).fetchall()
+
+    recent_quotes = [
+        {"product": row[0], "price_brl": row[1], "date": str(row[2])}
+        for row in recent_quotes_raw
+    ]
+
+    # ── Últimos embargos IBAMA ────────────────────────────────────────────────
+    recent_embargos_raw = db.execute(
+        text("""
+            SELECT cpf_cnpj, description, created_at
+            FROM environmental_alerts
+            WHERE source = 'IBAMA'
+            ORDER BY created_at DESC
+            LIMIT 5
+        """)
+    ).fetchall()
+
+    recent_embargos = [
+        {
+            "cpf_cnpj": row[0],
+            "description": (row[1] or "")[:100],
+            "created_at": row[2].isoformat() if row[2] else None,
+        }
+        for row in recent_embargos_raw
+    ]
+
+    return {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "db_latency_ms": db_latency_ms,
+        "kpis": {
+            "ibama_embargos": {
+                "total": ibama_total,
+                "last_30d": ibama_last_30d,
+                "label": "Embargos IBAMA",
+                "icon": "🔴",
+            },
+            "mte_lista_suja": {
+                "total": mte_total,
+                "label": "Empregadores Lista Suja MTE",
+                "icon": "⚠️",
+            },
+            "market_quotes": {
+                "total": market_total,
+                "products": market_products,
+                "last_date": str(market_last_date) if market_last_date else None,
+                "label": "Cotações de Mercado",
+                "icon": "📈",
+            },
+            "credito_rural": {
+                "total": credito_rural_total,
+                "label": "Parcelas MapBiomas",
+                "icon": "🌿",
+            },
+            "users": {
+                "total": users_total,
+                "label": "Usuários Cadastrados",
+                "icon": "👤",
+            },
+        },
+        "recent_quotes": recent_quotes,
+        "recent_embargos": recent_embargos,
+    }

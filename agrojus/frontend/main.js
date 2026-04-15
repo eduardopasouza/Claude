@@ -103,6 +103,71 @@ async function loadDashboardFeed() {
   } catch { /* silent news feed fail */ }
 }
 
+// ──────────────────────────────────────────────────────────────────────────
+// Dashboard KPI Metrics → /api/v1/dashboard/metrics
+// Popula todos os cards com dados reais do PostgreSQL. Sem mock.
+// ──────────────────────────────────────────────────────────────────────────
+function fmt(n) {
+  if (n == null) return '—';
+  if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + 'M';
+  if (n >= 1_000)     return (n / 1_000).toFixed(0) + 'k';
+  return String(n);
+}
+
+async function loadDashboardMetrics() {
+  try {
+    const res  = await fetch(`${API}/api/v1/dashboard/metrics`);
+    if (!res.ok) return;
+    const data = await res.json();
+    const k    = data.kpis;
+
+    // IBAMA
+    const ibamaEl = document.getElementById('kpi-ibama');
+    const ibamaTr = document.getElementById('kpi-ibama-trend');
+    if (ibamaEl) ibamaEl.textContent = fmt(k.ibama_embargos?.total);
+    if (ibamaTr) ibamaTr.textContent = `+${fmt(k.ibama_embargos?.last_30d)} nos últimos 30 dias`;
+
+    // MTE Lista Suja
+    const mteEl = document.getElementById('kpi-mte');
+    const mteTr = document.getElementById('kpi-mte-trend');
+    if (mteEl) mteEl.textContent = fmt(k.mte_lista_suja?.total);
+    if (mteTr) {
+      const n = k.mte_lista_suja?.total || 0;
+      mteTr.textContent  = n > 0 ? `${n} empregadores na lista` : 'ETL pendente';
+      mteTr.className    = `kpi-trend ${n > 0 ? 'warning' : ''}`;
+    }
+
+    // Cotações
+    const mktEl = document.getElementById('kpi-market');
+    const mktTr = document.getElementById('kpi-market-trend');
+    if (mktEl) mktEl.textContent = fmt(k.market_quotes?.products) + ' cadeias';
+    if (mktTr) {
+      const d = k.market_quotes?.last_date;
+      mktTr.textContent = d ? `Última coleta: ${d}` : 'Aguardando scraper';
+    }
+
+    // Crédito Rural
+    const credEl = document.getElementById('kpi-credito');
+    if (credEl) credEl.textContent = fmt(k.credito_rural?.total);
+
+    // DB Latência
+    const latEl = document.getElementById('dash-latency');
+    if (latEl) latEl.innerHTML = `${data.db_latency_ms}<span class="kpi-sub">ms</span>`;
+
+    // Timestamp
+    const tsEl = document.getElementById('kpi-updated-at');
+    const dtEl = document.getElementById('kpi-market-date');
+    if (tsEl) {
+      const ts = new Date(data.generated_at);
+      tsEl.textContent = ts.toLocaleTimeString('pt-BR');
+    }
+    if (dtEl) dtEl.textContent = `Última cotação: ${k.market_quotes?.last_date || '—'}`;
+
+  } catch(e) {
+    console.warn('[AgroJus] Métricas indisponíveis:', e);
+  }
+}
+
 // Run Engine
 (() => {
   setupNavigation();
@@ -111,4 +176,7 @@ async function loadDashboardFeed() {
   setupOmniBar();
   startHeartbeat();
   loadDashboardFeed();
+  loadDashboardMetrics();
+  // Refresh KPIs a cada 60s
+  setInterval(loadDashboardMetrics, 60_000);
 })();
