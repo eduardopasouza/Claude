@@ -1,7 +1,7 @@
 """
 PostGIS Spatial Analyzer — Motor de cruzamento espacial.
 
-Recebe um codigo CAR, busca a geometria na tabela geo_car,
+Recebe um codigo CAR, busca a geometria em sicar_completo ou geo_car,
 e cruza com todas as camadas espaciais via ST_Intersects.
 
 Camadas cruzadas:
@@ -13,7 +13,8 @@ Camadas cruzadas:
 - geo_deter_amazonia (INPE — alertas tempo real)
 - geo_deter_cerrado (INPE — alertas tempo real)
 - geo_mapbiomas_alertas (MapBiomas)
-- environmental_alerts (IBAMA embargos)
+- environmental_alerts (IBAMA embargos — por CAR code)
+- sigef_parcelas (INCRA — parcelas certificadas)
 - mapbiomas_credito_rural (credito rural georreferenciado)
 - Infraestrutura: armazens, frigorificos, rodovias, ferrovias, portos
 """
@@ -75,6 +76,7 @@ class SpatialAnalysisResult:
     deter_alertas: list[SpatialHit] = field(default_factory=list)
     mapbiomas_alertas: list[SpatialHit] = field(default_factory=list)
     embargos_ibama: list[SpatialHit] = field(default_factory=list)
+    sigef_parcelas: list[SpatialHit] = field(default_factory=list)
     credito_rural: list[SpatialHit] = field(default_factory=list)
 
     # Infraestrutura proxima
@@ -101,6 +103,18 @@ class SpatialAnalysisResult:
 # Analyzer
 # ---------------------------------------------------------------------------
 
+_CAR_GEOM_CTE = """
+    WITH car_geom AS (
+        SELECT geometry FROM sicar_completo
+        WHERE cod_imovel = :car_code AND geometry IS NOT NULL
+        UNION ALL
+        SELECT geometry FROM geo_car
+        WHERE cod_imovel = :car_code AND geometry IS NOT NULL
+        LIMIT 1
+    )
+"""
+
+
 class PostGISAnalyzer:
     """Executa cruzamentos espaciais contra o PostGIS."""
 
@@ -124,11 +138,11 @@ class PostGISAnalyzer:
         # 1. Buscar geometria do imovel
         prop = self._get_property_geometry(car_code)
         if not prop:
-            result.errors.append(f"CAR {car_code} nao encontrado em geo_car")
+            result.errors.append(f"CAR {car_code} nao encontrado em sicar_completo nem geo_car")
             return result
         result.property_info = prop
 
-        # 2. Executar todos os cruzamentos
+        # 2. Executar todos os cruzamentos espaciais
         checks = [
             ("terras_indigenas", self._check_terras_indigenas),
             ("unidades_conservacao", self._check_unidades_conservacao),
@@ -138,6 +152,7 @@ class PostGISAnalyzer:
             ("deter_alertas", self._check_deter),
             ("mapbiomas_alertas", self._check_mapbiomas_alertas),
             ("embargos_ibama", self._check_embargos_ibama),
+            ("sigef_parcelas", self._check_sigef),
             ("credito_rural", self._check_credito_rural),
             ("armazens_proximos", self._check_armazens),
             ("frigorificos_proximos", self._check_frigorificos),
@@ -267,7 +282,8 @@ class PostGISAnalyzer:
     # ------------------------------------------------------------------
 
     def _check_terras_indigenas(self, car_code: str) -> list[SpatialHit]:
-        sql = """
+        sql = f"""
+            {_CAR_GEOM_CTE}
             SELECT
                 ti.terrai_nom AS nome,
                 ti.etnia_nome AS etnia,
@@ -277,10 +293,9 @@ class PostGISAnalyzer:
                 ROUND((ST_Area(ST_Intersection(
                     c.geometry::geography, ti.geometry::geography
                 )) / 10000)::numeric, 2) AS overlap_ha
-            FROM geo_car c
+            FROM car_geom c
             JOIN geo_terras_indigenas ti
               ON ST_Intersects(c.geometry, ti.geometry)
-            WHERE c.cod_imovel = :car_code
         """
         rows = self._intersect_query(sql, car_code)
         return [
@@ -299,7 +314,8 @@ class PostGISAnalyzer:
         ]
 
     def _check_unidades_conservacao(self, car_code: str) -> list[SpatialHit]:
-        sql = """
+        sql = f"""
+            {_CAR_GEOM_CTE}
             SELECT
                 uc.nomeuc AS nome,
                 uc.siglacateg AS categoria,
@@ -310,10 +326,9 @@ class PostGISAnalyzer:
                 ROUND((ST_Area(ST_Intersection(
                     c.geometry::geography, uc.geometry::geography
                 )) / 10000)::numeric, 2) AS overlap_ha
-            FROM geo_car c
+            FROM car_geom c
             JOIN geo_unidades_conservacao uc
               ON ST_Intersects(c.geometry, uc.geometry)
-            WHERE c.cod_imovel = :car_code
         """
         rows = self._intersect_query(sql, car_code)
         return [
@@ -333,7 +348,8 @@ class PostGISAnalyzer:
         ]
 
     def _check_embargos_icmbio(self, car_code: str) -> list[SpatialHit]:
-        sql = """
+        sql = f"""
+            {_CAR_GEOM_CTE}
             SELECT
                 e.autuado AS nome,
                 e.numero_emb AS numero_embargo,
@@ -345,10 +361,9 @@ class PostGISAnalyzer:
                 e.data AS data_embargo,
                 e.cpf_cnpj,
                 e.nome_uc
-            FROM geo_car c
+            FROM car_geom c
             JOIN geo_embargos_icmbio e
               ON ST_Intersects(c.geometry, e.geometry)
-            WHERE c.cod_imovel = :car_code
         """
         rows = self._intersect_query(sql, car_code)
         return [
@@ -371,7 +386,8 @@ class PostGISAnalyzer:
         ]
 
     def _check_autos_icmbio(self, car_code: str) -> list[SpatialHit]:
-        sql = """
+        sql = f"""
+            {_CAR_GEOM_CTE}
             SELECT
                 a.autuado AS nome,
                 a.numero_ai AS auto_infracao,
@@ -384,10 +400,9 @@ class PostGISAnalyzer:
                 a.data AS data_auto,
                 a.cpf_cnpj,
                 a.nome_uc
-            FROM geo_car c
+            FROM car_geom c
             JOIN geo_autos_icmbio a
               ON ST_Intersects(c.geometry, a.geometry)
-            WHERE c.cod_imovel = :car_code
         """
         rows = self._intersect_query(sql, car_code)
         return [
@@ -411,7 +426,8 @@ class PostGISAnalyzer:
         ]
 
     def _check_prodes(self, car_code: str) -> list[SpatialHit]:
-        sql = """
+        sql = f"""
+            {_CAR_GEOM_CTE}
             SELECT
                 p.year,
                 p.class_name,
@@ -421,10 +437,9 @@ class PostGISAnalyzer:
                 ROUND((ST_Area(ST_Intersection(
                     c.geometry::geography, p.geometry::geography
                 )) / 10000)::numeric, 2) AS overlap_ha
-            FROM geo_car c
+            FROM car_geom c
             JOIN geo_prodes p
               ON ST_Intersects(c.geometry, p.geometry)
-            WHERE c.cod_imovel = :car_code
             ORDER BY p.year DESC
         """
         rows = self._intersect_query(sql, car_code)
@@ -447,7 +462,8 @@ class PostGISAnalyzer:
     def _check_deter(self, car_code: str) -> list[SpatialHit]:
         hits = []
         # Amazonia
-        sql_amz = """
+        sql_amz = f"""
+            {_CAR_GEOM_CTE}
             SELECT
                 d.classname,
                 d.view_date,
@@ -458,10 +474,9 @@ class PostGISAnalyzer:
                 ROUND((ST_Area(ST_Intersection(
                     c.geometry::geography, d.geometry::geography
                 )) / 10000)::numeric, 2) AS overlap_ha
-            FROM geo_car c
+            FROM car_geom c
             JOIN geo_deter_amazonia d
               ON ST_Intersects(c.geometry, d.geometry)
-            WHERE c.cod_imovel = :car_code
             ORDER BY d.view_date DESC
         """
         rows = self._intersect_query(sql_amz, car_code)
@@ -481,7 +496,8 @@ class PostGISAnalyzer:
             ))
 
         # Cerrado
-        sql_cer = """
+        sql_cer = f"""
+            {_CAR_GEOM_CTE}
             SELECT
                 d.classname,
                 d.view_date,
@@ -491,10 +507,9 @@ class PostGISAnalyzer:
                 ROUND((ST_Area(ST_Intersection(
                     c.geometry::geography, d.geometry::geography
                 )) / 10000)::numeric, 2) AS overlap_ha
-            FROM geo_car c
+            FROM car_geom c
             JOIN geo_deter_cerrado d
               ON ST_Intersects(c.geometry, d.geometry)
-            WHERE c.cod_imovel = :car_code
             ORDER BY d.view_date DESC
         """
         rows = self._intersect_query(sql_cer, car_code)
@@ -515,7 +530,8 @@ class PostGISAnalyzer:
         return hits
 
     def _check_mapbiomas_alertas(self, car_code: str) -> list[SpatialHit]:
-        sql = """
+        sql = f"""
+            {_CAR_GEOM_CTE}
             SELECT
                 m."CODEALERTA" AS codigo,
                 m."FONTE" AS fonte,
@@ -529,10 +545,9 @@ class PostGISAnalyzer:
                 ROUND((ST_Area(ST_Intersection(
                     c.geometry::geography, m.geometry::geography
                 )) / 10000)::numeric, 2) AS overlap_ha
-            FROM geo_car c
+            FROM car_geom c
             JOIN geo_mapbiomas_alertas m
               ON ST_Intersects(c.geometry, m.geometry)
-            WHERE c.cod_imovel = :car_code
             ORDER BY m."ANODETEC" DESC
         """
         rows = self._intersect_query(sql, car_code)
@@ -556,6 +571,11 @@ class PostGISAnalyzer:
         ]
 
     def _check_embargos_ibama(self, car_code: str) -> list[SpatialHit]:
+        """Busca embargos IBAMA e trabalho escravo por CAR code.
+
+        environmental_alerts tem 104k+ registros reais mas sem geometria,
+        entao busca por property_car_code ao inves de ST_Intersects.
+        """
         sql = """
             SELECT
                 ea.alert_type,
@@ -565,17 +585,14 @@ class PostGISAnalyzer:
                 ea.date_detected,
                 ea.cpf_cnpj,
                 ea.property_car_code
-            FROM geo_car c
-            JOIN environmental_alerts ea
-              ON ST_Intersects(c.geometry, ea.geometry)
-            WHERE c.cod_imovel = :car_code
-              AND ea.geometry IS NOT NULL
+            FROM environmental_alerts ea
+            WHERE ea.property_car_code = :car_code
         """
         rows = self._intersect_query(sql, car_code)
         return [
             SpatialHit(
                 layer="embargos_ibama",
-                name=r.get("description") or r.get("alert_type") or "Embargo IBAMA",
+                name=r.get("description") or r.get("alert_type") or "Alerta ambiental",
                 date=r["date_detected"].isoformat() if r.get("date_detected") else None,
                 details={
                     "tipo": r.get("alert_type", ""),
@@ -588,9 +605,52 @@ class PostGISAnalyzer:
             for r in rows
         ]
 
+    def _check_sigef(self, car_code: str) -> list[SpatialHit]:
+        """Busca parcelas SIGEF certificadas que se sobrepoem ao imovel."""
+        sql = f"""
+            {_CAR_GEOM_CTE}
+            SELECT
+                s.parcela_codigo,
+                s.status,
+                s.nome_area,
+                s.situacao_imovel,
+                s.registro_matricula,
+                s.registro_data,
+                s.data_aprovacao,
+                s.municipio_id,
+                s.uf_id,
+                ROUND((ST_Area(ST_Intersection(
+                    c.geometry::geography, s.geometry::geography
+                )) / 10000)::numeric, 2) AS overlap_ha
+            FROM car_geom c
+            JOIN sigef_parcelas s
+              ON ST_Intersects(c.geometry, s.geometry)
+        """
+        rows = self._intersect_query(sql, car_code)
+        return [
+            SpatialHit(
+                layer="sigef",
+                name=r.get("parcela_codigo") or "Parcela SIGEF",
+                overlap_area_ha=r.get("overlap_ha", 0) or 0,
+                date=r["data_aprovacao"].isoformat() if r.get("data_aprovacao") else None,
+                details={
+                    "parcela_codigo": r.get("parcela_codigo", ""),
+                    "status": r.get("status", ""),
+                    "nome_area": r.get("nome_area", ""),
+                    "situacao_imovel": r.get("situacao_imovel", ""),
+                    "matricula": r.get("registro_matricula", ""),
+                    "registro_data": r["registro_data"].isoformat() if r.get("registro_data") else None,
+                    "municipio_id": r.get("municipio_id"),
+                    "uf_id": r.get("uf_id"),
+                },
+            )
+            for r in rows
+        ]
+
     def _check_credito_rural(self, car_code: str) -> list[SpatialHit]:
         # mapbiomas_credito_rural usa SRID 4674, precisamos transformar
-        sql = """
+        sql = f"""
+            {_CAR_GEOM_CTE}
             SELECT
                 cr.cd_programa,
                 cr.vl_parc_credito,
@@ -601,13 +661,12 @@ class PostGISAnalyzer:
                 cr.year,
                 cr.vl_area_financ,
                 cr.car_code AS car_vinculado
-            FROM geo_car c
+            FROM car_geom c
             JOIN mapbiomas_credito_rural cr
               ON ST_Intersects(
                   ST_Transform(c.geometry, 4674),
                   cr.geom
               )
-            WHERE c.cod_imovel = :car_code
             ORDER BY cr.year DESC
             LIMIT 50
         """
@@ -634,7 +693,8 @@ class PostGISAnalyzer:
     # ------------------------------------------------------------------
 
     def _check_armazens(self, car_code: str) -> list[SpatialHit]:
-        sql = """
+        sql = f"""
+            {_CAR_GEOM_CTE}
             SELECT
                 COALESCE(a.name, a.armazenado, 'Armazem') AS nome,
                 a.municipio,
@@ -644,9 +704,8 @@ class PostGISAnalyzer:
                     ST_Centroid(c.geometry)::geography,
                     a.geometry::geography
                 ) / 1000)::numeric, 1) AS distancia_km
-            FROM geo_car c, geo_armazens_silos a
-            WHERE c.cod_imovel = :car_code
-              AND ST_DWithin(
+            FROM car_geom c, geo_armazens_silos a
+            WHERE ST_DWithin(
                   ST_Centroid(c.geometry)::geography,
                   a.geometry::geography,
                   50000
@@ -670,7 +729,8 @@ class PostGISAnalyzer:
         ]
 
     def _check_frigorificos(self, car_code: str) -> list[SpatialHit]:
-        sql = """
+        sql = f"""
+            {_CAR_GEOM_CTE}
             SELECT
                 COALESCE(f.razao_soci, f.nome_fanta, 'Frigorifico') AS nome,
                 f.municipio,
@@ -680,9 +740,8 @@ class PostGISAnalyzer:
                     ST_Centroid(c.geometry)::geography,
                     f.geometry::geography
                 ) / 1000)::numeric, 1) AS distancia_km
-            FROM geo_car c, geo_frigorificos f
-            WHERE c.cod_imovel = :car_code
-              AND ST_DWithin(
+            FROM car_geom c, geo_frigorificos f
+            WHERE ST_DWithin(
                   ST_Centroid(c.geometry)::geography,
                   f.geometry::geography,
                   100000
@@ -706,7 +765,8 @@ class PostGISAnalyzer:
         ]
 
     def _check_rodovias(self, car_code: str) -> list[SpatialHit]:
-        sql = """
+        sql = f"""
+            {_CAR_GEOM_CTE}
             SELECT
                 r.sigla AS rodovia,
                 r.tipovia AS tipo,
@@ -714,9 +774,8 @@ class PostGISAnalyzer:
                     ST_Centroid(c.geometry)::geography,
                     r.geometry::geography
                 ) / 1000)::numeric, 1) AS distancia_km
-            FROM geo_car c, geo_rodovias_federais r
-            WHERE c.cod_imovel = :car_code
-              AND ST_DWithin(
+            FROM car_geom c, geo_rodovias_federais r
+            WHERE ST_DWithin(
                   ST_Centroid(c.geometry)::geography,
                   r.geometry::geography,
                   50000
@@ -736,7 +795,8 @@ class PostGISAnalyzer:
         ]
 
     def _check_portos(self, car_code: str) -> list[SpatialHit]:
-        sql = """
+        sql = f"""
+            {_CAR_GEOM_CTE}
             SELECT
                 p.nome,
                 p.cidade AS municipio,
@@ -745,9 +805,8 @@ class PostGISAnalyzer:
                     ST_Centroid(c.geometry)::geography,
                     p.geometry::geography
                 ) / 1000)::numeric, 1) AS distancia_km
-            FROM geo_car c, geo_portos p
-            WHERE c.cod_imovel = :car_code
-              AND ST_DWithin(
+            FROM car_geom c, geo_portos p
+            WHERE ST_DWithin(
                   ST_Centroid(c.geometry)::geography,
                   p.geometry::geography,
                   300000

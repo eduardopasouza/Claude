@@ -188,16 +188,25 @@ def list_municipios(uf: str = Query(..., description="Sigla do estado")):
     }
 
 
-@router.get("/{car_code}/geojson")
-def get_property_geojson(car_code: str):
-    """
-    Retorna GeoJSON FeatureCollection do imovel para Leaflet.
-
-    Inclui a geometria do imovel como feature principal.
-    Ideal para map.fitBounds() e renderizacao do poligono.
-    """
-    engine = get_engine()
-    sql = text("""
+def _find_car_geojson(engine, car_code: str):
+    """Busca GeoJSON do CAR em sicar_completo (prioridade) ou geo_car."""
+    # sicar_completo primeiro (308k+ CARs)
+    sql_sicar = text("""
+        SELECT
+            cod_imovel,
+            '' as municipio,
+            uf,
+            area,
+            COALESCE(status_imovel, '') as status,
+            COALESCE(tipo_imovel, '') as tipo,
+            COALESCE(m_fiscal, 0) as modulos_fiscais,
+            ST_AsGeoJSON(geometry)::json as geojson
+        FROM sicar_completo
+        WHERE cod_imovel = :car_code
+          AND geometry IS NOT NULL
+        LIMIT 1
+    """)
+    sql_geocar = text("""
         SELECT
             cod_imovel,
             municipio,
@@ -213,7 +222,24 @@ def get_property_geojson(car_code: str):
         LIMIT 1
     """)
     with engine.connect() as conn:
-        row = conn.execute(sql, {"car_code": car_code}).mappings().first()
+        try:
+            row = conn.execute(sql_sicar, {"car_code": car_code}).mappings().first()
+            if row:
+                return row
+        except Exception:
+            pass
+        return conn.execute(sql_geocar, {"car_code": car_code}).mappings().first()
+
+
+@router.get("/{car_code}/geojson")
+def get_property_geojson(car_code: str):
+    """
+    Retorna GeoJSON FeatureCollection do imovel para Leaflet.
+
+    Busca em sicar_completo (308k+) e geo_car (135k) como fallback.
+    """
+    engine = get_engine()
+    row = _find_car_geojson(engine, car_code)
 
     if not row:
         return {"error": f"CAR {car_code} nao encontrado"}
@@ -240,21 +266,32 @@ def get_property_geojson(car_code: str):
     }
 
 
+_OVERLAP_CTE = """
+    WITH car_geom AS (
+        SELECT geometry FROM sicar_completo
+        WHERE cod_imovel = :car_code AND geometry IS NOT NULL
+        UNION ALL
+        SELECT geometry FROM geo_car
+        WHERE cod_imovel = :car_code AND geometry IS NOT NULL
+        LIMIT 1
+    )
+"""
+
+
 @router.get("/{car_code}/overlaps/geojson")
 def get_overlaps_geojson(car_code: str):
     """
     Retorna GeoJSON FeatureCollection com TODAS as camadas
-    que se sobrepoem ao imovel. Ideal para renderizar no Leaflet
-    com cores diferentes por camada.
+    que se sobrepoem ao imovel. Busca em sicar_completo e geo_car.
 
     Camadas incluidas: TI, UC, embargos ICMBio, PRODES, DETER,
-    MapBiomas alertas, embargos IBAMA.
+    MapBiomas alertas, SIGEF parcelas.
     """
     engine = get_engine()
 
-    # Queries de sobreposicao — retornam features GeoJSON
     overlap_queries = {
-        "terras_indigenas": """
+        "terras_indigenas": f"""
+            {_OVERLAP_CTE}
             SELECT
                 ti.terrai_nom as nome,
                 ti.etnia_nome as etnia,
@@ -262,11 +299,11 @@ def get_overlaps_geojson(car_code: str):
                 'terra_indigena' as layer,
                 '#FF0000' as color,
                 ST_AsGeoJSON(ST_Intersection(c.geometry, ti.geometry))::json as geojson
-            FROM geo_car c
+            FROM car_geom c
             JOIN geo_terras_indigenas ti ON ST_Intersects(c.geometry, ti.geometry)
-            WHERE c.cod_imovel = :car_code
         """,
-        "unidades_conservacao": """
+        "unidades_conservacao": f"""
+            {_OVERLAP_CTE}
             SELECT
                 uc.nomeuc as nome,
                 uc.siglacateg as categoria,
@@ -274,11 +311,11 @@ def get_overlaps_geojson(car_code: str):
                 'unidade_conservacao' as layer,
                 '#00AA00' as color,
                 ST_AsGeoJSON(ST_Intersection(c.geometry, uc.geometry))::json as geojson
-            FROM geo_car c
+            FROM car_geom c
             JOIN geo_unidades_conservacao uc ON ST_Intersects(c.geometry, uc.geometry)
-            WHERE c.cod_imovel = :car_code
         """,
-        "embargos_icmbio": """
+        "embargos_icmbio": f"""
+            {_OVERLAP_CTE}
             SELECT
                 e.autuado as nome,
                 e.desc_infra as descricao,
@@ -286,44 +323,44 @@ def get_overlaps_geojson(car_code: str):
                 'embargo_icmbio' as layer,
                 '#FF6600' as color,
                 ST_AsGeoJSON(ST_Intersection(c.geometry, e.geometry))::json as geojson
-            FROM geo_car c
+            FROM car_geom c
             JOIN geo_embargos_icmbio e ON ST_Intersects(c.geometry, e.geometry)
-            WHERE c.cod_imovel = :car_code
         """,
-        "prodes": """
+        "prodes": f"""
+            {_OVERLAP_CTE}
             SELECT
                 p.year as ano,
                 p.class_name as classe,
                 'prodes' as layer,
                 '#8B0000' as color,
                 ST_AsGeoJSON(ST_Intersection(c.geometry, p.geometry))::json as geojson
-            FROM geo_car c
+            FROM car_geom c
             JOIN geo_prodes p ON ST_Intersects(c.geometry, p.geometry)
-            WHERE c.cod_imovel = :car_code
         """,
-        "deter_amazonia": """
+        "deter_amazonia": f"""
+            {_OVERLAP_CTE}
             SELECT
                 d.classname as classe,
                 d.view_date::text as data,
                 'deter_amazonia' as layer,
                 '#FF4500' as color,
                 ST_AsGeoJSON(ST_Intersection(c.geometry, d.geometry))::json as geojson
-            FROM geo_car c
+            FROM car_geom c
             JOIN geo_deter_amazonia d ON ST_Intersects(c.geometry, d.geometry)
-            WHERE c.cod_imovel = :car_code
         """,
-        "deter_cerrado": """
+        "deter_cerrado": f"""
+            {_OVERLAP_CTE}
             SELECT
                 d.classname as classe,
                 d.view_date::text as data,
                 'deter_cerrado' as layer,
                 '#FF8C00' as color,
                 ST_AsGeoJSON(ST_Intersection(c.geometry, d.geometry))::json as geojson
-            FROM geo_car c
+            FROM car_geom c
             JOIN geo_deter_cerrado d ON ST_Intersects(c.geometry, d.geometry)
-            WHERE c.cod_imovel = :car_code
         """,
-        "mapbiomas_alertas": """
+        "mapbiomas_alertas": f"""
+            {_OVERLAP_CTE}
             SELECT
                 m."BIOMA" as bioma,
                 m."ANODETEC"::int as ano,
@@ -331,9 +368,20 @@ def get_overlaps_geojson(car_code: str):
                 'mapbiomas_alerta' as layer,
                 '#CC00CC' as color,
                 ST_AsGeoJSON(ST_Intersection(c.geometry, m.geometry))::json as geojson
-            FROM geo_car c
+            FROM car_geom c
             JOIN geo_mapbiomas_alertas m ON ST_Intersects(c.geometry, m.geometry)
-            WHERE c.cod_imovel = :car_code
+        """,
+        "sigef_parcelas": f"""
+            {_OVERLAP_CTE}
+            SELECT
+                s.parcela_codigo as nome,
+                s.status,
+                s.nome_area,
+                'sigef' as layer,
+                '#0066FF' as color,
+                ST_AsGeoJSON(ST_Intersection(c.geometry, s.geometry))::json as geojson
+            FROM car_geom c
+            JOIN sigef_parcelas s ON ST_Intersects(c.geometry, s.geometry)
         """,
     }
 

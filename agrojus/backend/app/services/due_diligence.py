@@ -22,11 +22,14 @@ from app.models.schemas import (
     DueDiligenceReport,
     PropertySearchRequest,
     CARData,
+    SIGEFData,
     IBAMAEmbargo,
+    SlaveLabourEntry,
     OverlapAnalysis,
     RiskScore,
     RiskLevel,
     FinancialSummary,
+    RuralCreditRecord,
 )
 
 logger = logging.getLogger("agrojus.due_diligence")
@@ -87,7 +90,25 @@ class DueDiligenceService:
                 # Converter embargos PostGIS para schema existente
                 report.ibama_embargos = self._build_embargos(spatial)
                 if report.ibama_embargos:
-                    sources.append(f"PostGIS: {len(report.ibama_embargos)} embargo(s)")
+                    sources.append(f"PostGIS/IBAMA: {len(report.ibama_embargos)} embargo(s)")
+
+                # SIGEF — parcelas certificadas sobrepostas
+                report.sigef_info = self._build_sigef(spatial)
+                if report.sigef_info:
+                    sources.append("SIGEF/INCRA (parcelas certificadas)")
+
+                # Credito rural georreferenciado
+                report.financial_summary = self._build_financial(spatial)
+                if report.financial_summary and report.financial_summary.rural_credits:
+                    n = len(report.financial_summary.rural_credits)
+                    total = report.financial_summary.total_credit_amount
+                    sources.append(f"MapBiomas/SICOR: {n} credito(s), R$ {total:,.2f}")
+
+                # MTE trabalho escravo (de environmental_alerts, por CAR code)
+                mte_from_db = self._get_slave_labour_from_db(request.car_code)
+                if mte_from_db:
+                    report.slave_labour = mte_from_db
+                    sources.append(f"MTE (Lista Suja): {len(mte_from_db)} registro(s)")
             else:
                 logger.warning("CAR %s nao encontrado no PostGIS", request.car_code)
 
@@ -276,6 +297,65 @@ class DueDiligenceService:
         return embargos
 
     @staticmethod
+    def _build_sigef(spatial: SpatialAnalysisResult) -> dict:
+        """Converte parcelas SIGEF do PostGIS para sigef_info."""
+        if not spatial.sigef_parcelas:
+            return None
+        # Retorna a primeira parcela sobreposta (principal)
+        h = spatial.sigef_parcelas[0]
+        return SIGEFData(
+            parcel_code=h.details.get("parcela_codigo", ""),
+            certified=h.details.get("status") == "Certificada",
+            area_ha=h.overlap_area_ha,
+            certification_date=h.details.get("registro_data"),
+            responsible_professional="",
+        )
+
+    @staticmethod
+    def _build_financial(spatial: SpatialAnalysisResult) -> FinancialSummary:
+        """Converte credito rural do PostGIS para FinancialSummary."""
+        if not spatial.credito_rural:
+            return None
+        credits = []
+        for h in spatial.credito_rural:
+            credits.append(RuralCreditRecord(
+                credit_line=h.details.get("programa", ""),
+                amount=h.details.get("valor", 0) or 0,
+                year=h.details.get("ano", 0),
+                crop="",
+            ))
+        total = sum(c.amount for c in credits)
+        return FinancialSummary(
+            rural_credits=credits,
+            total_credit_amount=round(total, 2),
+        )
+
+    def _get_slave_labour_from_db(self, car_code: str) -> list[SlaveLabourEntry]:
+        """Busca registros de trabalho escravo do environmental_alerts por CAR code."""
+        from app.models.database import get_engine
+        from sqlalchemy import text as sa_text
+        engine = get_engine()
+        sql = sa_text("""
+            SELECT description, cpf_cnpj, date_detected, raw_data
+            FROM environmental_alerts
+            WHERE property_car_code = :car_code
+              AND alert_type = 'trabalho_escravo'
+        """)
+        try:
+            with engine.connect() as conn:
+                rows = conn.execute(sql, {"car_code": car_code}).mappings().all()
+            return [
+                SlaveLabourEntry(
+                    employer_name=r.get("description") or "",
+                    cpf_cnpj=r.get("cpf_cnpj") or "",
+                    inspection_date=r["date_detected"].isoformat() if r.get("date_detected") else None,
+                )
+                for r in rows
+            ]
+        except Exception:
+            return []
+
+    @staticmethod
     def _build_spatial_summary(spatial: SpatialAnalysisResult) -> dict:
         """Resume dados espaciais para incluir no JSON de resposta."""
         return {
@@ -315,6 +395,10 @@ class DueDiligenceService:
             "autos_icmbio": [
                 {"nome": h.name, "data": h.date, **h.details}
                 for h in spatial.autos_icmbio
+            ],
+            "sigef": [
+                {"parcela": h.name, "overlap_ha": h.overlap_area_ha, **h.details}
+                for h in spatial.sigef_parcelas
             ],
             "credito_rural": [
                 {"programa": h.details.get("programa"), "valor": h.details.get("valor"),
