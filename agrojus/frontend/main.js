@@ -26,6 +26,12 @@ function setupNavigation() {
       // Lazy load engines if needed
       if (btn.dataset.view === 'mapa') {
         initMap(API);
+        // Force Leaflet to recalculate container dimensions when the tab is exposed
+        setTimeout(() => {
+          if (window.dispatchEvent) {
+            window.dispatchEvent(new Event('resize'));
+          }
+        }, 150);
       }
       if (btn.dataset.view === 'mercado') {
         loadMarketTicker(API);

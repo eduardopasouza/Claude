@@ -91,7 +91,42 @@ export function initMap(apiBaseUrl) {
   setupCoordPicker();
   setupBboxSearch(apiBaseUrl);
 
+  populateLayersCatalog(apiBaseUrl);
+
   updateHUD('AgroJus GIS Engine v2 online. Click direito → Análise de ponto. Shift+drag → Busca retangular.');
+}
+
+async function populateLayersCatalog(API) {
+  const select = document.getElementById('gis-layer');
+  if (!select) return;
+
+  try {
+    const res = await fetch(`${API}/api/v1/geo/catalogo`);
+    if (!res.ok) return;
+    const data = await res.json();
+    
+    if (data.categories && data.layers) {
+      data.categories.forEach(cat => {
+        const g = document.createElement('optgroup');
+        g.label = cat.toUpperCase();
+        
+        const catLayers = data.layers.filter(l => l.category === cat);
+        catLayers.forEach(l => {
+          const opt = document.createElement('option');
+          opt.value = l.id;
+          opt.textContent = `${l.name} (${l.source})`;
+          g.appendChild(opt);
+          
+          if (!LAYER_LABELS[l.id]) {
+            LAYER_LABELS[l.id] = l.name;
+          }
+        });
+        select.appendChild(g);
+      });
+    }
+  } catch (err) {
+    console.warn('[AgroJus] Falha ao carregar catalogo de camadas:', err);
+  }
 }
 
 // ── Right-Click → Full Point Analysis ───────────────────────

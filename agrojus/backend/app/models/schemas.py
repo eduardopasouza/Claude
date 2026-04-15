@@ -52,6 +52,10 @@ class PropertySearchRequest(BaseModel):
     # Tipo de relatório desejado
     persona: Optional[PersonaType] = Field(None, description="Perfil do solicitante (ajusta nivel de detalhe do relatorio)")
 
+    # Enriquecimentos opcionais (lentos, ~10-30s)
+    include_satellite: bool = Field(False, description="Incluir dados Earth Engine (LULC, fogo, solo, agua) — adiciona ~20s")
+    include_realtime_alerts: bool = Field(False, description="Incluir alertas MapBiomas em tempo real via GraphQL — adiciona ~3s")
+
 
 class PersonSearchRequest(BaseModel):
     """
@@ -305,6 +309,18 @@ class DueDiligenceReport(BaseModel):
 
     # Score de risco
     risk_score: Optional[RiskScore] = None
+
+    # Compliance MCR 2.9, EUDR (dict com checklists detalhados)
+    compliance: Optional[dict] = None
+
+    # Analise espacial detalhada (PostGIS cruzamentos)
+    spatial_analysis: Optional[dict] = None
+
+    # Dados de satelite (Earth Engine — se include_satellite=true)
+    satellite_data: Optional[dict] = None
+
+    # Alertas MapBiomas em tempo real (se include_realtime_alerts=true)
+    mapbiomas_realtime: Optional[dict] = None
 
     # Fontes consultadas
     sources_consulted: list[str] = []

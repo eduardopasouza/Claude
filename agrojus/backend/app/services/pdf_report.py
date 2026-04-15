@@ -150,6 +150,7 @@ class PDFReportGenerator:
         section_builders = [
             self._build_header,
             self._build_risk_summary,
+            self._build_compliance_section,
             self._build_property_section,
             self._build_registry_section,
             self._build_owner_section,
@@ -276,6 +277,116 @@ class PDFReportGenerator:
 
         table.setStyle(TableStyle(style_commands))
         elements.append(table)
+        elements.append(Spacer(1, 15))
+        return elements
+
+    def _build_compliance_section(self, report: DueDiligenceReport) -> list:
+        """Secao de compliance MCR 2.9 e EUDR."""
+        elements = []
+
+        if not report.compliance:
+            return elements
+
+        c = report.compliance
+        elements.append(Paragraph("COMPLIANCE REGULATORIO", self.styles["SectionTitle"]))
+
+        # Score geral
+        score = c.get("overall_score", 0)
+        risk = c.get("risk_level", "N/A")
+        elements.append(Paragraph(
+            f"Score Geral: {score}/1000 — Risco {risk}",
+            self.styles["BodyCustom"],
+        ))
+        elements.append(Spacer(1, 8))
+
+        # MCR 2.9
+        mcr = c.get("mcr_29", {})
+        mcr_status = "APROVADO" if mcr.get("passed") else "REPROVADO"
+        mcr_color = GREEN if mcr.get("passed") else RED
+
+        elements.append(Paragraph(
+            f"MCR 2.9 (Credito Rural): {mcr_status} ({mcr.get('score', 0)}/100)",
+            ParagraphStyle("MCRStatus", parent=self.styles["BodyCustom"],
+                           textColor=mcr_color, fontSize=11),
+        ))
+
+        mcr_items = mcr.get("items", [])
+        if mcr_items:
+            data = [["Codigo", "Requisito", "Status"]]
+            for item in mcr_items:
+                status = "OK" if item.get("passed") else "FALHA"
+                data.append([
+                    item.get("code", ""),
+                    item.get("description", ""),
+                    status,
+                ])
+            table = Table(data, colWidths=[3 * cm, 10 * cm, 4 * cm])
+            style_cmds = [
+                ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+                ("FONTSIZE", (0, 0), (-1, -1), 8),
+                ("BACKGROUND", (0, 0), (-1, 0), GREEN),
+                ("TEXTCOLOR", (0, 0), (-1, 0), WHITE),
+                ("GRID", (0, 0), (-1, -1), 0.5, GRAY),
+                ("ALIGN", (2, 0), (2, -1), "CENTER"),
+            ]
+            for i, item in enumerate(mcr_items, start=1):
+                if not item.get("passed"):
+                    style_cmds.append(("BACKGROUND", (2, i), (2, i), LIGHT_RED))
+                    style_cmds.append(("TEXTCOLOR", (2, i), (2, i), RED))
+                else:
+                    style_cmds.append(("BACKGROUND", (2, i), (2, i), LIGHT_GREEN))
+                    style_cmds.append(("TEXTCOLOR", (2, i), (2, i), GREEN))
+            table.setStyle(TableStyle(style_cmds))
+            elements.append(table)
+
+        elements.append(Spacer(1, 10))
+
+        # EUDR
+        eudr = c.get("eudr", {})
+        eudr_status = "CONFORME" if eudr.get("passed") else "NAO CONFORME"
+        eudr_color = GREEN if eudr.get("passed") else RED
+
+        elements.append(Paragraph(
+            f"EUDR (Regulamento UE Desmatamento): {eudr_status} ({eudr.get('score', 0)}/100)",
+            ParagraphStyle("EUDRStatus", parent=self.styles["BodyCustom"],
+                           textColor=eudr_color, fontSize=11),
+        ))
+
+        eudr_items = eudr.get("items", [])
+        if eudr_items:
+            data = [["Codigo", "Requisito", "Status"]]
+            for item in eudr_items:
+                status = "OK" if item.get("passed") else "FALHA"
+                data.append([
+                    item.get("code", ""),
+                    item.get("description", ""),
+                    status,
+                ])
+            table = Table(data, colWidths=[3 * cm, 10 * cm, 4 * cm])
+            style_cmds = [
+                ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+                ("FONTSIZE", (0, 0), (-1, -1), 8),
+                ("BACKGROUND", (0, 0), (-1, 0), GREEN),
+                ("TEXTCOLOR", (0, 0), (-1, 0), WHITE),
+                ("GRID", (0, 0), (-1, -1), 0.5, GRAY),
+                ("ALIGN", (2, 0), (2, -1), "CENTER"),
+            ]
+            for i, item in enumerate(eudr_items, start=1):
+                if not item.get("passed"):
+                    style_cmds.append(("BACKGROUND", (2, i), (2, i), LIGHT_RED))
+                    style_cmds.append(("TEXTCOLOR", (2, i), (2, i), RED))
+                else:
+                    style_cmds.append(("BACKGROUND", (2, i), (2, i), LIGHT_GREEN))
+                    style_cmds.append(("TEXTCOLOR", (2, i), (2, i), GREEN))
+            table.setStyle(TableStyle(style_cmds))
+            elements.append(table)
+
+        # Resumo
+        summary = c.get("summary", "")
+        if summary:
+            elements.append(Spacer(1, 5))
+            elements.append(Paragraph(summary, self.styles["SmallGray"]))
+
         elements.append(Spacer(1, 15))
         return elements
 

@@ -31,6 +31,13 @@ weasyprint==63.1
 pandas==2.2.3
 numpy==2.2.1
 
+# Agro Data Sources
+agrobr==1.0.5
+basedosdados==2.0.3
+google-cloud-bigquery==3.41.0
+earthengine-api==1.5.8
+inmetpy==0.0.3
+
 # RSS Feed Aggregation
 feedparser==6.0.11
 

@@ -19,11 +19,14 @@ services:
     environment:
       DATABASE_URL: postgresql://agrojus:agrojus@db:5432/agrojus
       DEBUG: "true"
+      GCP_PROJECT_ID: agrojus
+      GOOGLE_APPLICATION_CREDENTIALS: /app/credentials/application_default_credentials.json
     depends_on:
       - db
     volumes:
       - ./backend:/app
       - ./data:/app/data
+      - ${APPDATA}/gcloud/application_default_credentials.json:/app/credentials/application_default_credentials.json:ro
 
 volumes:
   pgdata:

@@ -99,6 +99,43 @@ async def get_commodity_quote(commodity: str):
         "soja", "milho", "boi_gordo", "cafe_arabica", "algodao", "arroz", "trigo", "acucar", "etanol_hidratado"
     ]}
 
+@router.get("/quotes/history/{ticker}")
+async def get_quote_history(ticker: str, range: str = "2y", interval: str = "1d"):
+    """Retorna dados historicos OHLC para graficos (TradingView Lightweight Charts)."""
+    import httpx
+    url = f"https://query1.finance.yahoo.com/v8/finance/chart/{ticker}?interval={interval}&range={range}"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)",
+        "Accept": "application/json"
+    }
+    
+    try:
+        async with httpx.AsyncClient(verify=False) as client:
+            r = await client.get(url, headers=headers)
+            r.raise_for_status()
+            data = r.json()
+            result = data["chart"]["result"][0]
+            timestamps = result.get("timestamp", [])
+            indicators = result.get("indicators", {}).get("quote", [{}])[0]
+            
+            history = []
+            for i, ts in enumerate(timestamps):
+                c = indicators.get("close", [])[i] if i < len(indicators.get("close", [])) else None
+                if c is not None:
+                    history.append({
+                        # Lightweight charts usa timestamp em segundos
+                        "time": ts,
+                        "open": indicators["open"][i],
+                        "high": indicators["high"][i],
+                        "low": indicators["low"][i],
+                        "close": c
+                    })
+            return {"ticker": ticker, "history": history}
+    except Exception as e:
+        import logging
+        logging.error(f"Erro ao buscar historico: {str(e)}")
+        return {"error": f"Nao foi possivel buscar o historico para {ticker}"}
+
 
 # === Produção Agrícola ===
 

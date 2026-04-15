@@ -247,18 +247,7 @@
            <div class="hud-divider"></div>
            <select class="hud-select" id="gis-layer">
               <option value="">+ Camada Geográfica</option>
-              <optgroup label="Ambiental">
-                <option value="embargos">🔴 Embargos IBAMA (103k)</option>
-                <option value="desmatamento">🔥 Desmatamento Amazônia (DETER)</option>
-                <option value="desmatamento_cerrado">🔥 Desmatamento Cerrado (DETER)</option>
-                <option value="terras_indigenas">🟡 Terras Indígenas (FUNAI)</option>
-              </optgroup>
-              <optgroup label="Financeiro">
-                <option value="parcelas_financiamento">🟢 Crédito Rural (5.6M parcelas)</option>
-              </optgroup>
-              <optgroup label="Administrativo">
-                <option value="municipios">⬜ Malha Municipal (IBGE)</option>
-              </optgroup>
+              <!-- Populated dynamically via JS -->
            </select>
            <input type="text" class="hud-input mini" id="gis-uf" placeholder="UF" maxlength="2" />
            <button class="btn-glow slim" id="gis-load-btn">Renderizar</button>
@@ -322,6 +311,7 @@
 
   </main>
 
+  <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
   <script type="module" src="/main.js"></script>
 
   <script>

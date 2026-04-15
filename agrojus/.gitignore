@@ -22,6 +22,12 @@ data/shapefiles/*.prj
 data/mapbiomas_credito/*.gpkg
 data/downloads/**/*.zip
 data/downloads/**/*.gpkg
+data/mapbiomas/legality_consolidated_report.csv
+
+# Credentials (NEVER commit)
+backend/credentials/
+*.credentials.json
+application_default_credentials.json
 
 # Frontend
 node_modules/

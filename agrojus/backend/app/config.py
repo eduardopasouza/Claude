@@ -32,8 +32,15 @@ class Settings(BaseSettings):
     # IBAMA
     ibama_embargos_url: str = "https://dadosabertos.ibama.gov.br"
 
-    # DataJud/CNJ
-    datajud_api_key: str = ""
+    # DataJud/CNJ — API key publica universal (nao requer cadastro)
+    datajud_api_key: str = "cDZHYzlZa0JadVREZDJCendQbXY6SkJlTzNjLV9TRENyQk1RdnFKZGRQdw=="
+
+    # Google Cloud / BigQuery (BasedosDados)
+    gcp_project_id: str = "agrojus"
+
+    # MapBiomas Alerta GraphQL (credenciais via .env em producao)
+    mapbiomas_email: str = ""
+    mapbiomas_password: str = ""
 
     # SERPRO API (CPF/CNPJ premium)
     serpro_api_token: str = ""
