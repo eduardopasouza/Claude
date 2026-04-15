@@ -30,9 +30,212 @@ Branch:     claude/continue-backend-dev-sVLGG
 
 ---
 
-## 2. MAPA COMPETITIVO COMPLETO
+## 2. VISÃO DE PRODUTO — O QUE O AGROJUS ENTREGA
 
-### 2.1 Concorrentes Diretos
+> Esta é a seção mais importante para orientar o desenvolvimento. Descreve os 5 módulos centrais do produto.
+
+### 2.1 — O Problema Central (por que o usuário abre o AgroJus)
+
+Hoje, para fazer due diligence de um imóvel rural no Brasil, um advogado ou banco precisa consultar **manualmente mais de 15 sistemas diferentes** — SICAR, SIGEF, SNCR, IBAMA, MTE, FUNAI, ICMBio, cartório, DataJud, PRODES, DETER, PAM/IBGE, BCB, MapBiomas, ANM — cada um com login diferente, formato diferente, velocidade diferente. O processo demora dias ou semanas e ainda assim fica incompleto.
+
+**O AgroJus resolve isso em segundos: o usuário fornece o polígono ou código do imóvel e recebe um relatório unificado de todas essas fontes.**
+
+---
+
+### 2.2 — Os 5 Módulos do Produto
+
+---
+
+#### MÓDULO 1: Relatório de Conformidade Completo (por imóvel)
+
+**Quem usa:** Bancos, cooperativas de crédito, advogados, compradores de terra, exportadores
+
+**Como funciona:**
+1. Usuário informa o imóvel por qualquer uma das formas:
+   - Código CAR (ex: `MT-5101100-XXXXX`)
+   - Código NIRF/SNCR
+   - Upload de shapefile ou GeoJSON com o polígono
+   - Desenho livre no mapa AgroJus
+   - CPF/CNPJ do proprietário (retorna todos os imóveis vinculados)
+2. AgroJus executa checagem em paralelo em todas as matrizes de dados
+3. Retorna relatório PDF/JSON em até 30 segundos
+
+**O que o relatório contém:**
+
+| Seção | Dados | Fonte |
+|---|---|---|
+| **Identificação** | Nome do imóvel, área total, módulos fiscais, bioma, município, estado | SNCR/CAR/SIGEF |
+| **Conformidade Ambiental** | CAR ativo? APP preservada? Reserva Legal adequada? Passivo ambiental? | SICAR |
+| **Desmatamento** | Alertas DETER 2024. Desmatamento PRODES pós-2019 (corte MCR 2.9) | INPE TerraBrasilis |
+| **Embargos IBAMA** | Ativo/inativo, data, tipo de infração, CPF/CNPJ embargado | IBAMA (103k no PostGIS) |
+| **Trabalho Escravo** | CPF/CNPJ na Lista Suja MTE | MTE (614 no PostGIS) |
+| **Sobreposições críticas** | TI (FUNAI), UC (ICMBio), Assentamento (INCRA), Quilombo, Mineração | PostGIS/WFS |
+| **Processos judiciais** | Ações cíveis, penais, ambientais vinculadas ao CPF/CNPJ | DataJud/CNJ |
+| **Crédito Rural** | Histórico de financiamentos, banco, programa, valor | BCB SICOR |
+| **Uso do Solo** | Série histórica 1985-2023 — cobertura e uso MapBiomas | MapBiomas Col.10 |
+| **Risco Hídrico** | Outorgas de água, bacia hidrográfica, risco de escassez | ANA SNIRH |
+| **Score MCR 2.9** | APTO / INAPTO / PENDENTE com checklist auditável (exigência banking) | Motor interno |
+| **Score EUDR** | Conformado / Crítico / Verificação necessária | Motor interno |
+| **Valuation estimado** | R$/ha estimado + intervalo de confiança | Motor interno |
+| **Logística** | Distância a armazéns, frigoríficos, portos, rodovias, ferrovias | MapBiomas Infra |
+
+**API:**
+```
+POST /api/v1/imovel/relatorio
+Body: { "tipo": "car", "codigo": "MT-5101100-XXXXX" }
+      { "tipo": "geojson", "geometry": {...} }
+      { "tipo": "cpf_cnpj", "documento": "00000000000" }
+
+GET /api/v1/imovel/relatorio/{id}/export?format=pdf|json|excel|kml
+```
+
+---
+
+#### MÓDULO 2: GIS Map — Mapa Interativo com Camadas e Análise de Ponto
+
+**Quem usa:** Todos os usuários — é a interface central do produto
+
+**Filosofia:** O mapa É o produto. O usuário navega o Brasil, não preenche formulário.
+
+**Camadas disponíveis (clicáveis no painel lateral):**
+
+| Categoria | Camadas | Fonte |
+|---|---|---|
+| **Ambiental** | Embargos IBAMA, DETER Amazônia, DETER Cerrado, PRODES, MapBiomas Fogo, MapBiomas Degradação | PostGIS/WFS |
+| **Fundiário** | Terras Indígenas, UCs ICMBio, Assentamentos, Quilombos, CAR (polígonos), SIGEF parcelas | PostGIS/WFS |
+| **Crédito Rural** | Parcelas de financiamento BCB (5.6M) | PostGIS |
+| **Infraestrutura** | Armazéns/silos (16k), Frigoríficos (207), Rodovias federais, Ferrovias, Portos | PostGIS |
+| **Uso do Solo** | Cobertura MapBiomas 2023, Irrigação, Mineração/garimpo, Módulo urbano | PostGIS/GEE |
+| **Recursos Hídricos** | Outorgas ANA, Bacias hidrográficas, Rios | ANA WFS |
+| **Mineração** | Processos ANM/SIGMINE | ArcGIS REST |
+| **Mercado** | Cotações por município (PAM/IBGE), Valor da terra estimado | SIDRA/Motor |
+| **Base** | Satélite (Esri), Terreno (OpenTopo), OSM | Tiles |
+
+**Funções de análise no mapa:**
+- **Click esquerdo:** copia coordenada lat/lon
+- **Click direito:** Análise de Ponto completa (risco, município, DETER, FUNAI, clima, jurisdição)
+- **Shift+drag:** BBox Search — encontra alertas/camadas dentro da área desenhada
+- **Desenhar polígono:** define área de interesse → gera relatório do módulo 1
+- **Pesquisar:** busca por município, código CAR, CPF/CNPJ, endereço
+- **Timeline:** deslizar ano (1985-2023) para ver evolução do uso do solo (MapBiomas)
+- **Exportar:** PNG do mapa atual + KML/SHP das camadas ativas
+
+---
+
+#### MÓDULO 3: Assessor Agropecuário (Chat + Consulta Inteligente)
+
+**Quem usa:** Produtores rurais, consultores agrícolas, técnicos
+
+**O que entrega:**
+- Consulta em linguagem natural: *"Qual a produção de soja no Mato Grosso em 2023?"*
+- Responde com dados reais do IBGE SIDRA, CONAB, MapBiomas
+- Calendário agrícola por cultura e região
+- Zoneamento de risco climático ZARC/EMBRAPA
+- Preço médio da terra por município (dados históricos)
+- Clima histórico e projeções NASA POWER
+- Sugestão de culturas por tipo de solo e bioma
+- Informações sobre linhas de crédito rural (Pronaf, Pronamp, ABC+)
+
+**API:**
+```
+POST /api/v1/advisor/query
+Body: { "pergunta": "qual o preço médio da soja em MT hoje?", "contexto": { lat, lon } }
+
+GET /api/v1/advisor/calendario-agricola?cultura=soja&estado=MT
+GET /api/v1/advisor/zarc?cultura=milho&municipio=5107909&ano=2024
+GET /api/v1/advisor/clima?lat=-12.5&lon=-55.3&periodo=365d
+```
+
+---
+
+#### MÓDULO 4: Motor de Valuation Rural
+
+**Quem usa:** Compradores, vendedores, bancos, peritos judiciais
+
+**Objetivo:** Estimar o valor de qualquer imóvel rural em R$/ha com intervalo de confiança
+
+**Dados do modelo:**
+| Variável | Fonte |
+|---|---|
+| Produtividade histórica por município | IBGE/SIDRA PAM |
+| Tipo de solo e aptidão agrícola | Embrapa GeoInfo |
+| Bioma e vegetação remanescente | MapBiomas |
+| Distância a infraestrutura (silos, portos) | MapBiomas Infra |
+| Cobertura e uso atual (soja/pasto/floresta) | MapBiomas Col.10 |
+| Estoque de carbono do solo | MapBiomas Solo |
+| Alertas de desmatamento (risco ambiental) | DETER/PRODES |
+| Transações imobiliárias históricas | ONR/Cartórios (futuro) |
+| Cotações de commodities | Yahoo Finance/CBOT |
+
+**Output:**
+```json
+{
+  "valor_estimado_ha": 18500.00,
+  "intervalo_95": [15200, 21800],
+  "comparable_municipio": 17300,
+  "comparable_estado": 19100,
+  "fatores_positivos": ["Solo Latossolo Vermelho", "50km de porto fluvial", "Irrigação instalada"],
+  "fatores_negativos": ["14ha de embargo IBAMA ativo", "Sobreposição parcial com TI"],
+  "data_referencia": "2026-04-15"
+}
+```
+
+**API:**
+```
+POST /api/v1/valuation/estimar
+Body: { "geometry": GeoJSON | "codigo_car": "MT-...", "data_referencia": "2026-04-15" }
+```
+
+---
+
+#### MÓDULO 5: Dashboard Gerencial para Bancos/Traders (Carteira)
+
+**Quem usa:** Instituições financeiras, grandes tradings, cooperativas
+
+**O que faz:**
+- Banco cadastra carteira de financiamentos (lista de imóveis/CPF-CNPJs)
+- AgroJus monitora continuamente e envia alertas quando qualquer imóvel:
+  - Recebe novo embargo IBAMA
+  - Tem alerta DETER de desmatamento
+  - Proprietário entra na Lista Suja MTE
+  - Novo processo judicial relevante
+  - CAR cancelado ou suspenso
+- Dashboard mostra mapa da carteira com semáforo de risco
+
+**Monetização:** R$5.000–50.000/mês (SLA dedicado, API ilimitada, white-label)
+
+---
+
+### 2.3 — Modelo de Monetização
+
+| Tier | Preço | O que inclui |
+|---|---|---|
+| **Gratuito** | R$0 | 3 consultas/mês, semáforo básico, mapa público |
+| **Individual** | R$149–299/mês | Relatórios ilimitados, OCR 20 docs/mês, 3 imóveis monitorados |
+| **Profissional** | R$699–1.490/mês | OCR ilimitado, detector de inconsistências, valuation, API 500 req/mês |
+| **Enterprise** | R$5.000–50.000/mês | API ilimitada, Score MCR 2.9, carteira bancária, white-label, SLA |
+| **Avulso** | R$89–299/relatório | Due diligence completa por imóvel |
+| **API B2B** | R$2–15/imóvel | Para fintechs e bancos que integram via API |
+
+---
+
+### 2.4 — Fluxo Central do Produto (Jornada do Usuário)
+
+```
+1. ENTRADA → Login / Acesso gratuito
+2. BUSCA   → Código CAR | CPF/CNPJ | Clique no mapa | Upload shapefile
+3. ANÁLISE → AgroJus consulta 15+ bases em paralelo (5-30 segundos)
+4. SCORE   → Semáforo: 🟢 Regular | 🟡 Atenção | 🔴 Crítico
+5. RELATÓRIO → PDF/JSON completo com todas as matrizes
+6. ALERTA  → Monitoramento contínuo (push notification / webhook)
+7. EXPORT  → PDF, Excel, KML, Shapefile, API endpoint compartilhável
+```
+
+---
+
+## 3. MAPA COMPETITIVO COMPLETO
+
+### 3.1 Concorrentes Diretos
 
 **Registro Rural** (`registrorural.com.br`)
 - Maior banco de dados de imóveis rurais do Brasil: 16 milhões cadastrados
