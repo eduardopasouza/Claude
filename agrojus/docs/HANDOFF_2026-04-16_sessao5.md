@@ -40,17 +40,41 @@ Diretório:  c:/Users/eduar/OneDrive/Escritório/_Pessoal/AgroJus/Claude/agrojus
 
 **ATENÇÃO:** Documentos anteriores dizem "Next.js 14" e "Vite" — AMBOS estão errados. O frontend real é **Next.js 16.2.3**.
 
-### Backend — O que funciona DE VERDADE
+### Backend — O que funciona DE VERDADE (inventário do código, não dos docs)
 
-**Endpoints confirmados funcionais (testados com curl):**
-- `GET /health` — health check
-- `POST /api/v1/report/due-diligence` — relatório completo (~250-400ms para CARs do MA)
-- `GET /api/v1/dashboard/metrics` — KPIs via materialized view (~5ms)
-- `GET /api/v1/property/search` — busca CARs por texto/UF
-- `GET /api/v1/property/{car_code}/geojson` — polígono do imóvel
-- `GET /api/v1/property/{car_code}/overlaps/geojson` — sobreposições 14 camadas
-- `GET /api/v1/geo/layers/{layer}/geojson` — camadas GeoJSON com bbox
-- `POST /api/v1/consulta/completa` — dossiê CPF/CNPJ (7 fontes)
+**71 endpoints reais em 16 módulos de rotas.** Todos com lógica implementada, nenhum placeholder vazio.
+
+**Módulos e endpoints-chave:**
+- `auth.py` (4 endpoints) — register, login, me, plan-limits. JWT + PBKDF2 + 4 planos + rate limiting
+- `property.py` (5) — search (6 filtros + paginação), UFs, municípios, GeoJSON, overlaps (8 camadas ST_Intersects)
+- `report.py` (7) — due-diligence, PDF, buyer, lawyer, investor, person, region. Pipeline: PostGIS 14 cruzamentos + APIs + compliance
+- `geo.py` (17) — analyze-point, 7 camadas GeoJSON, TIs, DETER, biomas, municípios (busca/malha/produção/pecuária/censo), clima NASA POWER, catálogo
+- `compliance.py` (3) — MCR 2.9 (5 critérios + score 0-1000 ponderado 5 eixos), EUDR (5 critérios), dossier
+- `consulta.py` (1) — dossiê CPF/CNPJ com 6 consultas em PARALELO (asyncio.gather)
+- `market.py` (11) — quotes, CEPEA scraper real, Yahoo Finance OHLC, IBGE SIDRA, CONAB, SICOR por município, preços terra, FIAGRO CVM, BCB indicadores (SELIC/dólar/IPCA/IGP-M/CDI)
+- `dashboard.py` (2) — materialized view (~5ms) com fallback queries (~1.7s)
+- `lawsuits.py` (3) — DataJud/CNJ real (busca CPF/CNPJ, por assunto, lista tribunais)
+- `smart_search.py` (1) — detecta 12 tipos de input via regex (CAR, CPF, CNPJ, coordenadas, processo CNJ, auto IBAMA, etc.)
+- `search.py` (5) — busca universal multi-identificador, CNPJ BrasilAPI, validação doc, lista suja MTE
+- `monitoring.py` (7) — CRUD monitoramento + ciclo check IBAMA/SICAR (in-memory, não persiste)
+- `news.py` (3) — RSS aggregator real com fallback
+- `jurisdicao.py` (4) — dados hardcoded 27 UFs (órgão ambiental, RL, licenciamento)
+- `map_data.py` (4) — camadas estáticas, SICAR WFS, SIGEF WFS, bbox search
+
+**11 services com lógica real:**
+- `postgis_analyzer.py` — motor central, 14 queries ST_Intersects (TIs, UCs, ICMBio, PRODES, DETER, MapBiomas, IBAMA, SIGEF, crédito, armazéns, frigoríficos, rodovias, portos)
+- `compliance.py` — MCR 2.9 (6 checks) + EUDR (4 checks) + score 0-1000 ponderado 5 eixos
+- `due_diligence.py` — pipeline 4 etapas (PostGIS → APIs → compliance → satélite opcional)
+- `pdf_report.py` — 729 linhas, 13 seções profissionais via ReportLab
+- `earth_engine.py` — LULC, fogo, solo, água (78 assets EE mapeados)
+- `mapbiomas_alerta.py` — GraphQL client com JWT cache 1h
+- `person_intelligence.py` / `region_intelligence.py` — dossiês cruzando múltiplas fontes
+- `monitoring.py` — in-memory (production: Redis)
+- `jurisdicao.py` — base completa 27 estados
+
+**20 collectors** em `app/collectors/` (FUNAI, INPE, IBGE, IBAMA, MTE, BCB, CEPEA, DataJud, NASA POWER, etc.)
+**28 scripts ETL** (26 completos, 2 básicos)
+**11 modelos SQLAlchemy** + 19 schemas Pydantic
 
 **APIs externas realmente conectadas:**
 | API | Status | Notas |
@@ -125,19 +149,28 @@ Diretório:  c:/Users/eduar/OneDrive/Escritório/_Pessoal/AgroJus/Claude/agrojus
 - "SYSTEM ONLINE 1.2ms" na Sidebar é texto fixo (não consulta API)
 - DeepSearch é a página mais elaborada visualmente (gauge Recharts) mas é 100% mock
 
+### O que existe MAS precisa evoluir
+
+| Feature | Estado atual | O que falta |
+|---|---|---|
+| **Compliance MCR 2.9** | 5 critérios + score 0-1000 em 5 eixos | Expandir para calculadora auditável com 54+ validações (ref Softfocus). Output assinável |
+| **Score 5 eixos** | Score ponderado existe em compliance.py | Melhorar pesos, adicionar jurimetria, tornar visual (gauge) no frontend |
+| **Monitoramento** | 7 endpoints funcionais (CRUD + check IBAMA/SICAR) | Persistência (Redis/DB em vez de in-memory). Webhooks |
+| **Mercado/Cotações** | 11 endpoints (CEPEA, B3, BCB, CONAB, CVM) | Conectar ao frontend real (página /mercado já tem SWR pronto) |
+
 ### O que NÃO existe (ZERO código)
 
 | Feature | Status | Impacto |
 |---|---|---|
-| **Motor jurídico** (prescrição, teses, defesa) | ZERO | Diferencial principal |
-| **Valuation** (renda capitalizada) | ZERO | Diferencial para bancos |
-| **Scoring 5 eixos** (0-1000 cada) | ZERO | Diferencial competitivo |
-| **Recuperação de crédito / alongamento** | ZERO | Feature financeira |
-| **Contratos / checklists regulatórios** | ZERO | Fase 2 roadmap |
-| **WhatsApp / alertas / monitoramento** | ZERO | Fase 4 roadmap |
-| **Jurimetria ambiental** | ZERO | Ninguém no mercado faz |
-| **Cadeia dominial automatizada** | ZERO | Ninguém no mercado faz |
-| **Agregador de leilões rurais** | ZERO | Porta de entrada monetização |
+| **Motor jurídico** (prescrição, teses, defesa) | ZERO | Diferencial principal do produto |
+| **Valuation** (renda capitalizada) | ZERO | Diferencial para bancos e cooperativas |
+| **Calculadora saldo devedor / alongamento** | ZERO | Feature financeira para advogados |
+| **Base de jurisprudência ambiental** | ZERO | Alimenta o motor jurídico |
+| **Contratos / checklists regulatórios** | ZERO | Fase futura |
+| **WhatsApp bot / alertas por email** | ZERO | Fase futura |
+| **Jurimetria ambiental** (% êxito por tese) | ZERO | Ninguém no mercado faz |
+| **Cadeia dominial automatizada** (OCR matrícula) | ZERO | Ninguém no mercado faz |
+| **Agregador de leilões rurais** | ZERO | Porta de entrada para monetização |
 
 ---
 
