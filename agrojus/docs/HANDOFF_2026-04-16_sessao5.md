@@ -103,20 +103,27 @@ Diretório:  c:/Users/eduar/OneDrive/Escritório/_Pessoal/AgroJus/Claude/agrojus
 1. `frontend/` — Vite vanilla, scaffold vazio. IGNORAR.
 2. `frontend_v2/` — Next.js 16 real. **ESTE é o frontend.**
 
-**frontend_v2 — Páginas:**
-| Rota | Componente | Estado |
-|---|---|---|
-| `/` | Dashboard KPIs | Funcional (SWR → backend) |
-| `/mapa` | Mapa Leaflet 9 camadas | Funcional (dynamic import ssr:false) |
-| `/consulta` | Deep Search | Existe, verificar conteúdo |
-| `/compliance` | Compliance | Existe, verificar conteúdo |
-| `/mercado` | Mercado & Agro | Existe, verificar conteúdo |
-| `/alertas` | Monitoramento | Existe, verificar conteúdo |
-| `/login` | Login | Existe, verificar conteúdo |
+**frontend_v2 — Páginas (verificado no código, 19 arquivos, 2.060 linhas):**
+| Rota | Linhas | Backend real? | Estado |
+|---|---|---|---|
+| `/login` | 100 | ✅ SIM (POST /auth/login, JWT) | Funcional |
+| `/` (Dashboard) | 138 | ✅ SIM (GET /dashboard/metrics, SWR 60s) | KPIs reais. Feed notícias + cotações = HARDCODED |
+| `/mapa` | 253+244 | ✅ SIM (GET /geo/layers, /property/search, /overlaps) | **Funcional e bem construído** |
+| `/mercado` | 81 | ✅ SIM (GET /market/quotes + /indicators) | Funcional com fallback mock se offline |
+| `/consulta` | 291 | ❌ NÃO (setTimeout mock, zero API) | **Esqueleto visual sofisticado, zero dados reais** |
+| `/compliance` | 69 | ❌ NÃO (3 linhas hardcoded, botões decorativos) | Placeholder |
+| `/alertas` | 41 | ❌ NÃO (4 alertas hardcoded) | Placeholder |
 
-**Build:** Passa limpo após instalar `@types/leaflet` e configurar `turbopack.root: "."` (feito na sessão 5).
+**Build:** Passa 100% limpo (0 erros TypeScript) após `@types/leaflet` + `turbopack.root: "."` (sessão 5).
 
-**Mapa Leaflet:** O código é real e substancial (~250 linhas). MapContainer + TileLayer (CARTO Dark) + GeoJSON dinâmico + 9 camadas toggleáveis com zoom lock + busca de CARs + fly-to + painel de overlaps. O dev server rodou na porta 3000 na sessão 5.
+**Mapa Leaflet:** RENDERIZA CORRETAMENTE. O "problema de mapa" dos handoffs anteriores era do `frontend/` antigo (Vite), não do `frontend_v2/`. Código real de produção (~500 linhas MapComponent + PropertySearch). CARTO Dark tiles, 9 camadas com zoom-lock, busca CARs, fly-to, painel overlaps, glassmorphism HUD.
+
+**Problemas identificados:**
+- `/processos` (link "DataJud" na Sidebar) → rota NÃO EXISTE → 404
+- `API_URL = "http://localhost:8000/api/v1"` hardcoded sem env var
+- TopBar search não tem handler (digitar não faz nada)
+- "SYSTEM ONLINE 1.2ms" na Sidebar é texto fixo (não consulta API)
+- DeepSearch é a página mais elaborada visualmente (gauge Recharts) mas é 100% mock
 
 ### O que NÃO existe (ZERO código)
 
