@@ -24,17 +24,20 @@ import { VisaoGeralTab } from "@/components/imovel/tabs/VisaoGeralTab";
 import { DossieTab } from "@/components/imovel/tabs/DossieTab";
 import { HistoricoTab } from "@/components/imovel/tabs/HistoricoTab";
 import { AgronomiaTab } from "@/components/imovel/tabs/AgronomiaTab";
+import { ComplianceTab } from "@/components/imovel/tabs/ComplianceTab";
+import { ClimaTab } from "@/components/imovel/tabs/ClimaTab";
+import { JuridicoTab } from "@/components/imovel/tabs/JuridicoTab";
 
 const TABS: TabDef[] = [
   { id: "visao", label: "Visão Geral", icon: Activity, implemented: true },
+  { id: "compliance", label: "Compliance", icon: ShieldCheck, implemented: true },
   { id: "dossie", label: "Dossiê", icon: FileText, implemented: true },
   { id: "historico", label: "Histórico", icon: BookOpen, implemented: true },
   { id: "agronomia", label: "Agronomia", icon: Leaf, implemented: true },
-  { id: "compliance", label: "Compliance", icon: ShieldCheck, implemented: false },
-  { id: "clima", label: "Clima", icon: CloudSun, implemented: false },
+  { id: "clima", label: "Clima", icon: CloudSun, implemented: true },
+  { id: "juridico", label: "Jurídico", icon: Scale, implemented: true },
   { id: "valuation", label: "Valuation", icon: Calculator, implemented: false },
   { id: "logistica", label: "Logística", icon: Truck, implemented: false },
-  { id: "juridico", label: "Jurídico", icon: Scale, implemented: false },
   { id: "credito", label: "Crédito", icon: Coins, implemented: false },
   { id: "monitoramento", label: "Monitoramento", icon: Bell, implemented: false },
   { id: "acoes", label: "Ações", icon: CheckSquare, implemented: false },
@@ -90,6 +93,15 @@ export default function ImovelDetalhePage(props: {
         )}
         {effectiveProperty && currentTab === "agronomia" && (
           <AgronomiaTab property={effectiveProperty} />
+        )}
+        {effectiveProperty && currentTab === "compliance" && (
+          <ComplianceTab property={effectiveProperty} />
+        )}
+        {effectiveProperty && currentTab === "clima" && (
+          <ClimaTab property={effectiveProperty} />
+        )}
+        {effectiveProperty && currentTab === "juridico" && (
+          <JuridicoTab property={effectiveProperty} />
         )}
         {effectiveProperty && !TABS.find((t) => t.id === currentTab)?.implemented && (
           <ComingSoon tabId={currentTab} />
