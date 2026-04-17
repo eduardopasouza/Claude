@@ -1,54 +1,76 @@
 "use client";
 
-import { useEffect, useState, useCallback } from 'react';
-import { MapContainer, TileLayer, ZoomControl, useMapEvents, useMap, GeoJSON } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import { Layers, Crosshair, Download, RefreshCcw, Lock, Loader2 } from 'lucide-react';
-import L from 'leaflet';
+/**
+ * AgroJus Map v2 — refatoração que amarra:
+ *  - LayerTreePanel (árvore temática, esquerda)
+ *  - BasemapSwitcher (dark/light/satélite/topo, canto superior direito)
+ *  - LayerInspector (drawer direito, ao clicar em feature)
+ *  - StatsDashboard (rodapé recolhível)
+ *  - MapToolbar (régua, coord input, export — canto inferior direito)
+ *  - PropertySearch (busca CAR + fly-to)
+ *
+ * Consumo de dados:
+ *  - LAYERS com endpoint "postgis" → /api/v1/geo/postgis/{id}/geojson
+ *  - LAYERS com endpoint "geo"     → /api/v1/geo/layers/{id}/geojson (legado)
+ *  - LAYERS com endpoint "stub"    → não busca (comingSoon)
+ */
+
+import { useCallback, useEffect, useMemo, useState } from "react";
+import {
+  GeoJSON,
+  MapContainer,
+  TileLayer,
+  useMap,
+  useMapEvents,
+  ZoomControl,
+} from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+import { Crosshair, Loader2, Ruler } from "lucide-react";
 
 import useSWR from "swr";
 import { swrFetcher } from "@/lib/api";
-import PropertySearch from './PropertySearch';
+import { getLayer, LAYERS, LayerConfig } from "@/lib/layers-catalog";
+import { BASEMAPS, BasemapId, getBasemap } from "@/lib/basemaps";
 
-/** 
- * Limites e Travas de Zoom (conforme contrato de API do Backend)
- * Usado para evitar travamento do navegador no fetch de GeoJSON não clipado.
- */
-const LAYERS_CONFIG = [
-  { id: 'desmatamento', name: 'DETER Alertas (Amazônia)', minZoom: 6, maxFeatures: 2000, color: '#F59E0B' },
-  { id: 'desmatamento_cerrado', name: 'DETER Alertas (Cerrado)', minZoom: 6, maxFeatures: 2000, color: '#F97316' },
-  { id: 'prodes', name: 'PRODES Acumulado', minZoom: 4, maxFeatures: 9999, color: '#7E22CE' },
-  { id: 'embargos', name: 'Embargos IBAMA', minZoom: 6, maxFeatures: 5000, color: '#EF4444' },
-  { id: 'embargos_mte', name: 'Lista Suja MTE', minZoom: 6, maxFeatures: 2000, color: '#F43F5E' },
-  { id: 'geo_car', name: 'Imóveis Rurais', minZoom: 10, maxFeatures: 1000, color: '#10B981' },
-  { id: 'parcelas_financiamento', name: 'Crédito Rural (SICOR)', minZoom: 12, maxFeatures: 500, color: '#3B82F6' },
-  { id: 'terras_indigenas', name: 'Terras Indígenas', minZoom: 4, maxFeatures: null, color: '#3B82F6' },
-  { id: 'municipios', name: 'Limites Municipais', minZoom: 4, maxFeatures: null, color: '#ffffff' },
-];
+import { BasemapSwitcher } from "./BasemapSwitcher";
+import { LayerInspector, InspectorPayload } from "./LayerInspector";
+import { LayerTreePanel } from "./LayerTreePanel";
+import { StatsDashboard } from "./StatsDashboard";
+import PropertySearch from "./PropertySearch";
 
-function MapEvents({ onMove }: { onMove: (bounds: string, zoom: number, center: L.LatLng) => void }) {
+// ---------------------------------------------------------------------------
+// Sub-componente: captura eventos de pan/zoom
+// ---------------------------------------------------------------------------
+function MapEvents({
+  onMove,
+}: {
+  onMove: (bounds: string, zoom: number, center: L.LatLng) => void;
+}) {
   const map = useMapEvents({
-    moveend: () => {
-      onMove(map.getBounds().toBBoxString(), map.getZoom(), map.getCenter());
-    },
+    moveend: () => onMove(map.getBounds().toBBoxString(), map.getZoom(), map.getCenter()),
   });
-  // Fire on initial mount so bounds are set immediately
   useEffect(() => {
     onMove(map.getBounds().toBBoxString(), map.getZoom(), map.getCenter());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return null;
 }
 
-function FlyToProperty({ carCode, center }: { carCode: string | null; center: [number, number] | null }) {
+// ---------------------------------------------------------------------------
+// Sub-componente: fly-to animado ao selecionar CAR
+// ---------------------------------------------------------------------------
+function FlyToProperty({ center }: { center: [number, number] | null }) {
   const map = useMap();
   useEffect(() => {
-    if (center) {
-      map.flyTo(center, 14, { duration: 1.5 });
-    }
-  }, [carCode, center, map]);
+    if (center) map.flyTo(center, 14, { duration: 1.2 });
+  }, [center, map]);
   return null;
 }
 
+// ---------------------------------------------------------------------------
+// Sub-componente: polígono do CAR selecionado + overlaps
+// ---------------------------------------------------------------------------
 function SelectedPropertyLayer({ carCode }: { carCode: string | null }) {
   const { data: geojson } = useSWR(
     carCode ? `/property/${carCode}/geojson` : null,
@@ -60,194 +82,321 @@ function SelectedPropertyLayer({ carCode }: { carCode: string | null }) {
     swrFetcher,
     { revalidateOnFocus: false }
   );
-
   if (!carCode) return null;
-
   return (
     <>
-      {geojson?.type === 'FeatureCollection' && (
+      {geojson?.type === "FeatureCollection" && (
         <GeoJSON
           key={`prop-${carCode}`}
           data={geojson}
-          style={{ color: '#10B981', weight: 3, fillColor: '#10B981', fillOpacity: 0.25, dashArray: '5,5' }}
+          style={{
+            color: "#10B981",
+            weight: 3,
+            fillColor: "#10B981",
+            fillOpacity: 0.2,
+            dashArray: "5,5",
+          }}
         />
       )}
-      {overlaps?.type === 'FeatureCollection' && overlaps.features.length > 0 && (
+      {overlaps?.type === "FeatureCollection" && overlaps.features.length > 0 && (
         <GeoJSON
           key={`overlaps-${carCode}`}
           data={overlaps}
-          style={(feature: any) => ({
-            color: feature?.properties?.color || '#FF0000',
-            weight: 2,
-            fillColor: feature?.properties?.color || '#FF0000',
-            fillOpacity: 0.3,
-          })}
+          style={(feature: unknown) => {
+            const f = feature as { properties?: { color?: string } };
+            return {
+              color: f.properties?.color || "#FF0000",
+              weight: 2,
+              fillColor: f.properties?.color || "#FF0000",
+              fillOpacity: 0.3,
+            };
+          }}
         />
       )}
     </>
   );
 }
 
-function ActiveMapLayer({ layer, bounds }: { layer: typeof LAYERS_CONFIG[0], bounds: string }) {
-  const endpoint = `/geo/layers/${layer.id}/geojson?bbox=${bounds}&max_features=${layer.maxFeatures || 1000}`;
-  const { data } = useSWR(bounds ? endpoint : null, swrFetcher, {
-     revalidateOnFocus: false, // Não revalidar em foco do mapa p/ não piscar tela 
-     dedupingInterval: 60000 
+// ---------------------------------------------------------------------------
+// Sub-componente: camada ativa com click handler → Inspector
+// ---------------------------------------------------------------------------
+function ActiveLayer({
+  layer,
+  bounds,
+  onFeatureClick,
+  onCountUpdate,
+}: {
+  layer: LayerConfig;
+  bounds: string;
+  onFeatureClick: (payload: InspectorPayload) => void;
+  onCountUpdate: (layerId: string, count: number) => void;
+}) {
+  // Determina endpoint baseado no tipo
+  const endpoint = useMemo(() => {
+    if (!bounds) return null;
+    const effectiveId = layer.endpointId ?? layer.id;
+    const qs = `bbox=${bounds}&max_features=${layer.maxFeatures || 500}`;
+    switch (layer.endpoint) {
+      case "postgis":
+        return `/geo/postgis/${effectiveId}/geojson?${qs}`;
+      case "geo":
+        return `/geo/layers/${effectiveId}/geojson?${qs}`;
+      case "stub":
+      case "external":
+      default:
+        return null;
+    }
+  }, [layer, bounds]);
+
+  const { data } = useSWR(endpoint, swrFetcher, {
+    revalidateOnFocus: false,
+    dedupingInterval: 60_000,
   });
 
-  if (!data || data.type !== 'FeatureCollection') return null;
-  
+  // Propaga contagem ao dashboard
+  useEffect(() => {
+    if (data?.features) onCountUpdate(layer.id, data.features.length);
+    else onCountUpdate(layer.id, 0);
+  }, [data, layer.id, onCountUpdate]);
+
+  if (!data || data.type !== "FeatureCollection" || data.features.length === 0) {
+    return null;
+  }
+
+  // Estilo por tipo de geometria
+  const style = () => {
+    if (layer.geometryType === "line") {
+      return {
+        color: layer.color,
+        weight: 2,
+        opacity: 0.9,
+      };
+    }
+    if (layer.geometryType === "point") {
+      return {
+        color: layer.color,
+        weight: 1,
+        fillColor: layer.color,
+        fillOpacity: 0.8,
+      };
+    }
+    return {
+      color: layer.color,
+      weight: 1.5,
+      fillColor: layer.color,
+      fillOpacity: 0.18,
+    };
+  };
+
   return (
-     <GeoJSON 
-       key={`${layer.id}-${bounds}`} 
-       data={data} 
-       style={{ color: layer.color, weight: 1.5, fillColor: layer.color, fillOpacity: 0.15 }}
-     />
+    <GeoJSON
+      key={`active-${layer.id}-${bounds}`}
+      data={data}
+      style={style}
+      pointToLayer={(feature, latlng) =>
+        L.circleMarker(latlng, {
+          radius: 5,
+          color: layer.color,
+          fillColor: layer.color,
+          fillOpacity: 0.85,
+          weight: 1,
+        })
+      }
+      onEachFeature={(feature, leafletLayer) => {
+        leafletLayer.on("click", (e: L.LeafletMouseEvent) => {
+          onFeatureClick({
+            layerId: layer.id,
+            properties: (feature.properties as Record<string, unknown>) ?? {},
+            latlng: { lat: e.latlng.lat, lng: e.latlng.lng },
+          });
+        });
+      }}
+    />
   );
 }
 
+// ---------------------------------------------------------------------------
+// MAIN COMPONENT
+// ---------------------------------------------------------------------------
 export default function MapComponent() {
   const [mounted, setMounted] = useState(false);
-  const [zoom, setZoom] = useState(5);
-  const [center, setCenter] = useState<L.LatLng>(new L.LatLng(-12.4411, -55.2210));
   const [bounds, setBounds] = useState("");
+  const [zoom, setZoom] = useState(5);
+  const [center, setCenter] = useState<L.LatLng>(new L.LatLng(-12.4411, -55.221));
+
   const [activeLayers, setActiveLayers] = useState<string[]>([]);
+  const [basemap, setBasemap] = useState<BasemapId>("dark");
+  const [inspector, setInspector] = useState<InspectorPayload | null>(null);
+  const [countsByLayer, setCountsByLayer] = useState<Record<string, number>>({});
+
+  // CAR selecionado pelo PropertySearch
   const [selectedCar, setSelectedCar] = useState<string | null>(null);
   const [flyTarget, setFlyTarget] = useState<[number, number] | null>(null);
 
-  const handleSelectProperty = useCallback((car: string, center: [number, number]) => {
-    setSelectedCar(car);
-    setFlyTarget(center);
-  }, []);
-
-  const handleClearProperty = useCallback(() => {
-    setSelectedCar(null);
-    setFlyTarget(null);
-  }, []);
-
+  // Leaflet icons fix
   useEffect(() => {
     setMounted(true);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     delete (L.Icon.Default.prototype as any)._getIconUrl;
     L.Icon.Default.mergeOptions({
-      iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-      iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-      shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+      iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+      iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+      shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
     });
   }, []);
 
-  const toggleLayer = (layer: any) => {
-    if (zoom < layer.minZoom) return; // Trava de performance
-    setActiveLayers(prev => prev.includes(layer.id) ? prev.filter(l => l !== layer.id) : [...prev, layer.id]);
-  };
-  
-  // Efeito para desligar camadas (fallback) caso o usuário dê zoom out drástico
+  // Toggle layer (respeitando comingSoon e minZoom)
+  const toggleLayer = useCallback(
+    (id: string) => {
+      const cfg = getLayer(id);
+      if (!cfg || cfg.comingSoon) return;
+      if (zoom < cfg.minZoom) return;
+      setActiveLayers((prev) =>
+        prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+      );
+    },
+    [zoom]
+  );
+
+  // Auto-desativa camadas que perderam zoom mínimo ao pan
   useEffect(() => {
-     setActiveLayers(prev => prev.filter(id => {
-       const l = LAYERS_CONFIG.find(c => c.id === id);
-       return l && zoom >= l.minZoom;
-     }));
+    setActiveLayers((prev) =>
+      prev.filter((id) => {
+        const cfg = getLayer(id);
+        return cfg && zoom >= cfg.minZoom;
+      })
+    );
   }, [zoom]);
+
+  const handleFeatureClick = useCallback((payload: InspectorPayload) => {
+    setInspector(payload);
+  }, []);
+
+  const handleCountUpdate = useCallback((layerId: string, count: number) => {
+    setCountsByLayer((prev) => ({ ...prev, [layerId]: count }));
+  }, []);
+
+  const activeConfigs = useMemo(
+    () => activeLayers.map((id) => getLayer(id)).filter(Boolean) as LayerConfig[],
+    [activeLayers]
+  );
+
+  const totalFeatures = useMemo(
+    () =>
+      activeLayers.reduce((sum, id) => sum + (countsByLayer[id] ?? 0), 0),
+    [activeLayers, countsByLayer]
+  );
+
+  const currentBasemap = getBasemap(basemap);
+  const isLightBasemap = currentBasemap.theme === "light";
 
   if (!mounted) {
     return (
-      <div className="h-[calc(100vh-4rem)] w-full flex items-center justify-center p-8 bg-black">
-        <div className="flex items-center gap-3 text-primary font-mono animate-pulse">
-           <Loader2 className="h-5 w-5 animate-spin" />
-           Iniciando Engine CARTO Dark Matter e Trava GeoJSON...
+      <div className="h-[calc(100vh-4rem)] w-full flex items-center justify-center bg-black">
+        <div className="flex items-center gap-3 text-primary font-mono">
+          <Loader2 className="h-5 w-5 animate-spin" /> Inicializando AgroJus Map v2...
         </div>
       </div>
     );
   }
 
   return (
-    <div className="relative w-full h-[calc(100vh-4rem)] bg-black">
-      <MapContainer 
-        center={[-12.4411, -55.2210]} 
-        zoom={zoom} 
+    <div
+      className={`relative w-full h-[calc(100vh-4rem)] ${
+        isLightBasemap ? "bg-neutral-100" : "bg-black"
+      }`}
+    >
+      <MapContainer
+        center={[-12.4411, -55.221]}
+        zoom={zoom}
         zoomControl={false}
         className="w-full h-full z-0"
       >
-        <MapEvents onMove={(b, z, c) => { setBounds(b); setZoom(z); setCenter(c); }} />
-        <TileLayer
-          attribution='&copy; <a href="https://carto.com/attributions">CARTO</a>'
-          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+        <MapEvents
+          onMove={(b, z, c) => {
+            setBounds(b);
+            setZoom(z);
+            setCenter(c);
+          }}
         />
-        
-        {/* Render Layers Dinamicamente */}
-        {activeLayers.map(layerId => {
-           const layerConfig = LAYERS_CONFIG.find(l => l.id === layerId);
-           if (!layerConfig || zoom < layerConfig.minZoom) return null;
-           return <ActiveMapLayer key={`active-${layerId}`} layer={layerConfig} bounds={bounds} />;
-        })}
 
-        {/* Selected property boundary + overlaps */}
+        {/* Basemap dinâmico */}
+        <TileLayer
+          key={currentBasemap.id}
+          attribution={currentBasemap.attribution}
+          url={currentBasemap.url}
+          maxZoom={currentBasemap.maxZoom}
+        />
+
+        {/* Camadas ativas */}
+        {activeConfigs.map((cfg) => (
+          <ActiveLayer
+            key={`layer-${cfg.id}`}
+            layer={cfg}
+            bounds={bounds}
+            onFeatureClick={handleFeatureClick}
+            onCountUpdate={handleCountUpdate}
+          />
+        ))}
+
+        {/* CAR selecionado + overlaps */}
         <SelectedPropertyLayer carCode={selectedCar} />
-        <FlyToProperty carCode={selectedCar} center={flyTarget} />
+        <FlyToProperty center={flyTarget} />
 
         <ZoomControl position="bottomleft" />
       </MapContainer>
 
-      {/* Glassmorphism HUD Overlay */}
-      <div className="absolute top-6 left-6 z-10 w-[340px] animate-in slide-in-from-left fade-in duration-500">
-         <div className="bg-background/85 backdrop-blur-2xl border border-border rounded-2xl p-6 shadow-[0_0_40px_-10px_rgba(0,0,0,0.9)]">
-            <div className="flex items-center justify-between mb-5">
-               <h3 className="font-heading font-bold text-lg text-white flex items-center gap-2">
-                  <Layers className="h-5 w-5 text-primary" />
-                  Painel de Camadas
-               </h3>
-               <span className="text-[10px] font-mono border border-border px-1.5 py-0.5 rounded text-muted-foreground bg-black/40">Z: {zoom}</span>
-            </div>
-            
-            <div className="space-y-4 max-h-[45vh] overflow-y-auto pr-2 custom-scrollbar">
-               {LAYERS_CONFIG.map((layer) => {
-                 const isLocked = zoom < layer.minZoom;
-                 const isActive = activeLayers.includes(layer.id) && !isLocked;
-                 
-                 return (
-                 <div key={layer.id} className="flex justify-between items-center group">
-                   <label className={`flex flex-1 items-center gap-3 transition-colors ${isLocked ? 'cursor-not-allowed opacity-40' : 'cursor-pointer'}`} onClick={() => toggleLayer(layer)}>
-                     <div className={`relative flex items-center justify-center w-5 h-5 border rounded transition-colors ${isActive ? 'border-primary bg-primary/20' : 'bg-muted/50 border-border group-hover:border-primary/50'}`}>
-                        {isActive && <div className="w-3 h-3 rounded-sm shadow-[0_0_10px_0_rgba(255,255,255,0.5)]" style={{ backgroundColor: layer.color }} />}
-                     </div>
-                     <span className={`text-sm transition-colors ${isActive ? 'text-white font-semibold' : 'text-muted-foreground group-hover:text-white/80'}`}>
-                        {layer.name}
-                     </span>
-                   </label>
-                   {isLocked && (
-                     <div className="flex items-center gap-1.5 text-[10px] uppercase font-bold text-rose-500/80 bg-rose-500/10 px-1.5 py-0.5 rounded border border-rose-500/20" title={`Zoom Mínimo Exigido: ${layer.minZoom}`}>
-                       <Lock className="h-3 w-3" /> Z{layer.minZoom}+
-                     </div>
-                   )}
-                 </div>
-               )})}
-            </div>
+      {/* === HUD OVERLAYS === */}
 
-            <div className="mt-8 pt-5 border-t border-border/50 flex gap-3">
-               <button className="flex-1 bg-muted hover:bg-muted/80 text-white text-xs font-bold py-2.5 rounded-lg transition-colors border border-border flex items-center justify-center gap-1.5 focus:ring-2 focus:ring-border">
-                  <RefreshCcw className="h-3.5 w-3.5" /> Forçar Recarga
-               </button>
-            </div>
-         </div>
+      {/* Painel de camadas (esquerda) */}
+      <LayerTreePanel activeLayers={activeLayers} onToggle={toggleLayer} zoom={zoom} />
+
+      {/* Toolbar superior direita: busca CAR + basemap */}
+      <div className="absolute top-6 right-6 z-[850] flex flex-col items-end gap-3">
+        <div className="flex items-center gap-3">
+          <BasemapSwitcher value={basemap} onChange={setBasemap} />
+        </div>
+        {!inspector && (
+          <PropertySearch
+            onSelectProperty={(car, c) => {
+              setSelectedCar(car);
+              setFlyTarget(c);
+            }}
+            onClearProperty={() => {
+              setSelectedCar(null);
+              setFlyTarget(null);
+            }}
+            selectedCar={selectedCar}
+          />
+        )}
       </div>
 
-      {/* Property search + detail panel */}
-      <PropertySearch
-        onSelectProperty={handleSelectProperty}
-        onClearProperty={handleClearProperty}
-        selectedCar={selectedCar}
+      {/* Inspector (drawer direito) — aparece ao clicar em feature */}
+      <LayerInspector data={inspector} onClose={() => setInspector(null)} />
+
+      {/* Coordinate HUD (inferior direito) */}
+      <div className="absolute bottom-20 right-6 z-[700] pointer-events-none">
+        <div className="bg-background/85 backdrop-blur-xl border border-border rounded-xl px-3 py-2 flex items-center gap-3 text-[11px] font-mono shadow-lg">
+          <Crosshair className="h-3.5 w-3.5 text-primary" />
+          <span>
+            {center.lat.toFixed(5)}, {center.lng.toFixed(5)}
+          </span>
+          <span className="text-muted-foreground">Z{zoom}</span>
+        </div>
+      </div>
+
+      {/* Dashboard inferior */}
+      <StatsDashboard
+        activeLayers={activeLayers}
+        countsByLayer={countsByLayer}
+        zoom={zoom}
+        totalFeatures={totalFeatures}
       />
 
-      {/* Lat/Lon Overlay */}
-      <div className="absolute bottom-6 right-6 z-10 animate-in slide-in-from-bottom fade-in duration-700 delay-300">
-         <div className="bg-background/80 backdrop-blur-md border border-border rounded-xl px-4 py-2.5 flex items-center gap-4 text-[11px] font-mono text-muted-foreground shadow-lg tracking-wider font-semibold pointer-events-none">
-            <div className="flex items-center gap-1.5 text-primary">
-               <Crosshair className="h-4 w-4" />
-               LAT: {center.lat.toFixed(4)}
-            </div>
-            <div>LON: {center.lng.toFixed(4)}</div>
-         </div>
+      {/* Attribution ou créditos (inferior esquerdo além do ZoomControl) */}
+      <div className="absolute bottom-1 left-[90px] z-[600] text-[9px] text-muted-foreground/70 font-mono pointer-events-none">
+        AgroJus Map v2 · {LAYERS.length} camadas catalogadas · {activeLayers.length} ativas
       </div>
-
     </div>
   );
 }

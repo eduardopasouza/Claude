@@ -37,10 +37,26 @@ class Settings(BaseSettings):
 
     # Google Cloud / BigQuery (BasedosDados)
     gcp_project_id: str = "agrojus"
+    gcp_project_number: str = ""
 
     # MapBiomas Alerta GraphQL (credenciais via .env em producao)
     mapbiomas_email: str = ""
     mapbiomas_password: str = ""
+
+    # Embrapa AgroAPI — 9 APIs assinadas (Agritec, AGROFIT, AgroTermos,
+    # Bioinsumos, BovTrace, PlantAnnot, RespondeAgro, SmartSolosExpert, Sting)
+    embrapa_consumer_key: str = ""
+    embrapa_consumer_secret: str = ""
+    embrapa_access_token: str = ""
+    embrapa_base_url: str = "https://api.cnptia.embrapa.br"
+
+    # dados.gov.br (CKAN federal)
+    dados_gov_token: str = ""
+    dados_gov_base_url: str = "https://dados.gov.br/api/publico"
+
+    # Portal da Transparência (CEIS, CNEP, Garantia-Safra, Servidores)
+    portal_transparencia_token: str = ""
+    portal_transparencia_base_url: str = "https://api.portaldatransparencia.gov.br/api-de-dados"
 
     # SERPRO API (CPF/CNPJ premium)
     serpro_api_token: str = ""

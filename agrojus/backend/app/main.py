@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
 from app.logging_config import setup_logging
 from app.middleware.rate_limit import RateLimitMiddleware
-from app.api import search, report, map_data, market, news, auth, monitoring, smart_search, geo, lawsuits, consulta, compliance, jurisdicao, dashboard, property
+from app.api import search, report, map_data, market, news, auth, monitoring, smart_search, geo, lawsuits, consulta, compliance, jurisdicao, dashboard, property, publicacoes, geo_layers, embrapa, ibge_choropleth, mapbiomas
 
 setup_logging("DEBUG" if settings.debug else "INFO")
 logger = logging.getLogger("agrojus")
@@ -20,6 +20,16 @@ async def lifespan(app: FastAPI):
     Path(settings.data_dir).mkdir(parents=True, exist_ok=True)
     Path(settings.cache_dir).mkdir(parents=True, exist_ok=True)
     Path(settings.shapefile_dir).mkdir(parents=True, exist_ok=True)
+
+    # Auto-cria tabelas novas (idempotente — só cria as que não existem).
+    # Tabelas pré-existentes NÃO são alteradas.
+    try:
+        from app.models.database import create_tables
+        create_tables()
+        logger.info("AgroJus schema sincronizado (create_all idempotente)")
+    except Exception as e:
+        logger.warning("Falha ao sincronizar schema: %s", e)
+
     logger.info("AgroJus API v%s started", settings.app_version)
     yield
     from app.models.database import _engine
@@ -64,6 +74,11 @@ app.include_router(jurisdicao.router, prefix="/api/v1/jurisdicao", tags=["jurisd
 app.include_router(monitoring.router, prefix="/api/v1/monitoring", tags=["monitoring"])
 app.include_router(dashboard.router, prefix="/api/v1/dashboard", tags=["dashboard"])
 app.include_router(property.router, prefix="/api/v1/property", tags=["property"])
+app.include_router(publicacoes.router, prefix="/api/v1/publicacoes", tags=["publicacoes-djen"])
+app.include_router(geo_layers.router, prefix="/api/v1/geo/postgis", tags=["geo-layers"])
+app.include_router(ibge_choropleth.router, prefix="/api/v1/geo/ibge/choropleth", tags=["ibge-choropleth"])
+app.include_router(embrapa.router, prefix="/api/v1/embrapa", tags=["embrapa-agroapi"])
+app.include_router(mapbiomas.router, prefix="/api/v1/mapbiomas", tags=["mapbiomas-alerta"])
 
 
 @app.get("/")

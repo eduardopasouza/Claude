@@ -1,6 +1,6 @@
 
 from sqlalchemy import (
-    Column, String, Float, Integer, Boolean, DateTime, Text, JSON,
+    Column, String, Float, Integer, BigInteger, Boolean, Date, DateTime, Text, JSON,
     create_engine, Index
 )
 from sqlalchemy.orm import declarative_base, sessionmaker, Session
@@ -216,6 +216,62 @@ class MonitoringAlert(Base):
     severity = Column(String(20))  # info, warning, critical
     read = Column(Boolean, default=False)
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
+
+class Publicacao(Base):
+    """
+    Publicação/intimação judicial coletada do DJEN (Comunica.PJe / CNJ).
+
+    Cada item é uma intimação não-pessoal publicada no Diário de Justiça
+    Eletrônico Nacional. Relacionada a um advogado (OAB) e/ou processo.
+    """
+    __tablename__ = "publicacoes_djen"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+
+    # Identificador DJEN (único no sistema CNJ)
+    djen_id = Column(BigInteger, unique=True, index=True, nullable=False)
+    djen_hash = Column(String(100), index=True)
+
+    # Metadados da publicação
+    data_disponibilizacao = Column(Date, index=True, nullable=False)
+    tribunal = Column(String(20), index=True)  # TRF1, TJMA, STJ, etc.
+    orgao = Column(String(500))  # Vara, câmara etc.
+    id_orgao = Column(Integer)
+    tipo_comunicacao = Column(String(100))  # Intimação, Citação, Decisão
+    tipo_documento = Column(String(200))
+    classe = Column(String(300))  # Classe processual (com código TPU CNJ)
+    codigo_classe = Column(String(20))
+    meio = Column(String(10))  # D = DJEN, F = físico
+    numero_comunicacao = Column(Integer)
+
+    # Processo vinculado
+    numero_processo = Column(String(30), index=True)
+    numero_processo_mascarado = Column(String(40))  # 0000000-00.0000.0.00.0000
+
+    # Conteúdo
+    texto = Column(Text)  # HTML/texto completo da publicação
+    link = Column(String(1000))  # URL para peça no tribunal
+
+    # Advogado que motivou a busca (quando fizemos query por OAB)
+    oab_numero = Column(String(20), index=True)
+    oab_uf = Column(String(2))
+
+    # Status de leitura / prazo (controle interno)
+    lida = Column(Boolean, default=False, index=True)
+    urgencia = Column(String(20))  # critico, alto, medio, baixo
+    prazo_prescricao = Column(Date)  # quando definido manualmente
+
+    # Raw + timestamps
+    raw_data = Column(JSON)  # JSON original da API (destinatários, advogados etc.)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc),
+                        onupdate=lambda: datetime.now(timezone.utc))
+
+    __table_args__ = (
+        Index("idx_publicacoes_oab_data", "oab_uf", "oab_numero", "data_disponibilizacao"),
+        Index("idx_publicacoes_processo_data", "numero_processo", "data_disponibilizacao"),
+    )
 
 
 class User(Base):
