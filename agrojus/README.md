@@ -1,72 +1,153 @@
 # AgroJus Enterprise
 
-**Plataforma SaaS de Inteligência Fundiária, Ambiental e de Mercado para o Agronegócio Brasileiro**
+**Plataforma SaaS B2B de Inteligência Fundiária, Jurídica, Ambiental e de Mercado para o Agronegócio Brasileiro**
 
-AgroJus cruza dados de 15+ fontes públicas (IBAMA, INPE, FUNAI, MapBiomas, BCB, IBGE, MTE, DataJud, ANA, ANM...) para oferecer due diligence rural automatizada, compliance ambiental (MCR 2.9 / EUDR), relatórios de conformidade por imóvel e monitoramento contínuo — tudo com score de risco jurídico auditável.
+AgroJus cruza 20+ fontes públicas (IBAMA, INPE, FUNAI, MapBiomas, MapBiomas Alerta, BCB, IBGE/SIDRA, MTE, DataJud, DJEN, SIGEF/INCRA, Embrapa AgroAPI, ANA, ANM...) para oferecer **due diligence rural automatizada**, **compliance ambiental (MCR 2.9 / EUDR)**, **ficha completa por imóvel (CAR)**, **feed de publicações processuais (DJEN)** e **monitoramento em tempo real de alertas** — tudo com score de risco jurídico auditável.
 
-> **Documentação completa:** veja `docs/CONTEXTO_COMPLETO.md` para o briefing de produto e `docs/PESQUISA_FONTES.md` para o guia técnico das fontes de dados.
+> **Briefing completo:** `docs/HANDOFF_2026-04-17_sessao7.md` (documento mestre atual).
+> **Pesquisa visual concorrencial:** `docs/research/visual-audit/SYNTHESIS.md` (48 plataformas auditadas).
 
 ---
 
-## Stack Tecnológico
+## Estado atual (abr/2026)
+
+**Backend** — FastAPI + PostGIS com **~90 endpoints** e **18 camadas PostGIS ativas**:
+
+- ✅ CAR search + overlaps em 8 camadas (TI, UC, embargo ICMBio, PRODES, DETER Amazônia/Cerrado, MapBiomas, SIGEF)
+- ✅ **MapBiomas Alerta** (GraphQL) — alertas em tempo real por CAR, JWT
+- ✅ **Embrapa AgroAPI** — 7/9 APIs funcionais (Agritec ZARC, AGROFIT, Bioinsumos, AgroTermos, BovTrace, RespondeAgro, SmartSolos)
+- ✅ **IBGE SIDRA choropleth** — 16 métricas (PAM 10 culturas + PPM 4 rebanhos + POP/PIB/PIB-PC)
+- ✅ **DJEN/Comunica.PJe** — feed real de publicações por OAB (42 publicações do Eduardo OAB/MA 12147)
+- ✅ **DataJud CNJ** — busca em 13 tribunais por CPF/CNPJ ou assunto
+- ✅ **IBAMA SIFISC** — 16.121 autos de infração georreferenciados
+- ✅ **Compliance MCR 2.9 + EUDR** — 5 fontes cruzadas (FUNAI, ICMBio, IBAMA, INPE, MTE)
+- ✅ Mercado (CEPEA, BCB, Yahoo Finance CBOT)
+- ⚠ Portal Transparência, dados.gov.br (tokens configurados, coletores pendentes)
+
+**Frontend** — Next.js 16.2.3 + Turbopack + Tailwind v4 + shadcn/ui + react-leaflet:
+
+| Rota | Status |
+|---|---|
+| `/login` | ✅ JWT real |
+| `/` (dashboard) | ✅ KPIs |
+| `/mapa` | ✅ 18 camadas PostGIS + 16 choropleth IBGE + 4 basemaps + inspector |
+| `/imoveis/[car]` | ✅ **7/12 abas** (Visão · Compliance · Dossiê · Histórico · Agronomia · Clima · Jurídico) |
+| `/publicacoes` | ✅ Feed DJEN real |
+| `/processos` | ✅ DataJud real |
+| `/mercado` | ✅ Cotações live |
+| `/consulta` | ⚠ DeepSearch mock |
+| `/compliance`, `/alertas` | ⚠ mocks standalone (ficha usa endpoints reais) |
+
+---
+
+## Stack
 
 ```
-Backend:    FastAPI + SQLAlchemy + PostGIS (PostgreSQL 16)
-Frontend:   Vanilla JS + Vite + Leaflet (GIS Engine v2)
-Infra:      Docker Compose (backend + PostgreSQL/PostGIS)
-ETL:        Python (pdfplumber, httpx, geopandas, ogr2ogr)
-Auth:       JWT (PyJWT + bcrypt)
+Backend:    Python 3.12 · FastAPI · SQLAlchemy 2.0 · PostGIS 3.4 (Postgres 16)
+Frontend:   Next.js 16 · React 19 · TypeScript strict · Tailwind v4 · shadcn/ui
+            react-leaflet 5 · SWR 2.4 · Recharts · Lucide
+Infra:      Docker Compose 2 (db + backend) · WSL2 8GB · volume named agrojus_pgdata
+Auth:       JWT PyJWT + bcrypt
+Cache:      SHA256 em disco, TTL 24h padrão (1h DJEN)
+ETL:        httpx streaming · geopandas · ogr2ogr · CSV COPY
 ```
+
+---
 
 ## Início Rápido
 
 ```bash
-# 1. Subir infraestrutura
+# 1) Backend + Postgres
+cd C:\dev\agrojus-workspace\agrojus
 docker compose up -d
+curl http://localhost:8000/health  # {"status":"healthy"}
 
-# 2. Verificar banco de dados
-docker exec agrojus-backend-1 python scripts/db_inventory.py
-
-# 3. Subir frontend (dev server)
-cd frontend && npm install && npm run dev
-
-# 4. Acessar
-# Backend API:  http://localhost:8000
-# Swagger UI:   http://localhost:8000/docs
-# Frontend:     http://localhost:5173
+# 2) Frontend
+cd frontend_v2
+npm install
+npm run dev
+# Abrir http://localhost:3000
 ```
 
-## Dados no PostGIS
+> **PowerShell 5.1 não aceita `&&`.** Use `;` ou execute em linhas separadas. Git Bash / WSL funcionam normalmente.
+
+**Teste rápido da ficha do imóvel:**
+```
+http://localhost:3000/imoveis/MA-2100055-0013026E975B48D9B4F045D7352A1CB9
+```
+
+---
+
+## Dados carregados no PostGIS (~7.7M registros)
 
 | Tabela | Registros | Fonte |
-|--------|-----------|-------|
-| Embargos IBAMA | 103.668 | dadosabertos.ibama.gov.br |
-| Lista Suja MTE | 614 | Portal da Transparência |
-| MapBiomas Crédito Rural | 5.614.207 | MapBiomas GPKG |
-| DETER Amazônia | 50.000 | INPE TerraBrasilis WFS |
-| DETER Cerrado | 50.000 | INPE TerraBrasilis WFS |
-| Terras Indígenas | 655 | FUNAI WFS |
-| Armazéns/Silos | 16.676 | MapBiomas Infra |
-| Frigoríficos | 207 | MapBiomas Infra |
-| Rodovias Federais | 14.255 | MapBiomas Infra |
-| Ferrovias | 2.244 | MapBiomas Infra |
-| Portos | 35 | MapBiomas Infra |
-| Cotações | 24 | Yahoo Finance CBOT/CME |
+|---|---|---|
+| `mapbiomas_credito_rural` | 5.614.207 | MapBiomas GPKG × SICOR |
+| `sigef_parcelas` | 1.717.474 | INCRA SIGEF |
+| `geo_mapbiomas_alertas` | 515.823 | MapBiomas Alerta × CAR |
+| `mapbiomas_legality` | 493.032 | MapBiomas legalidade |
+| `sicar_completo` (MA) | 352.215 | SICAR BigQuery |
+| `geo_car` | 135.000 | SICAR WFS nacional |
+| `environmental_alerts` | 104.284 | IBAMA + MTE |
+| `geo_deter_amazonia` / `cerrado` | 50.000 cada | INPE TerraBrasilis |
+| `geo_prodes` | 50.000 | INPE PRODES |
+| `geo_autos_ibama` | **16.121** | IBAMA SIFISC (abr/2026) |
+| `geo_armazens_silos` | 16.676 | CONAB SICARM |
+| `geo_rodovias_federais` | 14.255 | DNIT |
+| `geo_autos_icmbio` / `embargos_icmbio` | 10k / 5k | ICMBio |
+| `geo_ferrovias` | 2.244 | ANTT |
+| `geo_terras_indigenas` | 655 | FUNAI |
+| `geo_unidades_conservacao` | 346 | ICMBio |
+| `geo_frigorificos` | 207 | MAPA SIF |
+| `geo_portos` | 35 | ANTAQ |
+| `publicacoes_djen` | 42 | CNJ DJEN (Eduardo OAB/MA) |
+
+---
 
 ## API — Endpoints Principais
 
 | Rota | Descrição |
-|------|-----------|
-| `GET /api/v1/dashboard/metrics` | KPIs da plataforma |
-| `GET /api/v1/geo/layers/{id}/geojson` | GeoJSON de camada para Leaflet |
-| `GET /api/v1/geo/catalogo` | Catálogo de 20+ camadas |
-| `GET /api/v1/geo/analyze-point` | Análise completa de ponto (right-click) |
-| `GET /api/v1/compliance/dossier/{cpf_cnpj}` | Dossiê de conformidade |
-| `GET /api/v1/market/quotes` | Cotações de commodities |
-| `POST /api/v1/auth/login` | JWT login |
-| `POST /api/v1/auth/register` | Registro de usuário |
+|---|---|
+| `GET /health` | Healthcheck |
+| `GET /api/v1/geo/postgis/catalog` | Lista 18 camadas PostGIS disponíveis |
+| `GET /api/v1/geo/postgis/{layer_id}/geojson?bbox=&max_features=` | GeoJSON genérico por camada |
+| `GET /api/v1/geo/ibge/choropleth/metrics` | Lista 16 métricas choropleth |
+| `GET /api/v1/geo/ibge/choropleth/{metric}/{ano}?uf=MA` | Choropleth municipal SIDRA |
+| `GET /api/v1/property/search?q=&uf=&municipio=` | Busca CAR |
+| `GET /api/v1/property/{car}/geojson` | Polígono do imóvel |
+| `GET /api/v1/property/{car}/overlaps/geojson` | 8 camadas sobrepostas |
+| `GET /api/v1/embrapa/status` | OAuth Embrapa válido? |
+| `GET /api/v1/embrapa/agritec/zoneamento?idCultura=&codigoIBGE=&risco=20` | ZARC |
+| `GET /api/v1/embrapa/agrofit/produtos?cultura=&praga=` | Defensivos MAPA |
+| `GET /api/v1/mapbiomas/alerts?start=&end=&limit=` | Alertas tempo real |
+| `GET /api/v1/mapbiomas/property/{car}` | Alertas do imóvel |
+| `GET /api/v1/publicacoes/stats/oab/{uf}/{numero}` | KPIs DJEN |
+| `GET /api/v1/publicacoes/sync/oab/{uf}/{numero}` | Sync DJEN |
+| `GET /api/v1/lawsuits/search/{cpf_cnpj}` | DataJud (13 tribunais) |
+| `POST /api/v1/compliance/mcr29` | MCR 2.9 (CAR + lat/lon + cpf) |
+| `POST /api/v1/compliance/eudr` | EUDR (cutoff 31/12/2020) |
+| `GET /api/v1/market/*` | 11 endpoints CEPEA/BCB |
 
-Veja todos os endpoints em `http://localhost:8000/docs` (Swagger UI).
+Swagger completo: `http://localhost:8000/docs`
+
+---
+
+## Ficha do Imóvel `/imoveis/[car]` — 7/12 abas
+
+1. **Visão Geral** — score de compliance (0-100) + 8 KPI cards + alertas MapBiomas tempo real
+2. **Compliance** — MCR 2.9 ↔ EUDR toggle, POST automatizado, banner APTO/RESTRITO/BLOQUEADO
+3. **Dossiê** — 8 camadas cruzadas (TI, UC, embargo, PRODES, DETER, MapBiomas, SIGEF)
+4. **Histórico** — timeline MapBiomas Alerta mensal + % do imóvel afetado
+5. **Agronomia** — Agritec zoneamento ZARC + culturas do município
+6. **Clima** — NASA POWER (temperatura, chuva, gráfico 30d)
+7. **Jurídico** — DataJud CNJ (lookup por CPF/CNPJ do proprietário)
+8. ⏳ **Valuation** — NBR 14.653-3 (próximo sprint)
+9. ⏳ **Logística** — distâncias a armazéns/frigos/portos
+10. ⏳ **Crédito** — SICOR BCB histórico
+11. ⏳ **Monitoramento** — webhooks
+12. ⏳ **Ações** — laudo PDF, minuta DOCX, export GeoPackage
+
+---
 
 ## Estrutura do Projeto
 
@@ -74,44 +155,64 @@ Veja todos os endpoints em `http://localhost:8000/docs` (Swagger UI).
 agrojus/
 ├── backend/
 │   ├── app/
-│   │   ├── api/           # Routers FastAPI (auth, geo, compliance, market, dashboard...)
-│   │   ├── collectors/    # 21 coletores de dados (IBAMA, FUNAI, IBGE, BCB, NASA, etc.)
-│   │   ├── models/        # SQLAlchemy models (PostGIS)
-│   │   ├── services/      # Lógica de negócio (due diligence, jurisdição, PDF)
-│   │   ├── middleware/     # Rate limiting
-│   │   └── main.py        # FastAPI app entry point
-│   ├── scripts/           # ETLs de ingestão de dados
-│   ├── tests/             # 18 arquivos de teste
+│   │   ├── api/              # 20 routers FastAPI
+│   │   │   ├── embrapa.py         # 27 endpoints (NEW sessão 7)
+│   │   │   ├── ibge_choropleth.py # 16 métricas (NEW sessão 7)
+│   │   │   ├── mapbiomas.py       # GraphQL wrapper (NEW sessão 7)
+│   │   │   ├── publicacoes.py     # DJEN
+│   │   │   ├── geo_layers.py      # 18 camadas PostGIS
+│   │   │   ├── property.py        # search + geojson + overlaps
+│   │   │   └── compliance.py      # MCR 2.9 + EUDR
+│   │   ├── collectors/       # 23 coletores de dados
+│   │   │   ├── embrapa.py         # OAuth2 + 9 APIs
+│   │   │   ├── mapbiomas_alerta.py # GraphQL JWT (NEW)
+│   │   │   ├── djen.py            # CNJ Comunica.PJe
+│   │   │   ├── datajud.py, ibge.py, ibama.py, nasa_power.py, ...
+│   │   ├── models/database.py # SQLAlchemy + PostGIS + geometry
+│   │   ├── services/
+│   │   ├── middleware/
+│   │   └── main.py
+│   ├── scripts/              # 29 ETLs (download_ibama_autos, sicar_bigquery, ...)
 │   └── Dockerfile
-├── frontend/
-│   ├── index.html         # App principal + login overlay
-│   ├── main.js            # Lógica principal + GIS Engine v2
-│   ├── style.css          # Design system (glassmorphism, dark mode)
-│   └── src/components/    # Componentes JS (GisMap, etc.)
-├── data/
-│   ├── downloads/         # Dados brutos baixados (zips, gpkg)
-│   ├── mapbiomas_credito/ # GPKG 4.7GB crédito rural
-│   ├── mapbiomas_stats/   # Planilhas MapBiomas (cobertura, mineração, pastagem)
-│   └── mte_trabalho_escravo.pdf
+├── frontend_v2/
+│   ├── src/
+│   │   ├── app/(dashboard)/
+│   │   │   ├── imoveis/[car]/page.tsx  # ficha do imóvel (NEW sessão 7)
+│   │   │   ├── mapa/, mercado/, publicacoes/, processos/, ...
+│   │   ├── components/
+│   │   │   ├── imovel/     # PropertyHeader, TabNav, 7 Tabs
+│   │   │   ├── mapa/       # MapComponent v2, LayerTreePanel, Inspector, Stats
+│   │   │   └── layout/
+│   │   └── lib/
+│   │       ├── layers-catalog.ts   # 119 camadas (32 ativas, 87 em roadmap)
+│   │       ├── basemaps.ts         # 4 basemaps
+│   │       └── api.ts
+│   └── next.config.ts
 ├── docs/
-│   ├── CONTEXTO_COMPLETO.md     # Briefing de produto (LEIA PRIMEIRO)
-│   ├── PESQUISA_FONTES.md       # Guia técnico de todas as fontes
-│   ├── CONTINUIDADE_PROMPT.md   # Ponto de entrada para novas sessões
-│   ├── coordination/ROADMAP.md  # Status dos 5 módulos
-│   └── ...
+│   ├── HANDOFF_2026-04-17_sessao7.md   # ← mestre atual
+│   ├── ROADMAP.md                      # 8 sprints
+│   └── research/                       # auditoria 48 sites + blueprints
 └── docker-compose.yml
 ```
 
-## Módulos do Produto
+---
 
-| # | Módulo | Status |
-|---|--------|--------|
-| M1 | Relatório de Conformidade por Imóvel | 🔶 Em desenvolvimento |
-| M2 | GIS Map Interativo (Leaflet multi-layer) | 🟢 Funcional |
-| M3 | Assessor Agropecuário | 🔶 Parcial |
-| M4 | Motor de Valuation Rural | ❌ Não iniciado |
-| M5 | Dashboard Bancário (Carteira) | ❌ Não iniciado |
+## Credenciais (em `backend/.env` — gitignored)
+
+```bash
+GCP_PROJECT_ID=agrojus
+MAPBIOMAS_EMAIL=eduardo@guerreiro.adv.br
+MAPBIOMAS_PASSWORD=***
+EMBRAPA_CONSUMER_KEY=***
+EMBRAPA_CONSUMER_SECRET=***
+DADOS_GOV_TOKEN=***
+PORTAL_TRANSPARENCIA_TOKEN=***
+DATAJUD_API_KEY=***  # pública CNJ
+```
+
+---
 
 ## Licença
 
 Projeto proprietário. Todos os direitos reservados.
+Titular: **Eduardo Pinho Alves de Souza** — OAB/MA 12.147 — Guerreiro Advogados Associados — São Luís/MA.

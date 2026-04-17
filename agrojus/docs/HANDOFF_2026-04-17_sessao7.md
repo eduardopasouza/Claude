@@ -140,14 +140,29 @@ docker compose exec backend python scripts/download_ibama_autos.py
 11. Monitoramento (webhooks alertas)
 12. Ações (laudo PDF, minuta DOCX, export GeoPackage)
 
-### 1.6 Commits
+### 1.6 Sprint 2c — Fix de renderização choropleth no mapa 🟢
+
+**Problema reportado:** usuário clica nas 14 camadas IBGE choropleth no `LayerTreePanel`, mas elas não renderizam no mapa.
+
+**Causa:** o switch em `MapComponent.tsx → ActiveLayer.endpoint` só tratava `"postgis"` e `"geo"`. As 14 camadas IBGE tinham `endpoint: "ibge_choropleth"` que caía no `default: return null` — nenhum fetch.
+
+**Correção:**
+1. Adicionado `case "ibge_choropleth"` que monta URL `/geo/ibge/choropleth/{metric}/{ano}` (ano default por camada)
+2. Adicionada função `interpolateColor()` com 14 paletas ColorBrewer-like (YlGn, YlOrBr, Reds, etc — 5 stops cada)
+3. Campos `defaultYear` e `colorScheme` adicionados ao `LayerConfig`; 16 camadas IBGE populadas com valores apropriados (2022 para PAM/PPM, 2021 para POP/PIB)
+4. Estilo do GeoJSON calcula `vMin/vMax` dos `properties.value` e interpola cor proporcional
+
+**Resultado:** 14 camadas choropleth renderizam município por município com gradiente. Primeira carga ~10-15s (~5570 polygons + merge SIDRA); re-visita instantânea (cache SHA256 24h).
+
+### 1.7 Commits
 
 Branch: `claude/continue-backend-dev-sVLGG`
-3 commits nesta sessão:
+5 commits nesta sessão:
 - **324b3f6** — Sprint 1 completo (Embrapa + IBGE choropleth + MapBiomas + IBAMA script)
 - **2d6bd06** — Sprint 2a (ficha com 4 abas + IBAMA 16k autos carregados + camada PostGIS registrada)
 - **df70f47** — Sprint 2b (Compliance + Clima + Jurídico → 7 abas funcionais)
-- **(pendente)** — OmniSearch CAR routing + handoff update
+- **2732e38** — OmniSearch CAR routing + handoff update
+- **(este commit)** — Fix render choropleth + docs consolidadas (README + ROADMAP)
 
 Arquivos novos:
 - 2 coletores (embrapa rewrite + mapbiomas_alerta)
@@ -155,7 +170,7 @@ Arquivos novos:
 - 1 script ETL (download_ibama_autos)
 - 1 rota frontend `/imoveis/[car]`
 - 9 componentes imovel (PropertyHeader, TabNav, 7 Tabs)
-- 14 camadas catálogo ativadas
+- 14 camadas catálogo ativadas + 14 paletas choropleth
 - 1 nova camada PostGIS: autos_ibama (18ª)
 
 ---

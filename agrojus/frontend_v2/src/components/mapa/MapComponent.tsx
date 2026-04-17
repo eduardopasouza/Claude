@@ -118,6 +118,33 @@ function SelectedPropertyLayer({ carCode }: { carCode: string | null }) {
 }
 
 // ---------------------------------------------------------------------------
+// Paletas sequenciais ColorBrewer-like para choropleth (5 stops)
+// ---------------------------------------------------------------------------
+const PALETTES: Record<string, string[]> = {
+  YlGn: ["#ffffe5", "#c2e699", "#78c679", "#31a354", "#006837"],
+  YlOrBr: ["#ffffe5", "#fee391", "#fe9929", "#d95f0e", "#993404"],
+  YlGnBu: ["#ffffd9", "#c7e9b4", "#41b6c4", "#1d91c0", "#253494"],
+  Greens: ["#edf8e9", "#bae4b3", "#74c476", "#31a354", "#006d2c"],
+  Reds: ["#fee5d9", "#fcae91", "#fb6a4a", "#de2d26", "#a50f15"],
+  Blues: ["#eff3ff", "#bdd7e7", "#6baed6", "#3182bd", "#08519c"],
+  Greys: ["#f7f7f7", "#cccccc", "#969696", "#636363", "#252525"],
+  Oranges: ["#feedde", "#fdbe85", "#fd8d3c", "#e6550d", "#a63603"],
+  Purples: ["#f2f0f7", "#cbc9e2", "#9e9ac8", "#756bb1", "#54278f"],
+  PuRd: ["#f1eef6", "#d7b5d8", "#df65b0", "#dd1c77", "#980043"],
+  BuPu: ["#edf8fb", "#b3cde3", "#8c96c6", "#8856a7", "#810f7c"],
+  BuGn: ["#edf8fb", "#b2e2e2", "#66c2a4", "#2ca25f", "#006d2c"],
+  OrRd: ["#fef0d9", "#fdcc8a", "#fc8d59", "#e34a33", "#b30000"],
+  viridis: ["#440154", "#3b528b", "#21918c", "#5ec962", "#fde725"],
+};
+
+function interpolateColor(scheme: string, t: number): string {
+  const palette = PALETTES[scheme] || PALETTES.YlGn;
+  const n = palette.length;
+  const idx = Math.max(0, Math.min(n - 1, Math.floor(t * n)));
+  return palette[idx];
+}
+
+// ---------------------------------------------------------------------------
 // Sub-componente: camada ativa com click handler → Inspector
 // ---------------------------------------------------------------------------
 function ActiveLayer({
@@ -141,6 +168,11 @@ function ActiveLayer({
         return `/geo/postgis/${effectiveId}/geojson?${qs}`;
       case "geo":
         return `/geo/layers/${effectiveId}/geojson?${qs}`;
+      case "ibge_choropleth": {
+        // choropleth nacional por métrica + ano
+        const ano = layer.defaultYear ?? 2022;
+        return `/geo/ibge/choropleth/${effectiveId}/${ano}`;
+      }
       case "stub":
       case "external":
       default:
@@ -163,8 +195,41 @@ function ActiveLayer({
     return null;
   }
 
+  // Para choropleth, calcular min/max para paleta
+  const isChoropleth = layer.geometryType === "choropleth";
+  let vMin = 0;
+  let vMax = 1;
+  if (isChoropleth) {
+    const values = (data.features as Array<{ properties: { value?: number } }>)
+      .map((f) => f.properties?.value)
+      .filter((v): v is number => typeof v === "number" && !isNaN(v));
+    if (values.length > 0) {
+      vMin = Math.min(...values);
+      vMax = Math.max(...values);
+    }
+  }
+
   // Estilo por tipo de geometria
-  const style = () => {
+  const style = (feature: unknown) => {
+    if (isChoropleth) {
+      const f = feature as { properties?: { value?: number | null } };
+      const v = f?.properties?.value;
+      if (v == null || isNaN(v)) {
+        return {
+          color: "#334155",
+          weight: 0.3,
+          fillColor: "#1e293b",
+          fillOpacity: 0.1,
+        };
+      }
+      const t = vMax > vMin ? (v - vMin) / (vMax - vMin) : 0.5;
+      return {
+        color: "#0f172a",
+        weight: 0.3,
+        fillColor: interpolateColor(layer.colorScheme ?? "YlGn", t),
+        fillOpacity: 0.75,
+      };
+    }
     if (layer.geometryType === "line") {
       return {
         color: layer.color,
