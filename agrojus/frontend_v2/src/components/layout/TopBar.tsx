@@ -18,6 +18,12 @@ export function TopBar() {
       router.push(`/publicacoes?processo=${onlyDigits}`);
       return;
     }
+    // CAR: prefixo UF (2 letras) + 7 dígitos município + 32 hex
+    // Ex.: MA-2100055-0013026E975B48D9B4F045D7352A1CB9
+    if (/^[A-Z]{2}-\d{7}-[A-F0-9]{32}$/i.test(q)) {
+      router.push(`/imoveis/${encodeURIComponent(q.toUpperCase())}`);
+      return;
+    }
     // Caso geral: DeepSearch com query pré-preenchida
     router.push(`/consulta?q=${encodeURIComponent(q)}`);
   };

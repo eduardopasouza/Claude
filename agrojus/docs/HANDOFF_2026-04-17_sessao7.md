@@ -1,8 +1,8 @@
 # AgroJus — Handoff Sessão 7 (2026-04-17)
 
 > **Substitui o handoff da sessão 6.**
-> Sessão 7: Sprint 1 completo em 4 frentes paralelas — Embrapa ativado (7 APIs), IBGE choropleth (16 métricas, 14 camadas do catálogo saíram de stub), IBAMA ETL pronto, MapBiomas Alerta GraphQL autenticado e retornando alertas reais.
-> **Prioridade:** ler este arquivo → consultar Seções 3 (pendências restantes) e 10 (próximos sprints).
+> Sessão 7: Sprint 1 **+ Sprint 2a + 2b** completos — **7 abas da ficha do imóvel funcionais**, 4 frentes de dados destravadas (Embrapa 7/9 APIs, IBGE choropleth 16 métricas, IBAMA 16k autos carregados, MapBiomas Alerta com JWT).
+> **Prioridade:** ler Seção 1 (tudo novo) → Seção 3 (pendências) → Seção 10 (próximos sprints).
 
 ---
 
@@ -113,14 +113,50 @@ docker compose exec backend python scripts/download_ibama_autos.py
 - `backend/app/collectors/mapbiomas_alerta.py` — novo
 - `backend/app/api/mapbiomas.py` — novo (6 endpoints)
 
-### 1.5 Commits
+### 1.5 Sprint 2 — Ficha do imóvel `/imoveis/[car]` (🟢 7/12 abas funcionais)
+
+**A tela mais importante do produto agora EXISTE.**
+
+**Arquitetura:**
+- Rota dinâmica `/imoveis/[car]` (Next.js 16 App Router com `use(params)`)
+- Componentes em `src/components/imovel/`: PropertyHeader, TabNav, tabs/*
+- Dark mode Forest/Onyx, useSWR cache, fetchWithAuth
+- OmniSearch (TopBar) agora detecta código CAR (regex UF-XXXX-HEX32) e roteia
+
+**Abas implementadas:**
+
+1. **Visão Geral** — score de compliance (0-100) + 8 KPI cards + alertas MapBiomas tempo real + resumo das 8 camadas verificadas. Fórmula: 100 base, -40 TI, -35 embargo ICMBio, -25 UC, -15 PRODES/DETER, -10 MapBiomas, -5/alerta recente.
+2. **Compliance** — wrapper de `/api/v1/compliance/mcr29` e `/eudr`. Toggle MCR 2.9 ↔ EUDR. POST automático com car_code + centroid. Banner overall (APTO/RESTRITO/BLOQUEADO) + lista de checks com regulamentação citada.
+3. **Dossiê** — chama `/property/{car}/overlaps/geojson`, agrupa por tipo (TI, UC, embargo, PRODES, DETER, MapBiomas, SIGEF). Cada grupo mostra gravidade + top 8 features + contagem.
+4. **Histórico** — MapBiomas Alerta `/mapbiomas/property/{car}`, timeline mensal (YYYY-MM), área total afetada, % do imóvel.
+5. **Agronomia** — Embrapa Agritec: município (com região ZARC soja/trigo), culturas disponíveis, destaque ZARC.
+6. **Clima** — NASA POWER (últimos 30 dias): temperatura média, precipitação total + diária, mini-gráfico de barras.
+7. **Jurídico** — Form CPF/CNPJ (LGPD: CAR não expõe), query DataJud `/lawsuits/search/{cpf}`, lista processos 13 tribunais.
+
+**Abas pendentes (marcadas "em breve" no TabNav):**
+8. Valuation (NBR 14.653-3 — sprint 4)
+9. Logística (armazéns/frigos/portos próximos)
+10. Crédito (SICOR BCB)
+11. Monitoramento (webhooks alertas)
+12. Ações (laudo PDF, minuta DOCX, export GeoPackage)
+
+### 1.6 Commits
 
 Branch: `claude/continue-backend-dev-sVLGG`
-Ver `git log` para detalhe — sessão 7 adicionou:
-- 2 coletores novos (embrapa rewrite + mapbiomas_alerta)
-- 3 routers (embrapa, ibge_choropleth, mapbiomas)
+3 commits nesta sessão:
+- **324b3f6** — Sprint 1 completo (Embrapa + IBGE choropleth + MapBiomas + IBAMA script)
+- **2d6bd06** — Sprint 2a (ficha com 4 abas + IBAMA 16k autos carregados + camada PostGIS registrada)
+- **df70f47** — Sprint 2b (Compliance + Clima + Jurídico → 7 abas funcionais)
+- **(pendente)** — OmniSearch CAR routing + handoff update
+
+Arquivos novos:
+- 2 coletores (embrapa rewrite + mapbiomas_alerta)
+- 3 routers backend (embrapa, ibge_choropleth, mapbiomas)
 - 1 script ETL (download_ibama_autos)
-- 14 camadas frontend ativadas (layers-catalog.ts)
+- 1 rota frontend `/imoveis/[car]`
+- 9 componentes imovel (PropertyHeader, TabNav, 7 Tabs)
+- 14 camadas catálogo ativadas
+- 1 nova camada PostGIS: autos_ibama (18ª)
 
 ---
 
@@ -180,11 +216,11 @@ Ver `git log` para detalhe — sessão 7 adicionou:
 | 2 | Coletores dados.gov.br | ❌ ainda só guia |
 | 3 | Motor jurídico (prescrição, teses, minuta) | ❌ zero |
 | 4 | Base jurisprudência STJ + bge-m3 | ❌ zero |
-| 5 | Ficha do imóvel `/imoveis/[car]` | ❌ blueprint pronto, sem código |
+| 5 | Ficha do imóvel `/imoveis/[car]` | ✅ **PARCIAL** (7/12 abas) |
 | 6 | Tela `/valuation` NBR 14.653-3 | ❌ |
 | 7 | Agregador de leilões | ❌ |
-| 8 | MCR 2.9 expandido (6→30) | ❌ ainda 6 |
-| 9 | `/compliance` real | ❌ ainda mock |
+| 8 | MCR 2.9 expandido (6→30) | ⚠ parcial — 6 checks do /compliance/mcr29 ainda (embora o endpoint seja POST real e use 5 fontes: FUNAI, ICMBio, IBAMA, INPE, MTE). Expandir para 30 é próximo sprint. |
+| 9 | `/compliance` real | ✅ **RESOLVIDO NA FICHA** — aba Compliance consome endpoint real. Tela `/compliance` standalone ainda é mock. |
 | 10 | `/alertas` real | ❌ ainda mock |
 
 **Ativados esta sessão:**
