@@ -2,6 +2,7 @@
 
 import { Copy, MapPin, FileText, Loader2, AlertTriangle } from "lucide-react";
 import { useState } from "react";
+import { MapPreview } from "./MapPreview";
 
 export type PropertyData = {
   car_code: string;
@@ -109,15 +110,21 @@ export function PropertyHeader({ property, loading, error }: Props) {
           </div>
         </div>
 
-        <div className="flex gap-6 lg:gap-8">
-          <MetricCard label="Área" value={formatArea(property.area_ha)} />
-          <MetricCard
-            label="Módulos Fiscais"
-            value={(property.modulos_fiscais || 0).toFixed(2)}
-          />
-          <MetricCard
-            label="Classificação"
-            value={classifyArea(property.area_ha, property.modulos_fiscais)}
+        <div className="flex flex-col gap-3 lg:min-w-[280px]">
+          <div className="flex gap-6 lg:gap-8 justify-end">
+            <MetricCard label="Área" value={formatArea(property.area_ha)} />
+            <MetricCard
+              label="Módulos Fiscais"
+              value={(property.modulos_fiscais || 0).toFixed(2)}
+            />
+            <MetricCard
+              label="Classificação"
+              value={classifyArea(property.area_ha, property.modulos_fiscais)}
+            />
+          </div>
+          <MapPreview
+            carCode={property.car_code}
+            centroid={property.centroid}
           />
         </div>
       </div>

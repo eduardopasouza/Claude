@@ -27,6 +27,9 @@ import { AgronomiaTab } from "@/components/imovel/tabs/AgronomiaTab";
 import { ComplianceTab } from "@/components/imovel/tabs/ComplianceTab";
 import { ClimaTab } from "@/components/imovel/tabs/ClimaTab";
 import { JuridicoTab } from "@/components/imovel/tabs/JuridicoTab";
+import { LogisticaTab } from "@/components/imovel/tabs/LogisticaTab";
+import { CreditoTab } from "@/components/imovel/tabs/CreditoTab";
+import { ValuationTab } from "@/components/imovel/tabs/ValuationTab";
 
 const TABS: TabDef[] = [
   { id: "visao", label: "Visão Geral", icon: Activity, implemented: true },
@@ -36,9 +39,9 @@ const TABS: TabDef[] = [
   { id: "agronomia", label: "Agronomia", icon: Leaf, implemented: true },
   { id: "clima", label: "Clima", icon: CloudSun, implemented: true },
   { id: "juridico", label: "Jurídico", icon: Scale, implemented: true },
-  { id: "valuation", label: "Valuation", icon: Calculator, implemented: false },
-  { id: "logistica", label: "Logística", icon: Truck, implemented: false },
-  { id: "credito", label: "Crédito", icon: Coins, implemented: false },
+  { id: "valuation", label: "Valuation", icon: Calculator, implemented: true },
+  { id: "logistica", label: "Logística", icon: Truck, implemented: true },
+  { id: "credito", label: "Crédito", icon: Coins, implemented: true },
   { id: "monitoramento", label: "Monitoramento", icon: Bell, implemented: false },
   { id: "acoes", label: "Ações", icon: CheckSquare, implemented: false },
 ];
@@ -102,6 +105,15 @@ export default function ImovelDetalhePage(props: {
         )}
         {effectiveProperty && currentTab === "juridico" && (
           <JuridicoTab property={effectiveProperty} />
+        )}
+        {effectiveProperty && currentTab === "valuation" && (
+          <ValuationTab property={effectiveProperty} />
+        )}
+        {effectiveProperty && currentTab === "logistica" && (
+          <LogisticaTab property={effectiveProperty} />
+        )}
+        {effectiveProperty && currentTab === "credito" && (
+          <CreditoTab property={effectiveProperty} />
         )}
         {effectiveProperty && !TABS.find((t) => t.id === currentTab)?.implemented && (
           <ComingSoon tabId={currentTab} />
