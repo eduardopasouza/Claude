@@ -132,6 +132,17 @@ LAYER_REGISTRY: dict[str, dict] = {
         "name": "Autos de Infração ICMBio",
         "description": "Autos de infração ambiental em UCs",
     },
+    "autos_ibama": {
+        "table": "geo_autos_ibama",
+        "geom_col": "geometry",
+        "id_col": "id",
+        "attrs": ["num_auto", "data_auto", "nome", "cpf_cnpj", "descricao", "valor", "municipio", "uf"],
+        "category": "ambiental",
+        "color": "#DC2626",
+        "default_max": 5000,
+        "name": "Autos de Infração IBAMA (pontos)",
+        "description": "Autos de infração com coordenadas — dados abertos IBAMA SIFISC",
+    },
 
     # === FUNDIÁRIO ===
     "sicar_completo": {

@@ -49,9 +49,11 @@ logging.basicConfig(
 logger = logging.getLogger("ibama_csv")
 
 IBAMA_CSV_URL = (
-    "https://dadosabertos.ibama.gov.br/dados/SICAFI/"
-    "relatorio_auto_infracao_ibama_coords.csv"
+    "https://dadosabertos.ibama.gov.br/dados/SIFISC/"
+    "auto_infracao/auto_infracao/auto_infracao_csv.zip"
 )
+# Nota: em abr/2026 IBAMA migrou SICAFI → SIFISC e o CSV virou ZIP.
+# O script precisa extrair o zip antes de parsear.
 
 
 DDL = """
@@ -118,23 +120,38 @@ def parse_row(row: dict) -> dict | None:
 
 
 def download_csv(target: Path) -> Path:
-    """Baixa o CSV para disco (streaming)."""
+    """Baixa o ZIP do IBAMA, extrai o CSV principal."""
     target.parent.mkdir(parents=True, exist_ok=True)
     if target.exists():
         logger.info("CSV já existe em %s (%.1f MB) — reutilizando", target, target.stat().st_size / 1e6)
         return target
 
-    logger.info("Baixando %s → %s", IBAMA_CSV_URL, target)
+    zip_path = target.with_suffix(".zip")
+    logger.info("Baixando %s → %s", IBAMA_CSV_URL, zip_path)
     with httpx.stream("GET", IBAMA_CSV_URL, timeout=600.0, follow_redirects=True) as r:
         r.raise_for_status()
         total = 0
-        with target.open("wb") as f:
+        with zip_path.open("wb") as f:
             for chunk in r.iter_bytes(chunk_size=1024 * 1024):
                 f.write(chunk)
                 total += len(chunk)
                 if total % (25 * 1024 * 1024) < 1024 * 1024:
                     logger.info("  %.0f MB baixados...", total / 1e6)
-    logger.info("Download completo: %.1f MB", target.stat().st_size / 1e6)
+    logger.info("Download completo: %.1f MB", zip_path.stat().st_size / 1e6)
+
+    # Extrair CSV do ZIP
+    import zipfile
+    with zipfile.ZipFile(zip_path, "r") as zf:
+        csv_files = [n for n in zf.namelist() if n.endswith(".csv")]
+        if not csv_files:
+            raise RuntimeError(f"ZIP {zip_path} não contém CSV")
+        main_csv = max(csv_files, key=lambda n: zf.getinfo(n).file_size)
+        logger.info("Extraindo %s do ZIP (%.1f MB)", main_csv, zf.getinfo(main_csv).file_size / 1e6)
+        with zf.open(main_csv) as src, target.open("wb") as dst:
+            import shutil
+            shutil.copyfileobj(src, dst, length=1024 * 1024)
+    logger.info("Extraído: %s (%.1f MB)", target, target.stat().st_size / 1e6)
+    zip_path.unlink()  # economiza espaço
     return target
 
 
