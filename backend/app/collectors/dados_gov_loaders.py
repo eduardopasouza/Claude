@@ -585,21 +585,27 @@ def _parse_br_date(s: str):
 def _normalize_portal_record(r: dict) -> Optional[dict]:
     """
     Extrai campos do registro CEIS/CNEP do Portal da Transparência.
-    Schema real (verificado em abr/2026):
+
+    Schema real (verificado em 2026-04-18 via contract test):
       - sancionado.codigoFormatado        → CPF/CNPJ mascarado
       - sancionado.nome                   → nome
-      - pessoa.cpfFormatado | cnpjFormatado → CPF ou CNPJ
+      - pessoa.cpfFormatado | cnpjFormatado → CPF ou CNPJ (quando existe)
       - pessoa.nome, razaoSocialReceita, nomeFantasiaReceita, tipo
-      - tipoSancao.descricaoResumida
-      - orgaoSancionador.nome, siglaUf, poder, esfera
-      - fonteSancao.nomeExibicao
+      - tipoSancao.descricaoResumida      → tipo legível
+      - orgaoSancionador.nome, siglaUf, poder, esfera  (contrato antigo)
+      - fonteSancao.nomeExibicao          (contrato atual — usado quando orgaoSancionador ausente)
       - dataInicioSancao, dataFimSancao (dd/mm/yyyy)
       - numeroProcesso
+
+    NOTA: o Portal mudou `orgaoSancionador` para `fonteSancao` em ~abr/2026.
+    O contract test em tests/contract/test_portal_transparencia.py pegou a
+    mudança. Esta função aceita ambos para robustez durante a transição.
     """
     sancionado = r.get("sancionado", {}) or {}
     pessoa = r.get("pessoa", {}) or {}
     sancao = r.get("tipoSancao", {}) or {}
-    orgao = r.get("orgaoSancionador", {}) or {}
+    orgao_antigo = r.get("orgaoSancionador", {}) or {}
+    fonte_atual = r.get("fonteSancao", {}) or {}
 
     # Preferência: pessoa.cnpjFormatado > pessoa.cpfFormatado > sancionado.codigoFormatado
     doc_raw = (
@@ -614,6 +620,18 @@ def _normalize_portal_record(r: dict) -> Optional[dict]:
 
     is_pj = bool(pessoa.get("cnpjFormatado")) or "cnpj" in str(pessoa.get("tipo", "")).lower()
 
+    # orgao_sancionador: tenta campo antigo, fallback pro novo
+    orgao_sancionador = (
+        orgao_antigo.get("nome")
+        or fonte_atual.get("nomeExibicao")
+        or ""
+    )
+    uf_orgao = (
+        orgao_antigo.get("siglaUf")
+        or _extrair_uf_de_endereco(fonte_atual.get("enderecoContato", ""))
+        or ""
+    )
+
     return {
         "cpf_cnpj": cpf_cnpj[:20],
         "nome": str(sancionado.get("nome") or pessoa.get("nome") or "")[:500],
@@ -622,8 +640,8 @@ def _normalize_portal_record(r: dict) -> Optional[dict]:
         "tipo_sancao": str(sancao.get("descricaoResumida") or sancao.get("descricaoPortal") or "")[:200],
         "data_inicio_sancao": _parse_br_date(r.get("dataInicioSancao")),
         "data_fim_sancao": _parse_br_date(r.get("dataFimSancao")),
-        "orgao_sancionador": str(orgao.get("nome") or "")[:300],
-        "uf_orgao": str(orgao.get("siglaUf") or "")[:2],
+        "orgao_sancionador": str(orgao_sancionador)[:300],
+        "uf_orgao": str(uf_orgao)[:2],
         "fundamentacao": "; ".join(
             f.get("descricao", "")[:200]
             for f in (r.get("fundamentacao") or [])
@@ -632,6 +650,19 @@ def _normalize_portal_record(r: dict) -> Optional[dict]:
         "processo": str(r.get("numeroProcesso") or "")[:100],
         "raw_data": r,
     }
+
+
+def _extrair_uf_de_endereco(endereco: str) -> str:
+    """
+    Tenta extrair sigla UF de string tipo 'Av X, 1 - Centro, São Paulo/SP'.
+    Retorna '' se não achar.
+    """
+    if not endereco:
+        return ""
+    import re
+    # Procura padrão /XX no fim ou antes de vírgula
+    m = re.search(r"/([A-Z]{2})\b", endereco)
+    return m.group(1) if m else ""
 
 
 def load_ibama_embargos() -> dict:
