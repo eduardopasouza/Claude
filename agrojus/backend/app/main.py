@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
 from app.logging_config import setup_logging
 from app.middleware.rate_limit import RateLimitMiddleware
-from app.api import search, report, map_data, market, news, auth, monitoring, smart_search, geo, lawsuits, consulta, compliance, jurisdicao, dashboard, property, publicacoes, geo_layers, embrapa, ibge_choropleth, mapbiomas
+from app.api import search, report, map_data, market, news, auth, monitoring, smart_search, geo, lawsuits, consulta, compliance, jurisdicao, dashboard, property, publicacoes, geo_layers, embrapa, ibge_choropleth, mapbiomas, webhooks, property_actions
 
 setup_logging("DEBUG" if settings.debug else "INFO")
 logger = logging.getLogger("agrojus")
@@ -79,6 +79,8 @@ app.include_router(geo_layers.router, prefix="/api/v1/geo/postgis", tags=["geo-l
 app.include_router(ibge_choropleth.router, prefix="/api/v1/geo/ibge/choropleth", tags=["ibge-choropleth"])
 app.include_router(embrapa.router, prefix="/api/v1/embrapa", tags=["embrapa-agroapi"])
 app.include_router(mapbiomas.router, prefix="/api/v1/mapbiomas", tags=["mapbiomas-alerta"])
+app.include_router(webhooks.router, prefix="/api/v1/webhooks", tags=["webhooks"])
+app.include_router(property_actions.router, prefix="/api/v1/property", tags=["property-actions"])
 
 
 @app.get("/")

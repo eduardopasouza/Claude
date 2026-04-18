@@ -130,6 +130,55 @@ class MonitoringService:
             "total_persons": len(self._monitored_persons),
         }
 
+    def _record_alert(self, alert: "MonitoringAlert") -> None:
+        """
+        Registra um alerta localmente e dispara webhooks cadastrados.
+        Mantido síncrono — o dispatch é agendado em task para não bloquear.
+        """
+        self._alerts.append(alert)
+
+        # Dispatch para webhooks cadastrados (fire-and-forget)
+        import asyncio
+        from app.services.webhook_dispatcher import dispatch
+
+        # Mapeia alert_type → event_type do dispatcher
+        event_map = {
+            "new_embargo": "ibama_embargo",
+            "new_auto_infracao": "ibama_auto",
+            "car_status_change": "car_status_change",
+            "mapbiomas_alert": "mapbiomas_alert",
+            "deter_alert": "deter_alert",
+            "prodes_alert": "prodes_alert",
+            "djen_publicacao": "djen_publicacao",
+            "datajud_movimento": "datajud_movimento",
+            "slave_labour": "slave_labour",
+        }
+        event_type = event_map.get(alert.alert_type, alert.alert_type)
+
+        payload = {
+            "alert_id": alert.id,
+            "title": alert.title,
+            "description": alert.description,
+            "severity": alert.severity,
+            "car_code": alert.car_code,
+            "cpf_cnpj": alert.cpf_cnpj,
+            "created_at": alert.created_at.isoformat(),
+        }
+
+        try:
+            loop = asyncio.get_running_loop()
+            loop.create_task(
+                dispatch(event_type, payload, car_code=alert.car_code, cpf_cnpj=alert.cpf_cnpj)
+            )
+        except RuntimeError:
+            # Sem event loop ativo (script CLI ou teste) — dispara em novo loop
+            try:
+                asyncio.run(
+                    dispatch(event_type, payload, car_code=alert.car_code, cpf_cnpj=alert.cpf_cnpj)
+                )
+            except Exception as e:  # noqa: BLE001
+                logger.warning("dispatch webhook falhou: %s", e)
+
     async def run_check_cycle(self):
         """
         Executa um ciclo de verificação de todas as entidades monitoradas.
@@ -150,7 +199,7 @@ class MonitoringService:
                 # Compare with previously known embargos
                 # If new ones found, create alert
                 if embargos:
-                    self._alerts.append(MonitoringAlert(
+                    self._record_alert(MonitoringAlert(
                         alert_type="new_embargo",
                         title="Novo embargo IBAMA detectado",
                         description=f"{len(embargos)} embargo(s) encontrado(s) para CPF/CNPJ {cpf_cnpj}",
@@ -167,7 +216,7 @@ class MonitoringService:
                 if car_data and car_data.status:
                     status = car_data.status.lower()
                     if "cancelado" in status or "suspenso" in status:
-                        self._alerts.append(MonitoringAlert(
+                        self._record_alert(MonitoringAlert(
                             alert_type="car_status_change",
                             title="Alteracao no status do CAR",
                             description=f"CAR {car_code} com status: {car_data.status}",

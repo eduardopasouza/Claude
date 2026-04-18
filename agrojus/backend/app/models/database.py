@@ -346,6 +346,61 @@ class CachedQuery(Base):
     )
 
 
+class Webhook(Base):
+    """
+    Webhook de notificação para alertas de monitoramento.
+
+    Usuário cadastra uma URL que receberá POST com payload JSON quando
+    eventos pertinentes forem disparados (novo alerta MapBiomas/DETER,
+    nova publicação DJEN, mudança cadastral do CAR, novo embargo IBAMA).
+    Filtros opcionais por car_code e cpf_cnpj.
+    """
+    __tablename__ = "webhooks"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    user_id = Column(Integer, index=True)  # FK lógica para users (nullable em dev sem auth)
+
+    name = Column(String(200), nullable=False)
+    url = Column(String(1000), nullable=False)
+    secret = Column(String(200))  # opcional: usado para HMAC-SHA256 header X-AgroJus-Signature
+
+    # Filtros
+    event_types = Column(JSON, nullable=False)  # lista: ["mapbiomas_alert","deter_alert","djen_publicacao","car_status_change","ibama_embargo"]
+    car_filter = Column(String(100), index=True)  # se setado, só dispara para este CAR
+    cpf_cnpj_filter = Column(String(20), index=True)  # se setado, só dispara para este CPF/CNPJ
+
+    active = Column(Boolean, default=True, index=True)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
+    last_delivery_at = Column(DateTime)
+    last_delivery_status = Column(String(20))  # success, failed, pending
+
+    __table_args__ = (
+        Index("idx_webhooks_user_active", "user_id", "active"),
+    )
+
+
+class WebhookDelivery(Base):
+    """Log de cada tentativa de entrega de webhook."""
+    __tablename__ = "webhook_deliveries"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    webhook_id = Column(Integer, index=True, nullable=False)
+    event_type = Column(String(50), index=True, nullable=False)
+    payload = Column(JSON)
+    status_code = Column(Integer)
+    response_body = Column(Text)  # truncado em 2000 chars
+    success = Column(Boolean, default=False, index=True)
+    attempt = Column(Integer, default=1)
+    error = Column(Text)
+    attempted_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), index=True)
+    duration_ms = Column(Integer)
+
+    __table_args__ = (
+        Index("idx_deliveries_webhook_time", "webhook_id", "attempted_at"),
+    )
+
+
 # --- Engine & Session ---
 
 _engine = None

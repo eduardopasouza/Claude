@@ -64,6 +64,14 @@ class Settings(BaseSettings):
     # OpenAI — Codex 5.4 (Code Reviewer agent)
     openai_api_key: str = ""
 
+    # Anthropic Claude API — gerador de minutas jurídicas
+    anthropic_api_key: str = ""
+    anthropic_model: str = "claude-opus-4-7"
+
+    # Webhooks — timeout HTTP para entrega
+    webhook_timeout_seconds: int = 10
+    webhook_max_retries: int = 3
+
     # Data directories
     data_dir: str = "data"
     shapefile_dir: str = "data/shapefiles"
