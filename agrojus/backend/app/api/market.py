@@ -144,11 +144,136 @@ async def get_agrolink_quotes(commodity: str):
 
 @router.get("/quotes/agrolink")
 async def list_agrolink_commodities():
-    """Commodities suportadas via Agrolink."""
+    """Commodities suportadas."""
     return {
         "commodities": [{"id": k, **v} for k, v in AGROLINK_PATHS.items()],
-        "source": "Agrolink (OCR de imagens de preço)",
-        "note": "Scraping respeitoso via User-Agent identificado. Cache 1h por imagem.",
+    }
+
+
+@router.get("/quotes/history_db/{commodity}")
+def get_quotes_history_db(commodity: str, uf: str | None = None):
+    """
+    Retorna série histórica mensal PRE-CACHEADA no Postgres.
+
+    Dados persistidos pelo job `scrape_market_prices.py`.
+    Mesmo formato do endpoint /agrolink mas <100ms de resposta.
+    Se banco vazio, retorna hint pra rodar o scraper.
+    """
+    from app.models.database import get_engine
+    engine = get_engine()
+
+    params: dict = {"commodity": commodity.lower()}
+    uf_clause = ""
+    if uf:
+        uf_clause = "AND uf = :uf"
+        params["uf"] = uf.upper()
+
+    sql = text(f"""
+        SELECT uf, mes_ano, preco_estadual, preco_nacional, unit, label
+        FROM market_prices_uf
+        WHERE commodity = :commodity {uf_clause}
+        ORDER BY uf, mes_ano DESC
+    """)
+
+    with engine.connect() as conn:
+        rows = conn.execute(sql, params).mappings().all()
+
+    if not rows:
+        return {
+            "commodity": commodity,
+            "total_ufs": 0,
+            "ufs": [],
+            "uf_stats": [],
+            "hint": "Banco vazio — rode scripts/scrape_market_prices.py",
+        }
+
+    # Ordena mes_ano cronologicamente pra pegar "último"
+    # formato "M/AAAA" → (AAAA, M)
+    def _parse_ym(s: str) -> tuple[int, int]:
+        try:
+            m, y = s.split("/")
+            return (int(y), int(m))
+        except Exception:
+            return (0, 0)
+
+    by_uf: dict = {}
+    meta = {"unit": rows[0]["unit"], "label": rows[0]["label"]}
+    for r in rows:
+        uf_k = r["uf"]
+        by_uf.setdefault(uf_k, []).append({
+            "mes": r["mes_ano"],
+            "estadual": r["preco_estadual"],
+            "nacional": r["preco_nacional"],
+        })
+
+    # Ordena histórico de cada UF (mais recente primeiro)
+    for uf_k in by_uf:
+        by_uf[uf_k].sort(key=lambda x: _parse_ym(x["mes"]), reverse=True)
+
+    # Monta uf_stats (último preço estadual de cada UF)
+    uf_stats = []
+    for uf_k, hist in by_uf.items():
+        if not hist:
+            continue
+        latest = hist[0]
+        if latest["estadual"] is None:
+            continue
+        uf_stats.append({
+            "uf": uf_k,
+            "preco_atual": latest["estadual"],
+            "preco_nacional": latest["nacional"],
+            "mes_ref": latest["mes"],
+            "total_meses_historico": len(hist),
+        })
+    uf_stats.sort(key=lambda x: -x["preco_atual"])
+
+    return {
+        "commodity": commodity,
+        "label": meta["label"],
+        "unit": meta["unit"],
+        "total_ufs": len(by_uf),
+        "ufs": [{"uf": uf_k, "historico": hist} for uf_k, hist in by_uf.items()],
+        "uf_stats": uf_stats,
+    }
+
+
+@router.get("/scraping/logs")
+def get_scraping_logs(limit: int = 20):
+    """Log das últimas execuções do scraping agendado."""
+    from app.models.database import get_engine
+    engine = get_engine()
+
+    with engine.connect() as conn:
+        rows = conn.execute(
+            text("""
+                SELECT job_name, started_at, finished_at, status,
+                       items_fetched, items_persisted, error
+                FROM scraping_job_logs
+                ORDER BY started_at DESC
+                LIMIT :limit
+            """),
+            {"limit": limit},
+        ).mappings().all()
+
+    return {
+        "logs": [
+            {
+                "job": r["job_name"],
+                "started_at": str(r["started_at"]),
+                "finished_at": str(r["finished_at"]) if r["finished_at"] else None,
+                "status": r["status"],
+                "duration_s": (
+                    (r["finished_at"] - r["started_at"]).total_seconds()
+                    if r["finished_at"] and r["started_at"]
+                    else None
+                ),
+                "fetched": r["items_fetched"],
+                "persisted": r["items_persisted"],
+                "error": r["error"][:300] if r["error"] else None,
+            }
+            for r in rows
+        ],
+        "total": len(rows),
     }
 
 

@@ -150,6 +150,13 @@ export default function Mercado() {
         <UFPicker value={userUF} onChange={setUserUF} />
       </header>
 
+      <p className="text-xs text-slate-500 italic max-w-3xl">
+        Preços referenciais do mercado físico brasileiro, coletados de
+        múltiplas fontes (cooperativas, corretores, sindicatos, bolsas).
+        Variações monitoradas diariamente; podem ser diárias, semanais ou
+        quinzenais. Indicadores econômicos via Banco Central (BCB).
+      </p>
+
       {/* Hero: preços na região do usuário */}
       <MinhaRegiao
         uf={userUF}
@@ -281,7 +288,7 @@ function CommodityCard({
   onClick: () => void;
 }) {
   const { data } = useSWR<AgrolinkResponse>(
-    `/market/quotes/agrolink/${commodity.id}`,
+    `/market/quotes/history_db/${commodity.id}`,
     swrFetcher,
     { refreshInterval: 3600_000, revalidateOnFocus: false }
   );
@@ -363,7 +370,7 @@ function HistoricoCommodity({
   const [range, setRange] = useState<number>(60); // meses
 
   const { data, isLoading } = useSWR<AgrolinkResponse>(
-    `/market/quotes/agrolink/${commodity}`,
+    `/market/quotes/history_db/${commodity}`,
     swrFetcher,
     { refreshInterval: 3600_000, revalidateOnFocus: false }
   );

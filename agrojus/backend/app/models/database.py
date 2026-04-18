@@ -274,6 +274,47 @@ class Publicacao(Base):
     )
 
 
+class MarketPriceUF(Base):
+    """
+    Snapshot mensal de preços de commodities por UF (mercado físico).
+
+    Populado por job agendado (backend/scripts/scrape_market_prices.py)
+    que consulta diariamente o collector Agrolink e persiste histórico.
+    Frontend lê deste banco em vez de scrape live — mais rápido,
+    menos impacto no site-fonte, dados preservados.
+    """
+    __tablename__ = "market_prices_uf"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    commodity = Column(String(30), index=True, nullable=False)  # soja, milho, etc.
+    uf = Column(String(2), index=True, nullable=False)
+    mes_ano = Column(String(7), index=True, nullable=False)  # "4/2026"
+    preco_estadual = Column(Float)
+    preco_nacional = Column(Float)
+    unit = Column(String(30))
+    label = Column(String(200))
+    collected_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
+    __table_args__ = (
+        Index("idx_market_prices_commodity_uf_mes", "commodity", "uf", "mes_ano", unique=True),
+        Index("idx_market_prices_commodity_mes", "commodity", "mes_ano"),
+    )
+
+
+class ScrapingJobLog(Base):
+    """Log de execução dos jobs de scraping (para monitoramento)."""
+    __tablename__ = "scraping_job_logs"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    job_name = Column(String(100), index=True, nullable=False)  # ex: "agrolink_prices"
+    started_at = Column(DateTime, nullable=False)
+    finished_at = Column(DateTime)
+    status = Column(String(20))  # success, partial, failed
+    items_fetched = Column(Integer)
+    items_persisted = Column(Integer)
+    error = Column(Text)
+
+
 class User(Base):
     """Usuário da plataforma."""
     __tablename__ = "users"
