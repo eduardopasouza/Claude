@@ -57,9 +57,10 @@ Validação: CNPJ `00.818.544/0001-65` (real, do CEIS) → MCR-FI02 **FAILED** c
 
 | Hash | Descrição |
 |---|---|
-| `af0b1d9` | feat(dados-gov): base clients + 12 models + 10 loaders + script ETL |
-| `15d9a14` | feat(dados-gov): endpoints REST + página admin /dados-gov |
+| `23c901e` | feat(dados-gov): base clients + 12 models + 10 loaders + script ETL |
+| `7bec20b` | feat(dados-gov): endpoints REST + página admin /dados-gov |
 | `43b5f34` | feat(compliance): MCR 2.9 consome SIGMINE/ANA/CEIS/CNEP reais |
+| `cccaa40` | docs: consolida v0.11.0 — Sprint 4 concluído |
 
 ---
 
