@@ -213,7 +213,7 @@ async def get_choropleth(
     uf: Optional[str] = Query(None, description="UF (ex: MA). Omitir = Brasil completo"),
 ):
     """
-    GeoJSON coroplético de uma métrica IBGE.
+    GeoJSON coroplético de uma métrica IBGE (nível MUNICIPAL).
 
     - metric_id: id em /metrics (ex: pam_soja, ppm_bovinos, populacao)
     - ano: ano de referência (ex: 2023)
@@ -234,6 +234,129 @@ async def get_choropleth(
     except Exception as e:
         logger.exception("choropleth failed: %s", e)
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# ---------------------------------------------------------------------------
+# GET /api/v1/geo/ibge/choropleth/uf/{metric_id}/{ano}
+# ---------------------------------------------------------------------------
+@router.get("/uf/{metric_id}/{ano}")
+async def get_choropleth_uf(metric_id: str, ano: int):
+    """
+    Choropleth por UF (agregação estadual via SIDRA n3).
+
+    Carregamento rápido (27 polygons) — ideal para visão macro de
+    produção agrícola/pecuária ou valor bruto por estado.
+
+    Usa a mesma métrica do endpoint municipal mas agrega em nível 3 (UF).
+    """
+    cfg = CHOROPLETH_METRICS.get(metric_id)
+    if not cfg:
+        raise HTTPException(status_code=404, detail=f"Métrica '{metric_id}' não existe")
+
+    collector = UFChoroplethCollector()
+    try:
+        return await collector.build_uf(metric_id, cfg, ano)
+    except Exception as e:
+        logger.exception("UF choropleth failed: %s", e)
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+class UFChoroplethCollector(BaseCollector):
+    """Choropleth agregado por UF (27 polygons)."""
+
+    SIDRA_URL = "https://apisidra.ibge.gov.br/values"
+    MALHAS_URL = "https://servicodados.ibge.gov.br/api/v3/malhas"
+
+    def __init__(self) -> None:
+        super().__init__("ibge_choropleth_uf")
+
+    async def build_uf(self, metric_id: str, cfg: dict, ano: int) -> dict:
+        cache_key = f"uf_choropleth:{metric_id}:{ano}"
+        cached = self._get_cached(cache_key)
+        if cached:
+            return cached
+
+        malha_task = asyncio.create_task(self._fetch_malha_br_uf())
+        sidra_task = asyncio.create_task(self._fetch_sidra_uf(cfg, ano))
+
+        malha, valores = await asyncio.gather(malha_task, sidra_task)
+
+        features_out = []
+        for feat in malha.get("features", []):
+            uf_code = str(feat.get("properties", {}).get("codarea", ""))
+            value = valores.get(uf_code)
+            props = dict(feat.get("properties", {}))
+            props.update({
+                "uf_code": uf_code,
+                "value": value,
+                "value_label": cfg["label"],
+                "unit": cfg["unit"],
+            })
+            features_out.append({
+                "type": "Feature",
+                "geometry": feat.get("geometry"),
+                "properties": props,
+            })
+
+        result = {
+            "type": "FeatureCollection",
+            "features": features_out,
+            "metric_id": metric_id,
+            "metric_label": cfg["label"],
+            "unit": cfg["unit"],
+            "color_scheme": cfg["color_scheme"],
+            "year": ano,
+            "source": f"IBGE/SIDRA tabela {cfg['sidra_table']} (nível UF)",
+            "total_ufs": len(features_out),
+            "total_com_valor": sum(1 for f in features_out if f["properties"]["value"]),
+        }
+        self._set_cached(cache_key, result)
+        return result
+
+    async def _fetch_malha_br_uf(self) -> dict:
+        """Baixa malha do Brasil com fronteiras de estados."""
+        url = f"{self.MALHAS_URL}/paises/BR"
+        params = {
+            "formato": "application/vnd.geo+json",
+            "qualidade": "intermediaria",
+            "intrarregiao": "UF",
+        }
+        try:
+            async with httpx.AsyncClient(timeout=60.0) as c:
+                r = await c.get(url, params=params)
+                r.raise_for_status()
+                return r.json()
+        except Exception as e:
+            logger.warning("Malha UF erro: %s", e)
+            return {"type": "FeatureCollection", "features": []}
+
+    async def _fetch_sidra_uf(self, cfg: dict, ano: int) -> dict[str, Any]:
+        """Valores agregados por UF (n3/all)."""
+        table = cfg["sidra_table"]
+        var = cfg["variable"]
+        culture = cfg.get("culture")
+        classif_path = f"/{cfg.get('classif', 'c81')}/{culture}" if culture else ""
+        url = f"{self.SIDRA_URL}/t/{table}/n3/all/v/{var}/p/{ano}{classif_path}/f/u"
+
+        try:
+            async with httpx.AsyncClient(timeout=60.0) as c:
+                r = await c.get(url)
+                r.raise_for_status()
+                raw = r.json()
+        except Exception as e:
+            logger.warning("SIDRA UF %s erro: %s", url, e)
+            return {}
+
+        valores: dict[str, Any] = {}
+        if isinstance(raw, list) and len(raw) > 1:
+            for row in raw[1:]:
+                uf_code = str(row.get("D1C", "") or "")
+                val = row.get("V", "")
+                try:
+                    valores[uf_code] = float(val) if val not in ("...", "-", "", "..") else None
+                except (ValueError, TypeError):
+                    valores[uf_code] = None
+        return valores
 
 
 # ---------------------------------------------------------------------------

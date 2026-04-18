@@ -87,7 +87,7 @@ export type LayerCategory =
   | "juridico"
   | "fiscal";
 
-export type LayerEndpoint = "postgis" | "geo" | "ibge" | "ibge_choropleth" | "gee" | "external" | "stub";
+export type LayerEndpoint = "postgis" | "geo" | "ibge" | "ibge_choropleth" | "ibge_choropleth_uf" | "gee" | "external" | "stub";
 
 export type LayerConfig = {
   id: string;
@@ -286,8 +286,15 @@ export const LAYERS: LayerConfig[] = [
   { id: "bcb_sicor_choropleth", name: "SICOR por Município (choropleth)", description: "Volume de crédito rural por município — BCB SICOR", category: "credito", color: "#2563EB", endpoint: "stub", minZoom: 4, maxFeatures: 5570, comingSoon: true, geometryType: "choropleth", source: "BCB SICOR OData" },
   { id: "garantia_safra", name: "Garantia-Safra (beneficiários)", description: "Semiárido — Portal Transparência", category: "credito", color: "#1D4ED8", endpoint: "stub", minZoom: 5, maxFeatures: 5000, comingSoon: true, source: "Portal da Transparência" },
 
-  // ============== PRODUÇÃO AGRÍCOLA IBGE (choropleth via SIDRA t.1612) (10) ==============
-  // Endpoint: /api/v1/geo/ibge/choropleth/{metric_id}/{ano}?uf=<UF>
+  // ============== PRODUÇÃO POR UF (choropleth estadual — visão macro) (4) ==============
+  // 27 polígonos · carregamento rápido · ideal para zoom out nacional
+  { id: "ibge_uf_soja", name: "Produção Soja por UF", description: "Soja total por estado (SIDRA 1612 agregado) — visão nacional", category: "producao_ibge", color: "#15803D", endpoint: "ibge_choropleth_uf", endpointId: "pam_soja", minZoom: 3, maxFeatures: 27, geometryType: "choropleth", source: "IBGE SIDRA UF", defaultYear: 2022, colorScheme: "YlGn" },
+  { id: "ibge_uf_milho", name: "Produção Milho por UF", description: "Milho total por estado", category: "producao_ibge", color: "#D97706", endpoint: "ibge_choropleth_uf", endpointId: "pam_milho", minZoom: 3, maxFeatures: 27, geometryType: "choropleth", source: "IBGE SIDRA UF", defaultYear: 2022, colorScheme: "YlOrBr" },
+  { id: "ibge_uf_bovinos", name: "Rebanho Bovino por UF", description: "Efetivo bovino por estado (SIDRA 3939 UF)", category: "pecuaria_ibge", color: "#991B1B", endpoint: "ibge_choropleth_uf", endpointId: "ppm_bovinos", minZoom: 3, maxFeatures: 27, geometryType: "choropleth", source: "IBGE SIDRA UF", defaultYear: 2022, colorScheme: "Reds" },
+  { id: "ibge_uf_valor_soja", name: "Valor Produção Soja por UF", description: "Valor bruto (R$ mil) da soja por estado", category: "producao_ibge", color: "#84CC16", endpoint: "ibge_choropleth_uf", endpointId: "pam_valor_soja", minZoom: 3, maxFeatures: 27, geometryType: "choropleth", source: "IBGE SIDRA UF", defaultYear: 2022, colorScheme: "Greens" },
+
+  // ============== PRODUÇÃO AGRÍCOLA IBGE (choropleth MUNICIPAL — SIDRA t.1612) (10) ==============
+  // 5.570 polígonos · carregamento ~15s · ideal com UF filtrado ou zoom 5+
   { id: "ibge_pam_soja", name: "Produção Soja (IBGE PAM)", description: "Quantidade produzida (ton) por município — SIDRA Tabela 1612", category: "producao_ibge", color: "#EAB308", endpoint: "ibge_choropleth", endpointId: "pam_soja", minZoom: 4, maxFeatures: 5570, geometryType: "choropleth", source: "IBGE SIDRA 1612", defaultYear: 2022, colorScheme: "YlGn" },
   { id: "ibge_pam_milho", name: "Produção Milho", description: "IBGE PAM — SIDRA Tabela 1612", category: "producao_ibge", color: "#FBBF24", endpoint: "ibge_choropleth", endpointId: "pam_milho", minZoom: 4, maxFeatures: 5570, geometryType: "choropleth", source: "IBGE SIDRA", defaultYear: 2022, colorScheme: "YlOrBr" },
   { id: "ibge_pam_cana", name: "Produção Cana-de-Açúcar", description: "IBGE PAM — ton", category: "producao_ibge", color: "#CA8A04", endpoint: "ibge_choropleth", endpointId: "pam_cana", minZoom: 4, maxFeatures: 5570, geometryType: "choropleth", source: "IBGE SIDRA", defaultYear: 2022, colorScheme: "Greens" },

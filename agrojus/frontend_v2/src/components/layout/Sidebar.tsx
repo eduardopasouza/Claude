@@ -46,7 +46,8 @@ const NAV: NavGroup[] = [
     items: [
       { name: "Compliance", href: "/compliance", icon: ShieldCheck },
       { name: "Mercado & Agro", href: "/mercado", icon: TrendingUp },
-      { name: "Monitoramento", href: "/alertas", icon: Newspaper },
+      { name: "Notícias", href: "/noticias", icon: Newspaper, badge: "RSS" },
+      { name: "Monitoramento", href: "/alertas", icon: ShieldCheck },
     ],
   },
 ];

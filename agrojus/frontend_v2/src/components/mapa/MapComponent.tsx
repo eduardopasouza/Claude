@@ -200,9 +200,14 @@ function ActiveLayer({
       case "geo":
         return `/geo/layers/${effectiveId}/geojson?${qs}`;
       case "ibge_choropleth": {
-        // choropleth nacional por métrica + ano
+        // choropleth municipal por métrica + ano
         const ano = layer.defaultYear ?? 2022;
         return `/geo/ibge/choropleth/${effectiveId}/${ano}`;
+      }
+      case "ibge_choropleth_uf": {
+        // choropleth por UF — 27 polígonos, carrega rápido
+        const ano = layer.defaultYear ?? 2022;
+        return `/geo/ibge/choropleth/uf/${effectiveId}/${ano}`;
       }
       case "stub":
       case "external":
