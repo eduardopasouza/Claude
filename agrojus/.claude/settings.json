@@ -1,0 +1,6 @@
+{
+  "_comment": "Desliga o plugin advIA dentro do projeto AgroJus. AgroJus é produto de software, não fluxo advIA. Os skills da advIA ainda ficam invocáveis, mas os hooks SessionStart/Stop/PreCompact/SubagentStop não disparam aqui — evita confusão com o advIA em produção de casos.",
+  "disabledPlugins": {
+    "advia@local": true
+  }
+}
