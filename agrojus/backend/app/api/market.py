@@ -15,6 +15,7 @@ from typing import Optional
 from app.collectors.market_data import MarketDataCollector
 from app.collectors.financial import FinancialDataCollector
 from app.collectors.cepea import CEPEACollector
+from app.collectors.regional_quotes import RegionalQuotesCollector, COMMODITY_MAP
 from app.models.schemas import MarketQuote
 
 router = APIRouter()
@@ -98,6 +99,32 @@ async def get_commodity_quote(commodity: str):
     return {"error": f"Commodity '{commodity}' nao encontrada", "available": [
         "soja", "milho", "boi_gordo", "cafe_arabica", "algodao", "arroz", "trigo", "acucar", "etanol_hidratado"
     ]}
+
+@router.get("/quotes/regional/{commodity}")
+async def get_regional_quotes(commodity: str):
+    """
+    Cotações físicas por praça — mercado regional.
+
+    Scraping de Notícias Agrícolas (tabelas HTML estáticas).
+    Retorna 20-100 praças por commodity com preço + variação % + UF.
+
+    Commodities: soja, milho, cafe, boi, trigo, algodao, arroz, acucar,
+                 feijao, leite.
+    """
+    collector = RegionalQuotesCollector()
+    return await collector.fetch_commodity(commodity.lower())
+
+
+@router.get("/quotes/regional")
+async def list_regional_commodities():
+    """Lista commodities suportadas para cotação regional."""
+    return {
+        "commodities": [
+            {"id": key, **meta} for key, meta in COMMODITY_MAP.items()
+        ],
+        "source": "Notícias Agrícolas (mercado físico)",
+    }
+
 
 @router.get("/quotes/history/{ticker}")
 async def get_quote_history(ticker: str, range: str = "2y", interval: str = "1d"):
