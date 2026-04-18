@@ -27,6 +27,7 @@ import {
   BookOpen,
 } from "lucide-react";
 import { swrFetcher } from "@/lib/api";
+import { fillTemplate, markdownToHtml, escapeHtml } from "@/lib/markdown";
 
 type ContratoResumo = {
   id: number;
@@ -483,18 +484,8 @@ ${html}
 }
 
 // ---------------------------------------------------------------------------
-// Utilitários de template e renderização Markdown
+// Preview — usa utilitários de src/lib/markdown.ts
 // ---------------------------------------------------------------------------
-
-function fillTemplate(md: string, values: Record<string, string>): string {
-  if (!md) return "";
-  // Substitui {{campo}} pelo valor informado, preservando o placeholder se vazio.
-  return md.replace(/\{\{\s*([a-zA-Z0-9_.]+)\s*\}\}/g, (_match, key: string) => {
-    const v = values[key];
-    if (v && v.trim()) return v;
-    return `{{${key}}}`;
-  });
-}
 
 function MarkdownPreview({ markdown }: { markdown: string }) {
   const html = useMemo(() => markdownToHtml(markdown), [markdown]);
@@ -504,95 +495,4 @@ function MarkdownPreview({ markdown }: { markdown: string }) {
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );
-}
-
-/**
- * Renderizador markdown mínimo mas suficiente para contratos:
- * títulos, listas, negrito/itálico, parágrafos e tabelas simples.
- * Evita dependência externa.
- */
-function markdownToHtml(md: string): string {
-  if (!md) return "";
-  const lines = md.replace(/\r\n/g, "\n").split("\n");
-  const out: string[] = [];
-  let inList: "ul" | "ol" | null = null;
-  let paraBuf: string[] = [];
-
-  function flushPara() {
-    if (paraBuf.length) {
-      out.push(`<p>${formatInline(paraBuf.join(" ").trim())}</p>`);
-      paraBuf = [];
-    }
-  }
-  function closeList() {
-    if (inList) {
-      out.push(`</${inList}>`);
-      inList = null;
-    }
-  }
-
-  for (const rawLine of lines) {
-    const line = rawLine.trimEnd();
-    if (!line.trim()) {
-      flushPara();
-      closeList();
-      continue;
-    }
-    const h = line.match(/^(#{1,6})\s+(.*)$/);
-    if (h) {
-      flushPara();
-      closeList();
-      const level = h[1].length;
-      out.push(`<h${level}>${formatInline(h[2])}</h${level}>`);
-      continue;
-    }
-    const ol = line.match(/^\s*(\d+)\.\s+(.*)$/);
-    const ul = line.match(/^\s*[-*]\s+(.*)$/);
-    if (ol) {
-      flushPara();
-      if (inList !== "ol") {
-        closeList();
-        out.push("<ol>");
-        inList = "ol";
-      }
-      out.push(`<li>${formatInline(ol[2])}</li>`);
-      continue;
-    }
-    if (ul) {
-      flushPara();
-      if (inList !== "ul") {
-        closeList();
-        out.push("<ul>");
-        inList = "ul";
-      }
-      out.push(`<li>${formatInline(ul[1])}</li>`);
-      continue;
-    }
-    closeList();
-    paraBuf.push(line);
-  }
-  flushPara();
-  closeList();
-  return out.join("\n");
-}
-
-function formatInline(s: string): string {
-  let t = escapeHtml(s);
-  t = t.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
-  t = t.replace(/\*([^*]+)\*/g, "<em>$1</em>");
-  t = t.replace(/`([^`]+)`/g, "<code>$1</code>");
-  // Realça placeholders não preenchidos
-  t = t.replace(
-    /\{\{([^}]+)\}\}/g,
-    '<span style="background:#3f2c0a;color:#f5c678;padding:1px 4px;border-radius:3px;font-family:monospace;font-size:0.9em;">{{$1}}</span>',
-  );
-  return t;
-}
-
-function escapeHtml(s: string): string {
-  return s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
 }
