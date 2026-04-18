@@ -50,27 +50,27 @@ AGROLINK_PATHS: dict[str, dict] = {
     },
     "milho": {
         "main": "/cotacoes/graos/milho",
-        "slug": "milho-em-grao-sc-60kg",
+        "slug": "milho-seco-sc-60kg",
         "unit": "R$/sc 60kg",
-        "label": "Milho em grão",
+        "label": "Milho seco",
     },
     "cafe": {
         "main": "/cotacoes/graos/cafe",
-        "slug": "cafe-arabica-sc-60kg",
+        "slug": "cafe-arabica-tipo-6-bebida-dura-sc-60kg",
         "unit": "R$/sc 60kg",
-        "label": "Café arábica",
+        "label": "Café arábica T6",
     },
     "trigo": {
         "main": "/cotacoes/graos/trigo",
-        "slug": "trigo-sc-60kg",
+        "slug": "trigo-em-grao-nacional-sc-60kg",
         "unit": "R$/sc 60kg",
-        "label": "Trigo",
+        "label": "Trigo em grão",
     },
     "arroz": {
         "main": "/cotacoes/graos/arroz",
-        "slug": "arroz-em-casca-sc-50kg",
-        "unit": "R$/sc 50kg",
-        "label": "Arroz",
+        "slug": "arroz-em-casca-sc-60kg",
+        "unit": "R$/sc 60kg",
+        "label": "Arroz em casca",
     },
     "feijao": {
         "main": "/cotacoes/graos/feijao",
@@ -80,9 +80,9 @@ AGROLINK_PATHS: dict[str, dict] = {
     },
     "boi": {
         "main": "/cotacoes/carnes/bovinos",
-        "slug": "boi-gordo-a-vista-arroba",
-        "unit": "R$/@",
-        "label": "Boi gordo (à vista)",
+        "slug": "boi-gordo-15kg",
+        "unit": "R$/@ (15kg)",
+        "label": "Boi gordo",
     },
 }
 
