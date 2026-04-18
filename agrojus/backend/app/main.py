@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
 from app.logging_config import setup_logging
 from app.middleware.rate_limit import RateLimitMiddleware
-from app.api import search, report, map_data, market, news, auth, monitoring, smart_search, geo, lawsuits, consulta, compliance, jurisdicao, dashboard, property, publicacoes, geo_layers, embrapa, ibge_choropleth, mapbiomas, webhooks, property_actions, dados_gov, dossie
+from app.api import search, report, map_data, market, news, auth, monitoring, smart_search, geo, lawsuits, consulta, compliance, jurisdicao, dashboard, property, publicacoes, geo_layers, embrapa, ibge_choropleth, mapbiomas, webhooks, property_actions, dados_gov, dossie, juridico
 
 setup_logging("DEBUG" if settings.debug else "INFO")
 logger = logging.getLogger("agrojus")
@@ -83,6 +83,7 @@ app.include_router(webhooks.router, prefix="/api/v1/webhooks", tags=["webhooks"]
 app.include_router(property_actions.router, prefix="/api/v1/property", tags=["property-actions"])
 app.include_router(dados_gov.router, prefix="/api/v1/dados-gov", tags=["dados-gov-etl"])
 app.include_router(dossie.router, prefix="/api/v1/dossie", tags=["dossie-agrofundiario"])
+app.include_router(juridico.router, prefix="/api/v1/juridico", tags=["juridico-agro"])
 
 
 @app.get("/")

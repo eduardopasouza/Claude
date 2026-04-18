@@ -678,6 +678,165 @@ class DadosGovIngestLog(Base):
     error = Column(Text)
 
 
+# ==========================================================================
+# Jurídico-Agro — contratos, teses, legislação, monitoramento
+# (Sprint Jurídico-Agro — AgroJus não é focado em advogado;
+#  é um hub de informação jurídica para todo o agronegócio)
+# ==========================================================================
+
+
+class ContratoAgroTemplate(Base):
+    """
+    Template de contrato do agronegócio (arrendamento, parceria, CPR, CDA-WA,
+    compra e venda rural, meação, comodato, integração, fomento, etc).
+
+    Cada template tem:
+      - categoria e subcategoria (taxonomia do agro)
+      - texto_markdown: minuta completa em markdown, com placeholders {{ NOME }}
+      - campos[]: lista estruturada de campos que o usuário preenche
+      - legislacao_referencia[]: base legal citada
+      - cautelas[]: pontos de atenção editoriais
+      - aplicacao: "PJ", "PF", "Ambos"
+      - publico_alvo: tags (comprador, produtor, trading, banco...)
+    """
+    __tablename__ = "contratos_agro_templates"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    slug = Column(String(120), unique=True, index=True, nullable=False)
+    titulo = Column(String(300), nullable=False)
+    categoria = Column(String(80), index=True)  # exploracao_rural, garantia, compra_venda, trabalhista, etc
+    subcategoria = Column(String(100))
+    sinopse = Column(Text)
+    aplicacao = Column(String(20))  # "PF" | "PJ" | "Ambos"
+    publico_alvo = Column(JSON)  # ["comprador", "produtor", "trading"...]
+    texto_markdown = Column(Text, nullable=False)
+    campos = Column(JSON)  # [{nome, tipo, obrigatorio, descricao}]
+    legislacao_referencia = Column(JSON)  # ["Lei 4.504/64 art. 92", "CC art. 1.196"...]
+    cautelas = Column(JSON)  # lista de alertas
+    versao = Column(String(20), default="1.0")
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
+
+
+class TeseDefesaAgro(Base):
+    """
+    Tese de defesa/argumentativa para questões do agronegócio (auto IBAMA,
+    execução fiscal ambiental, usucapião rural, dissídio do trabalhador
+    rural, previdência agro, lista suja MTE, litígios fundiários...).
+
+    Cada tese traz:
+      - sumula_propria (síntese em 1 parágrafo)
+      - argumentos_principais[]: cada um com enunciado + fundamentacao
+      - precedentes_sugeridos[]: jurisprudência útil (STJ/STF/TRF/TJ)
+      - legislacao_aplicavel[]
+      - aplicabilidade: quando usar
+      - contra_argumentos_esperados[]: o que o adversário provavelmente dirá
+      - proxima_acao_recomendada
+    """
+    __tablename__ = "teses_defesa_agro"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    slug = Column(String(120), unique=True, index=True, nullable=False)
+    titulo = Column(String(400), nullable=False)
+    area = Column(String(80), index=True)  # ambiental, fundiario, trabalhista, tributario, previdenciario, penal_agro
+    situacao = Column(Text)  # descrição completa do contexto
+    sumula_propria = Column(Text)
+    argumentos_principais = Column(JSON)  # [{enunciado, fundamentacao, peso}]
+    precedentes_sugeridos = Column(JSON)  # [{tribunal, numero, ementa_resumida, url}]
+    legislacao_aplicavel = Column(JSON)
+    aplicabilidade = Column(Text)
+    contra_argumentos = Column(JSON)
+    proxima_acao = Column(Text)
+    publico_alvo = Column(JSON)  # ["produtor_autuado", "advogado", "consultor_ambiental"...]
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
+
+class LegislacaoAgro(Base):
+    """
+    Legislação relevante ao agronegócio, com escopo territorial
+    (federal, estadual, municipal) e tema.
+
+    Campos mínimos que permitem filtrar por "o que se aplica na UF X
+    para tema Y" (ex: RL no Cerrado goiano → Lei 12.651/12 +
+    Lei estadual Z + normativas ambientais municipais).
+    """
+    __tablename__ = "legislacao_agro"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    slug = Column(String(150), unique=True, index=True, nullable=False)
+    titulo = Column(String(500), nullable=False)
+    esfera = Column(String(20), index=True, nullable=False)  # federal | estadual | municipal
+    uf = Column(String(2), index=True)
+    municipio = Column(String(200))
+    municipio_ibge = Column(String(10), index=True)
+    tipo = Column(String(60))  # lei, decreto, resolucao, portaria, instrucao_normativa
+    numero = Column(String(50))
+    ano = Column(Integer, index=True)
+    orgao = Column(String(200))
+    ementa = Column(Text)
+    temas = Column(JSON)  # ["reserva_legal", "apa", "irrigacao", "itr", "credito_rural", "zee", "licenciamento"...]
+    publicacao = Column(Date)
+    situacao = Column(String(30))  # vigente, revogada, suspensa
+    url_oficial = Column(Text)
+    url_lexml = Column(Text)
+    texto_integral_url = Column(Text)
+    resumo = Column(Text)  # resumo pratico do que significa para o agricultor
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
+    __table_args__ = (
+        Index("idx_leg_esfera_uf_tema", "esfera", "uf"),
+    )
+
+
+class MonitoramentoParte(Base):
+    """
+    Cadastro de CPF/CNPJ para monitoramento processual contínuo.
+
+    O produto permite que o agricultor/trading/consultor monitore partes
+    (proprietários vizinhos, prestadores de serviço, vendedores potenciais)
+    sem ser o advogado deles. Triagem automática de processos novos,
+    embargos, autos IBAMA, inclusão em lista suja.
+
+    Diferente do webhook de imóvel (que é sobre uma area), este é sobre uma
+    PARTE (CPF ou CNPJ) — util para due diligence comercial.
+    """
+    __tablename__ = "monitoramento_partes"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    user_id = Column(Integer, index=True)  # quem cadastrou
+    cpf_cnpj = Column(String(20), index=True, nullable=False)
+    nome_sugerido = Column(String(500))  # rotulo livre ("Vizinho sul", "Fornecedor de gado")
+    contexto = Column(Text)  # por que está monitorando
+    tags = Column(JSON)  # ["fornecedor", "vizinho", "vendedor", "comprador"]
+    eventos_monitorados = Column(JSON)  # ["datajud_novo_processo","ibama_auto","ceis","cnep","lista_suja","djen"]
+    frequencia = Column(String(20), default="diaria")  # diaria | semanal | mensal
+    webhook_url = Column(Text)  # opcional — dispara quando algo novo for detectado
+    active = Column(Boolean, default=True, index=True)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    last_checked_at = Column(DateTime)
+
+    __table_args__ = (
+        Index("idx_monit_user_cpf", "user_id", "cpf_cnpj", unique=True),
+    )
+
+
+class MonitoramentoParteEvento(Base):
+    """Eventos detectados no monitoramento (trilha de auditoria)."""
+    __tablename__ = "monitoramento_partes_eventos"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    monitoramento_id = Column(Integer, index=True, nullable=False)
+    cpf_cnpj = Column(String(20), index=True, nullable=False)
+    tipo_evento = Column(String(50), index=True)  # novo_auto_ibama, nova_sancao_ceis, novo_processo, etc
+    resumo = Column(Text)
+    valor_rs = Column(Float)
+    data_evento = Column(Date)
+    fonte = Column(String(50))
+    raw_data = Column(JSON)
+    notificado = Column(Boolean, default=False, index=True)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
+
 # --- Engine & Session ---
 
 _engine = None
