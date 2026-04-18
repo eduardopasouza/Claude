@@ -44,11 +44,14 @@ sigmine · ana_outorgas · ana_bho · assentamentos · quilombolas · aneel_usin
 | **INCRA Quilombolas** | **427** | Fallback URL direta |
 | **ANEEL SIGA usinas** | **25.417** | CKAN próprio ANEEL + fallback |
 | **IBAMA Termos de Embargo** | **88.586** | CKAN próprio IBAMA (`dadosabertos.ibama.gov.br` + `pamgia.ibama.gov.br`) |
-| **TOTAL ativos** | **127.264** registros em **6/12** tabelas | |
+| **IBAMA Autos de Infração (SIFISC)** | **695.439** | CKAN IBAMA — ZIP com 50 CSVs (1 por ano, 1977-2026) |
+| **ANEEL Linhas de Transmissão (SIGET)** | **176** | ArcGIS SIGEL — `/GGT/Dados_WebApp_GGT/MapServer/0` GeoJSON |
+| **TOTAL ativos** | **822.879** registros em **8/12** tabelas | |
 
-### MCR 2.9 — ganho de cobertura com IBAMA embargos
+### MCR 2.9 — ganho de cobertura com IBAMA embargos + autos
 
-O critério **MCR-A04** (Sem embargos ICMBio/IBAMA) antes consultava apenas `geo_embargos_icmbio` (~dezenas de polígonos). Agora também consulta `ibama_embargos` (**88.586 polígonos**), elevando drasticamente a precisão do bloqueio MCR para propriedades em áreas embargadas pelo IBAMA.
+- **MCR-A04** (Sem embargos ICMBio/IBAMA): antes consultava `geo_embargos_icmbio` (~dezenas). Agora também `ibama_embargos` (**88.586 polígonos**). Details separa "ICMBio: N · IBAMA: N".
+- **MCR-A05** (Sem autos IBAMA): antes só `geo_autos_ibama` (16k) + `environmental_alerts`. Agora também `ibama_autos_infracao` (**695.439 autos** via SIFISC completo) por CPF/CNPJ do proprietário. Evidência incluí `multa_total_rs` somando todos autos.
 
 ### Fallback automático de URLs diretas (novo)
 
@@ -68,6 +71,7 @@ Isso destrava o ETL mesmo quando o portal dados.gov.br está com problemas (como
 | `cc1f445` | fix(dados-gov): URLs ANEEL validadas + latin-1 + clean NaN raw_data |
 | `ec63c79` | feat(dados-gov): loader IBAMA embargos (88k polígonos) + MCR-A04 |
 | `6ea730f` | chore(frontend): scaffold Sprint 5 — Zustand store + URL sync |
+| `a84ea48` | feat(dados-gov): IBAMA autos de infração (695k) + ANEEL linhas SIGET (176) + MCR-A05 |
 
 Validação: CNPJ `00.818.544/0001-65` (real, do CEIS) → MCR-FI02 **FAILED** com evidência `{"ceis_matches": 2}`.
 

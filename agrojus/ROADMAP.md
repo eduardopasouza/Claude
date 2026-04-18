@@ -74,15 +74,16 @@ Infraestrutura de ingestão + 2 ETLs reais executados.
 | INCRA Assentamentos | ✅ ativo | 8.214 |
 | INCRA Quilombolas | ✅ ativo | 427 |
 | ANEEL SIGA usinas | ✅ ativo | 25.417 |
-| **IBAMA Termos de Embargo** | ✅ ativo | **88.586** |
+| ANEEL Linhas SIGET | ✅ ativo | 176 |
+| IBAMA Termos de Embargo | ✅ ativo | 88.586 |
+| **IBAMA Autos de Infração (SIFISC)** | ✅ ativo | **695.439** |
 | SIGMINE | ❌ ANM em 502 (externo) | 0 |
 | ANA Outorgas | ❌ sem URL CSV estável | 0 |
 | ANA BHO | ❌ sem URL CSV estável | 0 |
-| ANEEL Linhas | ❌ só via WFS ArcGIS (não SIG) | 0 |
 | Garantia-Safra | ❌ token sem permissão CGU | 0 |
 | IBAMA CTF | ❌ dataset específico não identificado | 0 |
 
-**Total operacional**: 127.264 registros reais em 6/12 tabelas. O fallback automático em `KNOWN_RESOURCES` permite que loaders pendentes sejam ativados adicionando URLs novas sem reescrever código.
+**Total operacional**: **822.879 registros reais em 8/12 tabelas**. O fallback automático em `KNOWN_RESOURCES` permite que loaders pendentes sejam ativados adicionando URLs novas sem reescrever código.
 
 ### Sprint 5 — Mapa v3 (4 dias) — padrões SYNTHESIS ⏳
 - [ ] URL state serializado (Zustand + useSearchParams)
