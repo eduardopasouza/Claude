@@ -1,6 +1,11 @@
 {
-  "_comment": "Desliga o plugin advIA em projetos fora de fluxo jurídico. O AgroJus é um produto de software; não há FIRAC, casos ou peças. As skills da advIA ainda aparecem como invocáveis via slash, mas os hooks SessionStart/Stop/PreCompact/SubagentStop ficam inertes aqui para não confundir com o advIA de produção.",
+  "_comment": "AgroJus é produto de software SaaS, totalmente separado do projeto advIA (copiloto jurídico do escritório Guerreiro). Sem FIRAC, sem casos, sem clientes advIA. Este settings: (1) desabilita o plugin advIA, (2) sobrescreve os hooks de sessão com arrays vazios para garantir que nenhum protocolo jurídico (iara_salvar_caderno, Bloco 11, 'Deseja salvar o estado?') dispare aqui. Estado é salvo com git commit + push + docs/HANDOFF_*.md.",
   "disabledPlugins": {
     "advia@local": true
+  },
+  "hooks": {
+    "Stop": [],
+    "SubagentStop": [],
+    "PreCompact": []
   }
 }
