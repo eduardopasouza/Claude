@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import {
   CheckCircle2,
   XCircle,
@@ -11,6 +12,7 @@ import {
   ShieldAlert,
   Shield,
   FileText,
+  ArrowRight,
 } from "lucide-react";
 import { fetchWithAuth } from "@/lib/api";
 import type { PropertyData } from "../PropertyHeader";
@@ -133,6 +135,24 @@ export function ComplianceTab({ property }: { property: PropertyData }) {
           </button>
         </div>
       </header>
+
+      <Link
+        href={`/compliance?car=${encodeURIComponent(property.car_code)}`}
+        className="group block border border-emerald-900/30 bg-gradient-to-r from-emerald-950/20 to-slate-900/40 rounded-lg px-4 py-3 hover:border-emerald-500/40 transition"
+      >
+        <div className="flex items-center gap-3">
+          <ShieldCheck className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+          <div className="min-w-0 flex-1">
+            <div className="text-sm font-medium text-slate-100">
+              Análise completa MCR 2.9 — <span className="text-emerald-400">32 critérios em 5 eixos</span>
+            </div>
+            <div className="text-xs text-slate-400 mt-0.5">
+              Auditoria auditável fundiário · ambiental · trabalhista · jurídico · financeiro com laudo PDF
+            </div>
+          </div>
+          <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-0.5 transition flex-shrink-0" />
+        </div>
+      </Link>
 
       {loading && (
         <div className="p-12 flex items-center justify-center text-slate-400">
