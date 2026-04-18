@@ -3,6 +3,43 @@
 Todas as mudanças notáveis do projeto, por sessão de trabalho.
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.13.1] — 2026-04-18 · Transição Sessão 10 → 11 · Limpeza e handoff
+
+Consolidação entre sessões. Sem mudanças de produto — só infra/docs.
+
+### Changed
+
+- **Isolação AgroJus × advIA reforçada.** Projetos são totalmente separados.
+  - `.claude/settings.json` do projeto sobrescreve `Stop/SubagentStop/PreCompact`
+    com arrays vazios (precedência sobre qualquer hook de plugin).
+  - Plugin advIA (`~/.claude/plugins/marketplaces/local/plugins/advia/` e
+    `cache/local/advia/0.1.0/`) teve array `Stop` zerado — o `stop.py` já era
+    no-op, então zero impacto em sessões operacionais da advIA. Evita
+    disparo de "Antes de encerrar a sessão..." com vocabulário jurídico
+    (iara_salvar_caderno, Bloco 11 FIRAC) que não faz sentido em AgroJus.
+  - Memória registrada em
+    `~/.claude/projects/C--dev-agrojus-workspace/memory/project_agrojus_vs_advia.md`
+    com protocolo de reversão se um dia quisermos Stop behavior no advIA.
+  - Efeito pleno só no próximo restart do Claude Code (hooks já em memória
+    seguem até lá).
+
+### Documentation
+
+- **Consolidação dos handoffs.** Arquivados em `docs/_archive/handoffs_antigos/`:
+  sessão 7, sessão 8, sessão 9 (2 versões), sessão 10 INICIO. Mantidos em
+  `docs/` apenas:
+  - `HANDOFF_2026-04-18_sessao10_FECHAMENTO.md` (log da sessão anterior)
+  - `HANDOFF_2026-04-18_sessao11_INICIO.md` (mestre atual)
+- **Handoff sessão 11** estabelece 3 trilhas encadeadas:
+  - **Trilha 1 — Acesso aos dados** (Sprint A auditoria · B cobertura
+    nacional · C scheduler+observability+novos coletores)
+  - **Trilha 2 — Dívida técnica crítica** (Sprint D Alembic/JWT
+    cookie/middleware/error boundaries · E testes mínimos + CI)
+  - **Trilha 3 — Pendências frontend** (Sprint F mapa v3 · G substituir mocks
+    de `/consulta` e `/alertas`)
+- ROADMAP atualizado: Sprint Hub Jurídico-Agro marcado como frontend
+  concluído; seção "Foco da Sessão 11" adicionada com as 3 trilhas.
+
 ## [0.13.0] — 2026-04-18 · Sessão 10 · Frontend Hub Jurídico-Agro
 
 ### Added — Rota `/juridico` com 5 abas (fecha a prioridade A do handoff)

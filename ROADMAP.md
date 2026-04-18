@@ -1,15 +1,17 @@
-# AgroJus — Roadmap Consolidado (2026-04-17 · pós-Sessão 9)
+# AgroJus — Roadmap Consolidado (2026-04-18 · pós-Sessão 10)
 
-> Atualizado após Sessão 9. Sincronizado com `docs/HANDOFF_2026-04-17_sessao9.md`.
+> Atualizado após Sessão 10. Sincronizado com
+> `docs/HANDOFF_2026-04-18_sessao10_FECHAMENTO.md` e
+> `docs/HANDOFF_2026-04-18_sessao11_INICIO.md`.
 
-## Estado atual do produto (pós-sessão 9)
+## Estado atual do produto (pós-sessão 10)
 
 | Camada | Completo | Parcial | Ausente |
 |---|---|---|---|
-| Backend | ~100 endpoints · 18 camadas PostGIS · DJEN · DataJud · Embrapa (7/9) · MapBiomas Alerta GraphQL · IBGE choropleth (16 métricas) · IBAMA 16k autos · **Webhooks CRUD + dispatch** · **Laudo PDF ficha** · **Exports GeoJSON/GPKG/SHP** · **Minuta Claude API** | MCR 2.9 (6/30 critérios) · SICAR MA-only (faltam 79M) · DETER/PRODES parcial (800k+ real) | Motor jurídico STJ · valuation · leilões · Portal Transparência coletor · dados.gov.br coletores |
-| Frontend | `/login`, `/`, `/mapa` v2, `/mercado`, `/processos`, `/publicacoes`, **`/imoveis/[car]` 12/12 abas** | `/consulta`, `/compliance` standalone, `/alertas` (mocks) | `/valuation`, `/portfolio`, `/leiloes`, `/teses`, `/minutas`, `/perfil`, `/plano`, `/equipe`, `/radar-ibama` |
-| Dados | 18 camadas PostGIS × 7.7M registros · 42 pub DJEN · alertas MapBiomas tempo real · **webhooks + deliveries persistidos** | SICAR (só MA) · DETER/PRODES (50k vs 800k+) | Earth Engine · SIGMINE · ANA outorgas · SNCI · CNES |
-| Docs | HANDOFF sessões 1-9 · ROADMAP · README · 48 auditorias visuais · 6 blueprints detalhados · SYNTHESIS | — | Manual do usuário · API pública doc |
+| Backend | ~120 endpoints (26 routers) · 18 camadas PostGIS · DJEN · DataJud · Embrapa (7/9) · MapBiomas Alerta GraphQL · IBGE choropleth (16 métricas) · **Webhooks CRUD + dispatch** · **Laudo PDF ficha** · **Exports GeoJSON/GPKG/SHP** · **Minuta Claude API** · **Dossiê multi-input** · **Hub Jurídico-Agro (12 endpoints, 75 seeds)** · **MCR 2.9 32 critérios** · **Portal Transparência + dados.gov.br (10 loaders)** | MCR 2.9 (15/32 com dados reais) · SICAR MA-only (faltam 79M) · DETER/PRODES parcial (50k vs 800k+) | Motor jurídico STJ · leilões · Alembic · testes |
+| Frontend | `/login`, `/`, `/mapa` v2.1, `/mercado`, `/processos`, `/publicacoes`, `/compliance` standalone, `/dados-gov`, `/dossie`, **`/imoveis/[car]` 12/12 abas**, **`/juridico` 5 abas** | `/consulta` e `/alertas` ainda mock | `/valuation`, `/portfolio`, `/leiloes`, `/minutas`, `/perfil`, `/plano`, `/equipe`, `/radar-ibama` |
+| Dados | 40 tabelas × 8,5M registros · 822k Sprint 4 · 75 seeds jurídicos · webhooks + deliveries persistidos | SICAR (só MA) · DETER/PRODES (50k vs 800k+) | Earth Engine · SIGMINE (ANM 502) · ANA Outorgas/BHO · Garantia-Safra · IBAMA CTF |
+| Docs | ROADMAP · README · CHANGELOG · HANDOFF sessão 10 fechamento + sessão 11 início · 48 auditorias visuais · 6 blueprints · SYNTHESIS · sessões 1-9 arquivadas | — | Manual do usuário · API pública doc |
 
 ---
 
@@ -106,16 +108,23 @@ Escopo ampliado após feedback Eduardo.
 - [x] Frontend `/dossie` com sidebar navegável + 6 personas
 - [x] CTAs nos 3 pontos de entrada (LayerInspector, AnalysisDrawer, AcoesTab)
 
-### Sprint Hub Jurídico-Agro ✅ **BACKEND CONCLUÍDO (sessão 9) · FRONTEND PENDENTE**
+### Sprint Hub Jurídico-Agro ✅ **BACKEND (sessão 9) + FRONTEND (sessão 10) CONCLUÍDOS**
 Reposicionamento do módulo jurídico — de "ferramenta para advogado" para hub multi-persona.
 - [x] Models: ContratoAgroTemplate, TeseDefesaAgro, LegislacaoAgro, MonitoramentoParte
 - [x] Seeds: 12 contratos + 12 teses + 51 normativos-chave
 - [x] 12 endpoints REST
-- [ ] **Frontend `/juridico` com 5 abas** (Processos · Contratos · Teses · Legislação · Monitoramento)
+- [x] **Frontend `/juridico` com 5 abas** (Processos · Contratos · Teses · Legislação · Monitoramento) — sessão 10, commit `e9b1f26`, 2.710 linhas, 0 deps novas
+  - Processos: dossiê consolidado por CPF/CNPJ + risco BAIXO/MÉDIO/ALTO/CRÍTICO + 6 KPIs
+  - Contratos: grid filtrável + modal com preview markdown tempo real + exports .doc/.md/clipboard
+  - Teses: 7 áreas + accordion lazy com argumentos/precedentes/próxima ação
+  - Legislação: filtros UF/IBGE/tema/esfera + agrupamento + link oficial
+  - Monitoramento: CRUD + form inline (6 eventos, 3 frequências, webhook)
 - [ ] **Calculadora de prescrição administrativa** (concorrente consolidado — art. 1º Lei 9.873/99 e variantes estaduais)
 - [ ] Editor de contrato com preenchimento guiado (vs templates estáticos)
-- [ ] Monitoramento ativo: cron diário que verifica novas entradas IBAMA/CEIS/CNEP/DataJud para CPF cadastrados e dispara webhooks
+- [ ] **Monitoramento ativo:** cron diário que verifica novas entradas IBAMA/CEIS/CNEP/DataJud para CPF cadastrados e dispara webhooks (escopo **Trilha 3** da sessão 11)
 - [ ] Expandir base: +30 normativos estaduais · +20 teses · +15 contratos
+- [ ] Upload de documento do usuário → OCR + análise de riscos
+- [ ] IA sugere tese conforme descrição do caso
 
 ### Sprint 6 — Motor jurídico base (5 dias) ⏳
 - [ ] STJ dados abertos + TCU webservice → tabela `jurisprudencia`
@@ -140,7 +149,73 @@ Reposicionamento do módulo jurídico — de "ferramenta para advogado" para hub
 
 ---
 
-## Próximos Sprints e Ideias novas (pós-sessão 9)
+## 🎯 FOCO DA SESSÃO 11 — 3 Trilhas (pós-sessão 10)
+
+Eduardo decidiu priorizar: **pendências + dívida técnica + garantir acesso
+aos dados**. Execução em 3 trilhas encadeadas, começando pela Trilha 1
+(auditoria de dados).
+
+### 🔵 Trilha 1 — Acesso aos dados (prioridade máxima)
+
+**Sprint A · Auditoria e reparo de coletores** (1-2 dias)
+- [ ] Varrer os 28 coletores: frescor (última execução), taxa de sucesso,
+      contagem real vs esperada
+- [ ] Re-testar token `dados.gov.br` (bug CloudFront 401 pode ter sido
+      corrigido)
+- [ ] Re-testar SIGMINE ANM (estava em 502 externo na sessão 9)
+- [ ] Re-testar ANA Outorgas + ANA BHO (sem URL estável até sessão 9)
+- [ ] Re-testar Garantia-Safra (token CGU sem permissão)
+- [ ] Re-testar IBAMA CTF (dataset específico a identificar)
+- [ ] Entregável: `docs/AUDITORIA_COLETORES_2026-04-18.md` com ranking de
+      urgência e plano de reparo
+
+**Sprint B · Cobertura nacional dos grandes** (3-5 dias)
+- [ ] **SICAR nacional** — hoje só MA (faltam ~79M registros)
+- [ ] **DETER/PRODES completo** — hoje 50k, deveria ser 800k+
+- [ ] **IBAMA embargos** — confirmar atualização mensal (snapshot 88k)
+- [ ] **ETL incremental** em todos (delta vs full reload)
+
+**Sprint C · Novos coletores alto impacto** (5-7 dias)
+- [ ] Scheduler (APScheduler in-container ou cron docker) para refresh
+      automático
+- [ ] Observability dos ETLs — `/dados-gov` expandido com gráficos
+- [ ] Receita Federal QSA (Casa dos Dados grátis)
+- [ ] Histórico MapBiomas 1985-atual
+
+### 🟢 Trilha 2 — Dívida técnica crítica (em paralelo)
+
+**Sprint D · Fundação** (2-3 dias)
+- [ ] **Alembic migrations** — substitui `Base.metadata.create_all()` ad-hoc;
+      bootstrap com snapshot do schema atual
+- [ ] **JWT httpOnly cookie** — hoje em localStorage (risco XSS)
+- [ ] **Middleware auth frontend** — no Next 16 o arquivo é `proxy.ts`
+      (breaking v16), redirect para `/login` se sem cookie
+- [ ] **Error boundaries** — `app/error.tsx` + `app/global-error.tsx`
+
+**Sprint E · Testes mínimos** (3-5 dias)
+- [ ] pytest + FastAPI TestClient para 4 endpoints críticos:
+      `/property/search`, `/juridico/processos/{cpf}/dossie`, `/dossie`,
+      `/compliance/mcr29/full`
+- [ ] Vitest + React Testing Library para 3 componentes:
+      `ProcessosTab`, `ContratosTab`, `MapComponent`
+- [ ] CI GitHub Actions (lint + tsc + pytest)
+
+### 🟠 Trilha 3 — Pendências frontend
+
+**Sprint F · Sprint 5 mapa v3** (3-5 dias) — fecha o iniciado na sessão 9
+- [ ] Integrar Zustand store ao `MapComponent` (scaffold existe)
+- [ ] Slider temporal duplo (YYYY-MM) para DETER/PRODES/MapBiomas
+- [ ] Drill-down UF → Município (breadcrumb + fly-to)
+- [ ] Opacidade por camada
+- [ ] Export CSV/Shapefile da view
+
+**Sprint G · Substituir mocks**
+- [ ] `/consulta` → usar `/property/search` real
+- [ ] `/alertas` → usar tabela `environmental_alerts` populada
+
+---
+
+## Próximos Sprints e Ideias novas (pós-sessão 10)
 
 ### Sprint 9 — Dossiê Proativo + Monitoramento (~5 dias)
 - [ ] Cron diário para monitoramento de partes cadastradas (CPF/CNPJ)
