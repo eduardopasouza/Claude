@@ -292,42 +292,179 @@ def coletar_identificacao(ctx: DossieContext) -> dict:
 
 
 def coletar_fundiario(ctx: DossieContext) -> dict:
-    """Seção 2 — situação fundiária e sobreposições."""
+    """Seção 2 — situação fundiária detalhada (todos os overlaps listados)."""
     if not ctx.geometry_wkt:
         return {"note": "Sem geometria para análise fundiária"}
 
     engine = get_engine()
     d: dict[str, Any] = {}
 
+    # Cada camada retorna: lista completa de features, área total sobreposta,
+    # percentual da área do imóvel tomada
     layers = [
-        ("cars_sobrepostos", "sicar_completo", "cod_imovel, area AS area_ha, uf, status_imovel AS status"),
-        ("sigef_parcelas", "sigef_parcelas", "parcela_codigo, nome_area AS nome, status"),
-        ("terras_indigenas", "geo_terras_indigenas", "terrai_nom AS nome, etnia_nome AS etnia, fase_ti AS fase"),
-        ("unidades_conservacao", "geo_unidades_conservacao", "nomeuc AS nome, siglacateg AS categoria, grupouc AS grupo"),
-        ("assentamentos_incra", "incra_assentamentos", "nome_proje AS nome, area_ha, num_famili AS familias, forma_obte AS forma"),
-        ("quilombolas_incra", "incra_quilombolas", "nome, area_ha, fase"),
-        ("sigmine", "sigmine_processos", "processo, fase, subs AS substancia, area_ha"),
+        ("cars_sobrepostos", "sicar_completo",
+         "cod_imovel, area AS area_ha, uf, status_imovel AS status, tipo_imovel AS tipo"),
+        ("sigef_parcelas", "sigef_parcelas",
+         "parcela_codigo, nome_area AS nome, status, nome_detentor AS detentor, situacao"),
+        ("terras_indigenas", "geo_terras_indigenas",
+         "terrai_nom AS nome, etnia_nome AS etnia, fase_ti AS fase, superficie_ AS area_ha"),
+        ("unidades_conservacao", "geo_unidades_conservacao",
+         "nomeuc AS nome, siglacateg AS categoria, grupouc AS grupo, "
+         "anocriacao AS ano_criacao, administra AS orgao"),
+        ("assentamentos_incra", "incra_assentamentos",
+         "nome_proje AS nome, area_ha, num_famili AS familias, "
+         "forma_obte AS forma, data_criac AS data_criacao, fase"),
+        ("quilombolas_incra", "incra_quilombolas",
+         "nome, area_ha, fase, esfera"),
+        ("sigmine", "sigmine_processos",
+         "processo, fase, subs AS substancia, area_ha, uso, nome"),
     ]
     wkt = f"ST_GeomFromText('{ctx.geometry_wkt}', 4326)"
+    area_ctx = ctx.area_ha or 1
 
     with engine.connect() as conn:
         for key, table, cols in layers:
             try:
                 rows = conn.execute(text(f"""
-                    SELECT {cols}
+                    SELECT {cols},
+                           ST_Area(ST_Intersection(geometry, {wkt})::geography) / 10000.0
+                             AS area_intersecao_ha,
+                           (ST_Area(ST_Intersection(geometry, {wkt})::geography) / 10000.0)
+                             / :area_ctx * 100 AS pct_do_imovel
                     FROM {table}
+                    WHERE ST_Intersects(geometry, {wkt})
+                    ORDER BY ST_Area(ST_Intersection(geometry, {wkt})::geography) DESC
+                    LIMIT 50
+                """), {"area_ctx": area_ctx}).mappings().all()
+                items = [dict(r) for r in rows]
+                total_area = sum((x.get("area_intersecao_ha") or 0) for x in items)
+                d[key] = {
+                    "items": items,
+                    "total_intersecao_ha": round(total_area, 2),
+                    "pct_do_imovel": round((total_area / area_ctx) * 100, 2) if area_ctx else 0,
+                    "count": len(items),
+                }
+            except Exception as e:
+                d[key] = {"items": [], "count": 0, "error": str(e)}
+                logger.warning("fundiario %s falhou: %s", key, e)
+
+    return d
+
+
+def coletar_ambiental_detalhado(ctx: DossieContext) -> dict:
+    """Seção 4 — ambiental com detalhes por evento (não só contagens)."""
+    if not ctx.geometry_wkt:
+        return {}
+    engine = get_engine()
+    wkt = f"ST_GeomFromText('{ctx.geometry_wkt}', 4326)"
+    area_ctx = ctx.area_ha or 1
+    d: dict[str, Any] = {}
+
+    try:
+        with engine.connect() as conn:
+            # PRODES — listar por ano com área
+            d["prodes_por_ano"] = [
+                dict(r) for r in conn.execute(text(f"""
+                    SELECT year::int AS ano, class_name AS classe,
+                           COUNT(*)::int AS poligonos,
+                           ROUND((SUM(ST_Area(ST_Intersection(geometry, {wkt})::geography)) / 10000.0)::numeric, 2)
+                             AS area_ha
+                    FROM geo_prodes
+                    WHERE ST_Intersects(geometry, {wkt}) AND year >= 2000
+                    GROUP BY year, class_name
+                    ORDER BY year DESC
+                """)).mappings().all()
+            ]
+            d["prodes_total_pos_2019_ha"] = round(sum(
+                r["area_ha"] for r in d["prodes_por_ano"] if r["ano"] >= 2019
+            ), 2)
+
+            # DETER 12 meses — listar cada alerta
+            d["deter_12m"] = [
+                dict(r) for r in conn.execute(text(f"""
+                    SELECT 'Amazônia' AS bioma, classname AS classe,
+                           view_date::text AS data,
+                           ROUND(ST_Area(ST_Intersection(geometry, {wkt})::geography)::numeric / 10000.0, 3)
+                             AS area_ha
+                    FROM geo_deter_amazonia
+                    WHERE ST_Intersects(geometry, {wkt})
+                      AND view_date >= CURRENT_DATE - INTERVAL '12 months'
+                    UNION ALL
+                    SELECT 'Cerrado' AS bioma, classname AS classe,
+                           view_date::text AS data,
+                           ROUND(ST_Area(ST_Intersection(geometry, {wkt})::geography)::numeric / 10000.0, 3)
+                             AS area_ha
+                    FROM geo_deter_cerrado
+                    WHERE ST_Intersects(geometry, {wkt})
+                      AND view_date >= CURRENT_DATE - INTERVAL '12 months'
+                    ORDER BY data DESC
+                    LIMIT 30
+                """)).mappings().all()
+            ]
+
+            # MapBiomas alertas — detalhado
+            d["mapbiomas_alertas"] = [
+                dict(r) for r in conn.execute(text(f"""
+                    SELECT "ANODETEC"::int AS ano, "BIOMA" AS bioma,
+                           "VPRESSAO" AS vetor_pressao,
+                           ROUND(ST_Area(ST_Intersection(geometry, {wkt})::geography)::numeric / 10000.0, 3)
+                             AS area_ha
+                    FROM geo_mapbiomas_alertas
+                    WHERE ST_Intersects(geometry, {wkt}) AND "ANODETEC"::int >= 2019
+                    ORDER BY "ANODETEC" DESC
+                    LIMIT 30
+                """)).mappings().all()
+            ]
+
+            # Embargos ICMBio com detalhe
+            d["embargos_icmbio_lista"] = [
+                dict(r) for r in conn.execute(text(f"""
+                    SELECT autuado AS nome, desc_infra AS descricao, data AS data_embargo,
+                           ROUND(ST_Area(ST_Intersection(geometry, {wkt})::geography)::numeric / 10000.0, 3)
+                             AS area_ha
+                    FROM geo_embargos_icmbio
                     WHERE ST_Intersects(geometry, {wkt})
                     LIMIT 20
                 """)).mappings().all()
-                d[key] = [dict(r) for r in rows]
-            except Exception as e:
-                d[key] = []
-                logger.warning("fundiario %s falhou: %s", key, e)
+            ]
 
-    d["summary"] = {
-        k: len(v) if isinstance(v, list) else 0
-        for k, v in d.items() if k != "summary"
-    }
+            # Embargos IBAMA com detalhe (tabela nova 88k)
+            d["embargos_ibama_lista"] = [
+                dict(r) for r in conn.execute(text(f"""
+                    SELECT numero_termo, nome_pessoa, uf, municipio,
+                           area_embargada_ha, data_embargo::text AS data,
+                           tipo_infracao, situacao,
+                           ROUND(ST_Area(ST_Intersection(geometry, {wkt})::geography)::numeric / 10000.0, 3)
+                             AS area_intersecao_ha
+                    FROM ibama_embargos
+                    WHERE geometry IS NOT NULL AND ST_Intersects(geometry, {wkt})
+                    ORDER BY data_embargo DESC NULLS LAST
+                    LIMIT 20
+                """)).mappings().all()
+            ]
+
+            # Autos IBAMA (pontos georreferenciados)
+            d["autos_ibama_geo_lista"] = [
+                dict(r) for r in conn.execute(text(f"""
+                    SELECT num_auto AS numero, nome_infrator AS infrator,
+                           dt_auto::text AS data, val_auto AS valor,
+                           desc_infra AS descricao, uf, municipio
+                    FROM geo_autos_ibama
+                    WHERE ST_Intersects(geometry, {wkt})
+                    LIMIT 15
+                """)).mappings().all()
+            ]
+            d["autos_ibama_geo_count"] = len(d["autos_ibama_geo_lista"])
+
+            # Totais e ratios
+            d["area_imovel_ha"] = area_ctx
+            d["prodes_pct_do_imovel"] = round(
+                (d["prodes_total_pos_2019_ha"] / area_ctx * 100)
+                if area_ctx else 0, 2,
+            )
+    except Exception as e:
+        d["error"] = str(e)
+
     return d
 
 
@@ -342,49 +479,12 @@ def coletar_compliance(ctx: DossieContext) -> dict:
 
 
 def coletar_ambiental(ctx: DossieContext) -> dict:
-    """Seção 4 — desmatamento, embargos, autos."""
-    if not ctx.geometry_wkt:
-        return {}
-    engine = get_engine()
-    wkt = f"ST_GeomFromText('{ctx.geometry_wkt}', 4326)"
-    d: dict[str, Any] = {}
-
-    try:
-        with engine.connect() as conn:
-            d["prodes_pos_2019_count"] = int(conn.execute(text(f"""
-                SELECT COUNT(*) FROM geo_prodes WHERE year >= 2019 AND ST_Intersects(geometry, {wkt})
-            """)).scalar() or 0)
-            d["deter_12m_amazonia"] = int(conn.execute(text(f"""
-                SELECT COUNT(*) FROM geo_deter_amazonia
-                WHERE view_date >= CURRENT_DATE - INTERVAL '12 months'
-                AND ST_Intersects(geometry, {wkt})
-            """)).scalar() or 0)
-            d["deter_12m_cerrado"] = int(conn.execute(text(f"""
-                SELECT COUNT(*) FROM geo_deter_cerrado
-                WHERE view_date >= CURRENT_DATE - INTERVAL '12 months'
-                AND ST_Intersects(geometry, {wkt})
-            """)).scalar() or 0)
-            d["mapbiomas_alerts_pos_2019"] = int(conn.execute(text(f"""
-                SELECT COUNT(*) FROM geo_mapbiomas_alertas
-                WHERE "ANODETEC"::int >= 2019 AND ST_Intersects(geometry, {wkt})
-            """)).scalar() or 0)
-            d["embargos_icmbio"] = int(conn.execute(text(f"""
-                SELECT COUNT(*) FROM geo_embargos_icmbio WHERE ST_Intersects(geometry, {wkt})
-            """)).scalar() or 0)
-            d["embargos_ibama"] = int(conn.execute(text(f"""
-                SELECT COUNT(*) FROM ibama_embargos WHERE ST_Intersects(geometry, {wkt})
-            """)).scalar() or 0)
-            d["autos_ibama_geo"] = int(conn.execute(text(f"""
-                SELECT COUNT(*) FROM geo_autos_ibama WHERE ST_Intersects(geometry, {wkt})
-            """)).scalar() or 0)
-    except Exception as e:
-        d["error"] = str(e)
-
-    return d
+    """Delega para coletor detalhado."""
+    return coletar_ambiental_detalhado(ctx)
 
 
 def coletar_proprietario(ctx: DossieContext) -> dict:
-    """Seção 5 — dossiê do proprietário por CPF/CNPJ."""
+    """Seção 5 — dossiê completo do proprietário por CPF/CNPJ."""
     if not ctx.cpf_cnpj:
         return {"note": "CPF/CNPJ não informado"}
 
@@ -394,63 +494,202 @@ def coletar_proprietario(ctx: DossieContext) -> dict:
 
     try:
         with engine.connect() as conn:
-            d["lista_suja_mte"] = int(conn.execute(text("""
-                SELECT COUNT(*) FROM environmental_alerts
-                WHERE source='MTE' AND cpf_cnpj = :cpf
-            """), {"cpf": cpf}).scalar() or 0)
+            # --- Lista Suja MTE (detalhado) ---
+            d["lista_suja_mte_items"] = [
+                dict(r) for r in conn.execute(text("""
+                    SELECT alert_type, description, area_ha,
+                           date_detected::text AS data, raw_data
+                    FROM environmental_alerts
+                    WHERE source='MTE' AND cpf_cnpj = :cpf
+                    ORDER BY date_detected DESC NULLS LAST
+                    LIMIT 10
+                """), {"cpf": cpf}).mappings().all()
+            ]
+            d["lista_suja_mte_count"] = len(d["lista_suja_mte_items"])
 
-            d["ceis"] = int(conn.execute(text("""
-                SELECT COUNT(*) FROM ceis_registros WHERE cpf_cnpj = :cpf
-            """), {"cpf": cpf}).scalar() or 0)
-            d["cnep"] = int(conn.execute(text("""
-                SELECT COUNT(*) FROM cnep_registros WHERE cpf_cnpj = :cpf
-            """), {"cpf": cpf}).scalar() or 0)
+            # --- CEIS detalhado ---
+            d["ceis_items"] = [
+                dict(r) for r in conn.execute(text("""
+                    SELECT nome, razao_social, tipo_sancao,
+                           data_inicio_sancao::text AS data_inicio,
+                           data_fim_sancao::text AS data_fim,
+                           orgao_sancionador, uf_orgao, fundamentacao, processo
+                    FROM ceis_registros
+                    WHERE cpf_cnpj = :cpf
+                    ORDER BY data_inicio_sancao DESC NULLS LAST
+                """), {"cpf": cpf}).mappings().all()
+            ]
 
-            d["autos_ibama_sifisc"] = int(conn.execute(text("""
-                SELECT COUNT(*) FROM ibama_autos_infracao WHERE cpf_cnpj_infrator = :cpf
-            """), {"cpf": cpf}).scalar() or 0)
-            d["multa_total_ibama_rs"] = float(conn.execute(text("""
-                SELECT COALESCE(SUM(valor_auto), 0) FROM ibama_autos_infracao
-                WHERE cpf_cnpj_infrator = :cpf
-            """), {"cpf": cpf}).scalar() or 0)
+            # --- CNEP detalhado ---
+            d["cnep_items"] = [
+                dict(r) for r in conn.execute(text("""
+                    SELECT nome, razao_social, tipo_sancao,
+                           data_inicio_sancao::text AS data_inicio,
+                           data_fim_sancao::text AS data_fim,
+                           valor_multa, orgao_sancionador, fundamentacao, processo
+                    FROM cnep_registros
+                    WHERE cpf_cnpj = :cpf
+                    ORDER BY data_inicio_sancao DESC NULLS LAST
+                """), {"cpf": cpf}).mappings().all()
+            ]
 
-            # Outros imóveis do mesmo proprietário
+            # --- Autos IBAMA detalhados (top 20 por valor) ---
+            d["autos_ibama_items"] = [
+                dict(r) for r in conn.execute(text("""
+                    SELECT numero_auto, serie_auto, tipo_auto,
+                           data_auto::text AS data,
+                           uf, municipio, valor_auto,
+                           status_debito, desc_infracao, enq_legal
+                    FROM ibama_autos_infracao
+                    WHERE cpf_cnpj_infrator = :cpf
+                    ORDER BY valor_auto DESC NULLS LAST
+                    LIMIT 20
+                """), {"cpf": cpf}).mappings().all()
+            ]
+            # Agregados
+            row = conn.execute(text("""
+                SELECT COUNT(*)::int AS total,
+                       COALESCE(SUM(valor_auto), 0)::float AS multa_total,
+                       COUNT(DISTINCT uf)::int AS ufs_distintas,
+                       MIN(data_auto)::text AS mais_antigo,
+                       MAX(data_auto)::text AS mais_recente
+                FROM ibama_autos_infracao WHERE cpf_cnpj_infrator = :cpf
+            """), {"cpf": cpf}).mappings().first()
+            d["autos_ibama_agregados"] = dict(row) if row else {}
+
+            # --- DataJud legal_records detalhados ---
+            d["processos_datajud"] = [
+                dict(r) for r in conn.execute(text("""
+                    SELECT record_type AS tipo, source AS tribunal,
+                           case_number AS numero, description, amount,
+                           status, date_filed::text AS data,
+                           municipality AS municipio, state AS uf
+                    FROM legal_records
+                    WHERE cpf_cnpj = :cpf
+                    ORDER BY date_filed DESC NULLS LAST
+                    LIMIT 30
+                """), {"cpf": cpf}).mappings().all()
+            ]
+
+            # --- Outros imóveis do mesmo proprietário ---
             try:
                 out = conn.execute(text("""
-                    SELECT cod_imovel, uf, area FROM sicar_completo WHERE cod_imovel IN (
-                        SELECT car_code FROM properties WHERE owner_cpf_cnpj = :cpf
-                    ) LIMIT 20
+                    SELECT car_code, matricula, property_name AS nome, area_total_ha,
+                           municipality AS municipio, state AS uf, car_status
+                    FROM properties
+                    WHERE owner_cpf_cnpj = :cpf
+                    LIMIT 50
                 """), {"cpf": cpf}).mappings().all()
                 d["outros_imoveis"] = [dict(r) for r in out]
             except Exception:
                 d["outros_imoveis"] = []
+
+            # --- Crédito rural do CPF (não só desta área) ---
+            try:
+                row = conn.execute(text("""
+                    SELECT COUNT(*)::int AS contratos,
+                           COALESCE(SUM(amount), 0)::float AS total_rs
+                    FROM rural_credits WHERE cpf_cnpj = :cpf
+                """), {"cpf": cpf}).mappings().first()
+                d["credito_rural_agregado"] = dict(row) if row else {}
+            except Exception:
+                d["credito_rural_agregado"] = {}
     except Exception as e:
         d["error"] = str(e)
 
     return d
 
 
+def coletar_mercado(ctx: DossieContext) -> dict:
+    """Seção 7 — histórico de preços das commodities na UF (12 meses)."""
+    if not ctx.uf:
+        return {"note": "UF não identificada"}
+    engine = get_engine()
+    try:
+        with engine.connect() as conn:
+            # Preço atual por commodity
+            atual = conn.execute(text("""
+                SELECT DISTINCT ON (commodity)
+                       commodity, preco_estadual, preco_nacional, unit, mes_ano
+                FROM market_prices_uf
+                WHERE uf = :uf
+                ORDER BY commodity, collected_at DESC
+            """), {"uf": ctx.uf}).mappings().all()
+            # Histórico 12 meses para principais commodities
+            historico = {}
+            for c in ["soja", "milho", "boi", "cafe", "algodao", "arroz", "trigo"]:
+                rows = conn.execute(text("""
+                    SELECT mes_ano, preco_estadual, preco_nacional
+                    FROM market_prices_uf
+                    WHERE uf = :uf AND commodity = :c
+                    ORDER BY collected_at DESC
+                    LIMIT 12
+                """), {"uf": ctx.uf, "c": c}).mappings().all()
+                if rows:
+                    historico[c] = list(reversed([dict(r) for r in rows]))
+            return {
+                "uf": ctx.uf,
+                "precos_atuais": [dict(r) for r in atual],
+                "historico_12m": historico,
+                "observacao": "Série mensal Agrolink · últimos 12 meses",
+            }
+    except Exception as e:
+        return {"error": str(e)}
+
+
 def coletar_credito(ctx: DossieContext) -> dict:
-    """Seção 6 — crédito rural (SICOR via MapBiomas Crédito Rural)."""
+    """Seção 6 — crédito rural detalhado (SICOR via MapBiomas)."""
     if not ctx.geometry_wkt:
         return {}
     engine = get_engine()
     wkt = f"ST_GeomFromText('{ctx.geometry_wkt}', 4326)"
+    d: dict[str, Any] = {}
     try:
         with engine.connect() as conn:
+            # Agregado total
             row = conn.execute(text(f"""
                 SELECT
                     COUNT(*)::int AS contratos,
                     COALESCE(SUM(vl_parc_credito), 0)::float AS total_rs,
                     COALESCE(SUM(vl_area_financ), 0)::float AS area_ha,
                     MAX(year)::int AS ano_mais_recente,
-                    ARRAY_AGG(DISTINCT cnpj_if) FILTER (WHERE cnpj_if IS NOT NULL) AS bancos
+                    MIN(year)::int AS ano_mais_antigo,
+                    COUNT(DISTINCT cnpj_if)::int AS n_instituicoes
                 FROM mapbiomas_credito_rural
                 WHERE ST_Intersects(geom, {wkt})
             """)).mappings().first()
-            return dict(row) if row else {}
+            d.update(dict(row) if row else {})
+
+            # Top 20 contratos
+            d["contratos_top"] = [
+                dict(r) for r in conn.execute(text(f"""
+                    SELECT year::int AS ano, order_number AS numero,
+                           vl_parc_credito AS valor_rs,
+                           vl_area_financ AS area_ha,
+                           dt_emissao::text AS emissao, cnpj_if AS banco
+                    FROM mapbiomas_credito_rural
+                    WHERE ST_Intersects(geom, {wkt})
+                    ORDER BY vl_parc_credito DESC NULLS LAST
+                    LIMIT 20
+                """)).mappings().all()
+            ]
+
+            # Por ano (série temporal)
+            d["por_ano"] = [
+                dict(r) for r in conn.execute(text(f"""
+                    SELECT year::int AS ano,
+                           COUNT(*)::int AS contratos,
+                           COALESCE(SUM(vl_parc_credito), 0)::float AS valor_total,
+                           COALESCE(SUM(vl_area_financ), 0)::float AS area_total
+                    FROM mapbiomas_credito_rural
+                    WHERE ST_Intersects(geom, {wkt})
+                    GROUP BY year
+                    ORDER BY year DESC
+                """)).mappings().all()
+            ]
     except Exception as e:
-        return {"error": str(e)}
+        d["error"] = str(e)
+    return d
 
 
 def coletar_mercado(ctx: DossieContext) -> dict:
@@ -752,6 +991,195 @@ def gerar_recomendacao(ctx: DossieContext, secoes: dict) -> dict:
 _current_ctx: Optional[DossieContext] = None  # type: ignore
 
 
+def gerar_analises_cruzadas(ctx: DossieContext, secoes: dict) -> dict:
+    """
+    Análises cruzadas entre fontes — esta é a camada analítica do dossiê.
+    Detecta padrões e correlações que um operador humano levaria horas
+    para descobrir manualmente varrendo todos os dados.
+    """
+    comp = secoes.get("compliance", {}) or {}
+    amb = secoes.get("ambiental", {}) or {}
+    fund = secoes.get("fundiario", {}) or {}
+    prop = secoes.get("proprietario", {}) or {}
+    cred = secoes.get("credito_rural", {}) or {}
+    val = secoes.get("valuation", {}) or {}
+
+    analises: list[dict] = []
+
+    # --- Desmate x Compliance MCR ---
+    prodes_pos_2019 = amb.get("prodes_total_pos_2019_ha", 0)
+    if prodes_pos_2019 > 0:
+        analises.append({
+            "tipo": "ambiental_compliance",
+            "severidade": "bloqueante",
+            "titulo": "Desmate PRODES pós-2019 bloqueia crédito rural (MCR 2.9)",
+            "descricao": (
+                f"Foram detectados {prodes_pos_2019:.2f} ha de desmate PRODES "
+                "após o marco de 31/07/2019. Isso dispara bloqueio automático "
+                "no MCR-A01 da Resolução CMN 5.193/2024 e inviabiliza crédito "
+                "com recursos públicos até a apresentação de ASV, PRAD ou TAC "
+                "validado."
+            ),
+            "acao": "Regularizar antes de submeter proposta bancária.",
+        })
+
+    # --- Embargo IBAMA x Crédito rural ativo ---
+    n_emb_ibama = len((amb.get("embargos_ibama_lista") or []))
+    n_emb_icmbio = len((amb.get("embargos_icmbio_lista") or []))
+    contratos_sicor = cred.get("contratos", 0)
+    if (n_emb_ibama + n_emb_icmbio) > 0 and contratos_sicor > 0:
+        analises.append({
+            "tipo": "embargo_credito_conflito",
+            "severidade": "critico",
+            "titulo": "Área com embargo ambiental e contratos SICOR ativos",
+            "descricao": (
+                f"Há {n_emb_ibama + n_emb_icmbio} embargo(s) ambiental(is) "
+                f"sobrepostos à área, e {contratos_sicor} contratos SICOR "
+                f"totalizando R$ {cred.get('total_rs', 0):,.2f} foram "
+                "identificados na geometria. Bancos podem exigir antecipação "
+                "do pagamento ou executar garantia por descumprimento do MCR 2.9."
+            ),
+            "acao": "Consultar banco financiador sobre cláusula de vencimento antecipado.",
+        })
+
+    # --- Sobreposição crítica x Valuation ---
+    desconto = val.get("desconto_pct", 0)
+    if desconto >= 40:
+        analises.append({
+            "tipo": "valuation_sobreposicao",
+            "severidade": "alto",
+            "titulo": f"Valor de mercado reduzido em {desconto:.0f}% por sobreposições críticas",
+            "descricao": (
+                f"A área sofre desconto de {desconto:.0f}% no valuation "
+                f"(valor estimado R$ {val.get('valor_estimado_rs', 0):,.2f} "
+                f"vs base R$ {val.get('valor_base_rs', 0):,.2f}) devido a "
+                f"{', '.join(m.get('motivo', '') for m in val.get('desconto_motivos', []))}. "
+                "Esse patamar de desconto frequentemente inviabiliza garantia "
+                "fiduciária em operações de CPR-F ou CDA-WA."
+            ),
+            "acao": "Avaliar estruturas alternativas (aval, fiança, hipoteca de 2º grau).",
+        })
+
+    # --- CEIS/CNEP do proprietário x Elegibilidade ---
+    n_ceis = len(prop.get("ceis_items", []))
+    n_cnep = len(prop.get("cnep_items", []))
+    if n_ceis + n_cnep > 0:
+        multa = sum((i.get("valor_multa") or 0) for i in prop.get("cnep_items", []))
+        analises.append({
+            "tipo": "ceis_cnep_bloqueio",
+            "severidade": "bloqueante",
+            "titulo": "Proprietário com sanções CEIS/CNEP ativas (Lei 12.846/13)",
+            "descricao": (
+                f"{n_ceis} registro(s) no CEIS (inidôneos) e {n_cnep} no "
+                f"CNEP (punidos) contra o proprietário. "
+                f"{'Multa total CNEP: R$ ' + f'{multa:,.2f}' if multa else ''}. "
+                "Isso bloqueia contratação com qualquer órgão público e "
+                "inviabiliza crédito rural oficial (BNDES, BB, Caixa)."
+            ),
+            "acao": "Consultar certidões no Portal da Transparência e discussão jurídica antes de operação.",
+        })
+
+    # --- Autos IBAMA x Crédito SICOR ---
+    n_autos = prop.get("autos_ibama_agregados", {}).get("total", 0)
+    multa_ibama = prop.get("autos_ibama_agregados", {}).get("multa_total", 0)
+    if n_autos >= 3 and multa_ibama > 100_000:
+        analises.append({
+            "tipo": "autos_reincidencia",
+            "severidade": "alto",
+            "titulo": f"Proprietário reincidente no IBAMA ({n_autos} autos, R$ {multa_ibama:,.0f})",
+            "descricao": (
+                f"O CPF/CNPJ do proprietário acumula {n_autos} autos de "
+                f"infração IBAMA com multa total de R$ {multa_ibama:,.2f}. "
+                "Reincidência ambiental eleva drasticamente o risco de novos "
+                "embargos e pode ser usada como critério de recusa em crédito."
+            ),
+            "acao": "Solicitar certidão IBAMA atualizada e verificar pagamento/defesa.",
+        })
+
+    # --- TI/UC bloqueante ---
+    ti_items = (fund.get("terras_indigenas") or {}).get("items", [])
+    uc_items = (fund.get("unidades_conservacao") or {}).get("items", [])
+    if ti_items:
+        nomes = [t.get("nome", "?") for t in ti_items[:3]]
+        analises.append({
+            "tipo": "ti_bloqueante",
+            "severidade": "bloqueante",
+            "titulo": "Sobreposição com Terra Indígena (CF art. 231)",
+            "descricao": (
+                f"Área sobreposta com {len(ti_items)} TI(s): {', '.join(nomes)}. "
+                "Por força constitucional, terras indígenas são bens da União "
+                "de posse permanente e usufruto exclusivo dos índios — sendo "
+                "NULOS os atos de ocupação e dominialidade particular. Crédito "
+                "rural sobre essa área é juridicamente inviável."
+            ),
+            "acao": "Mover frente produtiva para área fora do perímetro da TI.",
+        })
+    if uc_items:
+        ucs_pi = [u for u in uc_items if "PROTEC" in (u.get("grupo", "") or "").upper()]
+        if ucs_pi:
+            analises.append({
+                "tipo": "uc_protecao_integral",
+                "severidade": "bloqueante",
+                "titulo": f"UC Proteção Integral sobreposta ({len(ucs_pi)})",
+                "descricao": (
+                    f"Sobreposição com {len(ucs_pi)} UC(s) de Proteção Integral "
+                    f"({', '.join(u.get('nome','?') for u in ucs_pi[:2])}). "
+                    "Lei 9.985/00 veda atividade produtiva em Proteção Integral."
+                ),
+                "acao": "Compliance ambiental impossível nessa área — descartar operação.",
+            })
+
+    # --- Score consolidado de risco ---
+    score_ambiental = 100
+    if prodes_pos_2019 > 0:
+        score_ambiental -= min(60, prodes_pos_2019)
+    if (amb.get("deter_12m") or []):
+        score_ambiental -= 20
+    if (amb.get("embargos_ibama_lista") or []):
+        score_ambiental -= 30
+    score_ambiental = max(0, score_ambiental)
+
+    score_fundiario = 100
+    if ti_items:
+        score_fundiario -= 80
+    if uc_items:
+        score_fundiario -= 40
+    if ((fund.get("sigmine") or {}).get("items") or []):
+        score_fundiario -= 20
+    score_fundiario = max(0, score_fundiario)
+
+    score_proprietario = 100
+    if n_ceis + n_cnep > 0:
+        score_proprietario -= 50
+    if n_autos >= 3:
+        score_proprietario -= 30
+    if prop.get("lista_suja_mte_count", 0) > 0:
+        score_proprietario -= 100
+    score_proprietario = max(0, score_proprietario)
+
+    score_consolidado = (
+        score_ambiental * 0.35
+        + score_fundiario * 0.35
+        + score_proprietario * 0.30
+    )
+
+    return {
+        "analises": analises,
+        "scores_dominio": {
+            "ambiental": round(score_ambiental, 1),
+            "fundiario": round(score_fundiario, 1),
+            "proprietario": round(score_proprietario, 1),
+            "consolidado": round(score_consolidado, 1),
+        },
+        "semaforo": (
+            "verde" if score_consolidado >= 75
+            else "amarelo" if score_consolidado >= 50
+            else "laranja" if score_consolidado >= 25
+            else "vermelho"
+        ),
+    }
+
+
 def gerar_dossie(req: dict) -> dict:
     """Pipeline principal. Recebe payload, devolve dossiê estruturado."""
     global _current_ctx
@@ -784,6 +1212,7 @@ def gerar_dossie(req: dict) -> dict:
             secoes[key] = {"error": errors[key]}
 
     recomendacao = gerar_recomendacao(ctx, secoes)
+    analises_cruzadas = gerar_analises_cruzadas(ctx, secoes)
 
     return {
         "dossie_id": _gen_id(),
@@ -802,6 +1231,7 @@ def gerar_dossie(req: dict) -> dict:
             "bioma": ctx.bioma,
         },
         "secoes": secoes,
+        "analises_cruzadas": analises_cruzadas,
         "recomendacao": recomendacao,
         "errors": errors,
         "metadata": {

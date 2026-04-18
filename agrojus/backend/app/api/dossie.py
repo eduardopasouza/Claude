@@ -69,7 +69,35 @@ def gerar_dossie_endpoint(req: DossieRequest):
 
 @router.post("/pdf")
 def gerar_dossie_pdf(req: DossieRequest):
-    """Exporta dossiê como PDF (reportlab A4)."""
+    """Exporta dossiê como PDF extenso (25-45 páginas A4)."""
+    body = req.model_dump(exclude_none=True)
+    if not any(body.get(k) for k in (
+        "car_code", "cpf_cnpj", "geometry", "point", "bbox", "municipio_ibge"
+    )):
+        raise HTTPException(status_code=400, detail="Informe ao menos um identificador ou geometria")
+
+    from app.services.dossie_pdf import render_dossie_pdf
+    import io
+    dossie = gerar_dossie(body)
+
+    try:
+        pdf_bytes = render_dossie_pdf(dossie)
+    except Exception as exc:
+        logger.exception("erro ao renderizar PDF")
+        raise HTTPException(status_code=500, detail=f"Erro PDF: {exc}")
+
+    from fastapi.responses import StreamingResponse
+    filename = f"dossie_{dossie['dossie_id']}.pdf"
+    return StreamingResponse(
+        io.BytesIO(pdf_bytes),
+        media_type="application/pdf",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
+
+
+@router.post("/_legacy_pdf")
+def gerar_dossie_pdf_legacy(req: DossieRequest):
+    """Versão simples antiga (fallback)."""
     import io
     body = req.model_dump(exclude_none=True)
     if not any(body.get(k) for k in (
