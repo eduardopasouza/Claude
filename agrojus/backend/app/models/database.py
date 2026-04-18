@@ -401,6 +401,248 @@ class WebhookDelivery(Base):
     )
 
 
+# ==========================================================================
+# Sprint 4 — 10 coletores dados.gov.br + Portal Transparência
+# Novas camadas PostGIS que substituem stubs do layers-catalog.
+# ==========================================================================
+
+
+class SigmineProcesso(Base):
+    """Processo minerário ANM (shapefile SIGMINE)."""
+    __tablename__ = "sigmine_processos"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    processo = Column(String(30), index=True)
+    ano = Column(Integer, index=True)
+    fase = Column(String(100), index=True)  # "Requerimento de Pesquisa", "Concessão de Lavra"...
+    ult_evento = Column(String(200))
+    nome = Column(String(300))
+    subs = Column(String(200), index=True)  # Substância
+    uf = Column(String(2), index=True)
+    area_ha = Column(Float)
+    uso = Column(String(50))
+    geometry = Column(Geometry("MULTIPOLYGON", srid=4326))
+    raw_data = Column(JSON)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
+
+class AnaOutorga(Base):
+    """Outorga de direito de uso de recursos hídricos (ANA)."""
+    __tablename__ = "ana_outorgas_full"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    numero_ato = Column(String(100), index=True)
+    uf = Column(String(2), index=True)
+    municipio = Column(String(200))
+    cpf_cnpj = Column(String(20), index=True)
+    nome_usuario = Column(String(500))
+    finalidade = Column(String(200), index=True)  # irrigação, consumo humano, etc.
+    tipo_corpo_hidrico = Column(String(100))
+    nome_corpo_hidrico = Column(String(300))
+    vazao_l_s = Column(Float)
+    area_irrigada_ha = Column(Float)
+    data_emissao = Column(Date)
+    data_validade = Column(Date)
+    situacao = Column(String(50))
+    geometry = Column(Geometry("POINT", srid=4326))
+    raw_data = Column(JSON)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
+
+class AnaBho(Base):
+    """Base Hidrográfica Ottocodificada — trechos de drenagem."""
+    __tablename__ = "ana_bho"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    cocursodag = Column(String(100), index=True)
+    cotrecho = Column(String(100))
+    nome_curso = Column(String(300))
+    nu_ordem = Column(Integer)
+    nu_comptrec = Column(Float)  # comprimento em km
+    nu_areacont = Column(Float)  # area de contribuição
+    geometry = Column(Geometry("MULTILINESTRING", srid=4326))
+
+
+class IncraAssentamento(Base):
+    """Projeto de Assentamento INCRA."""
+    __tablename__ = "incra_assentamentos"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    nome_proje = Column(String(300), index=True)
+    cd_sipra = Column(String(30), index=True)
+    municipio = Column(String(200))
+    uf = Column(String(2), index=True)
+    area_ha = Column(Float)
+    capacidade = Column(Integer)  # famílias assentadas
+    num_famili = Column(Integer)
+    data_criac = Column(Date)
+    fase = Column(String(100))
+    forma_obte = Column(String(100))
+    esfera = Column(String(20))  # federal/estadual
+    geometry = Column(Geometry("MULTIPOLYGON", srid=4326))
+    raw_data = Column(JSON)
+
+
+class IncraQuilombola(Base):
+    """Área quilombola INCRA/Palmares."""
+    __tablename__ = "incra_quilombolas"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    nome = Column(String(300), index=True)
+    municipio = Column(String(200))
+    uf = Column(String(2), index=True)
+    area_ha = Column(Float)
+    num_famili = Column(Integer)
+    fase = Column(String(100))  # titulada, em processo, etc.
+    esfera = Column(String(20))
+    geometry = Column(Geometry("MULTIPOLYGON", srid=4326))
+    raw_data = Column(JSON)
+
+
+class AneelUsina(Base):
+    """Empreendimento de geração elétrica (BIG/ANEEL)."""
+    __tablename__ = "aneel_usinas"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    ceg = Column(String(50), index=True)  # Código Único de Empreendimento
+    nome = Column(String(300))
+    tipo = Column(String(50), index=True)  # UHE/PCH/CGH/UTE/UFV/EOL
+    combustivel = Column(String(100))
+    potencia_mw = Column(Float)
+    fase = Column(String(50))  # Operação/Construção/Projeto
+    uf = Column(String(2), index=True)
+    municipio = Column(String(200))
+    proprietario = Column(String(300))
+    geometry = Column(Geometry("POINT", srid=4326))
+    raw_data = Column(JSON)
+
+
+class AneelLinhaTransmissao(Base):
+    """Linha de transmissão elétrica (ONS/ANEEL)."""
+    __tablename__ = "aneel_linhas_transmissao"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    nome = Column(String(300), index=True)
+    tensao_kv = Column(Float)
+    operador = Column(String(300))
+    situacao = Column(String(50))
+    comprimento_km = Column(Float)
+    geometry = Column(Geometry("MULTILINESTRING", srid=4326))
+
+
+class GarantiaSafraBeneficiario(Base):
+    """Beneficiário do programa Garantia-Safra (semiárido)."""
+    __tablename__ = "garantia_safra"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    nis = Column(String(20), index=True)  # Número de Identificação Social
+    nome = Column(String(300))
+    cpf_cnpj = Column(String(20), index=True)
+    municipio = Column(String(200))
+    uf = Column(String(2), index=True)
+    ano_safra = Column(Integer, index=True)
+    valor_beneficio = Column(Float)
+    data_pagamento = Column(Date)
+    raw_data = Column(JSON)
+
+    __table_args__ = (
+        Index("idx_gs_uf_ano", "uf", "ano_safra"),
+        Index("idx_gs_mun_ano", "municipio", "ano_safra"),
+    )
+
+
+class CeisRegistro(Base):
+    """Cadastro de Empresas Inidôneas e Suspensas (CGU)."""
+    __tablename__ = "ceis_registros"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    cpf_cnpj = Column(String(20), index=True, nullable=False)
+    nome = Column(String(500))
+    razao_social = Column(String(500))
+    tipo_pessoa = Column(String(2))  # PF/PJ
+    tipo_sancao = Column(String(200))
+    data_inicio_sancao = Column(Date)
+    data_fim_sancao = Column(Date)
+    orgao_sancionador = Column(String(300))
+    uf_orgao = Column(String(2))
+    fundamentacao = Column(Text)
+    processo = Column(String(100))
+    raw_data = Column(JSON)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
+
+class CnepRegistro(Base):
+    """Cadastro Nacional de Empresas Punidas (CGU)."""
+    __tablename__ = "cnep_registros"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    cpf_cnpj = Column(String(20), index=True, nullable=False)
+    nome = Column(String(500))
+    razao_social = Column(String(500))
+    tipo_pessoa = Column(String(2))
+    tipo_sancao = Column(String(200))
+    data_inicio_sancao = Column(Date)
+    data_fim_sancao = Column(Date)
+    valor_multa = Column(Float)
+    orgao_sancionador = Column(String(300))
+    fundamentacao = Column(Text)
+    processo = Column(String(100))
+    raw_data = Column(JSON)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
+
+class IbamaEmbargo(Base):
+    """Termo de embargo IBAMA (com geometria quando disponível)."""
+    __tablename__ = "ibama_embargos"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    numero_termo = Column(String(50), index=True)
+    cpf_cnpj = Column(String(20), index=True)
+    nome_pessoa = Column(String(500))
+    uf = Column(String(2), index=True)
+    municipio = Column(String(200))
+    area_embargada_ha = Column(Float)
+    data_embargo = Column(Date)
+    tipo_infracao = Column(String(300))
+    artigo = Column(String(100))
+    valor_multa = Column(Float)
+    situacao = Column(String(50))
+    geometry = Column(Geometry("MULTIPOLYGON", srid=4326))
+    raw_data = Column(JSON)
+
+
+class IbamaCtf(Base):
+    """Cadastro Técnico Federal de atividades potencialmente poluidoras."""
+    __tablename__ = "ibama_ctf"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    cpf_cnpj = Column(String(20), index=True)
+    nome = Column(String(500))
+    categoria = Column(String(200))
+    atividade = Column(String(300))
+    situacao = Column(String(50))
+    uf = Column(String(2), index=True)
+    municipio = Column(String(200))
+    data_cadastro = Column(Date)
+    raw_data = Column(JSON)
+
+
+class DadosGovIngestLog(Base):
+    """Log de ingestões executadas pelo ETL dados_gov."""
+    __tablename__ = "dados_gov_ingest_log"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    loader = Column(String(100), index=True, nullable=False)
+    dataset_id = Column(String(200))
+    resource_url = Column(Text)
+    started_at = Column(DateTime, nullable=False)
+    finished_at = Column(DateTime)
+    status = Column(String(20))  # success, partial, failed
+    rows_fetched = Column(Integer)
+    rows_persisted = Column(Integer)
+    error = Column(Text)
+
+
 # --- Engine & Session ---
 
 _engine = None
