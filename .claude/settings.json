@@ -1,0 +1,6 @@
+{
+  "_comment": "Desliga o plugin advIA em projetos fora de fluxo jurídico. O AgroJus é um produto de software; não há FIRAC, casos ou peças. As skills da advIA ainda aparecem como invocáveis via slash, mas os hooks SessionStart/Stop/PreCompact/SubagentStop ficam inertes aqui para não confundir com o advIA de produção.",
+  "disabledPlugins": {
+    "advia@local": true
+  }
+}

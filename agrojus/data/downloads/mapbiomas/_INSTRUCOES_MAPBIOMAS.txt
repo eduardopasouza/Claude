@@ -1,3 +1,0 @@
-=== MAPBIOMAS MANUAL DOWNLOAD FOLDER ===
-Por favor, solte todos os TIFs, Geopackages e as Estatísticas CSV (Raster/Vetorial) nesta pasta!
-O backend do AgroJus irá escanear estas pastas para ingestão via GeoPandas.

@@ -1,0 +1,44 @@
+name: agrojus
+
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    mem_limit: 1g
+    cpus: 1.5
+    environment:
+      POSTGRES_DB: agrojus
+      POSTGRES_USER: agrojus
+      POSTGRES_PASSWORD: agrojus
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    # tuning conservador para dev local (evita engolir RAM com buffers)
+    command: >
+      postgres
+      -c shared_buffers=256MB
+      -c effective_cache_size=512MB
+      -c work_mem=16MB
+      -c maintenance_work_mem=64MB
+      -c max_connections=50
+
+  backend:
+    build: ./backend
+    mem_limit: 2g
+    cpus: 2.0
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://agrojus:agrojus@db:5432/agrojus
+      DEBUG: "true"
+      GCP_PROJECT_ID: agrojus
+      GOOGLE_APPLICATION_CREDENTIALS: /app/credentials/application_default_credentials.json
+    depends_on:
+      - db
+    volumes:
+      - ./backend:/app
+      - ./data:/app/data
+      - ${APPDATA}/gcloud/application_default_credentials.json:/app/credentials/application_default_credentials.json:ro
+
+volumes:
+  pgdata:

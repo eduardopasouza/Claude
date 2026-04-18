@@ -33,3 +33,48 @@ Thumbs.db
 # Dados grandes (baixados em runtime)
 agrojus/backend/data/reference/*.csv
 agrojus/backend/data/shapefiles/
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.coverage
+.pytest_cache/
+.ruff_cache/
+
+# Environment
+.env
+*.db
+
+# Data (all large files ignored — manter só .gitkeep)
+data/*
+!data/.gitkeep
+downloads/*
+!downloads/.gitkeep
+backend/data/cache/
+
+# Credentials (NEVER commit)
+backend/credentials/
+*.credentials.json
+application_default_credentials.json
+
+# Frontend
+node_modules/
+.next/
+.vercel/
+
+# OS
+*.log
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Project trash
+_lixo/
+
+# Claude Code worktrees
+.claude/worktrees/
