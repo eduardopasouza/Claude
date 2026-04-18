@@ -30,6 +30,15 @@ A tela mais importante do produto agora existe.
 - [x] **Sprint 2d** — ferramentas de mapa: point analysis + draw polygon + upload KML/GeoJSON + fix choropleth quintis
 - [ ] **Sprint 2e** — 2 abas restantes (Monitoramento webhooks · Ações laudo PDF/DOCX)
 
+### Sprint Market ✅ **CONCLUÍDO (sessão 8)**
+Tela `/mercado` reescrita com foco na UF do usuário + integração no mapa.
+- [x] Collector Agrolink (13 commodities × até 26 UFs × até 265 meses)
+- [x] `/mercado` UX centrada: UFPicker + cards por commodity + gráfico histórico
+- [x] `/noticias` feed RSS agro (3 filtros: Todas · Mercado · Jurídico)
+- [x] Widget "Colorir por preço" no mapa (10 camadas choropleth preço UF)
+- [x] Zoom +/- no MapPreview (ficha do imóvel)
+- [x] Remoção de todas as indicações de fonte no frontend
+
 ### Sprint 3 — Compliance MCR 2.9 expandido (5 dias) ⏳
 De 6 para 30 critérios auditáveis + EUDR expandido.
 - [ ] Backend: 8 checks fundiários (CAR + SIGEF + TI + UC + SIGMINE + ...)
@@ -114,9 +123,10 @@ Guia em `docs/research/dados-gov-guia.md` com 32 datasets priorizados.
 
 | Fase | Objetivo | Status |
 |---|---|---|
-| Sprint 1-2 | Ficha do imóvel funcional com score de compliance | ✅ atingido (10/12 abas + toolbar mapa) |
-| Sprint 3-5 | 50+ camadas ativas (~42% do catálogo) + mapa v3 | 32 ativas (27%) · choropleth com quintis ✅ · AOI custom ✅ |
-| Sprint 6-8 | Produto demonstrável end-to-end: mapa + ficha + compliance + motor jurídico + leilões | ⏳ |
+| Sprint 1-2 | Ficha do imóvel funcional com score de compliance | ✅ (10/12 abas + toolbar mapa + MapPreview) |
+| Sprint Market | /mercado regionalizado + notícias + choropleth de preço | ✅ (13 commodities × 26 UFs) |
+| Sprint 3-5 | 50+ camadas ativas + mapa v3 | 42 ativas (35%) · quintis ✅ · AOI custom ✅ · preço UF ✅ |
+| Sprint 6-8 | Produto demonstrável end-to-end: motor jurídico + leilões + webhook | ⏳ |
 | Longo prazo | 100% das 119 camadas ativadas ou marcadas "não viáveis sem parceria" | ⏳ |
 
 ---

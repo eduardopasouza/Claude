@@ -3,7 +3,90 @@
 Todas as mudanças notáveis do projeto, por sessão de trabalho.
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
-## [Unreleased] — 2026-04-18
+## [0.8.0] — 2026-04-18 · Sessão 8
+
+### Added — Cotações & Mercado (Agrolink + UX "minha região")
+
+**Backend**
+- Collector `agrolink.py` — scrape das páginas `/cotacoes/historico/{uf}/{slug}` (HTML puro, até **265 meses** de histórico mensal por UF).
+- **13 commodities cobertas**: Grãos (soja, milho, sorgo, trigo, arroz, feijão), Permanentes/Industriais (café, algodão, cana-de-açúcar, açúcar), Proteínas (boi gordo, frango, leite).
+- Cobertura: 5–26 UFs por commodity (milho cobre quase Brasil inteiro; soja 20 UFs; leite 18 UFs; boi 20 UFs).
+- Endpoints:
+  - `GET /api/v1/market/quotes/agrolink/{commodity}` → histórico + uf_stats
+  - `GET /api/v1/market/quotes/agrolink` → lista commodities
+  - `GET /api/v1/geo/ibge/choropleth/uf/preco/{commodity}` → GeoJSON BR UF com preço atual estadual
+- Tesseract OCR instalado no container (fallback anti-scraping futuro; não usado no fluxo atual).
+
+**Frontend `/mercado` — UX centrada na UF do usuário**
+- `UFPicker` grande (default MA, persistido em localStorage).
+- Hero "**Preço de hoje em {Estado}**" com 13 commodity cards (preço estadual + seta colorida % vs Brasil).
+- Gráfico histórico Recharts ao clicar num card: estadual + nacional, range 1/2/5/10 anos + "tudo".
+- Indicadores BCB (SELIC, dólar, IPCA, IGP-M, CDI) compactos.
+- 6 notícias de mercado embed (link pra `/noticias`).
+- **Removidos**: CBOT/Yahoo Finance, cards CEPEA duplicados, labels "fonte: X".
+
+**Frontend `/mapa`**
+- `PriceChoroplethWidget` — botão "Colorir por preço" no topo-esquerdo do mapa com dropdown agrupado (Grãos / Industriais / Proteínas) — 10 commodities. Toggle exclusivo.
+- 10 novas camadas no catálogo (`preco_*_uf`) com endpoint `ibge_choropleth_uf`.
+- `ZoomControl` no MapPreview (mini-mapa da ficha) + scroll-wheel zoom + drag habilitados.
+
+### Added — Ficha do Imóvel `/imoveis/[car]` (10/12 abas)
+
+- **Sprint 2a** (sessão 7): Visão Geral, Dossiê, Histórico MapBiomas, Agronomia (Agritec).
+- **Sprint 2b** (sessão 7): Compliance (MCR 2.9 + EUDR), Clima (NASA POWER), Jurídico (DataJud).
+- **Sprint 2c** (sessão 7): Valuation (NBR 14.653-3 nível expedito), Logística (KNN PostGIS), Crédito (SICOR 5.6M contratos).
+- **MapPreview** no header da ficha com polígono CAR em Leaflet.
+
+### Added — Ferramentas do mapa (sessão 7)
+
+- **Point analysis** — click em qualquer ponto → popup com município, TI próxima, DETER, clima, jurisdição.
+- **Draw polygon** — desenhar AOI → analisa overlaps em 9 camadas + score 0-100.
+- **Upload GeoJSON/KML/GML** — parser built-in para memorial descritivo, CAR não oficial.
+- **Backend**: novo endpoint `POST /geo/aoi/analyze` com ST_Area + overlaps.
+
+### Changed — Visualização
+
+- **Choropleth IBGE**: escala linear → **quintis** (5 buckets uniformes). Datasets log-normais agora têm diferenciação visual real.
+- **OmniSearch (TopBar)**: regex detecta código CAR e roteia para `/imoveis/[car]`.
+- **Catálogo `layers-catalog.ts`**: 42 camadas ativas (antes 18) + 10 de preço por UF (Agrolink).
+
+### Added — Dados Sessão 7
+
+- **Embrapa AgroAPI** — 7/9 APIs funcionais (27 endpoints REST)
+- **IBGE Choropleth** — 16 métricas (PAM 10 culturas + PPM 4 rebanhos + POP/PIB)
+- **MapBiomas Alerta GraphQL** — auth JWT via mutation signIn
+- **IBAMA SIFISC** — 16.121 autos de infração georreferenciados em `geo_autos_ibama`
+- **Notícias RSS** — nova rota `/noticias` (Canal Rural, Agrolink, Notícias Agrícolas, etc.)
+
+### Housekeeping (sessão 8)
+
+- 7 handoffs antigos movidos para `docs/_archive/handoffs_antigos/`.
+- 6 docs superseded (CONTEXTO_COMPLETO, CONTINUIDADE_PROMPT, FRONTEND_SPEC, INVENTARIO_FEATURES, ROADMAP_FASEADO_v1, STATUS_FONTES_DADOS) movidos para `docs/_archive/`.
+- `docs/` agora tem 9 arquivos ativos (antes: 22+).
+- README reescrito com estrutura real do projeto e índice de documentação.
+
+### Commits
+
+| Hash | Descrição |
+|---|---|
+| `324b3f6` | Sprint 1 — Embrapa + IBGE choropleth + MapBiomas + IBAMA script |
+| `2d6bd06` | Sprint 2a — ficha 4 abas + IBAMA 16k |
+| `df70f47` | Sprint 2b — Compliance + Clima + Jurídico (7 abas) |
+| `2732e38` | OmniSearch CAR routing |
+| `bd0815f` | Fix render choropleth + docs consolidadas |
+| `d3f2dcf` | Sprint 2c — Valuation + Logística + Crédito (10 abas) |
+| `3f9de00` | Sprint 2d — toolbar mapa (point/draw/upload) + quintis |
+| `613e4b7` | Housekeeping docs |
+| `88223c0` | /mercado com gráficos + /noticias + choropleth UF SIDRA |
+| `17fe965` | Cotações regionais Notícias Agrícolas |
+| `d6d551d` | Agrolink histórico UF 22 anos + preço no mapa |
+| `8a976fe` | Fix slugs Agrolink — 7 commodities × até 26 UFs |
+| `506ba60` | +6 commodities (total 13) + 10 camadas choropleth preço |
+| `426a6b4` | UX /mercado centrada na região + widget preço mapa + zoom MapPreview |
+
+---
+
+## [0.7.0-unreleased-consolidation] — 2026-04-17 · Sessão 7
 
 ### Added — Cotações regionalizadas (Agrolink)
 - **Collector Agrolink UF** (`app/collectors/agrolink.py`) — scrape das páginas `/cotacoes/historico/{uf}/{slug}` que têm **texto puro** (tabela HTML com mês/ano, preço estadual, preço nacional) desde 2003. Até **265 meses** de histórico por UF.
