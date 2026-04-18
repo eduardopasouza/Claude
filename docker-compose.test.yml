@@ -1,0 +1,37 @@
+# docker-compose.test.yml — banco isolado para suite de integração.
+#
+# Uso:
+#   docker compose -f docker-compose.test.yml up -d
+#   pytest -m "not live"
+#   docker compose -f docker-compose.test.yml down -v
+#
+# Diferenças vs docker-compose.yml principal:
+#   - Porta 5433 (não 5432) para não conflitar com dev local
+#   - Banco agrojus_test
+#   - Volume efêmero (não persiste entre runs)
+#   - Sem backend — os testes sobem TestClient direto em processo
+#
+# make test-up, make test-down e make test fazem este ciclo automaticamente.
+
+name: agrojus_test
+
+services:
+  db_test:
+    image: postgis/postgis:16-3.4
+    mem_limit: 512m
+    cpus: 1.0
+    environment:
+      POSTGRES_DB: agrojus_test
+      POSTGRES_USER: agrojus
+      POSTGRES_PASSWORD: agrojus
+    ports:
+      - "5433:5432"
+    tmpfs:
+      - /var/lib/postgresql/data   # RAM only — rápido + descartável
+    command: >
+      postgres
+      -c shared_buffers=128MB
+      -c fsync=off
+      -c synchronous_commit=off
+      -c full_page_writes=off
+      -c max_connections=30
