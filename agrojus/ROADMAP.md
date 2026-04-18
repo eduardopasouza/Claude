@@ -22,11 +22,13 @@ Destravou múltiplas camadas com pouco código.
 - [x] Coletor IBAMA dados abertos — **16.121 autos carregados**
 - [x] Coletor MapBiomas Alerta GraphQL — **JWT + query alerts por CAR**
 
-### Sprint 2 — Ficha do imóvel `/imoveis/[car]` ✅ **7/12 ABAS CONCLUÍDAS**
+### Sprint 2 — Ficha do imóvel `/imoveis/[car]` ✅ **10/12 ABAS CONCLUÍDAS**
 A tela mais importante do produto agora existe.
 - [x] **Sprint 2a** — scaffold + 4 abas (Visão · Dossiê · Histórico · Agronomia)
 - [x] **Sprint 2b** — +3 abas (Compliance · Clima · Jurídico)
-- [ ] **Sprint 2c** — 5 abas restantes (Valuation · Logística · Crédito · Monitoramento · Ações)
+- [x] **Sprint 2c** — +3 abas (Valuation · Logística · Crédito) + MapPreview header
+- [x] **Sprint 2d** — ferramentas de mapa: point analysis + draw polygon + upload KML/GeoJSON + fix choropleth quintis
+- [ ] **Sprint 2e** — 2 abas restantes (Monitoramento webhooks · Ações laudo PDF/DOCX)
 
 ### Sprint 3 — Compliance MCR 2.9 expandido (5 dias) ⏳
 De 6 para 30 critérios auditáveis + EUDR expandido.
@@ -112,8 +114,8 @@ Guia em `docs/research/dados-gov-guia.md` com 32 datasets priorizados.
 
 | Fase | Objetivo | Status |
 |---|---|---|
-| Sprint 1-2 | Ficha do imóvel funcional com score de compliance | ✅ atingido (7/12 abas) |
-| Sprint 3-5 | 50+ camadas ativas (~42% do catálogo) + mapa v3 | 32 ativas (27%) |
+| Sprint 1-2 | Ficha do imóvel funcional com score de compliance | ✅ atingido (10/12 abas + toolbar mapa) |
+| Sprint 3-5 | 50+ camadas ativas (~42% do catálogo) + mapa v3 | 32 ativas (27%) · choropleth com quintis ✅ · AOI custom ✅ |
 | Sprint 6-8 | Produto demonstrável end-to-end: mapa + ficha + compliance + motor jurídico + leilões | ⏳ |
 | Longo prazo | 100% das 119 camadas ativadas ou marcadas "não viáveis sem parceria" | ⏳ |
 

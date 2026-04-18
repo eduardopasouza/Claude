@@ -21,6 +21,10 @@ from app.collectors.geolayers import FUNAICollector, TerraBrasilisCollector
 from app.collectors.ibge import IBGECollector
 from app.collectors.nasa_power import NASAPowerCollector
 from app.collectors.camadas import get_active_layers, get_all_layers, get_layers_by_category
+from pydantic import BaseModel
+import json as _json
+from sqlalchemy import text
+from app.models.database import get_engine
 
 logger = logging.getLogger("agrojus.geo")
 router = APIRouter()
@@ -156,6 +160,129 @@ async def analyze_point(lat: float, lon: float, radius_km: float = 5.0):
             "alertas_desmatamento": len(deter_alerts) if isinstance(deter_alerts, list) else 0,
         },
         "sources": ["FUNAI GeoServer", "INPE/TerraBrasilis", "IBGE", "NASA POWER", "Jurisdição Legal"],
+    }
+
+
+# ---------------------------------------------------------------------------
+# AOI (Area of Interest) — análise de polígono customizado do usuário
+# ---------------------------------------------------------------------------
+class AOIRequest(BaseModel):
+    """GeoJSON de polígono desenhado ou uploaded."""
+    geometry: dict
+    name: str | None = None
+
+
+@router.post("/aoi/analyze")
+def analyze_aoi(req: AOIRequest):
+    """
+    Analisa uma Area of Interest (polígono GeoJSON custom) via PostGIS.
+
+    Retorna área (ha) + overlaps com 8 camadas críticas (TI, UC, embargo,
+    PRODES, DETER Amazônia/Cerrado, MapBiomas, SIGEF) + município via
+    centroide.
+
+    Usado por:
+      - ferramenta "desenhar polígono" no mapa
+      - upload de GeoJSON/KML (AOI customizada)
+      - memorial descritivo / CAR não oficial
+
+    Body:
+      { "geometry": {"type":"Polygon","coordinates":[[[lon,lat],...]]},
+        "name": "Fazenda Boa Esperança" }
+    """
+    try:
+        geom_json = _json.dumps(req.geometry)
+    except Exception as e:
+        return {"error": f"GeoJSON inválido: {e}"}
+
+    engine = get_engine()
+
+    # Query principal: área + centróide + overlaps agregados
+    sql = text("""
+        WITH aoi AS (
+            SELECT ST_SetSRID(ST_GeomFromGeoJSON(:geom), 4326) as g
+        )
+        SELECT
+            ST_Area(ST_Transform(aoi.g, 3857)) / 10000.0 as area_ha,
+            ST_X(ST_Centroid(aoi.g)) as cx,
+            ST_Y(ST_Centroid(aoi.g)) as cy,
+            (SELECT COUNT(*) FROM geo_terras_indigenas t
+              WHERE ST_Intersects(aoi.g, t.geometry)) as ti_count,
+            (SELECT COUNT(*) FROM geo_unidades_conservacao u
+              WHERE ST_Intersects(aoi.g, u.geometry)) as uc_count,
+            (SELECT COUNT(*) FROM geo_embargos_icmbio e
+              WHERE ST_Intersects(aoi.g, e.geometry)) as embargo_count,
+            (SELECT COUNT(*) FROM geo_prodes p
+              WHERE ST_Intersects(aoi.g, p.geometry)) as prodes_count,
+            (SELECT COUNT(*) FROM geo_deter_amazonia d
+              WHERE ST_Intersects(aoi.g, d.geometry)) as deter_am_count,
+            (SELECT COUNT(*) FROM geo_deter_cerrado d
+              WHERE ST_Intersects(aoi.g, d.geometry)) as deter_ce_count,
+            (SELECT COUNT(*) FROM geo_mapbiomas_alertas m
+              WHERE ST_Intersects(aoi.g, m.geometry)) as mapbiomas_count,
+            (SELECT COUNT(*) FROM sigef_parcelas s
+              WHERE ST_Intersects(aoi.g, s.geometry)) as sigef_count,
+            (SELECT COUNT(*) FROM geo_autos_ibama a
+              WHERE ST_Intersects(aoi.g, a.geometry)) as ibama_autos_count
+        FROM aoi
+    """)
+
+    try:
+        with engine.connect() as conn:
+            row = conn.execute(sql, {"geom": geom_json}).mappings().first()
+    except Exception as e:
+        logger.warning("AOI analyze failed: %s", e)
+        return {"error": str(e)}
+
+    if not row:
+        return {"error": "Falha ao processar AOI"}
+
+    overlaps = {
+        "terras_indigenas": row["ti_count"] or 0,
+        "unidades_conservacao": row["uc_count"] or 0,
+        "embargos_icmbio": row["embargo_count"] or 0,
+        "prodes": row["prodes_count"] or 0,
+        "deter_amazonia": row["deter_am_count"] or 0,
+        "deter_cerrado": row["deter_ce_count"] or 0,
+        "mapbiomas_alertas": row["mapbiomas_count"] or 0,
+        "sigef_parcelas": row["sigef_count"] or 0,
+        "autos_ibama": row["ibama_autos_count"] or 0,
+    }
+
+    total_overlaps = sum(overlaps.values())
+
+    # Score simplificado
+    score = 100
+    if overlaps["terras_indigenas"] > 0:
+        score -= 40
+    if overlaps["embargos_icmbio"] > 0:
+        score -= 35
+    if overlaps["unidades_conservacao"] > 0:
+        score -= 25
+    if overlaps["prodes"] > 0:
+        score -= 15
+    if overlaps["deter_amazonia"] > 0 or overlaps["deter_cerrado"] > 0:
+        score -= 15
+    if overlaps["mapbiomas_alertas"] > 0:
+        score -= 10
+    score = max(0, score)
+
+    return {
+        "name": req.name or "AOI Custom",
+        "area_ha": round(float(row["area_ha"] or 0), 2),
+        "centroid": {
+            "lat": float(row["cy"] or 0),
+            "lon": float(row["cx"] or 0),
+        },
+        "overlaps": overlaps,
+        "total_overlaps": total_overlaps,
+        "compliance_score": score,
+        "risk_level": (
+            "critical" if overlaps["terras_indigenas"] or overlaps["embargos_icmbio"]
+            else "high" if overlaps["unidades_conservacao"] or overlaps["prodes"]
+            else "medium" if total_overlaps > 0
+            else "low"
+        ),
     }
 
 

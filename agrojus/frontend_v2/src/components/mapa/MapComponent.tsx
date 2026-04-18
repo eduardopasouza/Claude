@@ -17,8 +17,10 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
+  CircleMarker,
   GeoJSON,
   MapContainer,
+  Polyline,
   TileLayer,
   useMap,
   useMapEvents,
@@ -38,6 +40,15 @@ import { LayerInspector, InspectorPayload } from "./LayerInspector";
 import { LayerTreePanel } from "./LayerTreePanel";
 import { StatsDashboard } from "./StatsDashboard";
 import PropertySearch from "./PropertySearch";
+import {
+  MapTools,
+  ToolMode,
+  DrawnPolygon,
+  PointAnalysis,
+  AOIAnalysis,
+  analyzePoint,
+  analyzeAOI,
+} from "./MapTools";
 
 // ---------------------------------------------------------------------------
 // Sub-componente: captura eventos de pan/zoom
@@ -54,6 +65,26 @@ function MapEvents({
     onMove(map.getBounds().toBBoxString(), map.getZoom(), map.getCenter());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  return null;
+}
+
+// ---------------------------------------------------------------------------
+// Sub-componente: captura clicks (apenas quando modo de tool ativo)
+// ---------------------------------------------------------------------------
+function MapClickHandler({
+  onClick,
+  mode,
+}: {
+  onClick: (latlng: L.LatLng) => void;
+  mode: ToolMode;
+}) {
+  useMapEvents({
+    click: (e) => {
+      if (mode === "point" || mode === "draw") {
+        onClick(e.latlng);
+      }
+    },
+  });
   return null;
 }
 
@@ -195,17 +226,28 @@ function ActiveLayer({
     return null;
   }
 
-  // Para choropleth, calcular min/max para paleta
+  // Para choropleth: calcular quintis (quantile breaks)
+  // Distribuições agrícolas são log-normais — escala LINEAR pinta 99% igual.
+  // Quintis distribuem uniformemente: top 20% = cor mais escura, etc.
   const isChoropleth = layer.geometryType === "choropleth";
-  let vMin = 0;
-  let vMax = 1;
+  let breaks: number[] = []; // 4 cortes = 5 buckets
   if (isChoropleth) {
-    const values = (data.features as Array<{ properties: { value?: number } }>)
+    const values = (data.features as Array<{ properties: { value?: number | null } }>)
       .map((f) => f.properties?.value)
-      .filter((v): v is number => typeof v === "number" && !isNaN(v));
-    if (values.length > 0) {
-      vMin = Math.min(...values);
-      vMax = Math.max(...values);
+      .filter((v): v is number => typeof v === "number" && !isNaN(v) && v > 0)
+      .sort((a, b) => a - b);
+    if (values.length >= 5) {
+      breaks = [
+        values[Math.floor(values.length * 0.2)],
+        values[Math.floor(values.length * 0.4)],
+        values[Math.floor(values.length * 0.6)],
+        values[Math.floor(values.length * 0.8)],
+      ];
+    } else if (values.length > 0) {
+      const min = values[0];
+      const max = values[values.length - 1];
+      const step = (max - min) / 5;
+      breaks = [min + step, min + 2 * step, min + 3 * step, min + 4 * step];
     }
   }
 
@@ -214,7 +256,7 @@ function ActiveLayer({
     if (isChoropleth) {
       const f = feature as { properties?: { value?: number | null } };
       const v = f?.properties?.value;
-      if (v == null || isNaN(v)) {
+      if (v == null || isNaN(v) || v <= 0) {
         return {
           color: "#334155",
           weight: 0.3,
@@ -222,12 +264,19 @@ function ActiveLayer({
           fillOpacity: 0.1,
         };
       }
-      const t = vMax > vMin ? (v - vMin) / (vMax - vMin) : 0.5;
+      // Acha bucket via quintil (0..4)
+      let bucket = 0;
+      for (const b of breaks) {
+        if (v > b) bucket++;
+        else break;
+      }
+      const palette =
+        PALETTES[layer.colorScheme ?? "YlGn"] || PALETTES.YlGn;
       return {
         color: "#0f172a",
         weight: 0.3,
-        fillColor: interpolateColor(layer.colorScheme ?? "YlGn", t),
-        fillOpacity: 0.75,
+        fillColor: palette[Math.min(bucket, palette.length - 1)],
+        fillOpacity: 0.85,
       };
     }
     if (layer.geometryType === "line") {
@@ -297,6 +346,86 @@ export default function MapComponent() {
   // CAR selecionado pelo PropertySearch
   const [selectedCar, setSelectedCar] = useState<string | null>(null);
   const [flyTarget, setFlyTarget] = useState<[number, number] | null>(null);
+
+  // === Ferramentas do mapa (ponto / desenhar / upload) ===
+  const [toolMode, setToolMode] = useState<ToolMode>("none");
+  const [drawPoints, setDrawPoints] = useState<[number, number][]>([]);
+  const [uploadedFeatures, setUploadedFeatures] = useState<DrawnPolygon[]>([]);
+  const [pendingAnalysis, setPendingAnalysis] = useState<AOIAnalysis | null>(null);
+  const [pendingPointAnalysis, setPendingPointAnalysis] = useState<PointAnalysis | null>(null);
+  const [pointMarker, setPointMarker] = useState<[number, number] | null>(null);
+
+  const handleMapClick = useCallback(
+    async (latlng: L.LatLng) => {
+      if (toolMode === "point") {
+        setPointMarker([latlng.lat, latlng.lng]);
+        try {
+          const res = await analyzePoint(latlng.lat, latlng.lng, 5);
+          setPendingPointAnalysis(res);
+          setPendingAnalysis(null);
+        } catch (e) {
+          console.error("analyzePoint failed:", e);
+        }
+      } else if (toolMode === "draw") {
+        setDrawPoints((prev) => [...prev, [latlng.lat, latlng.lng]]);
+      }
+    },
+    [toolMode]
+  );
+
+  const handleDrawCancel = useCallback(() => {
+    setDrawPoints([]);
+    setToolMode("none");
+  }, []);
+
+  const handleDrawFinish = useCallback(async () => {
+    if (drawPoints.length < 3) return;
+    const coords = drawPoints.map(([lat, lon]) => [lon, lat]);
+    coords.push([coords[0][0], coords[0][1]]); // fecha
+    const geometry = {
+      type: "Polygon" as const,
+      coordinates: [coords],
+    };
+    try {
+      const res = await analyzeAOI(geometry, "Polígono desenhado");
+      setPendingAnalysis(res);
+      setPendingPointAnalysis(null);
+      // salva como uploaded feature pra aparecer no mapa
+      setUploadedFeatures((prev) => [
+        ...prev,
+        {
+          type: "Feature",
+          geometry,
+          properties: { name: "Desenho manual", source: "drawn" },
+        },
+      ]);
+    } catch (e) {
+      console.error("analyzeAOI failed:", e);
+    } finally {
+      setDrawPoints([]);
+      setToolMode("none");
+    }
+  }, [drawPoints]);
+
+  const handleUpload = useCallback(async (features: DrawnPolygon[]) => {
+    setUploadedFeatures((prev) => [...prev, ...features]);
+    // Analisa o primeiro feature automaticamente
+    if (features.length > 0) {
+      try {
+        const res = await analyzeAOI(features[0].geometry, features[0].properties.name);
+        setPendingAnalysis(res);
+        setPendingPointAnalysis(null);
+      } catch (e) {
+        console.error("analyzeAOI failed:", e);
+      }
+    }
+  }, []);
+
+  const clearAnalysis = useCallback(() => {
+    setPendingAnalysis(null);
+    setPendingPointAnalysis(null);
+    setPointMarker(null);
+  }, []);
 
   // Leaflet icons fix
   useEffect(() => {
@@ -384,6 +513,7 @@ export default function MapComponent() {
             setCenter(c);
           }}
         />
+        <MapClickHandler onClick={handleMapClick} mode={toolMode} />
 
         {/* Basemap dinâmico */}
         <TileLayer
@@ -408,8 +538,74 @@ export default function MapComponent() {
         <SelectedPropertyLayer carCode={selectedCar} />
         <FlyToProperty center={flyTarget} />
 
+        {/* Polígonos desenhados/upados */}
+        {uploadedFeatures.map((f, i) => (
+          <GeoJSON
+            key={`upload-${i}-${f.properties.name}`}
+            data={f}
+            style={{
+              color: f.properties.source === "uploaded" ? "#F59E0B" : "#10B981",
+              weight: 3,
+              fillColor: f.properties.source === "uploaded" ? "#F59E0B" : "#10B981",
+              fillOpacity: 0.2,
+              dashArray: "6,4",
+            }}
+          />
+        ))}
+
+        {/* Linha temporária enquanto desenha */}
+        {toolMode === "draw" && drawPoints.length >= 2 && (
+          <Polyline
+            positions={drawPoints}
+            pathOptions={{ color: "#F59E0B", weight: 2, dashArray: "4,4" }}
+          />
+        )}
+
+        {/* Vértices do polígono em desenho */}
+        {toolMode === "draw" &&
+          drawPoints.map((p, i) => (
+            <CircleMarker
+              key={`vertex-${i}`}
+              center={p}
+              radius={4}
+              pathOptions={{
+                color: "#F59E0B",
+                fillColor: "#F59E0B",
+                fillOpacity: 1,
+                weight: 2,
+              }}
+            />
+          ))}
+
+        {/* Marker de ponto analisado */}
+        {pointMarker && (
+          <CircleMarker
+            center={pointMarker}
+            radius={8}
+            pathOptions={{
+              color: "#10B981",
+              fillColor: "#10B981",
+              fillOpacity: 0.6,
+              weight: 3,
+            }}
+          />
+        )}
+
         <ZoomControl position="bottomleft" />
       </MapContainer>
+
+      {/* Ferramentas (ponto/desenhar/upload) */}
+      <MapTools
+        mode={toolMode}
+        onModeChange={setToolMode}
+        onUpload={handleUpload}
+        drawPoints={drawPoints}
+        onDrawCancel={handleDrawCancel}
+        onDrawFinish={handleDrawFinish}
+        pendingAnalysis={pendingAnalysis}
+        pendingPointAnalysis={pendingPointAnalysis}
+        onClearAnalysis={clearAnalysis}
+      />
 
       {/* === HUD OVERLAYS === */}
 

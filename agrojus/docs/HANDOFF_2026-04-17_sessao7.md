@@ -154,24 +154,86 @@ docker compose exec backend python scripts/download_ibama_autos.py
 
 **Resultado:** 14 camadas choropleth renderizam município por município com gradiente. Primeira carga ~10-15s (~5570 polygons + merge SIDRA); re-visita instantânea (cache SHA256 24h).
 
-### 1.7 Commits
+### 1.7 Sprint 2c — Valuation, Logística, Crédito + MapPreview 🟢
 
-Branch: `claude/continue-backend-dev-sVLGG`
-5 commits nesta sessão:
+3 novas abas implementadas (ficha → 10/12 abas):
+
+8. **Valuation** — NBR 14.653-3 nível expedito. Endpoint `/property/{car}/valuation` calcula:
+   - Preço base por UF (heurística 2025: MT R$40k/ha, MA R$13k/ha, SP R$55k/ha, ...)
+   - Valor base = área × preço_UF
+   - Descontos: TI −100% (ilíquido), UC −50%, embargo ICMBio −40%
+   - Disclaimer NBR exigindo avaliador credenciado para nível II/III
+9. **Logística** — endpoint `/property/{car}/neighbors` com PostGIS KNN (`ST_DistanceSphere`) retorna top 5 armazéns CONAB, frigoríficos SIF, portos ANTAQ + distância mínima rodovia federal DNIT e ferrovia ANTT.
+10. **Crédito** — endpoint `/property/{car}/credit` busca contratos em `mapbiomas_credito_rural` (5.6M) que intersectam o CAR, agrupa por ano, top 20 contratos com IF e valor em BRL.
+
+Novo componente **MapPreview** no header da ficha — mini-mapa leaflet (dynamic import) mostrando o polígono do CAR com estilo pontilhado verde sobre basemap dark.
+
+### 1.8 Sprint 2d — Fix choropleth + toolbar interativa do mapa 🟢
+
+**Feedback do Eduardo:** "carregou a quantidade de rebanho bovino dos municipios, mas pintou quase tudo da mesma cor. Falta opção para desenhar polígono, mandar arquivo com memorial descritivo, clicar no mapa e pedir informações sobre aquela localização."
+
+**4 correções/features implementadas:**
+
+#### a) Choropleth: escala linear → quintis (quantile breaks)
+
+Problema: distribuições agrícolas são log-normais. Um Corumbá/MS com 2M cabeças vs Açailândia/MA com 400k → escala linear pintava 99% dos municípios no primeiro bucket (claro).
+
+Solução em `MapComponent.tsx → ActiveLayer`:
+```ts
+const sorted = values.sort((a,b) => a-b);
+breaks = [20%, 40%, 60%, 80%];  // 4 cortes = 5 buckets
+bucket = count(v > break);       // bucket 0..4
+```
+
+Resultado: top 20% municípios = cor escura, próximos 20% = média-escura, ..., bottom 20% = cor clara. Diferenciação visual forte.
+
+#### b) Click no mapa → análise de ponto (estilo Registro Rural)
+
+- Botão 🎯 no toolbar canto superior direito
+- Quando ativo, click em qualquer ponto do mapa chama `/geo/analyze-point?lat=&lon=&radius_km=5`
+- Retorna município (IBGE reverse geocode), TIs próximas (FUNAI), DETER alerts (INPE), clima (NASA POWER), jurisdição/reserva legal
+- Drawer inferior esquerdo mostra tudo com risk level e flags
+
+#### c) Desenhar polígono (AOI customizada)
+
+- Botão ✏️ no toolbar
+- Click adiciona vértices (≥3 para fechar)
+- Banner superior mostra contagem + botões "Fechar" / "Cancelar"
+- Ao fechar, envia GeoJSON para `POST /geo/aoi/analyze`
+- Endpoint retorna: área em ha (via `ST_Area` + `ST_Transform 3857`), centróide, overlaps em 9 camadas (TI, UC, embargo ICMBio, PRODES, DETER AM/CE, MapBiomas, SIGEF, autos IBAMA), score 0-100, risk level
+- Polígono fica plotado permanentemente no mapa com cor laranja pontilhada
+
+#### d) Upload de GeoJSON/KML
+
+- Botão 📤 no toolbar
+- Aceita `.geojson`, `.json`, `.kml`, `.gml`
+- Parser built-in em `MapTools.tsx`:
+  - GeoJSON: lê Feature/FeatureCollection/geometry, extrai Polygon/MultiPolygon
+  - KML: DOMParser XML, percorre `<Placemark><Polygon>` e `<coordinates>`
+- Plota todos os polígonos encontrados + analisa o primeiro automaticamente
+
+### 1.9 Commits
+
+Branch: `claude/continue-backend-dev-sVLGG` — 8 commits na sessão:
 - **324b3f6** — Sprint 1 completo (Embrapa + IBGE choropleth + MapBiomas + IBAMA script)
-- **2d6bd06** — Sprint 2a (ficha com 4 abas + IBAMA 16k autos carregados + camada PostGIS registrada)
-- **df70f47** — Sprint 2b (Compliance + Clima + Jurídico → 7 abas funcionais)
+- **2d6bd06** — Sprint 2a (ficha com 4 abas + IBAMA 16k autos)
+- **df70f47** — Sprint 2b (Compliance + Clima + Jurídico = 7 abas)
 - **2732e38** — OmniSearch CAR routing + handoff update
-- **(este commit)** — Fix render choropleth + docs consolidadas (README + ROADMAP)
+- **bd0815f** — Fix render choropleth + docs consolidadas
+- **d3f2dcf** — Sprint 2c (Valuation + Logística + Crédito + MapPreview = 10 abas)
+- **(próximo)** — Sprint 2d (quintis + toolbar point/draw/upload + AOI endpoint)
+- **(próximo)** — CHANGELOG + docs consolidados sessão 7 fechada
 
-Arquivos novos:
-- 2 coletores (embrapa rewrite + mapbiomas_alerta)
-- 3 routers backend (embrapa, ibge_choropleth, mapbiomas)
+Arquivos novos na sessão 7:
+- 2 coletores novos (embrapa rewrite + mapbiomas_alerta)
+- 4 routers backend (embrapa, ibge_choropleth, mapbiomas) + 3 endpoints novos em property.py + 1 endpoint novo em geo.py (aoi/analyze)
 - 1 script ETL (download_ibama_autos)
 - 1 rota frontend `/imoveis/[car]`
-- 9 componentes imovel (PropertyHeader, TabNav, 7 Tabs)
+- 12 componentes imovel (PropertyHeader, TabNav, MapPreview, 10 Tabs)
+- 1 componente MapTools (toolbar + parser KML/GeoJSON + drawer análise)
 - 14 camadas catálogo ativadas + 14 paletas choropleth
 - 1 nova camada PostGIS: autos_ibama (18ª)
+- 1 tabela nova: geo_autos_ibama (16.121 linhas)
 
 ---
 

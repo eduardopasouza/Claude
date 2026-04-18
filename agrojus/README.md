@@ -132,20 +132,32 @@ Swagger completo: `http://localhost:8000/docs`
 
 ---
 
-## Ficha do Imóvel `/imoveis/[car]` — 7/12 abas
+## Ficha do Imóvel `/imoveis/[car]` — 10/12 abas
 
-1. **Visão Geral** — score de compliance (0-100) + 8 KPI cards + alertas MapBiomas tempo real
+1. **Visão Geral** — score de compliance (0-100) + 8 KPI cards + alertas MapBiomas tempo real + MapPreview (mini-mapa)
 2. **Compliance** — MCR 2.9 ↔ EUDR toggle, POST automatizado, banner APTO/RESTRITO/BLOQUEADO
 3. **Dossiê** — 8 camadas cruzadas (TI, UC, embargo, PRODES, DETER, MapBiomas, SIGEF)
 4. **Histórico** — timeline MapBiomas Alerta mensal + % do imóvel afetado
 5. **Agronomia** — Agritec zoneamento ZARC + culturas do município
 6. **Clima** — NASA POWER (temperatura, chuva, gráfico 30d)
 7. **Jurídico** — DataJud CNJ (lookup por CPF/CNPJ do proprietário)
-8. ⏳ **Valuation** — NBR 14.653-3 (próximo sprint)
-9. ⏳ **Logística** — distâncias a armazéns/frigos/portos
-10. ⏳ **Crédito** — SICOR BCB histórico
-11. ⏳ **Monitoramento** — webhooks
+8. **Valuation** — NBR 14.653-3 nível expedito (preço UF × área − descontos por overlap)
+9. **Logística** — KNN armazéns CONAB / frigoríficos SIF / portos ANTAQ + rodovia DNIT + ferrovia ANTT
+10. **Crédito** — contratos SICOR via MapBiomas (5.6M) intersectando CAR, com chart por ano
+11. ⏳ **Monitoramento** — webhooks (próximo sprint)
 12. ⏳ **Ações** — laudo PDF, minuta DOCX, export GeoPackage
+
+## Mapa `/mapa` — toolbar interativa
+
+Canto superior direito do mapa tem 3 ferramentas:
+
+| Ferramenta | Função |
+|---|---|
+| 🎯 **Analisar ponto** | Click em qualquer ponto → popup com município, TI próxima, DETER, clima, risco |
+| ✏️ **Desenhar polígono** | Vértices + fechar → análise AOI (área, overlaps em 9 camadas, score) |
+| 📤 **Upload** | Aceita `.geojson`, `.json`, `.kml`, `.gml` (memorial descritivo, polígonos de clientes) |
+
+**Choropleth IBGE** usa **quintis** (quantile breaks): top 20% dos municípios = cor mais escura, cinco buckets uniformes. Evita o problema de distribuição log-normal (soja, bovinos, PIB) que pinta 99% igual com escala linear.
 
 ---
 
