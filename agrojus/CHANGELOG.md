@@ -3,6 +3,40 @@
 Todas as mudanças notáveis do projeto, por sessão de trabalho.
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.10.0] — 2026-04-17 · Sessão 9 · Sprint 3
+
+### Added — MCR 2.9 Expandido (32 critérios em 5 eixos)
+
+**Backend — `app/services/mcr29_expanded.py` + endpoints em `compliance.py`:**
+- 32 critérios em 5 eixos: Fundiário (8) · Ambiental (8) · Trabalhista (6) · Jurídico (5) · Financeiro (5)
+- Status por critério: `passed` / `failed` / `pending` / `not_applicable`
+- Peso por critério reflete impacto no indeferimento (bloqueantes com `weight >= 2.5`)
+- Score 0-1000 ponderado + risk level (LOW/MEDIUM/HIGH/CRITICAL)
+- 13/32 critérios com **dados reais integrados** (41%); 19 `pending` aguardam Sprint 4 (dados.gov.br) e fontes pagas (CCIR, ITR, CNDT, CEIS/CNEP via Portal Transparência, etc.)
+
+**Novos endpoints:**
+- `GET /api/v1/compliance/mcr29/criteria` → metadados dos 32 critérios agrupados por eixo
+- `POST /api/v1/compliance/mcr29/full` → executa avaliação, retorna `axis_scores`, `criteria[]`, `sources_consulted`, `pending_sources`, `recommendation`
+- `POST /api/v1/compliance/mcr29/full/pdf` → laudo PDF A4 (4 páginas) com tabela por eixo, destaque em falhas/pendentes, lista de fontes
+
+**Frontend `/compliance` — reescrito do zero (antes: mock 3 rows):**
+- Form CAR + CPF/CNPJ com query string auto-run (`?car=...`)
+- Banner geral APTO / RESTRITO / BLOQUEADO / INDETERMINADO + score + recomendação
+- 5 cards de score por eixo com ícones distintos
+- Accordion por eixo (auto-expande se há falhas) mostrando cada critério com evidência JSON expansível
+- Botão "Exportar laudo PDF"
+- Tela inicial com overview dos 5 eixos
+
+**`ComplianceTab` da ficha** ganhou card de destaque com link para `/compliance?car={CAR}&auto=true`, preservando o toggle básico MCR 2.9 / EUDR.
+
+### Commits
+| Hash | Descrição |
+|---|---|
+| `b9182bd` | feat(compliance): service expandido + 3 endpoints + PDF |
+| `ca26f3f` | feat(frontend): /compliance standalone + link do ComplianceTab |
+
+---
+
 ## [0.9.0] — 2026-04-17 · Sessão 9 · Sprint 2e
 
 ### Added — Sistema de Webhooks (tempo real)

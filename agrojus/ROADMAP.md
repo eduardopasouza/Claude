@@ -39,14 +39,19 @@ Tela `/mercado` reescrita com foco na UF do usuário + integração no mapa.
 - [x] Zoom +/- no MapPreview (ficha do imóvel)
 - [x] Remoção de todas as indicações de fonte no frontend
 
-### Sprint 3 — Compliance MCR 2.9 expandido (5 dias) ⏳
-De 6 para 30 critérios auditáveis + EUDR expandido.
-- [ ] Backend: 8 checks fundiários (CAR + SIGEF + TI + UC + SIGMINE + ...)
-- [ ] Backend: 8 ambientais (PRODES + DETER + MapBiomas + embargos + autos IBAMA + ...)
-- [ ] Backend: 6 trabalhistas (MTE lista suja + CNDT + CAGED + ...)
-- [ ] Backend: 5 jurídicos (DataJud + DJEN + protestos + CNES + ...)
-- [ ] Backend: 5 financeiros (SICOR + CEIS + CNEP + ...)
-- [ ] Frontend: `/compliance` com checklist interativo + PDF
+### Sprint 3 — Compliance MCR 2.9 expandido ✅ **CONCLUÍDO (sessão 9)**
+De 6 para **32 critérios** auditáveis em 5 eixos.
+- [x] Backend: 8 fundiários (CAR + SIGEF + TI + UC + SIGMINE + CCIR + ITR + SPU)
+- [x] Backend: 8 ambientais (PRODES + DETER + MapBiomas + embargos + autos IBAMA + RL + APP + ANA)
+- [x] Backend: 6 trabalhistas (MTE lista suja + CNDT + CAGED + eSocial + NR-31 + CIPATR)
+- [x] Backend: 5 jurídicos (DataJud + DJEN + protestos + CNJ + execução fiscal)
+- [x] Backend: 5 financeiros (SICOR + CEIS + CNEP + PIX + CCIR)
+- [x] Frontend: `/compliance` com checklist interativo + laudo PDF
+- [x] Integração com aba Compliance da ficha do imóvel
+
+**Status dos 32 critérios** (pós-Sprint 3):
+- 13 com dados reais integrados (41%) — verificação automática
+- 19 com status `pending` aguardando Sprint 4 (dados.gov.br) e fontes que exigem integração adicional (CCIR, ITR, CNDT, CEIS/CNEP via Portal Transparência, protestos CENPROT, SPU, SIGMINE, etc.)
 
 ### Sprint 4 — 10 coletores dados.gov.br (4 dias) ⏳
 Guia em `docs/research/dados-gov-guia.md` com 32 datasets priorizados.
