@@ -10,6 +10,7 @@ import {
   AlertCircle,
   Loader2,
   Download,
+  FileBarChart2,
 } from "lucide-react";
 import { fetchWithAuth } from "@/lib/api";
 
@@ -251,6 +252,19 @@ function safeFilename(s: string): string {
   return s.replace(/[^\w.-]+/g, "_").slice(0, 80) || "aoi";
 }
 
+function openDossieForAOI(feature: DrawnPolygon, name: string) {
+  const sk = `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+  sessionStorage.setItem(
+    `agrojus:dossie:${sk}`,
+    JSON.stringify({
+      geometry: feature.geometry,
+      persona: "geral",
+      name: `Dossiê · ${name}`,
+    }),
+  );
+  window.open(`/dossie?sk=${sk}`, "_blank");
+}
+
 function ToolButton({
   icon: Icon,
   label,
@@ -332,6 +346,19 @@ function AnalysisDrawer({
           </button>
         </div>
       </header>
+
+      {aoi && aoiGeometry && (
+        <div className="px-4 pt-3">
+          <button
+            onClick={() => openDossieForAOI(aoiGeometry, aoi.name)}
+            className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white text-xs font-semibold border border-emerald-400/40 shadow-md shadow-emerald-900/30 transition"
+            title="Gerar dossiê completo desta área (14 seções)"
+          >
+            <FileBarChart2 className="w-3.5 h-3.5" />
+            Gerar Dossiê desta área
+          </button>
+        </div>
+      )}
 
       <div className="p-4 space-y-3 text-sm">
         {aoi && (

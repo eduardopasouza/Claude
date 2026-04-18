@@ -10,6 +10,8 @@ import {
   AlertCircle,
   Copy,
   ExternalLink,
+  FileBarChart2,
+  ArrowRight,
 } from "lucide-react";
 import { fetchWithAuth, API_URL } from "@/lib/api";
 import type { PropertyData } from "../PropertyHeader";
@@ -52,10 +54,46 @@ export function AcoesTab({ property }: { property: PropertyData }) {
         </p>
       </header>
 
+      {/* Dossiê completo — CTA principal */}
+      <a
+        href={`/dossie?car=${encodeURIComponent(property.car_code)}&persona=geral`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group block border border-emerald-500/40 rounded-xl p-5 bg-gradient-to-br from-emerald-950/50 via-slate-900 to-slate-950 hover:border-emerald-400/70 transition"
+      >
+        <div className="flex items-center gap-4">
+          <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex-shrink-0">
+            <FileBarChart2 className="w-6 h-6 text-emerald-400" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <h3 className="font-bold text-slate-100 text-base flex items-center gap-2">
+              Dossiê Agrofundiário Completo
+              <span className="text-[10px] uppercase tracking-wider bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded font-semibold">
+                Novo
+              </span>
+            </h3>
+            <p className="text-sm text-slate-300 mt-0.5">
+              Relatório consolidado com 14 seções · 15+ fontes públicas · adaptado por persona (comprador, advogado, investidor, consultor, produtor, trading).
+            </p>
+            <div className="text-xs text-slate-400 mt-2 flex flex-wrap gap-x-3 gap-y-1">
+              <span>📍 Identificação</span>
+              <span>🧾 Fundiário</span>
+              <span>🛡 Compliance MCR 2.9</span>
+              <span>🌱 Ambiental</span>
+              <span>👤 Proprietário</span>
+              <span>💰 Valuation</span>
+              <span>🚚 Logística</span>
+              <span>⚖ Jurídico</span>
+            </div>
+          </div>
+          <ArrowRight className="w-5 h-5 text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-1 transition flex-shrink-0" />
+        </div>
+      </a>
+
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <ExportCard
-          title="Laudo PDF"
-          description="Relatório consolidado: identificação, sobreposições, crédito rural e avisos legais. Pronto para anexar a processo."
+          title="Laudo PDF (rápido)"
+          description="Relatório curto: identificação, sobreposições, crédito rural e avisos. Pronto para anexar a processo."
           filename={`laudo_${property.car_code}.pdf`}
           endpoint={`/property/${encodeURIComponent(property.car_code)}/laudo.pdf`}
           icon={FileText}

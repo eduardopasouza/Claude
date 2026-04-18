@@ -1,8 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { Copy, Download, ExternalLink, FileText, Gavel, ScanEye, ShieldAlert, X, Check } from "lucide-react";
+import { Copy, Download, ExternalLink, FileBarChart2, FileText, Gavel, ScanEye, ShieldAlert, X, Check } from "lucide-react";
 import { getLayer } from "@/lib/layers-catalog";
+
+// Camadas que representam imóvel rural — habilita botão "Gerar Dossiê"
+const PROPERTY_LAYERS = new Set([
+  "sicar_completo",
+  "geo_car",
+  "sigef_parcelas",
+  "snci_imoveis",
+  "incra_assentamentos",
+  "incra_quilombolas",
+]);
 
 export type InspectorPayload = {
   layerId: string;
@@ -78,6 +88,34 @@ export function LayerInspector({
     URL.revokeObjectURL(url);
   }
 
+  function openDossie() {
+    if (!data!.geometry) return;
+    // Gera chave única e armazena o request em sessionStorage
+    const sk = `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+    const nome =
+      (data!.properties.cod_imovel as string) ||
+      (data!.properties.nome as string) ||
+      cfg!.name;
+
+    // Se for CAR, passa car_code direto (mais rápido + usa geometria do PostGIS)
+    const carCode =
+      (data!.properties.cod_imovel as string) ||
+      (data!.properties.car_code as string);
+    const isCarLayer = data!.layerId === "sicar_completo" || data!.layerId === "geo_car";
+
+    const body: Record<string, unknown> = {
+      persona: "geral",
+      name: `Dossiê · ${nome}`,
+    };
+    if (isCarLayer && carCode) {
+      body.car_code = carCode;
+    } else {
+      body.geometry = data!.geometry;
+    }
+    sessionStorage.setItem(`agrojus:dossie:${sk}`, JSON.stringify(body));
+    window.open(`/dossie?sk=${sk}`, "_blank");
+  }
+
   function downloadKml() {
     if (!data!.geometry) return;
     const kml = geoJsonToKml(
@@ -151,6 +189,25 @@ export function LayerInspector({
           </div>
         )}
       </div>
+
+      {/* Dossiê completo — CTA destacada para camadas de imóvel rural */}
+      {PROPERTY_LAYERS.has(data.layerId) && Boolean(data.geometry) && (
+        <div className="px-4 pt-3">
+          <button
+            onClick={openDossie}
+            className="w-full group flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white text-sm font-semibold border border-emerald-400/40 shadow-lg shadow-emerald-900/30 transition"
+            title="Gerar relatório completo sobre esta área — 14 seções, 15+ fontes, persona-adaptado"
+          >
+            <FileBarChart2 className="h-4 w-4" />
+            Gerar Dossiê Completo
+            <ExternalLink className="h-3 w-3 opacity-80" />
+          </button>
+          <p className="text-[10px] text-slate-500 mt-1.5 px-1">
+            Relatório com 14 seções em nova aba — fundiário, compliance,
+            ambiental, crédito, mercado, logística, valuation, jurídico.
+          </p>
+        </div>
+      )}
 
       {/* Quick-copy actions */}
       <div className="px-4 pt-3 pb-2 border-t border-border/60 grid grid-cols-2 gap-1.5">
