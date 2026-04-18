@@ -1,5 +1,5 @@
 """
-Cliente base CKAN para dados.gov.br.
+Cliente base CKAN para dados.gov.br com fallback a URLs diretas.
 
 Uso típico dos coletores:
     from app.collectors.dados_gov import DadosGovClient
@@ -10,10 +10,14 @@ Uso típico dos coletores:
     shp_resource = client.pick_resource(pkg, format_hint="SHP", name_hint="brasil")
     data_bytes = client.download_resource(shp_resource)
 
-O CKAN oficial do dados.gov.br às vezes retorna 403 sem o header Authorization
-ou falha silenciosamente — o cliente tenta fallback para download direto da
-URL do resource quando a API retornar metadata mas a URL do recurso for
-pública (maioria dos casos).
+**Fallback automático**: quando `DADOS_GOV_TOKEN` não está presente, está
+expirado (401) ou o portal está fora do ar (5xx/timeout), o cliente cai
+automaticamente para a tabela `KNOWN_RESOURCES` abaixo, que mapeia cada
+dataset_id para URLs públicas diretas conhecidas do arquivo (CSV/ZIP/SHP).
+
+Essas URLs são as mesmas que o CKAN devolveria em `package.resources[].url`.
+Se mudarem, basta atualizar a tabela. O resto do fluxo (`pick_resource`,
+`download_resource`) funciona sem alterações.
 """
 
 from __future__ import annotations
@@ -26,6 +30,81 @@ import httpx
 from app.config import settings
 
 logger = logging.getLogger("agrojus.dados_gov")
+
+
+# ==========================================================================
+# Fallback: URLs públicas diretas dos recursos quando CKAN estiver offline
+# ou o token estiver expirado. Validadas manualmente contra os portais de
+# origem — atualizar quando publisher mover o arquivo.
+# ==========================================================================
+
+KNOWN_RESOURCES: dict[str, list[dict]] = {
+    # SIGMINE/ANM — processos minerários do Brasil (ponto de origem da ANM,
+    # não passa pelo CKAN dados.gov.br; estável há anos)
+    "sigmine-processos-minerarios": [
+        {
+            "name": "SIGMINE Brasil - processos minerários SHP zipado",
+            "format": "SHP",
+            "url": "https://app.anm.gov.br/dadosabertos/SIGMINE/PROCESSOS_MINERARIOS/BRASIL.zip",
+        },
+    ],
+    # INCRA — Certificação / Acervo Fundiário
+    "assentamentos-brasil": [
+        {
+            "name": "INCRA Assentamentos Brasil SHP",
+            "format": "SHP",
+            "url": "https://certificacao.incra.gov.br/csv_shp/zip/Assentamento%20Brasil.zip",
+        },
+    ],
+    "areas-quilombolas": [
+        {
+            "name": "INCRA Áreas Quilombolas SHP",
+            "format": "SHP",
+            "url": "https://certificacao.incra.gov.br/csv_shp/zip/%C3%81reas%20de%20Quilombolas.zip",
+        },
+    ],
+    # ANA — Outorgas (CSV público) e Base Hidrográfica Ottocodificada
+    "outorgas-de-direito-de-uso-de-recursos-hidricos": [
+        {
+            "name": "ANA Cadastro Nacional de Usuários de Recursos Hídricos (CNARH40) - outorgas",
+            "format": "CSV",
+            "url": "https://metadados.snirh.gov.br/files/d2deb9e1-5961-490c-9df1-11d2a2d56d5b/outorga_federal_convertida.csv",
+        },
+    ],
+    "base-hidrografica-ottocodificada": [
+        {
+            "name": "ANA BHO Multiescalas SHP zipado",
+            "format": "SHP",
+            "url": "https://metadados.snirh.gov.br/files/6f2bcbd2-4a77-4103-a5f1-5a8a6cb4d180/geoft_bho_2017_5k.zip",
+        },
+    ],
+    # ANEEL — BIG (SIGA) + SIGEL (linhas transmissão)
+    "empreendimentos-de-geracao-de-energia-eletrica-siga-aneel": [
+        {
+            "name": "ANEEL SIGA - Sistema Integrado de Geração Atualizado (CSV)",
+            "format": "CSV",
+            "url": "https://dadosabertos.aneel.gov.br/datastore/dump/49140d5f-10a9-4c73-8115-d0ff2f3c7361",
+        },
+    ],
+    "sistema-de-informacoes-georreferenciadas-do-setor-eletrico-sigel": [
+        {
+            "name": "ANEEL SIGEL - Linha Transmissão SHP",
+            "format": "SHP",
+            "url": "https://sigel.aneel.gov.br/arcgis/rest/services/PORTAL/WFS/MapServer/63/query?where=1%3D1&outFields=*&f=geojson",
+        },
+    ],
+    # Garantia-Safra (CGU)
+    "beneficiarios-do-programa-garantia-safra": [
+        {
+            "name": "Garantia-Safra beneficiários (CSV)",
+            "format": "CSV",
+            "url": "https://portaldatransparencia.gov.br/download-de-dados/garantia-safra/202604",
+        },
+    ],
+    # IBAMA - embargos (ficará em stub aqui; dataset oficial exige renovação do token ou endpoint alternativo)
+    "ibama-termo-de-embargo": [],
+    "ibama-cadastro-tecnico-federal-de-atividades-potencialmente-poluidoras-e-ou-utilizadoras-de-recursos-ambientais": [],
+}
 
 
 class DadosGovClient:
@@ -45,16 +124,46 @@ class DadosGovClient:
         return h
 
     # ------------------------------------------------------------------ API
+    def _fallback_pkg(self, package_id: str, reason: str) -> dict:
+        """Retorna dict sintético compatível com package_show usando KNOWN_RESOURCES."""
+        resources = KNOWN_RESOURCES.get(package_id, [])
+        if not resources:
+            raise RuntimeError(
+                f"CKAN package_show falhou ({reason}) e não há URLs diretas conhecidas "
+                f"para '{package_id}'. Atualize KNOWN_RESOURCES em dados_gov.py ou "
+                f"renove o DADOS_GOV_TOKEN."
+            )
+        logger.warning(
+            "CKAN indisponível para %s (%s) — usando fallback com %d recurso(s) direto(s)",
+            package_id, reason, len(resources),
+        )
+        return {
+            "id": package_id,
+            "name": package_id,
+            "resources": resources,
+            "_fallback": True,
+            "_fallback_reason": reason,
+        }
+
     def package_show(self, package_id: str) -> dict:
-        """Retorna metadados + resources de um dataset."""
+        """Retorna metadados + resources. Fallback para URLs diretas se CKAN falhar."""
         url = f"{self.BASE}/package_show"
-        with httpx.Client(timeout=self.timeout, follow_redirects=True) as c:
-            r = c.get(url, params={"id": package_id}, headers=self.headers)
+        try:
+            with httpx.Client(timeout=self.timeout, follow_redirects=True) as c:
+                r = c.get(url, params={"id": package_id}, headers=self.headers)
+            if r.status_code == 401:
+                return self._fallback_pkg(package_id, "token expirado/ausente (401)")
+            if r.status_code >= 500:
+                return self._fallback_pkg(package_id, f"CKAN {r.status_code}")
             r.raise_for_status()
-        payload = r.json()
-        if not payload.get("success"):
-            raise RuntimeError(f"CKAN package_show falhou: {payload.get('error')}")
-        return payload["result"]
+            payload = r.json()
+            if not payload.get("success"):
+                return self._fallback_pkg(package_id, f"success=false ({payload.get('error')})")
+            return payload["result"]
+        except httpx.TimeoutException:
+            return self._fallback_pkg(package_id, "timeout")
+        except httpx.RequestError as e:
+            return self._fallback_pkg(package_id, f"erro de conexão: {e}")
 
     def package_search(self, query: str, groups: Optional[str] = None, rows: int = 50) -> list[dict]:
         """Busca datasets. `groups` restringe por tema (ex: 'meio-ambiente')."""
