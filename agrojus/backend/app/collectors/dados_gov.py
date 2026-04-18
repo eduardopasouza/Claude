@@ -105,8 +105,20 @@ KNOWN_RESOURCES: dict[str, list[dict]] = {
     # Garantia-Safra — Portal Transparência protege arquivo zip por sessão web (403 via curl direto).
     # Coletar via API paginada seria viável como CEIS/CNEP; stub por ora.
     "beneficiarios-do-programa-garantia-safra": [],
-    # IBAMA embargos/CTF — dataset oficial exige renovação do token ou endpoint alternativo
-    "ibama-termo-de-embargo": [],
+    # IBAMA embargos/CTF — IBAMA tem CKAN próprio (dadosabertos.ibama.gov.br).
+    # URL do SHP georreferenciado valida em abr/2026:
+    "ibama-termo-de-embargo": [
+        {
+            "name": "IBAMA termo de embargo — SHP com geometria",
+            "format": "SHP",
+            "url": "https://pamgia.ibama.gov.br/geoservicos/arquivos/adm_embargo_ibama_a.shp.zip",
+        },
+        {
+            "name": "IBAMA termo de embargo — CSV (sem geometria)",
+            "format": "CSV",
+            "url": "https://dadosabertos.ibama.gov.br/dados/SIFISC/termo_embargo/termo_embargo/termo_embargo_csv.zip",
+        },
+    ],
     "ibama-cadastro-tecnico-federal-de-atividades-potencialmente-poluidoras-e-ou-utilizadoras-de-recursos-ambientais": [],
 }
 

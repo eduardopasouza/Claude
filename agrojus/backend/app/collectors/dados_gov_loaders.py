@@ -566,6 +566,99 @@ def _normalize_portal_record(r: dict) -> Optional[dict]:
     }
 
 
+def load_ibama_embargos() -> dict:
+    """IBAMA termos de embargo com geometria (SHP do pamgia.ibama.gov.br)."""
+    def fn():
+        client = DadosGovClient()
+        pkg = client.package_show("ibama-termo-de-embargo")
+        res = client.pick_resource(pkg, format_hint="SHP")
+        if not res:
+            raise RuntimeError("SHP IBAMA embargos não encontrado")
+        content = client.download_resource(res, max_mb=600)
+        shp = _extract_shapefile(content)
+        if not shp:
+            raise RuntimeError("SHP embargos não extraído")
+
+        # Campos do SHP do IBAMA variam levemente ao longo do tempo;
+        # usamos mapeamento flexível que aceita variantes conhecidas.
+        import geopandas as gpd
+        gdf = gpd.read_file(shp)
+        if gdf.empty:
+            return 0, 0, res.get("url", "")
+        try:
+            if gdf.crs and gdf.crs.to_epsg() != 4326:
+                gdf = gdf.to_crs(epsg=4326)
+        except Exception:
+            pass
+
+        _truncate("ibama_embargos")
+
+        def pick(row, *candidates):
+            for k in candidates:
+                if k in row and row[k] is not None and str(row[k]).lower() != "nan":
+                    return row[k]
+            return None
+
+        session = get_session()
+        persisted = 0
+        try:
+            batch = []
+            for _, r in gdf.iterrows():
+                cpf = str(pick(r, "CPF_CNPJ_S", "CPF_CNPJ", "CNPJ_INFR", "CPF_INFRA") or "").replace(".", "").replace("/", "").replace("-", "")
+                area_str = str(pick(r, "AREA_EMB_H", "AREA_HA", "AREA_EMBARG") or "0").replace(",", ".")
+                try:
+                    area_ha = float(area_str)
+                except Exception:
+                    area_ha = None
+                data_str = pick(r, "DATA_TAD", "DT_EMBARGO", "DATA_EMBARG")
+                data_embargo = None
+                if data_str:
+                    try:
+                        from datetime import datetime as _dt
+                        data_embargo = _dt.strptime(str(data_str)[:10], "%Y-%m-%d").date()
+                    except Exception:
+                        try:
+                            from datetime import datetime as _dt
+                            data_embargo = _dt.strptime(str(data_str)[:10], "%d/%m/%Y").date()
+                        except Exception:
+                            pass
+
+                geom_wkt = None
+                if r.geometry is not None and not r.geometry.is_empty:
+                    from shapely.geometry import MultiPolygon, Polygon
+                    geom = r.geometry
+                    if isinstance(geom, Polygon):
+                        geom = MultiPolygon([geom])
+                    geom_wkt = f"SRID=4326;{geom.wkt}"
+
+                batch.append(IbamaEmbargo(
+                    numero_termo=str(pick(r, "NUM_TAD", "N_TAD", "TAD_NUM") or "")[:50],
+                    cpf_cnpj=cpf[:20] or None,
+                    nome_pessoa=str(pick(r, "NOM_PESSOA", "NOME_PESSO", "NOME_INFR") or "")[:500],
+                    uf=str(pick(r, "UF", "UF_EMB") or "")[:2],
+                    municipio=str(pick(r, "MUNICIPIO", "MUN_EMB") or "")[:200],
+                    area_embargada_ha=area_ha,
+                    data_embargo=data_embargo,
+                    tipo_infracao=str(pick(r, "DES_INFRA", "TIPO_INFRA") or "")[:300],
+                    situacao=str(pick(r, "SIT_EMB", "SITUACAO", "STATUS") or "")[:50],
+                    geometry=geom_wkt,
+                    raw_data=_clean_for_json(dict(r.drop(labels=["geometry"], errors="ignore"))),
+                ))
+                if len(batch) >= 500:
+                    session.bulk_save_objects(batch)
+                    session.commit()
+                    persisted += len(batch)
+                    batch = []
+            if batch:
+                session.bulk_save_objects(batch)
+                session.commit()
+                persisted += len(batch)
+        finally:
+            session.close()
+        return persisted, persisted, res.get("url", "")
+    return _run_loader("ibama_embargos", "ibama-termo-de-embargo", fn)
+
+
 def load_ceis() -> dict:
     def fn():
         client = PortalTransparenciaClient()
@@ -662,6 +755,7 @@ LOADERS: dict[str, Callable[[], dict]] = {
     "aneel_usinas": load_aneel_usinas,
     "aneel_linhas": load_aneel_linhas,
     "garantia_safra": load_garantia_safra,
+    "ibama_embargos": load_ibama_embargos,
     "ceis": load_ceis,
     "cnep": load_cnep,
 }

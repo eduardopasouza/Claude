@@ -474,7 +474,10 @@ def check_a03_mapbiomas(car_code: str) -> CriterionResult:
 
 
 def check_a04_embargos_icmbio(car_code: str) -> CriterionResult:
-    n = _count_overlap(car_code, "geo_embargos_icmbio")
+    n_icmbio = _count_overlap(car_code, "geo_embargos_icmbio")
+    # IBAMA embargos (Sprint 4 via CKAN próprio do IBAMA) — 88k polígonos
+    n_ibama = _count_overlap(car_code, "ibama_embargos")
+    n = n_icmbio + n_ibama
     ok = n == 0
     return CriterionResult(
         code="MCR-A04", axis="ambiental",
@@ -483,9 +486,12 @@ def check_a04_embargos_icmbio(car_code: str) -> CriterionResult:
         regulation="Lei 9.605/98 · Decreto 6.514/08",
         status="passed" if ok else "failed",
         passed=ok,
-        details=(f"{n} embargo(s) ICMBio/IBAMA sobrepostos" if n else "Sem embargos ambientais"),
+        details=(
+            f"ICMBio: {n_icmbio} · IBAMA: {n_ibama}" if n
+            else "Sem embargos ICMBio nem IBAMA"
+        ),
         weight=WEIGHTS["A04"],
-        evidence={"embargos": n},
+        evidence={"embargos_icmbio": n_icmbio, "embargos_ibama": n_ibama},
     )
 
 
