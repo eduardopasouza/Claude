@@ -85,24 +85,48 @@ Infraestrutura de ingestão + 2 ETLs reais executados.
 
 **Total operacional**: **822.879 registros reais em 8/12 tabelas**. O fallback automático em `KNOWN_RESOURCES` permite que loaders pendentes sejam ativados adicionando URLs novas sem reescrever código.
 
-### Sprint 5 — Mapa v3 (4 dias) — padrões SYNTHESIS ⏳
-- [ ] URL state serializado (Zustand + useSearchParams)
-- [ ] Drill-down UF → Município breadcrumb
-- [ ] Slider temporal duplo (início/fim YYYY-MM)
-- [ ] Legenda dinâmica painel direito com "Ver só esta"
+### Sprint 5 — Mapa v3 ⏳ **SCAFFOLD PARCIAL (sessão 9)**
+Escopo ampliado após feedback Eduardo.
+- [x] Scaffold Zustand store + `useMapUrlSync` (commit `6ea730f`)
+- [x] Fix UX do mapa: colapsar painel + zoom bottomright + minZoom menor
+- [x] LayerInspector com copiar texto/JSON/GeoJSON/KML
+- [x] StatsDashboard estilo MapBiomas (barras horizontais)
+- [x] Export KML de AOI desenhada/upada
+- [ ] Integrar Zustand store ao MapComponent (state → URL)
+- [ ] Slider temporal duplo (YYYY-MM) para DETER/PRODES/MapBiomas
+- [ ] Drill-down UF → Município (breadcrumb + fly-to)
+- [ ] Opacidade individual por camada (slider)
 - [ ] Tabs laterais (Camadas/Filtros/Mapa/Exportar)
-- [ ] Opacidade por camada
-- [ ] Export GeoJSON/CSV/Shapefile/PDF
+- [ ] Export CSV/Shapefile da view atual
+
+### Sprint Dossiê Agrofundiário ✅ **CONCLUÍDO (sessão 9)**
+- [x] Service multi-input (CAR, GeoJSON, point+radius, bbox, município, CPF/CNPJ)
+- [x] 12 coletores detalhados + análises cruzadas
+- [x] PDF extenso (20-45 págs) com índice + análises + tabelas
+- [x] Frontend `/dossie` com sidebar navegável + 6 personas
+- [x] CTAs nos 3 pontos de entrada (LayerInspector, AnalysisDrawer, AcoesTab)
+
+### Sprint Hub Jurídico-Agro ✅ **BACKEND CONCLUÍDO (sessão 9) · FRONTEND PENDENTE**
+Reposicionamento do módulo jurídico — de "ferramenta para advogado" para hub multi-persona.
+- [x] Models: ContratoAgroTemplate, TeseDefesaAgro, LegislacaoAgro, MonitoramentoParte
+- [x] Seeds: 12 contratos + 12 teses + 51 normativos-chave
+- [x] 12 endpoints REST
+- [ ] **Frontend `/juridico` com 5 abas** (Processos · Contratos · Teses · Legislação · Monitoramento)
+- [ ] **Calculadora de prescrição administrativa** (concorrente consolidado — art. 1º Lei 9.873/99 e variantes estaduais)
+- [ ] Editor de contrato com preenchimento guiado (vs templates estáticos)
+- [ ] Monitoramento ativo: cron diário que verifica novas entradas IBAMA/CEIS/CNEP/DataJud para CPF cadastrados e dispara webhooks
+- [ ] Expandir base: +30 normativos estaduais · +20 teses · +15 contratos
 
 ### Sprint 6 — Motor jurídico base (5 dias) ⏳
 - [ ] STJ dados abertos + TCU webservice → tabela `jurisprudencia`
 - [ ] Embedding bge-m3 (modelo em mia-project)
 - [ ] Busca híbrida vetorial+textual
-- [ ] Tela `/teses` com citações verificáveis
+- [ ] Tela `/teses` com citações verificáveis (extensão do hub jurídico)
+- [ ] **Cruzar jurisprudência com teses cadastradas** (enriquecimento automático de precedentes sugeridos)
 
 ### Sprint 7 — Gerador de minutas (7 dias) ⏳
-- [ ] Claude API integration
-- [ ] Redação com fundamentação
+- [ ] Claude API integration (já tem chave via ANTHROPIC_API_KEY)
+- [ ] Redação com fundamentação alimentada por teses + legislação do hub
 - [ ] Verificação anti-alucinação contra base jurisprudência
 - [ ] Tela `/minutas` + export DOCX
 
@@ -110,39 +134,160 @@ Infraestrutura de ingestão + 2 ETLs reais executados.
 - [ ] Scrapers (Caixa, Spy, Portal Leilão, TJs)
 - [ ] Deduplicação + classificação rural
 - [ ] Parser LLM edital (red flags)
-- [ ] Enriquecimento geo
+- [ ] Enriquecimento geo (cruzar com dossiê)
 - [ ] Timeline do lote (1ª → 2ª → 3ª praça)
 - [ ] Alertas WhatsApp/email/webhook
 
 ---
 
-## Dívida técnica (paralelo aos sprints)
+## Próximos Sprints e Ideias novas (pós-sessão 9)
 
-- [ ] OpenAPI codegen → types TypeScript (`openapi-typescript`)
-- [ ] State global Zustand
-- [ ] Middleware auth frontend (Next middleware.ts)
-- [ ] JWT httpOnly cookie (remover localStorage — XSS risk)
-- [ ] Error boundaries (`app/error.tsx`)
-- [ ] Testes Vitest + Playwright (mínimo MapComponent + PropertySearch + login)
-- [ ] Storybook para design system
-- [ ] Alembic migrations (substituir `create_tables`)
-- [ ] Redis para rate_limiter + monitoring persistido
-- [ ] Logger Sentry/Axiom
-- [ ] Analytics PostHog/Plausible
-- [ ] Dark/Light toggle completo + tema Gov.br opcional
+### Sprint 9 — Dossiê Proativo + Monitoramento (~5 dias)
+- [ ] Cron diário para monitoramento de partes cadastradas (CPF/CNPJ)
+- [ ] Dashboard `/proprietarios/[cpf_cnpj]` com linha do tempo de eventos
+- [ ] Webhook disparado a cada novo evento (auto IBAMA, CEIS, CNEP, DataJud, Lista Suja)
+- [ ] Export Excel dos eventos para período selecionado
+- [ ] Comparação A vs B entre dois CPF/CNPJ (due diligence rápida)
+
+### Sprint 10 — Relatório Bancário (ESG + Basel IV) (~7 dias)
+Padrões da indústria financeira:
+- [ ] Template "Avaliação de Risco Agro" formato APRAER (CNA/Febraban)
+- [ ] Score ESG do imóvel baseado em MCR 2.9 + MapBiomas + SICOR
+- [ ] Exposure to deforestation (KPI Basel IV)
+- [ ] Relatório ISSB/IFRS S2 (divulgação climática corporativa)
+
+### Sprint 11 — Calculadoras e Ferramentas (~5 dias)
+- [ ] **Calculadora de prescrição administrativa** (Lei 9.873/99 + estaduais)
+- [ ] Calculadora de multas IBAMA (Dec 6.514/08) com atenuantes e agravantes
+- [ ] Calculadora de ITR por hectare (com arbitramento e defesa)
+- [ ] Simulador de crédito rural (PRONAF, PRONAMP, Moderinfra)
+- [ ] Calculadora de Reserva Legal (% por bioma) com alertas de déficit
+- [ ] Simulador de CRA (cota de reserva ambiental)
+- [ ] Conversor de unidades rurais (alqueire, hectare, tarefa por estado)
+
+### Sprint 12 — Integrações externas avançadas (~10 dias)
+- [ ] **Receita Federal** (QSA via Receita B / Casa dos Dados)
+- [ ] **ONR/cartórios** (matrículas via InfoSimples ou API própria)
+- [ ] **CCIR/SNCR** (INCRA — após liberação do dados abertos)
+- [ ] **SERPRO** (dados cadastrais premium)
+- [ ] **SICAR oficial** (API para download de RL/APP detalhadas)
+- [ ] **SIFISC** (embargos completos com geometria via API IBAMA)
+- [ ] **LexML** scraping para enriquecer legislação agro municipal
+- [ ] **Câmaras municipais** das top 100 cidades agrícolas
+
+### Sprint 13 — Inteligência de Mercado Avançada (~7 dias)
+- [ ] Basis regional (diferença entre praça e Chicago)
+- [ ] Oferta x demanda por commodity por UF/região
+- [ ] Alertas de arbitragem logística
+- [ ] Índice de custos de produção (Confederação)
+- [ ] Previsões climáticas → preços (modelo simples)
+- [ ] Safras históricas vs projeção CONAB
+
+### Sprint 14 — API Pública + Parcerias (~7 dias)
+- [ ] Portal do Desenvolvedor (chave API + quotas)
+- [ ] SDK Python + JavaScript
+- [ ] Endpoints públicos read-only
+- [ ] Parceria: Agrolink + AgroAgents + Syngenta + Yara + Bayer (integrações B2B)
+
+### Sprint 15 — Mobile + PWA (~10 dias)
+- [ ] PWA instalável com offline para dossiê baixado
+- [ ] App React Native com câmera (fotografar infração)
+- [ ] Geolocalização automática + criação de AOI por trilha
+- [ ] Assinatura digital de contratos (ICP-Brasil)
 
 ---
 
-## Camadas adicionais a ativar quando backlog permitir
+## Ideias e pendências cross-cutting
 
-- [ ] NDVI histórico SATVeg (Embrapa)
-- [ ] ONR matrículas (via InfoSimples pago — aba documental, não é layer de mapa)
-- [ ] SNCI legado (download manual + ETL)
+### Jurídico-Agro (expansão)
+- [ ] **Calculadora de prescrição administrativa** — pedido explícito do Eduardo. Modelar Lei 9.873/99 art. 1 (5 anos) + art. 21 (intercorrente 3 anos) + variações estaduais. Timeline visual. Alertas de prazo crítico.
+- [ ] Editor guiado de contratos (substitui markdown estático por wizard)
+- [ ] Assinatura ICP-Brasil / Gov.br dos contratos gerados
+- [ ] Versionamento de contratos e teses (track changes legais)
+- [ ] Upload de documento do usuário → OCR + análise de riscos (revisão de contrato de arrendamento)
+- [ ] IA jurídica que sugere tese conforme descrição do caso
+- [ ] Mapa de calor dos processos agro por município/tema
+
+### Dossiê (expansão)
+- [ ] Clima histórico completo (10 anos INMET) + projeção
+- [ ] Embrapa ZARC integrado (aptidão por cultura/mês)
+- [ ] Embrapa SmartSolos (análise de solo por ponto)
+- [ ] Embrapa SITE (site de solo)
+- [ ] Receita Federal QSA (se proprietário for PJ)
+- [ ] Histórico de cobertura MapBiomas (1985-atual)
+- [ ] NDVI temporal (SATVeg/Embrapa) para detectar degradação
+- [ ] Comparação com imóveis vizinhos (benchmark)
+- [ ] Projeção ESG (carbono armazenado, risco climático)
+
+### Mapa v3 (pendentes do Sprint 5)
+- [ ] Integrar Zustand store ao MapComponent
+- [ ] Slider temporal duplo
+- [ ] Drill-down UF → Município
+- [ ] Opacidade por camada
+- [ ] Tabs laterais
+- [ ] Export CSV/Shapefile/PDF da view
+- [ ] Comparação A/B de dois CARs lado a lado
+- [ ] Modo de apresentação (tela cheia, sem menus)
+- [ ] Captura de screenshot estilizada para compartilhamento
+
+### Frontend (UX avançada)
+- [ ] Tour guiado para novos usuários (onboarding)
+- [ ] Favoritos (CARs e dossiês salvos)
+- [ ] Histórico de consultas
+- [ ] Compartilhamento de dossiê com permissão (link com expiração)
+- [ ] Dashboard executivo (KPIs consolidados)
+- [ ] Modo escuro/claro toggle completo
+- [ ] Tema Gov.br opcional
+- [ ] Notificações in-app (sino no TopBar)
+
+### Backend (dívida técnica)
+- [ ] OpenAPI codegen → types TypeScript (`openapi-typescript`)
+- [ ] Integrar Zustand store já existente ao MapComponent
+- [ ] Middleware auth frontend (`middleware.ts` Next)
+- [ ] JWT httpOnly cookie (remover localStorage — XSS risk)
+- [ ] Error boundaries (`app/error.tsx`)
+- [ ] Testes Vitest + Playwright (mínimo MapComponent + PropertySearch + dossie + juridico)
+- [ ] Storybook para design system
+- [ ] **Alembic migrations** (substituir `create_tables` — dar previsibilidade a schema changes)
+- [ ] Redis para rate_limiter + monitoring persistido
+- [ ] Logger Sentry/Axiom + Analytics PostHog
+- [ ] Background jobs com Celery (ETLs, monitoramento, webhooks)
+- [ ] API de internacionalização (pt_BR / en_US / es_AR para América Latina)
+
+### Coletores adicionais (backlog)
+- [ ] SIGMINE ANM (aguardando servidor ANM voltar do 502)
+- [ ] ANA Outorgas (scrape SNIRH GeoNetwork)
+- [ ] ANA BHO (idem)
+- [ ] Garantia-Safra (API Portal Transparência com upgrade de plano)
+- [ ] IBAMA CTF (dataset específico a identificar)
+- [ ] NDVI SATVeg (Embrapa)
+- [ ] ONR matrículas (InfoSimples pago)
+- [ ] SNCI legado
 - [ ] SPU Terras União
-- [ ] ZEE por estado (9 UFs diferentes)
+- [ ] ZEE por estado (9 UFs distintas)
 - [ ] ANAC aeroportos
 - [ ] Terminais intermodais ANTT/ANTAQ
 - [ ] CNT condição rodovias
+
+### Compliance (expansão)
+- [ ] Integrar 19 critérios ainda pending do MCR 2.9 (CCIR, ITR, CNDT, protestos, etc.)
+- [ ] EUDR estendido (datas de abate, rastreabilidade, due diligence statement)
+- [ ] Certificações privadas (RTRS, Bonsucro, Rainforest Alliance, Round Table Responsible Soy)
+- [ ] ISO 14001 compliance check
+
+### Produto / Negócio
+- [ ] Planos (free/pro/enterprise) com limites diferenciados
+- [ ] Billing Stripe / Mercado Pago
+- [ ] Multi-tenant (workspaces para escritórios e cooperativas)
+- [ ] Whitelabel (opção de revender com marca própria)
+- [ ] Marketplace de laudos (compre dossiês gerados por terceiros)
+- [ ] Seguro rural integrado (alertas de risco → cotação)
+
+### Dados
+- [ ] ETL incremental (delta vs full reload)
+- [ ] Observability dos ETLs (Grafana)
+- [ ] Data lake S3 (backup de todas as ingestões)
+- [ ] Versionamento dos datasets (snapshot mensal)
 
 ---
 

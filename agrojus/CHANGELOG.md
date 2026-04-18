@@ -3,6 +3,102 @@
 Todas as mudanças notáveis do projeto, por sessão de trabalho.
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.12.0] — 2026-04-18 · Sessão 9 · Dossiê + Hub Jurídico-Agro
+
+### Added — UX do mapa (correções do feedback Eduardo)
+
+- **LayerTreePanel** agora colapsa em badge compacta (ChevronsLeft) e não sobrepõe mais o ZoomControl (que foi para `bottomright`).
+- **minZoom reduzido** em camadas densas: SICAR/CAR 10→8, SIGEF 11→9, embargos 7→5, autos 7→5, MapBiomas alertas 7→5.
+- **LayerInspector** ganhou 4 botões rápidos: Copiar texto, Copiar JSON, Baixar GeoJSON e Baixar KML (serializer GeoJSON→KML próprio cobrindo Point/LineString/Polygon/Multi*).
+- **Export KML de AOI** desenhada/upada: AnalysisDrawer tem botões KML/GeoJSON no header.
+- **StatsDashboard estilo MapBiomas**: barras horizontais proporcionais, % do total, toggle "Por camada" ↔ "Por tema", hover revela EyeOff para desativar camada inline.
+
+### Added — Dossiê Agrofundiário Multi-Persona
+
+Novo conceito central do produto: relatório completo sobre qualquer área
+rural, adaptado a 6 personas (comprador, advogado, investidor, trading,
+consultor ambiental, produtor). Aceita 6 tipos de entrada: CAR, GeoJSON,
+ponto+raio, bbox, município IBGE, CPF/CNPJ do proprietário.
+
+**Service `dossie_generator.py` (~850 linhas):**
+- 12 coletores modulares (identificação, fundiário detalhado com cada overlap listado + área + %, compliance MCR 2.9 32 critérios, ambiental com PRODES/DETER/MapBiomas/embargos/autos todos listados, proprietário consolidado com CEIS/CNEP/autos/multa total/outros imóveis, crédito rural top 20 contratos + série anual, mercado 12 meses por commodity, logística KNN, energia ANEEL, valuation NBR 14.653-3 com memória de cálculo, jurídico, agronomia).
+- **Análises cruzadas** (`gerar_analises_cruzadas`): detecta correlações entre fontes (desmate × compliance, embargo × crédito, CEIS × elegibilidade, reincidência × risco, TI × CF art. 231, UC PI × Lei 9.985/00) com scores consolidados por domínio + semáforo.
+- **Recomendações adaptadas por persona**: cada público recebe tips específicas e red flags contextualizados.
+
+**PDF extenso (`dossie_pdf.py` ~850 linhas):**
+- Capa formal + índice numerado (16 capítulos)
+- Sumário executivo com classificação colorida + scores domínio
+- Análises cruzadas em quadros de destaque coloridos por severidade
+- Todas as sobreposições/eventos listados individualmente em tabelas paginadas
+- Renderização especializada por seção (compliance com status colorido por status, fundiário com resumo estatístico, valuation com memória)
+- Apêndice com fontes, metodologia e limitações
+- **Resultado: 20-45 páginas por CAR** (vs 5 da versão MVP)
+
+**Endpoints `/api/v1/dossie`:**
+- `POST /dossie` — JSON estruturado completo
+- `POST /dossie/pdf` — PDF A4 extenso
+
+**Frontend `/dossie`:**
+- Rota dedicada tela cheia com sidebar navegável (12 seções com scroll spy)
+- Header sticky com StatusBadge colorido + botão PDF
+- Renderização contextual por seção (compliance vira grid de scores, listas viram cards compactos)
+- 3 modos de entrada: query string (?car=X ou ?cpf=X), sessionStorage (via ?sk=X quando vem do mapa), ou formulário manual
+- Form manual com seletor de persona (6 opções)
+
+**CTAs nos 3 pontos de entrada do mapa:**
+- **LayerInspector**: botão destacado "Gerar Dossiê Completo" em camadas de imóvel rural (sicar_completo/geo_car/sigef_parcelas/snci_imoveis/assentamentos/quilombolas)
+- **MapTools AnalysisDrawer**: botão "Gerar Dossiê desta área" para polígono desenhado/upado
+- **AcoesTab da ficha**: card gradiente destacado no topo com link direto
+
+### Added — ComplianceTab inline com 32 critérios + explicação
+
+- Novo toggle "MCR 2.9 Completo (32)" | "Rápido (6)" | "EUDR"
+- Modo completo consome `/compliance/mcr29/full` e renderiza inline: banner, 5 cards de score por eixo, 5 accordions com cada critério com **evidência JSON expansível** e **explicação humana do apontamento** (`explicarApontamento` mapeia o contexto técnico para linguagem do advogado — para pendentes diz qual fonte falta e onde consultar; para falhas diz POR QUE bloqueia e qual a próxima ação).
+
+### Added — Hub Jurídico-Agro (reposicionamento do módulo jurídico)
+
+O produto deixou de ser "ferramenta para advogado" — virou **hub de informação jurídica para todo o agronegócio**.
+
+**5 novos modelos:**
+- `ContratoAgroTemplate` — templates de contratos do agro
+- `TeseDefesaAgro` — teses argumentativas estruturadas
+- `LegislacaoAgro` — base de normativos federais/estaduais/municipais indexada por tema
+- `MonitoramentoParte` — cadastro de CPF/CNPJ para dossiê contínuo de terceiros
+- `MonitoramentoParteEvento` — trilha de eventos detectados
+
+**Sementes seminais:**
+- **12 templates de contratos** com markdown completo: arrendamento rural, parceria agrícola, compra e venda rural, CPR física, CDA-WA, integração bovina, comodato, prestação de serviço, venda de bovinos, fornecimento insumos, meação, PSA/CRA.
+- **12 teses de defesa estratégicas**: nulidade auto IBAMA, prescrição intercorrente, embargos ITR, usucapião rural CF art. 191, previdência segurado especial, retirada Lista Suja, embargo desproporcional, compensação RL via CRA, defesa Lista Suja, enquadramento rural vs CLT, reclassificação parceria↔arrendamento, revisão PRONAF.
+- **51 normativos-chave** do agronegócio: CF/88, Estatuto da Terra, Código Florestal, Crimes Ambientais, SNUC, ITR, Trabalho Rural, Lista Suja, CPR, CDA-WA, EUDR, PSA, Anticorrupção, CNDT, NR-31 + amostras estaduais.
+
+**12 endpoints `/api/v1/juridico`:**
+- CRUD contratos/teses/legislação com filtros (categoria, área, público-alvo, UF, tema, esfera)
+- `GET /processos/{cpf_cnpj}/dossie` — varredura consolidada de DataJud + DJEN + IBAMA autos + CEIS + CNEP + Lista Suja com classificação de risco
+- `POST /monitoramento` — cadastro de CPF/CNPJ para monitoramento contínuo
+
+### Sessão também fechou
+
+- Sprint 4 extras: IBAMA embargos 88.586 polígonos + IBAMA autos 695.439 registros + ANEEL linhas SIGET 176 via ArcGIS. MCR-A04/A05 enriquecidos com os dados reais.
+- Fallback automático de URLs diretas em `dados_gov.py` (CKAN 401 → URL hardcoded validada).
+- Plugin advIA desligado em `/.claude/settings.json` do AgroJus (fim do loop de Stop hook em projetos não-jurídicos).
+
+### Commits da sessão 9 (consolidado)
+
+| Hash | Tema |
+|---|---|
+| `77142b2` · `a34cf24` · `1630150` | Sprint 2e ficha 12/12 |
+| `b9182bd` · `ca26f3f` · `ead8a26` | Sprint 3 MCR 2.9 × 32 critérios |
+| `23c901e` · `7bec20b` · `43b5f34` · `cccaa40` · `49c1ce3` | Sprint 4 dados.gov.br infra + MCR wire |
+| `6c00e4d` | advIA plugin disabled em AgroJus |
+| `c94f803` · `cc1f445` · `d60720a` | Fallback URLs diretas + ANEEL latin-1 + CHANGELOG |
+| `ec63c79` · `6ea730f` · `dfa7ea0` | IBAMA embargos 88k + Sprint 5 scaffold |
+| `a84ea48` · `ac9c4f1` | IBAMA autos 695k + ANEEL linhas 176 |
+| `4f55916` · `841c572` | UX mapa v2.1 + ComplianceTab inline |
+| `c75be5f` · `0496a79` | Dossiê backend + frontend + PDF 20 pgs |
+| `HEAD` | Hub Jurídico-Agro (12+12+51 seeds) |
+
+---
+
 ## [0.11.0] — 2026-04-18 · Sessão 9 · Sprint 4
 
 ### Added — Infraestrutura ETL dados.gov.br + Portal da Transparência
