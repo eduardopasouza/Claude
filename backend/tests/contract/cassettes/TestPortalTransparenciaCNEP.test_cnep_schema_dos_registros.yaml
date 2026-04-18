@@ -1,0 +1,420 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Host:
+      - api.portaldatransparencia.gov.br
+      User-Agent:
+      - AgroJus/1.0
+    method: GET
+    uri: https://api.portaldatransparencia.gov.br/api-de-dados/cnep?pagina=1
+  response:
+    body:
+      string: "[{\"id\":318874,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"22/08/2024\",\"dataFimSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataPublicacaoSancao\":\"22/08/2024\",\"dataTransitadoJulgado\":\"Sem
+        informa\xE7\xE3o\",\"dataOrigemInformacao\":\"30/09/2024\",\"tipoSancao\":{\"descricaoResumida\":\"Multa\",\"descricaoPortal\":\"Multa\"},\"fonteSancao\":{\"nomeExibicao\":\"Controladoria
+        Geral do Estado de S\xE3o Paulo\",\"telefoneContato\":\".1143893008\",\"enderecoContato\":\".Avendida
+        Rangel Pestana - 300 - S\xE9\"},\"fundamentacao\":[{\"codigo\":\"LEI 12846
+        - ART. 6\xBA, I - MULTA, NO VALOR DE 0,1% (UM D\xC9CIMO POR CENTO) A 20% (VINTE
+        POR CENTO) DO FATURAMENTO BRUTO DO \xDALTIMO EXERC\xCDCIO ANTERIOR AO DA INSTAURA\xC7\xC3O
+        DO PROCESSO ADMINISTRATIVO, EXCLU\xCDDOS OS TRIBUTOS, A QUAL NUNCA SER\xC1
+        INFERIOR \xC0 VANTAGEM AUFERIDA, QUANDO FOR POSS\xCDVEL SUA ESTIMA\xC7\xC3O\",\"descricao\":\"LEI
+        12846 - ART. 6\xBA, I - MULTA, NO VALOR DE 0,1% (UM D\xC9CIMO POR CENTO) A
+        20% (VINTE POR CENTO) DO FATURAMENTO BRUTO DO \xDALTIMO EXERC\xCDCIO ANTERIOR
+        AO DA INSTAURA\xC7\xC3O DO PROCESSO ADMINISTRATIVO, EXCLU\xCDDOS OS TRIBUTOS,
+        A QUAL NUNCA SER\xC1 INFERIOR \xC0 VANTAGEM AUFERIDA, QUANDO FOR POSS\xCDVEL
+        SUA ESTIMA\xC7\xC3O\"},{\"codigo\":\"LEI 12846 - ART. 6\xBA, \xA75\xBA, II
+        - A PUBLICA\xC7\xC3O EXTRAORDIN\xC1RIA DA DECIS\xC3O CONDENAT\xD3RIA OCORRER\xC1
+        NA FORMA DE EXTRATO DE SENTEN\xC7A, A EXPENSAS DA PESSOA JUR\xCDDICA, EM MEIOS
+        DE COMUNICA\xC7\xC3O DE GRANDE CIRCULA\xC7\xC3O NA \xC1REA DA PR\xC1TICA DA
+        INFRA\xC7\xC3O E DE ATUA\xC7\xC3O DA PESSOA JUR\xCDDICA OU, NA SUA FALTA,
+        EM PUBLICA\xC7\xC3O DE CIRCULA\xC7\xC3O NACIONAL, BEM COMO POR MEIO DE AFIXA\xC7\xC3O
+        DE EDITAL, PELO PRAZO M\xCDNIMO DE 30 (TRINTA) DIAS, NO PR\xD3PRIO ESTABELECIMENTO
+        OU NO LOCAL DE EXERC\xCDCIO DA ATIVIDADE, DE MODO VIS\xCDVEL AO P\xDABLICO,
+        E NO S\xCDTIO ELETR\xD4NICO NA REDE MUNDIAL DE COMPUTADORES.\",\"descricao\":\"LEI
+        12846 - ART. 6\xBA, \xA75\xBA, II - A PUBLICA\xC7\xC3O EXTRAORDIN\xC1RIA DA
+        DECIS\xC3O CONDENAT\xD3RIA OCORRER\xC1 NA FORMA DE EXTRATO DE SENTEN\xC7A,
+        A EXPENSAS DA PESSOA JUR\xCDDICA, EM MEIOS DE COMUNICA\xC7\xC3O DE GRANDE
+        CIRCULA\xC7\xC3O NA \xC1REA DA PR\xC1TICA DA INFRA\xC7\xC3O E DE ATUA\xC7\xC3O
+        DA PESSOA JUR\xCDDICA OU, NA SUA FALTA, EM PUBLICA\xC7\xC3O DE CIRCULA\xC7\xC3O
+        NACIONAL, BEM COMO POR MEIO DE AFIXA\xC7\xC3O DE EDITAL, PELO PRAZO M\xCDNIMO
+        DE 30 (TRINTA) DIAS, NO PR\xD3PRIO ESTABELECIMENTO OU NO LOCAL DE EXERC\xCDCIO
+        DA ATIVIDADE, DE MODO VIS\xCDVEL AO P\xDABLICO, E NO S\xCDTIO ELETR\xD4NICO
+        NA REDE MUNDIAL DE COMPUTADORES.\"}],\"orgaoSancionador\":{\"nome\":\"Controladoria
+        Geral do Estado de S\xE3o Paulo\",\"siglaUf\":\"SP\",\"poder\":\"Executivo\",\"esfera\":\"ESTADUAL\"},\"sancionado\":{\"nome\":\"MARAVILHA
+        INDUSTRIA E COM\xC9RCIO DE LINGUI\xC7A LTDA.\",\"codigoFormatado\":\"67.954.024/0001-50\"},\"valorMulta\":\"390.630,47\",\"pessoa\":{\"id\":606085329,\"cpfFormatado\":\"\",\"cnpjFormatado\":\"67.954.024/0001-50\",\"numeroInscricaoSocial\":\"\",\"nome\":\"MARAVILHA
+        INDUSTRIA E COMERCIO DE LINGUICA LTDA\",\"razaoSocialReceita\":\"MARAVILHA
+        INDUSTRIA E COMERCIO DE LINGUICA LTDA\",\"nomeFantasiaReceita\":\"\",\"tipo\":\"Entidades
+        Empresariais Privadas\"},\"textoPublicacao\":\"Di\xE1rio Oficial do Estado\",\"linkPublicacao\":\"\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"009.00002792/2023-16\",\"abrangenciaDefinidaDecisaoJudicial\":\"Sem
+        Informa\xE7\xE3o\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":100604,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"13/05/2019\",\"dataFimSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataPublicacaoSancao\":\"13/05/2019\",\"dataTransitadoJulgado\":\"Sem
+        informa\xE7\xE3o\",\"dataOrigemInformacao\":\"31/05/2019\",\"tipoSancao\":{\"descricaoResumida\":\"Multa\",\"descricaoPortal\":\"Multa\"},\"fonteSancao\":{\"nomeExibicao\":\"Governo
+        do Estado de Mato Grosso do Sul\",\"telefoneContato\":\"(67) 3318-4056\",\"enderecoContato\":\"Avenida
+        Desembargador Jos\xE9 Nunes da Cunha S/N, bloco 3 - Parque dos Poderes - Campo
+        Grande/MS CEP 79.031-310\"},\"fundamentacao\":[{\"codigo\":\"LEI 12846 - ART.
+        6\xBA, I - MULTA, NO VALOR DE 0,1% (UM D\xC9CIMO POR CENTO) A 20% (VINTE POR
+        CENTO) DO FATURAMENTO BRUTO DO \xDALTIMO EXERC\xCDCIO ANTERIOR AO DA INSTAURA\xC7\xC3O
+        DO PROCESSO ADMINISTRATIVO, EXCLU\xCDDOS OS TRIBUTOS, A QUAL NUNCA SER\xC1
+        INFERIOR \xC0 VANTAGEM AUFERIDA, QUANDO FOR POSS\xCDVEL SUA ESTIMA\xC7\xC3O\",\"descricao\":\"LEI
+        12846 - ART. 6\xBA, I - MULTA, NO VALOR DE 0,1% (UM D\xC9CIMO POR CENTO) A
+        20% (VINTE POR CENTO) DO FATURAMENTO BRUTO DO \xDALTIMO EXERC\xCDCIO ANTERIOR
+        AO DA INSTAURA\xC7\xC3O DO PROCESSO ADMINISTRATIVO, EXCLU\xCDDOS OS TRIBUTOS,
+        A QUAL NUNCA SER\xC1 INFERIOR \xC0 VANTAGEM AUFERIDA, QUANDO FOR POSS\xCDVEL
+        SUA ESTIMA\xC7\xC3O\"}],\"orgaoSancionador\":{\"nome\":\"Governo do Estado
+        de Mato Grosso do Sul\",\"siglaUf\":\"MS\",\"poder\":\"Executivo\",\"esfera\":\"ESTADUAL\"},\"sancionado\":{\"nome\":\"JPM
+        Com\xE9rcio Atacadista Eireli\",\"codigoFormatado\":\"05.129.178/0001-50\"},\"valorMulta\":\"9.102,27\",\"pessoa\":{\"id\":24743069,\"cpfFormatado\":\"\",\"cnpjFormatado\":\"05.129.178/0001-50\",\"numeroInscricaoSocial\":\"\",\"nome\":\"JPM
+        COMERCIO ATACADISTA E SERVICOS LTDA\",\"razaoSocialReceita\":\"JPM COMERCIO
+        ATACADISTA E SERVICOS LTDA\",\"nomeFantasiaReceita\":\"JPM COMERCIO E SERVICOS\",\"tipo\":\"Entidades
+        Empresariais Privadas\"},\"textoPublicacao\":\"Di\xE1rio Oficial do Estado
+        Se\xE7\xE3o 01 Pagina 4\",\"linkPublicacao\":\"\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"27/100558/2019\",\"abrangenciaDefinidaDecisaoJudicial\":\"Em
+        todos os Poderes da Esfera do \xF3rg\xE3o sancionador\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":100334,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"28/01/2019\",\"dataFimSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataPublicacaoSancao\":\"10/01/2019\",\"dataTransitadoJulgado\":\"28/01/2019\",\"dataOrigemInformacao\":\"10/05/2019\",\"tipoSancao\":{\"descricaoResumida\":\"Multa\",\"descricaoPortal\":\"Multa\"},\"fonteSancao\":{\"nomeExibicao\":\"Controladoria-Geral
+        do Munic\xEDpio de S\xE3o Paulo - SP\",\"telefoneContato\":\"(11) 3113-8234\",\"enderecoContato\":\"Viaduto
+        do Ch\xE1, n\xBA 15 - 10\xBA andar, S\xE3o Paulo - SP, CEP: 01020-900\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        12846 - ART. 6\xBA, I - MULTA, NO VALOR DE 0,1% (UM D\xC9CIMO POR CENTO) A
+        20% (VINTE POR CENTO) DO FATURAMENTO BRUTO DO \xDALTIMO EXERC\xCDCIO ANTERIOR
+        AO DA INSTAURA\xC7\xC3O DO PROCESSO ADMINISTRATIVO, EXCLU\xCDDOS OS TRIBUTOS,
+        A QUAL NUNCA SER\xC1 INFERIOR \xC0 VANTAGEM AUFERIDA, QUANDO FOR POSS\xCDVEL
+        SUA ESTIMA\xC7\xC3O\",\"descricao\":\"LEI 12846 - ART. 6\xBA, I - MULTA, NO
+        VALOR DE 0,1% (UM D\xC9CIMO POR CENTO) A 20% (VINTE POR CENTO) DO FATURAMENTO
+        BRUTO DO \xDALTIMO EXERC\xCDCIO ANTERIOR AO DA INSTAURA\xC7\xC3O DO PROCESSO
+        ADMINISTRATIVO, EXCLU\xCDDOS OS TRIBUTOS, A QUAL NUNCA SER\xC1 INFERIOR \xC0
+        VANTAGEM AUFERIDA, QUANDO FOR POSS\xCDVEL SUA ESTIMA\xC7\xC3O\"}],\"orgaoSancionador\":{\"nome\":\"Controladoria-Geral
+        do Munic\xEDpio de S\xE3o Paulo - SP\",\"siglaUf\":\"SP\",\"poder\":\"Executivo\",\"esfera\":\"MUNICIPAL\"},\"sancionado\":{\"nome\":\"SEVERINO
+        JOSE MAFALDO\",\"codigoFormatado\":\"340.584.228-07\"},\"valorMulta\":\"30.000,00\",\"pessoa\":{\"id\":83341419,\"cpfFormatado\":\"***.584.228-**\",\"cnpjFormatado\":\"\",\"numeroInscricaoSocial\":\"\",\"nome\":\"SEVERINO
+        JOSE MAFALDO\",\"razaoSocialReceita\":\"\",\"nomeFantasiaReceita\":\"\",\"tipo\":\"Pessoa
+        F\xEDsica\"},\"textoPublicacao\":\"Di\xE1rio Oficial do Munic\xEDpio Se\xE7\xE3o
+        DESPACHOS Pagina 24\",\"linkPublicacao\":\"\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"2017-0.006.818-7\",\"abrangenciaDefinidaDecisaoJudicial\":\"Sem
+        Informa\xE7\xE3o\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":371311,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"24/10/2025\",\"dataFimSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataPublicacaoSancao\":\"02/09/2025\",\"dataTransitadoJulgado\":\"24/10/2025\",\"dataOrigemInformacao\":\"02/12/2025\",\"tipoSancao\":{\"descricaoResumida\":\"Publica\xE7\xE3o
+        extraordin\xE1ria da decis\xE3o condenat\xF3ria\",\"descricaoPortal\":\"Publica\xE7\xE3o
+        extraordin\xE1ria da decis\xE3o condenat\xF3ria\"},\"fonteSancao\":{\"nomeExibicao\":\"Prefeitura
+        de Joinville (SC)\",\"telefoneContato\":\"(47) 3431 3233\",\"enderecoContato\":\"Av.
+        Hermann August Lepper, 10 - Centro, Joinville/ SC - CEP: 89.221-005.\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        12846 - ART. 6\xBA, \xA75\xBA, II - A PUBLICA\xC7\xC3O EXTRAORDIN\xC1RIA DA
+        DECIS\xC3O CONDENAT\xD3RIA OCORRER\xC1 NA FORMA DE EXTRATO DE SENTEN\xC7A,
+        A EXPENSAS DA PESSOA JUR\xCDDICA, EM MEIOS DE COMUNICA\xC7\xC3O DE GRANDE
+        CIRCULA\xC7\xC3O NA \xC1REA DA PR\xC1TICA DA INFRA\xC7\xC3O E DE ATUA\xC7\xC3O
+        DA PESSOA JUR\xCDDICA OU, NA SUA FALTA, EM PUBLICA\xC7\xC3O DE CIRCULA\xC7\xC3O
+        NACIONAL, BEM COMO POR MEIO DE AFIXA\xC7\xC3O DE EDITAL, PELO PRAZO M\xCDNIMO
+        DE 30 (TRINTA) DIAS, NO PR\xD3PRIO ESTABELECIMENTO OU NO LOCAL DE EXERC\xCDCIO
+        DA ATIVIDADE, DE MODO VIS\xCDVEL AO P\xDABLICO, E NO S\xCDTIO ELETR\xD4NICO
+        NA REDE MUNDIAL DE COMPUTADORES.\",\"descricao\":\"LEI 12846 - ART. 6\xBA,
+        \xA75\xBA, II - A PUBLICA\xC7\xC3O EXTRAORDIN\xC1RIA DA DECIS\xC3O CONDENAT\xD3RIA
+        OCORRER\xC1 NA FORMA DE EXTRATO DE SENTEN\xC7A, A EXPENSAS DA PESSOA JUR\xCDDICA,
+        EM MEIOS DE COMUNICA\xC7\xC3O DE GRANDE CIRCULA\xC7\xC3O NA \xC1REA DA PR\xC1TICA
+        DA INFRA\xC7\xC3O E DE ATUA\xC7\xC3O DA PESSOA JUR\xCDDICA OU, NA SUA FALTA,
+        EM PUBLICA\xC7\xC3O DE CIRCULA\xC7\xC3O NACIONAL, BEM COMO POR MEIO DE AFIXA\xC7\xC3O
+        DE EDITAL, PELO PRAZO M\xCDNIMO DE 30 (TRINTA) DIAS, NO PR\xD3PRIO ESTABELECIMENTO
+        OU NO LOCAL DE EXERC\xCDCIO DA ATIVIDADE, DE MODO VIS\xCDVEL AO P\xDABLICO,
+        E NO S\xCDTIO ELETR\xD4NICO NA REDE MUNDIAL DE COMPUTADORES.\"}],\"orgaoSancionador\":{\"nome\":\"Prefeitura
+        de Joinville (SC)\",\"siglaUf\":\"SC\",\"poder\":\"Executivo\",\"esfera\":\"MUNICIPAL\"},\"sancionado\":{\"nome\":\"OX
+        Comercial Ltda.\",\"codigoFormatado\":\"08.915.256/0001-30\"},\"valorMulta\":\"0,00\",\"pessoa\":{\"id\":365117681,\"cpfFormatado\":\"\",\"cnpjFormatado\":\"08.915.256/0001-30\",\"numeroInscricaoSocial\":\"\",\"nome\":\"OX
+        COMERCIAL LTDA\",\"razaoSocialReceita\":\"OX COMERCIAL LTDA\",\"nomeFantasiaReceita\":\"OX
+        COMERCIAL\",\"tipo\":\"Entidades Empresariais Privadas\"},\"textoPublicacao\":\"Di\xE1rio
+        Oficial do Munic\xEDpio Se\xE7\xE3o 2794\",\"linkPublicacao\":\"\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"22.0.290801-8\",\"abrangenciaDefinidaDecisaoJudicial\":\"No
+        \xF3rg\xE3o sancionador\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":136459,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"06/09/2021\",\"dataFimSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataPublicacaoSancao\":\"03/09/2021\",\"dataTransitadoJulgado\":\"02/09/2021\",\"dataOrigemInformacao\":\"20/05/2022\",\"tipoSancao\":{\"descricaoResumida\":\"Multa\",\"descricaoPortal\":\"Multa\"},\"fonteSancao\":{\"nomeExibicao\":\"Prefeitura
+        Municipal Vit\xF3ria (ES)\",\"telefoneContato\":\"(27) 3382-6060\",\"enderecoContato\":\"Av.
+        Marechal de Mascarenhas de Moraes, 1927 Bento Ferreira, Vit\xF3ria-ES, CEP
+        29050-945.\"},\"fundamentacao\":[{\"codigo\":\"LEI 12846 - ART. 6\xBA, I -
+        MULTA, NO VALOR DE 0,1% (UM D\xC9CIMO POR CENTO) A 20% (VINTE POR CENTO) DO
+        FATURAMENTO BRUTO DO \xDALTIMO EXERC\xCDCIO ANTERIOR AO DA INSTAURA\xC7\xC3O
+        DO PROCESSO ADMINISTRATIVO, EXCLU\xCDDOS OS TRIBUTOS, A QUAL NUNCA SER\xC1
+        INFERIOR \xC0 VANTAGEM AUFERIDA, QUANDO FOR POSS\xCDVEL SUA ESTIMA\xC7\xC3O\",\"descricao\":\"LEI
+        12846 - ART. 6\xBA, I - MULTA, NO VALOR DE 0,1% (UM D\xC9CIMO POR CENTO) A
+        20% (VINTE POR CENTO) DO FATURAMENTO BRUTO DO \xDALTIMO EXERC\xCDCIO ANTERIOR
+        AO DA INSTAURA\xC7\xC3O DO PROCESSO ADMINISTRATIVO, EXCLU\xCDDOS OS TRIBUTOS,
+        A QUAL NUNCA SER\xC1 INFERIOR \xC0 VANTAGEM AUFERIDA, QUANDO FOR POSS\xCDVEL
+        SUA ESTIMA\xC7\xC3O\"}],\"orgaoSancionador\":{\"nome\":\"Prefeitura Municipal
+        Vit\xF3ria (ES)\",\"siglaUf\":\"ES\",\"poder\":\"Executivo\",\"esfera\":\"MUNICIPAL\"},\"sancionado\":{\"nome\":\"Art
+        Som e Ilumina\xE7\xE3o Ltda-ME\",\"codigoFormatado\":\"04.977.561/0001-04\"},\"valorMulta\":\"18.000,00\",\"pessoa\":{\"id\":40424617,\"cpfFormatado\":\"\",\"cnpjFormatado\":\"04.977.561/0001-04\",\"numeroInscricaoSocial\":\"\",\"nome\":\"ART
+        SOM E ILUMINACAO LTDA\",\"razaoSocialReceita\":\"ART SOM E ILUMINACAO LTDA\",\"nomeFantasiaReceita\":\"MOYSES
+        MENCER EVENTOS\",\"tipo\":\"Entidades Empresariais Privadas\"},\"textoPublicacao\":\"Di\xE1rio
+        Oficial do Munic\xEDpio Se\xE7\xE3o 1741 Pagina 4\",\"linkPublicacao\":\"\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"2747228/2019\",\"abrangenciaDefinidaDecisaoJudicial\":\"Em
+        todos os Poderes da Esfera do \xF3rg\xE3o sancionador\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":138037,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"09/07/2022\",\"dataFimSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataPublicacaoSancao\":\"Sem informa\xE7\xE3o\",\"dataTransitadoJulgado\":\"Sem
+        informa\xE7\xE3o\",\"dataOrigemInformacao\":\"30/06/2022\",\"tipoSancao\":{\"descricaoResumida\":\"Publica\xE7\xE3o
+        extraordin\xE1ria da decis\xE3o condenat\xF3ria\",\"descricaoPortal\":\"Publica\xE7\xE3o
+        extraordin\xE1ria da decis\xE3o condenat\xF3ria\"},\"fonteSancao\":{\"nomeExibicao\":\"Minist\xE9rio
+        da Agricultura e Pecu\xE1ria\",\"telefoneContato\":\".\",\"enderecoContato\":\".\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        12846 - ART. 6\xBA, \xA75\xBA, II - A PUBLICA\xC7\xC3O EXTRAORDIN\xC1RIA DA
+        DECIS\xC3O CONDENAT\xD3RIA OCORRER\xC1 NA FORMA DE EXTRATO DE SENTEN\xC7A,
+        A EXPENSAS DA PESSOA JUR\xCDDICA, EM MEIOS DE COMUNICA\xC7\xC3O DE GRANDE
+        CIRCULA\xC7\xC3O NA \xC1REA DA PR\xC1TICA DA INFRA\xC7\xC3O E DE ATUA\xC7\xC3O
+        DA PESSOA JUR\xCDDICA OU, NA SUA FALTA, EM PUBLICA\xC7\xC3O DE CIRCULA\xC7\xC3O
+        NACIONAL, BEM COMO POR MEIO DE AFIXA\xC7\xC3O DE EDITAL, PELO PRAZO M\xCDNIMO
+        DE 30 (TRINTA) DIAS, NO PR\xD3PRIO ESTABELECIMENTO OU NO LOCAL DE EXERC\xCDCIO
+        DA ATIVIDADE, DE MODO VIS\xCDVEL AO P\xDABLICO, E NO S\xCDTIO ELETR\xD4NICO
+        NA REDE MUNDIAL DE COMPUTADORES.\",\"descricao\":\"LEI 12846 - ART. 6\xBA,
+        \xA75\xBA, II - A PUBLICA\xC7\xC3O EXTRAORDIN\xC1RIA DA DECIS\xC3O CONDENAT\xD3RIA
+        OCORRER\xC1 NA FORMA DE EXTRATO DE SENTEN\xC7A, A EXPENSAS DA PESSOA JUR\xCDDICA,
+        EM MEIOS DE COMUNICA\xC7\xC3O DE GRANDE CIRCULA\xC7\xC3O NA \xC1REA DA PR\xC1TICA
+        DA INFRA\xC7\xC3O E DE ATUA\xC7\xC3O DA PESSOA JUR\xCDDICA OU, NA SUA FALTA,
+        EM PUBLICA\xC7\xC3O DE CIRCULA\xC7\xC3O NACIONAL, BEM COMO POR MEIO DE AFIXA\xC7\xC3O
+        DE EDITAL, PELO PRAZO M\xCDNIMO DE 30 (TRINTA) DIAS, NO PR\xD3PRIO ESTABELECIMENTO
+        OU NO LOCAL DE EXERC\xCDCIO DA ATIVIDADE, DE MODO VIS\xCDVEL AO P\xDABLICO,
+        E NO S\xCDTIO ELETR\xD4NICO NA REDE MUNDIAL DE COMPUTADORES.\"}],\"orgaoSancionador\":{\"nome\":\"Minist\xE9rio
+        da Agricultura e Pecu\xE1ria\",\"siglaUf\":\"\",\"poder\":\"Executivo\",\"esfera\":\"FEDERAL\"},\"sancionado\":{\"nome\":\"COLETIVO
+        NACIONAL DA PESCA E AQUICULTURA\",\"codigoFormatado\":\"00.676.189/0001-37\"},\"valorMulta\":\"0,00\",\"pessoa\":{\"id\":3319872,\"cpfFormatado\":\"\",\"cnpjFormatado\":\"00.676.189/0001-37\",\"numeroInscricaoSocial\":\"\",\"nome\":\"COLETIVO
+        NACIONAL DA PESCA E AQUICULTURA\",\"razaoSocialReceita\":\"COLETIVO NACIONAL
+        DA PESCA E AQUICULTURA\",\"nomeFantasiaReceita\":\"CONEPE\",\"tipo\":\"Entidades
+        Sem Fins Lucrativos\"},\"textoPublicacao\":\"Sem Informa\xE7\xE3o\",\"linkPublicacao\":\"\",\"detalhamentoPublicacao\":\"DOU\",\"numeroProcesso\":\"21000.064427/2020-68\",\"abrangenciaDefinidaDecisaoJudicial\":\"Sem
+        Informa\xE7\xE3o\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":138709,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"11/02/2022\",\"dataFimSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataPublicacaoSancao\":\"30/12/2021\",\"dataTransitadoJulgado\":\"11/02/2022\",\"dataOrigemInformacao\":\"15/07/2022\",\"tipoSancao\":{\"descricaoResumida\":\"Multa\",\"descricaoPortal\":\"Multa\"},\"fonteSancao\":{\"nomeExibicao\":\"Secretaria
+        de Estado de Controle e Transpar\xEAncia - (SECONT/Esp\xEDrito Santo)\",\"telefoneContato\":\"(27)
+        3636-5352\",\"enderecoContato\":\"Av. Jo\xE3o Batista Parra, n\xBA 600, Ed.
+        Aureliano Hoffman,10\xBA andar. - Enseada do Su\xE1, CEP 29050-375, Vit\xF3ria/ES\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        12846 - ART. 6\xBA, I - MULTA, NO VALOR DE 0,1% (UM D\xC9CIMO POR CENTO) A
+        20% (VINTE POR CENTO) DO FATURAMENTO BRUTO DO \xDALTIMO EXERC\xCDCIO ANTERIOR
+        AO DA INSTAURA\xC7\xC3O DO PROCESSO ADMINISTRATIVO, EXCLU\xCDDOS OS TRIBUTOS,
+        A QUAL NUNCA SER\xC1 INFERIOR \xC0 VANTAGEM AUFERIDA, QUANDO FOR POSS\xCDVEL
+        SUA ESTIMA\xC7\xC3O\",\"descricao\":\"LEI 12846 - ART. 6\xBA, I - MULTA, NO
+        VALOR DE 0,1% (UM D\xC9CIMO POR CENTO) A 20% (VINTE POR CENTO) DO FATURAMENTO
+        BRUTO DO \xDALTIMO EXERC\xCDCIO ANTERIOR AO DA INSTAURA\xC7\xC3O DO PROCESSO
+        ADMINISTRATIVO, EXCLU\xCDDOS OS TRIBUTOS, A QUAL NUNCA SER\xC1 INFERIOR \xC0
+        VANTAGEM AUFERIDA, QUANDO FOR POSS\xCDVEL SUA ESTIMA\xC7\xC3O\"}],\"orgaoSancionador\":{\"nome\":\"Secretaria
+        de Estado de Controle e Transpar\xEAncia - (SECONT/Esp\xEDrito Santo)\",\"siglaUf\":\"ES\",\"poder\":\"Executivo\",\"esfera\":\"ESTADUAL\"},\"sancionado\":{\"nome\":\"FAG
+        COMERCIOS E  SERVI\xC7OS  DE  EQUIPAMENTOS,  M\xC1QUINAS, M\xD3VEIS EIRELI\",\"codigoFormatado\":\"12.322.473/0001-94\"},\"valorMulta\":\"1.369,55\",\"pessoa\":{\"id\":24039025,\"cpfFormatado\":\"\",\"cnpjFormatado\":\"12.322.473/0001-94\",\"numeroInscricaoSocial\":\"\",\"nome\":\"FAG
+        COMERCIO E SERVICOS DE EQUIPAMENTOS, MAQUINAS E MOVEIS LTDA\",\"razaoSocialReceita\":\"FAG
+        COMERCIO E SERVICOS DE EQUIPAMENTOS, MAQUINAS E MOVEIS LTDA\",\"nomeFantasiaReceita\":\"FUTURA
+        COMERCIO E SERVICOS\",\"tipo\":\"Entidades Empresariais Privadas\"},\"textoPublicacao\":\"Sem
+        Informa\xE7\xE3o Se\xE7\xE3o 2 Pagina 67\",\"linkPublicacao\":\"\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"84854375/2019\",\"abrangenciaDefinidaDecisaoJudicial\":\"Sem
+        Informa\xE7\xE3o\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":344195,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"31/03/2025\",\"dataFimSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataPublicacaoSancao\":\"28/03/2025\",\"dataTransitadoJulgado\":\"31/03/2025\",\"dataOrigemInformacao\":\"31/03/2025\",\"tipoSancao\":{\"descricaoResumida\":\"Multa\",\"descricaoPortal\":\"Multa\"},\"fonteSancao\":{\"nomeExibicao\":\"Prefeitura
+        de Joinville (SC)\",\"telefoneContato\":\"(47) 3431 3233\",\"enderecoContato\":\"Av.
+        Hermann August Lepper, 10 - Centro, Joinville/ SC - CEP: 89.221-005.\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        12846 - ART. 5\xBA, IV, D - NO TOCANTE A LICITA\xC7\xD5ES E CONTRATOS: FRAUDAR
+        LICITA\xC7\xC3O P\xDABLICA OU CONTRATO DELA DECORRENTE;\",\"descricao\":\"LEI
+        12846 - ART. 5\xBA, IV, D - NO TOCANTE A LICITA\xC7\xD5ES E CONTRATOS: FRAUDAR
+        LICITA\xC7\xC3O P\xDABLICA OU CONTRATO DELA DECORRENTE;\"}],\"orgaoSancionador\":{\"nome\":\"Prefeitura
+        de Joinville (SC)\",\"siglaUf\":\"SC\",\"poder\":\"Executivo\",\"esfera\":\"MUNICIPAL\"},\"sancionado\":{\"nome\":\"ALVARO
+        JOSE BOGO\",\"codigoFormatado\":\"380.869.649-49\"},\"valorMulta\":\"5.011,97\",\"pessoa\":{\"id\":606433939,\"cpfFormatado\":\"***.869.649-**\",\"cnpjFormatado\":\"\",\"numeroInscricaoSocial\":\"\",\"nome\":\"ALVARO
+        JOSE BOGO\",\"razaoSocialReceita\":\"\",\"nomeFantasiaReceita\":\"\",\"tipo\":\"Pessoa
+        F\xEDsica\"},\"textoPublicacao\":\"Di\xE1rio Oficial do Munic\xEDpio Se\xE7\xE3o
+        2685\",\"linkPublicacao\":\"\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"22.0.192817-1\",\"abrangenciaDefinidaDecisaoJudicial\":\"Todas
+        as Esferas em todos os Poderes\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":362267,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"07/03/2025\",\"dataFimSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataPublicacaoSancao\":\"07/02/2025\",\"dataTransitadoJulgado\":\"07/02/2025\",\"dataOrigemInformacao\":\"10/09/2025\",\"tipoSancao\":{\"descricaoResumida\":\"Multa\",\"descricaoPortal\":\"Multa\"},\"fonteSancao\":{\"nomeExibicao\":\"Controladoria-Geral
+        da Uni\xE3o\",\"telefoneContato\":\".\",\"enderecoContato\":\".\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        12846 - ART. 6\xBA, I - MULTA, NO VALOR DE 0,1% (UM D\xC9CIMO POR CENTO) A
+        20% (VINTE POR CENTO) DO FATURAMENTO BRUTO DO \xDALTIMO EXERC\xCDCIO ANTERIOR
+        AO DA INSTAURA\xC7\xC3O DO PROCESSO ADMINISTRATIVO, EXCLU\xCDDOS OS TRIBUTOS,
+        A QUAL NUNCA SER\xC1 INFERIOR \xC0 VANTAGEM AUFERIDA, QUANDO FOR POSS\xCDVEL
+        SUA ESTIMA\xC7\xC3O\",\"descricao\":\"LEI 12846 - ART. 6\xBA, I - MULTA, NO
+        VALOR DE 0,1% (UM D\xC9CIMO POR CENTO) A 20% (VINTE POR CENTO) DO FATURAMENTO
+        BRUTO DO \xDALTIMO EXERC\xCDCIO ANTERIOR AO DA INSTAURA\xC7\xC3O DO PROCESSO
+        ADMINISTRATIVO, EXCLU\xCDDOS OS TRIBUTOS, A QUAL NUNCA SER\xC1 INFERIOR \xC0
+        VANTAGEM AUFERIDA, QUANDO FOR POSS\xCDVEL SUA ESTIMA\xC7\xC3O\"},{\"codigo\":\"LEI
+        12846 - ART. 5\xBA, III - COMPROVADAMENTE, UTILIZAR-SE DE INTERPOSTA PESSOA
+        F\xCDSICA OU JUR\xCDDICA PARA OCULTAR OU DISSIMULAR SEUS REAIS INTERESSES
+        OU A IDENTIDADE DOS BENEFICI\xC1RIOS DOS ATOS PRATICADOS;\",\"descricao\":\"LEI
+        12846 - ART. 5\xBA, III - COMPROVADAMENTE, UTILIZAR-SE DE INTERPOSTA PESSOA
+        F\xCDSICA OU JUR\xCDDICA PARA OCULTAR OU DISSIMULAR SEUS REAIS INTERESSES
+        OU A IDENTIDADE DOS BENEFICI\xC1RIOS DOS ATOS PRATICADOS;\"},{\"codigo\":\"LEI
+        12846 - ART. 5\xBA, I - PROMETER, OFERECER OU DAR, DIRETA OU INDIRETAMENTE,
+        VANTAGEM INDEVIDA A AGENTE P\xDABLICO, OU A TERCEIRA PESSOA A ELE RELACIONADA;\",\"descricao\":\"LEI
+        12846 - ART. 5\xBA, I - PROMETER, OFERECER OU DAR, DIRETA OU INDIRETAMENTE,
+        VANTAGEM INDEVIDA A AGENTE P\xDABLICO, OU A TERCEIRA PESSOA A ELE RELACIONADA;\"}],\"orgaoSancionador\":{\"nome\":\"Instituto
+        Brasileiro do Meio Ambiente e dos Recursos Naturais Renov\xE1veis - DF\",\"siglaUf\":\"DF\",\"poder\":\"Executivo\",\"esfera\":\"FEDERAL\"},\"sancionado\":{\"nome\":\"DISPAMA
+        DISTRIBUIDORA PAULISTA DE MADEIRAS LTDA\",\"codigoFormatado\":\"08.743.081/0001-21\"},\"valorMulta\":\"10.071,09\",\"pessoa\":{\"id\":606350190,\"cpfFormatado\":\"\",\"cnpjFormatado\":\"08.743.081/0001-21\",\"numeroInscricaoSocial\":\"\",\"nome\":\"DISPAMA
+        DISTRIBUIDORA PAULISTA DE MADEIRAS LTDA\",\"razaoSocialReceita\":\"DISPAMA
+        DISTRIBUIDORA PAULISTA DE MADEIRAS LTDA\",\"nomeFantasiaReceita\":\"DISPAMA
+        DISTRIBUIDORA PAULISTA DE MADEIRAS\",\"tipo\":\"Entidades Empresariais Privadas\"},\"textoPublicacao\":\"Di\xE1rio
+        Oficial da Uni\xE3o Se\xE7\xE3o 1 Pagina 27\",\"linkPublicacao\":\"http://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?jornal=515&pagina=27&data=07/02/2025\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"02001001828202303\",\"abrangenciaDefinidaDecisaoJudicial\":\"Todas
+        as Esferas em todos os Poderes\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":375945,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"15/01/2026\",\"dataFimSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataPublicacaoSancao\":\"05/01/2026\",\"dataTransitadoJulgado\":\"Sem
+        informa\xE7\xE3o\",\"dataOrigemInformacao\":\"23/01/2026\",\"tipoSancao\":{\"descricaoResumida\":\"Multa\",\"descricaoPortal\":\"Multa\"},\"fonteSancao\":{\"nomeExibicao\":\"Controladoria-Geral
+        da Uni\xE3o\",\"telefoneContato\":\".\",\"enderecoContato\":\".\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        12846 - ART. 6\xBA, I - MULTA, NO VALOR DE 0,1% (UM D\xC9CIMO POR CENTO) A
+        20% (VINTE POR CENTO) DO FATURAMENTO BRUTO DO \xDALTIMO EXERC\xCDCIO ANTERIOR
+        AO DA INSTAURA\xC7\xC3O DO PROCESSO ADMINISTRATIVO, EXCLU\xCDDOS OS TRIBUTOS,
+        A QUAL NUNCA SER\xC1 INFERIOR \xC0 VANTAGEM AUFERIDA, QUANDO FOR POSS\xCDVEL
+        SUA ESTIMA\xC7\xC3O\",\"descricao\":\"LEI 12846 - ART. 6\xBA, I - MULTA, NO
+        VALOR DE 0,1% (UM D\xC9CIMO POR CENTO) A 20% (VINTE POR CENTO) DO FATURAMENTO
+        BRUTO DO \xDALTIMO EXERC\xCDCIO ANTERIOR AO DA INSTAURA\xC7\xC3O DO PROCESSO
+        ADMINISTRATIVO, EXCLU\xCDDOS OS TRIBUTOS, A QUAL NUNCA SER\xC1 INFERIOR \xC0
+        VANTAGEM AUFERIDA, QUANDO FOR POSS\xCDVEL SUA ESTIMA\xC7\xC3O\"}],\"orgaoSancionador\":{\"nome\":\"Petr\xF3leo
+        Brasileiro S.A.\",\"siglaUf\":\"\",\"poder\":\"Executivo\",\"esfera\":\"FEDERAL\"},\"sancionado\":{\"nome\":\"CAYMIRIM
+        COMERCIO E DISTRIBUICAO LTDA\",\"codigoFormatado\":\"46.504.141/0001-42\"},\"valorMulta\":\"23.193,08\",\"pessoa\":{\"id\":608575649,\"cpfFormatado\":\"\",\"cnpjFormatado\":\"46.504.141/0001-42\",\"numeroInscricaoSocial\":\"\",\"nome\":\"CAYMIRIM
+        COMERCIO E DISTRIBUICAO LTDA\",\"razaoSocialReceita\":\"CAYMIRIM COMERCIO
+        E DISTRIBUICAO LTDA\",\"nomeFantasiaReceita\":\"CAYMIRIM\",\"tipo\":\"Entidades
+        Empresariais Privadas\"},\"textoPublicacao\":\"Di\xE1rio Oficial da Uni\xE3o
+        Se\xE7\xE3o 3 Pagina 108\",\"linkPublicacao\":\"http://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?jornal=530&pagina=108&data=05/01/2026\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"017073182025\",\"abrangenciaDefinidaDecisaoJudicial\":\"No
+        \xF3rg\xE3o sancionador\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":297305,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"15/06/2023\",\"dataFimSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataPublicacaoSancao\":\"30/05/2023\",\"dataTransitadoJulgado\":\"Sem
+        informa\xE7\xE3o\",\"dataOrigemInformacao\":\"27/02/2024\",\"tipoSancao\":{\"descricaoResumida\":\"Multa\",\"descricaoPortal\":\"Multa\"},\"fonteSancao\":{\"nomeExibicao\":\"Controladoria-Geral
+        do Munic\xEDpio de S\xE3o Paulo - SP\",\"telefoneContato\":\"(11) 3113-8234\",\"enderecoContato\":\"Viaduto
+        do Ch\xE1, n\xBA 15 - 10\xBA andar, S\xE3o Paulo - SP, CEP: 01020-900\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        12846 - ART. 6\xBA, I - MULTA, NO VALOR DE 0,1% (UM D\xC9CIMO POR CENTO) A
+        20% (VINTE POR CENTO) DO FATURAMENTO BRUTO DO \xDALTIMO EXERC\xCDCIO ANTERIOR
+        AO DA INSTAURA\xC7\xC3O DO PROCESSO ADMINISTRATIVO, EXCLU\xCDDOS OS TRIBUTOS,
+        A QUAL NUNCA SER\xC1 INFERIOR \xC0 VANTAGEM AUFERIDA, QUANDO FOR POSS\xCDVEL
+        SUA ESTIMA\xC7\xC3O\",\"descricao\":\"LEI 12846 - ART. 6\xBA, I - MULTA, NO
+        VALOR DE 0,1% (UM D\xC9CIMO POR CENTO) A 20% (VINTE POR CENTO) DO FATURAMENTO
+        BRUTO DO \xDALTIMO EXERC\xCDCIO ANTERIOR AO DA INSTAURA\xC7\xC3O DO PROCESSO
+        ADMINISTRATIVO, EXCLU\xCDDOS OS TRIBUTOS, A QUAL NUNCA SER\xC1 INFERIOR \xC0
+        VANTAGEM AUFERIDA, QUANDO FOR POSS\xCDVEL SUA ESTIMA\xC7\xC3O\"}],\"orgaoSancionador\":{\"nome\":\"Controladoria-Geral
+        do Munic\xEDpio de S\xE3o Paulo - SP\",\"siglaUf\":\"SP\",\"poder\":\"Executivo\",\"esfera\":\"MUNICIPAL\"},\"sancionado\":{\"nome\":\"Associa\xE7\xE3o
+        Centro Social Beneficente de Recupera\xE7\xE3o El Shadai\",\"codigoFormatado\":\"02.986.801/0001-01\"},\"valorMulta\":\"415.578,84\",\"pessoa\":{\"id\":605355284,\"cpfFormatado\":\"\",\"cnpjFormatado\":\"02.986.801/0001-01\",\"numeroInscricaoSocial\":\"\",\"nome\":\"CENTRO
+        SOCIAL BENEFICENTE DE RECUPERACAO EL SHADAI\",\"razaoSocialReceita\":\"CENTRO
+        SOCIAL BENEFICENTE DE RECUPERACAO EL SHADAI\",\"nomeFantasiaReceita\":\"\",\"tipo\":\"Entidades
+        Sem Fins Lucrativos\"},\"textoPublicacao\":\"Di\xE1rio Oficial do Munic\xEDpio
+        Se\xE7\xE3o Atos do Executivo Pagina 47\",\"linkPublicacao\":\"\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"6067.2019/0025519-9\",\"abrangenciaDefinidaDecisaoJudicial\":\"Em
+        todos os Poderes da Esfera do \xF3rg\xE3o sancionador\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":109164,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"07/04/2020\",\"dataFimSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataPublicacaoSancao\":\"07/04/2020\",\"dataTransitadoJulgado\":\"Sem
+        informa\xE7\xE3o\",\"dataOrigemInformacao\":\"07/04/2020\",\"tipoSancao\":{\"descricaoResumida\":\"Multa\",\"descricaoPortal\":\"Multa\"},\"fonteSancao\":{\"nomeExibicao\":\"BANCO
+        DO BRASIL S.A.\",\"telefoneContato\":\".\",\"enderecoContato\":\".\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        12846 - ART. 6\xBA, I - MULTA, NO VALOR DE 0,1% (UM D\xC9CIMO POR CENTO) A
+        20% (VINTE POR CENTO) DO FATURAMENTO BRUTO DO \xDALTIMO EXERC\xCDCIO ANTERIOR
+        AO DA INSTAURA\xC7\xC3O DO PROCESSO ADMINISTRATIVO, EXCLU\xCDDOS OS TRIBUTOS,
+        A QUAL NUNCA SER\xC1 INFERIOR \xC0 VANTAGEM AUFERIDA, QUANDO FOR POSS\xCDVEL
+        SUA ESTIMA\xC7\xC3O\",\"descricao\":\"LEI 12846 - ART. 6\xBA, I - MULTA, NO
+        VALOR DE 0,1% (UM D\xC9CIMO POR CENTO) A 20% (VINTE POR CENTO) DO FATURAMENTO
+        BRUTO DO \xDALTIMO EXERC\xCDCIO ANTERIOR AO DA INSTAURA\xC7\xC3O DO PROCESSO
+        ADMINISTRATIVO, EXCLU\xCDDOS OS TRIBUTOS, A QUAL NUNCA SER\xC1 INFERIOR \xC0
+        VANTAGEM AUFERIDA, QUANDO FOR POSS\xCDVEL SUA ESTIMA\xC7\xC3O\"}],\"orgaoSancionador\":{\"nome\":\"BANCO
+        DO BRASIL S.A.\",\"siglaUf\":\"\",\"poder\":\"Executivo\",\"esfera\":\"FEDERAL\"},\"sancionado\":{\"nome\":\"DBR
+        PARTS COMERCIO VAREJISTA DE ACESSORIOS PARA VEICULOS EIRELI\",\"codigoFormatado\":\"22.492.920/0001-07\"},\"valorMulta\":\"148.435,09\",\"pessoa\":{\"id\":189516775,\"cpfFormatado\":\"\",\"cnpjFormatado\":\"22.492.920/0001-07\",\"numeroInscricaoSocial\":\"\",\"nome\":\"DBR
+        PARTS COMERCIO VAREJISTA DE ACESSORIOS PARA VEICULOS LTDA\",\"razaoSocialReceita\":\"DBR
+        PARTS COMERCIO VAREJISTA DE ACESSORIOS PARA VEICULOS LTDA\",\"nomeFantasiaReceita\":\"DBR
+        PARTS\",\"tipo\":\"Entidades Empresariais Privadas\"},\"textoPublicacao\":\"Di\xE1rio
+        Oficial da Uni\xE3o Se\xE7\xE3o 3 Pagina 35\",\"linkPublicacao\":\"http://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?jornal=530&pagina=35&data=07/04/2020\",\"detalhamentoPublicacao\":\"Edital
+        de Notifica\xE7\xE3o n\xBA 1, de 1\xBA de Abril de 2020\",\"numeroProcesso\":\"2019/0043\",\"abrangenciaDefinidaDecisaoJudicial\":\"Na
+        Esfera e no Poder do \xF3rg\xE3o sancionador\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":315351,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"28/08/2024\",\"dataFimSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataPublicacaoSancao\":\"15/08/2024\",\"dataTransitadoJulgado\":\"Sem
+        informa\xE7\xE3o\",\"dataOrigemInformacao\":\"15/08/2024\",\"tipoSancao\":{\"descricaoResumida\":\"Multa\",\"descricaoPortal\":\"Multa\"},\"fonteSancao\":{\"nomeExibicao\":\"Controladoria-Geral
+        da Uni\xE3o\",\"telefoneContato\":\".\",\"enderecoContato\":\".\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        12846 - ART. 6\xBA, I - MULTA, NO VALOR DE 0,1% (UM D\xC9CIMO POR CENTO) A
+        20% (VINTE POR CENTO) DO FATURAMENTO BRUTO DO \xDALTIMO EXERC\xCDCIO ANTERIOR
+        AO DA INSTAURA\xC7\xC3O DO PROCESSO ADMINISTRATIVO, EXCLU\xCDDOS OS TRIBUTOS,
+        A QUAL NUNCA SER\xC1 INFERIOR \xC0 VANTAGEM AUFERIDA, QUANDO FOR POSS\xCDVEL
+        SUA ESTIMA\xC7\xC3O\",\"descricao\":\"LEI 12846 - ART. 6\xBA, I - MULTA, NO
+        VALOR DE 0,1% (UM D\xC9CIMO POR CENTO) A 20% (VINTE POR CENTO) DO FATURAMENTO
+        BRUTO DO \xDALTIMO EXERC\xCDCIO ANTERIOR AO DA INSTAURA\xC7\xC3O DO PROCESSO
+        ADMINISTRATIVO, EXCLU\xCDDOS OS TRIBUTOS, A QUAL NUNCA SER\xC1 INFERIOR \xC0
+        VANTAGEM AUFERIDA, QUANDO FOR POSS\xCDVEL SUA ESTIMA\xC7\xC3O\"},{\"codigo\":\"LEI
+        12846 - ART. 5\xBA, II - COMPROVADAMENTE, FINANCIAR, CUSTEAR, PATROCINAR OU
+        DE QUALQUER MODO SUBVENCIONAR A PR\xC1TICA DOS ATOS IL\xCDCITOS PREVISTOS
+        NESTA LEI;\",\"descricao\":\"LEI 12846 - ART. 5\xBA, II - COMPROVADAMENTE,
+        FINANCIAR, CUSTEAR, PATROCINAR OU DE QUALQUER MODO SUBVENCIONAR A PR\xC1TICA
+        DOS ATOS IL\xCDCITOS PREVISTOS NESTA LEI;\"}],\"orgaoSancionador\":{\"nome\":\"Controladoria-Geral
+        da Uni\xE3o\",\"siglaUf\":\"DF\",\"poder\":\"Executivo\",\"esfera\":\"FEDERAL\"},\"sancionado\":{\"nome\":\"ASS
+        TRANSPORTES LTDA\",\"codigoFormatado\":\"15.752.844/0001-66\"},\"valorMulta\":\"111.500,00\",\"pessoa\":{\"id\":605837272,\"cpfFormatado\":\"\",\"cnpjFormatado\":\"15.752.844/0001-66\",\"numeroInscricaoSocial\":\"\",\"nome\":\"ASS
+        TRANSPORTES LTDA\",\"razaoSocialReceita\":\"ASS TRANSPORTES LTDA\",\"nomeFantasiaReceita\":\"TRANSMANOS
+        TRANSPORTES E CASCALHO\",\"tipo\":\"Entidades Empresariais Privadas\"},\"textoPublicacao\":\"Di\xE1rio
+        Oficial da Uni\xE3o Se\xE7\xE3o 1 Pagina 67\",\"linkPublicacao\":\"http://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?jornal=515&pagina=67&data=15/08/2024\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"00190102714202366\",\"abrangenciaDefinidaDecisaoJudicial\":\"Todas
+        as Esferas em todos os Poderes\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":382697,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"27/03/2026\",\"dataFimSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataPublicacaoSancao\":\"17/03/2026\",\"dataTransitadoJulgado\":\"Sem
+        informa\xE7\xE3o\",\"dataOrigemInformacao\":\"30/03/2026\",\"tipoSancao\":{\"descricaoResumida\":\"Multa\",\"descricaoPortal\":\"Multa\"},\"fonteSancao\":{\"nomeExibicao\":\"Controladoria-Geral
+        da Uni\xE3o\",\"telefoneContato\":\".\",\"enderecoContato\":\".\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        12846 - ART. 6\xBA, I - MULTA, NO VALOR DE 0,1% (UM D\xC9CIMO POR CENTO) A
+        20% (VINTE POR CENTO) DO FATURAMENTO BRUTO DO \xDALTIMO EXERC\xCDCIO ANTERIOR
+        AO DA INSTAURA\xC7\xC3O DO PROCESSO ADMINISTRATIVO, EXCLU\xCDDOS OS TRIBUTOS,
+        A QUAL NUNCA SER\xC1 INFERIOR \xC0 VANTAGEM AUFERIDA, QUANDO FOR POSS\xCDVEL
+        SUA ESTIMA\xC7\xC3O\",\"descricao\":\"LEI 12846 - ART. 6\xBA, I - MULTA, NO
+        VALOR DE 0,1% (UM D\xC9CIMO POR CENTO) A 20% (VINTE POR CENTO) DO FATURAMENTO
+        BRUTO DO \xDALTIMO EXERC\xCDCIO ANTERIOR AO DA INSTAURA\xC7\xC3O DO PROCESSO
+        ADMINISTRATIVO, EXCLU\xCDDOS OS TRIBUTOS, A QUAL NUNCA SER\xC1 INFERIOR \xC0
+        VANTAGEM AUFERIDA, QUANDO FOR POSS\xCDVEL SUA ESTIMA\xC7\xC3O\"}],\"orgaoSancionador\":{\"nome\":\"Petr\xF3leo
+        Brasileiro S.A.\",\"siglaUf\":\"\",\"poder\":\"Executivo\",\"esfera\":\"FEDERAL\"},\"sancionado\":{\"nome\":\"EMBATTUR
+        EMPRESA BAHIANA DE TRANSPORTE E SERVICOS LTDA\",\"codigoFormatado\":\"02.517.814/0001-23\"},\"valorMulta\":\"312.230,14\",\"pessoa\":{\"id\":27041404,\"cpfFormatado\":\"\",\"cnpjFormatado\":\"02.517.814/0001-23\",\"numeroInscricaoSocial\":\"\",\"nome\":\"EMBATTUR
+        EMPRESA BAHIANA DE TRANSPORTE E SERVICOS LTDA\",\"razaoSocialReceita\":\"EMBATTUR
+        EMPRESA BAHIANA DE TRANSPORTE E SERVICOS LTDA\",\"nomeFantasiaReceita\":\"BAHIA
+        TAXI\",\"tipo\":\"Entidades Empresariais Privadas\"},\"textoPublicacao\":\"Di\xE1rio
+        Oficial da Uni\xE3o Se\xE7\xE3o 3 Pagina 151\",\"linkPublicacao\":\"http://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?jornal=530&pagina=151&data=17/03/2026\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"038000152025\",\"abrangenciaDefinidaDecisaoJudicial\":\"No
+        \xF3rg\xE3o sancionador\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":347455,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"19/05/2025\",\"dataFimSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataPublicacaoSancao\":\"07/04/2025\",\"dataTransitadoJulgado\":\"Sem
+        informa\xE7\xE3o\",\"dataOrigemInformacao\":\"18/04/2025\",\"tipoSancao\":{\"descricaoResumida\":\"Publica\xE7\xE3o
+        extraordin\xE1ria da decis\xE3o condenat\xF3ria\",\"descricaoPortal\":\"Publica\xE7\xE3o
+        extraordin\xE1ria da decis\xE3o condenat\xF3ria\"},\"fonteSancao\":{\"nomeExibicao\":\"Controladoria-Geral
+        da Uni\xE3o\",\"telefoneContato\":\".\",\"enderecoContato\":\".\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        12846 - ART. 5\xBA, IV, E - NO TOCANTE A LICITA\xC7\xD5ES E CONTRATOS: CRIAR,
+        DE MODO FRAUDULENTO OU IRREGULAR, PESSOA JUR\xCDDICA PARA PARTICIPAR DE LICITA\xC7\xC3O
+        P\xDABLICA OU CELEBRAR CONTRATO ADMINISTRATIVO;\",\"descricao\":\"LEI 12846
+        - ART. 5\xBA, IV, E - NO TOCANTE A LICITA\xC7\xD5ES E CONTRATOS: CRIAR, DE
+        MODO FRAUDULENTO OU IRREGULAR, PESSOA JUR\xCDDICA PARA PARTICIPAR DE LICITA\xC7\xC3O
+        P\xDABLICA OU CELEBRAR CONTRATO ADMINISTRATIVO;\"},{\"codigo\":\"LEI 12846
+        - ART. 5\xBA, IV, A - NO TOCANTE A LICITA\xC7\xD5ES E CONTRATOS: FRUSTRAR
+        OU FRAUDAR, MEDIANTE AJUSTE, COMBINA\xC7\xC3O OU QUALQUER OUTRO EXPEDIENTE,
+        O CAR\xC1TER COMPETITIVO DE PROCEDIMENTO LICITAT\xD3RIO P\xDABLICO;\",\"descricao\":\"LEI
+        12846 - ART. 5\xBA, IV, A - NO TOCANTE A LICITA\xC7\xD5ES E CONTRATOS: FRUSTRAR
+        OU FRAUDAR, MEDIANTE AJUSTE, COMBINA\xC7\xC3O OU QUALQUER OUTRO EXPEDIENTE,
+        O CAR\xC1TER COMPETITIVO DE PROCEDIMENTO LICITAT\xD3RIO P\xDABLICO;\"},{\"codigo\":\"LEI
+        12846 - ART. 6\xBA, \xA75\xBA, II - A PUBLICA\xC7\xC3O EXTRAORDIN\xC1RIA DA
+        DECIS\xC3O CONDENAT\xD3RIA OCORRER\xC1 NA FORMA DE EXTRATO DE SENTEN\xC7A,
+        A EXPENSAS DA PESSOA JUR\xCDDICA, EM MEIOS DE COMUNICA\xC7\xC3O DE GRANDE
+        CIRCULA\xC7\xC3O NA \xC1REA DA PR\xC1TICA DA INFRA\xC7\xC3O E DE ATUA\xC7\xC3O
+        DA PESSOA JUR\xCDDICA OU, NA SUA FALTA, EM PUBLICA\xC7\xC3O DE CIRCULA\xC7\xC3O
+        NACIONAL, BEM COMO POR MEIO DE AFIXA\xC7\xC3O DE EDITAL, PELO PRAZO M\xCDNIMO
+        DE 30 (TRINTA) DIAS, NO PR\xD3PRIO ESTABELECIMENTO OU NO LOCAL DE EXERC\xCDCIO
+        DA ATIVIDADE, DE MODO VIS\xCDVEL AO P\xDABLICO, E NO S\xCDTIO ELETR\xD4NICO
+        NA REDE MUNDIAL DE COMPUTADORES.\",\"descricao\":\"LEI 12846 - ART. 6\xBA,
+        \xA75\xBA, II - A PUBLICA\xC7\xC3O EXTRAORDIN\xC1RIA DA DECIS\xC3O CONDENAT\xD3RIA
+        OCORRER\xC1 NA FORMA DE EXTRATO DE SENTEN\xC7A, A EXPENSAS DA PESSOA JUR\xCDDICA,
+        EM MEIOS DE COMUNICA\xC7\xC3O DE GRANDE CIRCULA\xC7\xC3O NA \xC1REA DA PR\xC1TICA
+        DA INFRA\xC7\xC3O E DE ATUA\xC7\xC3O DA PESSOA JUR\xCDDICA OU, NA SUA FALTA,
+        EM PUBLICA\xC7\xC3O DE CIRCULA\xC7\xC3O NACIONAL, BEM COMO POR MEIO DE AFIXA\xC7\xC3O
+        DE EDITAL, PELO PRAZO M\xCDNIMO DE 30 (TRINTA) DIAS, NO PR\xD3PRIO ESTABELECIMENTO
+        OU NO LOCAL DE EXERC\xCDCIO DA ATIVIDADE, DE MODO VIS\xCDVEL AO P\xDABLICO,
+        E NO S\xCDTIO ELETR\xD4NICO NA REDE MUNDIAL DE COMPUTADORES.\"},{\"codigo\":\"LEI
+        12846 - ART. 5\xBA, IV, D - NO TOCANTE A LICITA\xC7\xD5ES E CONTRATOS: FRAUDAR
+        LICITA\xC7\xC3O P\xDABLICA OU CONTRATO DELA DECORRENTE;\",\"descricao\":\"LEI
+        12846 - ART. 5\xBA, IV, D - NO TOCANTE A LICITA\xC7\xD5ES E CONTRATOS: FRAUDAR
+        LICITA\xC7\xC3O P\xDABLICA OU CONTRATO DELA DECORRENTE;\"},{\"codigo\":\"LEI
+        12846 - ART. 5\xBA, II - COMPROVADAMENTE, FINANCIAR, CUSTEAR, PATROCINAR OU
+        DE QUALQUER MODO SUBVENCIONAR A PR\xC1TICA DOS ATOS IL\xCDCITOS PREVISTOS
+        NESTA LEI;\",\"descricao\":\"LEI 12846 - ART. 5\xBA, II - COMPROVADAMENTE,
+        FINANCIAR, CUSTEAR, PATROCINAR OU DE QUALQUER MODO SUBVENCIONAR A PR\xC1TICA
+        DOS ATOS IL\xCDCITOS PREVISTOS NESTA LEI;\"}],\"orgaoSancionador\":{\"nome\":\"Controladoria-Geral
+        da Uni\xE3o\",\"siglaUf\":\"DF\",\"poder\":\"Executivo\",\"esfera\":\"FEDERAL\"},\"sancionado\":{\"nome\":\"TEC
+        NOVA - CONSTRUCAO CIVIL LTDA\",\"codigoFormatado\":\"14.958.510/0001-80\"},\"valorMulta\":\"0,00\",\"pessoa\":{\"id\":606273955,\"cpfFormatado\":\"\",\"cnpjFormatado\":\"14.958.510/0001-80\",\"numeroInscricaoSocial\":\"\",\"nome\":\"TEC
+        NOVA - CONSTRUCAO CIVIL LTDA\",\"razaoSocialReceita\":\"TEC NOVA - CONSTRUCAO
+        CIVIL LTDA\",\"nomeFantasiaReceita\":\"TEC NOVA - CONSTRUCAO\",\"tipo\":\"Entidades
+        Empresariais Privadas\"},\"textoPublicacao\":\"Di\xE1rio Oficial da Uni\xE3o
+        Se\xE7\xE3o 1 Pagina 164\",\"linkPublicacao\":\"http://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?jornal=515&pagina=164&data=07/04/2025\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"00190105811202319\",\"abrangenciaDefinidaDecisaoJudicial\":\"Todas
+        as Esferas em todos os Poderes\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"}]"
+    headers:
+      Age:
+      - '91'
+      Cache-Control:
+      - public, max-age=7200, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 18 Apr 2026 06:12:26 GMT
+      Server:
+      - CloudFront
+      Set-Cookie:
+      - JSESSIONID=5A84BE6688550F8070166F516AC654E7; Path=/; Secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - origin,accept-encoding
+      Via:
+      - 1.1 d3c4d86ebfc7b99674cd13f38b108cba.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - vi11anayqQIEq-FHEOPupQMsh-fAXP7c84YEkOaKpXq5z6RwArNCJw==
+      X-Amz-Cf-Pop:
+      - FOR50-P2
+      X-Cache:
+      - Hit from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+      X-XSS-Protection:
+      - 1; mode=block
+      content-length:
+      - '34922'
+    status:
+      code: 200
+      message: OK
+version: 1

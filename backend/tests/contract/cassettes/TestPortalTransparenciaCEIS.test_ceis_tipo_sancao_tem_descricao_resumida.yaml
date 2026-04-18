@@ -1,0 +1,656 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Host:
+      - api.portaldatransparencia.gov.br
+      User-Agent:
+      - AgroJus/1.0
+    method: GET
+    uri: https://api.portaldatransparencia.gov.br/api-de-dados/ceis?pagina=1
+  response:
+    body:
+      string: "[{\"id\":115267,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"28/07/2017\",\"dataFimSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataPublicacaoSancao\":\"28/07/2017\",\"dataTransitadoJulgado\":\"Sem
+        informa\xE7\xE3o\",\"dataOrigemInformacao\":\"23/09/2020\",\"tipoSancao\":{\"descricaoResumida\":\"Declara\xE7\xE3o
+        de Inidoneidade sem prazo determinado\",\"descricaoPortal\":\"Declara\xE7\xE3o
+        de Inidoneidade sem prazo determinado\"},\"fonteSancao\":{\"nomeExibicao\":\"Secretaria
+        Municipal de Gest\xE3o do Munic\xEDpio de S\xE3o Paulo - SP\",\"telefoneContato\":\"(11)
+        3396-7293\",\"enderecoContato\":\"Viaduto do Ch\xE1, n\xBA 15 - Centro, S\xE3o
+        Paulo/SP\"},\"fundamentacao\":[{\"codigo\":\"LEI 8666 - ART. 87, IV - PELA
+        INEXECU\xC7\xC3O TOTAL OU PARCIAL DO CONTRATO A ADMINISTRA\xC7\xC3O PODER\xC1,
+        GARANTIDA A PR\xC9VIA DEFESA, APLICAR AO CONTRATADO AS SEGUINTES SAN\xC7\xD5ES:
+        IV - DECLARA\xC7\xC3O DE INIDONEIDADE PARA LICITAR OU CONTRATAR COM A ADMINISTRA\xC7\xC3O
+        P\xDABLICA ENQUANTO PERDURAREM OS MOTIVOS DETERMINANTES DA PUNI\xC7\xC3O OU
+        AT\xC9 QUE SEJA PROMOVIDA A REABILITA\xC7\xC3O PERANTE A PR\xD3PRIA AUTORIDADE
+        QUE APLICOU A PENALIDADE, QUE SER\xC1 CONCEDIDA SEMPRE QUE O CONTRATADO RESSARCIR
+        A ADMINISTRA\xC7\xC3O PELOS PREJU\xCDZOS RESULTANTES E AP\xD3S DECORRIDO O
+        PRAZO DA SAN\xC7\xC3O APLICADA COM BASE NO INCISO ANTERIOR.\",\"descricao\":\"LEI
+        8666 - ART. 87, IV - PELA INEXECU\xC7\xC3O TOTAL OU PARCIAL DO CONTRATO A
+        ADMINISTRA\xC7\xC3O PODER\xC1, GARANTIDA A PR\xC9VIA DEFESA, APLICAR AO CONTRATADO
+        AS SEGUINTES SAN\xC7\xD5ES: IV - DECLARA\xC7\xC3O DE INIDONEIDADE PARA LICITAR
+        OU CONTRATAR COM A ADMINISTRA\xC7\xC3O P\xDABLICA ENQUANTO PERDURAREM OS MOTIVOS
+        DETERMINANTES DA PUNI\xC7\xC3O OU AT\xC9 QUE SEJA PROMOVIDA A REABILITA\xC7\xC3O
+        PERANTE A PR\xD3PRIA AUTORIDADE QUE APLICOU A PENALIDADE, QUE SER\xC1 CONCEDIDA
+        SEMPRE QUE O CONTRATADO RESSARCIR A ADMINISTRA\xC7\xC3O PELOS PREJU\xCDZOS
+        RESULTANTES E AP\xD3S DECORRIDO O PRAZO DA SAN\xC7\xC3O APLICADA COM BASE
+        NO INCISO ANTERIOR.\"}],\"orgaoSancionador\":{\"nome\":\"Secretaria Municipal
+        da Educa\xE7\xE3o - SME\",\"siglaUf\":\"SP\",\"poder\":\"Executivo\",\"esfera\":\"MUNICIPAL\"},\"sancionado\":{\"nome\":\"INSTITUTO
+        DE INTEGRA\xC7\xC3O DE APOIO A CIDADANIA BEM VIVER\",\"codigoFormatado\":\"00.818.544/0001-65\"},\"pessoa\":{\"id\":312025876,\"cpfFormatado\":\"\",\"cnpjFormatado\":\"00.818.544/0001-65\",\"numeroInscricaoSocial\":\"\",\"nome\":\"INSTITUTO
+        DE INTEGRACAO DE APOIO A CIDADANIA BEM VIVER\",\"razaoSocialReceita\":\"INSTITUTO
+        DE INTEGRACAO DE APOIO A CIDADANIA BEM VIVER\",\"nomeFantasiaReceita\":\"IBV\",\"tipo\":\"Entidades
+        Sem Fins Lucrativos\"},\"textoPublicacao\":\"Di\xE1rio Oficial do Munic\xEDpio
+        Se\xE7\xE3o Licita\xE7\xF5es Pagina 64\",\"linkPublicacao\":\"\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"2013-0.240.762-3\",\"abrangenciaDefinidaDecisaoJudicial\":\"Em
+        todos os Poderes da Esfera do \xF3rg\xE3o sancionador\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":372592,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"15/12/2025\",\"dataFimSancao\":\"30/04/2026\",\"dataPublicacaoSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataTransitadoJulgado\":\"Sem informa\xE7\xE3o\",\"dataOrigemInformacao\":\"15/12/2025\",\"tipoSancao\":{\"descricaoResumida\":\"Suspens\xE3o\",\"descricaoPortal\":\"Suspens\xE3o\"},\"fonteSancao\":{\"nomeExibicao\":\"Minist\xE9rio
+        da Fazenda\",\"telefoneContato\":\".\",\"enderecoContato\":\".\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        13303 - ART. 83, II E III - ART. 83. PELA INEXECU\xC7\xC3O TOTAL OU PARCIAL
+        DO CONTRATO A EMPRESA P\xDABLICA OU A SOCIEDADE DE ECONOMIA MISTA PODER\xC1,
+        GARANTIDA A PR\xC9VIA DEFESA, APLICAR AO CONTRATADO AS SEGUINTES SAN\xC7\xD5ES:
+        \    \\n\\nI - ADVERT\xCANCIA;\\n\\nII - MULTA, NA FORMA PREVISTA NO INSTRUMENTO
+        CONVOCAT\xD3RIO OU NO CONTRATO;\\n\\nIII - SUSPENS\xC3O TEMPOR\xC1RIA DE PARTICIPA\xC7\xC3O
+        EM LICITA\xC7\xC3O E IMPEDIMENTO DE CONTRATAR COM A ENTIDADE SANCIONADORA,
+        POR PRAZO N\xC3O SUPERIOR A 2 (DOIS) ANOS.\",\"descricao\":\"LEI 13303 - ART.
+        83, II E III - ART. 83. PELA INEXECU\xC7\xC3O TOTAL OU PARCIAL DO CONTRATO
+        A EMPRESA P\xDABLICA OU A SOCIEDADE DE ECONOMIA MISTA PODER\xC1, GARANTIDA
+        A PR\xC9VIA DEFESA, APLICAR AO CONTRATADO AS SEGUINTES SAN\xC7\xD5ES:     \\n\\nI
+        - ADVERT\xCANCIA;\\n\\nII - MULTA, NA FORMA PREVISTA NO INSTRUMENTO CONVOCAT\xD3RIO
+        OU NO CONTRATO;\\n\\nIII - SUSPENS\xC3O TEMPOR\xC1RIA DE PARTICIPA\xC7\xC3O
+        EM LICITA\xC7\xC3O E IMPEDIMENTO DE CONTRATAR COM A ENTIDADE SANCIONADORA,
+        POR PRAZO N\xC3O SUPERIOR A 2 (DOIS) ANOS.\"}],\"orgaoSancionador\":{\"nome\":\"EMPRESA
+        BRASILEIRA DE SERVI\xC7OS HOSPITALARES\",\"siglaUf\":\"MG\",\"poder\":\"Executivo\",\"esfera\":\"FEDERAL\"},\"sancionado\":{\"nome\":\"DIFARMIG
+        LTDA\",\"codigoFormatado\":\"19.961.036/0001-60\"},\"pessoa\":{\"id\":26337760,\"cpfFormatado\":\"\",\"cnpjFormatado\":\"19.961.036/0001-60\",\"numeroInscricaoSocial\":\"\",\"nome\":\"DIFARMIG
+        LTDA\",\"razaoSocialReceita\":\"DIFARMIG LTDA\",\"nomeFantasiaReceita\":\"DIFARMIG\",\"tipo\":\"Entidades
+        Empresariais Privadas\"},\"textoPublicacao\":\"Sem Informa\xE7\xE3o\",\"linkPublicacao\":\"\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"23765002708202272\",\"abrangenciaDefinidaDecisaoJudicial\":\"No
+        \xF3rg\xE3o sancionador\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":364097,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"15/07/2025\",\"dataFimSancao\":\"15/07/2027\",\"dataPublicacaoSancao\":\"08/09/2025\",\"dataTransitadoJulgado\":\"08/09/2025\",\"dataOrigemInformacao\":\"25/09/2025\",\"tipoSancao\":{\"descricaoResumida\":\"Suspens\xE3o\",\"descricaoPortal\":\"Suspens\xE3o\"},\"fonteSancao\":{\"nomeExibicao\":\"COMPANHIA
+        DE DESENVOLVIMENTO DOS VALES DO S\xC3O FRANCISCO E DO PARNA\xCDBA\",\"telefoneContato\":\".\",\"enderecoContato\":\".\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        13303 - ART. 83, III - III - SUSPENS\xC3O TEMPOR\xC1RIA DE PARTICIPA\xC7\xC3O
+        EM LICITA\xC7\xC3O E IMPEDIMENTO DE CONTRATAR COM A ENTIDADE SANCIONADORA,
+        POR PRAZO N\xC3O SUPERIOR A 2 (DOIS) ANOS.\",\"descricao\":\"LEI 13303 - ART.
+        83, III - III - SUSPENS\xC3O TEMPOR\xC1RIA DE PARTICIPA\xC7\xC3O EM LICITA\xC7\xC3O
+        E IMPEDIMENTO DE CONTRATAR COM A ENTIDADE SANCIONADORA, POR PRAZO N\xC3O SUPERIOR
+        A 2 (DOIS) ANOS.\"}],\"orgaoSancionador\":{\"nome\":\"COMPANHIA DE DESENVOLVIMENTO
+        DOS VALES DO S\xC3O FRANCISCO E DO PARNA\xCDBA\",\"siglaUf\":\"\",\"poder\":\"Executivo\",\"esfera\":\"FEDERAL\"},\"sancionado\":{\"nome\":\"Inova\xE7\xE3o
+        Distribui\xE7\xE3o e Comercio Ltda\",\"codigoFormatado\":\"36.374.273/0001-43\"},\"pessoa\":{\"id\":348816698,\"cpfFormatado\":\"\",\"cnpjFormatado\":\"36.374.273/0001-43\",\"numeroInscricaoSocial\":\"\",\"nome\":\"INOVACAO
+        DISTRIBUICAO E COMERCIO LTDA\",\"razaoSocialReceita\":\"INOVACAO DISTRIBUICAO
+        E COMERCIO LTDA\",\"nomeFantasiaReceita\":\"INOVACAO\",\"tipo\":\"Entidades
+        Empresariais Privadas\"},\"textoPublicacao\":\"Di\xE1rio Oficial da Uni\xE3o
+        Se\xE7\xE3o 3 Pagina 100\",\"linkPublicacao\":\"http://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?jornal=530&pagina=100&data=08/09/2025\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"59530.001947/2024-78-e\",\"abrangenciaDefinidaDecisaoJudicial\":\"No
+        \xF3rg\xE3o sancionador\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":381069,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"25/08/2025\",\"dataFimSancao\":\"25/08/2028\",\"dataPublicacaoSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataTransitadoJulgado\":\"25/08/2025\",\"dataOrigemInformacao\":\"13/03/2026\",\"tipoSancao\":{\"descricaoResumida\":\"Impedimento/proibi\xE7\xE3o
+        de contratar com prazo determinado\",\"descricaoPortal\":\"Impedimento/proibi\xE7\xE3o
+        de contratar com prazo determinado\"},\"fonteSancao\":{\"nomeExibicao\":\"Conselho
+        Nacional de Justi\xE7a (CNJ-DF)\",\"telefoneContato\":\".(61) 2326-4925\",\"enderecoContato\":\"SAF
+        Sul Quadra 2 - Lote5/6 - Bloco E - Sala 303 - CEP: 70070-600  Bras\xEDlia/DF\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        8429 - ART. 12 - INDEPENDENTEMENTE DAS SAN\xC7\xD5ES PENAIS, CIVIS E ADMINISTRATIVAS
+        PREVISTAS NA LEGISLA\xC7\xC3O ESPEC\xCDFICA, EST\xC1 O RESPONS\xC1VEL PELO
+        ATO DE IMPROBIDADE SUJEITO \xC0S SEGUINTES COMINA\xC7\xD5ES, QUE PODEM SER
+        APLICADAS ISOLADA OU CUMULATIVAMENTE, DE ACORDO COM A GRAVIDADE DO FATO: I
+        - NA HIP\xD3TESE DO ART. 9\xB0, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE
+        AO PATRIM\xD4NIO, RESSARCIMENTO INTEGRAL DO DANO, QUANDO HOUVER, PERDA DA
+        FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE OITO A
+        DEZ ANOS, PAGAMENTO DE MULTA CIVIL DE AT\xC9 TR\xCAS VEZES O VALOR DO ACR\xC9SCIMO
+        PATRIMONIAL E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO OU RECEBER
+        BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU INDIRETAMENTE,
+        AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO,
+        PELO PRAZO DE DEZ ANOS; II - NA HIP\xD3TESE DO ART. 10, RESSARCIMENTO INTEGRAL
+        DO DANO, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE AO PATRIM\xD4NIO,
+        SE CONCORRER ESTA CIRCUNST\xC2NCIA, PERDA DA FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O
+        DOS DIREITOS POL\xCDTICOS DE CINCO A OITO ANOS, PAGAMENTO DE MULTA CIVIL DE
+        AT\xC9 DUAS VEZES O VALOR DO DANO E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER
+        P\xDABLICO OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS,
+        DIRETA OU INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA
+        DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE CINCO ANOS; III - NA HIP\xD3TESE
+        DO ART. 11, RESSARCIMENTO INTEGRAL DO DANO, SE HOUVER, PERDA DA FUN\xC7\xC3O
+        P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE TR\xCAS A CINCO ANOS,
+        PAGAMENTO DE MULTA CIVIL DE AT\xC9 CEM VEZES O VALOR DA REMUNERA\xC7\xC3O
+        PERCEBIDA PELO AGENTE E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO
+        OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU
+        INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA
+        S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE TR\xCAS ANOS.\",\"descricao\":\"LEI
+        8429 - ART. 12 - INDEPENDENTEMENTE DAS SAN\xC7\xD5ES PENAIS, CIVIS E ADMINISTRATIVAS
+        PREVISTAS NA LEGISLA\xC7\xC3O ESPEC\xCDFICA, EST\xC1 O RESPONS\xC1VEL PELO
+        ATO DE IMPROBIDADE SUJEITO \xC0S SEGUINTES COMINA\xC7\xD5ES, QUE PODEM SER
+        APLICADAS ISOLADA OU CUMULATIVAMENTE, DE ACORDO COM A GRAVIDADE DO FATO: I
+        - NA HIP\xD3TESE DO ART. 9\xB0, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE
+        AO PATRIM\xD4NIO, RESSARCIMENTO INTEGRAL DO DANO, QUANDO HOUVER, PERDA DA
+        FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE OITO A
+        DEZ ANOS, PAGAMENTO DE MULTA CIVIL DE AT\xC9 TR\xCAS VEZES O VALOR DO ACR\xC9SCIMO
+        PATRIMONIAL E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO OU RECEBER
+        BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU INDIRETAMENTE,
+        AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO,
+        PELO PRAZO DE DEZ ANOS; II - NA HIP\xD3TESE DO ART. 10, RESSARCIMENTO INTEGRAL
+        DO DANO, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE AO PATRIM\xD4NIO,
+        SE CONCORRER ESTA CIRCUNST\xC2NCIA, PERDA DA FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O
+        DOS DIREITOS POL\xCDTICOS DE CINCO A OITO ANOS, PAGAMENTO DE MULTA CIVIL DE
+        AT\xC9 DUAS VEZES O VALOR DO DANO E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER
+        P\xDABLICO OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS,
+        DIRETA OU INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA
+        DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE CINCO ANOS; III - NA HIP\xD3TESE
+        DO ART. 11, RESSARCIMENTO INTEGRAL DO DANO, SE HOUVER, PERDA DA FUN\xC7\xC3O
+        P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE TR\xCAS A CINCO ANOS,
+        PAGAMENTO DE MULTA CIVIL DE AT\xC9 CEM VEZES O VALOR DA REMUNERA\xC7\xC3O
+        PERCEBIDA PELO AGENTE E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO
+        OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU
+        INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA
+        S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE TR\xCAS ANOS.\"}],\"orgaoSancionador\":{\"nome\":\"1\xBA
+        Grau - TRF5 / Se\xE7\xE3o Judici\xE1ria de Sergipe / Varas / Ju\xEDzo / 6\xAA
+        VARA FEDERAL - ITABAIANA/SE\",\"siglaUf\":\"SE\",\"poder\":\"Judici\xE1rio\",\"esfera\":\"FEDERAL\"},\"sancionado\":{\"nome\":\"JOAO
+        VIEIRA DE ARAGAO\",\"codigoFormatado\":\"170.803.475-72\"},\"pessoa\":{\"id\":40141415,\"cpfFormatado\":\"***.803.475-**\",\"cnpjFormatado\":\"\",\"numeroInscricaoSocial\":\"\",\"nome\":\"JOAO
+        VIEIRA DE ARAGAO\",\"razaoSocialReceita\":\"\",\"nomeFantasiaReceita\":\"\",\"tipo\":\"Pessoa
+        F\xEDsica\"},\"textoPublicacao\":\"Sem Informa\xE7\xE3o\",\"linkPublicacao\":\"\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"08001658420164058501\",\"abrangenciaDefinidaDecisaoJudicial\":\"Sem
+        Informa\xE7\xE3o\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":370345,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"22/08/2023\",\"dataFimSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataPublicacaoSancao\":\"22/08/2023\",\"dataTransitadoJulgado\":\"Sem
+        informa\xE7\xE3o\",\"dataOrigemInformacao\":\"19/11/2025\",\"tipoSancao\":{\"descricaoResumida\":\"Declara\xE7\xE3o
+        de Inidoneidade sem prazo determinado\",\"descricaoPortal\":\"Declara\xE7\xE3o
+        de Inidoneidade sem prazo determinado\"},\"fonteSancao\":{\"nomeExibicao\":\"Controladoria
+        Geral do Estado de Mato Grosso\",\"telefoneContato\":\"(65) 3613-4000\",\"enderecoContato\":\"Rua
+        J\xFAlio Domingos de Campos, s/n, Complexo Paiagu\xE1s, Centro Pol\xEDtico
+        Administrativo, CEP 78.049-923, Cuiab\xE1/MT\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        8666 - ART. 87, IV - PELA INEXECU\xC7\xC3O TOTAL OU PARCIAL DO CONTRATO A
+        ADMINISTRA\xC7\xC3O PODER\xC1, GARANTIDA A PR\xC9VIA DEFESA, APLICAR AO CONTRATADO
+        AS SEGUINTES SAN\xC7\xD5ES: IV - DECLARA\xC7\xC3O DE INIDONEIDADE PARA LICITAR
+        OU CONTRATAR COM A ADMINISTRA\xC7\xC3O P\xDABLICA ENQUANTO PERDURAREM OS MOTIVOS
+        DETERMINANTES DA PUNI\xC7\xC3O OU AT\xC9 QUE SEJA PROMOVIDA A REABILITA\xC7\xC3O
+        PERANTE A PR\xD3PRIA AUTORIDADE QUE APLICOU A PENALIDADE, QUE SER\xC1 CONCEDIDA
+        SEMPRE QUE O CONTRATADO RESSARCIR A ADMINISTRA\xC7\xC3O PELOS PREJU\xCDZOS
+        RESULTANTES E AP\xD3S DECORRIDO O PRAZO DA SAN\xC7\xC3O APLICADA COM BASE
+        NO INCISO ANTERIOR.\",\"descricao\":\"LEI 8666 - ART. 87, IV - PELA INEXECU\xC7\xC3O
+        TOTAL OU PARCIAL DO CONTRATO A ADMINISTRA\xC7\xC3O PODER\xC1, GARANTIDA A
+        PR\xC9VIA DEFESA, APLICAR AO CONTRATADO AS SEGUINTES SAN\xC7\xD5ES: IV - DECLARA\xC7\xC3O
+        DE INIDONEIDADE PARA LICITAR OU CONTRATAR COM A ADMINISTRA\xC7\xC3O P\xDABLICA
+        ENQUANTO PERDURAREM OS MOTIVOS DETERMINANTES DA PUNI\xC7\xC3O OU AT\xC9 QUE
+        SEJA PROMOVIDA A REABILITA\xC7\xC3O PERANTE A PR\xD3PRIA AUTORIDADE QUE APLICOU
+        A PENALIDADE, QUE SER\xC1 CONCEDIDA SEMPRE QUE O CONTRATADO RESSARCIR A ADMINISTRA\xC7\xC3O
+        PELOS PREJU\xCDZOS RESULTANTES E AP\xD3S DECORRIDO O PRAZO DA SAN\xC7\xC3O
+        APLICADA COM BASE NO INCISO ANTERIOR.\"},{\"codigo\":\"LEI 8666 - ART. 87,
+        III - PELA INEXECU\xC7\xC3O TOTAL OU PARCIAL DO CONTRATO A ADMINISTRA\xC7\xC3O
+        PODER\xC1, GARANTIDA A PR\xC9VIA DEFESA, APLICAR AO CONTRATADO AS SEGUINTES
+        SAN\xC7\xD5ES: III - SUSPENS\xC3O TEMPOR\xC1RIA DE PARTICIPA\xC7\xC3O EM LICITA\xC7\xC3O
+        E IMPEDIMENTO DE CONTRATAR COM A ADMINISTRA\xC7\xC3O, POR PRAZO N\xC3O SUPERIOR
+        A 2 (DOIS) ANOS;\",\"descricao\":\"LEI 8666 - ART. 87, III - PELA INEXECU\xC7\xC3O
+        TOTAL OU PARCIAL DO CONTRATO A ADMINISTRA\xC7\xC3O PODER\xC1, GARANTIDA A
+        PR\xC9VIA DEFESA, APLICAR AO CONTRATADO AS SEGUINTES SAN\xC7\xD5ES: III -
+        SUSPENS\xC3O TEMPOR\xC1RIA DE PARTICIPA\xC7\xC3O EM LICITA\xC7\xC3O E IMPEDIMENTO
+        DE CONTRATAR COM A ADMINISTRA\xC7\xC3O, POR PRAZO N\xC3O SUPERIOR A 2 (DOIS)
+        ANOS;\"}],\"orgaoSancionador\":{\"nome\":\"Controladoria Geral do Estado de
+        Mato Grosso\",\"siglaUf\":\"MT\",\"poder\":\"Executivo\",\"esfera\":\"ESTADUAL\"},\"sancionado\":{\"nome\":\"ROGTH
+        CONSTRU\xC7\xD5ES E PAVIMENTA\xC7\xC3O LTDA\",\"codigoFormatado\":\"14.535.640/0001-00\"},\"pessoa\":{\"id\":372016992,\"cpfFormatado\":\"\",\"cnpjFormatado\":\"14.535.640/0001-00\",\"numeroInscricaoSocial\":\"\",\"nome\":\"ROGT
+        - CONSTRUCOES E PAVIMENTACAO LTDA\",\"razaoSocialReceita\":\"ROGT - CONSTRUCOES
+        E PAVIMENTACAO LTDA\",\"nomeFantasiaReceita\":\"R. R. PAVIMENTACAO E CONSTRUCAO\",\"tipo\":\"Entidades
+        Empresariais Privadas\"},\"textoPublicacao\":\"Di\xE1rio Oficial do Estado\",\"linkPublicacao\":\"\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"SEDUC-PRO-2021/03481.02\",\"abrangenciaDefinidaDecisaoJudicial\":\"Todas
+        as Esferas em todos os Poderes\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":88358,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"02/08/2017\",\"dataFimSancao\":\"01/08/2027\",\"dataPublicacaoSancao\":\"02/08/2017\",\"dataTransitadoJulgado\":\"02/08/2017\",\"dataOrigemInformacao\":\"09/11/2017\",\"tipoSancao\":{\"descricaoResumida\":\"Impedimento/proibi\xE7\xE3o
+        de contratar com prazo determinado\",\"descricaoPortal\":\"Impedimento/proibi\xE7\xE3o
+        de contratar com prazo determinado\"},\"fonteSancao\":{\"nomeExibicao\":\"Governo
+        do Estado de S\xE3o Paulo\",\"telefoneContato\":\"(11) 3243-2126\",\"enderecoContato\":\".\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        8429 - ART. 12 - INDEPENDENTEMENTE DAS SAN\xC7\xD5ES PENAIS, CIVIS E ADMINISTRATIVAS
+        PREVISTAS NA LEGISLA\xC7\xC3O ESPEC\xCDFICA, EST\xC1 O RESPONS\xC1VEL PELO
+        ATO DE IMPROBIDADE SUJEITO \xC0S SEGUINTES COMINA\xC7\xD5ES, QUE PODEM SER
+        APLICADAS ISOLADA OU CUMULATIVAMENTE, DE ACORDO COM A GRAVIDADE DO FATO: I
+        - NA HIP\xD3TESE DO ART. 9\xB0, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE
+        AO PATRIM\xD4NIO, RESSARCIMENTO INTEGRAL DO DANO, QUANDO HOUVER, PERDA DA
+        FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE OITO A
+        DEZ ANOS, PAGAMENTO DE MULTA CIVIL DE AT\xC9 TR\xCAS VEZES O VALOR DO ACR\xC9SCIMO
+        PATRIMONIAL E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO OU RECEBER
+        BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU INDIRETAMENTE,
+        AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO,
+        PELO PRAZO DE DEZ ANOS; II - NA HIP\xD3TESE DO ART. 10, RESSARCIMENTO INTEGRAL
+        DO DANO, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE AO PATRIM\xD4NIO,
+        SE CONCORRER ESTA CIRCUNST\xC2NCIA, PERDA DA FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O
+        DOS DIREITOS POL\xCDTICOS DE CINCO A OITO ANOS, PAGAMENTO DE MULTA CIVIL DE
+        AT\xC9 DUAS VEZES O VALOR DO DANO E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER
+        P\xDABLICO OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS,
+        DIRETA OU INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA
+        DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE CINCO ANOS; III - NA HIP\xD3TESE
+        DO ART. 11, RESSARCIMENTO INTEGRAL DO DANO, SE HOUVER, PERDA DA FUN\xC7\xC3O
+        P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE TR\xCAS A CINCO ANOS,
+        PAGAMENTO DE MULTA CIVIL DE AT\xC9 CEM VEZES O VALOR DA REMUNERA\xC7\xC3O
+        PERCEBIDA PELO AGENTE E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO
+        OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU
+        INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA
+        S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE TR\xCAS ANOS.\",\"descricao\":\"LEI
+        8429 - ART. 12 - INDEPENDENTEMENTE DAS SAN\xC7\xD5ES PENAIS, CIVIS E ADMINISTRATIVAS
+        PREVISTAS NA LEGISLA\xC7\xC3O ESPEC\xCDFICA, EST\xC1 O RESPONS\xC1VEL PELO
+        ATO DE IMPROBIDADE SUJEITO \xC0S SEGUINTES COMINA\xC7\xD5ES, QUE PODEM SER
+        APLICADAS ISOLADA OU CUMULATIVAMENTE, DE ACORDO COM A GRAVIDADE DO FATO: I
+        - NA HIP\xD3TESE DO ART. 9\xB0, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE
+        AO PATRIM\xD4NIO, RESSARCIMENTO INTEGRAL DO DANO, QUANDO HOUVER, PERDA DA
+        FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE OITO A
+        DEZ ANOS, PAGAMENTO DE MULTA CIVIL DE AT\xC9 TR\xCAS VEZES O VALOR DO ACR\xC9SCIMO
+        PATRIMONIAL E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO OU RECEBER
+        BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU INDIRETAMENTE,
+        AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO,
+        PELO PRAZO DE DEZ ANOS; II - NA HIP\xD3TESE DO ART. 10, RESSARCIMENTO INTEGRAL
+        DO DANO, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE AO PATRIM\xD4NIO,
+        SE CONCORRER ESTA CIRCUNST\xC2NCIA, PERDA DA FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O
+        DOS DIREITOS POL\xCDTICOS DE CINCO A OITO ANOS, PAGAMENTO DE MULTA CIVIL DE
+        AT\xC9 DUAS VEZES O VALOR DO DANO E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER
+        P\xDABLICO OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS,
+        DIRETA OU INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA
+        DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE CINCO ANOS; III - NA HIP\xD3TESE
+        DO ART. 11, RESSARCIMENTO INTEGRAL DO DANO, SE HOUVER, PERDA DA FUN\xC7\xC3O
+        P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE TR\xCAS A CINCO ANOS,
+        PAGAMENTO DE MULTA CIVIL DE AT\xC9 CEM VEZES O VALOR DA REMUNERA\xC7\xC3O
+        PERCEBIDA PELO AGENTE E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO
+        OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU
+        INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA
+        S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE TR\xCAS ANOS.\"}],\"orgaoSancionador\":{\"nome\":\"PROCURADORIA
+        GERAL DO ESTADO\",\"siglaUf\":\"SP\",\"poder\":\"Legislativo\",\"esfera\":\"ESTADUAL\"},\"sancionado\":{\"nome\":\"ROSIMEIRE
+        CRISTINA RAMIRES MUNHOZ\",\"codigoFormatado\":\"109.248.368-30\"},\"pessoa\":{\"id\":118594,\"cpfFormatado\":\"***.248.368-**\",\"cnpjFormatado\":\"\",\"numeroInscricaoSocial\":\"\",\"nome\":\"ROSIMEIRE
+        CRISTINA RAMIRES MUNHOZ\",\"razaoSocialReceita\":\"\",\"nomeFantasiaReceita\":\"\",\"tipo\":\"Pessoa
+        F\xEDsica\"},\"textoPublicacao\":\"Outro\",\"linkPublicacao\":\"\",\"detalhamentoPublicacao\":\"Di\xE1rio
+        Oficial do Estado\",\"numeroProcesso\":\"0006603-67.2006.8.26.0297\",\"abrangenciaDefinidaDecisaoJudicial\":\"Sem
+        Informa\xE7\xE3o\",\"informacoesAdicionaisDoOrgaoSancionador\":\"GABINETE
+        DO PROCURADOR GERAL\"},{\"id\":373678,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"04/08/2025\",\"dataFimSancao\":\"04/08/2030\",\"dataPublicacaoSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataTransitadoJulgado\":\"04/08/2025\",\"dataOrigemInformacao\":\"24/12/2025\",\"tipoSancao\":{\"descricaoResumida\":\"Impedimento/proibi\xE7\xE3o
+        de contratar com prazo determinado\",\"descricaoPortal\":\"Impedimento/proibi\xE7\xE3o
+        de contratar com prazo determinado\"},\"fonteSancao\":{\"nomeExibicao\":\"Conselho
+        Nacional de Justi\xE7a (CNJ-DF)\",\"telefoneContato\":\".(61) 2326-4925\",\"enderecoContato\":\"SAF
+        Sul Quadra 2 - Lote5/6 - Bloco E - Sala 303 - CEP: 70070-600  Bras\xEDlia/DF\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        8429 - ART. 12 - INDEPENDENTEMENTE DAS SAN\xC7\xD5ES PENAIS, CIVIS E ADMINISTRATIVAS
+        PREVISTAS NA LEGISLA\xC7\xC3O ESPEC\xCDFICA, EST\xC1 O RESPONS\xC1VEL PELO
+        ATO DE IMPROBIDADE SUJEITO \xC0S SEGUINTES COMINA\xC7\xD5ES, QUE PODEM SER
+        APLICADAS ISOLADA OU CUMULATIVAMENTE, DE ACORDO COM A GRAVIDADE DO FATO: I
+        - NA HIP\xD3TESE DO ART. 9\xB0, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE
+        AO PATRIM\xD4NIO, RESSARCIMENTO INTEGRAL DO DANO, QUANDO HOUVER, PERDA DA
+        FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE OITO A
+        DEZ ANOS, PAGAMENTO DE MULTA CIVIL DE AT\xC9 TR\xCAS VEZES O VALOR DO ACR\xC9SCIMO
+        PATRIMONIAL E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO OU RECEBER
+        BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU INDIRETAMENTE,
+        AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO,
+        PELO PRAZO DE DEZ ANOS; II - NA HIP\xD3TESE DO ART. 10, RESSARCIMENTO INTEGRAL
+        DO DANO, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE AO PATRIM\xD4NIO,
+        SE CONCORRER ESTA CIRCUNST\xC2NCIA, PERDA DA FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O
+        DOS DIREITOS POL\xCDTICOS DE CINCO A OITO ANOS, PAGAMENTO DE MULTA CIVIL DE
+        AT\xC9 DUAS VEZES O VALOR DO DANO E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER
+        P\xDABLICO OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS,
+        DIRETA OU INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA
+        DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE CINCO ANOS; III - NA HIP\xD3TESE
+        DO ART. 11, RESSARCIMENTO INTEGRAL DO DANO, SE HOUVER, PERDA DA FUN\xC7\xC3O
+        P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE TR\xCAS A CINCO ANOS,
+        PAGAMENTO DE MULTA CIVIL DE AT\xC9 CEM VEZES O VALOR DA REMUNERA\xC7\xC3O
+        PERCEBIDA PELO AGENTE E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO
+        OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU
+        INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA
+        S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE TR\xCAS ANOS.\",\"descricao\":\"LEI
+        8429 - ART. 12 - INDEPENDENTEMENTE DAS SAN\xC7\xD5ES PENAIS, CIVIS E ADMINISTRATIVAS
+        PREVISTAS NA LEGISLA\xC7\xC3O ESPEC\xCDFICA, EST\xC1 O RESPONS\xC1VEL PELO
+        ATO DE IMPROBIDADE SUJEITO \xC0S SEGUINTES COMINA\xC7\xD5ES, QUE PODEM SER
+        APLICADAS ISOLADA OU CUMULATIVAMENTE, DE ACORDO COM A GRAVIDADE DO FATO: I
+        - NA HIP\xD3TESE DO ART. 9\xB0, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE
+        AO PATRIM\xD4NIO, RESSARCIMENTO INTEGRAL DO DANO, QUANDO HOUVER, PERDA DA
+        FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE OITO A
+        DEZ ANOS, PAGAMENTO DE MULTA CIVIL DE AT\xC9 TR\xCAS VEZES O VALOR DO ACR\xC9SCIMO
+        PATRIMONIAL E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO OU RECEBER
+        BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU INDIRETAMENTE,
+        AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO,
+        PELO PRAZO DE DEZ ANOS; II - NA HIP\xD3TESE DO ART. 10, RESSARCIMENTO INTEGRAL
+        DO DANO, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE AO PATRIM\xD4NIO,
+        SE CONCORRER ESTA CIRCUNST\xC2NCIA, PERDA DA FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O
+        DOS DIREITOS POL\xCDTICOS DE CINCO A OITO ANOS, PAGAMENTO DE MULTA CIVIL DE
+        AT\xC9 DUAS VEZES O VALOR DO DANO E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER
+        P\xDABLICO OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS,
+        DIRETA OU INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA
+        DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE CINCO ANOS; III - NA HIP\xD3TESE
+        DO ART. 11, RESSARCIMENTO INTEGRAL DO DANO, SE HOUVER, PERDA DA FUN\xC7\xC3O
+        P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE TR\xCAS A CINCO ANOS,
+        PAGAMENTO DE MULTA CIVIL DE AT\xC9 CEM VEZES O VALOR DA REMUNERA\xC7\xC3O
+        PERCEBIDA PELO AGENTE E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO
+        OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU
+        INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA
+        S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE TR\xCAS ANOS.\"}],\"orgaoSancionador\":{\"nome\":\"1\xBA
+        Grau - TRF1 / Se\xE7\xE3o Judici\xE1ria Bahia - SJBA / Subse\xE7\xE3o Judici\xE1ria
+        de Jequi\xE9 / Vara \xDAnica de Jequi\xE9\",\"siglaUf\":\"BA\",\"poder\":\"Judici\xE1rio\",\"esfera\":\"FEDERAL\"},\"sancionado\":{\"nome\":\"EDIONIO
+        ALVES SOUZA\",\"codigoFormatado\":\"529.568.305-20\"},\"pessoa\":{\"id\":608514062,\"cpfFormatado\":\"***.568.305-**\",\"cnpjFormatado\":\"\",\"numeroInscricaoSocial\":\"\",\"nome\":\"EDIONIO
+        ALVES SOUZA\",\"razaoSocialReceita\":\"\",\"nomeFantasiaReceita\":\"\",\"tipo\":\"Pessoa
+        F\xEDsica\"},\"textoPublicacao\":\"Sem Informa\xE7\xE3o\",\"linkPublicacao\":\"\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"00019803020134013308\",\"abrangenciaDefinidaDecisaoJudicial\":\"Sem
+        Informa\xE7\xE3o\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":362971,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"12/09/2025\",\"dataFimSancao\":\"12/03/2027\",\"dataPublicacaoSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataTransitadoJulgado\":\"Sem informa\xE7\xE3o\",\"dataOrigemInformacao\":\"16/09/2025\",\"tipoSancao\":{\"descricaoResumida\":\"Impedimento/proibi\xE7\xE3o
+        de contratar com prazo determinado\",\"descricaoPortal\":\"Impedimento/proibi\xE7\xE3o
+        de contratar com prazo determinado\"},\"fonteSancao\":{\"nomeExibicao\":\"Minist\xE9rio
+        da Fazenda\",\"telefoneContato\":\".\",\"enderecoContato\":\".\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        14133 - ART. 156, III - IMPEDIMENTO DE LICITAR E CONTRATAR\",\"descricao\":\"LEI
+        14133 - ART. 156, III - IMPEDIMENTO DE LICITAR E CONTRATAR\"}],\"orgaoSancionador\":{\"nome\":\"COMANDO
+        DO EXERCITO\",\"siglaUf\":\"CE\",\"poder\":\"Executivo\",\"esfera\":\"FEDERAL\"},\"sancionado\":{\"nome\":\"FORTSUL
+        LTDA\",\"codigoFormatado\":\"35.977.234/0001-78\"},\"pessoa\":{\"id\":605572639,\"cpfFormatado\":\"\",\"cnpjFormatado\":\"35.977.234/0001-78\",\"numeroInscricaoSocial\":\"\",\"nome\":\"FORTSUL
+        LTDA\",\"razaoSocialReceita\":\"FORTSUL LTDA\",\"nomeFantasiaReceita\":\"FORTSUL\",\"tipo\":\"Entidades
+        Empresariais Privadas\"},\"textoPublicacao\":\"Sem Informa\xE7\xE3o\",\"linkPublicacao\":\"\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"64456.005118/2025\",\"abrangenciaDefinidaDecisaoJudicial\":\"Em
+        todos os Poderes da Esfera do \xF3rg\xE3o sancionador\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":375395,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"19/01/2026\",\"dataFimSancao\":\"19/01/2027\",\"dataPublicacaoSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataTransitadoJulgado\":\"Sem informa\xE7\xE3o\",\"dataOrigemInformacao\":\"20/01/2026\",\"tipoSancao\":{\"descricaoResumida\":\"Suspens\xE3o\",\"descricaoPortal\":\"Suspens\xE3o\"},\"fonteSancao\":{\"nomeExibicao\":\"Empresa
+        Brasileira de Correios e Tel\xE9grafos\",\"telefoneContato\":\"61 2141 8157\",\"enderecoContato\":\"SBN
+        QD 01 bloco A\"},\"fundamentacao\":[{\"codigo\":\"LEI 13303 - ART. 83, III
+        - III - SUSPENS\xC3O TEMPOR\xC1RIA DE PARTICIPA\xC7\xC3O EM LICITA\xC7\xC3O
+        E IMPEDIMENTO DE CONTRATAR COM A ENTIDADE SANCIONADORA, POR PRAZO N\xC3O SUPERIOR
+        A 2 (DOIS) ANOS.\",\"descricao\":\"LEI 13303 - ART. 83, III - III - SUSPENS\xC3O
+        TEMPOR\xC1RIA DE PARTICIPA\xC7\xC3O EM LICITA\xC7\xC3O E IMPEDIMENTO DE CONTRATAR
+        COM A ENTIDADE SANCIONADORA, POR PRAZO N\xC3O SUPERIOR A 2 (DOIS) ANOS.\"}],\"orgaoSancionador\":{\"nome\":\"Empresa
+        Brasileira de Correios e Tel\xE9grafos\",\"siglaUf\":\"DF\",\"poder\":\"Executivo\",\"esfera\":\"FEDERAL\"},\"sancionado\":{\"nome\":\"DEM
+        - M\xC1QUINAS IMPLEMENTOS E SERVI\xC7OS LTDA\",\"codigoFormatado\":\"27.209.293/0001-78\"},\"pessoa\":{\"id\":158917232,\"cpfFormatado\":\"\",\"cnpjFormatado\":\"27.209.293/0001-78\",\"numeroInscricaoSocial\":\"\",\"nome\":\"D
+        E M - MAQUINAS, IMPLEMENTOS E SERVICOS LTDA\",\"razaoSocialReceita\":\"D E
+        M - MAQUINAS, IMPLEMENTOS E SERVICOS LTDA\",\"nomeFantasiaReceita\":\"D E
+        M - MAQUINAS, IMPLEMENTOS E SERVICOS\",\"tipo\":\"Entidades Empresariais Privadas\"},\"textoPublicacao\":\"Sem
+        Informa\xE7\xE3o\",\"linkPublicacao\":\"\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"53187.039180/2025-10\",\"abrangenciaDefinidaDecisaoJudicial\":\"No
+        \xF3rg\xE3o sancionador\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":375108,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"15/01/2026\",\"dataFimSancao\":\"15/01/2028\",\"dataPublicacaoSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataTransitadoJulgado\":\"Sem informa\xE7\xE3o\",\"dataOrigemInformacao\":\"16/01/2026\",\"tipoSancao\":{\"descricaoResumida\":\"Impedimento/proibi\xE7\xE3o
+        de contratar com prazo determinado\",\"descricaoPortal\":\"Impedimento/proibi\xE7\xE3o
+        de contratar com prazo determinado\"},\"fonteSancao\":{\"nomeExibicao\":\"Minist\xE9rio
+        da Fazenda\",\"telefoneContato\":\".\",\"enderecoContato\":\".\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        14133 - ART. 156, III - IMPEDIMENTO DE LICITAR E CONTRATAR\",\"descricao\":\"LEI
+        14133 - ART. 156, III - IMPEDIMENTO DE LICITAR E CONTRATAR\"}],\"orgaoSancionador\":{\"nome\":\"CONS\xD3RCIO
+        INTERMUN.DE SA\xDADE DE PATO BRANCO-PR\",\"siglaUf\":\"PR\",\"poder\":\"Executivo\",\"esfera\":\"MUNICIPAL\"},\"sancionado\":{\"nome\":\"BORTOLINI
+        SERVICOS MEDICO LTDA\",\"codigoFormatado\":\"29.104.260/0001-99\"},\"pessoa\":{\"id\":608517136,\"cpfFormatado\":\"\",\"cnpjFormatado\":\"29.104.260/0001-99\",\"numeroInscricaoSocial\":\"\",\"nome\":\"BORTOLINI
+        SERVICOS MEDICO LTDA\",\"razaoSocialReceita\":\"BORTOLINI SERVICOS MEDICO
+        LTDA\",\"nomeFantasiaReceita\":\"CLINICA MEDICA IMMAGINE\",\"tipo\":\"Entidades
+        Empresariais Privadas\"},\"textoPublicacao\":\"Sem Informa\xE7\xE3o\",\"linkPublicacao\":\"\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"073/2025\",\"abrangenciaDefinidaDecisaoJudicial\":\"No
+        \xF3rg\xE3o sancionador\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":320806,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"05/03/2024\",\"dataFimSancao\":\"05/03/2027\",\"dataPublicacaoSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataTransitadoJulgado\":\"05/03/2024\",\"dataOrigemInformacao\":\"22/10/2024\",\"tipoSancao\":{\"descricaoResumida\":\"Impedimento/proibi\xE7\xE3o
+        de contratar com prazo determinado\",\"descricaoPortal\":\"Impedimento/proibi\xE7\xE3o
+        de contratar com prazo determinado\"},\"fonteSancao\":{\"nomeExibicao\":\"Conselho
+        Nacional de Justi\xE7a (CNJ-DF)\",\"telefoneContato\":\".(61) 2326-4925\",\"enderecoContato\":\"SAF
+        Sul Quadra 2 - Lote5/6 - Bloco E - Sala 303 - CEP: 70070-600  Bras\xEDlia/DF\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        8429 - ART. 12 - INDEPENDENTEMENTE DAS SAN\xC7\xD5ES PENAIS, CIVIS E ADMINISTRATIVAS
+        PREVISTAS NA LEGISLA\xC7\xC3O ESPEC\xCDFICA, EST\xC1 O RESPONS\xC1VEL PELO
+        ATO DE IMPROBIDADE SUJEITO \xC0S SEGUINTES COMINA\xC7\xD5ES, QUE PODEM SER
+        APLICADAS ISOLADA OU CUMULATIVAMENTE, DE ACORDO COM A GRAVIDADE DO FATO: I
+        - NA HIP\xD3TESE DO ART. 9\xB0, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE
+        AO PATRIM\xD4NIO, RESSARCIMENTO INTEGRAL DO DANO, QUANDO HOUVER, PERDA DA
+        FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE OITO A
+        DEZ ANOS, PAGAMENTO DE MULTA CIVIL DE AT\xC9 TR\xCAS VEZES O VALOR DO ACR\xC9SCIMO
+        PATRIMONIAL E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO OU RECEBER
+        BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU INDIRETAMENTE,
+        AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO,
+        PELO PRAZO DE DEZ ANOS; II - NA HIP\xD3TESE DO ART. 10, RESSARCIMENTO INTEGRAL
+        DO DANO, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE AO PATRIM\xD4NIO,
+        SE CONCORRER ESTA CIRCUNST\xC2NCIA, PERDA DA FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O
+        DOS DIREITOS POL\xCDTICOS DE CINCO A OITO ANOS, PAGAMENTO DE MULTA CIVIL DE
+        AT\xC9 DUAS VEZES O VALOR DO DANO E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER
+        P\xDABLICO OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS,
+        DIRETA OU INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA
+        DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE CINCO ANOS; III - NA HIP\xD3TESE
+        DO ART. 11, RESSARCIMENTO INTEGRAL DO DANO, SE HOUVER, PERDA DA FUN\xC7\xC3O
+        P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE TR\xCAS A CINCO ANOS,
+        PAGAMENTO DE MULTA CIVIL DE AT\xC9 CEM VEZES O VALOR DA REMUNERA\xC7\xC3O
+        PERCEBIDA PELO AGENTE E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO
+        OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU
+        INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA
+        S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE TR\xCAS ANOS.\",\"descricao\":\"LEI
+        8429 - ART. 12 - INDEPENDENTEMENTE DAS SAN\xC7\xD5ES PENAIS, CIVIS E ADMINISTRATIVAS
+        PREVISTAS NA LEGISLA\xC7\xC3O ESPEC\xCDFICA, EST\xC1 O RESPONS\xC1VEL PELO
+        ATO DE IMPROBIDADE SUJEITO \xC0S SEGUINTES COMINA\xC7\xD5ES, QUE PODEM SER
+        APLICADAS ISOLADA OU CUMULATIVAMENTE, DE ACORDO COM A GRAVIDADE DO FATO: I
+        - NA HIP\xD3TESE DO ART. 9\xB0, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE
+        AO PATRIM\xD4NIO, RESSARCIMENTO INTEGRAL DO DANO, QUANDO HOUVER, PERDA DA
+        FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE OITO A
+        DEZ ANOS, PAGAMENTO DE MULTA CIVIL DE AT\xC9 TR\xCAS VEZES O VALOR DO ACR\xC9SCIMO
+        PATRIMONIAL E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO OU RECEBER
+        BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU INDIRETAMENTE,
+        AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO,
+        PELO PRAZO DE DEZ ANOS; II - NA HIP\xD3TESE DO ART. 10, RESSARCIMENTO INTEGRAL
+        DO DANO, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE AO PATRIM\xD4NIO,
+        SE CONCORRER ESTA CIRCUNST\xC2NCIA, PERDA DA FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O
+        DOS DIREITOS POL\xCDTICOS DE CINCO A OITO ANOS, PAGAMENTO DE MULTA CIVIL DE
+        AT\xC9 DUAS VEZES O VALOR DO DANO E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER
+        P\xDABLICO OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS,
+        DIRETA OU INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA
+        DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE CINCO ANOS; III - NA HIP\xD3TESE
+        DO ART. 11, RESSARCIMENTO INTEGRAL DO DANO, SE HOUVER, PERDA DA FUN\xC7\xC3O
+        P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE TR\xCAS A CINCO ANOS,
+        PAGAMENTO DE MULTA CIVIL DE AT\xC9 CEM VEZES O VALOR DA REMUNERA\xC7\xC3O
+        PERCEBIDA PELO AGENTE E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO
+        OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU
+        INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA
+        S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE TR\xCAS ANOS.\"}],\"orgaoSancionador\":{\"nome\":\"1\xBA
+        Grau - TRF1 / Se\xE7\xE3o Judici\xE1ria Maranh\xE3o - SJMA / Capital SJMA
+        / 6\xAA S\xE3o Lu\xEDs\",\"siglaUf\":\"MA\",\"poder\":\"Judici\xE1rio\",\"esfera\":\"FEDERAL\"},\"sancionado\":{\"nome\":\"MARIA
+        DAS GRACAS BASTOS PIMENTEL\",\"codigoFormatado\":\"808.257.533-68\"},\"pessoa\":{\"id\":606171324,\"cpfFormatado\":\"***.257.533-**\",\"cnpjFormatado\":\"\",\"numeroInscricaoSocial\":\"\",\"nome\":\"MARIA
+        DAS GRACAS BASTOS PIMENTEL\",\"razaoSocialReceita\":\"\",\"nomeFantasiaReceita\":\"\",\"tipo\":\"Pessoa
+        F\xEDsica\"},\"textoPublicacao\":\"Sem Informa\xE7\xE3o\",\"linkPublicacao\":\"\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"00001477720044013700\",\"abrangenciaDefinidaDecisaoJudicial\":\"Sem
+        Informa\xE7\xE3o\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":326978,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"11/10/2024\",\"dataFimSancao\":\"11/10/2036\",\"dataPublicacaoSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataTransitadoJulgado\":\"11/10/2024\",\"dataOrigemInformacao\":\"11/11/2024\",\"tipoSancao\":{\"descricaoResumida\":\"Impedimento/proibi\xE7\xE3o
+        de contratar com prazo determinado\",\"descricaoPortal\":\"Impedimento/proibi\xE7\xE3o
+        de contratar com prazo determinado\"},\"fonteSancao\":{\"nomeExibicao\":\"Conselho
+        Nacional de Justi\xE7a (CNJ-DF)\",\"telefoneContato\":\".(61) 2326-4925\",\"enderecoContato\":\"SAF
+        Sul Quadra 2 - Lote5/6 - Bloco E - Sala 303 - CEP: 70070-600  Bras\xEDlia/DF\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        8429 - ART. 12 - INDEPENDENTEMENTE DAS SAN\xC7\xD5ES PENAIS, CIVIS E ADMINISTRATIVAS
+        PREVISTAS NA LEGISLA\xC7\xC3O ESPEC\xCDFICA, EST\xC1 O RESPONS\xC1VEL PELO
+        ATO DE IMPROBIDADE SUJEITO \xC0S SEGUINTES COMINA\xC7\xD5ES, QUE PODEM SER
+        APLICADAS ISOLADA OU CUMULATIVAMENTE, DE ACORDO COM A GRAVIDADE DO FATO: I
+        - NA HIP\xD3TESE DO ART. 9\xB0, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE
+        AO PATRIM\xD4NIO, RESSARCIMENTO INTEGRAL DO DANO, QUANDO HOUVER, PERDA DA
+        FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE OITO A
+        DEZ ANOS, PAGAMENTO DE MULTA CIVIL DE AT\xC9 TR\xCAS VEZES O VALOR DO ACR\xC9SCIMO
+        PATRIMONIAL E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO OU RECEBER
+        BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU INDIRETAMENTE,
+        AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO,
+        PELO PRAZO DE DEZ ANOS; II - NA HIP\xD3TESE DO ART. 10, RESSARCIMENTO INTEGRAL
+        DO DANO, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE AO PATRIM\xD4NIO,
+        SE CONCORRER ESTA CIRCUNST\xC2NCIA, PERDA DA FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O
+        DOS DIREITOS POL\xCDTICOS DE CINCO A OITO ANOS, PAGAMENTO DE MULTA CIVIL DE
+        AT\xC9 DUAS VEZES O VALOR DO DANO E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER
+        P\xDABLICO OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS,
+        DIRETA OU INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA
+        DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE CINCO ANOS; III - NA HIP\xD3TESE
+        DO ART. 11, RESSARCIMENTO INTEGRAL DO DANO, SE HOUVER, PERDA DA FUN\xC7\xC3O
+        P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE TR\xCAS A CINCO ANOS,
+        PAGAMENTO DE MULTA CIVIL DE AT\xC9 CEM VEZES O VALOR DA REMUNERA\xC7\xC3O
+        PERCEBIDA PELO AGENTE E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO
+        OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU
+        INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA
+        S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE TR\xCAS ANOS.\",\"descricao\":\"LEI
+        8429 - ART. 12 - INDEPENDENTEMENTE DAS SAN\xC7\xD5ES PENAIS, CIVIS E ADMINISTRATIVAS
+        PREVISTAS NA LEGISLA\xC7\xC3O ESPEC\xCDFICA, EST\xC1 O RESPONS\xC1VEL PELO
+        ATO DE IMPROBIDADE SUJEITO \xC0S SEGUINTES COMINA\xC7\xD5ES, QUE PODEM SER
+        APLICADAS ISOLADA OU CUMULATIVAMENTE, DE ACORDO COM A GRAVIDADE DO FATO: I
+        - NA HIP\xD3TESE DO ART. 9\xB0, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE
+        AO PATRIM\xD4NIO, RESSARCIMENTO INTEGRAL DO DANO, QUANDO HOUVER, PERDA DA
+        FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE OITO A
+        DEZ ANOS, PAGAMENTO DE MULTA CIVIL DE AT\xC9 TR\xCAS VEZES O VALOR DO ACR\xC9SCIMO
+        PATRIMONIAL E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO OU RECEBER
+        BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU INDIRETAMENTE,
+        AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO,
+        PELO PRAZO DE DEZ ANOS; II - NA HIP\xD3TESE DO ART. 10, RESSARCIMENTO INTEGRAL
+        DO DANO, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE AO PATRIM\xD4NIO,
+        SE CONCORRER ESTA CIRCUNST\xC2NCIA, PERDA DA FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O
+        DOS DIREITOS POL\xCDTICOS DE CINCO A OITO ANOS, PAGAMENTO DE MULTA CIVIL DE
+        AT\xC9 DUAS VEZES O VALOR DO DANO E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER
+        P\xDABLICO OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS,
+        DIRETA OU INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA
+        DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE CINCO ANOS; III - NA HIP\xD3TESE
+        DO ART. 11, RESSARCIMENTO INTEGRAL DO DANO, SE HOUVER, PERDA DA FUN\xC7\xC3O
+        P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE TR\xCAS A CINCO ANOS,
+        PAGAMENTO DE MULTA CIVIL DE AT\xC9 CEM VEZES O VALOR DA REMUNERA\xC7\xC3O
+        PERCEBIDA PELO AGENTE E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO
+        OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU
+        INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA
+        S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE TR\xCAS ANOS.\"}],\"orgaoSancionador\":{\"nome\":\"Tribunal
+        de Justi\xE7a do Estado de Santa Catarina / 1\xBA Grau - TJSC / LAGUNA / Segunda
+        Vara C\xEDvel da Comarca de Laguna\",\"siglaUf\":\"SC\",\"poder\":\"Judici\xE1rio\",\"esfera\":\"ESTADUAL\"},\"sancionado\":{\"nome\":\"NEUSELI
+        JUNCKES COSTA\",\"codigoFormatado\":\"569.986.869-00\"},\"pessoa\":{\"id\":605818324,\"cpfFormatado\":\"***.986.869-**\",\"cnpjFormatado\":\"\",\"numeroInscricaoSocial\":\"\",\"nome\":\"NEUSELI
+        JUNCKES COSTA\",\"razaoSocialReceita\":\"\",\"nomeFantasiaReceita\":\"\",\"tipo\":\"Pessoa
+        F\xEDsica\"},\"textoPublicacao\":\"Sem Informa\xE7\xE3o\",\"linkPublicacao\":\"\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"09000845120168240040\",\"abrangenciaDefinidaDecisaoJudicial\":\"Sem
+        Informa\xE7\xE3o\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":313071,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"22/07/2022\",\"dataFimSancao\":\"22/07/2027\",\"dataPublicacaoSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataTransitadoJulgado\":\"22/07/2022\",\"dataOrigemInformacao\":\"29/07/2024\",\"tipoSancao\":{\"descricaoResumida\":\"Impedimento/proibi\xE7\xE3o
+        de contratar com prazo determinado\",\"descricaoPortal\":\"Impedimento/proibi\xE7\xE3o
+        de contratar com prazo determinado\"},\"fonteSancao\":{\"nomeExibicao\":\"Conselho
+        Nacional de Justi\xE7a (CNJ-DF)\",\"telefoneContato\":\".(61) 2326-4925\",\"enderecoContato\":\"SAF
+        Sul Quadra 2 - Lote5/6 - Bloco E - Sala 303 - CEP: 70070-600  Bras\xEDlia/DF\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        8429 - ART. 12 - INDEPENDENTEMENTE DAS SAN\xC7\xD5ES PENAIS, CIVIS E ADMINISTRATIVAS
+        PREVISTAS NA LEGISLA\xC7\xC3O ESPEC\xCDFICA, EST\xC1 O RESPONS\xC1VEL PELO
+        ATO DE IMPROBIDADE SUJEITO \xC0S SEGUINTES COMINA\xC7\xD5ES, QUE PODEM SER
+        APLICADAS ISOLADA OU CUMULATIVAMENTE, DE ACORDO COM A GRAVIDADE DO FATO: I
+        - NA HIP\xD3TESE DO ART. 9\xB0, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE
+        AO PATRIM\xD4NIO, RESSARCIMENTO INTEGRAL DO DANO, QUANDO HOUVER, PERDA DA
+        FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE OITO A
+        DEZ ANOS, PAGAMENTO DE MULTA CIVIL DE AT\xC9 TR\xCAS VEZES O VALOR DO ACR\xC9SCIMO
+        PATRIMONIAL E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO OU RECEBER
+        BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU INDIRETAMENTE,
+        AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO,
+        PELO PRAZO DE DEZ ANOS; II - NA HIP\xD3TESE DO ART. 10, RESSARCIMENTO INTEGRAL
+        DO DANO, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE AO PATRIM\xD4NIO,
+        SE CONCORRER ESTA CIRCUNST\xC2NCIA, PERDA DA FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O
+        DOS DIREITOS POL\xCDTICOS DE CINCO A OITO ANOS, PAGAMENTO DE MULTA CIVIL DE
+        AT\xC9 DUAS VEZES O VALOR DO DANO E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER
+        P\xDABLICO OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS,
+        DIRETA OU INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA
+        DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE CINCO ANOS; III - NA HIP\xD3TESE
+        DO ART. 11, RESSARCIMENTO INTEGRAL DO DANO, SE HOUVER, PERDA DA FUN\xC7\xC3O
+        P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE TR\xCAS A CINCO ANOS,
+        PAGAMENTO DE MULTA CIVIL DE AT\xC9 CEM VEZES O VALOR DA REMUNERA\xC7\xC3O
+        PERCEBIDA PELO AGENTE E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO
+        OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU
+        INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA
+        S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE TR\xCAS ANOS.\",\"descricao\":\"LEI
+        8429 - ART. 12 - INDEPENDENTEMENTE DAS SAN\xC7\xD5ES PENAIS, CIVIS E ADMINISTRATIVAS
+        PREVISTAS NA LEGISLA\xC7\xC3O ESPEC\xCDFICA, EST\xC1 O RESPONS\xC1VEL PELO
+        ATO DE IMPROBIDADE SUJEITO \xC0S SEGUINTES COMINA\xC7\xD5ES, QUE PODEM SER
+        APLICADAS ISOLADA OU CUMULATIVAMENTE, DE ACORDO COM A GRAVIDADE DO FATO: I
+        - NA HIP\xD3TESE DO ART. 9\xB0, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE
+        AO PATRIM\xD4NIO, RESSARCIMENTO INTEGRAL DO DANO, QUANDO HOUVER, PERDA DA
+        FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE OITO A
+        DEZ ANOS, PAGAMENTO DE MULTA CIVIL DE AT\xC9 TR\xCAS VEZES O VALOR DO ACR\xC9SCIMO
+        PATRIMONIAL E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO OU RECEBER
+        BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU INDIRETAMENTE,
+        AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO,
+        PELO PRAZO DE DEZ ANOS; II - NA HIP\xD3TESE DO ART. 10, RESSARCIMENTO INTEGRAL
+        DO DANO, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE AO PATRIM\xD4NIO,
+        SE CONCORRER ESTA CIRCUNST\xC2NCIA, PERDA DA FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O
+        DOS DIREITOS POL\xCDTICOS DE CINCO A OITO ANOS, PAGAMENTO DE MULTA CIVIL DE
+        AT\xC9 DUAS VEZES O VALOR DO DANO E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER
+        P\xDABLICO OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS,
+        DIRETA OU INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA
+        DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE CINCO ANOS; III - NA HIP\xD3TESE
+        DO ART. 11, RESSARCIMENTO INTEGRAL DO DANO, SE HOUVER, PERDA DA FUN\xC7\xC3O
+        P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE TR\xCAS A CINCO ANOS,
+        PAGAMENTO DE MULTA CIVIL DE AT\xC9 CEM VEZES O VALOR DA REMUNERA\xC7\xC3O
+        PERCEBIDA PELO AGENTE E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO
+        OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU
+        INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA
+        S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE TR\xCAS ANOS.\"}],\"orgaoSancionador\":{\"nome\":\"Tribunal
+        de Justi\xE7a do Estado de Minas Gerais / 1\xBA Grau - TJMG / MONTES CLAROS
+        / 2\xAA VARA EMPRESARIAL E DE FAZENDA P\xDABLICA DA COMARCA DE MONTES CLAROS\",\"siglaUf\":\"MG\",\"poder\":\"Judici\xE1rio\",\"esfera\":\"ESTADUAL\"},\"sancionado\":{\"nome\":\"LUIZ
+        GUILHERME PEREIRA MELO\",\"codigoFormatado\":\"046.166.256-62\"},\"pessoa\":{\"id\":218886179,\"cpfFormatado\":\"***.166.256-**\",\"cnpjFormatado\":\"\",\"numeroInscricaoSocial\":\"\",\"nome\":\"LUIZ
+        GUILHERME PEREIRA MELO\",\"razaoSocialReceita\":\"\",\"nomeFantasiaReceita\":\"\",\"tipo\":\"Pessoa
+        F\xEDsica\"},\"textoPublicacao\":\"Sem Informa\xE7\xE3o\",\"linkPublicacao\":\"\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"50017894420188130433\",\"abrangenciaDefinidaDecisaoJudicial\":\"Sem
+        Informa\xE7\xE3o\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":360682,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"11/02/2025\",\"dataFimSancao\":\"11/02/2030\",\"dataPublicacaoSancao\":\"Sem
+        informa\xE7\xE3o\",\"dataTransitadoJulgado\":\"11/02/2025\",\"dataOrigemInformacao\":\"26/08/2025\",\"tipoSancao\":{\"descricaoResumida\":\"Impedimento/proibi\xE7\xE3o
+        de contratar com prazo determinado\",\"descricaoPortal\":\"Impedimento/proibi\xE7\xE3o
+        de contratar com prazo determinado\"},\"fonteSancao\":{\"nomeExibicao\":\"Conselho
+        Nacional de Justi\xE7a (CNJ-DF)\",\"telefoneContato\":\".(61) 2326-4925\",\"enderecoContato\":\"SAF
+        Sul Quadra 2 - Lote5/6 - Bloco E - Sala 303 - CEP: 70070-600  Bras\xEDlia/DF\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        8429 - ART. 12 - INDEPENDENTEMENTE DAS SAN\xC7\xD5ES PENAIS, CIVIS E ADMINISTRATIVAS
+        PREVISTAS NA LEGISLA\xC7\xC3O ESPEC\xCDFICA, EST\xC1 O RESPONS\xC1VEL PELO
+        ATO DE IMPROBIDADE SUJEITO \xC0S SEGUINTES COMINA\xC7\xD5ES, QUE PODEM SER
+        APLICADAS ISOLADA OU CUMULATIVAMENTE, DE ACORDO COM A GRAVIDADE DO FATO: I
+        - NA HIP\xD3TESE DO ART. 9\xB0, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE
+        AO PATRIM\xD4NIO, RESSARCIMENTO INTEGRAL DO DANO, QUANDO HOUVER, PERDA DA
+        FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE OITO A
+        DEZ ANOS, PAGAMENTO DE MULTA CIVIL DE AT\xC9 TR\xCAS VEZES O VALOR DO ACR\xC9SCIMO
+        PATRIMONIAL E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO OU RECEBER
+        BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU INDIRETAMENTE,
+        AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO,
+        PELO PRAZO DE DEZ ANOS; II - NA HIP\xD3TESE DO ART. 10, RESSARCIMENTO INTEGRAL
+        DO DANO, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE AO PATRIM\xD4NIO,
+        SE CONCORRER ESTA CIRCUNST\xC2NCIA, PERDA DA FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O
+        DOS DIREITOS POL\xCDTICOS DE CINCO A OITO ANOS, PAGAMENTO DE MULTA CIVIL DE
+        AT\xC9 DUAS VEZES O VALOR DO DANO E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER
+        P\xDABLICO OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS,
+        DIRETA OU INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA
+        DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE CINCO ANOS; III - NA HIP\xD3TESE
+        DO ART. 11, RESSARCIMENTO INTEGRAL DO DANO, SE HOUVER, PERDA DA FUN\xC7\xC3O
+        P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE TR\xCAS A CINCO ANOS,
+        PAGAMENTO DE MULTA CIVIL DE AT\xC9 CEM VEZES O VALOR DA REMUNERA\xC7\xC3O
+        PERCEBIDA PELO AGENTE E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO
+        OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU
+        INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA
+        S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE TR\xCAS ANOS.\",\"descricao\":\"LEI
+        8429 - ART. 12 - INDEPENDENTEMENTE DAS SAN\xC7\xD5ES PENAIS, CIVIS E ADMINISTRATIVAS
+        PREVISTAS NA LEGISLA\xC7\xC3O ESPEC\xCDFICA, EST\xC1 O RESPONS\xC1VEL PELO
+        ATO DE IMPROBIDADE SUJEITO \xC0S SEGUINTES COMINA\xC7\xD5ES, QUE PODEM SER
+        APLICADAS ISOLADA OU CUMULATIVAMENTE, DE ACORDO COM A GRAVIDADE DO FATO: I
+        - NA HIP\xD3TESE DO ART. 9\xB0, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE
+        AO PATRIM\xD4NIO, RESSARCIMENTO INTEGRAL DO DANO, QUANDO HOUVER, PERDA DA
+        FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE OITO A
+        DEZ ANOS, PAGAMENTO DE MULTA CIVIL DE AT\xC9 TR\xCAS VEZES O VALOR DO ACR\xC9SCIMO
+        PATRIMONIAL E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO OU RECEBER
+        BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU INDIRETAMENTE,
+        AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO,
+        PELO PRAZO DE DEZ ANOS; II - NA HIP\xD3TESE DO ART. 10, RESSARCIMENTO INTEGRAL
+        DO DANO, PERDA DOS BENS OU VALORES ACRESCIDOS ILICITAMENTE AO PATRIM\xD4NIO,
+        SE CONCORRER ESTA CIRCUNST\xC2NCIA, PERDA DA FUN\xC7\xC3O P\xDABLICA, SUSPENS\xC3O
+        DOS DIREITOS POL\xCDTICOS DE CINCO A OITO ANOS, PAGAMENTO DE MULTA CIVIL DE
+        AT\xC9 DUAS VEZES O VALOR DO DANO E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER
+        P\xDABLICO OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS,
+        DIRETA OU INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA
+        DA QUAL SEJA S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE CINCO ANOS; III - NA HIP\xD3TESE
+        DO ART. 11, RESSARCIMENTO INTEGRAL DO DANO, SE HOUVER, PERDA DA FUN\xC7\xC3O
+        P\xDABLICA, SUSPENS\xC3O DOS DIREITOS POL\xCDTICOS DE TR\xCAS A CINCO ANOS,
+        PAGAMENTO DE MULTA CIVIL DE AT\xC9 CEM VEZES O VALOR DA REMUNERA\xC7\xC3O
+        PERCEBIDA PELO AGENTE E PROIBI\xC7\xC3O DE CONTRATAR COM O PODER P\xDABLICO
+        OU RECEBER BENEF\xCDCIOS OU INCENTIVOS FISCAIS OU CREDIT\xCDCIOS, DIRETA OU
+        INDIRETAMENTE, AINDA QUE POR INTERM\xC9DIO DE PESSOA JUR\xCDDICA DA QUAL SEJA
+        S\xD3CIO MAJORIT\xC1RIO, PELO PRAZO DE TR\xCAS ANOS.\"}],\"orgaoSancionador\":{\"nome\":\"Tribunal
+        de Justi\xE7a do Estado da Para\xEDba / 1\xBA Grau - TJPB / ITABAIANA / 2\xAA
+        VARA MISTA DE ITABAIANA\",\"siglaUf\":\"PB\",\"poder\":\"Judici\xE1rio\",\"esfera\":\"ESTADUAL\"},\"sancionado\":{\"nome\":\"APOLINARIO
+        DOS ANJOS NETO\",\"codigoFormatado\":\"457.281.944-00\"},\"pessoa\":{\"id\":608350434,\"cpfFormatado\":\"***.281.944-**\",\"cnpjFormatado\":\"\",\"numeroInscricaoSocial\":\"\",\"nome\":\"APOLINARIO
+        DOS ANJOS NETO\",\"razaoSocialReceita\":\"\",\"nomeFantasiaReceita\":\"\",\"tipo\":\"Pessoa
+        F\xEDsica\"},\"textoPublicacao\":\"Sem Informa\xE7\xE3o\",\"linkPublicacao\":\"\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"00006558720098150381\",\"abrangenciaDefinidaDecisaoJudicial\":\"Sem
+        Informa\xE7\xE3o\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"},{\"id\":319609,\"dataReferencia\":\"17/04/2026\",\"dataInicioSancao\":\"07/10/2024\",\"dataFimSancao\":\"07/10/2026\",\"dataPublicacaoSancao\":\"08/10/2024\",\"dataTransitadoJulgado\":\"07/10/2024\",\"dataOrigemInformacao\":\"08/10/2024\",\"tipoSancao\":{\"descricaoResumida\":\"Impedimento/proibi\xE7\xE3o
+        de contratar com prazo determinado\",\"descricaoPortal\":\"Impedimento/proibi\xE7\xE3o
+        de contratar com prazo determinado\"},\"fonteSancao\":{\"nomeExibicao\":\"Superintend\xEAncia
+        Regional de Administra\xE7\xE3o da 4\xAA Regi\xE3o (RS)\",\"telefoneContato\":\"51
+        3511 - 6517\",\"enderecoContato\":\"Rua Mostardeiro, 483 - Independ\xEAncia
+        - Porto Alegre/RS - CEP 90.430-001\"},\"fundamentacao\":[{\"codigo\":\"LEI
+        14133 - ART. 156, III - IMPEDIMENTO DE LICITAR E CONTRATAR\",\"descricao\":\"LEI
+        14133 - ART. 156, III - IMPEDIMENTO DE LICITAR E CONTRATAR\"}],\"orgaoSancionador\":{\"nome\":\"Superintend\xEAncia
+        Regional de Administra\xE7\xE3o da 4\xAA Regi\xE3o (RS)\",\"siglaUf\":\"RS\",\"poder\":\"Executivo\",\"esfera\":\"FEDERAL\"},\"sancionado\":{\"nome\":\"ESSENCIAL
+        ADMINISTRACAO E SERVICOS LTDA\",\"codigoFormatado\":\"08.583.069/0001-05\"},\"pessoa\":{\"id\":346316694,\"cpfFormatado\":\"\",\"cnpjFormatado\":\"08.583.069/0001-05\",\"numeroInscricaoSocial\":\"\",\"nome\":\"ESSENCIAL
+        ADMINISTRACAO E SERVICOS LTDA\",\"razaoSocialReceita\":\"ESSENCIAL ADMINISTRACAO
+        E SERVICOS LTDA\",\"nomeFantasiaReceita\":\"\",\"tipo\":\"Entidades Empresariais
+        Privadas\"},\"textoPublicacao\":\"Di\xE1rio Oficial da Uni\xE3o Se\xE7\xE3o
+        3 Pagina 1\",\"linkPublicacao\":\"http://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?jornal=530&pagina=1&data=08/10/2024\",\"detalhamentoPublicacao\":\"\",\"numeroProcesso\":\"00588.002085/2024-92\",\"abrangenciaDefinidaDecisaoJudicial\":\"Em
+        todos os Poderes da Esfera do \xF3rg\xE3o sancionador\",\"informacoesAdicionaisDoOrgaoSancionador\":\"\"}]"
+    headers:
+      Age:
+      - '92'
+      Cache-Control:
+      - public, max-age=7200, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 18 Apr 2026 06:12:23 GMT
+      Server:
+      - CloudFront
+      Set-Cookie:
+      - JSESSIONID=C6BC51DB6FDA823846D8792DE0C410A0; Path=/; Secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - origin,accept-encoding
+      Via:
+      - 1.1 3294bb2bb994f97620b651727ef6ef54.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - Q-vwg6b7sIhLRbL6CkW0VUWNkg0zApsi1OSq_AcXYKENuuvQYZVJxQ==
+      X-Amz-Cf-Pop:
+      - FOR50-P2
+      X-Cache:
+      - Hit from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+      X-XSS-Protection:
+      - 1; mode=block
+      content-length:
+      - '51790'
+    status:
+      code: 200
+      message: OK
+version: 1
