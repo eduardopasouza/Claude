@@ -3,6 +3,15 @@
 Todas as mudanças notáveis do projeto, por sessão de trabalho.
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
+## [Unreleased] — 2026-04-18
+
+### Housekeeping
+- **docs/** reorganizado: 7 handoffs antigos (sessões 1-5 + HANDOFF inicial) movidos para `docs/_archive/handoffs_antigos/`.
+- **docs/** superseded: `CONTEXTO_COMPLETO.md`, `CONTINUIDADE_PROMPT.md`, `FRONTEND_SPEC.md`, `INVENTARIO_FEATURES.md`, `ROADMAP_FASEADO_v1.md`, `STATUS_FONTES_DADOS.md` movidos para `docs/_archive/` (substituídos por README/ROADMAP/CHANGELOG na raiz + HANDOFF sessão 7).
+- **README.md** atualizado com estrutura de arquivos real e índice de documentação.
+- Pasta `downloads/` está vazia (dados foram limpos); arquivos grandes em `data/` estão gitignored.
+- Pasta `frontend/` (versão vanilla JS legada) marcada como descontinuada no README.
+
 ## [0.7.0] — 2026-04-17 · Sessão 7
 
 ### Added — Dados & Backend

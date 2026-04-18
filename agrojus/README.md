@@ -165,16 +165,25 @@ Canto superior direito do mapa tem 3 ferramentas:
 
 ```
 agrojus/
+├── CHANGELOG.md              # histórico v0.1 → v0.7 (sessões 1-7)
+├── README.md                 # este arquivo
+├── ROADMAP.md                # 8 sprints, métricas
+├── docker-compose.yml        # 2 containers (db + backend)
+│
 ├── backend/
 │   ├── app/
-│   │   ├── api/              # 20 routers FastAPI
-│   │   │   ├── embrapa.py         # 27 endpoints (NEW sessão 7)
-│   │   │   ├── ibge_choropleth.py # 16 métricas (NEW sessão 7)
-│   │   │   ├── mapbiomas.py       # GraphQL wrapper (NEW sessão 7)
-│   │   │   ├── publicacoes.py     # DJEN
+│   │   ├── api/              # 22 routers FastAPI
+│   │   │   ├── embrapa.py         # 27 endpoints Embrapa AgroAPI
+│   │   │   ├── ibge_choropleth.py # 16 métricas SIDRA choropleth
+│   │   │   ├── mapbiomas.py       # GraphQL wrapper alertas
+│   │   │   ├── publicacoes.py     # DJEN/Comunica.PJe
 │   │   │   ├── geo_layers.py      # 18 camadas PostGIS
-│   │   │   ├── property.py        # search + geojson + overlaps
-│   │   │   └── compliance.py      # MCR 2.9 + EUDR
+│   │   │   ├── geo.py             # analyze-point + aoi/analyze
+│   │   │   ├── property.py        # search/overlaps/neighbors/credit/valuation
+│   │   │   ├── compliance.py      # MCR 2.9 + EUDR
+│   │   │   ├── lawsuits.py        # DataJud CNJ
+│   │   │   ├── market.py          # CEPEA/BCB/Yahoo
+│   │   │   └── ... (auth, dashboard, consulta, news, etc.)
 │   │   ├── collectors/       # 23 coletores de dados
 │   │   │   ├── embrapa.py         # OAuth2 + 9 APIs
 │   │   │   ├── mapbiomas_alerta.py # GraphQL JWT (NEW)
@@ -189,22 +198,40 @@ agrojus/
 ├── frontend_v2/
 │   ├── src/
 │   │   ├── app/(dashboard)/
-│   │   │   ├── imoveis/[car]/page.tsx  # ficha do imóvel (NEW sessão 7)
-│   │   │   ├── mapa/, mercado/, publicacoes/, processos/, ...
+│   │   │   ├── imoveis/[car]/page.tsx   # ficha do imóvel (10/12 abas)
+│   │   │   ├── mapa/page.tsx
+│   │   │   ├── mercado/, publicacoes/, processos/, consulta/, compliance/, alertas/
+│   │   │   └── layout.tsx
 │   │   ├── components/
-│   │   │   ├── imovel/     # PropertyHeader, TabNav, 7 Tabs
-│   │   │   ├── mapa/       # MapComponent v2, LayerTreePanel, Inspector, Stats
-│   │   │   └── layout/
+│   │   │   ├── imovel/       # PropertyHeader, TabNav, MapPreview, 10 Tabs
+│   │   │   ├── mapa/         # MapComponent, LayerTree, Inspector, Stats, MapTools, PropertySearch, BasemapSwitcher
+│   │   │   └── layout/       # Sidebar, TopBar (OmniSearch)
 │   │   └── lib/
-│   │       ├── layers-catalog.ts   # 119 camadas (32 ativas, 87 em roadmap)
-│   │       ├── basemaps.ts         # 4 basemaps
-│   │       └── api.ts
+│   │       ├── layers-catalog.ts    # 119 camadas (32 ativas)
+│   │       ├── basemaps.ts          # 4 basemaps (dark/light/satélite/topo)
+│   │       └── api.ts               # fetchWithAuth + SWR fetcher
 │   └── next.config.ts
+│
 ├── docs/
-│   ├── HANDOFF_2026-04-17_sessao7.md   # ← mestre atual
-│   ├── ROADMAP.md                      # 8 sprints
-│   └── research/                       # auditoria 48 sites + blueprints
-└── docker-compose.yml
+│   ├── HANDOFF_2026-04-17_sessao7.md        # handoff sessão 7 (atual)
+│   ├── HANDOFF_2026-04-18_sessao8_INICIO.md # prompt de abertura sessão 8
+│   ├── ANALISE_COMPETITIVA_*.md             # análise competitiva detalhada
+│   ├── PESQUISA_FONTES.md                   # guia técnico de 20+ fontes
+│   ├── PESQUISA_MERCADO_v3_EXECUTIVO.md     # resumo executivo
+│   ├── API.md, API_FRONTEND_CONTRACT.md     # contratos de API
+│   ├── ARCHITECTURE.md                      # decisões arquiteturais
+│   ├── research/                            # visual-audit (48 sites) + blueprints
+│   │   ├── visual-audit/SYNTHESIS.md
+│   │   ├── catalog-layers-complete.md
+│   │   ├── analise-agronomica-integrada.md
+│   │   ├── dados-gov-guia.md
+│   │   └── embrapa-integracao-status.md
+│   ├── _archive/                            # docs de sessões antigas
+│   ├── coordination/, plans/                # backlog e ADRs
+│
+├── data/                     # dados locais baixados (gitignored, exceto shapefiles leves)
+├── _lixo/                    # rascunhos e referências MapBiomas (PDFs)
+└── frontend/                 # versão legada vanilla JS (descontinuada)
 ```
 
 ---
@@ -223,6 +250,20 @@ DATAJUD_API_KEY=***  # pública CNJ
 ```
 
 ---
+
+## Documentação
+
+| Arquivo | Para quê |
+|---|---|
+| [CHANGELOG.md](CHANGELOG.md) | Histórico de mudanças por sessão (v0.1 → v0.7) |
+| [ROADMAP.md](ROADMAP.md) | 8 sprints + métricas + dívida técnica |
+| [docs/HANDOFF_2026-04-17_sessao7.md](docs/HANDOFF_2026-04-17_sessao7.md) | Handoff mestre da sessão atual |
+| [docs/HANDOFF_2026-04-18_sessao8_INICIO.md](docs/HANDOFF_2026-04-18_sessao8_INICIO.md) | Prompt para abertura da próxima sessão |
+| [docs/research/visual-audit/SYNTHESIS.md](docs/research/visual-audit/SYNTHESIS.md) | Síntese da auditoria de 48 plataformas |
+| [docs/PESQUISA_FONTES.md](docs/PESQUISA_FONTES.md) | Guia técnico das fontes integradas |
+| [docs/research/dados-gov-guia.md](docs/research/dados-gov-guia.md) | 32 datasets dados.gov.br priorizados |
+| [docs/research/analise-agronomica-integrada.md](docs/research/analise-agronomica-integrada.md) | Blueprint das 12 abas da ficha |
+| [docs/_archive/](docs/_archive/) | Handoffs e docs superseded (sessões 1-5 + obsoletos) |
 
 ## Licença
 
