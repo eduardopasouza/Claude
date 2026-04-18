@@ -36,10 +36,31 @@ sigmine · ana_outorgas · ana_bho · assentamentos · quilombolas · aneel_usin
 
 ### Dados reais ingeridos nesta sessão
 
-| Fonte | Registros | Tempo |
-|---|---|---|
-| **CEIS** (CGU) | **3.000** | ~3min20s |
-| **CNEP** (CGU) | **1.620** | ~1min40s |
+| Fonte | Registros | Via |
+|---|---:|---|
+| **CEIS** (CGU) | **3.000** | Portal Transparência (token CGU) |
+| **CNEP** (CGU) | **1.620** | Portal Transparência (token CGU) |
+| **INCRA Assentamentos** | **8.214** | Fallback URL direta (`certificacao.incra.gov.br`) |
+| **INCRA Quilombolas** | **427** | Fallback URL direta |
+| **ANEEL SIGA usinas** | **25.417** | CKAN próprio ANEEL + fallback |
+| **TOTAL ativos** | **38.678** registros em **5/12** tabelas | |
+
+### Fallback automático de URLs diretas (novo)
+
+`DadosGovClient.package_show()` agora:
+1. Tenta o token CKAN normalmente
+2. Em 401/5xx/timeout cai para `KNOWN_RESOURCES`: dict `{dataset_id: [{url, format, name}]}` com URLs públicas validadas dos arquivos
+3. `download_resource()` baixa via URL direta (sem auth)
+
+Isso destrava o ETL mesmo quando o portal dados.gov.br está com problemas (como aconteceu — todos os endpoints retornaram 401, independente do token).
+
+### Commits Sprint 4 adicionais
+
+| Hash | Descrição |
+|---|---|
+| `6c00e4d` | chore: desativa plugin advIA em AgroJus (fim do loop de Stop hook) |
+| `c94f803` | feat(dados-gov): fallback automático URLs diretas |
+| `cc1f445` | fix(dados-gov): URLs ANEEL validadas + latin-1 + clean NaN raw_data |
 
 Validação: CNPJ `00.818.544/0001-65` (real, do CEIS) → MCR-FI02 **FAILED** com evidência `{"ceis_matches": 2}`.
 
