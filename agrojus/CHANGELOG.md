@@ -43,7 +43,12 @@ sigmine · ana_outorgas · ana_bho · assentamentos · quilombolas · aneel_usin
 | **INCRA Assentamentos** | **8.214** | Fallback URL direta (`certificacao.incra.gov.br`) |
 | **INCRA Quilombolas** | **427** | Fallback URL direta |
 | **ANEEL SIGA usinas** | **25.417** | CKAN próprio ANEEL + fallback |
-| **TOTAL ativos** | **38.678** registros em **5/12** tabelas | |
+| **IBAMA Termos de Embargo** | **88.586** | CKAN próprio IBAMA (`dadosabertos.ibama.gov.br` + `pamgia.ibama.gov.br`) |
+| **TOTAL ativos** | **127.264** registros em **6/12** tabelas | |
+
+### MCR 2.9 — ganho de cobertura com IBAMA embargos
+
+O critério **MCR-A04** (Sem embargos ICMBio/IBAMA) antes consultava apenas `geo_embargos_icmbio` (~dezenas de polígonos). Agora também consulta `ibama_embargos` (**88.586 polígonos**), elevando drasticamente a precisão do bloqueio MCR para propriedades em áreas embargadas pelo IBAMA.
 
 ### Fallback automático de URLs diretas (novo)
 
@@ -61,6 +66,8 @@ Isso destrava o ETL mesmo quando o portal dados.gov.br está com problemas (como
 | `6c00e4d` | chore: desativa plugin advIA em AgroJus (fim do loop de Stop hook) |
 | `c94f803` | feat(dados-gov): fallback automático URLs diretas |
 | `cc1f445` | fix(dados-gov): URLs ANEEL validadas + latin-1 + clean NaN raw_data |
+| `ec63c79` | feat(dados-gov): loader IBAMA embargos (88k polígonos) + MCR-A04 |
+| `6ea730f` | chore(frontend): scaffold Sprint 5 — Zustand store + URL sync |
 
 Validação: CNPJ `00.818.544/0001-65` (real, do CEIS) → MCR-FI02 **FAILED** com evidência `{"ceis_matches": 2}`.
 

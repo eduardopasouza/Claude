@@ -65,7 +65,24 @@ Infraestrutura de ingestão + 2 ETLs reais executados.
 - [x] **CNEP** populado com 1.620 registros reais
 - [x] MCR 2.9 — critérios F05, A08, FI02, FI03 consumindo dados reais
 
-**Pendente para Eduardo:** renovar `DADOS_GOV_TOKEN` no `.env` (o atual retornou 401). Depois rodar `docker exec agrojus-backend-1 python -m scripts.run_dados_gov_etl --all` para popular SIGMINE/ANA/INCRA/ANEEL/Garantia-Safra.
+**Status dos loaders** (pós-iteração sessão 9):
+
+| Loader | Status | Registros |
+|---|---|---:|
+| CEIS | ✅ ativo | 3.000 |
+| CNEP | ✅ ativo | 1.620 |
+| INCRA Assentamentos | ✅ ativo | 8.214 |
+| INCRA Quilombolas | ✅ ativo | 427 |
+| ANEEL SIGA usinas | ✅ ativo | 25.417 |
+| **IBAMA Termos de Embargo** | ✅ ativo | **88.586** |
+| SIGMINE | ❌ ANM em 502 (externo) | 0 |
+| ANA Outorgas | ❌ sem URL CSV estável | 0 |
+| ANA BHO | ❌ sem URL CSV estável | 0 |
+| ANEEL Linhas | ❌ só via WFS ArcGIS (não SIG) | 0 |
+| Garantia-Safra | ❌ token sem permissão CGU | 0 |
+| IBAMA CTF | ❌ dataset específico não identificado | 0 |
+
+**Total operacional**: 127.264 registros reais em 6/12 tabelas. O fallback automático em `KNOWN_RESOURCES` permite que loaders pendentes sejam ativados adicionando URLs novas sem reescrever código.
 
 ### Sprint 5 — Mapa v3 (4 dias) — padrões SYNTHESIS ⏳
 - [ ] URL state serializado (Zustand + useSearchParams)
