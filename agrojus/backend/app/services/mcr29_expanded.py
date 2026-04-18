@@ -496,10 +496,13 @@ def check_a04_embargos_icmbio(car_code: str) -> CriterionResult:
 
 
 def check_a05_autos_ibama(car_code: str, cpf_cnpj: Optional[str]) -> CriterionResult:
-    # 1) Por overlap geográfico
+    # 1) Por overlap geográfico (geo_autos_ibama ~16k pontos)
     n_geo = _count_overlap(car_code, "geo_autos_ibama")
-    # 2) Por CPF/CNPJ no environmental_alerts
+    # 2) Por CPF/CNPJ no environmental_alerts (legado)
+    # 3) Por CPF/CNPJ em ibama_autos_infracao (Sprint 4, 695k autos completos)
     n_cpf = 0
+    n_sifisc = 0
+    evidence_extra = {}
     if cpf_cnpj:
         clean = cpf_cnpj.replace(".", "").replace("/", "").replace("-", "")
         engine = get_engine()
@@ -509,21 +512,44 @@ def check_a05_autos_ibama(car_code: str, cpf_cnpj: Optional[str]) -> CriterionRe
                     text("SELECT COUNT(*) FROM environmental_alerts WHERE source='IBAMA' AND cpf_cnpj = :cpf"),
                     {"cpf": clean},
                 ).scalar() or 0)
+                n_sifisc = int(conn.execute(
+                    text("SELECT COUNT(*) FROM ibama_autos_infracao WHERE cpf_cnpj_infrator = :cpf"),
+                    {"cpf": clean},
+                ).scalar() or 0)
+                if n_sifisc > 0:
+                    # Traz o valor total de multas aplicadas
+                    multa_total = conn.execute(
+                        text("""
+                            SELECT COALESCE(SUM(valor_auto), 0)::float
+                            FROM ibama_autos_infracao
+                            WHERE cpf_cnpj_infrator = :cpf
+                        """),
+                        {"cpf": clean},
+                    ).scalar() or 0
+                    evidence_extra["multa_total_rs"] = round(multa_total, 2)
         except Exception:
             pass
-    total = n_geo + n_cpf
+    total = n_geo + n_cpf + n_sifisc
     ok = total == 0
     return CriterionResult(
         code="MCR-A05", axis="ambiental",
         title="Sem autos de infração IBAMA",
-        description="Nem por sobreposição geográfica, nem por CPF/CNPJ há autos IBAMA ativos.",
+        description="Nem por sobreposição geográfica, nem por CPF/CNPJ há autos IBAMA registrados.",
         regulation="Lei 9.605/98 · SIFISC/IBAMA",
         status="passed" if ok else "failed",
         passed=ok,
-        details=(f"{n_geo} auto(s) por geo + {n_cpf} por CPF/CNPJ" if total
-                 else "Nenhum auto IBAMA detectado"),
+        details=(
+            f"Geo: {n_geo} · CPF (alerts): {n_cpf} · SIFISC CSV: {n_sifisc}"
+            if total
+            else "Nenhum auto IBAMA detectado"
+        ),
         weight=WEIGHTS["A05"],
-        evidence={"autos_geo": n_geo, "autos_by_cpf": n_cpf},
+        evidence={
+            "autos_geo": n_geo,
+            "autos_by_cpf": n_cpf,
+            "autos_sifisc": n_sifisc,
+            **evidence_extra,
+        },
     )
 
 

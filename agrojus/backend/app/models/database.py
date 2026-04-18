@@ -627,6 +627,41 @@ class IbamaCtf(Base):
     raw_data = Column(JSON)
 
 
+class IbamaAutoInfracao(Base):
+    """
+    Auto de infração IBAMA — base completa SIFISC (CSV).
+
+    Complementa geo_autos_ibama (apenas pontos georreferenciados, ~16k) com
+    registros tabulares completos (geralmente 600k+ autos históricos).
+    Usado para cruzamento por CPF/CNPJ nos critérios do MCR 2.9.
+    """
+    __tablename__ = "ibama_autos_infracao"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    numero_auto = Column(String(50), index=True)  # não-único: mesmo número em séries diferentes
+    serie_auto = Column(String(20))
+    tipo_auto = Column(String(50))
+    cpf_cnpj_infrator = Column(String(20), index=True)
+    nome_infrator = Column(String(500))
+    data_auto = Column(Date)
+    data_lavratura = Column(Date)
+    uf = Column(String(2), index=True)
+    municipio = Column(String(200), index=True)
+    valor_auto = Column(Float)
+    status_debito = Column(String(50))
+    desc_infracao = Column(Text)
+    enq_legal = Column(String(200))
+    lat = Column(Float)
+    lon = Column(Float)
+    raw_data = Column(JSON)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
+    __table_args__ = (
+        Index("idx_autos_cpf_uf", "cpf_cnpj_infrator", "uf"),
+        Index("idx_autos_num_serie", "numero_auto", "serie_auto"),
+    )
+
+
 class DadosGovIngestLog(Base):
     """Log de ingestões executadas pelo ETL dados_gov."""
     __tablename__ = "dados_gov_ingest_log"

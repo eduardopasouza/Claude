@@ -39,6 +39,7 @@ LAYER_TABLES = [
     ("ceis_registros", "CGU - CEIS (inidôneos)"),
     ("cnep_registros", "CGU - CNEP (punidos)"),
     ("ibama_embargos", "IBAMA - termos de embargo"),
+    ("ibama_autos_infracao", "IBAMA - autos de infração (SIFISC)"),
     ("ibama_ctf", "IBAMA - CTF (atividades poluidoras)"),
 ]
 

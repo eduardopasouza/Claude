@@ -119,6 +119,13 @@ KNOWN_RESOURCES: dict[str, list[dict]] = {
             "url": "https://dadosabertos.ibama.gov.br/dados/SIFISC/termo_embargo/termo_embargo/termo_embargo_csv.zip",
         },
     ],
+    "fiscalizacao-auto-de-infracao": [
+        {
+            "name": "IBAMA autos de infração (SIFISC CSV zipado)",
+            "format": "CSV",
+            "url": "https://dadosabertos.ibama.gov.br/dados/SIFISC/auto_infracao/auto_infracao/auto_infracao_csv.zip",
+        },
+    ],
     "ibama-cadastro-tecnico-federal-de-atividades-potencialmente-poluidoras-e-ou-utilizadoras-de-recursos-ambientais": [],
 }
 
