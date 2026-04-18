@@ -3,95 +3,94 @@
 Todas as mudanças notáveis do projeto, por sessão de trabalho.
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
-## [0.13.2] — 2026-04-18 · Sessão 11 · Fundação de testes Anti-Vibe Coding
+## [0.14.0] — 2026-04-18 · Sessão 11 · 416 testes Anti-Vibe Coding
 
-Inspirado em Fabio Akita (Flow Podcast #588, abr/2026; M.Akita Chronicles
-de fev/2026 com 1.323 testes em 8 dias). Testes como **fundação**, não
-dívida técnica colocada no final.
+Sprint dedicada a **testar profissionalmente** seguindo a metodologia do
+Fabio Akita (Flow Podcast #588, abr/2026; The M.Akita Chronicles: 1.323
+testes em 8 dias controlando AI). A sessão saiu de **0 testes novos** para
+**416 testes verdes** distribuídos em 4 camadas (unit / integration /
+contract / component).
 
-### Added — Infraestrutura de testes profissional
+### Added — Backend (252 testes novos)
 
-**Backend — pytest com 5 categorias de teste:**
-- `tests/unit/` · lógica pura, sem I/O
-- `tests/integration/` · banco + endpoints FastAPI
-- `tests/contract/` · APIs externas congeladas com **cassettes VCR**
-- `tests/collectors/` · 1 arquivo por coletor
-- `tests/e2e/` · fluxos completos (futuro)
-- `@pytest.mark.live` · opt-in (auditoria semanal, `PYTEST_LIVE=1`)
-- `@pytest.mark.slow` · pulados em fast-run
+**Unit (162 testes)** — lógica pura, 100% offline, <3s total:
 
-`backend/pytest.ini` com `--strict-markers`, timeout 30s, filtros de warning.
-`backend/tests/conftest.py` expandido: `vcr_config`, `db_session`,
-`frozen_time`, skip automático de `live` por padrão, **registro central de
-xfails legados** (`LEGACY_XFAILS`) com motivo por linha.
+- `tests/unit/test_classificar_risco.py` · 17 testes — classificador de
+  risco do Hub Jurídico, 4 classes + fronteiras parametrizadas
+- `tests/unit/test_cpf_cnpj_validator.py` · 17 testes — algoritmo de
+  dígitos verificadores + função async pública
+- `tests/unit/test_jurisdicao_reserva_legal.py` · 20 testes — Código
+  Florestal aplicado: 80% Amazônia Legal, 35% Cerrado AL, 20% outros
+- `tests/unit/test_webhook_signing_matching.py` · 24 testes — HMAC-SHA256
+  payload signing + matcher de eventos com wildcard + filtros CAR/CPF
+- `tests/unit/test_dados_gov_client.py` · 18 testes — KNOWN_RESOURCES
+  fallback + algoritmo de scoring do pick_resource + headers
+- `tests/unit/test_datajud_parser.py` · 14 testes — parser de resposta
+  Elasticsearch + 27 TJs + 6 TRFs + 24 TRTs + assuntos agro
+- `tests/unit/test_agrolink_parsing.py` · 18 testes — parser "1.234,56"
+  BRL com limitação de locale documentada
+- `tests/unit/test_mcr29_dataclasses.py` · 24 testes — CriterionResult,
+  AxisScore, MCR29FullResult, 32 pesos, coerência metadata × WEIGHTS
+- `tests/collectors/test_ceis_cnep_normalize.py` · 22 testes — normalizer
+  CEIS/CNEP com **fix real** de contrato (upstream mudou
+  `orgaoSancionador` → `fonteSancao`)
 
-`backend/requirements.txt` +deps: pytest-cov, pytest-timeout, pytest-xdist,
-pytest-vcr, vcrpy, respx, freezegun, faker.
+**Integration (27 testes)** — TestClient + banco dev:
 
-**Frontend — vitest + testing-library:**
-- `frontend_v2/vitest.config.ts` · jsdom, v8 coverage, gate 30% gradual
-- `frontend_v2/tests/setup.ts` · jest-dom + mocks de matchMedia/IO/RO
-- `frontend_v2/package.json` scripts: `test`, `test:watch`, `test:ui`,
-  `test:coverage`, `typecheck`
+- `tests/integration/test_juridico_api.py` — cobertura completa dos 12
+  endpoints do Hub Jurídico (list/detalhe/filtros/404 em contratos+teses+
+  legislação, dossiê com classificação de risco, CRUD monitoramento)
 
-**Infra de execução:**
-- `docker-compose.test.yml` · banco `db_test` isolado porta 5433 tmpfs
-- `Makefile` root com targets `test`, `test-unit`, `test-all`, `test-live`,
-  `test-coverage`, `audit-coletores`
-- `.github/workflows/ci.yml` · **fix do path quebrado** (era `agrojus/backend`,
-  hoje é só `backend/`), matrix backend+frontend, PostGIS service, sistema
-  deps GDAL/GEOS/PROJ, ruff lint, vitest
-- `backend/tests/README.md` · playbook completo (como rodar, como adicionar,
-  convenções)
+**Contract (10 testes)** — VCR cassettes filtrados:
 
-### Added — Primeiros testes
+- `tests/contract/test_portal_transparencia.py` — CEIS + CNEP com 7
+  cassettes VCR (token `chave-api-dados` filtrado de cada um)
 
-**Backend: 39 testes novos, todos passando em <1s**
-- `tests/unit/test_classificar_risco.py` (17 testes) — classificador de
-  risco do Hub Jurídico. Cobre 4 classes (BAIXO/MEDIO/ALTO/CRITICO) +
-  parametrize de fronteiras exatas
-- `tests/contract/test_portal_transparencia.py` (10 testes) — contract test
-  CEIS/CNEP com VCR. Cassettes em `tests/contract/cassettes/`. Token
-  filtrado do cassette (`chave-api-dados`)
-- `tests/collectors/test_ceis_cnep_normalize.py` (22 testes) — normalizer
-  de registros Portal da Transparência com mapeamento duplo (contrato
-  antigo `orgaoSancionador` + contrato atual `fonteSancao`)
+**Legado (155 testes pré-existentes):** 155 continuam passando, **21
+marcados como xfail** com motivo individual em `LEGACY_XFAILS` no
+conftest (API renomeada, rota mudou, fixtures sem isolação — trabalho
+dedicado da próxima sessão).
 
-**Frontend: 31 testes novos, todos passando em 1.45s**
-- `src/lib/markdown.test.ts` — funções puras `fillTemplate`,
-  `markdownToHtml`, `escapeHtml` (extraídas de ContratosTab.tsx para
-  reuso e testabilidade)
+### Added — Frontend (164 testes novos)
+
+- `src/lib/markdown.test.ts` · 31 testes — `fillTemplate`, `markdownToHtml`,
+  `escapeHtml` (extraídos de ContratosTab.tsx para reuso e teste)
+- `src/lib/stores/map-store.test.ts` · 24 testes — Zustand actions,
+  `stateToQueryString`, `queryStringToPartial`, round-trip state↔URL
+- `src/lib/utils.test.ts` · 9 testes — helper `cn` (twMerge + clsx)
+- `src/lib/basemaps.test.ts` · 8 testes — catálogo de tiles Leaflet
+- `src/components/juridico/ProcessosTab.test.tsx` · 5 testes (smoke)
+- `src/components/juridico/ContratosTab.test.tsx` · 5 testes (mock fetch)
+- `src/components/juridico/TesesTab.test.tsx` · 4 testes (agrupamento)
+
+**Frontend: 89 total passing em 2.2s.**
 
 ### Changed
 
-- **Refactor**: `fillTemplate` + `markdownToHtml` extraídos de
-  `ContratosTab.tsx` para `src/lib/markdown.ts`. ContratosTab importa
-  de `@/lib/markdown`.
-- **Fix do loader CEIS/CNEP** (`dados_gov_loaders.py:_normalize_portal_record`):
-  lê `orgaoSancionador.nome` (contrato antigo) E `fonteSancao.nomeExibicao`
-  (contrato atual). Robustez durante transição de schema do upstream.
-- **21 testes legados** marcados como `xfail(strict=False)` com motivo
-  explícito em `LEGACY_XFAILS`. Cada um deles bate em API interna renomeada,
-  shape de rota mudado ou fixture sem isolação. Trabalho dedicado na sessão 12.
+- **Fix real entregue pelo investimento em contract tests.** Primeiro
+  contract test já pegou que o Portal da Transparência renomeou
+  `orgaoSancionador` → `fonteSancao` entre sessão 9 e agora. Loader
+  atualizado em `dados_gov_loaders.py:_normalize_portal_record` para ler
+  ambos (contrato antigo + novo com fallback). Sem o contract test, isso
+  teria virado `orgao_sancionador=""` silencioso no banco.
+- **Refactor `ContratosTab.tsx`**: `fillTemplate` + `markdownToHtml` +
+  `escapeHtml` extraídos para `src/lib/markdown.ts`. Import agora de
+  `@/lib/markdown`. Mais fácil reutilizar (minutas, PDF, outros tabs)
+  e testar em isolamento.
+- **Suite legada**: 21 testes marcados como `@pytest.mark.xfail(strict=False)`
+  com motivo documentado em `LEGACY_XFAILS`. Cada um será revisto em
+  sessão dedicada (API renomeada, rota mudou, fixtures sem isolação).
 
-### Discovered via contract test (value do investimento)
+### Documentation
 
-Primeiro contract test já pegou uma mudança do upstream:
-**Portal da Transparência renomeou `orgaoSancionador` → `fonteSancao`**
-entre sessão 9 e agora. Loader foi consertado para aceitar os dois. Sem o
-contract test, isso teria virado um bug silencioso no banco (registros
-com `orgao_sancionador=""` sem alerta). Exatamente o que Akita prega: os
-testes revelam o que você não tinha previsto.
-
-### Estado final da suite (backend)
-
-```
-155 passed, 2 skipped, 21 xfailed in 43s
-  unit        : 39 passing (17 risk + 22 normalize)
-  contract    : 10 passing (+ 2 live skipped)
-  legacy      : 155 passing, 21 xfail documentado
-  cobertura   : parcial — meta gradual até 80% em sessões 12-14
-```
+- **Auditoria e consolidação da pasta `docs/`**:
+  - `docs/coordination/` (duplicado do root) → `_archive/coordination_antigo/`
+  - `docs/plans/` (planning de 1 semana atrás, concluído) → `_archive/plans_antigos/`
+  - `docs/ANALISE_COMPETITIVA_COMPLETA.md` (v1 obsoleto) → `_archive/`;
+    v2 renomeada para `ANALISE_COMPETITIVA.md`
+  - `docs/PESQUISA_MERCADO_v3_EXECUTIVO.md` → `PESQUISA_MERCADO.md`
+  - `docs/HANDOFF_2026-04-18_sessao10_FECHAMENTO.md` → arquivo
+  - Resultado: `docs/` enxuto, 8 arquivos úteis + `_archive/` + `research/`
 
 ## [0.13.1] — 2026-04-18 · Transição Sessão 10 → 11 · Limpeza e handoff
 

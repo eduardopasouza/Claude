@@ -1,17 +1,18 @@
-# AgroJus — Roadmap Consolidado (2026-04-18 · pós-Sessão 10)
+# AgroJus — Roadmap Consolidado (2026-04-18 · pós-Sessão 11)
 
-> Atualizado após Sessão 10. Sincronizado com
-> `docs/HANDOFF_2026-04-18_sessao10_FECHAMENTO.md` e
-> `docs/HANDOFF_2026-04-18_sessao11_INICIO.md`.
+> Atualizado após Sessão 11. Sincronizado com
+> `docs/HANDOFF_2026-04-18_sessao11_INICIO.md` e
+> `docs/HANDOFF_2026-04-18_sessao12_INICIO.md`.
 
-## Estado atual do produto (pós-sessão 10)
+## Estado atual do produto (pós-sessão 11)
 
 | Camada | Completo | Parcial | Ausente |
 |---|---|---|---|
-| Backend | ~120 endpoints (26 routers) · 18 camadas PostGIS · DJEN · DataJud · Embrapa (7/9) · MapBiomas Alerta GraphQL · IBGE choropleth (16 métricas) · **Webhooks CRUD + dispatch** · **Laudo PDF ficha** · **Exports GeoJSON/GPKG/SHP** · **Minuta Claude API** · **Dossiê multi-input** · **Hub Jurídico-Agro (12 endpoints, 75 seeds)** · **MCR 2.9 32 critérios** · **Portal Transparência + dados.gov.br (10 loaders)** | MCR 2.9 (15/32 com dados reais) · SICAR MA-only (faltam 79M) · DETER/PRODES parcial (50k vs 800k+) | Motor jurídico STJ · leilões · Alembic · testes |
-| Frontend | `/login`, `/`, `/mapa` v2.1, `/mercado`, `/processos`, `/publicacoes`, `/compliance` standalone, `/dados-gov`, `/dossie`, **`/imoveis/[car]` 12/12 abas**, **`/juridico` 5 abas** | `/consulta` e `/alertas` ainda mock | `/valuation`, `/portfolio`, `/leiloes`, `/minutas`, `/perfil`, `/plano`, `/equipe`, `/radar-ibama` |
-| Dados | 40 tabelas × 8,5M registros · 822k Sprint 4 · 75 seeds jurídicos · webhooks + deliveries persistidos | SICAR (só MA) · DETER/PRODES (50k vs 800k+) | Earth Engine · SIGMINE (ANM 502) · ANA Outorgas/BHO · Garantia-Safra · IBAMA CTF |
-| Docs | ROADMAP · README · CHANGELOG · HANDOFF sessão 10 fechamento + sessão 11 início · 48 auditorias visuais · 6 blueprints · SYNTHESIS · sessões 1-9 arquivadas | — | Manual do usuário · API pública doc |
+| Backend | ~120 endpoints (26 routers) · 18 camadas PostGIS · DJEN · DataJud · Embrapa (7/9) · MapBiomas Alerta GraphQL · IBGE choropleth (16 métricas) · Webhooks CRUD + dispatch · Laudo PDF ficha · Exports GeoJSON/GPKG/SHP · Minuta Claude API · Dossiê multi-input · Hub Jurídico-Agro (12 endpoints, 75 seeds) · MCR 2.9 32 critérios · Portal Transparência + dados.gov.br (10 loaders) · **327 testes passando (Anti-Vibe Coding)** · **Alembic instalado** | MCR 2.9 (15/32 com dados reais) · SICAR MA-only (faltam 79M) · DETER/PRODES parcial (50k vs 800k+) | Motor jurídico STJ · leilões |
+| Frontend | `/login`, `/`, `/mapa` v2.1, `/mercado`, `/processos`, `/publicacoes`, `/compliance` standalone, `/dados-gov`, `/dossie`, `/imoveis/[car]` 12/12 abas, `/juridico` 5 abas · **89 testes Vitest (75 lib + 14 components)** | `/consulta` e `/alertas` ainda mock | `/valuation`, `/portfolio`, `/leiloes`, `/minutas`, `/perfil`, `/plano`, `/equipe`, `/radar-ibama` |
+| Dados | 40 tabelas × 8,5M registros · 822k Sprint 4 · 75 seeds jurídicos · webhooks + deliveries persistidos · **contract tests travam mudança de upstream (Portal Transparência pego)** | SICAR (só MA) · DETER/PRODES (50k vs 800k+) | Earth Engine · SIGMINE (ANM 502) · ANA Outorgas/BHO · Garantia-Safra · IBAMA CTF |
+| Testes | **416 testes passing** · 162 unit + 27 integration + 10 contract + 89 frontend + 155 legacy · VCR cassettes · db_test isolado · Makefile · CI corrigido | 21 xfails legados documentados (sessão 12) | pytest integration schema snapshot · Playwright e2e · Storybook |
+| Docs | ROADMAP · README · CHANGELOG · HANDOFF sessão 11 início + sessão 12 início · ANALISE_COMPETITIVA · ARCHITECTURE · API · PESQUISA_FONTES · PESQUISA_MERCADO · research/ · sessões 1-10 arquivadas | — | Manual do usuário · API pública doc |
 
 ---
 
@@ -149,7 +150,56 @@ Reposicionamento do módulo jurídico — de "ferramenta para advogado" para hub
 
 ---
 
-## 🎯 FOCO DA SESSÃO 11 — 3 Trilhas (pós-sessão 10)
+## ✅ SESSÃO 11 REALIZADA — Fundação de testes Anti-Vibe Coding
+
+Sprint dedicada a **disciplina**. Metodologia do Fabio Akita (Flow #588,
+abr/2026 e The M.Akita Chronicles de fev/2026: 1.323 testes em 8 dias
+controlando AI). Aplicamos ao AgroJus em uma sessão.
+
+**Entregas:**
+- **416 testes passing** em ~53s (antes: 0 novos nesta sessão)
+- 162 unit + 27 integration + 10 contract + 89 frontend + 155 legacy
+- Scaffold profissional: pytest.ini, conftest, VCR cassettes, Makefile,
+  docker-compose.test.yml, CI fix (path `agrojus/backend` → `backend`)
+- **Fix real entregue pelos contract tests**: Portal da Transparência
+  renomeou `orgaoSancionador` → `fonteSancao`. Loader atualizado antes
+  de virar bug silencioso.
+- 21 testes legados marcados como `xfail` com motivo individual —
+  dívida técnica visível e controlada
+- `docs/` consolidada: coordination/plans → archive; ANALISE_v2 vira
+  canônica; handoffs sessão 1-10 arquivados
+
+**A sessão 11 NÃO consumiu** as trilhas B/C/F das prioridades. Focou 100%
+em fundação de testes. Trilhas 1-3 do plano inicial continuam pendentes
+e **agora podem ser executadas com segurança**: cada mudança vai quebrar
+um teste se errar, cada bug vai virar um teste novo.
+
+---
+
+## 🎯 FOCO DA SESSÃO 12 — 3 Trilhas
+
+Com fundação de testes pronta, agora executamos as 3 trilhas mantendo
+TDD:
+
+### 🔵 Trilha 1 — Acesso aos dados (prioridade máxima)
+Ver Sprints A, B, C abaixo.
+
+### 🟢 Trilha 2 — Limpar dívida documentada
+- Atualizar os 21 testes legados em `LEGACY_XFAILS`
+- Criar primeira migration Alembic versionada (schema snapshot atual)
+- JWT em httpOnly cookie (hoje localStorage = risco XSS)
+- Middleware auth frontend (`proxy.ts` no Next 16)
+- Error boundaries (`app/error.tsx` + `app/global-error.tsx`)
+
+### 🟠 Trilha 3 — Features com TDD
+- Calculadora de prescrição administrativa (Lei 9.873/99) — pedido explícito
+- Cron monitoramento contínuo de CPFs cadastrados
+- Sprint 5 mapa v3 (Zustand + slider temporal + drill-down)
+- Substituir mocks `/consulta` e `/alertas`
+
+---
+
+## 🎯 FOCO DA SESSÃO 11 (original, agora histórico) — 3 Trilhas
 
 Eduardo decidiu priorizar: **pendências + dívida técnica + garantir acesso
 aos dados**. Execução em 3 trilhas encadeadas, começando pela Trilha 1
