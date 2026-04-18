@@ -311,17 +311,39 @@ def check_f04_unidade_conservacao(car_code: str) -> CriterionResult:
     )
 
 
-def check_f05_sigmine() -> CriterionResult:
+def check_f05_sigmine(car_code: Optional[str]) -> CriterionResult:
+    engine = get_engine()
+    # Primeiro checa se a tabela tem dados
+    try:
+        with engine.connect() as conn:
+            total = int(conn.execute(text("SELECT COUNT(*) FROM sigmine_processos")).scalar() or 0)
+    except Exception:
+        total = 0
+    if total == 0 or not car_code:
+        return CriterionResult(
+            code="MCR-F05", axis="fundiario",
+            title="Sem sobreposição SIGMINE (mineração)",
+            description="Não há processos minerários registrados na ANM sobre a área.",
+            regulation="Código de Mineração · ANM",
+            status="pending", passed=None,
+            details=("Tabela sigmine_processos vazia — execute ETL: docker exec agrojus-backend-1 python -m scripts.run_dados_gov_etl --only sigmine"
+                     if total == 0 else "CAR não informado"),
+            weight=WEIGHTS["F05"],
+            evidence={"source": "SIGMINE-ANM"},
+        )
+    n = _count_overlap(car_code, "sigmine_processos")
+    ok = n == 0
     return CriterionResult(
         code="MCR-F05", axis="fundiario",
         title="Sem sobreposição SIGMINE (mineração)",
         description="Não há processos minerários registrados na ANM sobre a área.",
         regulation="Código de Mineração · ANM",
-        status="pending",
-        passed=None,
-        details="Aguardando coletor SIGMINE/ANM (Sprint 4 — dados.gov.br)",
+        status="passed" if ok else "failed",
+        passed=ok,
+        details=(f"{n} processo(s) minerário(s) sobrepostos" if n
+                 else "Sem sobreposição com SIGMINE"),
         weight=WEIGHTS["F05"],
-        evidence={"source": "SIGMINE-ANM"},
+        evidence={"sigmine_overlaps": n, "source": "SIGMINE-ANM"},
     )
 
 
@@ -599,44 +621,43 @@ def check_a07_app(prop: Optional[dict]) -> CriterionResult:
 
 def check_a08_ana_outorga(car_code: str) -> CriterionResult:
     engine = get_engine()
+    # Usa ana_outorgas_full (Sprint 4) se tiver dados; senão tenta ana_outorgas legacy
+    table = "ana_outorgas_full"
     try:
         with engine.connect() as conn:
-            # Verifica se tabela ana_outorgas tem registros
-            total = int(conn.execute(text("SELECT COUNT(*) FROM ana_outorgas")).scalar() or 0)
+            total = int(conn.execute(text(f"SELECT COUNT(*) FROM {table}")).scalar() or 0)
             if total == 0:
-                return CriterionResult(
-                    code="MCR-A08", axis="ambiental",
-                    title="Sem conflito com outorga ANA",
-                    description="Não há conflito com outorgas de recursos hídricos.",
-                    regulation="Lei 9.433/97 · ANA",
-                    status="pending", passed=None,
-                    details="Tabela ana_outorgas vazia — coletor ANA em Sprint 4",
-                    weight=WEIGHTS["A08"],
-                    evidence={"source": "ANA-Outorgas"},
-                )
-            n = _count_overlap(car_code, "ana_outorgas")
-            ok = n == 0
-            return CriterionResult(
-                code="MCR-A08", axis="ambiental",
-                title="Sem conflito com outorga ANA",
-                description="Não há conflito com outorgas de recursos hídricos.",
-                regulation="Lei 9.433/97 · ANA",
-                status="passed" if ok else "failed",
-                passed=ok,
-                details=(f"{n} outorga(s) no perímetro" if n else "Sem outorgas conflitantes"),
-                weight=WEIGHTS["A08"],
-                evidence={"ana_overlaps": n},
-            )
+                # tenta legacy
+                total = int(conn.execute(text("SELECT COUNT(*) FROM ana_outorgas")).scalar() or 0)
+                if total > 0:
+                    table = "ana_outorgas"
     except Exception:
+        total = 0
+
+    if total == 0:
         return CriterionResult(
             code="MCR-A08", axis="ambiental",
             title="Sem conflito com outorga ANA",
             description="Não há conflito com outorgas de recursos hídricos.",
             regulation="Lei 9.433/97 · ANA",
             status="pending", passed=None,
-            details="Tabela ana_outorgas indisponível",
+            details="Tabelas ANA vazias — execute ETL: docker exec agrojus-backend-1 python -m scripts.run_dados_gov_etl --only ana_outorgas",
             weight=WEIGHTS["A08"],
+            evidence={"source": "ANA-Outorgas"},
         )
+    n = _count_overlap(car_code, table)
+    ok = n == 0
+    return CriterionResult(
+        code="MCR-A08", axis="ambiental",
+        title="Sem conflito com outorga ANA",
+        description="Não há conflito com outorgas de recursos hídricos.",
+        regulation="Lei 9.433/97 · ANA",
+        status="passed" if ok else "failed",
+        passed=ok,
+        details=(f"{n} outorga(s) no perímetro" if n else "Sem outorgas conflitantes"),
+        weight=WEIGHTS["A08"],
+        evidence={"ana_overlaps": n, "table": table},
+    )
 
 
 # ==========================================================================
@@ -940,29 +961,107 @@ def check_fi01_sicor(car_code: str, cpf_cnpj: Optional[str]) -> CriterionResult:
     )
 
 
-def check_fi02_ceis() -> CriterionResult:
+def check_fi02_ceis(cpf_cnpj: Optional[str]) -> CriterionResult:
+    engine = get_engine()
+    try:
+        with engine.connect() as conn:
+            total = int(conn.execute(text("SELECT COUNT(*) FROM ceis_registros")).scalar() or 0)
+    except Exception:
+        total = 0
+    if total == 0:
+        return CriterionResult(
+            code="MCR-FI02", axis="financeiro",
+            title="Não consta CEIS",
+            description="Cadastro Nacional de Empresas Inidôneas e Suspensas.",
+            regulation="Lei 12.846/13 · Portal Transparência",
+            status="pending", passed=None,
+            details="Tabela ceis_registros vazia — execute ETL: docker exec agrojus-backend-1 python -m scripts.run_dados_gov_etl --only ceis",
+            weight=WEIGHTS["FI02"],
+            evidence={"source": "CGU-CEIS"},
+        )
+    if not cpf_cnpj:
+        return CriterionResult(
+            code="MCR-FI02", axis="financeiro",
+            title="Não consta CEIS",
+            description="Cadastro Nacional de Empresas Inidôneas e Suspensas.",
+            regulation="Lei 12.846/13 · Portal Transparência",
+            status="pending", passed=None,
+            details="CPF/CNPJ do proprietário não informado",
+            weight=WEIGHTS["FI02"],
+            evidence={"source": "CGU-CEIS", "base_size": total},
+        )
+    clean = cpf_cnpj.replace(".", "").replace("/", "").replace("-", "")
+    try:
+        with engine.connect() as conn:
+            n = int(conn.execute(
+                text("SELECT COUNT(*) FROM ceis_registros WHERE cpf_cnpj = :cpf"),
+                {"cpf": clean},
+            ).scalar() or 0)
+    except Exception:
+        n = 0
+    ok = n == 0
     return CriterionResult(
         code="MCR-FI02", axis="financeiro",
         title="Não consta CEIS",
         description="Cadastro Nacional de Empresas Inidôneas e Suspensas.",
         regulation="Lei 12.846/13 · Portal Transparência",
-        status="pending", passed=None,
-        details="Aguardando coletor Portal da Transparência (Sprint 4)",
+        status="passed" if ok else "failed",
+        passed=ok,
+        details=(f"{n} registro(s) no CEIS" if n else "Não consta no CEIS"),
         weight=WEIGHTS["FI02"],
-        evidence={"source": "CGU-CEIS"},
+        evidence={"ceis_matches": n, "base_size": total},
     )
 
 
-def check_fi03_cnep() -> CriterionResult:
+def check_fi03_cnep(cpf_cnpj: Optional[str]) -> CriterionResult:
+    engine = get_engine()
+    try:
+        with engine.connect() as conn:
+            total = int(conn.execute(text("SELECT COUNT(*) FROM cnep_registros")).scalar() or 0)
+    except Exception:
+        total = 0
+    if total == 0:
+        return CriterionResult(
+            code="MCR-FI03", axis="financeiro",
+            title="Não consta CNEP",
+            description="Cadastro Nacional de Empresas Punidas.",
+            regulation="Lei 12.846/13",
+            status="pending", passed=None,
+            details="Tabela cnep_registros vazia — execute ETL: docker exec agrojus-backend-1 python -m scripts.run_dados_gov_etl --only cnep",
+            weight=WEIGHTS["FI03"],
+            evidence={"source": "CGU-CNEP"},
+        )
+    if not cpf_cnpj:
+        return CriterionResult(
+            code="MCR-FI03", axis="financeiro",
+            title="Não consta CNEP",
+            description="Cadastro Nacional de Empresas Punidas.",
+            regulation="Lei 12.846/13",
+            status="pending", passed=None,
+            details="CPF/CNPJ do proprietário não informado",
+            weight=WEIGHTS["FI03"],
+            evidence={"source": "CGU-CNEP", "base_size": total},
+        )
+    clean = cpf_cnpj.replace(".", "").replace("/", "").replace("-", "")
+    try:
+        with engine.connect() as conn:
+            n = int(conn.execute(
+                text("SELECT COUNT(*) FROM cnep_registros WHERE cpf_cnpj = :cpf"),
+                {"cpf": clean},
+            ).scalar() or 0)
+    except Exception:
+        n = 0
+    ok = n == 0
     return CriterionResult(
         code="MCR-FI03", axis="financeiro",
         title="Não consta CNEP",
         description="Cadastro Nacional de Empresas Punidas.",
         regulation="Lei 12.846/13",
-        status="pending", passed=None,
-        details="Aguardando coletor Portal da Transparência (Sprint 4)",
+        status="passed" if ok else "failed",
+        passed=ok,
+        details=(f"{n} registro(s) no CNEP" if n else "Não consta no CNEP"),
         weight=WEIGHTS["FI03"],
-        evidence={"source": "CGU-CNEP"},
+        evidence={"cnep_matches": n, "base_size": total},
     )
 
 
@@ -1041,7 +1140,7 @@ def evaluate_mcr29_full(
             regulation="SNUC", status="pending", passed=None,
             details="CAR não informado", weight=WEIGHTS["F04"],
         ))
-    criteria.append(check_f05_sigmine())
+    criteria.append(check_f05_sigmine(car_code))
     criteria.append(check_f06_ccir())
     criteria.append(check_f07_itr())
     criteria.append(check_f08_spu())
@@ -1098,8 +1197,8 @@ def evaluate_mcr29_full(
             regulation="SICOR-BCB", status="pending", passed=None,
             details="CAR não informado", weight=WEIGHTS["FI01"],
         ))
-    criteria.append(check_fi02_ceis())
-    criteria.append(check_fi03_cnep())
+    criteria.append(check_fi02_ceis(cpf_cnpj))
+    criteria.append(check_fi03_cnep(cpf_cnpj))
     criteria.append(check_fi04_pix())
     criteria.append(check_fi05_ccir_financeiro())
 
