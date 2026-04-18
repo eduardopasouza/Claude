@@ -11,6 +11,7 @@ import {
   Newspaper,
   FileText,
   Gavel,
+  Scale,
 } from "lucide-react";
 
 type NavItem = {
@@ -37,6 +38,7 @@ const NAV: NavGroup[] = [
   {
     label: "Jurídico",
     items: [
+      { name: "Hub Jurídico", href: "/juridico", icon: Scale, badge: "HUB" },
       { name: "Publicações", href: "/publicacoes", icon: Gavel, badge: "DJEN" },
       { name: "Processos", href: "/processos", icon: FileText },
     ],

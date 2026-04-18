@@ -3,6 +3,82 @@
 Todas as mudanças notáveis do projeto, por sessão de trabalho.
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.13.0] — 2026-04-18 · Sessão 10 · Frontend Hub Jurídico-Agro
+
+### Added — Rota `/juridico` com 5 abas (fecha a prioridade A do handoff)
+
+O backend do Hub Jurídico-Agro estava pronto desde a sessão 9 (12 endpoints +
+5 tabelas + 75 seeds). Nesta sessão a interface passou a consumir tudo.
+
+**Shell `/juridico` (`app/(dashboard)/juridico/page.tsx`):**
+- 5 abas: Processos · Contratos · Teses · Legislação · Monitoramento.
+- Tab selecionada persiste em query string `?tab=...` (compartilhável, deep link).
+- Descrição contextual por aba, `Suspense` wrapper, sem quebrar `useSearchParams`.
+
+**`components/juridico/ProcessosTab.tsx`:**
+- Form CPF/CNPJ → consome `GET /juridico/processos/{cpf_cnpj}/dossie`.
+- Banner de risco consolidado colorido (BAIXO/MÉDIO/ALTO/CRÍTICO) com
+  justificativa gerada a partir do sumário (fatores detectados em linguagem
+  natural).
+- 6 KPIs (DataJud / DJEN / IBAMA+multa / CEIS / CNEP / Lista Suja).
+- 6 seções listadas: processos, publicações DJEN com link, autos IBAMA com
+  valor e enquadramento legal, CEIS/CNEP com sanção e órgão, Lista Suja MTE.
+- Botão copiar número do processo.
+
+**`components/juridico/ContratosTab.tsx`:**
+- Grid de cards filtráveis por categoria, público-alvo, texto livre.
+- Modal com 2 colunas: esquerda = sinopse + campos preenchíveis + legislação
+  + cautelas; direita = preview markdown em tempo real.
+- Template fill client-side com `{{placeholder}}` — placeholders não
+  preenchidos ficam destacados em âmbar dentro do preview.
+- 3 exports: **.doc** (Word aceita HTML renomeado — zero dependência),
+  **.md** (markdown com preenchimento), **copiar** (clipboard).
+- Renderizador markdown mínimo próprio (headings, listas, negrito/itálico,
+  parágrafos) — sem `react-markdown` ou `marked` para não inflar o bundle.
+
+**`components/juridico/TesesTab.tsx`:**
+- Filtros por área (7 áreas com ícone/cor: ambiental, fundiário, trabalhista,
+  tributário, previdenciário, contratual, todas) + busca textual.
+- Resultados agrupados por área, accordion por tese.
+- Carregamento lazy do detalhe (só busca `/teses/{slug}` quando abre).
+- Detalhe mostra: aplicabilidade, argumentos principais (lista ordenada),
+  precedentes sugeridos com tribunal/ementa/link, legislação aplicável,
+  contra-argumentos, próxima ação destacada em card primary.
+
+**`components/juridico/LegislacaoTab.tsx`:**
+- Filtros: busca textual, esfera (federal/estadual/municipal), UF (select
+  com 27 UFs), código IBGE do município, 7 temas com chip visual.
+- Lista agrupada por esfera com ícone apropriado (Globe/Landmark/Building2).
+- Card por norma mostra tipo/número/ano, situação (vigente/revogada
+  coloridas), órgão, UF/município, temas como chips, link para o texto
+  oficial quando disponível.
+
+**`components/juridico/MonitoramentoTab.tsx`:**
+- Lista monitoramentos ativos em grid de cards (nome sugerido, CPF/CNPJ,
+  eventos monitorados, tags, frequência, webhook, datas).
+- Botão cadastrar abre formulário inline com: CPF/CNPJ, nome, contexto,
+  tags CSV, 6 eventos selecionáveis (DataJud/IBAMA/CEIS/CNEP/Lista
+  Suja/DJEN), frequência (diária/semanal/mensal), webhook URL.
+- Validação client-side (11 ou 14 dígitos), remoção com confirmação.
+
+### Changed
+
+- **Sidebar.tsx** ganhou entrada "Hub Jurídico" (ícone `Scale`, badge `HUB`)
+  no grupo Jurídico, acima de Publicações e Processos — continua acessível
+  individualmente.
+
+### Technical
+
+- Next 16.2.3 + React 19.2 — padrão `"use client"` + `Suspense` para
+  componentes que usam `useSearchParams`.
+- Data fetching via `useSWR` + `swrFetcher` existente; mutações via
+  `fetchWithAuth`.
+- Style: design tokens Tailwind v4 (`border`, `card`, `muted`, `primary`,
+  `foreground`) — mesmo padrão de `/processos`.
+- `tsc --noEmit`: 0 erros. ESLint: 0 warnings após wrap em `useMemo` das
+  listas `teses`/`normas`.
+- 0 dependências novas: `lucide-react` + `swr` já no projeto.
+
 ## [0.12.0] — 2026-04-18 · Sessão 9 · Dossiê + Hub Jurídico-Agro
 
 ### Added — UX do mapa (correções do feedback Eduardo)
