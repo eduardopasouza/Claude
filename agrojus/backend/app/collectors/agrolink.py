@@ -84,6 +84,42 @@ AGROLINK_PATHS: dict[str, dict] = {
         "unit": "R$/@ (15kg)",
         "label": "Boi gordo",
     },
+    "algodao": {
+        "main": "/cotacoes/fibras/algodao",
+        "slug": "algodao-em-pluma-15kg",
+        "unit": "R$/@ pluma",
+        "label": "Algodão em pluma",
+    },
+    "cana": {
+        "main": "/cotacoes/diversos/cana-de-acucar",
+        "slug": "cana-de-acucar-1ton",
+        "unit": "R$/ton",
+        "label": "Cana-de-açúcar",
+    },
+    "leite": {
+        "main": "/cotacoes/diversos/leite",
+        "slug": "leite-1l",
+        "unit": "R$/litro",
+        "label": "Leite ao produtor",
+    },
+    "frango": {
+        "main": "/cotacoes/carnes/aves",
+        "slug": "frango-1kg",
+        "unit": "R$/kg",
+        "label": "Frango vivo",
+    },
+    "sorgo": {
+        "main": "/cotacoes/graos/sorgo",
+        "slug": "sorgo-sc-60kg",
+        "unit": "R$/sc 60kg",
+        "label": "Sorgo em grão",
+    },
+    "acucar": {
+        "main": "/cotacoes/acucar-e-alcool/acucar",
+        "slug": "acucar-vhp-sc-50kg",
+        "unit": "R$/sc 50kg",
+        "label": "Açúcar VHP",
+    },
 }
 
 

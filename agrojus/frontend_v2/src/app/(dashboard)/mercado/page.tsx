@@ -101,13 +101,22 @@ const REGIONAL_COMMODITIES = [
 ];
 
 const AGROLINK_COMMODITIES = [
+  // Grãos
   { id: "soja", label: "Soja" },
   { id: "milho", label: "Milho" },
-  { id: "cafe", label: "Café" },
-  { id: "boi", label: "Boi Gordo" },
+  { id: "sorgo", label: "Sorgo" },
   { id: "trigo", label: "Trigo" },
   { id: "arroz", label: "Arroz" },
   { id: "feijao", label: "Feijão" },
+  // Permanentes / industriais
+  { id: "cafe", label: "Café" },
+  { id: "algodao", label: "Algodão (pluma)" },
+  { id: "cana", label: "Cana-de-açúcar" },
+  { id: "acucar", label: "Açúcar VHP" },
+  // Proteínas
+  { id: "boi", label: "Boi Gordo" },
+  { id: "frango", label: "Frango" },
+  { id: "leite", label: "Leite" },
 ];
 
 type AgrolinkUfStat = {
