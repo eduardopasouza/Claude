@@ -17,6 +17,10 @@ const GeoJSON = dynamic(
   () => import("react-leaflet").then((m) => m.GeoJSON),
   { ssr: false }
 );
+const ZoomControl = dynamic(
+  () => import("react-leaflet").then((m) => m.ZoomControl),
+  { ssr: false }
+);
 
 type GeoJSONResponse = {
   type: "FeatureCollection";
@@ -53,8 +57,8 @@ export function MapPreview({
       <MapContainer
         center={[centroid.lat, centroid.lon]}
         zoom={13}
-        scrollWheelZoom={false}
-        dragging={false}
+        scrollWheelZoom={true}
+        dragging={true}
         zoomControl={false}
         attributionControl={false}
         className="h-full w-full"
@@ -75,6 +79,7 @@ export function MapPreview({
             }}
           />
         )}
+        <ZoomControl position="topright" />
       </MapContainer>
       <div className="absolute bottom-1 right-2 text-[10px] text-slate-500 font-mono bg-slate-950/60 px-1.5 py-0.5 rounded">
         {centroid.lat.toFixed(3)}, {centroid.lon.toFixed(3)}

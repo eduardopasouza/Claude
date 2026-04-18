@@ -1,16 +1,16 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import useSWR from "swr";
 import {
   TrendingUp,
   TrendingDown,
   Activity,
-  DollarSign,
   Loader2,
   Newspaper,
   ExternalLink,
   MapPin,
+  Minus,
 } from "lucide-react";
 import {
   XAxis,
@@ -18,34 +18,14 @@ import {
   Tooltip,
   ResponsiveContainer,
   CartesianGrid,
-  Area,
-  AreaChart,
   LineChart,
   Line,
 } from "recharts";
 import { swrFetcher } from "@/lib/api";
 
-type Quote = {
-  commodity: string;
-  price: number;
-  unit: string;
-  date: string;
-  source: string;
-  variation_pct: number;
-  location: string;
-  ticker?: string;
-};
-
-type HistoryPoint = {
-  time: number;
-  open: number;
-  high: number;
-  low: number;
-  close: number;
-};
-
-type HistoryResponse = { ticker: string; history: HistoryPoint[]; error?: string };
-
+// ---------------------------------------------------------------------------
+// Tipos
+// ---------------------------------------------------------------------------
 type Indicators = Record<
   string,
   { name: string; value: string; date: string; unit: string }
@@ -57,67 +37,7 @@ type NewsArticle = {
   source: string;
   published_at: string;
   summary?: string;
-  category?: string;
 };
-
-type RegionalQuote = {
-  praca: string;
-  uf: string;
-  fonte: string;
-  preco: number;
-  variacao_pct: number | null;
-  data?: string | null;
-};
-
-type UfStat = {
-  uf: string;
-  total_pracas: number;
-  preco_min: number;
-  preco_max: number;
-  preco_medio: number;
-};
-
-type RegionalResponse = {
-  commodity: string;
-  label: string;
-  unit: string;
-  source: string;
-  source_url: string;
-  total_pracas: number;
-  quotes: RegionalQuote[];
-  uf_stats: UfStat[];
-  error?: string;
-};
-
-const REGIONAL_COMMODITIES = [
-  { id: "soja", label: "Soja" },
-  { id: "milho", label: "Milho" },
-  { id: "boi", label: "Boi Gordo" },
-  { id: "cafe", label: "Café" },
-  { id: "trigo", label: "Trigo" },
-  { id: "algodao", label: "Algodão" },
-  { id: "arroz", label: "Arroz" },
-  { id: "acucar", label: "Açúcar" },
-];
-
-const AGROLINK_COMMODITIES = [
-  // Grãos
-  { id: "soja", label: "Soja" },
-  { id: "milho", label: "Milho" },
-  { id: "sorgo", label: "Sorgo" },
-  { id: "trigo", label: "Trigo" },
-  { id: "arroz", label: "Arroz" },
-  { id: "feijao", label: "Feijão" },
-  // Permanentes / industriais
-  { id: "cafe", label: "Café" },
-  { id: "algodao", label: "Algodão (pluma)" },
-  { id: "cana", label: "Cana-de-açúcar" },
-  { id: "acucar", label: "Açúcar VHP" },
-  // Proteínas
-  { id: "boi", label: "Boi Gordo" },
-  { id: "frango", label: "Frango" },
-  { id: "leite", label: "Leite" },
-];
 
 type AgrolinkUfStat = {
   uf: string;
@@ -129,7 +49,6 @@ type AgrolinkUfStat = {
 
 type AgrolinkUfDetail = {
   uf: string;
-  source_url: string;
   historico: Array<{
     mes: string;
     estadual: number | null;
@@ -141,521 +60,426 @@ type AgrolinkResponse = {
   commodity: string;
   label: string;
   unit: string;
-  source: string;
   total_ufs: number;
   ufs: AgrolinkUfDetail[];
   uf_stats: AgrolinkUfStat[];
   error?: string;
 };
 
-// Map commodities principais → ticker Yahoo Finance
-const COMMODITY_TICKERS: Record<string, { ticker: string; label: string; color: string }> = {
-  soja: { ticker: "ZS=F", label: "Soja", color: "#22c55e" },
-  milho: { ticker: "ZC=F", label: "Milho", color: "#eab308" },
-  cafe: { ticker: "KC=F", label: "Café Arábica", color: "#a16207" },
-  acucar: { ticker: "SB=F", label: "Açúcar Bruto", color: "#8b5cf6" },
-  algodao: { ticker: "CT=F", label: "Algodão", color: "#e5e7eb" },
-  trigo: { ticker: "ZW=F", label: "Trigo", color: "#d97706" },
-  boi_gordo: { ticker: "LE=F", label: "Boi Gordo (CME)", color: "#dc2626" },
-  oleo_soja: { ticker: "ZL=F", label: "Óleo de Soja", color: "#16a34a" },
+type CommodityDef = {
+  id: string;
+  label: string;
+  group: "graos" | "industriais" | "proteinas";
+  color: string;
+  unit_short?: string;
 };
 
-export default function Mercado() {
-  const [selectedTicker, setSelectedTicker] = useState<string>("ZS=F");
-  const [range, setRange] = useState<string>("6mo");
-  const [regionalCommodity, setRegionalCommodity] = useState<string>("soja");
-  const [selectedUF, setSelectedUF] = useState<string>("all");
-  const [agrolinkCommodity, setAgrolinkCommodity] = useState<string>("soja");
-  const [agrolinkSelectedUF, setAgrolinkSelectedUF] = useState<string | null>(null);
+const COMMODITIES: CommodityDef[] = [
+  { id: "soja", label: "Soja", group: "graos", color: "#22c55e" },
+  { id: "milho", label: "Milho", group: "graos", color: "#eab308" },
+  { id: "sorgo", label: "Sorgo", group: "graos", color: "#a16207" },
+  { id: "trigo", label: "Trigo", group: "graos", color: "#d97706" },
+  { id: "arroz", label: "Arroz", group: "graos", color: "#fbbf24" },
+  { id: "feijao", label: "Feijão", group: "graos", color: "#78350f" },
+  { id: "cafe", label: "Café", group: "industriais", color: "#a16207" },
+  { id: "algodao", label: "Algodão", group: "industriais", color: "#e5e7eb" },
+  { id: "cana", label: "Cana", group: "industriais", color: "#84cc16" },
+  { id: "acucar", label: "Açúcar", group: "industriais", color: "#fef3c7" },
+  { id: "boi", label: "Boi gordo", group: "proteinas", color: "#dc2626" },
+  { id: "frango", label: "Frango", group: "proteinas", color: "#fbbf24" },
+  { id: "leite", label: "Leite", group: "proteinas", color: "#fb7185" },
+];
 
-  const { data: quotesData, isLoading: loadingQuotes } = useSWR<{ quotes: Quote[] }>(
-    "/market/quotes",
-    swrFetcher,
-    { refreshInterval: 300_000 }
-  );
+const UF_NAMES: Record<string, string> = {
+  AC: "Acre", AL: "Alagoas", AM: "Amazonas", AP: "Amapá", BA: "Bahia",
+  CE: "Ceará", DF: "Distrito Federal", ES: "Espírito Santo", GO: "Goiás",
+  MA: "Maranhão", MG: "Minas Gerais", MS: "Mato Grosso do Sul", MT: "Mato Grosso",
+  PA: "Pará", PB: "Paraíba", PE: "Pernambuco", PI: "Piauí", PR: "Paraná",
+  RJ: "Rio de Janeiro", RN: "Rio Grande do Norte", RO: "Rondônia", RR: "Roraima",
+  RS: "Rio Grande do Sul", SC: "Santa Catarina", SE: "Sergipe", SP: "São Paulo",
+  TO: "Tocantins",
+};
+const UFS_ORDER = Object.keys(UF_NAMES).sort();
+
+// ---------------------------------------------------------------------------
+// Hook para UF do usuário (persistida em localStorage)
+// ---------------------------------------------------------------------------
+function useUserUF(): [string, (uf: string) => void] {
+  const [uf, setUfState] = useState<string>("MA");
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const saved = localStorage.getItem("agrojus_uf");
+    if (saved) setUfState(saved);
+  }, []);
+  const setUf = (newUf: string) => {
+    setUfState(newUf);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("agrojus_uf", newUf);
+    }
+  };
+  return [uf, setUf];
+}
+
+// ---------------------------------------------------------------------------
+// PAGE
+// ---------------------------------------------------------------------------
+export default function Mercado() {
+  const [userUF, setUserUF] = useUserUF();
+  const [selectedCommodity, setSelectedCommodity] = useState<string>("soja");
 
   const { data: indicatorsData } = useSWR<{ indicators: Indicators }>(
     "/market/indicators",
     swrFetcher,
     { refreshInterval: 300_000 }
   );
-
-  const { data: historyData, isLoading: loadingHistory } = useSWR<HistoryResponse>(
-    `/market/quotes/history/${selectedTicker}?range=${range}&interval=1d`,
-    swrFetcher,
-    { revalidateOnFocus: false }
-  );
+  const indicators = indicatorsData?.indicators || {};
 
   const { data: newsData } = useSWR<{ articles: NewsArticle[] }>(
-    "/news/market?limit=8",
+    "/news/market?limit=6",
     swrFetcher,
     { refreshInterval: 600_000 }
   );
 
-  const { data: regionalData, isLoading: loadingRegional } = useSWR<RegionalResponse>(
-    `/market/quotes/regional/${regionalCommodity}`,
-    swrFetcher,
-    { refreshInterval: 1800_000 } // 30 min
-  );
-
-  const { data: agrolinkData, isLoading: loadingAgrolink } = useSWR<AgrolinkResponse>(
-    `/market/quotes/agrolink/${agrolinkCommodity}`,
-    swrFetcher,
-    { refreshInterval: 3600_000 } // 1h
-  );
-
-  const quotes = quotesData?.quotes || [];
-  const indicators = indicatorsData?.indicators || {};
-
-  const chartData = useMemo(() => {
-    return (historyData?.history || []).map((p) => ({
-      date: new Date(p.time * 1000).toLocaleDateString("pt-BR", {
-        day: "2-digit",
-        month: "2-digit",
-      }),
-      price: p.close,
-    }));
-  }, [historyData]);
-
-  const currentCommodity = Object.values(COMMODITY_TICKERS).find(
-    (c) => c.ticker === selectedTicker
-  );
-
   return (
-    <div className="p-6 lg:p-8 max-w-[1400px] mx-auto space-y-8 animate-in fade-in duration-500">
-      <header className="flex flex-col gap-2">
+    <div className="p-6 lg:p-8 max-w-[1400px] mx-auto space-y-6 animate-in fade-in duration-500">
+      <header className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-3xl font-heading font-extrabold text-slate-100 tracking-tight flex items-center gap-3">
           <TrendingUp className="h-8 w-8 text-emerald-400" />
-          Mercado &amp; Commodities
+          Mercado
         </h1>
-        <p className="text-slate-400 text-sm max-w-2xl">
-          Cotações CEPEA/ESALQ (físico BR) + futuros CBOT/CME (Yahoo Finance) +
-          indicadores macro BCB. Atualização a cada 5 min.
-        </p>
+        <UFPicker value={userUF} onChange={setUserUF} />
       </header>
 
-      {/* Gráfico principal */}
-      <section className="bg-slate-900/40 border border-slate-800 rounded-xl p-6">
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-          <div>
-            <h2 className="text-lg font-semibold text-slate-100">
-              {currentCommodity?.label || "Cotação"} —{" "}
-              <span className="text-xs text-slate-500 font-mono">{selectedTicker}</span>
-            </h2>
-            <p className="text-xs text-slate-500">
-              Contrato futuro · fonte Yahoo Finance (CBOT/CME/ICE)
-            </p>
-          </div>
-          <div className="flex items-center gap-1 bg-slate-950 border border-slate-800 rounded-lg p-1">
-            {["1mo", "3mo", "6mo", "1y", "2y"].map((r) => (
-              <button
-                key={r}
-                onClick={() => setRange(r)}
-                className={`px-2.5 py-1 text-xs rounded ${
-                  range === r
-                    ? "bg-emerald-500/20 text-emerald-300"
-                    : "text-slate-400 hover:text-slate-200"
-                }`}
-              >
-                {r}
-              </button>
-            ))}
-          </div>
-        </div>
+      {/* Hero: preços na região do usuário */}
+      <MinhaRegiao
+        uf={userUF}
+        selected={selectedCommodity}
+        onSelect={setSelectedCommodity}
+      />
 
-        {/* Seletor de commodity */}
-        <div className="flex flex-wrap gap-2 mb-5">
-          {Object.values(COMMODITY_TICKERS).map((c) => (
-            <button
-              key={c.ticker}
-              onClick={() => setSelectedTicker(c.ticker)}
-              className={`px-3 py-1.5 text-xs rounded-lg border transition ${
-                selectedTicker === c.ticker
-                  ? "bg-emerald-500/20 border-emerald-500/40 text-emerald-300"
-                  : "bg-slate-950 border-slate-800 text-slate-400 hover:text-slate-200 hover:border-slate-600"
-              }`}
-            >
-              {c.label}
-            </button>
-          ))}
-        </div>
-
-        <div className="h-80">
-          {loadingHistory ? (
-            <div className="h-full flex items-center justify-center text-slate-400">
-              <Loader2 className="w-5 h-5 animate-spin mr-2" /> Carregando série…
-            </div>
-          ) : chartData.length === 0 ? (
-            <div className="h-full flex items-center justify-center text-slate-500">
-              Sem dados disponíveis para {selectedTicker}
-            </div>
-          ) : (
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={chartData}>
-                <defs>
-                  <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
-                    <stop
-                      offset="0%"
-                      stopColor={currentCommodity?.color || "#10b981"}
-                      stopOpacity={0.35}
-                    />
-                    <stop
-                      offset="100%"
-                      stopColor={currentCommodity?.color || "#10b981"}
-                      stopOpacity={0}
-                    />
-                  </linearGradient>
-                </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1f293750" />
-                <XAxis
-                  dataKey="date"
-                  stroke="#64748b"
-                  tick={{ fontSize: 11 }}
-                  interval="preserveStartEnd"
-                />
-                <YAxis stroke="#64748b" tick={{ fontSize: 11 }} width={55} />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "#0f172a",
-                    border: "1px solid #1e293b",
-                    borderRadius: "8px",
-                    color: "#e2e8f0",
-                  }}
-                  labelStyle={{ color: "#94a3b8", fontSize: 11 }}
-                  formatter={(v) => [
-                    typeof v === "number" ? v.toFixed(2) : String(v),
-                    "Fechamento",
-                  ]}
-                />
-                <Area
-                  type="monotone"
-                  dataKey="price"
-                  stroke={currentCommodity?.color || "#10b981"}
-                  strokeWidth={2}
-                  fill="url(#grad)"
-                />
-              </AreaChart>
-            </ResponsiveContainer>
-          )}
-        </div>
-      </section>
+      {/* Gráfico histórico da commodity selecionada + UF */}
+      <HistoricoCommodity commodity={selectedCommodity} uf={userUF} />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Cards de cotações CEPEA */}
-        <section className="lg:col-span-2 bg-slate-900/40 border border-slate-800 rounded-xl p-5">
-          <h2 className="text-sm uppercase tracking-wider font-bold text-slate-400 mb-4 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <DollarSign className="h-4 w-4" /> Cotações CEPEA/ESALQ
-            </div>
-            {loadingQuotes && <Loader2 className="h-4 w-4 animate-spin" />}
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-            {quotes.map((q, i) => (
-              <QuoteCard key={i} quote={q} />
-            ))}
-            {quotes.length === 0 && !loadingQuotes && (
-              <p className="text-slate-500 text-sm col-span-full text-center py-6">
-                Nenhuma cotação disponível.
-              </p>
-            )}
-          </div>
-        </section>
-
-        {/* Indicadores macro */}
+        {/* Indicadores BCB */}
         <section className="bg-slate-900/40 border border-slate-800 rounded-xl p-5">
           <h2 className="text-sm uppercase tracking-wider font-bold text-slate-400 mb-4 flex items-center gap-2">
-            <Activity className="h-4 w-4" /> Macro BCB
+            <Activity className="h-4 w-4" /> Indicadores econômicos
           </h2>
-          <div className="space-y-3">
+          <div className="space-y-2.5">
             {Object.entries(indicators).map(([key, ind]) => (
               <div
                 key={key}
-                className="p-3 bg-slate-950/60 border border-slate-800 rounded-lg"
+                className="p-2.5 bg-slate-950/40 border border-slate-800 rounded-lg flex items-baseline justify-between"
               >
-                <div className="text-[10px] uppercase tracking-wider text-slate-500">
-                  {ind.name}
-                </div>
-                <div className="text-xl font-mono font-bold text-slate-100 mt-0.5 flex items-baseline gap-1">
+                <span className="text-xs text-slate-400">{ind.name}</span>
+                <span className="text-base font-mono font-bold text-slate-100 tabular-nums">
                   {parseFloat(ind.value).toLocaleString("pt-BR", {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 4,
                   })}
-                  <span className="text-xs font-normal text-slate-500">
+                  <span className="text-[10px] font-normal text-slate-500 ml-1">
                     {ind.unit}
                   </span>
-                </div>
-                <div className="text-[10px] text-slate-600 mt-0.5">{ind.date}</div>
+                </span>
               </div>
             ))}
           </div>
         </section>
-      </div>
 
-      {/* Cotações Regionais por Praça */}
-      <section className="bg-slate-900/40 border border-slate-800 rounded-xl p-5">
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-          <div>
-            <h2 className="text-sm uppercase tracking-wider font-bold text-slate-400 flex items-center gap-2">
-              <MapPin className="h-4 w-4" /> Cotações regionais por praça
-            </h2>
-            <p className="text-xs text-slate-500 mt-1">
-              Mercado físico · fonte Notícias Agrícolas (atualização horária)
-            </p>
-          </div>
-          <div className="flex items-center gap-2">
-            <select
-              value={regionalCommodity}
-              onChange={(e) => {
-                setRegionalCommodity(e.target.value);
-                setSelectedUF("all");
-              }}
-              className="bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-100"
-            >
-              {REGIONAL_COMMODITIES.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.label}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        {loadingRegional ? (
-          <div className="py-10 flex items-center justify-center text-slate-400">
-            <Loader2 className="w-5 h-5 animate-spin mr-2" /> Coletando praças…
-          </div>
-        ) : regionalData?.error ? (
-          <p className="text-sm text-red-300 py-6">Erro: {regionalData.error}</p>
-        ) : (
-          <>
-            {/* Stats por UF (resumo) */}
-            {regionalData?.uf_stats && regionalData.uf_stats.length > 0 && (
-              <div className="mb-4">
-                <h3 className="text-xs uppercase tracking-wider text-slate-500 mb-2">
-                  Média por estado ({regionalData.unit})
-                </h3>
-                <div className="flex flex-wrap gap-1.5">
-                  <button
-                    onClick={() => setSelectedUF("all")}
-                    className={`px-3 py-1 text-xs rounded-lg border ${
-                      selectedUF === "all"
-                        ? "bg-emerald-500/20 border-emerald-500/40 text-emerald-300"
-                        : "bg-slate-950 border-slate-800 text-slate-400 hover:text-slate-200"
-                    }`}
-                  >
-                    Todas ({regionalData.total_pracas})
-                  </button>
-                  {regionalData.uf_stats.map((s) => (
-                    <button
-                      key={s.uf}
-                      onClick={() => setSelectedUF(s.uf)}
-                      className={`px-3 py-1 text-xs rounded-lg border flex items-center gap-2 ${
-                        selectedUF === s.uf
-                          ? "bg-emerald-500/20 border-emerald-500/40 text-emerald-300"
-                          : "bg-slate-950 border-slate-800 text-slate-400 hover:text-slate-200"
-                      }`}
-                    >
-                      <span className="font-semibold">{s.uf}</span>
-                      <span className="tabular-nums">
-                        R${" "}
-                        {s.preco_medio.toLocaleString("pt-BR", {
-                          minimumFractionDigits: 2,
-                        })}
-                      </span>
-                      <span className="text-slate-600">({s.total_pracas})</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Tabela de praças (filtrada por UF) */}
-            <div className="border border-slate-800 rounded-lg overflow-hidden">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="bg-slate-950/60 text-left text-xs uppercase text-slate-500 tracking-wider">
-                    <th className="px-3 py-2 font-normal">Praça</th>
-                    <th className="px-3 py-2 font-normal">UF</th>
-                    <th className="px-3 py-2 font-normal">Fonte</th>
-                    <th className="px-3 py-2 font-normal text-right">Preço</th>
-                    <th className="px-3 py-2 font-normal text-right">Var %</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-800/60">
-                  {(regionalData?.quotes || [])
-                    .filter((q) => selectedUF === "all" || q.uf === selectedUF)
-                    .map((q, i) => (
-                      <tr
-                        key={i}
-                        className="hover:bg-slate-900/40 transition"
-                      >
-                        <td className="px-3 py-2 text-slate-100 font-medium">
-                          {q.praca}
-                        </td>
-                        <td className="px-3 py-2">
-                          <span className="inline-block w-8 text-center text-[10px] font-bold bg-slate-800 text-slate-300 px-1 py-0.5 rounded">
-                            {q.uf}
-                          </span>
-                        </td>
-                        <td className="px-3 py-2 text-xs text-slate-500 truncate max-w-[200px]">
-                          {q.fonte}
-                        </td>
-                        <td className="px-3 py-2 text-right text-slate-100 tabular-nums font-semibold">
-                          R${" "}
-                          {q.preco.toLocaleString("pt-BR", {
-                            minimumFractionDigits: 2,
-                          })}
-                        </td>
-                        <td className="px-3 py-2 text-right tabular-nums">
-                          {q.variacao_pct != null ? (
-                            <span
-                              className={`text-xs font-semibold ${
-                                q.variacao_pct > 0
-                                  ? "text-emerald-400"
-                                  : q.variacao_pct < 0
-                                  ? "text-rose-400"
-                                  : "text-slate-500"
-                              }`}
-                            >
-                              {q.variacao_pct > 0 ? "+" : ""}
-                              {q.variacao_pct.toFixed(2)}%
-                            </span>
-                          ) : (
-                            <span className="text-slate-600 text-xs">—</span>
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
+        {/* Notícias */}
+        <section className="lg:col-span-2 bg-slate-900/40 border border-slate-800 rounded-xl p-5">
+          <h2 className="text-sm uppercase tracking-wider font-bold text-slate-400 mb-4 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Newspaper className="h-4 w-4" /> Notícias de mercado
             </div>
-
-            <p className="text-[10px] text-slate-600 mt-2">
-              Fonte:{" "}
-              <a
-                href={regionalData?.source_url}
-                target="_blank"
-                rel="noreferrer"
-                className="text-emerald-500 hover:text-emerald-400"
-              >
-                {regionalData?.source}
-              </a>
-            </p>
-          </>
-        )}
-      </section>
-
-      {/* Agrolink — Preço médio por UF com histórico 20+ anos */}
-      <section className="bg-slate-900/40 border border-slate-800 rounded-xl p-5">
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-          <div>
-            <h2 className="text-sm uppercase tracking-wider font-bold text-slate-400 flex items-center gap-2">
-              <MapPin className="h-4 w-4" /> Preço médio por UF (Agrolink)
-            </h2>
-            <p className="text-xs text-slate-500 mt-1">
-              Série histórica mensal estadual + nacional · fonte Agrolink
-            </p>
-          </div>
-          <select
-            value={agrolinkCommodity}
-            onChange={(e) => {
-              setAgrolinkCommodity(e.target.value);
-              setAgrolinkSelectedUF(null);
-            }}
-            className="bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-100"
-          >
-            {AGROLINK_COMMODITIES.map((c) => (
-              <option key={c.id} value={c.id}>
-                {c.label}
-              </option>
+            <a href="/noticias" className="text-xs text-emerald-400 hover:text-emerald-300">
+              Ver todas →
+            </a>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {(newsData?.articles || []).slice(0, 6).map((n, i) => (
+              <NewsCard key={i} article={n} />
             ))}
-          </select>
-        </div>
-
-        {loadingAgrolink ? (
-          <div className="py-10 flex items-center justify-center text-slate-400">
-            <Loader2 className="w-5 h-5 animate-spin mr-2" /> Coletando 27 UFs…
           </div>
-        ) : agrolinkData?.error ? (
-          <p className="text-sm text-red-300 py-6">Erro: {agrolinkData.error}</p>
-        ) : (
-          <>
-            <AgrolinkUFTable
-              data={agrolinkData!}
-              selectedUF={agrolinkSelectedUF}
-              onSelectUF={setAgrolinkSelectedUF}
-            />
-            {agrolinkSelectedUF && (
-              <AgrolinkHistoricoChart
-                data={agrolinkData!}
-                uf={agrolinkSelectedUF}
-              />
-            )}
-          </>
-        )}
-      </section>
-
-      {/* Notícias de mercado */}
-      <section className="bg-slate-900/40 border border-slate-800 rounded-xl p-5">
-        <h2 className="text-sm uppercase tracking-wider font-bold text-slate-400 mb-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Newspaper className="h-4 w-4" /> Notícias de mercado
-          </div>
-          <a
-            href="/noticias"
-            className="text-xs text-emerald-400 hover:text-emerald-300"
-          >
-            Ver todas →
-          </a>
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {(newsData?.articles || []).slice(0, 6).map((n, i) => (
-            <NewsCard key={i} article={n} />
-          ))}
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
 }
 
-function QuoteCard({ quote }: { quote: Quote }) {
-  const up = (quote.variation_pct || 0) >= 0;
+// ---------------------------------------------------------------------------
+// Seletor de UF
+// ---------------------------------------------------------------------------
+function UFPicker({
+  value,
+  onChange,
+}: {
+  value: string;
+  onChange: (uf: string) => void;
+}) {
   return (
-    <div className="p-3 bg-slate-950/40 border border-slate-800 rounded-lg hover:border-slate-700 transition">
-      <div className="flex justify-between items-start mb-1">
-        <div className="text-sm font-semibold text-slate-100 truncate">
-          {quote.commodity}
-        </div>
-        {quote.variation_pct !== 0 && (
-          <span
-            className={`text-[10px] uppercase font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5 ${
-              up
-                ? "bg-emerald-500/10 text-emerald-400"
-                : "bg-rose-500/10 text-rose-400"
-            }`}
-          >
-            {up ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
-            {quote.variation_pct > 0 ? "+" : ""}
-            {quote.variation_pct.toFixed(2)}%
-          </span>
-        )}
+    <div className="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 rounded-xl px-4 py-2">
+      <MapPin className="h-4 w-4 text-emerald-400" />
+      <span className="text-xs text-emerald-300/80">Sua região:</span>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="bg-transparent font-bold text-emerald-200 text-sm outline-none cursor-pointer"
+      >
+        {UFS_ORDER.map((uf) => (
+          <option key={uf} value={uf} className="bg-slate-900">
+            {uf} — {UF_NAMES[uf]}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// HERO: preços na região + cards por commodity
+// ---------------------------------------------------------------------------
+function MinhaRegiao({
+  uf,
+  selected,
+  onSelect,
+}: {
+  uf: string;
+  selected: string;
+  onSelect: (id: string) => void;
+}) {
+  return (
+    <section className="space-y-4">
+      <h2 className="text-sm uppercase tracking-wider font-bold text-slate-400">
+        Preço de hoje em {UF_NAMES[uf]} ({uf})
+      </h2>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-7 gap-2">
+        {COMMODITIES.map((c) => (
+          <CommodityCard
+            key={c.id}
+            commodity={c}
+            uf={uf}
+            active={selected === c.id}
+            onClick={() => onSelect(c.id)}
+          />
+        ))}
       </div>
-      <div className="text-lg font-mono font-bold text-emerald-400 tabular-nums">
-        {quote.unit === "R$" ? "R$ " : ""}
-        {quote.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-        <span className="text-xs text-slate-500 font-normal ml-1">
-          {quote.unit !== "R$" && quote.unit}
+    </section>
+  );
+}
+
+function CommodityCard({
+  commodity,
+  uf,
+  active,
+  onClick,
+}: {
+  commodity: CommodityDef;
+  uf: string;
+  active: boolean;
+  onClick: () => void;
+}) {
+  const { data } = useSWR<AgrolinkResponse>(
+    `/market/quotes/agrolink/${commodity.id}`,
+    swrFetcher,
+    { refreshInterval: 3600_000, revalidateOnFocus: false }
+  );
+
+  const stat = data?.uf_stats?.find((s) => s.uf === uf);
+  const nacional = data?.uf_stats?.[0]?.preco_nacional;
+  const diff =
+    stat && nacional ? ((stat.preco_atual - nacional) / nacional) * 100 : null;
+
+  return (
+    <button
+      onClick={onClick}
+      className={`
+        p-3 rounded-xl text-left transition border
+        ${
+          active
+            ? "bg-emerald-500/15 border-emerald-500/50 shadow-lg shadow-emerald-500/10"
+            : "bg-slate-900/40 border-slate-800 hover:border-slate-600"
+        }
+      `}
+    >
+      <div className="flex items-center gap-2 mb-1.5">
+        <span
+          className="w-2 h-2 rounded-full"
+          style={{ backgroundColor: commodity.color }}
+        />
+        <span className="text-xs font-semibold text-slate-200">
+          {commodity.label}
         </span>
       </div>
-      <div className="text-[10px] text-slate-500 mt-0.5 flex justify-between">
-        <span>{quote.location}</span>
-        <span>{quote.date}</span>
-      </div>
-    </div>
+      {stat ? (
+        <>
+          <div className="text-lg font-bold font-mono tabular-nums text-slate-100">
+            R$ {stat.preco_atual.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+          </div>
+          <div className="flex items-center gap-1 mt-0.5">
+            {diff != null && (
+              <span
+                className={`text-[10px] font-bold flex items-center gap-0.5 ${
+                  diff > 0
+                    ? "text-emerald-400"
+                    : diff < 0
+                    ? "text-rose-400"
+                    : "text-slate-500"
+                }`}
+              >
+                {diff > 0 ? (
+                  <TrendingUp className="w-2.5 h-2.5" />
+                ) : diff < 0 ? (
+                  <TrendingDown className="w-2.5 h-2.5" />
+                ) : (
+                  <Minus className="w-2.5 h-2.5" />
+                )}
+                {diff > 0 ? "+" : ""}
+                {diff.toFixed(1)}% vs BR
+              </span>
+            )}
+          </div>
+        </>
+      ) : (
+        <div className="text-xs text-slate-600 py-2">
+          sem dado em {uf}
+        </div>
+      )}
+    </button>
   );
 }
 
+// ---------------------------------------------------------------------------
+// Histórico da commodity selecionada na UF
+// ---------------------------------------------------------------------------
+function HistoricoCommodity({
+  commodity,
+  uf,
+}: {
+  commodity: string;
+  uf: string;
+}) {
+  const [range, setRange] = useState<number>(60); // meses
+
+  const { data, isLoading } = useSWR<AgrolinkResponse>(
+    `/market/quotes/agrolink/${commodity}`,
+    swrFetcher,
+    { refreshInterval: 3600_000, revalidateOnFocus: false }
+  );
+
+  const commodityDef = COMMODITIES.find((c) => c.id === commodity);
+  const ufDetail = data?.ufs.find((u) => u.uf === uf);
+  const stat = data?.uf_stats?.find((s) => s.uf === uf);
+
+  const serie = useMemo(() => {
+    if (!ufDetail) return [];
+    return [...ufDetail.historico].reverse().slice(-range).map((h) => ({
+      mes: h.mes,
+      estadual: h.estadual,
+      nacional: h.nacional,
+    }));
+  }, [ufDetail, range]);
+
+  if (!commodityDef) return null;
+
+  return (
+    <section className="bg-slate-900/40 border border-slate-800 rounded-xl p-5">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+        <div>
+          <h3 className="text-lg font-semibold text-slate-100">
+            {commodityDef.label} — {uf}
+          </h3>
+          <p className="text-xs text-slate-500">
+            {data?.unit ?? ""}
+            {stat && ` · última referência ${stat.mes_ref}`}
+          </p>
+        </div>
+        <div className="flex items-center gap-1 bg-slate-950 border border-slate-800 rounded-lg p-1">
+          {[
+            { m: 12, label: "1 ano" },
+            { m: 24, label: "2 anos" },
+            { m: 60, label: "5 anos" },
+            { m: 120, label: "10 anos" },
+            { m: 300, label: "tudo" },
+          ].map((r) => (
+            <button
+              key={r.m}
+              onClick={() => setRange(r.m)}
+              className={`px-2.5 py-1 text-xs rounded ${
+                range === r.m
+                  ? "bg-emerald-500/20 text-emerald-300"
+                  : "text-slate-400 hover:text-slate-200"
+              }`}
+            >
+              {r.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="h-64">
+        {isLoading ? (
+          <div className="h-full flex items-center justify-center text-slate-400">
+            <Loader2 className="w-5 h-5 animate-spin mr-2" /> Carregando série…
+          </div>
+        ) : serie.length === 0 ? (
+          <div className="h-full flex items-center justify-center text-slate-500 text-sm">
+            Sem série histórica para {commodityDef.label} em {uf}.
+          </div>
+        ) : (
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={serie}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#1f293750" />
+              <XAxis
+                dataKey="mes"
+                stroke="#64748b"
+                tick={{ fontSize: 10 }}
+                interval={Math.max(0, Math.floor(serie.length / 10))}
+              />
+              <YAxis stroke="#64748b" tick={{ fontSize: 10 }} width={50} />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: "#0f172a",
+                  border: "1px solid #1e293b",
+                  borderRadius: "8px",
+                  color: "#e2e8f0",
+                  fontSize: 12,
+                }}
+                formatter={(v) =>
+                  typeof v === "number"
+                    ? v.toLocaleString("pt-BR", { minimumFractionDigits: 2 })
+                    : String(v)
+                }
+              />
+              <Line
+                type="monotone"
+                dataKey="estadual"
+                name={uf}
+                stroke={commodityDef.color}
+                strokeWidth={2}
+                dot={false}
+              />
+              <Line
+                type="monotone"
+                dataKey="nacional"
+                name="Brasil"
+                stroke="#64748b"
+                strokeWidth={1.5}
+                strokeDasharray="4 4"
+                dot={false}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        )}
+      </div>
+    </section>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// News Card
+// ---------------------------------------------------------------------------
 function NewsCard({ article }: { article: NewsArticle }) {
   return (
     <a
@@ -670,188 +494,8 @@ function NewsCard({ article }: { article: NewsArticle }) {
         </h3>
         <ExternalLink className="w-3 h-3 text-slate-600 flex-shrink-0 mt-1 group-hover:text-emerald-400" />
       </div>
-      <div className="text-[10px] text-slate-500 flex items-center gap-2">
-        <span className="font-medium">{article.source}</span>
-        <span>·</span>
-        <span>{formatDate(article.published_at)}</span>
-      </div>
+      <div className="text-[10px] text-slate-500">{formatDate(article.published_at)}</div>
     </a>
-  );
-}
-
-function AgrolinkUFTable({
-  data,
-  selectedUF,
-  onSelectUF,
-}: {
-  data: AgrolinkResponse;
-  selectedUF: string | null;
-  onSelectUF: (uf: string | null) => void;
-}) {
-  const stats = data.uf_stats || [];
-  const nacional = stats[0]?.preco_nacional;
-
-  return (
-    <>
-      {nacional && (
-        <div className="mb-3 flex items-center gap-2 text-xs">
-          <span className="text-slate-500">Preço nacional ({stats[0]?.mes_ref}):</span>
-          <span className="font-semibold text-slate-100">
-            R$ {nacional.toFixed(2)} / {data.unit}
-          </span>
-        </div>
-      )}
-
-      <div className="border border-slate-800 rounded-lg overflow-hidden max-h-[400px] overflow-y-auto">
-        <table className="w-full text-sm">
-          <thead className="sticky top-0 bg-slate-950/95 backdrop-blur z-10">
-            <tr className="text-left text-xs uppercase text-slate-500 tracking-wider border-b border-slate-800">
-              <th className="px-3 py-2 font-normal">UF</th>
-              <th className="px-3 py-2 font-normal text-right">Preço estadual</th>
-              <th className="px-3 py-2 font-normal text-right">vs Nacional</th>
-              <th className="px-3 py-2 font-normal text-right">Histórico</th>
-              <th className="px-3 py-2 font-normal"></th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-800/60">
-            {stats.map((s) => {
-              const diff = nacional ? ((s.preco_atual - nacional) / nacional) * 100 : null;
-              const active = selectedUF === s.uf;
-              return (
-                <tr
-                  key={s.uf}
-                  onClick={() => onSelectUF(active ? null : s.uf)}
-                  className={`cursor-pointer transition ${
-                    active
-                      ? "bg-emerald-500/10"
-                      : "hover:bg-slate-900/40"
-                  }`}
-                >
-                  <td className="px-3 py-2">
-                    <span
-                      className={`inline-block w-10 text-center text-xs font-bold px-1.5 py-1 rounded ${
-                        active
-                          ? "bg-emerald-500/30 text-emerald-200"
-                          : "bg-slate-800 text-slate-300"
-                      }`}
-                    >
-                      {s.uf}
-                    </span>
-                  </td>
-                  <td className="px-3 py-2 text-right text-slate-100 tabular-nums font-semibold">
-                    R${" "}
-                    {s.preco_atual.toLocaleString("pt-BR", {
-                      minimumFractionDigits: 2,
-                    })}
-                  </td>
-                  <td className="px-3 py-2 text-right tabular-nums">
-                    {diff != null && (
-                      <span
-                        className={`text-xs font-semibold ${
-                          diff > 0
-                            ? "text-emerald-400"
-                            : diff < 0
-                            ? "text-rose-400"
-                            : "text-slate-500"
-                        }`}
-                      >
-                        {diff > 0 ? "+" : ""}
-                        {diff.toFixed(1)}%
-                      </span>
-                    )}
-                  </td>
-                  <td className="px-3 py-2 text-right text-xs text-slate-500">
-                    {s.total_meses_historico}m
-                  </td>
-                  <td className="px-3 py-2 text-xs text-slate-400">
-                    {active ? "▲" : "▼"}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-      <p className="text-[10px] text-slate-600 mt-2">
-        Clique na UF para ver o histórico mensal (até 22 anos).
-      </p>
-    </>
-  );
-}
-
-function AgrolinkHistoricoChart({
-  data,
-  uf,
-}: {
-  data: AgrolinkResponse;
-  uf: string;
-}) {
-  const ufData = data.ufs.find((u) => u.uf === uf);
-  if (!ufData) return null;
-
-  // Últimos 60 meses para não poluir
-  const serie = [...ufData.historico].reverse().slice(-60).map((h) => ({
-    mes: h.mes,
-    estadual: h.estadual,
-    nacional: h.nacional,
-  }));
-
-  return (
-    <div className="mt-4 p-4 bg-slate-950/40 border border-slate-800 rounded-lg">
-      <div className="flex items-center justify-between mb-3">
-        <h3 className="text-sm font-semibold text-slate-200">
-          {uf} — {data.label} · últimos 60 meses
-        </h3>
-        <a
-          href={ufData.source_url}
-          target="_blank"
-          rel="noreferrer"
-          className="text-xs text-emerald-400 hover:text-emerald-300 flex items-center gap-1"
-        >
-          Ver fonte <ExternalLink className="w-3 h-3" />
-        </a>
-      </div>
-      <div className="h-48">
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={serie}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#1f293750" />
-            <XAxis
-              dataKey="mes"
-              stroke="#64748b"
-              tick={{ fontSize: 10 }}
-              interval={Math.floor(serie.length / 8)}
-            />
-            <YAxis stroke="#64748b" tick={{ fontSize: 10 }} width={45} />
-            <Tooltip
-              contentStyle={{
-                backgroundColor: "#0f172a",
-                border: "1px solid #1e293b",
-                borderRadius: "8px",
-                color: "#e2e8f0",
-                fontSize: 12,
-              }}
-            />
-            <Line
-              type="monotone"
-              dataKey="estadual"
-              name={`${uf} (estadual)`}
-              stroke="#10b981"
-              strokeWidth={2}
-              dot={false}
-            />
-            <Line
-              type="monotone"
-              dataKey="nacional"
-              name="Nacional"
-              stroke="#64748b"
-              strokeWidth={1.5}
-              strokeDasharray="4 4"
-              dot={false}
-            />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
-    </div>
   );
 }
 

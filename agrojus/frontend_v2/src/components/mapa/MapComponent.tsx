@@ -49,6 +49,7 @@ import {
   analyzePoint,
   analyzeAOI,
 } from "./MapTools";
+import { PriceChoroplethWidget } from "./PriceChoroplethWidget";
 
 // ---------------------------------------------------------------------------
 // Sub-componente: captura eventos de pan/zoom
@@ -357,6 +358,18 @@ export default function MapComponent() {
   const [selectedCar, setSelectedCar] = useState<string | null>(null);
   const [flyTarget, setFlyTarget] = useState<[number, number] | null>(null);
 
+  // === Widget de preço (choropleth por UF direto do mapa) ===
+  const [priceLayerId, setPriceLayerId] = useState<string | null>(null);
+
+  // Sincroniza priceLayerId com activeLayers (toggle exclusivo)
+  useEffect(() => {
+    setActiveLayers((prev) => {
+      // remove outras camadas preco_*_uf
+      const filtered = prev.filter((id) => !id.startsWith("preco_"));
+      return priceLayerId ? [...filtered, priceLayerId] : filtered;
+    });
+  }, [priceLayerId]);
+
   // === Ferramentas do mapa (ponto / desenhar / upload) ===
   const [toolMode, setToolMode] = useState<ToolMode>("none");
   const [drawPoints, setDrawPoints] = useState<[number, number][]>([]);
@@ -603,6 +616,12 @@ export default function MapComponent() {
 
         <ZoomControl position="bottomleft" />
       </MapContainer>
+
+      {/* Widget de choropleth de preço */}
+      <PriceChoroplethWidget
+        activeLayerId={priceLayerId}
+        onSelect={setPriceLayerId}
+      />
 
       {/* Ferramentas (ponto/desenhar/upload) */}
       <MapTools
