@@ -207,6 +207,11 @@ function ActiveLayer({
       case "ibge_choropleth_uf": {
         // choropleth por UF — 27 polígonos, carrega rápido
         const ano = layer.defaultYear ?? 2022;
+        // Se id começa com "preco_", usa endpoint Agrolink (preço atual)
+        if (effectiveId.startsWith("preco_")) {
+          const commodity = effectiveId.replace("preco_", "");
+          return `/geo/ibge/choropleth/uf/preco/${commodity}`;
+        }
         return `/geo/ibge/choropleth/uf/${effectiveId}/${ano}`;
       }
       case "stub":

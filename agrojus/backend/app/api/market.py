@@ -16,6 +16,7 @@ from app.collectors.market_data import MarketDataCollector
 from app.collectors.financial import FinancialDataCollector
 from app.collectors.cepea import CEPEACollector
 from app.collectors.regional_quotes import RegionalQuotesCollector, COMMODITY_MAP
+from app.collectors.agrolink import AgrolinkCollector, AGROLINK_PATHS
 from app.models.schemas import MarketQuote
 
 router = APIRouter()
@@ -123,6 +124,31 @@ async def list_regional_commodities():
             {"id": key, **meta} for key, meta in COMMODITY_MAP.items()
         ],
         "source": "Notícias Agrícolas (mercado físico)",
+    }
+
+
+@router.get("/quotes/agrolink/{commodity}")
+async def get_agrolink_quotes(commodity: str):
+    """
+    Cotações regionalizadas via Agrolink (scraping + OCR de imagens).
+
+    Agrolink tem 50-300+ praças por commodity (muito mais que Notícias
+    Agrícolas). Os preços são renderizados como PNG — usamos Tesseract
+    OCR para decodar.
+
+    Cache 1h após primeiro OCR (imagens são estáveis).
+    """
+    collector = AgrolinkCollector()
+    return await collector.fetch_commodity(commodity.lower())
+
+
+@router.get("/quotes/agrolink")
+async def list_agrolink_commodities():
+    """Commodities suportadas via Agrolink."""
+    return {
+        "commodities": [{"id": k, **v} for k, v in AGROLINK_PATHS.items()],
+        "source": "Agrolink (OCR de imagens de preço)",
+        "note": "Scraping respeitoso via User-Agent identificado. Cache 1h por imagem.",
     }
 
 

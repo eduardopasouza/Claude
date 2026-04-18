@@ -5,6 +5,28 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), versioname
 
 ## [Unreleased] — 2026-04-18
 
+### Added — Cotações regionalizadas (Agrolink)
+- **Collector Agrolink UF** (`app/collectors/agrolink.py`) — scrape das páginas `/cotacoes/historico/{uf}/{slug}` que têm **texto puro** (tabela HTML com mês/ano, preço estadual, preço nacional) desde 2003. Até **265 meses** de histórico por UF.
+- **7 commodities cobertas**: soja, milho, café, trigo, arroz, feijão, boi gordo.
+- **Endpoints:**
+  - `GET /api/v1/market/quotes/agrolink/{commodity}` — histórico por UF + uf_stats
+  - `GET /api/v1/market/quotes/agrolink` — lista commodities
+  - `GET /api/v1/geo/ibge/choropleth/uf/preco/{commodity}` — GeoJSON choropleth com preço atual estadual por UF (para o mapa)
+- **Tesseract OCR** instalado no backend (Dockerfile + `pytesseract`) como fallback para decodar preços em imagens PNG anti-scraping (não foi necessário — o histórico está em texto).
+- **Dependências:** `inmetpy>=0.1.1`, `pytesseract==0.3.13`, `Pillow>=10.0.0`.
+
+### Frontend `/mercado` — nova seção "Preço médio por UF (Agrolink)"
+- Tabela ordenada por preço com 20+ UFs.
+- Select de commodity (Soja, Milho, Café, Boi, Trigo, Arroz, Feijão).
+- Comparação vs preço nacional (% diff, colorizado).
+- Click em UF abre **gráfico de série histórica** Recharts com linha estadual + nacional (últimos 60 meses).
+- Link para fonte original.
+
+### Novas camadas no catálogo (4)
+- `preco_soja_uf`, `preco_milho_uf`, `preco_cafe_uf`, `preco_boi_uf`
+- Endpoint: `ibge_choropleth_uf` com prefixo `preco_` redireciona pro endpoint Agrolink.
+- Mapa do Brasil colorido pelo preço **atual** do produto em cada estado.
+
 ### Housekeeping
 - **docs/** reorganizado: 7 handoffs antigos (sessões 1-5 + HANDOFF inicial) movidos para `docs/_archive/handoffs_antigos/`.
 - **docs/** superseded: `CONTEXTO_COMPLETO.md`, `CONTINUIDADE_PROMPT.md`, `FRONTEND_SPEC.md`, `INVENTARIO_FEATURES.md`, `ROADMAP_FASEADO_v1.md`, `STATUS_FONTES_DADOS.md` movidos para `docs/_archive/` (substituídos por README/ROADMAP/CHANGELOG na raiz + HANDOFF sessão 7).

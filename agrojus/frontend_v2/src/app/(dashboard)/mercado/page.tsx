@@ -20,6 +20,8 @@ import {
   CartesianGrid,
   Area,
   AreaChart,
+  LineChart,
+  Line,
 } from "recharts";
 import { swrFetcher } from "@/lib/api";
 
@@ -98,6 +100,45 @@ const REGIONAL_COMMODITIES = [
   { id: "acucar", label: "Açúcar" },
 ];
 
+const AGROLINK_COMMODITIES = [
+  { id: "soja", label: "Soja" },
+  { id: "milho", label: "Milho" },
+  { id: "cafe", label: "Café" },
+  { id: "boi", label: "Boi Gordo" },
+  { id: "trigo", label: "Trigo" },
+  { id: "arroz", label: "Arroz" },
+  { id: "feijao", label: "Feijão" },
+];
+
+type AgrolinkUfStat = {
+  uf: string;
+  preco_atual: number;
+  preco_nacional: number | null;
+  mes_ref: string;
+  total_meses_historico: number;
+};
+
+type AgrolinkUfDetail = {
+  uf: string;
+  source_url: string;
+  historico: Array<{
+    mes: string;
+    estadual: number | null;
+    nacional: number | null;
+  }>;
+};
+
+type AgrolinkResponse = {
+  commodity: string;
+  label: string;
+  unit: string;
+  source: string;
+  total_ufs: number;
+  ufs: AgrolinkUfDetail[];
+  uf_stats: AgrolinkUfStat[];
+  error?: string;
+};
+
 // Map commodities principais → ticker Yahoo Finance
 const COMMODITY_TICKERS: Record<string, { ticker: string; label: string; color: string }> = {
   soja: { ticker: "ZS=F", label: "Soja", color: "#22c55e" },
@@ -115,6 +156,8 @@ export default function Mercado() {
   const [range, setRange] = useState<string>("6mo");
   const [regionalCommodity, setRegionalCommodity] = useState<string>("soja");
   const [selectedUF, setSelectedUF] = useState<string>("all");
+  const [agrolinkCommodity, setAgrolinkCommodity] = useState<string>("soja");
+  const [agrolinkSelectedUF, setAgrolinkSelectedUF] = useState<string | null>(null);
 
   const { data: quotesData, isLoading: loadingQuotes } = useSWR<{ quotes: Quote[] }>(
     "/market/quotes",
@@ -144,6 +187,12 @@ export default function Mercado() {
     `/market/quotes/regional/${regionalCommodity}`,
     swrFetcher,
     { refreshInterval: 1800_000 } // 30 min
+  );
+
+  const { data: agrolinkData, isLoading: loadingAgrolink } = useSWR<AgrolinkResponse>(
+    `/market/quotes/agrolink/${agrolinkCommodity}`,
+    swrFetcher,
+    { refreshInterval: 3600_000 } // 1h
   );
 
   const quotes = quotesData?.quotes || [];
@@ -488,6 +537,56 @@ export default function Mercado() {
         )}
       </section>
 
+      {/* Agrolink — Preço médio por UF com histórico 20+ anos */}
+      <section className="bg-slate-900/40 border border-slate-800 rounded-xl p-5">
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <div>
+            <h2 className="text-sm uppercase tracking-wider font-bold text-slate-400 flex items-center gap-2">
+              <MapPin className="h-4 w-4" /> Preço médio por UF (Agrolink)
+            </h2>
+            <p className="text-xs text-slate-500 mt-1">
+              Série histórica mensal estadual + nacional · fonte Agrolink
+            </p>
+          </div>
+          <select
+            value={agrolinkCommodity}
+            onChange={(e) => {
+              setAgrolinkCommodity(e.target.value);
+              setAgrolinkSelectedUF(null);
+            }}
+            className="bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-100"
+          >
+            {AGROLINK_COMMODITIES.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {loadingAgrolink ? (
+          <div className="py-10 flex items-center justify-center text-slate-400">
+            <Loader2 className="w-5 h-5 animate-spin mr-2" /> Coletando 27 UFs…
+          </div>
+        ) : agrolinkData?.error ? (
+          <p className="text-sm text-red-300 py-6">Erro: {agrolinkData.error}</p>
+        ) : (
+          <>
+            <AgrolinkUFTable
+              data={agrolinkData!}
+              selectedUF={agrolinkSelectedUF}
+              onSelectUF={setAgrolinkSelectedUF}
+            />
+            {agrolinkSelectedUF && (
+              <AgrolinkHistoricoChart
+                data={agrolinkData!}
+                uf={agrolinkSelectedUF}
+              />
+            )}
+          </>
+        )}
+      </section>
+
       {/* Notícias de mercado */}
       <section className="bg-slate-900/40 border border-slate-800 rounded-xl p-5">
         <h2 className="text-sm uppercase tracking-wider font-bold text-slate-400 mb-4 flex items-center justify-between">
@@ -568,6 +667,182 @@ function NewsCard({ article }: { article: NewsArticle }) {
         <span>{formatDate(article.published_at)}</span>
       </div>
     </a>
+  );
+}
+
+function AgrolinkUFTable({
+  data,
+  selectedUF,
+  onSelectUF,
+}: {
+  data: AgrolinkResponse;
+  selectedUF: string | null;
+  onSelectUF: (uf: string | null) => void;
+}) {
+  const stats = data.uf_stats || [];
+  const nacional = stats[0]?.preco_nacional;
+
+  return (
+    <>
+      {nacional && (
+        <div className="mb-3 flex items-center gap-2 text-xs">
+          <span className="text-slate-500">Preço nacional ({stats[0]?.mes_ref}):</span>
+          <span className="font-semibold text-slate-100">
+            R$ {nacional.toFixed(2)} / {data.unit}
+          </span>
+        </div>
+      )}
+
+      <div className="border border-slate-800 rounded-lg overflow-hidden max-h-[400px] overflow-y-auto">
+        <table className="w-full text-sm">
+          <thead className="sticky top-0 bg-slate-950/95 backdrop-blur z-10">
+            <tr className="text-left text-xs uppercase text-slate-500 tracking-wider border-b border-slate-800">
+              <th className="px-3 py-2 font-normal">UF</th>
+              <th className="px-3 py-2 font-normal text-right">Preço estadual</th>
+              <th className="px-3 py-2 font-normal text-right">vs Nacional</th>
+              <th className="px-3 py-2 font-normal text-right">Histórico</th>
+              <th className="px-3 py-2 font-normal"></th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-800/60">
+            {stats.map((s) => {
+              const diff = nacional ? ((s.preco_atual - nacional) / nacional) * 100 : null;
+              const active = selectedUF === s.uf;
+              return (
+                <tr
+                  key={s.uf}
+                  onClick={() => onSelectUF(active ? null : s.uf)}
+                  className={`cursor-pointer transition ${
+                    active
+                      ? "bg-emerald-500/10"
+                      : "hover:bg-slate-900/40"
+                  }`}
+                >
+                  <td className="px-3 py-2">
+                    <span
+                      className={`inline-block w-10 text-center text-xs font-bold px-1.5 py-1 rounded ${
+                        active
+                          ? "bg-emerald-500/30 text-emerald-200"
+                          : "bg-slate-800 text-slate-300"
+                      }`}
+                    >
+                      {s.uf}
+                    </span>
+                  </td>
+                  <td className="px-3 py-2 text-right text-slate-100 tabular-nums font-semibold">
+                    R${" "}
+                    {s.preco_atual.toLocaleString("pt-BR", {
+                      minimumFractionDigits: 2,
+                    })}
+                  </td>
+                  <td className="px-3 py-2 text-right tabular-nums">
+                    {diff != null && (
+                      <span
+                        className={`text-xs font-semibold ${
+                          diff > 0
+                            ? "text-emerald-400"
+                            : diff < 0
+                            ? "text-rose-400"
+                            : "text-slate-500"
+                        }`}
+                      >
+                        {diff > 0 ? "+" : ""}
+                        {diff.toFixed(1)}%
+                      </span>
+                    )}
+                  </td>
+                  <td className="px-3 py-2 text-right text-xs text-slate-500">
+                    {s.total_meses_historico}m
+                  </td>
+                  <td className="px-3 py-2 text-xs text-slate-400">
+                    {active ? "▲" : "▼"}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <p className="text-[10px] text-slate-600 mt-2">
+        Clique na UF para ver o histórico mensal (até 22 anos).
+      </p>
+    </>
+  );
+}
+
+function AgrolinkHistoricoChart({
+  data,
+  uf,
+}: {
+  data: AgrolinkResponse;
+  uf: string;
+}) {
+  const ufData = data.ufs.find((u) => u.uf === uf);
+  if (!ufData) return null;
+
+  // Últimos 60 meses para não poluir
+  const serie = [...ufData.historico].reverse().slice(-60).map((h) => ({
+    mes: h.mes,
+    estadual: h.estadual,
+    nacional: h.nacional,
+  }));
+
+  return (
+    <div className="mt-4 p-4 bg-slate-950/40 border border-slate-800 rounded-lg">
+      <div className="flex items-center justify-between mb-3">
+        <h3 className="text-sm font-semibold text-slate-200">
+          {uf} — {data.label} · últimos 60 meses
+        </h3>
+        <a
+          href={ufData.source_url}
+          target="_blank"
+          rel="noreferrer"
+          className="text-xs text-emerald-400 hover:text-emerald-300 flex items-center gap-1"
+        >
+          Ver fonte <ExternalLink className="w-3 h-3" />
+        </a>
+      </div>
+      <div className="h-48">
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart data={serie}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#1f293750" />
+            <XAxis
+              dataKey="mes"
+              stroke="#64748b"
+              tick={{ fontSize: 10 }}
+              interval={Math.floor(serie.length / 8)}
+            />
+            <YAxis stroke="#64748b" tick={{ fontSize: 10 }} width={45} />
+            <Tooltip
+              contentStyle={{
+                backgroundColor: "#0f172a",
+                border: "1px solid #1e293b",
+                borderRadius: "8px",
+                color: "#e2e8f0",
+                fontSize: 12,
+              }}
+            />
+            <Line
+              type="monotone"
+              dataKey="estadual"
+              name={`${uf} (estadual)`}
+              stroke="#10b981"
+              strokeWidth={2}
+              dot={false}
+            />
+            <Line
+              type="monotone"
+              dataKey="nacional"
+              name="Nacional"
+              stroke="#64748b"
+              strokeWidth={1.5}
+              strokeDasharray="4 4"
+              dot={false}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
   );
 }
 

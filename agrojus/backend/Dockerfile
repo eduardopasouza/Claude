@@ -7,6 +7,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgdal-dev \
     libgeos-dev \
     libproj-dev \
+    tesseract-ocr \
+    tesseract-ocr-eng \
+    libtesseract-dev \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .

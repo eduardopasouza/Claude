@@ -286,6 +286,12 @@ export const LAYERS: LayerConfig[] = [
   { id: "bcb_sicor_choropleth", name: "SICOR por Município (choropleth)", description: "Volume de crédito rural por município — BCB SICOR", category: "credito", color: "#2563EB", endpoint: "stub", minZoom: 4, maxFeatures: 5570, comingSoon: true, geometryType: "choropleth", source: "BCB SICOR OData" },
   { id: "garantia_safra", name: "Garantia-Safra (beneficiários)", description: "Semiárido — Portal Transparência", category: "credito", color: "#1D4ED8", endpoint: "stub", minZoom: 5, maxFeatures: 5000, comingSoon: true, source: "Portal da Transparência" },
 
+  // ============== PREÇO ATUAL POR UF (Agrolink) (4) ==============
+  { id: "preco_soja_uf", name: "Preço Soja por UF (Agrolink)", description: "Preço médio estadual atual — Agrolink", category: "producao_ibge", color: "#22C55E", endpoint: "ibge_choropleth_uf", endpointId: "preco_soja", minZoom: 3, maxFeatures: 27, geometryType: "choropleth", source: "Agrolink", colorScheme: "Greens" },
+  { id: "preco_milho_uf", name: "Preço Milho por UF (Agrolink)", description: "Preço médio estadual atual — Agrolink", category: "producao_ibge", color: "#EAB308", endpoint: "ibge_choropleth_uf", endpointId: "preco_milho", minZoom: 3, maxFeatures: 27, geometryType: "choropleth", source: "Agrolink", colorScheme: "YlOrBr" },
+  { id: "preco_cafe_uf", name: "Preço Café por UF (Agrolink)", description: "Preço médio estadual atual — Agrolink", category: "producao_ibge", color: "#A16207", endpoint: "ibge_choropleth_uf", endpointId: "preco_cafe", minZoom: 3, maxFeatures: 27, geometryType: "choropleth", source: "Agrolink", colorScheme: "PuRd" },
+  { id: "preco_boi_uf", name: "Preço Boi Gordo por UF (Agrolink)", description: "Preço @ médio estadual atual — Agrolink", category: "pecuaria_ibge", color: "#DC2626", endpoint: "ibge_choropleth_uf", endpointId: "preco_boi", minZoom: 3, maxFeatures: 27, geometryType: "choropleth", source: "Agrolink", colorScheme: "Reds" },
+
   // ============== PRODUÇÃO POR UF (choropleth estadual — visão macro) (4) ==============
   // 27 polígonos · carregamento rápido · ideal para zoom out nacional
   { id: "ibge_uf_soja", name: "Produção Soja por UF", description: "Soja total por estado (SIDRA 1612 agregado) — visão nacional", category: "producao_ibge", color: "#15803D", endpoint: "ibge_choropleth_uf", endpointId: "pam_soja", minZoom: 3, maxFeatures: 27, geometryType: "choropleth", source: "IBGE SIDRA UF", defaultYear: 2022, colorScheme: "YlGn" },

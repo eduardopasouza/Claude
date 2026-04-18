@@ -239,6 +239,64 @@ async def get_choropleth(
 # ---------------------------------------------------------------------------
 # GET /api/v1/geo/ibge/choropleth/uf/{metric_id}/{ano}
 # ---------------------------------------------------------------------------
+@router.get("/uf/preco/{commodity}")
+async def get_choropleth_uf_preco(commodity: str):
+    """
+    Choropleth por UF com preço ATUAL da commodity (Agrolink).
+
+    Usa o coletor Agrolink que tem histórico mensal por UF.
+    Retorna GeoJSON da malha BR UF + properties.value = preço estadual atual.
+    """
+    from app.collectors.agrolink import AgrolinkCollector
+
+    col = AgrolinkCollector()
+    agro_data = await col.fetch_commodity(commodity.lower())
+    if "error" in agro_data:
+        raise HTTPException(status_code=404, detail=agro_data["error"])
+
+    uf_stats = agro_data.get("uf_stats", [])
+    uf_price = {s["uf"]: s["preco_atual"] for s in uf_stats}
+
+    # Malha UF
+    ufc = UFChoroplethCollector()
+    malha = await ufc._fetch_malha_br_uf()
+
+    # Mapa de código IBGE UF → sigla
+    IBGE_TO_SIGLA = {v: k for k, v in IBGECollector.UF_CODES.items()}
+
+    features = []
+    for feat in malha.get("features", []):
+        code = str(feat["properties"].get("codarea", ""))
+        sigla = IBGE_TO_SIGLA.get(code, "")
+        value = uf_price.get(sigla)
+        props = dict(feat["properties"])
+        props.update({
+            "uf_code": code,
+            "uf_sigla": sigla,
+            "value": value,
+            "value_label": f"{agro_data['label']} ({agro_data['unit']})",
+            "unit": agro_data["unit"],
+        })
+        features.append({
+            "type": "Feature",
+            "geometry": feat["geometry"],
+            "properties": props,
+        })
+
+    return {
+        "type": "FeatureCollection",
+        "features": features,
+        "metric_id": f"preco_{commodity}",
+        "metric_label": f"Preço {agro_data['label']}",
+        "unit": agro_data["unit"],
+        "color_scheme": "YlGn",
+        "year": agro_data["uf_stats"][0]["mes_ref"] if uf_stats else None,
+        "source": "Agrolink (preço estadual atual por UF)",
+        "total_ufs": len(features),
+        "total_com_valor": sum(1 for f in features if f["properties"]["value"]),
+    }
+
+
 @router.get("/uf/{metric_id}/{ano}")
 async def get_choropleth_uf(metric_id: str, ano: int):
     """
