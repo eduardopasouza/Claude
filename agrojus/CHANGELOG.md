@@ -3,6 +3,66 @@
 Todas as mudanças notáveis do projeto, por sessão de trabalho.
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.11.0] — 2026-04-18 · Sessão 9 · Sprint 4
+
+### Added — Infraestrutura ETL dados.gov.br + Portal da Transparência
+
+**Clientes base:**
+- `app/collectors/dados_gov.py` — CKAN client (package_show/search, pick_resource, download com streaming + limite de tamanho configurável)
+- `app/collectors/portal_transparencia.py` — Portal client com paginação e backoff
+
+**12 novos modelos PostGIS** em `database.py`:
+`sigmine_processos`, `ana_outorgas_full`, `ana_bho`, `incra_assentamentos`, `incra_quilombolas`, `aneel_usinas`, `aneel_linhas_transmissao`, `garantia_safra`, `ceis_registros`, `cnep_registros`, `ibama_embargos`, `ibama_ctf` + `dados_gov_ingest_log` (auditoria).
+
+**10 loaders unificados** em `app/collectors/dados_gov_loaders.py`:
+sigmine · ana_outorgas · ana_bho · assentamentos · quilombolas · aneel_usinas · aneel_linhas · garantia_safra · ceis · cnep. Cada loader: download → descompressão (ZIP SHP) ou parse CSV → normalização → bulk_save_objects no Postgres → log de ingestão. Idempotente (TRUNCATE + INSERT).
+
+**Script master** `backend/scripts/run_dados_gov_etl.py`:
+- `--only X Y` · `--all` · `--status` · `--list`
+- Uso em produção: `docker exec agrojus-backend-1 python -m scripts.run_dados_gov_etl --all` (cron diário).
+
+**Endpoints REST** em `/api/v1/dados-gov`:
+- `GET /loaders` · `GET /status` · `GET /stats` · `POST /run?loader=X`
+
+**Página admin** `/dados-gov` no frontend:
+- 4 stat cards + tabela 12 camadas + log com auto-refresh (10-15s) + botão "executar" inline por linha
+
+### Added — MCR 2.9 ligado às novas fontes reais
+
+5 critérios antes `pending` agora consultam dados reais quando ETL tiver rodado:
+- **MCR-F05** (SIGMINE) · **MCR-A08** (ANA outorgas) · **MCR-FI02** (CEIS) · **MCR-FI03** (CNEP)
+- Tabela vazia → `pending` com comando ETL específico na mensagem
+- Tabela populada → `passed/failed` automaticamente com evidência real
+
+### Dados reais ingeridos nesta sessão
+
+| Fonte | Registros | Tempo |
+|---|---|---|
+| **CEIS** (CGU) | **3.000** | ~3min20s |
+| **CNEP** (CGU) | **1.620** | ~1min40s |
+
+Validação: CNPJ `00.818.544/0001-65` (real, do CEIS) → MCR-FI02 **FAILED** com evidência `{"ceis_matches": 2}`.
+
+### Status dos 10 loaders
+
+- **✅ CEIS / CNEP** (Portal Transparência) — funcionais, ETL executado em produção
+- **⚠ SIGMINE / ANA outorgas / ANA BHO / INCRA assentamentos / INCRA quilombolas / ANEEL usinas / ANEEL linhas / Garantia-Safra** — infraestrutura pronta, token JWT do dados.gov.br retornou 401 no teste (requer renovação pelo Eduardo antes do ETL funcionar)
+
+### MCR 2.9 — Status dos 32 critérios pós-Sprint 4
+
+- **15 com dados integrados** (47%) — antes 13/32. Ganho: FI02 + FI03 (FM02 com token novo também) + disponíveis quando dados.gov.br ativar (F05, A08).
+- 17 `pending` — aguardam: renovação token dados.gov.br (6), fontes pagas (CCIR, ITR, CNDT, protestos, etc.), auto-declaração (NR-31, CIPATR).
+
+### Commits da Sprint 4
+
+| Hash | Descrição |
+|---|---|
+| `af0b1d9` | feat(dados-gov): base clients + 12 models + 10 loaders + script ETL |
+| `15d9a14` | feat(dados-gov): endpoints REST + página admin /dados-gov |
+| `43b5f34` | feat(compliance): MCR 2.9 consome SIGMINE/ANA/CEIS/CNEP reais |
+
+---
+
 ## [0.10.0] — 2026-04-17 · Sessão 9 · Sprint 3
 
 ### Added — MCR 2.9 Expandido (32 critérios em 5 eixos)

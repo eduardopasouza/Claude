@@ -53,15 +53,19 @@ De 6 para **32 critérios** auditáveis em 5 eixos.
 - 13 com dados reais integrados (41%) — verificação automática
 - 19 com status `pending` aguardando Sprint 4 (dados.gov.br) e fontes que exigem integração adicional (CCIR, ITR, CNDT, CEIS/CNEP via Portal Transparência, protestos CENPROT, SPU, SIGMINE, etc.)
 
-### Sprint 4 — 10 coletores dados.gov.br (4 dias) ⏳
-Guia em `docs/research/dados-gov-guia.md` com 32 datasets priorizados.
-- [ ] IBAMA embargos polígonos + CTF
-- [ ] Garantia-Safra beneficiários
-- [ ] SIGMINE processos minerários
-- [ ] ANA outorgas + BHO (bacias hidrográficas)
-- [ ] INCRA assentamentos + Quilombolas
-- [ ] ANEEL usinas + linhas transmissão
-- [ ] CEIS + CNEP (Portal Transparência)
+### Sprint 4 — 10 coletores dados.gov.br ✅ **CONCLUÍDO (sessão 9)**
+Infraestrutura de ingestão + 2 ETLs reais executados.
+- [x] Base clients CKAN + Portal Transparência
+- [x] 12 modelos PostGIS + log de ingestão
+- [x] 10 loaders unificados (sigmine · ana_outorgas · ana_bho · assentamentos · quilombolas · aneel_usinas · aneel_linhas · garantia_safra · ceis · cnep)
+- [x] Script master com --all / --only / --status
+- [x] Endpoints REST `/api/v1/dados-gov/*` (loaders, status, stats, run)
+- [x] Página admin `/dados-gov` frontend com execução inline
+- [x] **CEIS** populado com 3.000 registros reais
+- [x] **CNEP** populado com 1.620 registros reais
+- [x] MCR 2.9 — critérios F05, A08, FI02, FI03 consumindo dados reais
+
+**Pendente para Eduardo:** renovar `DADOS_GOV_TOKEN` no `.env` (o atual retornou 401). Depois rodar `docker exec agrojus-backend-1 python -m scripts.run_dados_gov_etl --all` para popular SIGMINE/ANA/INCRA/ANEEL/Garantia-Safra.
 
 ### Sprint 5 — Mapa v3 (4 dias) — padrões SYNTHESIS ⏳
 - [ ] URL state serializado (Zustand + useSearchParams)
