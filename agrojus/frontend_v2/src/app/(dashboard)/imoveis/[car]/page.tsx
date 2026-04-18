@@ -30,6 +30,8 @@ import { JuridicoTab } from "@/components/imovel/tabs/JuridicoTab";
 import { LogisticaTab } from "@/components/imovel/tabs/LogisticaTab";
 import { CreditoTab } from "@/components/imovel/tabs/CreditoTab";
 import { ValuationTab } from "@/components/imovel/tabs/ValuationTab";
+import { MonitoramentoTab } from "@/components/imovel/tabs/MonitoramentoTab";
+import { AcoesTab } from "@/components/imovel/tabs/AcoesTab";
 
 const TABS: TabDef[] = [
   { id: "visao", label: "Visão Geral", icon: Activity, implemented: true },
@@ -42,8 +44,8 @@ const TABS: TabDef[] = [
   { id: "valuation", label: "Valuation", icon: Calculator, implemented: true },
   { id: "logistica", label: "Logística", icon: Truck, implemented: true },
   { id: "credito", label: "Crédito", icon: Coins, implemented: true },
-  { id: "monitoramento", label: "Monitoramento", icon: Bell, implemented: false },
-  { id: "acoes", label: "Ações", icon: CheckSquare, implemented: false },
+  { id: "monitoramento", label: "Monitoramento", icon: Bell, implemented: true },
+  { id: "acoes", label: "Ações", icon: CheckSquare, implemented: true },
 ];
 
 type SearchResult = {
@@ -114,6 +116,12 @@ export default function ImovelDetalhePage(props: {
         )}
         {effectiveProperty && currentTab === "credito" && (
           <CreditoTab property={effectiveProperty} />
+        )}
+        {effectiveProperty && currentTab === "monitoramento" && (
+          <MonitoramentoTab property={effectiveProperty} />
+        )}
+        {effectiveProperty && currentTab === "acoes" && (
+          <AcoesTab property={effectiveProperty} />
         )}
         {effectiveProperty && !TABS.find((t) => t.id === currentTab)?.implemented && (
           <ComingSoon tabId={currentTab} />
