@@ -9,6 +9,8 @@ import {
   Search,
   X,
   Clock,
+  ChevronsLeft,
+  ChevronsRight,
 } from "lucide-react";
 import { LAYERS, THEMES, LayerCategory, LayerConfig } from "@/lib/layers-catalog";
 
@@ -16,11 +18,21 @@ export function LayerTreePanel({
   activeLayers,
   onToggle,
   zoom,
+  collapsed: controlledCollapsed,
+  onCollapsedChange,
 }: {
   activeLayers: string[];
   onToggle: (id: string) => void;
   zoom: number;
+  collapsed?: boolean;
+  onCollapsedChange?: (v: boolean) => void;
 }) {
+  const [internalCollapsed, setInternalCollapsed] = useState(false);
+  const collapsed = controlledCollapsed ?? internalCollapsed;
+  const setCollapsed = (v: boolean) => {
+    setInternalCollapsed(v);
+    onCollapsedChange?.(v);
+  };
   const [openThemes, setOpenThemes] = useState<Record<string, boolean>>({
     fundiario: true,
     ambiental: true,
@@ -41,8 +53,32 @@ export function LayerTreePanel({
 
   const activeCount = activeLayers.length;
 
+  // ==== COLAPSADO ====
+  if (collapsed) {
+    return (
+      <button
+        onClick={() => setCollapsed(false)}
+        className="absolute top-6 left-6 z-[850] rounded-xl bg-background/92 backdrop-blur-2xl border border-border shadow-[0_8px_40px_-10px_rgba(0,0,0,0.8)] hover:border-primary/50 transition group"
+        title="Abrir painel de camadas"
+      >
+        <div className="p-3 flex items-center gap-2">
+          <LayersIcon className="h-4 w-4 text-primary" />
+          <div className="flex flex-col items-start">
+            <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
+              Camadas
+            </span>
+            <span className="text-[10px] font-mono text-muted-foreground">
+              Z{zoom} {activeCount > 0 && `· ${activeCount} ativa${activeCount > 1 ? "s" : ""}`}
+            </span>
+          </div>
+          <ChevronsRight className="h-3.5 w-3.5 text-muted-foreground group-hover:text-primary transition" />
+        </div>
+      </button>
+    );
+  }
+
   return (
-    <div className="absolute top-6 left-6 z-[850] w-[340px] max-h-[calc(100vh-7rem)] flex flex-col rounded-2xl bg-background/92 backdrop-blur-2xl border border-border shadow-[0_8px_40px_-10px_rgba(0,0,0,0.8)]">
+    <div className="absolute top-6 left-6 z-[850] w-[340px] max-h-[calc(100vh-11rem)] flex flex-col rounded-2xl bg-background/92 backdrop-blur-2xl border border-border shadow-[0_8px_40px_-10px_rgba(0,0,0,0.8)]">
       {/* Header */}
       <div className="p-4 border-b border-border/60">
         <div className="flex items-center justify-between mb-3">
@@ -59,6 +95,13 @@ export function LayerTreePanel({
                 {activeCount} ativa{activeCount > 1 ? "s" : ""}
               </span>
             )}
+            <button
+              onClick={() => setCollapsed(true)}
+              className="p-1 rounded hover:bg-muted text-muted-foreground hover:text-foreground transition"
+              title="Recolher painel"
+            >
+              <ChevronsLeft className="h-3.5 w-3.5" />
+            </button>
           </div>
         </div>
         <div className="relative">

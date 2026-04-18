@@ -151,12 +151,12 @@ export const THEMES: ThemeGroup[] = [
 
 export const LAYERS: LayerConfig[] = [
   // ============== FUNDIÁRIO (10) ==============
-  { id: "sicar_completo", name: "CAR Nacional (SICAR)", description: "352k+ imóveis cadastrados — corte MCR 2.9", category: "fundiario", color: "#10B981", endpoint: "postgis", minZoom: 10, maxFeatures: 500, geometryType: "polygon", source: "SICAR/SFB/MMA",
+  { id: "sicar_completo", name: "CAR Nacional (SICAR)", description: "352k+ imóveis cadastrados — corte MCR 2.9", category: "fundiario", color: "#10B981", endpoint: "postgis", minZoom: 8, maxFeatures: 300, geometryType: "polygon", source: "SICAR/SFB/MMA",
     inspectorFields: ["cod_imovel","municipio","uf","area","modulos_fiscais","status_imovel","tipo_imovel","condicao"],
     fieldLabels: { cod_imovel:"Código CAR", area:"Área (ha)", modulos_fiscais:"Módulos fiscais", status_imovel:"Status CAR" } },
-  { id: "geo_car", name: "CAR via WFS (MA)", description: "135k imóveis Maranhão — WFS oficial", category: "fundiario", color: "#059669", endpoint: "postgis", minZoom: 10, maxFeatures: 500, geometryType: "polygon", source: "SICAR WFS",
+  { id: "geo_car", name: "CAR via WFS (MA)", description: "135k imóveis Maranhão — WFS oficial", category: "fundiario", color: "#059669", endpoint: "postgis", minZoom: 8, maxFeatures: 300, geometryType: "polygon", source: "SICAR WFS",
     inspectorFields: ["cod_imovel","municipio","uf","area","status_imovel","tipo_imovel","m_fiscal","condicao"] },
-  { id: "sigef_parcelas", name: "SIGEF (parcelas certificadas)", description: "1.7M+ parcelas georreferenciadas INCRA (pós-2013)", category: "fundiario", color: "#EC4899", endpoint: "postgis", minZoom: 11, maxFeatures: 300, geometryType: "polygon", source: "INCRA/SIGEF",
+  { id: "sigef_parcelas", name: "SIGEF (parcelas certificadas)", description: "1.7M+ parcelas georreferenciadas INCRA (pós-2013)", category: "fundiario", color: "#EC4899", endpoint: "postgis", minZoom: 9, maxFeatures: 200, geometryType: "polygon", source: "INCRA/SIGEF",
     inspectorFields: ["parcela_co","nome_area","situacao_i","status","data_aprov","rt","art","uf_id"] },
   { id: "snci_imoveis", name: "SNCI (imóveis certificados legado)", description: "Imóveis certificados pré-2013 (antes do SIGEF)", category: "fundiario", color: "#DB2777", endpoint: "stub", minZoom: 11, maxFeatures: 300, comingSoon: true, source: "INCRA/SNCI" },
   { id: "terras_indigenas", name: "Terras Indígenas", description: "655 TIs demarcadas — FUNAI", category: "fundiario", color: "#6366F1", endpoint: "postgis", minZoom: 4, maxFeatures: 1000, geometryType: "polygon", source: "FUNAI",
@@ -182,9 +182,9 @@ export const LAYERS: LayerConfig[] = [
   { id: "unidades_conservacao", name: "UCs Federais (ICMBio)", description: "346 UCs — parques, APAs, reservas biológicas", category: "ambiental", color: "#0EA5E9", endpoint: "postgis", minZoom: 6, maxFeatures: 500, geometryType: "polygon", source: "ICMBio/MMA",
     inspectorFields: ["nomeuc","siglacateg","grupouc","esferaadm","criacaoano","areahaalb","biomas","ufabrang"] },
   { id: "ucs_estaduais", name: "UCs Estaduais", description: "Parques e APAs estaduais (complementa federais)", category: "ambiental", color: "#06B6D4", endpoint: "stub", minZoom: 6, maxFeatures: 500, comingSoon: true, source: "SEMAS estaduais" },
-  { id: "embargos_icmbio", name: "Embargos ICMBio", description: "Embargos em UCs federais", category: "ambiental", color: "#EF4444", endpoint: "postgis", minZoom: 7, maxFeatures: 500, geometryType: "polygon", source: "ICMBio",
+  { id: "embargos_icmbio", name: "Embargos ICMBio", description: "Embargos em UCs federais", category: "ambiental", color: "#EF4444", endpoint: "postgis", minZoom: 5, maxFeatures: 500, geometryType: "polygon", source: "ICMBio",
     inspectorFields: ["numero_emb","data","nome_uc","municipio","uf","area","desc_infra","julgamento","autuado","cpf_cnpj"] },
-  { id: "autos_icmbio", name: "Autos de Infração ICMBio", description: "Autos ambientais em UCs federais", category: "ambiental", color: "#F43F5E", endpoint: "postgis", minZoom: 7, maxFeatures: 500, geometryType: "polygon", source: "ICMBio",
+  { id: "autos_icmbio", name: "Autos de Infração ICMBio", description: "Autos ambientais em UCs federais", category: "ambiental", color: "#F43F5E", endpoint: "postgis", minZoom: 5, maxFeatures: 500, geometryType: "polygon", source: "ICMBio",
     inspectorFields: ["numero_ai","data","autuado","cpf_cnpj","nome_uc","municipio","uf","tipo_infra","valor_mult","julgamento"] },
   { id: "embargos_ibama_pontos", name: "Áreas Embargadas IBAMA", description: "104k embargos com CPF/CNPJ autuados — IBAMA", category: "ambiental", color: "#B91C1C", endpoint: "stub", minZoom: 6, maxFeatures: 2000, comingSoon: true, source: "IBAMA dados abertos" },
   { id: "autos_ibama", name: "Autos de Infração IBAMA (pontos)", description: "16k+ autos georreferenciados — dados abertos SIFISC 2026", category: "ambiental", color: "#DC2626", endpoint: "postgis", minZoom: 5, maxFeatures: 3000, geometryType: "point", source: "IBAMA SIFISC",
@@ -200,7 +200,7 @@ export const LAYERS: LayerConfig[] = [
     inspectorFields: ["classname","view_date","sensor","satellite","areamunkm","municipali","uf"] },
   { id: "deter_cerrado", name: "DETER Cerrado (tempo real)", description: "Alertas diários DETER — bioma Cerrado", category: "desmatamento", color: "#F97316", endpoint: "postgis", minZoom: 6, maxFeatures: 1000, geometryType: "polygon", source: "INPE",
     inspectorFields: ["classname","view_date","sensor","satellite","areatotalkm","municipality","uf"] },
-  { id: "mapbiomas_alertas", name: "MapBiomas Alertas (validados)", description: "515k+ alertas cruzados com CAR — todas fontes integradas", category: "desmatamento", color: "#DC2626", endpoint: "postgis", minZoom: 7, maxFeatures: 1000, geometryType: "polygon", source: "MapBiomas Alerta",
+  { id: "mapbiomas_alertas", name: "MapBiomas Alertas (validados)", description: "515k+ alertas cruzados com CAR — todas fontes integradas", category: "desmatamento", color: "#DC2626", endpoint: "postgis", minZoom: 5, maxFeatures: 800, geometryType: "polygon", source: "MapBiomas Alerta",
     inspectorFields: ["CODEALERTA","DATADETEC","BIOMA","ESTADO","MUNICIPIO","AREAHA","FONTE","VPRESSAO"] },
   { id: "mapbiomas_desmat_acumulado", name: "MapBiomas Desmatamento Acumulado", description: "Perda acumulada 1985-2024 — histórico total", category: "desmatamento", color: "#991B1B", endpoint: "gee", minZoom: 5, maxFeatures: 0, geometryType: "raster", comingSoon: true, source: "MapBiomas Coleção 10 via GEE" },
 

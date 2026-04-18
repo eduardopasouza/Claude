@@ -9,6 +9,7 @@ import {
   Check,
   AlertCircle,
   Loader2,
+  Download,
 } from "lucide-react";
 import { fetchWithAuth } from "@/lib/api";
 
@@ -55,6 +56,8 @@ type Props = {
   pendingAnalysis: AOIAnalysis | null;
   pendingPointAnalysis: PointAnalysis | null;
   onClearAnalysis: () => void;
+  /** Geometria GeoJSON do AOI atualmente analisado — permite export */
+  pendingAoiGeometry?: DrawnPolygon | null;
 };
 
 export function MapTools({
@@ -67,6 +70,7 @@ export function MapTools({
   pendingAnalysis,
   pendingPointAnalysis,
   onClearAnalysis,
+  pendingAoiGeometry,
 }: Props) {
   const fileInput = useRef<HTMLInputElement>(null);
   const [uploadError, setUploadError] = useState<string | null>(null);
@@ -173,11 +177,78 @@ export function MapTools({
         <AnalysisDrawer
           aoi={pendingAnalysis}
           point={pendingPointAnalysis}
+          aoiGeometry={pendingAoiGeometry ?? null}
           onClose={onClearAnalysis}
         />
       )}
     </>
   );
+}
+
+// ---------------------------------------------------------------------------
+// Export helpers (KML/GeoJSON)
+// ---------------------------------------------------------------------------
+function downloadAOIAsGeoJSON(feature: DrawnPolygon, analysisName: string) {
+  const fc = {
+    type: "FeatureCollection",
+    features: [feature],
+    metadata: {
+      generator: "AgroJus",
+      generated_at: new Date().toISOString(),
+      analysis_name: analysisName,
+    },
+  };
+  const blob = new Blob([JSON.stringify(fc, null, 2)], { type: "application/geo+json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `aoi_${safeFilename(analysisName)}.geojson`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function downloadAOIAsKML(feature: DrawnPolygon, analysisName: string) {
+  const esc = (s: unknown) =>
+    String(s ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  const coords = (feature.geometry.coordinates[0] || [])
+    .map((c) => `${c[0]},${c[1]}`)
+    .join(" ");
+  const kml = `<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>${esc(analysisName)}</name>
+    <Style id="agrojus">
+      <LineStyle><color>ff00ff00</color><width>2</width></LineStyle>
+      <PolyStyle><color>2200ff00</color></PolyStyle>
+    </Style>
+    <Placemark>
+      <name>${esc(analysisName)}</name>
+      <description><![CDATA[AgroJus — Área de Interesse (AOI) desenhada/importada em ${new Date().toLocaleString("pt-BR")}]]></description>
+      <styleUrl>#agrojus</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>${coords}</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+  </Document>
+</kml>`;
+  const blob = new Blob([kml], { type: "application/vnd.google-earth.kml+xml" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `aoi_${safeFilename(analysisName)}.kml`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function safeFilename(s: string): string {
+  return s.replace(/[^\w.-]+/g, "_").slice(0, 80) || "aoi";
 }
 
 function ToolButton({
@@ -219,24 +290,47 @@ function ToolButton({
 function AnalysisDrawer({
   aoi,
   point,
+  aoiGeometry,
   onClose,
 }: {
   aoi: AOIAnalysis | null;
   point: PointAnalysis | null;
+  aoiGeometry: DrawnPolygon | null;
   onClose: () => void;
 }) {
   return (
     <div className="absolute bottom-4 left-4 z-[1000] bg-slate-950/95 backdrop-blur-lg border border-slate-700 rounded-xl shadow-2xl w-96 max-h-[60vh] overflow-auto">
-      <header className="flex items-center justify-between px-4 py-3 border-b border-slate-800 sticky top-0 bg-slate-950/95">
-        <h3 className="font-semibold text-slate-100 text-sm">
+      <header className="flex items-center justify-between px-4 py-3 border-b border-slate-800 sticky top-0 bg-slate-950/95 gap-2">
+        <h3 className="font-semibold text-slate-100 text-sm truncate">
           {aoi ? `📐 ${aoi.name}` : `📍 Análise de Ponto`}
         </h3>
-        <button
-          onClick={onClose}
-          className="p-1 rounded hover:bg-slate-800 text-slate-400 hover:text-slate-100"
-        >
-          <X className="w-4 h-4" />
-        </button>
+        <div className="flex items-center gap-1 flex-shrink-0">
+          {aoi && aoiGeometry && (
+            <>
+              <button
+                onClick={() => downloadAOIAsGeoJSON(aoiGeometry, aoi.name)}
+                className="p-1.5 rounded hover:bg-slate-800 text-slate-400 hover:text-emerald-300 transition"
+                title="Baixar GeoJSON"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span className="sr-only">GeoJSON</span>
+              </button>
+              <button
+                onClick={() => downloadAOIAsKML(aoiGeometry, aoi.name)}
+                className="px-2 py-1 text-[10px] rounded bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-700/40 transition font-semibold uppercase tracking-wider"
+                title="Baixar KML (Google Earth / QGIS)"
+              >
+                KML
+              </button>
+            </>
+          )}
+          <button
+            onClick={onClose}
+            className="p-1 rounded hover:bg-slate-800 text-slate-400 hover:text-slate-100"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        </div>
       </header>
 
       <div className="p-4 space-y-3 text-sm">

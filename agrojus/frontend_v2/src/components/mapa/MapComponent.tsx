@@ -333,6 +333,7 @@ function ActiveLayer({
             layerId: layer.id,
             properties: (feature.properties as Record<string, unknown>) ?? {},
             latlng: { lat: e.latlng.lat, lng: e.latlng.lng },
+            geometry: feature.geometry,
           });
         });
       }}
@@ -375,6 +376,7 @@ export default function MapComponent() {
   const [drawPoints, setDrawPoints] = useState<[number, number][]>([]);
   const [uploadedFeatures, setUploadedFeatures] = useState<DrawnPolygon[]>([]);
   const [pendingAnalysis, setPendingAnalysis] = useState<AOIAnalysis | null>(null);
+  const [pendingAoiGeometry, setPendingAoiGeometry] = useState<DrawnPolygon | null>(null);
   const [pendingPointAnalysis, setPendingPointAnalysis] = useState<PointAnalysis | null>(null);
   const [pointMarker, setPointMarker] = useState<[number, number] | null>(null);
 
@@ -409,19 +411,17 @@ export default function MapComponent() {
       type: "Polygon" as const,
       coordinates: [coords],
     };
+    const drawnFeature: DrawnPolygon = {
+      type: "Feature",
+      geometry,
+      properties: { name: "Desenho manual", source: "drawn" },
+    };
     try {
       const res = await analyzeAOI(geometry, "Polígono desenhado");
       setPendingAnalysis(res);
+      setPendingAoiGeometry(drawnFeature);
       setPendingPointAnalysis(null);
-      // salva como uploaded feature pra aparecer no mapa
-      setUploadedFeatures((prev) => [
-        ...prev,
-        {
-          type: "Feature",
-          geometry,
-          properties: { name: "Desenho manual", source: "drawn" },
-        },
-      ]);
+      setUploadedFeatures((prev) => [...prev, drawnFeature]);
     } catch (e) {
       console.error("analyzeAOI failed:", e);
     } finally {
@@ -432,11 +432,11 @@ export default function MapComponent() {
 
   const handleUpload = useCallback(async (features: DrawnPolygon[]) => {
     setUploadedFeatures((prev) => [...prev, ...features]);
-    // Analisa o primeiro feature automaticamente
     if (features.length > 0) {
       try {
         const res = await analyzeAOI(features[0].geometry, features[0].properties.name);
         setPendingAnalysis(res);
+        setPendingAoiGeometry(features[0]);
         setPendingPointAnalysis(null);
       } catch (e) {
         console.error("analyzeAOI failed:", e);
@@ -446,6 +446,7 @@ export default function MapComponent() {
 
   const clearAnalysis = useCallback(() => {
     setPendingAnalysis(null);
+    setPendingAoiGeometry(null);
     setPendingPointAnalysis(null);
     setPointMarker(null);
   }, []);
@@ -614,7 +615,7 @@ export default function MapComponent() {
           />
         )}
 
-        <ZoomControl position="bottomleft" />
+        <ZoomControl position="bottomright" />
       </MapContainer>
 
       {/* Widget de choropleth de preço */}
@@ -633,6 +634,7 @@ export default function MapComponent() {
         onDrawFinish={handleDrawFinish}
         pendingAnalysis={pendingAnalysis}
         pendingPointAnalysis={pendingPointAnalysis}
+        pendingAoiGeometry={pendingAoiGeometry}
         onClearAnalysis={clearAnalysis}
       />
 
@@ -681,6 +683,7 @@ export default function MapComponent() {
         countsByLayer={countsByLayer}
         zoom={zoom}
         totalFeatures={totalFeatures}
+        onToggleLayer={toggleLayer}
       />
 
       {/* Attribution ou créditos (inferior esquerdo além do ZoomControl) */}
