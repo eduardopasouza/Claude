@@ -54,6 +54,25 @@ def _truncate(table_name: str) -> None:
         conn.commit()
 
 
+def _clean_for_json(d: dict) -> dict:
+    """Remove NaN/Infinity/tipos incompatíveis com JSON pra evitar erro no Postgres."""
+    import math
+    out = {}
+    for k, v in d.items():
+        if v is None:
+            out[k] = None
+        elif isinstance(v, float):
+            if math.isnan(v) or math.isinf(v):
+                out[k] = None
+            else:
+                out[k] = v
+        elif isinstance(v, str) and v.lower() == "nan":
+            out[k] = None
+        else:
+            out[k] = v
+    return out
+
+
 def _log_ingest(loader: str, dataset_id: str, url: str, started, finished, status, fetched, persisted, error=None):
     session = get_session()
     try:
@@ -239,7 +258,7 @@ def load_ana_outorgas() -> dict:
                     finalidade=str(r.get("FINALIDADE") or "")[:200],
                     nome_corpo_hidrico=str(r.get("CORPO_HIDRICO") or r.get("nome_corpo_hidrico") or "")[:300],
                     geometry=f"SRID=4326;POINT({lon} {lat})",
-                    raw_data=r.to_dict(),
+                    raw_data=_clean_for_json(r.to_dict()),
                 )
                 batch.append(o)
                 if len(batch) >= 500:
@@ -344,7 +363,23 @@ def load_aneel_usinas() -> dict:
             raise RuntimeError("Recurso CSV ANEEL não encontrado")
         content = client.download_resource(res, max_mb=200)
         import pandas as pd
-        df = pd.read_csv(io.BytesIO(content), sep=None, engine="python", dtype=str, on_bad_lines="skip")
+        df = None
+        # ANEEL CSV usa Latin-1/ISO-8859-1 e ; como separador
+        for enc in ("latin-1", "cp1252", "utf-8"):
+            try:
+                df = pd.read_csv(
+                    io.BytesIO(content), sep=";", dtype=str,
+                    on_bad_lines="skip", encoding=enc,
+                )
+                break
+            except Exception:
+                continue
+        if df is None or df.empty:
+            # último fallback: autodetecção
+            df = pd.read_csv(
+                io.BytesIO(content), sep=None, engine="python", dtype=str,
+                on_bad_lines="skip", encoding_errors="replace",
+            )
         if df.empty:
             return 0, 0, res.get("url", "")
         _truncate("aneel_usinas")
@@ -371,7 +406,7 @@ def load_aneel_usinas() -> dict:
                     uf=str(r.get("UF") or r.get("SigUFPrincipal") or "")[:2],
                     municipio=str(r.get("MUNICIPIO") or r.get("DscMuninicpios") or "")[:200],
                     geometry=f"SRID=4326;POINT({lon} {lat})" if lat else None,
-                    raw_data=r.to_dict(),
+                    raw_data=_clean_for_json(r.to_dict()),
                 )
                 batch.append(o)
                 if len(batch) >= 500:
@@ -445,7 +480,7 @@ def load_garantia_safra() -> dict:
                     uf=str(r.get("UF") or "")[:2],
                     ano_safra=ano,
                     valor_beneficio=valor,
-                    raw_data=r.to_dict(),
+                    raw_data=_clean_for_json(r.to_dict()),
                 )
                 batch.append(o)
                 if len(batch) >= 1000:

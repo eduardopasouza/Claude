@@ -78,30 +78,34 @@ KNOWN_RESOURCES: dict[str, list[dict]] = {
             "url": "https://metadados.snirh.gov.br/files/6f2bcbd2-4a77-4103-a5f1-5a8a6cb4d180/geoft_bho_2017_5k.zip",
         },
     ],
-    # ANEEL — BIG (SIGA) + SIGEL (linhas transmissão)
+    # ANEEL SIGA — Sistema de Informações de Geração (CKAN próprio ANEEL, validado 2026-04-18)
+    "siga-sistema-de-informacoes-de-geracao-da-aneel": [
+        {
+            "name": "ANEEL SIGA - empreendimentos de geração (CSV)",
+            "format": "CSV",
+            "url": "https://dadosabertos.aneel.gov.br/dataset/6d90b77c-c5f5-4d81-bdec-7bc619494bb9/resource/11ec447d-698d-4ab8-977f-b424d5deee6a/download/siga-empreendimentos-geracao.csv",
+        },
+    ],
+    # Alias do nome antigo usado no loader: redireciona pro mesmo recurso
     "empreendimentos-de-geracao-de-energia-eletrica-siga-aneel": [
         {
-            "name": "ANEEL SIGA - Sistema Integrado de Geração Atualizado (CSV)",
+            "name": "ANEEL SIGA - empreendimentos de geração (CSV, alias)",
             "format": "CSV",
-            "url": "https://dadosabertos.aneel.gov.br/datastore/dump/49140d5f-10a9-4c73-8115-d0ff2f3c7361",
+            "url": "https://dadosabertos.aneel.gov.br/dataset/6d90b77c-c5f5-4d81-bdec-7bc619494bb9/resource/11ec447d-698d-4ab8-977f-b424d5deee6a/download/siga-empreendimentos-geracao.csv",
         },
     ],
-    "sistema-de-informacoes-georreferenciadas-do-setor-eletrico-sigel": [
-        {
-            "name": "ANEEL SIGEL - Linha Transmissão SHP",
-            "format": "SHP",
-            "url": "https://sigel.aneel.gov.br/arcgis/rest/services/PORTAL/WFS/MapServer/63/query?where=1%3D1&outFields=*&f=geojson",
-        },
-    ],
-    # Garantia-Safra (CGU)
-    "beneficiarios-do-programa-garantia-safra": [
-        {
-            "name": "Garantia-Safra beneficiários (CSV)",
-            "format": "CSV",
-            "url": "https://portaldatransparencia.gov.br/download-de-dados/garantia-safra/202604",
-        },
-    ],
-    # IBAMA - embargos (ficará em stub aqui; dataset oficial exige renovação do token ou endpoint alternativo)
+    # ANEEL SIGEL (linhas de transmissão georreferenciadas) — não publicado em CKAN, só no portal SIGEL;
+    # deixamos stub para que o loader retorne erro explícito.
+    "sistema-de-informacoes-georreferenciadas-do-setor-eletrico-sigel": [],
+    # ANA Outorgas (SNIRH) — não há CSV público estável conhecido no CKAN oficial ainda;
+    # extração requer varrer GeoNetwork. Stub.
+    "outorgas-de-direito-de-uso-de-recursos-hidricos": [],
+    # ANA BHO — mesma situação
+    "base-hidrografica-ottocodificada": [],
+    # Garantia-Safra — Portal Transparência protege arquivo zip por sessão web (403 via curl direto).
+    # Coletar via API paginada seria viável como CEIS/CNEP; stub por ora.
+    "beneficiarios-do-programa-garantia-safra": [],
+    # IBAMA embargos/CTF — dataset oficial exige renovação do token ou endpoint alternativo
     "ibama-termo-de-embargo": [],
     "ibama-cadastro-tecnico-federal-de-atividades-potencialmente-poluidoras-e-ou-utilizadoras-de-recursos-ambientais": [],
 }
