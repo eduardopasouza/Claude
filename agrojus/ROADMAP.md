@@ -1,15 +1,15 @@
-# AgroJus — Roadmap Consolidado (2026-04-17)
+# AgroJus — Roadmap Consolidado (2026-04-17 · pós-Sessão 9)
 
-> Atualizado após Sessão 7. Sincronizado com `docs/HANDOFF_2026-04-17_sessao7.md`.
+> Atualizado após Sessão 9. Sincronizado com `docs/HANDOFF_2026-04-17_sessao9.md`.
 
-## Estado atual do produto (pós-sessão 7)
+## Estado atual do produto (pós-sessão 9)
 
 | Camada | Completo | Parcial | Ausente |
 |---|---|---|---|
-| Backend | ~90 endpoints · 18 camadas PostGIS · DJEN · DataJud · Embrapa (7/9) · MapBiomas Alerta GraphQL · IBGE choropleth (16 métricas) · IBAMA 16k autos | MCR 2.9 (6/30 critérios) · SICAR MA-only (faltam 79M) · DETER/PRODES parcial (800k+ real) | Motor jurídico STJ · valuation · leilões · Portal Transparência coletor · dados.gov.br coletores |
-| Frontend | `/login`, `/`, `/mapa` v2, `/mercado`, `/processos`, `/publicacoes`, **`/imoveis/[car]` 7/12 abas** | `/consulta`, `/compliance` standalone, `/alertas` (mocks) | `/valuation`, `/portfolio`, `/leiloes`, `/teses`, `/minutas`, `/perfil`, `/plano`, `/equipe`, `/radar-ibama` |
-| Dados | 18 camadas PostGIS × 7.7M registros · 42 pub DJEN · alertas MapBiomas tempo real | SICAR (só MA) · DETER/PRODES (50k vs 800k+) | Earth Engine · SIGMINE · ANA outorgas · SNCI · CNES |
-| Docs | HANDOFF sessões 1-7 · ROADMAP · README · 48 auditorias visuais · 6 blueprints detalhados · SYNTHESIS | — | Manual do usuário · API pública doc |
+| Backend | ~100 endpoints · 18 camadas PostGIS · DJEN · DataJud · Embrapa (7/9) · MapBiomas Alerta GraphQL · IBGE choropleth (16 métricas) · IBAMA 16k autos · **Webhooks CRUD + dispatch** · **Laudo PDF ficha** · **Exports GeoJSON/GPKG/SHP** · **Minuta Claude API** | MCR 2.9 (6/30 critérios) · SICAR MA-only (faltam 79M) · DETER/PRODES parcial (800k+ real) | Motor jurídico STJ · valuation · leilões · Portal Transparência coletor · dados.gov.br coletores |
+| Frontend | `/login`, `/`, `/mapa` v2, `/mercado`, `/processos`, `/publicacoes`, **`/imoveis/[car]` 12/12 abas** | `/consulta`, `/compliance` standalone, `/alertas` (mocks) | `/valuation`, `/portfolio`, `/leiloes`, `/teses`, `/minutas`, `/perfil`, `/plano`, `/equipe`, `/radar-ibama` |
+| Dados | 18 camadas PostGIS × 7.7M registros · 42 pub DJEN · alertas MapBiomas tempo real · **webhooks + deliveries persistidos** | SICAR (só MA) · DETER/PRODES (50k vs 800k+) | Earth Engine · SIGMINE · ANA outorgas · SNCI · CNES |
+| Docs | HANDOFF sessões 1-9 · ROADMAP · README · 48 auditorias visuais · 6 blueprints detalhados · SYNTHESIS | — | Manual do usuário · API pública doc |
 
 ---
 
@@ -22,13 +22,13 @@ Destravou múltiplas camadas com pouco código.
 - [x] Coletor IBAMA dados abertos — **16.121 autos carregados**
 - [x] Coletor MapBiomas Alerta GraphQL — **JWT + query alerts por CAR**
 
-### Sprint 2 — Ficha do imóvel `/imoveis/[car]` ✅ **10/12 ABAS CONCLUÍDAS**
-A tela mais importante do produto agora existe.
+### Sprint 2 — Ficha do imóvel `/imoveis/[car]` ✅ **12/12 ABAS CONCLUÍDAS**
+A tela mais importante do produto está **completa**.
 - [x] **Sprint 2a** — scaffold + 4 abas (Visão · Dossiê · Histórico · Agronomia)
 - [x] **Sprint 2b** — +3 abas (Compliance · Clima · Jurídico)
 - [x] **Sprint 2c** — +3 abas (Valuation · Logística · Crédito) + MapPreview header
 - [x] **Sprint 2d** — ferramentas de mapa: point analysis + draw polygon + upload KML/GeoJSON + fix choropleth quintis
-- [ ] **Sprint 2e** — 2 abas restantes (Monitoramento webhooks · Ações laudo PDF/DOCX)
+- [x] **Sprint 2e** (sessão 9) — **Monitoramento** (webhooks CRUD + dispatch async + logs) e **Ações** (laudo PDF reportlab + GeoJSON/GPKG/SHP via geopandas + minuta Claude API)
 
 ### Sprint Market ✅ **CONCLUÍDO (sessão 8)**
 Tela `/mercado` reescrita com foco na UF do usuário + integração no mapa.
@@ -131,7 +131,7 @@ Guia em `docs/research/dados-gov-guia.md` com 32 datasets priorizados.
 
 ---
 
-## Decisões técnicas já tomadas (não questionar sem motivo)
+## Decisões técnicas já tomadas (não questionar sem motivo plausível)
 
 - Monolítico modular em FastAPI
 - PostGIS 3.4 com GIST em todas geometrias

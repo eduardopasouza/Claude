@@ -3,6 +3,60 @@
 Todas as mudanças notáveis do projeto, por sessão de trabalho.
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.9.0] — 2026-04-17 · Sessão 9 · Sprint 2e
+
+### Added — Sistema de Webhooks (tempo real)
+
+**Backend**
+- Modelos `Webhook` e `WebhookDelivery` em Postgres (novos) com filtros por `car_code` e `cpf_cnpj`, 9 event types e secret HMAC-SHA256 opcional.
+- Service `webhook_dispatcher` com dispatch async paralelizado (asyncio.gather) e assinatura `X-AgroJus-Signature`.
+- Router `/api/v1/webhooks` com CRUD completo + `POST {id}/test` (dispara payload sintético) + `GET {id}/deliveries` (logs paginados).
+- `MonitoringService._record_alert()` integra dispatch automático em background task — cada novo alerta (MapBiomas/DETER/IBAMA/DJEN/CAR status) dispara webhooks aplicáveis.
+
+**Frontend — aba Monitoramento da ficha**
+- Form de cadastro com seletor multi-select de 9 event types.
+- Lista de webhooks com toggle ativo/pausado, botão de teste, logs expansíveis (20 entregas, auto-refresh 15s).
+- Drawer de entrega detalha status code, duration, payload JSON e response body.
+
+### Added — Aba Ações da ficha (fecha 12/12)
+
+**Backend — 5 novos endpoints em `/api/v1/property`**
+- `GET /{car}/laudo.pdf` — laudo consolidado A4 via reportlab: identificação, sobreposições (TI/UC/embargos/PRODES/DETER/autos IBAMA), crédito rural vinculado, avisos legais.
+- `GET /{car}/export.geojson` — GeoJSON FeatureCollection (CAR + overlaps) em EPSG:4326 com metadados embarcados.
+- `GET /{car}/export.gpkg` — GeoPackage OGC SQLite com 1 layer por tipo (via geopandas, sem ogr2ogr).
+- `GET /{car}/export.shp.zip` — Shapefile ESRI zipado (1 .shp por layer).
+- `POST /{car}/minuta` — gera minuta jurídica via Claude API (anthropic SDK). Tipos: notificação extrajudicial, ação anulatória de auto, defesa administrativa, contrarrazões, livre. 501 com mensagem amigável se `ANTHROPIC_API_KEY` não configurada.
+
+**Frontend — aba Ações**
+- 4 cards de download (PDF, GeoJSON, GPKG, Shapefile) com loading state.
+- Painel de minuta com selector de tipo, destinatário, lista de processos relacionados, observações do advogado.
+- Resultado em markdown renderizado com contador de tokens, copiar para clipboard, download .md.
+- Aviso explícito de revisão humana obrigatória; lacunas marcadas como `[buscar precedente]`.
+
+### Added — dependências
+
+- `anthropic>=0.45.0` no `requirements.txt` (para geração de minutas via Claude).
+- Settings novas: `anthropic_api_key`, `anthropic_model` (default `claude-opus-4-7`), `webhook_timeout_seconds` (10s), `webhook_max_retries` (3).
+
+### Fixed
+
+- Query `_fetch_property_base` fazia `UNION` entre `sicar_completo.cod_municipio_ibge` (integer) e `geo_car.cod_municipio_ibge` (text) — `UNION types text and integer cannot be matched`. Corrigido castando ambos para `text`.
+
+### Milestone — Ficha do imóvel 100% completa
+
+Após Sprint 2e, a ficha `/imoveis/[car]` tem as **12 abas** finais:
+Visão Geral · Compliance · Dossiê · Histórico · Agronomia · Clima · Jurídico · Valuation · Logística · Crédito · **Monitoramento** · **Ações**
+
+### Commits
+
+| Hash | Descrição |
+|---|---|
+| `77142b2` | feat(webhooks): sistema completo com dispatch + CRUD + logs |
+| `a34cf24` | feat(property): laudo PDF + exports GeoJSON/GPKG/SHP + minuta Claude |
+| `1630150` | feat(ficha): MonitoramentoTab + AcoesTab — ficha 12/12 |
+
+---
+
 ## [0.8.0] — 2026-04-18 · Sessão 8
 
 ### Added — Cotações & Mercado (Agrolink + UX "minha região")
