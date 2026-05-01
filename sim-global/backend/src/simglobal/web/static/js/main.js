@@ -39,13 +39,15 @@ function campaign(initialState, examples, activeName) {
       { key: "advisor", label: "Advisor", icon: "💬" },
     ],
 
-    async init() {
+    init() {
       if (this.state) {
         const player = this.state.player_polity;
         this.selectedPolity = this.state.polities[player] ?? null;
       }
-      await this.loadMap();
-      this.recolorMap();
+      // Alpine não aguarda promises do init síncrono. Disparamos o
+      // load do mapa em background; recolorMap é chamado dentro do
+      // próprio loadMap após a injeção.
+      this.loadMap();
     },
 
     get regionList() {
@@ -95,27 +97,39 @@ function campaign(initialState, examples, activeName) {
     },
 
     async loadMap() {
+      const host = document.getElementById("world-map");
+      if (!host) {
+        console.warn("loadMap: #world-map não está no DOM");
+        return;
+      }
+      host.innerHTML = '<p class="text-stone-500 text-xs italic">carregando mapa…</p>';
       try {
         const resp = await fetch("/assets/map/world-political.svg");
-        if (!resp.ok) throw new Error("mapa não encontrado");
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
         const svgText = await resp.text();
-        const host = document.getElementById("world-map");
-        if (!host) return;
         host.innerHTML = svgText;
         const svg = host.querySelector("svg");
-        if (svg) {
-          svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
-          svg.style.width = "100%";
-          svg.style.height = "auto";
-          svg.style.maxHeight = "70vh";
-          svg.querySelectorAll("path").forEach((p) => {
-            p.style.cursor = "pointer";
-            p.addEventListener("click", () => this.selectByPath(p));
-          });
+        if (!svg) {
+          host.innerHTML = '<p class="text-rose-400 text-xs">SVG inválido</p>';
+          throw new Error("SVG raiz ausente após injeção");
         }
+        svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+        svg.style.width = "100%";
+        svg.style.height = "auto";
+        svg.style.maxHeight = "70vh";
+        svg.style.touchAction = "pinch-zoom";
+        const paths = svg.querySelectorAll("path");
+        paths.forEach((p) => {
+          p.style.cursor = "pointer";
+          p.addEventListener("click", () => this.selectByPath(p));
+        });
+        console.info(`loadMap: ${paths.length} países carregados`);
         this.mapLoaded = true;
+        // Recolore imediatamente (não espera próxima chamada).
+        this.recolorMap();
       } catch (err) {
         console.warn("loadMap falhou:", err);
+        host.innerHTML = `<p class="text-rose-400 text-xs">mapa indisponível: ${err.message}</p>`;
       }
     },
 
@@ -125,23 +139,40 @@ function campaign(initialState, examples, activeName) {
       if (!host) return;
       const svg = host.querySelector("svg");
       if (!svg) return;
-      // Reset
+      // Reset completo: fill, stroke e stroke-width.
       svg.querySelectorAll("path").forEach((p) => {
         p.setAttribute("fill", "#444");
+        p.setAttribute("stroke", "#222");
         p.setAttribute("stroke-width", "0.5");
       });
-      // Aplica cor por dono.
+      let coloredCount = 0;
+      let missingIso = [];
       Object.values(this.state.polities).forEach((polity) => {
         const iso = this.iso3Of(polity);
-        if (!iso) return;
-        const path = svg.querySelector(`#${iso}`);
-        if (!path) return;
+        if (!iso) {
+          missingIso.push(polity.name);
+          return;
+        }
+        // CSS.escape protege contra ids exóticos.
+        const escapedIso = window.CSS && CSS.escape ? CSS.escape(iso) : iso;
+        const path = svg.querySelector(`#${escapedIso}`);
+        if (!path) {
+          missingIso.push(`${polity.name}→${iso}`);
+          return;
+        }
         path.setAttribute("fill", this.colorFor(polity.name));
         if (polity.name === this.selectedPolity?.name) {
           path.setAttribute("stroke", "#fcd34d");
-          path.setAttribute("stroke-width", "2");
+          path.setAttribute("stroke-width", "2.5");
         }
+        coloredCount++;
       });
+      if (missingIso.length) {
+        console.info(
+          `recolorMap: ${coloredCount} polities pintadas; sem path:`,
+          missingIso,
+        );
+      }
     },
 
     selectByPath(pathEl) {

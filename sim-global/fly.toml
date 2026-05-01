@@ -1,0 +1,58 @@
+# sim-global · Fly.io blueprint
+#
+# Deploy:
+#   1. Instale: `curl -L https://fly.io/install.sh | sh`
+#   2. `flyctl auth signup` (ou login)
+#   3. Na raiz do repo (sim-global/):
+#        flyctl launch --copy-config --no-deploy
+#      → confirme app name único, região mais próxima, sem Postgres,
+#        sem Upstash, sem Sentry. NÃO deploy ainda.
+#   4. Crie volume persistente para o SQLite:
+#        flyctl volumes create simglobal_data --size 1 --region <sua-região>
+#   5. Configure secrets (token Pro/Max gerado via `claude setup-token`):
+#        flyctl secrets set CLAUDE_CODE_OAUTH_TOKEN=<seu_token>
+#   6. Deploy:
+#        flyctl deploy
+#   7. URL pública: `flyctl status` mostra. Provavelmente
+#      `https://<app>.fly.dev`.
+
+app = "sim-global"
+primary_region = "gru"   # São Paulo. Ajuste se quiser outra.
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  SIMGLOBAL_HOST = "0.0.0.0"
+  SIMGLOBAL_PORT = "8080"
+  SIMGLOBAL_OPEN_BROWSER = "0"
+  SIMGLOBAL_DATABASE_URL = "sqlite:////data/saves/simglobal.db"
+
+[[mounts]]
+  source = "simglobal_data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0   # free tier: hiberna quando ocioso
+  processes = ["app"]
+
+  [http_service.concurrency]
+    type = "requests"
+    soft_limit = 20
+    hard_limit = 50
+
+  [[http_service.checks]]
+    interval = "30s"
+    timeout = "5s"
+    grace_period = "10s"
+    method = "GET"
+    path = "/api/health"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"
+  cpus = 1

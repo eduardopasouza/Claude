@@ -1,0 +1,35 @@
+# sim-global · Render.com blueprint (alternativa ao Fly.io).
+#
+# Deploy:
+#   1. Faça login em https://render.com (free tier).
+#   2. New → Blueprint → conecte o repo eduardopasouza/Claude.
+#   3. Selecione esta branch e o caminho `sim-global/`.
+#   4. Configure secret CLAUDE_CODE_OAUTH_TOKEN no dashboard
+#      (Settings → Environment).
+#   5. Deploy automático.
+#
+# RESSALVA: Render free Web Service não tem volume persistente.
+# SQLite no /tmp é apagado a cada redeploy/hibernate (15min ocioso).
+# Para persistência, use Postgres free (expira em 90 dias) ou
+# upgrade pro plan pago. Para uso casual, SQLite efêmero é
+# aceitável — cada visita reseta para o cenário-piloto.
+
+services:
+  - type: web
+    name: sim-global
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    rootDir: .
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: SIMGLOBAL_HOST
+        value: 0.0.0.0
+      - key: SIMGLOBAL_PORT
+        value: "8000"
+      - key: SIMGLOBAL_OPEN_BROWSER
+        value: "0"
+      - key: SIMGLOBAL_DATABASE_URL
+        value: sqlite:////tmp/simglobal.db
+      - key: CLAUDE_CODE_OAUTH_TOKEN
+        sync: false   # secret: configurado manualmente no dashboard

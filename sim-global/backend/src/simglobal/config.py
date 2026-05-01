@@ -1,6 +1,7 @@
-"""Carrega config.yaml da raiz do projeto."""
+"""Carrega config.yaml da raiz do projeto + overrides via env vars."""
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 import yaml
@@ -51,10 +52,39 @@ def project_root() -> Path:
     return Path(__file__).resolve().parents[3]
 
 
+def _apply_env_overrides(cfg: AppConfig) -> AppConfig:
+    """Permite que variáveis de ambiente sobrescrevam config.yaml.
+
+    Útil em deploy cloud (Fly.io, Render, Heroku) onde config é
+    versionado mas valores específicos do host vêm de env.
+    """
+    if v := os.getenv("SIMGLOBAL_HOST"):
+        cfg.server.host = v
+    if v := os.getenv("SIMGLOBAL_PORT") or os.getenv("PORT"):
+        try:
+            cfg.server.port = int(v)
+        except ValueError:
+            pass
+    if v := os.getenv("SIMGLOBAL_OPEN_BROWSER"):
+        cfg.server.open_browser = v.lower() in {"1", "true", "yes", "on"}
+    if v := os.getenv("SIMGLOBAL_DATABASE_URL"):
+        cfg.persistence.database_url = v
+    if v := os.getenv("SIMGLOBAL_MODEL"):
+        cfg.agent.model = v
+    if v := os.getenv("SIMGLOBAL_CONSOLIDATOR_THRESHOLD"):
+        try:
+            cfg.consolidator.threshold = int(v)
+        except ValueError:
+            pass
+    return cfg
+
+
 def load_config(path: Path | None = None) -> AppConfig:
     if path is None:
         path = project_root() / "config.yaml"
-    if not path.exists():
-        return AppConfig()
-    raw = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
-    return AppConfig.model_validate(raw)
+    if path.exists():
+        raw = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+        cfg = AppConfig.model_validate(raw)
+    else:
+        cfg = AppConfig()
+    return _apply_env_overrides(cfg)
