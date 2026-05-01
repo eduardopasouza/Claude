@@ -6,10 +6,13 @@ from .common import (
     BattalionStatusType,
     BattalionType,
     DiplomaticStatusType,
+    EffectOpType,
     EventCategoryType,
     EventCauseType,
+    EventSeverityType,
     MapFeatureType,
     RegionGeoType,
+    TriggerKind,
 )
 from .delta import (
     BattalionCreate,
@@ -27,8 +30,9 @@ from .delta import (
 )
 from .diplomatic import DiplomaticRelation
 from .event import ConsolidatedSummary, Event
-from .polity import Battalion, Polity
+from .polity import Battalion, Polity, PolityAttributes
 from .region import MapFeature, Region
+from .scenario import CancelCondition, EffectSpec, ScheduledEvent, Trigger
 from .state import GameState
 from .turn import TurnBuffer
 
@@ -39,19 +43,24 @@ __all__ = [
     "BattalionMove",
     "BattalionStatusType",
     "BattalionType",
+    "CancelCondition",
     "ConsolidatedSummary",
     "DiplomaticOpinionChange",
     "DiplomaticRelation",
     "DiplomaticStatusChange",
     "DiplomaticStatusType",
+    "EffectOpType",
+    "EffectSpec",
     "Event",
     "EventCategoryType",
     "EventCauseType",
+    "EventSeverityType",
     "GameState",
     "MapFeature",
     "MapFeatureType",
     "PlayerAction",
     "Polity",
+    "PolityAttributes",
     "PolityDoctrineAdd",
     "PolityDoctrineRemove",
     "PolityLeaderChange",
@@ -60,6 +69,9 @@ __all__ = [
     "Region",
     "RegionGeoType",
     "RegionOwnerChange",
+    "ScheduledEvent",
     "StateDelta",
+    "Trigger",
+    "TriggerKind",
     "TurnBuffer",
 ]

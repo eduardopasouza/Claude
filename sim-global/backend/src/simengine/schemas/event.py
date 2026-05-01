@@ -4,7 +4,7 @@ from datetime import date
 
 from pydantic import BaseModel, Field
 
-from .common import EventCategoryType, EventCauseType
+from .common import EventCategoryType, EventCauseType, EventSeverityType
 
 
 class Event(BaseModel):
@@ -14,6 +14,7 @@ class Event(BaseModel):
     affected_polities: list[str] = Field(default_factory=list)
     affected_regions: list[str] = Field(default_factory=list)
     caused_by: EventCauseType
+    severity: EventSeverityType = "moderate"
 
 
 class ConsolidatedSummary(BaseModel):

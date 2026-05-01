@@ -47,3 +47,9 @@ MapFeatureType = Literal[
     "indústria",
     "fronteira",
 ]
+
+EventSeverityType = Literal["minor", "moderate", "major", "critical"]
+
+TriggerKind = Literal["date", "state", "event_chain"]
+
+EffectOpType = Literal["delta", "set", "add", "remove"]

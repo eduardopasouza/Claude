@@ -10,19 +10,24 @@ from simengine.schemas import (
     Battalion,
     BattalionCreate,
     BattalionMove,
+    CancelCondition,
     ConsolidatedSummary,
     DiplomaticOpinionChange,
     DiplomaticRelation,
     DiplomaticStatusChange,
+    EffectSpec,
     Event,
     GameState,
     MapFeature,
     PlayerAction,
     Polity,
+    PolityAttributes,
     PolityDoctrineAdd,
     Region,
     RegionOwnerChange,
+    ScheduledEvent,
     StateDelta,
+    Trigger,
     TurnBuffer,
 )
 
@@ -82,6 +87,27 @@ def test_battalion_strength_bounds():
             type="infantaria",
             strength=101,
         )
+
+
+def test_polity_attributes_defaults():
+    p = Polity(
+        name="X", government_type="t", leader="L", capital_region="R",
+    )
+    assert p.attributes.stability == 50
+    assert p.attributes.war_support == 50
+    assert p.attributes.treasury == 0
+    assert p.attributes.manpower == 0
+    assert p.attributes.political_power == 0
+
+
+def test_polity_attributes_bounds():
+    PolityAttributes(stability=0, war_support=100, treasury=-1000, manpower=0)
+    with pytest.raises(ValidationError):
+        PolityAttributes(stability=101)
+    with pytest.raises(ValidationError):
+        PolityAttributes(war_support=-1)
+    with pytest.raises(ValidationError):
+        PolityAttributes(manpower=-1)
 
 
 def test_polity_default_status_pronto():
@@ -155,6 +181,105 @@ def test_event_round_trip():
         caused_by="scheduled",
     )
     assert Event.model_validate_json(event.model_dump_json()) == event
+
+
+def test_event_severity_default_moderate():
+    event = Event(
+        date=date(1932, 7, 9),
+        category="internal",
+        description="x",
+        caused_by="scheduled",
+    )
+    assert event.severity == "moderate"
+
+
+def test_event_severity_explicit():
+    event = Event(
+        date=date(1942, 8, 22),
+        category="diplomatic",
+        description="Brasil declara guerra ao Eixo",
+        caused_by="scheduled",
+        severity="critical",
+    )
+    assert event.severity == "critical"
+
+
+def test_event_severity_invalid_rejected():
+    with pytest.raises(ValidationError):
+        Event(
+            date=date(1942, 8, 22),
+            category="diplomatic",
+            description="x",
+            caused_by="scheduled",
+            severity="apocalyptic",  # type: ignore[arg-type]
+        )
+
+
+# ---- scheduled event (scripting híbrido) ----
+
+def test_scheduled_event_minimal_with_natural_fallback():
+    sched = ScheduledEvent(
+        id="estado_novo",
+        date=date(1937, 11, 10),
+        category="internal",
+        description="Golpe do Estado Novo.",
+        natural_cancel="Cancela se Vargas perdeu poder antes.",
+        natural_effects="Brasil vira ditadura civil.",
+    )
+    assert sched.severity == "moderate"
+    assert sched.triggers == []
+    assert sched.cancel_conditions == []
+    assert sched.effects == []
+    assert sched.natural_effects.startswith("Brasil")
+
+
+def test_scheduled_event_structured_round_trip():
+    sched = ScheduledEvent(
+        id="declaracao_guerra",
+        date=date(1942, 8, 22),
+        trigger_window_days=15,
+        category="diplomatic",
+        severity="critical",
+        description="Brasil declara guerra ao Eixo.",
+        source="https://pt.wikipedia.org/wiki/Brasil_na_Segunda_Guerra_Mundial",
+        affected_polities=["Brasil", "Alemanha", "Itália"],
+        triggers=[
+            Trigger(kind="date", expr="1942-08-22"),
+            Trigger(kind="state", expr='polity:Brasil tension contains "clamor por declaração"'),
+        ],
+        cancel_conditions=[
+            CancelCondition(kind="state", expr="polity:Brasil aligned with Eixo"),
+        ],
+        effects=[
+            EffectSpec(
+                op="set",
+                target="relation:Alemanha::Brasil",
+                path="status",
+                value="guerra",
+            ),
+            EffectSpec(
+                op="delta",
+                target="polity:Brasil",
+                path="attributes.war_support",
+                value=20,
+            ),
+        ],
+    )
+    parsed = ScheduledEvent.model_validate_json(sched.model_dump_json())
+    assert parsed == sched
+    assert parsed.effects[0].target == "relation:Alemanha::Brasil"
+    assert parsed.effects[1].value == 20
+
+
+def test_scheduled_event_window_days_must_be_positive():
+    with pytest.raises(ValidationError):
+        ScheduledEvent(
+            id="x",
+            date=date(1940, 1, 1),
+            trigger_window_days=0,
+            category="internal",
+            description="x",
+        )
 
 
 def test_consolidated_summary_round_trip():
