@@ -7,9 +7,18 @@ function campaign(initialState, examples, activeName) {
     state: initialState,
     selectedPolity: null,
     actionDraft: "",
+    actionOpen: false,
     pendingActions: initialState?.pending_actions ?? [],
     eventsFeed: [],
     status: "pronto",
+    tab: "mapa",
+    tabs: [
+      { key: "mapa", label: "Mapa", icon: "🗺" },
+      { key: "polity", label: "Polity", icon: "📋" },
+      { key: "eventos", label: "Eventos", icon: "📜" },
+      { key: "diplo", label: "Diplo", icon: "🤝" },
+      { key: "advisor", label: "Advisor", icon: "💬" },
+    ],
 
     init() {
       if (this.state) {

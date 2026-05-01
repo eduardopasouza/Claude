@@ -1,6 +1,11 @@
 # Defaults globais do sim-global. Lidos pelo backend no boot.
 
 server:
+  # 127.0.0.1 = só este PC. Para acessar do celular:
+  #   - rede local (WiFi de casa): use 0.0.0.0
+  #   - via Tailscale: use 0.0.0.0 e conecte pelo IP do nó tailscale
+  # Cuidado: 0.0.0.0 expõe na rede inteira; só faça em rede confiável
+  # ou atrás de Tailscale.
   host: 127.0.0.1
   port: 8000
   open_browser: true              # python -m simglobal abre o browser
