@@ -10,8 +10,10 @@ cd sim/dev
 pip install -e ".[dev]"
 ```
 
-Após isso, `python -c "import simengine"` deve funcionar e `pytest`
-roda a suíte (vazia por enquanto).
+Após isso, `python -c "import simengine"` deve funcionar e
+`python -m pytest` roda a suíte. Use `python -m pytest` em vez de
+`pytest` direto: no ambiente Claude Code o binário `pytest` global vive
+em outro venv sem `pydantic` instalado.
 
 ## Estrutura
 
