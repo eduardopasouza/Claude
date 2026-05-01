@@ -18,7 +18,7 @@
 </head>
 <body class="font-serif antialiased min-h-screen">
   <div
-    x-data="campaign({{ state.model_dump_json()|safe if state else 'null' }}, {{ examples|tojson }}, {{ active|tojson if active else 'null' }})"
+    x-data='campaign({{ state.model_dump_json()|safe if state else "null" }}, {{ examples|tojson }}, {{ active|tojson if active else "null" }})'
     class="flex flex-col min-h-screen md:grid md:grid-cols-12 md:grid-rows-[auto_1fr_auto] md:gap-2 md:p-2 pb-[calc(env(safe-area-inset-bottom)+8rem)] md:pb-2"
   >
     <!-- header -->
