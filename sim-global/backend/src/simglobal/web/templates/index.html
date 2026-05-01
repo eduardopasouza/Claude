@@ -48,7 +48,10 @@
       <h2 class="text-base font-bold text-amber-300 mb-2">Polity selecionada</h2>
       <template x-if="selectedPolity">
         <div>
-          <h3 class="text-lg font-bold" x-text="selectedPolity.name"></h3>
+          <div class="flex items-center gap-2">
+            <img :src="flagFor(selectedPolity.name)" alt="bandeira" class="w-10 h-7 object-cover border border-stone-700" x-show="flagFor(selectedPolity.name)" />
+            <h3 class="text-lg font-bold" x-text="selectedPolity.name"></h3>
+          </div>
           <p class="text-xs text-stone-400" x-text="selectedPolity.government_type"></p>
           <p class="text-sm">Líder: <span class="text-amber-200" x-text="selectedPolity.leader"></span></p>
           <p class="text-sm">Capital: <span x-text="selectedPolity.capital_region"></span></p>
@@ -117,28 +120,51 @@
     >
       <div class="flex-1 bg-stone-900 border border-stone-800 md:rounded p-3 overflow-auto min-h-[60vh]">
         <div class="flex items-center justify-between mb-2">
-          <h2 class="text-base font-bold text-amber-300">Mapa esquemático</h2>
+          <h2 class="text-base font-bold text-amber-300">Mapa-mundi</h2>
           <span class="text-[10px] text-stone-500 hidden md:inline" x-text="state ? `${Object.keys(state.regions).length} regiões` : ''"></span>
         </div>
         <p class="text-[10px] text-stone-500 mb-2 italic">
-          MVP esquemático. Mapa-mundi vetorial Natural Earth Data chega em fase posterior.
+          Natural Earth Data 1:110m (CC0). Países do cenário coloridos por dono.
+          Subdivisões internas do Brasil ficam no painel à direita.
         </p>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1.5" x-show="state">
-          <template x-for="region in regionList" :key="region.name">
-            <button
-              @click="selectByRegion(region); tab = 'polity'"
-              type="button"
-              class="text-left p-2 rounded border-2 hover:brightness-125 active:brightness-150 transition min-h-[72px]"
-              :class="selectedPolity?.name === region.owner ? 'border-amber-300' : 'border-stone-700'"
-              :style="`background:${colorFor(region.owner)}`"
-              :title="`${region.name} · ${region.economic_profile}`"
-            >
-              <div class="text-xs font-bold leading-tight" x-text="region.name"></div>
-              <div class="text-[10px] opacity-80" x-text="region.owner ?? '—'"></div>
-              <div class="text-[10px] mt-1 opacity-70">~<span x-text="region.population_estimate_thousands"></span>k</div>
-            </button>
-          </template>
-        </div>
+        <div id="world-map" class="bg-stone-950 rounded border border-stone-800 p-2"></div>
+        <details class="mt-2 text-xs">
+          <summary class="cursor-pointer text-stone-400">Polities no jogo</summary>
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1 mt-2">
+            <template x-for="polity in polityList" :key="polity.name">
+              <button
+                @click="selectByPolityName(polity.name); tab = 'polity'"
+                type="button"
+                class="flex items-center gap-2 p-1 rounded border hover:brightness-125 transition text-left"
+                :class="selectedPolity?.name === polity.name ? 'border-amber-300' : 'border-stone-700'"
+                :style="`background:${colorFor(polity.name)}`"
+              >
+                <img :src="flagFor(polity.name)" alt="" class="w-5 h-3 object-cover" x-show="flagFor(polity.name)" />
+                <span class="text-xs truncate" x-text="polity.name"></span>
+              </button>
+            </template>
+          </div>
+        </details>
+        <details class="mt-2 text-xs" open>
+          <summary class="cursor-pointer text-stone-400">
+            Regiões internas (<span x-text="internalRegionList.length"></span>)
+          </summary>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-1 mt-2">
+            <template x-for="region in internalRegionList" :key="region.name">
+              <button
+                @click="selectByRegion(region); tab = 'polity'"
+                type="button"
+                class="text-left p-2 rounded border-2 hover:brightness-125 transition min-h-[60px]"
+                :class="selectedPolity?.name === region.owner ? 'border-amber-300' : 'border-stone-700'"
+                :style="`background:${colorFor(region.owner)}`"
+                :title="region.economic_profile"
+              >
+                <div class="text-xs font-bold leading-tight" x-text="region.name"></div>
+                <div class="text-[10px] opacity-70">~<span x-text="region.population_estimate_thousands"></span>k</div>
+              </button>
+            </template>
+          </div>
+        </details>
       </div>
     </main>
 
@@ -168,35 +194,63 @@
       </div>
     </section>
 
-    <!-- Diplomacy tab (mobile only; desktop pode usar modal futuro) -->
+    <!-- Diplomacy tab (mobile + desktop em md hidden) -->
     <section
       x-show="tab === 'diplo'"
       x-transition.opacity
       class="md:hidden flex-1 bg-stone-900 border border-stone-800 p-3 overflow-y-auto min-h-[60vh]"
+      x-data="{counterparty:'', message:'', lastReply: null}"
     >
       <h2 class="text-base font-bold text-amber-300 mb-2">Diplomacia</h2>
-      <p class="text-xs text-stone-500 mb-2">Threads bilaterais virão aqui (Skill diplomat).</p>
-      <ul class="space-y-1 text-sm">
+      <form
+        @submit.prevent="lastReply = await sendDiplomatic(counterparty, message); if (lastReply) message = ''"
+        class="space-y-2"
+      >
+        <select x-model="counterparty" class="w-full bg-stone-800 border border-stone-700 rounded px-2 py-2 text-sm" required>
+          <option value="">— escolha a polity —</option>
+          <template x-for="p in polityList.filter(p => p.name !== state?.player_polity)" :key="p.name">
+            <option :value="p.name" x-text="p.name"></option>
+          </template>
+        </select>
+        <textarea x-model="message" rows="3" class="w-full bg-stone-800 border border-stone-700 rounded p-2 text-sm" placeholder="Mensagem oficial à contraparte…" required></textarea>
+        <button type="submit" class="w-full bg-amber-600 hover:bg-amber-500 text-stone-950 font-bold py-2 rounded text-sm" :disabled="diplomaticPending || !counterparty || !message.trim()">
+          <span x-show="!diplomaticPending">enviar</span>
+          <span x-show="diplomaticPending">enviando…</span>
+        </button>
+      </form>
+      <div x-show="lastReply" class="mt-3 border-l-2 border-amber-700 pl-2 text-sm">
+        <div class="text-xs text-stone-400">resposta de <span x-text="lastReply?.counterparty"></span>:</div>
+        <p class="whitespace-pre-wrap" x-text="lastReply?.message_out"></p>
+      </div>
+      <h3 class="mt-4 text-sm font-bold text-amber-300">Relações</h3>
+      <ul class="space-y-1 text-xs mt-1">
         <template x-for="key in Object.keys(state?.diplomatic_relations ?? {})" :key="key">
           <li class="border-l-2 border-stone-700 pl-2">
             <span class="font-bold text-amber-200" x-text="key"></span>
-            <span class="text-xs text-stone-400" x-text="' — ' + state.diplomatic_relations[key].status"></span>
+            <span class="text-stone-400" x-text="' — ' + state.diplomatic_relations[key].status"></span>
           </li>
         </template>
       </ul>
     </section>
 
-    <!-- Advisor tab (mobile only) -->
+    <!-- Advisor tab -->
     <section
       x-show="tab === 'advisor'"
       x-transition.opacity
       class="md:hidden flex-1 bg-stone-900 border border-stone-800 p-3 overflow-y-auto min-h-[60vh]"
+      x-data="{question: ''}"
     >
       <h2 class="text-base font-bold text-amber-300 mb-2">Advisor</h2>
-      <p class="text-xs text-stone-500">Conversa com Advisor (não implementada nesta fase).</p>
-      <button disabled class="w-full mt-2 bg-stone-800 text-stone-500 py-2 rounded text-sm cursor-not-allowed">
-        Em breve
-      </button>
+      <form @submit.prevent="askAdvisor(question)" class="space-y-2">
+        <textarea x-model="question" rows="3" class="w-full bg-stone-800 border border-stone-700 rounded p-2 text-sm" placeholder="O que você gostaria de saber, presidente?" required></textarea>
+        <button type="submit" class="w-full bg-amber-600 hover:bg-amber-500 text-stone-950 font-bold py-2 rounded text-sm" :disabled="advisorPending || !question.trim()">
+          <span x-show="!advisorPending">consultar</span>
+          <span x-show="advisorPending">consultando…</span>
+        </button>
+      </form>
+      <div x-show="advisorAnswer" class="mt-3 border-l-2 border-amber-700 pl-2">
+        <p class="whitespace-pre-wrap text-sm" x-text="advisorAnswer"></p>
+      </div>
     </section>
 
     <!-- Action Box: bottom sheet no mobile, painel desktop -->

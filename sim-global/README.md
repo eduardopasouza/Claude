@@ -11,23 +11,43 @@ Documentação completa em [`BRIEFING.md`](BRIEFING.md) (estratégia) e
 ## Como rodar
 
 ```bash
-# instalar dependências
-cd backend
-pip install -e ".[dev]"
+# 1. autenticação Claude (uma vez, abre browser)
+claude setup-token
+export CLAUDE_CODE_OAUTH_TOKEN=<o token impresso pelo setup-token>
 
-# rodar
+# 2. instalar dependências (com o agent SDK)
+cd backend
+pip install -e ".[dev,agent]"
+
+# 3. (opcional) rodar migrations Alembic em vez de init_db automático
+SIMGLOBAL_DATABASE_URL=sqlite:///../saves/simglobal.db alembic upgrade head
+
+# 4. rodar
 python -m simglobal
 # → backend sobe em http://localhost:8000
 # → browser abre automaticamente
+# → SQLite em saves/simglobal.db é criado e o cenário Brasil/1930 é
+#   importado automaticamente na primeira execução.
 ```
 
-A integração com Claude Agent SDK (motor narrativo) entra em fase
-posterior. Antes dela:
+Sem `CLAUDE_CODE_OAUTH_TOKEN`/`claude-agent-sdk` instalados, o app
+funciona em modo **leitura**: você navega o cenário, vê mapa e
+painéis, mas os endpoints `/api/.../turn`, `/advise` e `/dm`
+respondem 503 com instrução clara.
 
-```bash
-claude setup-token                    # uma vez, gera token longo
-export CLAUDE_CODE_OAUTH_TOKEN=...    # exporte ou ponha em .env
-```
+## Endpoints principais
+
+| Método | Rota                                 | Função                                     |
+| ------ | ------------------------------------ | ------------------------------------------ |
+| GET    | `/api/health`                        | status do backend e do agente              |
+| GET    | `/api/campaigns`                     | lista campanhas no SQLite                  |
+| POST   | `/api/campaigns/import-example`      | importa cenário-piloto (`brasil-vargas-1930`) |
+| POST   | `/api/campaigns/new`                 | cria campanha procedural via scenario_builder |
+| GET    | `/api/campaigns/{name}/state`        | estado completo (GameState)                |
+| POST   | `/api/campaigns/{name}/turn`         | avança N meses (game_master)               |
+| POST   | `/api/campaigns/{name}/advise`       | pergunta ao advisor                        |
+| POST   | `/api/campaigns/{name}/dm`           | envia mensagem diplomática (diplomat)      |
+| DELETE | `/api/campaigns/{name}`              | apaga campanha                             |
 
 ## Jogar pelo celular (Tailscale)
 
