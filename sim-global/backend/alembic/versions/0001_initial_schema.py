@@ -106,6 +106,7 @@ def upgrade() -> None:
     sa.Column('government_type', sa.String(length=400), nullable=False),
     sa.Column('leader', sa.String(length=200), nullable=False),
     sa.Column('capital_region_name', sa.String(length=200), nullable=False),
+    sa.Column('iso3', sa.String(length=3), nullable=True),
     sa.Column('stability', sa.Integer(), nullable=False),
     sa.Column('war_support', sa.Integer(), nullable=False),
     sa.Column('treasury', sa.Integer(), nullable=False),

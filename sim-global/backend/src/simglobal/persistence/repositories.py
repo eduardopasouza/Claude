@@ -22,6 +22,10 @@ from simengine.schemas import (
     DiplomaticRelation as DiplomaticRelationSchema,
 )
 from simengine.schemas import (
+    ConsolidatedSummary,
+    Event,
+)
+from simengine.schemas import (
     Event as EventSchema,
 )
 from simengine.schemas import (
@@ -119,6 +123,7 @@ def import_game_state(
             government_type=polity.government_type,
             leader=polity.leader,
             capital_region_name=polity.capital_region,
+            iso3=polity.iso3,
             stability=attrs.stability,
             war_support=attrs.war_support,
             treasury=attrs.treasury,
@@ -223,6 +228,7 @@ def export_game_state(session: Session, campaign_name: str) -> GameState:
             ],
             doctrines=[d.label for d in orm_polity.doctrines],
             internal_tensions=[t.label for t in orm_polity.internal_tensions],
+            iso3=orm_polity.iso3,
             attributes=PolityAttributes(
                 stability=orm_polity.stability,
                 war_support=orm_polity.war_support,
@@ -332,6 +338,7 @@ def apply_turn_buffer(
             government_type=polity.government_type,
             leader=polity.leader,
             capital_region_name=polity.capital_region,
+            iso3=polity.iso3,
             stability=attrs.stability,
             war_support=attrs.war_support,
             treasury=attrs.treasury,
@@ -508,3 +515,91 @@ def events_since_summary(session: Session, campaign_name: str) -> int:
         stmt = stmt.where(m.Event.date > last_period_end)
 
     return int(session.execute(stmt).scalar_one())
+
+
+def recent_events(
+    session: Session, campaign_name: str, limit: int = 20
+) -> list[Event]:
+    """Devolve os últimos N eventos do log em ordem cronológica
+    crescente (mais antigo primeiro). Útil para alimentar o payload
+    do game_master/advisor.
+    """
+    campaign = _get_campaign(session, campaign_name)
+    stmt = (
+        select(m.Event)
+        .where(m.Event.campaign_id == campaign.id)
+        .order_by(m.Event.date.desc(), m.Event.id.desc())
+        .limit(limit)
+    )
+    rows = list(session.execute(stmt).scalars())
+    rows.reverse()
+    return [
+        Event(
+            date=r.date,
+            category=r.category,
+            description=r.description,
+            severity=r.severity,
+            caused_by=r.caused_by,
+            affected_polities=r.affected_polities or [],
+            affected_regions=r.affected_regions or [],
+        )
+        for r in rows
+    ]
+
+
+def all_summaries(
+    session: Session, campaign_name: str
+) -> list[ConsolidatedSummary]:
+    """Lista todos os ConsolidatedSummary de uma campanha em ordem
+    crescente de period_start."""
+    campaign = _get_campaign(session, campaign_name)
+    stmt = (
+        select(m.ConsolidatedSummary)
+        .where(m.ConsolidatedSummary.campaign_id == campaign.id)
+        .order_by(m.ConsolidatedSummary.period_start)
+    )
+    rows = list(session.execute(stmt).scalars())
+    return [
+        ConsolidatedSummary(
+            period_start=r.period_start,
+            period_end=r.period_end,
+            key_events=list(r.key_events or []),
+            state_changes_summary=r.state_changes_summary,
+            emerging_tensions=list(r.emerging_tensions or []),
+            generated_at=r.generated_at,
+        )
+        for r in rows
+    ]
+
+
+def diplomatic_history(
+    session: Session, campaign_name: str, counterparty: str
+) -> list[dict]:
+    """Histórico bilateral com uma polity específica, ordem cronológica."""
+    campaign = _get_campaign(session, campaign_name)
+    stmt = (
+        select(m.DiplomaticLogEntry)
+        .where(
+            m.DiplomaticLogEntry.campaign_id == campaign.id,
+            m.DiplomaticLogEntry.counterparty_polity == counterparty,
+        )
+        .order_by(m.DiplomaticLogEntry.date, m.DiplomaticLogEntry.id)
+    )
+    rows = list(session.execute(stmt).scalars())
+    return [
+        {
+            "date": r.date.isoformat(),
+            "from_polity": r.from_polity,
+            "to_polity": r.to_polity,
+            "message_in": r.message_in,
+            "message_out": r.message_out,
+            "proposed_deltas": list(r.proposed_deltas or []),
+        }
+        for r in rows
+    ]
+
+
+def get_campaign_lore(session: Session, campaign_name: str) -> str | None:
+    """Retorna o lore_md armazenado na campanha (None se vazio)."""
+    campaign = _get_campaign(session, campaign_name)
+    return campaign.lore_md

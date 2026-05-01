@@ -30,16 +30,18 @@ from simengine.schemas import (
 from ..persistence import (
     CampaignAlreadyExistsError,
     CampaignNotFoundError,
+    all_summaries,
     apply_turn_buffer,
     append_diplomatic_log,
-    append_event_log_entries,
     delete_campaign,
-    events_since_summary,
+    diplomatic_history,
     export_game_state,
-    get_session,
+    get_campaign_lore,
     import_game_state,
     list_campaigns,
+    recent_events,
 )
+from ..scenarios import filter_in_window, load_scheduled_events_raw
 from ..state_loader import load_example, list_examples
 
 logger = logging.getLogger(__name__)
@@ -221,13 +223,21 @@ async def api_turn(
     except CampaignNotFoundError as exc:
         raise HTTPException(404, str(exc)) from exc
 
+    from datetime import timedelta
+    window_end = state.current_date + timedelta(days=30 * req.months)
+    sched_raw = load_scheduled_events_raw(name)
+    sched_window = filter_in_window(sched_raw, state.current_date, window_end)
     payload = {
         "current_state": state.model_dump(mode="json"),
         "pending_actions": [a.model_dump(mode="json") for a in state.pending_actions],
         "n_months": req.months,
-        "scheduled_events_in_window": [],  # TODO: filtrar do YAML/DB
-        "recent_event_log": [],  # TODO: últimos 20 do DB
-        "summaries": [],  # TODO: do DB
+        "scheduled_events_in_window": sched_window,
+        "recent_event_log": [
+            e.model_dump(mode="json") for e in recent_events(db, name, limit=20)
+        ],
+        "summaries": [
+            s.model_dump(mode="json") for s in all_summaries(db, name)
+        ],
     }
 
     try:
@@ -277,8 +287,13 @@ async def api_advise(
     payload = {
         "state": state.model_dump(mode="json"),
         "question": req.question,
-        "recent_events": [],
-        "summaries": [],
+        "recent_events": [
+            e.model_dump(mode="json") for e in recent_events(db, name, limit=10)
+        ],
+        "summaries": [
+            s.model_dump(mode="json") for s in all_summaries(db, name)
+        ],
+        "lore_md": get_campaign_lore(db, name),
     }
     try:
         text = await runner.run_subagent(
@@ -307,11 +322,12 @@ async def api_dm(
     if msg.counterparty == state.player_polity:
         raise HTTPException(400, "não há diplomacia consigo mesmo")
 
+    full_lore = get_campaign_lore(db, name) or ""
     payload = {
         "state": state.model_dump(mode="json"),
         "counterparty": msg.counterparty,
-        "lore_for_counterparty": "",  # TODO: ler de lore_md por polity
-        "bilateral_history": [],  # TODO: ler do DB
+        "lore_for_counterparty": _extract_polity_lore(full_lore, msg.counterparty),
+        "bilateral_history": diplomatic_history(db, name, msg.counterparty),
         "message_in": msg.message,
     }
     try:
@@ -347,6 +363,50 @@ def _prompt_path(name: str) -> Path:
     if not p.exists():
         raise HTTPException(500, f"prompt ausente: {name}")
     return p
+
+
+def _extract_polity_lore(lore_md: str, polity_name: str) -> str:
+    """Tenta extrair a seção do lore_md correspondente a uma polity.
+
+    Heurística simples: olha para um cabeçalho `# <name>` ou `## <name>`
+    e devolve até o próximo cabeçalho de mesmo nível, OU concatena
+    arquivos cujo path no comentário-marker bate com o nome.
+    """
+    if not lore_md:
+        return ""
+    needle_low = polity_name.lower()
+    chunks: list[str] = []
+    current_chunk: list[str] = []
+    keep = False
+    current_level: int | None = None
+    for line in lore_md.splitlines():
+        marker_match = line.startswith("<!--") and needle_low in line.lower()
+        header_match = line.startswith("#") and needle_low in line.lower()
+        if marker_match or header_match:
+            if current_chunk and keep:
+                chunks.append("\n".join(current_chunk))
+            current_chunk = [line]
+            keep = True
+            current_level = (
+                len(line) - len(line.lstrip("#")) if line.startswith("#") else None
+            )
+            continue
+        if (
+            keep
+            and line.startswith("#")
+            and current_level is not None
+            and (len(line) - len(line.lstrip("#"))) <= current_level
+        ):
+            chunks.append("\n".join(current_chunk))
+            current_chunk = []
+            keep = False
+            current_level = None
+            continue
+        if keep:
+            current_chunk.append(line)
+    if current_chunk and keep:
+        chunks.append("\n".join(current_chunk))
+    return "\n\n".join(chunks).strip()
 
 
 def _bundle_example_lore(example_name: str) -> str | None:

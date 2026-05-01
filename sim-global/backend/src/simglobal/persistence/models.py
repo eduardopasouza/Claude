@@ -103,6 +103,7 @@ class Polity(Base):
     government_type: Mapped[str] = mapped_column(String(400), nullable=False)
     leader: Mapped[str] = mapped_column(String(200), nullable=False)
     capital_region_name: Mapped[str] = mapped_column(String(200), nullable=False)
+    iso3: Mapped[str | None] = mapped_column(String(3), nullable=True)
 
     stability: Mapped[int] = mapped_column(Integer, nullable=False, default=50)
     war_support: Mapped[int] = mapped_column(Integer, nullable=False, default=50)

@@ -65,8 +65,14 @@ function campaign(initialState, examples, activeName) {
       return Object.values(this.state.polities);
     },
 
+    iso3Of(polity) {
+      if (!polity) return null;
+      return polity.iso3 || POLITY_TO_ISO3[polity.name] || null;
+    },
+
     flagFor(polityName) {
-      const iso = POLITY_TO_ISO3[polityName];
+      const polity = this.state?.polities?.[polityName];
+      const iso = polity?.iso3 || POLITY_TO_ISO3[polityName];
       return iso ? `/assets/catalog/flags/${iso}.svg` : null;
     },
 
@@ -126,7 +132,7 @@ function campaign(initialState, examples, activeName) {
       });
       // Aplica cor por dono.
       Object.values(this.state.polities).forEach((polity) => {
-        const iso = POLITY_TO_ISO3[polity.name];
+        const iso = this.iso3Of(polity);
         if (!iso) return;
         const path = svg.querySelector(`#${iso}`);
         if (!path) return;
@@ -141,7 +147,7 @@ function campaign(initialState, examples, activeName) {
     selectByPath(pathEl) {
       const iso = pathEl.getAttribute("id");
       const polity = Object.values(this.state.polities).find(
-        (p) => POLITY_TO_ISO3[p.name] === iso,
+        (p) => this.iso3Of(p) === iso,
       );
       if (polity) {
         this.selectedPolity = polity;

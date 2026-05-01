@@ -34,3 +34,4 @@ class Polity(BaseModel):
     doctrines: list[str] = Field(default_factory=list)
     internal_tensions: list[str] = Field(default_factory=list)
     attributes: PolityAttributes = Field(default_factory=PolityAttributes)
+    iso3: str | None = Field(default=None, description="Código ISO 3166-1 alpha-3 quando aplicável")
