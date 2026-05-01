@@ -44,11 +44,21 @@ class AppConfig(BaseModel):
 
 
 def project_root() -> Path:
-    """Raiz do sim-global (sobe a partir deste arquivo).
+    """Raiz do sim-global onde estão data/, examples/, config.yaml.
 
-    Layout: .../sim-global/backend/src/simglobal/config.py
+    Em ambiente de dev (instalação editable, src layout), calcula
+    subindo a partir deste arquivo. Em container/serverless onde o
+    pacote é instalado em site-packages, o cálculo fura — então
+    respeitamos a env var SIMGLOBAL_PROJECT_ROOT quando definida
+    (Dockerfile/Fly seta para /app; Vercel para o caminho do
+    deployment).
+
+    Layout dev: .../sim-global/backend/src/simglobal/config.py
     parents[0]=simglobal/, [1]=src/, [2]=backend/, [3]=sim-global/.
     """
+    env = os.getenv("SIMGLOBAL_PROJECT_ROOT")
+    if env:
+        return Path(env)
     return Path(__file__).resolve().parents[3]
 
 

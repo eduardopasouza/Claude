@@ -29,7 +29,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PATH="/opt/venv/bin:$PATH" \
     SIMGLOBAL_HOST=0.0.0.0 \
     SIMGLOBAL_PORT=8000 \
-    SIMGLOBAL_OPEN_BROWSER=0
+    SIMGLOBAL_OPEN_BROWSER=0 \
+    SIMGLOBAL_PROJECT_ROOT=/app
 
 # Node.js não é necessário; Tailwind/HTMX/Alpine vêm via CDN no template.
 
