@@ -30,12 +30,17 @@ logger = logging.getLogger(__name__)
 
 
 def _resolve_db_url(url: str) -> str:
-    """Resolve URL relativa de SQLite contra a raiz do projeto."""
+    """Garante que o diretório do SQLite existe e resolve URL relativa."""
     if url.startswith("sqlite:///") and not url.startswith("sqlite:////"):
+        # Relativa à raiz do projeto.
         rel = url.replace("sqlite:///", "", 1)
         abs_path = (project_root() / rel).resolve()
         abs_path.parent.mkdir(parents=True, exist_ok=True)
         return f"sqlite:///{abs_path}"
+    if url.startswith("sqlite:////"):
+        # Absoluta (e.g. sqlite:////data/saves/simglobal.db em volume Fly).
+        abs_path = Path("/" + url.split("sqlite:////", 1)[1])
+        abs_path.parent.mkdir(parents=True, exist_ok=True)
     return url
 
 
