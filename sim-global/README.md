@@ -1,9 +1,43 @@
 # sim-global
 
-Simulador histórico-estratégico turn-based local. Frontend visual
-mobile-friendly no browser, backend Python, motor narrativo via
-Claude Opus 4.7 com OAuth da assinatura Claude Pro/Max — sem API key
-paga, sem cloud externa.
+Simulador histórico-estratégico turn-based. Frontend visual mobile-
+friendly no browser, backend Python, motor narrativo via Claude Opus
+4.7 autenticado por OAuth da sua assinatura Claude Pro/Max — sem API
+key paga.
+
+## Jogar agora (rota mais curta, browser-only)
+
+Abra o repositório num **GitHub Codespace** (free tier, 60h/mês na
+sua conta GitHub):
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/eduardopasouza/Claude?devcontainer_path=.devcontainer/devcontainer.json&ref=claude/brasil-sim-mvp-5ubSa)
+
+Quando o Codespace abrir:
+
+1. Aguarde o `post-create.sh` instalar deps (≈2 minutos, primeira
+   vez).
+2. O `post-start.sh` sobe o servidor automaticamente em
+   `http://0.0.0.0:8000`.
+3. No painel `PORTS` do VS Code (rodapé), clique no globo da porta
+   8000 → abre a URL pública no seu navegador.
+4. **Sem token OAuth**: app sobe em **modo leitura** (mapa, painéis
+   navegáveis, cenário Brasil/1930 carregado). Os endpoints de turno,
+   advisor e diplomacia retornam 503 com instrução prescritiva.
+5. **Para ativar o motor narrativo Opus 4.7**: gere o token uma vez
+   localmente (`claude setup-token` no PC), adicione como secret em
+   `https://github.com/settings/codespaces` com nome
+   `CLAUDE_CODE_OAUTH_TOKEN`, e rebuilde o Codespace (`Cmd+Shift+P`
+   → `Codespaces: Rebuild Container`).
+
+A URL gerada é pública e acessível **do seu celular** — copie do
+painel de portas e abra. "Adicionar à tela inicial" instala como
+PWA.
+
+Para outros caminhos de execução (local na sua máquina, deploy
+permanente em Fly.io/Render, Docker self-hosted, Tailscale para LAN
+do celular), continue lendo abaixo.
+
+---
 
 Documentação completa em [`BRIEFING.md`](BRIEFING.md) (estratégia) e
 [`CLAUDE.md`](CLAUDE.md) (constituição operacional).
