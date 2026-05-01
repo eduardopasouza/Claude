@@ -1,0 +1,11 @@
+# Dependências de runtime para deploy serverless no Vercel.
+# Sem [agent] e sem [dev]: claude_agent_sdk não funciona em
+# ambiente serverless (depende de subprocess CLI), e dev tools
+# inflam bundle. Modo leitura completo no Vercel; turn/advise/dm
+# retornam 503 com instrução prescritiva.
+pydantic>=2.5
+pyyaml>=6.0
+fastapi>=0.110
+jinja2>=3.1
+python-multipart>=0.0.9
+sqlalchemy>=2.0
