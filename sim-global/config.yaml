@@ -1,0 +1,23 @@
+# Defaults globais do sim-global. Lidos pelo backend no boot.
+
+server:
+  host: 127.0.0.1
+  port: 8000
+  open_browser: true              # python -m simglobal abre o browser
+
+agent:
+  model: claude-opus-4-7          # via OAuth Pro/Max
+  max_retries_validation: 3       # retries do game_master quando schema falha
+  oauth_token_env: CLAUDE_CODE_OAUTH_TOKEN
+
+consolidator:
+  threshold: 20                   # eventos brutos disparam consolidação
+
+persistence:
+  database_url: sqlite:///saves/simglobal.db
+  echo_sql: false
+
+assets:
+  flags_dir: data/catalog/flags
+  portraits_dir: data/catalog/portraits
+  map_dir: data/map
