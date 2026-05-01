@@ -1,5 +1,11 @@
 /* Customizações que ficam fora do Tailwind. */
 
+/* Esconde elementos com x-cloak até Alpine inicializar (evita
+   modais de boas-vindas e erro piscarem no carregamento). */
+[x-cloak] {
+  display: none !important;
+}
+
 body {
   font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
 }

@@ -14,11 +14,12 @@ const POLITY_TO_ISO3 = {
   "Japão": "JPN",
 };
 
-function campaign(initialState, examples, activeName) {
+function campaign(initialState, examples, activeName, agentReady) {
   return {
     examples,
     activeName,
     state: initialState,
+    agentReady: !!agentReady,
     selectedPolity: null,
     actionDraft: "",
     actionOpen: false,
@@ -31,6 +32,8 @@ function campaign(initialState, examples, activeName) {
     status: "pronto",
     tab: "mapa",
     mapLoaded: false,
+    showWelcome: false,
+    errorModal: { open: false, title: "", body: "" },
     tabs: [
       { key: "mapa", label: "Mapa", icon: "🗺" },
       { key: "polity", label: "Polity", icon: "📋" },
@@ -44,10 +47,42 @@ function campaign(initialState, examples, activeName) {
         const player = this.state.player_polity;
         this.selectedPolity = this.state.polities[player] ?? null;
       }
+      // Mostra onboarding na primeira visita (localStorage).
+      try {
+        const seen = localStorage.getItem("simglobal-welcome-seen");
+        if (!seen) this.showWelcome = true;
+      } catch (e) {
+        this.showWelcome = true;
+      }
       // Alpine não aguarda promises do init síncrono. Disparamos o
       // load do mapa em background; recolorMap é chamado dentro do
       // próprio loadMap após a injeção.
       this.loadMap();
+    },
+
+    dismissWelcome() {
+      this.showWelcome = false;
+      try {
+        localStorage.setItem("simglobal-welcome-seen", "1");
+      } catch (e) {}
+    },
+
+    openAgentNotice(feature) {
+      this.errorModal = {
+        open: true,
+        title: `${feature} indisponível`,
+        body:
+          "Este servidor está em modo leitura: não tem o motor narrativo Claude " +
+          "Opus 4.7 configurado. Você pode navegar pelo mapa, ler atributos da " +
+          "polity e o histórico do cenário, mas turnos, diplomacia e advisor " +
+          "exigem o Claude Agent SDK rodando com seu token Pro/Max.\n\n" +
+          "Para ativar: rode o servidor em Fly.io ou Docker (instruções no " +
+          "README do projeto na raiz: sim-global/README.md → Deploy público).",
+      };
+    },
+
+    showError(title, body) {
+      this.errorModal = { open: true, title, body };
     },
 
     get regionList() {
@@ -234,24 +269,34 @@ function campaign(initialState, examples, activeName) {
     async advanceTime(months = 6) {
       if (!this.activeName) return;
       this.status = `avançando ${months} meses…`;
-      const resp = await fetch(
-        `/api/campaigns/${encodeURIComponent(this.activeName)}/turn`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ months }),
-        },
-      );
-      if (!resp.ok) {
-        const err = await resp.json().catch(() => ({ detail: resp.statusText }));
-        this.status = `turn falhou: ${err.detail}`;
-        return;
+      try {
+        const resp = await fetch(
+          `/api/campaigns/${encodeURIComponent(this.activeName)}/turn`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ months }),
+          },
+        );
+        if (resp.status === 503) {
+          this.openAgentNotice("Avançar tempo");
+          this.status = "modo leitura";
+          return;
+        }
+        if (!resp.ok) {
+          const err = await resp.json().catch(() => ({ detail: resp.statusText }));
+          this.showError("Falha ao avançar tempo", err.detail || resp.statusText);
+          this.status = "erro";
+          return;
+        }
+        const payload = await resp.json();
+        this.eventsFeed = [...payload.events, ...this.eventsFeed].slice(0, 50);
+        this.status = `turno aplicado · ${payload.deltas_applied} deltas`;
+        await this.loadCampaign(this.activeName);
+      } catch (err) {
+        this.showError("Erro de rede", String(err));
+        this.status = "erro";
       }
-      const payload = await resp.json();
-      this.eventsFeed = [...payload.events, ...this.eventsFeed].slice(0, 50);
-      this.status = `turno aplicado · ${payload.deltas_applied} deltas`;
-      // Recarrega estado do servidor.
-      await this.loadCampaign(this.activeName);
     },
 
     async askAdvisor(question) {
@@ -267,20 +312,26 @@ function campaign(initialState, examples, activeName) {
             body: JSON.stringify({ question }),
           },
         );
+        if (resp.status === 503) {
+          this.openAgentNotice("Advisor");
+          return;
+        }
         if (!resp.ok) {
           const err = await resp.json().catch(() => ({ detail: resp.statusText }));
-          this.advisorAnswer = `erro: ${err.detail}`;
+          this.advisorAnswer = `erro: ${err.detail || resp.statusText}`;
           return;
         }
         const payload = await resp.json();
         this.advisorAnswer = payload.answer;
+      } catch (err) {
+        this.advisorAnswer = `erro de rede: ${err}`;
       } finally {
         this.advisorPending = false;
       }
     },
 
     async sendDiplomatic(counterparty, message) {
-      if (!this.activeName) return;
+      if (!this.activeName) return null;
       this.diplomaticPending = true;
       try {
         const resp = await fetch(
@@ -291,12 +342,19 @@ function campaign(initialState, examples, activeName) {
             body: JSON.stringify({ counterparty, message }),
           },
         );
+        if (resp.status === 503) {
+          this.openAgentNotice("Diplomacia");
+          return null;
+        }
         if (!resp.ok) {
           const err = await resp.json().catch(() => ({ detail: resp.statusText }));
-          this.status = `dm falhou: ${err.detail}`;
+          this.showError("Falha diplomática", err.detail || resp.statusText);
           return null;
         }
         return await resp.json();
+      } catch (err) {
+        this.showError("Erro de rede", String(err));
+        return null;
       } finally {
         this.diplomaticPending = false;
       }
