@@ -127,10 +127,17 @@ def _clamp(value: int, lo: int = -100, hi: int = 100) -> int:
 
 
 def apply_turn_buffer(state: GameState, buffer: TurnBuffer) -> None:
-    """Aplica todos os deltas do buffer e avança current_date."""
+    """Aplica todos os deltas do buffer e avança current_date.
+
+    Também consome todas as pending_actions: assume-se que o
+    game_master já viu as ações no payload e gerou eventos/deltas
+    correspondentes; mantê-las pendentes no próximo turno seria
+    duplicação.
+    """
     for delta in buffer.deltas:
         apply_delta(state, delta)
     state.current_date = buffer.turn_end_date
+    state.pending_actions = []
 
 
 # ---------- invariantes globais ----------
