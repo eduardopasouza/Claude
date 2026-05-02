@@ -339,7 +339,7 @@ async def api_dm(
         raise HTTPException(502, f"diplomat falhou: {exc}") from exc
 
     entry = {
-        "date": state.current_date.isoformat(),
+        "date": state.current_date,
         "from_polity": state.player_polity,
         "to_polity": msg.counterparty,
         "message_in": msg.message,

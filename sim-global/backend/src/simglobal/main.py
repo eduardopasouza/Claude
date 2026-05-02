@@ -12,6 +12,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from . import __version__
+from .auth import BasicAuthMiddleware
 from .config import load_config, project_root
 from .persistence import (
     CampaignAlreadyExistsError,
@@ -104,6 +105,9 @@ def create_app() -> FastAPI:
         description="Simulador histórico-estratégico turn-based local.",
         lifespan=lifespan,
     )
+    # Basic Auth opcional, controlado por env (SIMGLOBAL_AUTH_USER e
+    # SIMGLOBAL_AUTH_PASSWORD_HASH). Quando ausentes, passa direto.
+    app.add_middleware(BasicAuthMiddleware)
 
     web_dir = Path(__file__).parent / "web"
     static_dir = web_dir / "static"
