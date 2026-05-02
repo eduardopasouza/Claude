@@ -87,6 +87,14 @@ class Campaign(Base):
         back_populates="campaign",
         cascade="all, delete-orphan",
     )
+    advisor_messages: Mapped[list["AdvisorMessage"]] = relationship(
+        back_populates="campaign",
+        cascade="all, delete-orphan",
+    )
+    turn_jobs: Mapped[list["TurnJob"]] = relationship(
+        back_populates="campaign",
+        cascade="all, delete-orphan",
+    )
 
 
 class Polity(Base):
@@ -302,6 +310,55 @@ class DiplomaticLogEntry(Base):
     )
 
     campaign: Mapped[Campaign] = relationship(back_populates="diplomatic_log_entries")
+
+
+class AdvisorMessage(Base):
+    """Cada chamada ao Skill advisor persistida pra reconstruir thread."""
+
+    __tablename__ = "advisor_messages"
+    __table_args__ = (
+        Index("ix_advisor_msgs_campaign_date", "campaign_id", "created_at"),
+    )
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    campaign_id: Mapped[int] = mapped_column(
+        ForeignKey("campaigns.id", ondelete="CASCADE"), nullable=False
+    )
+    in_game_date: Mapped[date] = mapped_column(Date, nullable=False)
+    question: Mapped[str] = mapped_column(Text, nullable=False)
+    answer: Mapped[str] = mapped_column(Text, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime, nullable=False, server_default=func.now()
+    )
+
+    campaign: Mapped[Campaign] = relationship(back_populates="advisor_messages")
+
+
+class TurnJob(Base):
+    """Turno disparado em background — frontend faz polling de status."""
+
+    __tablename__ = "turn_jobs"
+    __table_args__ = (
+        Index("ix_turn_jobs_campaign", "campaign_id", "created_at"),
+    )
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    campaign_id: Mapped[int] = mapped_column(
+        ForeignKey("campaigns.id", ondelete="CASCADE"), nullable=False
+    )
+    months: Mapped[int] = mapped_column(Integer, nullable=False)
+    status: Mapped[str] = mapped_column(
+        String(20), nullable=False, default="pending"
+    )  # pending | running | done | failed
+    progress_message: Mapped[str | None] = mapped_column(Text, nullable=True)
+    error: Mapped[str | None] = mapped_column(Text, nullable=True)
+    result: Mapped[dict[str, Any] | None] = mapped_column(JSON, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime, nullable=False, server_default=func.now()
+    )
+    finished_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+
+    campaign: Mapped[Campaign] = relationship(back_populates="turn_jobs")
 
 
 class ScheduledEventFire(Base):

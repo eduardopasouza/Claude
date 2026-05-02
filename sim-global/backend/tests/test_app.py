@@ -85,8 +85,43 @@ def test_index_renders_html_with_polity_panel(client):
     body = resp.text
     assert "sim-global" in body
     assert "Brasil" in body
-    assert "Polity selecionada" in body
-    assert ("Action Box" in body) or ("Nova ação" in body)
+    assert "Polity" in body
+    assert ("Nova ação" in body) or ("Avançar tempo" in body)
+    assert "advisorThread" in body  # campaign() recebe agentReady arg
+
+
+def test_advisor_history_endpoint_empty_by_default(client):
+    r = client.get("/api/campaigns/brasil-vargas-1930/advisor/history")
+    assert r.status_code == 200
+    assert r.json() == []
+
+
+def test_events_history_endpoint(client):
+    r = client.get("/api/campaigns/brasil-vargas-1930/events")
+    assert r.status_code == 200
+    assert isinstance(r.json(), list)
+
+
+def test_dm_history_endpoint_empty_by_default(client):
+    r = client.get(
+        "/api/campaigns/brasil-vargas-1930/dm/Argentina/history"
+    )
+    assert r.status_code == 200
+    assert r.json() == []
+
+
+def test_turn_submit_returns_503_when_agent_not_ready(client):
+    r = client.post(
+        "/api/campaigns/brasil-vargas-1930/turn", json={"months": 6}
+    )
+    assert r.status_code == 503
+
+
+def test_turn_status_404_for_unknown_job(client):
+    r = client.get(
+        "/api/campaigns/brasil-vargas-1930/turn/inexistente"
+    )
+    assert r.status_code == 404
 
 
 def test_turn_endpoint_returns_503_when_agent_not_ready(client):

@@ -603,3 +603,87 @@ def get_campaign_lore(session: Session, campaign_name: str) -> str | None:
     """Retorna o lore_md armazenado na campanha (None se vazio)."""
     campaign = _get_campaign(session, campaign_name)
     return campaign.lore_md
+
+
+# ---------- advisor messages ----------
+
+
+def append_advisor_message(
+    session: Session,
+    campaign_name: str,
+    in_game_date: date,
+    question: str,
+    answer: str,
+) -> m.AdvisorMessage:
+    campaign = _get_campaign(session, campaign_name)
+    msg = m.AdvisorMessage(
+        campaign_id=campaign.id,
+        in_game_date=in_game_date,
+        question=question,
+        answer=answer,
+    )
+    session.add(msg)
+    session.flush()
+    return msg
+
+
+def list_advisor_messages(
+    session: Session, campaign_name: str
+) -> list[m.AdvisorMessage]:
+    campaign = _get_campaign(session, campaign_name)
+    stmt = (
+        select(m.AdvisorMessage)
+        .where(m.AdvisorMessage.campaign_id == campaign.id)
+        .order_by(m.AdvisorMessage.created_at)
+    )
+    return list(session.execute(stmt).scalars())
+
+
+# ---------- turn jobs ----------
+
+
+def create_turn_job(
+    session: Session, campaign_name: str, job_id: str, months: int
+) -> m.TurnJob:
+    campaign = _get_campaign(session, campaign_name)
+    job = m.TurnJob(
+        id=job_id,
+        campaign_id=campaign.id,
+        months=months,
+        status="pending",
+    )
+    session.add(job)
+    session.flush()
+    return job
+
+
+def get_turn_job(session: Session, job_id: str) -> m.TurnJob | None:
+    return session.get(m.TurnJob, job_id)
+
+
+def update_turn_job(
+    session: Session,
+    job_id: str,
+    *,
+    status: str | None = None,
+    progress_message: str | None = None,
+    error: str | None = None,
+    result: dict | None = None,
+    finished: bool = False,
+) -> None:
+    from datetime import datetime as _dt
+
+    job = session.get(m.TurnJob, job_id)
+    if job is None:
+        return
+    if status is not None:
+        job.status = status
+    if progress_message is not None:
+        job.progress_message = progress_message
+    if error is not None:
+        job.error = error
+    if result is not None:
+        job.result = result
+    if finished:
+        job.finished_at = _dt.utcnow()
+    session.flush()

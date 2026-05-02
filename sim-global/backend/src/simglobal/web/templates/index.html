@@ -11,7 +11,6 @@
   <link rel="icon" type="image/svg+xml" href="/static/img/icon.svg" />
   <link rel="apple-touch-icon" href="/static/img/icon.svg" />
   <title>sim-global · {{ active or "sem campanha" }}</title>
-  <script src="https://unpkg.com/htmx.org@2.0.4"></script>
   <script defer src="https://unpkg.com/alpinejs@3.14.8/dist/cdn.min.js"></script>
   <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
   <link rel="stylesheet" href="/static/css/main.css" />
@@ -19,428 +18,328 @@
 <body class="font-serif antialiased min-h-screen">
   <div
     x-data='campaign({{ state.model_dump_json()|safe if state else "null" }}, {{ examples|tojson }}, {{ active|tojson if active else "null" }}, {{ "true" if agent_ready else "false" }})'
-    class="flex flex-col min-h-screen md:grid md:grid-cols-12 md:grid-rows-[auto_1fr_auto] md:gap-2 md:p-2 pb-[calc(env(safe-area-inset-bottom)+8rem)] md:pb-2"
+    class="flex flex-col min-h-screen pb-[calc(env(safe-area-inset-bottom)+10rem)]"
   >
-    <!-- Onboarding modal (primeira visita) -->
-    <div
-      x-show="showWelcome"
-      x-cloak
-      x-transition.opacity
-      @click.self="dismissWelcome()"
-      class="fixed inset-0 bg-stone-950/80 backdrop-blur z-40 flex items-center justify-center p-4"
-    >
-      <div class="bg-stone-900 border border-amber-700 rounded-lg max-w-lg max-h-[90vh] overflow-y-auto p-5 text-sm" @click.stop>
-        <h2 class="text-xl font-bold text-amber-300 mb-2">Bem-vindo ao sim-global</h2>
-        <p class="text-stone-300 mb-3">
-          Simulador histórico-estratégico turn-based. Você comanda uma nação
-          em um período histórico real. Cada turno avança o tempo do jogo;
-          eventos pré-programados e suas ações moldam o futuro.
-        </p>
-        <p class="text-stone-300 mb-3">
-          <strong class="text-amber-300">Cenário ativo:</strong>
-          <span x-text="activeName"></span> — você é o
-          <span x-text="state?.player_polity"></span> em
-          <span x-text="state?.current_date"></span>.
-        </p>
-        <h3 class="text-base font-bold text-amber-300 mt-3 mb-1">Como jogar</h3>
-        <ol class="list-decimal list-inside text-stone-300 space-y-1 mb-3">
-          <li>Toque em uma região do <strong>Mapa</strong> para inspecioná-la.</li>
-          <li>Veja atributos da sua nação na aba <strong>Polity</strong>.</li>
-          <li>Use <strong>+ ação</strong> (rodapé) para enfileirar decisões em prosa.</li>
-          <li>Conduza diplomacia em <strong>Diplo</strong> com outras nações.</li>
-          <li>Pergunte estratégia ao <strong>Advisor</strong>.</li>
-          <li>Aperte <strong>▶ avançar 6 meses</strong> para o motor processar.</li>
-        </ol>
-        <div x-show="!agentReady" class="bg-amber-900/30 border-l-4 border-amber-500 p-3 mb-3 text-amber-100">
-          <strong class="block">⚠ Modo leitura — IA narrativa indisponível</strong>
-          Este servidor (Vercel free) não roda o Claude Agent SDK. Você pode
-          navegar mapa, painéis e ler o cenário, mas
-          <strong>avançar tempo</strong>, <strong>advisor</strong> e
-          <strong>diplomacia</strong> não funcionam aqui.
-          Para ativar: rode o app com Fly.io ou Docker (instruções no
-          <a class="underline" target="_blank" href="https://github.com/eduardopasouza/Claude/blob/claude/brasil-sim-mvp-5ubSa/sim-global/README.md">README</a>).
+    <!-- Banner modo leitura -->
+    <div x-show="!agentReady" x-cloak class="bg-amber-900/40 border-b border-amber-700 text-amber-100 text-xs px-3 py-1.5 flex items-center justify-between gap-2">
+      <span>⚠ Modo leitura — IA narrativa indisponível</span>
+      <button @click="showWelcome = true" class="underline shrink-0">explicação</button>
+    </div>
+
+    <!-- Header sticky -->
+    <header class="sticky top-0 z-20 bg-stone-950/95 backdrop-blur border-b border-stone-800 px-3 py-2 flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2 min-w-0">
+        <img :src="flagFor(state?.player_polity)" alt="" class="w-9 h-6 object-cover border border-stone-700 rounded shrink-0" x-show="flagFor(state?.player_polity)" />
+        <div class="min-w-0">
+          <div class="text-base font-bold text-amber-300 truncate" x-text="state?.player_polity ?? 'sim-global'"></div>
+          <div class="text-[10px] text-stone-400 truncate" x-text="state?.current_date ?? ''"></div>
         </div>
-        <button @click="dismissWelcome()" class="w-full bg-amber-600 hover:bg-amber-500 text-stone-950 font-bold py-2 rounded">
-          Entendi, começar
-        </button>
       </div>
-    </div>
-
-    <!-- Modal de erro genérico -->
-    <div
-      x-show="errorModal.open"
-      x-cloak
-      x-transition.opacity
-      @click.self="errorModal.open = false"
-      class="fixed inset-0 bg-stone-950/80 z-40 flex items-center justify-center p-4"
-    >
-      <div class="bg-stone-900 border border-rose-700 rounded-lg max-w-md p-4 text-sm" @click.stop>
-        <h2 class="text-base font-bold text-rose-300 mb-2" x-text="errorModal.title"></h2>
-        <p class="text-stone-200 whitespace-pre-wrap mb-3" x-text="errorModal.body"></p>
-        <button @click="errorModal.open = false" class="w-full bg-stone-700 hover:bg-stone-600 py-2 rounded">
-          Fechar
-        </button>
-      </div>
-    </div>
-
-    <!-- Banner modo leitura (sempre visível quando agent ausente) -->
-    <div
-      x-show="!agentReady"
-      x-cloak
-      class="md:col-span-12 bg-amber-900/40 border border-amber-700 text-amber-100 text-xs px-3 py-1.5 flex items-center justify-between gap-2"
-    >
-      <span>⚠ Modo leitura — IA narrativa indisponível neste servidor.</span>
-      <button @click="showWelcome = true" class="underline shrink-0">o que é isso?</button>
-    </div>
-
-    <!-- header -->
-    <header class="md:col-span-12 sticky top-0 z-20 bg-stone-950/95 backdrop-blur border-b border-stone-800 px-3 py-2 flex items-center justify-between gap-2">
-      <div class="flex flex-col leading-tight min-w-0">
-        <h1 class="text-lg font-bold text-amber-300 truncate">sim-global</h1>
-        <span class="text-[10px] text-stone-400 truncate" x-text="state ? `${state.current_date} · ${state.player_polity}` : 'sem dados'"></span>
-      </div>
-      <select
-        x-model="activeName"
-        @change="loadCampaign(activeName)"
-        class="bg-stone-900 border border-stone-700 rounded px-2 py-1 text-xs max-w-[40vw] md:max-w-none"
-      >
-        <template x-for="name in examples" :key="name">
-          <option :value="name" x-text="name"></option>
-        </template>
-      </select>
-      <span class="hidden md:inline text-xs text-stone-500" x-text="`v{{ version }} · {{ model }}`"></span>
+      <button @click="showWelcome = true" class="text-stone-400 hover:text-amber-300 px-2 py-1 text-lg" title="ajuda">ⓘ</button>
     </header>
 
-    <!-- LEFT (desktop) / Polity tab (mobile) -->
-    <aside
-      x-show="tab === 'polity'"
-      x-transition.opacity
-      class="md:col-span-3 md:row-start-2 md:!block md:opacity-100 bg-stone-900 border border-stone-800 md:rounded p-3 overflow-y-auto"
-    >
-      <h2 class="text-base font-bold text-amber-300 mb-2">Polity selecionada</h2>
-      <template x-if="selectedPolity">
-        <div>
-          <div class="flex items-center gap-2">
-            <img :src="flagFor(selectedPolity.name)" alt="bandeira" class="w-10 h-7 object-cover border border-stone-700" x-show="flagFor(selectedPolity.name)" />
-            <h3 class="text-lg font-bold" x-text="selectedPolity.name"></h3>
-          </div>
-          <p class="text-xs text-stone-400" x-text="selectedPolity.government_type"></p>
-          <p class="text-sm">Líder: <span class="text-amber-200" x-text="selectedPolity.leader"></span></p>
-          <p class="text-sm">Capital: <span x-text="selectedPolity.capital_region"></span></p>
-
-          <h4 class="mt-3 font-bold text-amber-300 text-sm">Atributos</h4>
-          <div class="grid grid-cols-2 gap-x-2 text-sm">
-            <span>Estabilidade</span><span x-text="selectedPolity.attributes?.stability ?? '—'"></span>
-            <span>Apoio à guerra</span><span x-text="selectedPolity.attributes?.war_support ?? '—'"></span>
-            <span>Tesouro</span><span x-text="selectedPolity.attributes?.treasury ?? '—'"></span>
-            <span>Manpower</span><span x-text="selectedPolity.attributes?.manpower ?? '—'"></span>
-            <span>Poder político</span><span x-text="selectedPolity.attributes?.political_power ?? '—'"></span>
-          </div>
-
-          <h4 class="mt-3 font-bold text-amber-300 text-sm">
-            Regiões (<span x-text="selectedPolity.owned_regions.length"></span>)
-          </h4>
-          <ul class="text-xs list-disc list-inside text-stone-300">
-            <template x-for="r in selectedPolity.owned_regions" :key="r">
-              <li x-text="r"></li>
-            </template>
-          </ul>
-
-          <h4 class="mt-3 font-bold text-amber-300 text-sm">
-            Doutrinas (<span x-text="selectedPolity.doctrines.length"></span>)
-          </h4>
-          <ul class="text-xs list-disc list-inside text-stone-300">
-            <template x-for="d in selectedPolity.doctrines" :key="d">
-              <li x-text="d"></li>
-            </template>
-          </ul>
-
-          <h4 class="mt-3 font-bold text-rose-300 text-sm">
-            Tensões (<span x-text="selectedPolity.internal_tensions.length"></span>)
-          </h4>
-          <ul class="text-xs list-disc list-inside text-rose-200">
-            <template x-for="t in selectedPolity.internal_tensions" :key="t">
-              <li x-text="t"></li>
-            </template>
-          </ul>
-
-          <h4 class="mt-3 font-bold text-amber-300 text-sm">
-            Batalhões (<span x-text="selectedPolity.military_units.length"></span>)
-          </h4>
-          <ul class="text-[11px] list-none text-stone-300 space-y-1">
-            <template x-for="u in selectedPolity.military_units" :key="u.name">
-              <li class="border-l-2 border-stone-700 pl-2">
-                <span class="font-bold" x-text="u.name"></span>
-                · <span x-text="u.type"></span>
-                · força <span x-text="u.strength"></span>
-                · <span class="text-stone-400" x-text="u.location_region"></span>
-              </li>
-            </template>
-          </ul>
-        </div>
-      </template>
-      <p x-show="!selectedPolity" class="text-stone-500 italic text-sm">
-        Toque em uma região no mapa.
-      </p>
-    </aside>
-
-    <!-- CENTER (desktop) / Map tab (mobile) -->
-    <main
-      x-show="tab === 'mapa'"
-      x-transition.opacity
-      class="md:col-span-6 md:row-start-2 md:!flex md:!opacity-100 flex flex-col gap-2"
-    >
-      <div class="flex-1 bg-stone-900 border border-stone-800 md:rounded p-3 overflow-auto min-h-[60vh]">
-        <div class="flex items-center justify-between mb-2">
-          <h2 class="text-base font-bold text-amber-300">Mapa-mundi</h2>
-          <span class="text-[10px] text-stone-500 hidden md:inline" x-text="state ? `${Object.keys(state.regions).length} regiões` : ''"></span>
-        </div>
-        <p class="text-[10px] text-stone-500 mb-2 italic">
-          Natural Earth Data 1:110m (CC0). Países do cenário coloridos por dono.
-          Subdivisões internas do Brasil ficam no painel à direita.
-        </p>
-        <div id="world-map" class="bg-stone-950 rounded border border-stone-800 p-2"></div>
-        <details class="mt-2 text-xs">
-          <summary class="cursor-pointer text-stone-400">Polities no jogo</summary>
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1 mt-2">
-            <template x-for="polity in polityList" :key="polity.name">
-              <button
-                @click="selectByPolityName(polity.name); tab = 'polity'"
-                type="button"
-                class="flex items-center gap-2 p-1 rounded border hover:brightness-125 transition text-left"
-                :class="selectedPolity?.name === polity.name ? 'border-amber-300' : 'border-stone-700'"
-                :style="`background:${colorFor(polity.name)}`"
-              >
-                <img :src="flagFor(polity.name)" alt="" class="w-5 h-3 object-cover" x-show="flagFor(polity.name)" />
-                <span class="text-xs truncate" x-text="polity.name"></span>
-              </button>
-            </template>
-          </div>
-        </details>
-        <details class="mt-2 text-xs" open>
-          <summary class="cursor-pointer text-stone-400">
-            Regiões internas (<span x-text="internalRegionList.length"></span>)
-          </summary>
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-1 mt-2">
-            <template x-for="region in internalRegionList" :key="region.name">
-              <button
-                @click="selectByRegion(region); tab = 'polity'"
-                type="button"
-                class="text-left p-2 rounded border-2 hover:brightness-125 transition min-h-[60px]"
-                :class="selectedPolity?.name === region.owner ? 'border-amber-300' : 'border-stone-700'"
-                :style="`background:${colorFor(region.owner)}`"
-                :title="region.economic_profile"
-              >
-                <div class="text-xs font-bold leading-tight" x-text="region.name"></div>
-                <div class="text-[10px] opacity-70">~<span x-text="region.population_estimate_thousands"></span>k</div>
-              </button>
-            </template>
-          </div>
-        </details>
+    <!-- ===================== ABA: MAPA ===================== -->
+    <section x-show="tab === 'mapa'" x-transition.opacity x-cloak class="flex-1 p-3 space-y-3">
+      <div class="bg-stone-900 border border-stone-800 rounded-lg overflow-hidden">
+        <div id="world-map" class="bg-stone-950"></div>
       </div>
-    </main>
 
-    <!-- RIGHT (desktop) / Events tab (mobile) -->
-    <section
-      x-show="tab === 'eventos'"
-      x-transition.opacity
-      class="md:col-span-3 md:row-start-2 md:!flex md:!opacity-100 flex flex-col gap-2"
-    >
-      <div class="flex-1 bg-stone-900 border border-stone-800 md:rounded p-3 overflow-y-auto min-h-[60vh] md:min-h-0">
-        <h2 class="text-base font-bold text-amber-300">Eventos</h2>
-        <p class="text-[10px] text-stone-500 mb-2">Eventos virão aqui quando turnos rodarem.</p>
-        <ul class="space-y-2 text-xs">
-          <template x-for="(e, i) in eventsFeed" :key="i">
-            <li class="border-l-2 pl-2" :class="severityBorder(e.severity)">
-              <div class="font-bold text-amber-200">
-                <span x-text="e.date"></span>
-                <span class="text-[10px] uppercase ml-1 text-stone-500" x-text="e.severity"></span>
-              </div>
-              <div x-text="e.description"></div>
-            </li>
+      <!-- Avançar tempo -->
+      <div class="bg-stone-900 border border-stone-800 rounded-lg p-3 space-y-2">
+        <div class="flex items-center justify-between">
+          <h2 class="text-sm font-bold text-amber-300">▶ Avançar tempo</h2>
+          <span class="text-[11px] text-stone-500" x-text="agentReady ? 'IA pronta' : 'modo leitura'"></span>
+        </div>
+        <div class="flex items-center gap-2">
+          <input type="range" min="1" max="60" step="1" x-model="turnMonths" class="flex-1" :disabled="turnPending" />
+          <input type="number" min="1" max="120" x-model.number="turnMonths" class="w-16 bg-stone-800 border border-stone-700 rounded px-2 py-1 text-sm" :disabled="turnPending" />
+          <span class="text-xs text-stone-400">meses</span>
+        </div>
+        <button @click="advanceTime()" :disabled="turnPending || !state" class="w-full bg-amber-600 hover:bg-amber-500 disabled:bg-stone-700 disabled:text-stone-400 text-stone-950 font-bold py-3 rounded text-sm">
+          <span x-show="!turnPending">▶ avançar <span x-text="turnMonths"></span> meses</span>
+          <span x-show="turnPending" x-text="turnProgress || 'processando…'"></span>
+        </button>
+        <div x-show="turnLastNarrative" class="text-xs text-stone-300 border-l-2 border-amber-700 pl-2 max-h-24 overflow-y-auto">
+          <span x-text="turnLastNarrative"></span>
+        </div>
+      </div>
+
+      <!-- Acessos rápidos -->
+      <div class="grid grid-cols-2 gap-2">
+        <button @click="actionOpen = true; $nextTick(() => $refs.actionInput?.focus())" class="bg-stone-800 hover:bg-stone-700 border border-stone-700 rounded-lg p-3 text-left">
+          <div class="text-xs text-stone-400">+ ação</div>
+          <div class="text-sm font-bold">Enfileirar</div>
+          <div class="text-[10px] text-stone-500"><span x-text="pendingActions.length"></span> pendentes</div>
+        </button>
+        <button @click="setTab('advisor')" class="bg-stone-800 hover:bg-stone-700 border border-stone-700 rounded-lg p-3 text-left">
+          <div class="text-xs text-stone-400">💬 conselho</div>
+          <div class="text-sm font-bold">Advisor</div>
+          <div class="text-[10px] text-stone-500"><span x-text="advisorThread.length"></span> mensagens</div>
+        </button>
+      </div>
+
+      <details class="bg-stone-900 border border-stone-800 rounded-lg p-3">
+        <summary class="cursor-pointer text-sm text-amber-300 font-bold">Polities no jogo (<span x-text="polityList.length"></span>)</summary>
+        <div class="grid grid-cols-2 gap-1 mt-2">
+          <template x-for="polity in polityList" :key="polity.name">
+            <button @click="selectByPolityName(polity.name); setTab('polity')" type="button" class="flex items-center gap-2 p-2 rounded border-2 hover:brightness-125" :class="selectedPolity?.name === polity.name ? 'border-amber-300' : 'border-stone-700'" :style="`background:${colorFor(polity.name)}`">
+              <img :src="flagFor(polity.name)" alt="" class="w-6 h-4 object-cover" x-show="flagFor(polity.name)" />
+              <span class="text-xs truncate" x-text="polity.name"></span>
+            </button>
           </template>
-        </ul>
-        <p x-show="!eventsFeed.length" class="text-stone-500 italic text-xs">
-          Sem eventos ainda. Avance o tempo para gerar.
-        </p>
-      </div>
+        </div>
+      </details>
+
+      <details class="bg-stone-900 border border-stone-800 rounded-lg p-3" open>
+        <summary class="cursor-pointer text-sm text-amber-300 font-bold">Regiões internas (<span x-text="internalRegionList.length"></span>)</summary>
+        <div class="grid grid-cols-2 gap-1 mt-2">
+          <template x-for="region in internalRegionList" :key="region.name">
+            <button @click="selectByRegion(region); setTab('polity')" type="button" class="text-left p-2 rounded border-2 hover:brightness-125 min-h-[60px]" :class="selectedPolity?.name === region.owner ? 'border-amber-300' : 'border-stone-700'" :style="`background:${colorFor(region.owner)}`" :title="region.economic_profile">
+              <div class="text-xs font-bold leading-tight" x-text="region.name"></div>
+              <div class="text-[10px] opacity-70">~<span x-text="region.population_estimate_thousands"></span>k</div>
+            </button>
+          </template>
+        </div>
+      </details>
     </section>
 
-    <!-- Diplomacy tab (mobile + desktop em md hidden) -->
-    <section
-      x-show="tab === 'diplo'"
-      x-transition.opacity
-      class="md:hidden flex-1 bg-stone-900 border border-stone-800 p-3 overflow-y-auto min-h-[60vh]"
-      x-data="{counterparty:'', message:'', lastReply: null}"
-    >
-      <h2 class="text-base font-bold text-amber-300 mb-1">Diplomacia</h2>
-      <p class="text-xs text-stone-400 mb-2">
-        Envie mensagem oficial para outra nação. A resposta vem encarnada
-        pelo chanceler dela, com voz histórica do período.
-      </p>
-      <div x-show="!agentReady" class="bg-amber-900/30 border-l-4 border-amber-500 p-2 mb-2 text-amber-100 text-xs">
-        Disponível só com IA configurada. Veja modo leitura no banner.
+    <!-- ===================== ABA: POLITY ===================== -->
+    <section x-show="tab === 'polity'" x-transition.opacity x-cloak class="flex-1 p-3">
+      <div class="flex items-center justify-between mb-3">
+        <button @click="setTab('mapa')" class="text-stone-400 hover:text-amber-300 text-sm flex items-center gap-1">‹ mapa</button>
+        <h1 class="text-lg font-bold text-amber-300">Polity</h1>
+        <span class="w-12"></span>
       </div>
-      <form
-        @submit.prevent="if(!agentReady){openAgentNotice('Diplomacia'); return} lastReply = await sendDiplomatic(counterparty, message); if (lastReply) message = ''"
-        class="space-y-2"
-      >
-        <select x-model="counterparty" class="w-full bg-stone-800 border border-stone-700 rounded px-2 py-2 text-sm" required>
-          <option value="">— escolha a nação —</option>
-          <template x-for="p in polityList.filter(p => p.name !== state?.player_polity)" :key="p.name">
-            <option :value="p.name" x-text="p.name"></option>
-          </template>
-        </select>
-        <textarea x-model="message" rows="3" class="w-full bg-stone-800 border border-stone-700 rounded p-2 text-sm" placeholder="Ex.: 'Proponho um pacto de não-agressão de 10 anos, em troca de comércio preferencial de café e produtos manufaturados.'" required></textarea>
-        <button type="submit" class="w-full bg-amber-600 hover:bg-amber-500 disabled:bg-stone-700 disabled:text-stone-400 text-stone-950 font-bold py-2 rounded text-sm" :disabled="diplomaticPending || !counterparty || !message.trim()">
-          <span x-show="!diplomaticPending">enviar</span>
-          <span x-show="diplomaticPending">enviando…</span>
-        </button>
-      </form>
-      <div x-show="lastReply" class="mt-3 border-l-2 border-amber-700 pl-2 text-sm">
-        <div class="text-xs text-stone-400">resposta de <span x-text="lastReply?.counterparty"></span>:</div>
-        <p class="whitespace-pre-wrap" x-text="lastReply?.message_out"></p>
-      </div>
-      <h3 class="mt-4 text-sm font-bold text-amber-300">Relações vigentes</h3>
-      <ul class="space-y-1 text-xs mt-1">
-        <template x-for="key in Object.keys(state?.diplomatic_relations ?? {})" :key="key">
-          <li class="border-l-2 border-stone-700 pl-2">
-            <span class="font-bold text-amber-200" x-text="key"></span>
-            <span class="text-stone-400" x-text="' — ' + state.diplomatic_relations[key].status"></span>
+      <template x-if="selectedPolity">
+        <div class="space-y-3">
+          <div class="bg-stone-900 border border-stone-800 rounded-lg p-3 flex items-center gap-3">
+            <img :src="flagFor(selectedPolity.name)" alt="" class="w-14 h-10 object-cover border border-stone-700 rounded" x-show="flagFor(selectedPolity.name)" />
+            <div class="min-w-0">
+              <h2 class="text-xl font-bold leading-tight" x-text="selectedPolity.name"></h2>
+              <p class="text-xs text-stone-400" x-text="selectedPolity.government_type"></p>
+              <p class="text-sm">Líder: <span class="text-amber-200" x-text="selectedPolity.leader"></span></p>
+            </div>
+          </div>
+
+          <div class="bg-stone-900 border border-stone-800 rounded-lg p-3">
+            <h3 class="text-sm font-bold text-amber-300 mb-2">Atributos</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="bg-stone-800 rounded p-2"><div class="text-[10px] text-stone-400">Estabilidade</div><div class="text-lg font-bold" x-text="selectedPolity.attributes?.stability ?? '—'"></div></div>
+              <div class="bg-stone-800 rounded p-2"><div class="text-[10px] text-stone-400">Apoio à guerra</div><div class="text-lg font-bold" x-text="selectedPolity.attributes?.war_support ?? '—'"></div></div>
+              <div class="bg-stone-800 rounded p-2"><div class="text-[10px] text-stone-400">Tesouro</div><div class="text-lg font-bold" x-text="selectedPolity.attributes?.treasury ?? '—'"></div></div>
+              <div class="bg-stone-800 rounded p-2"><div class="text-[10px] text-stone-400">Manpower</div><div class="text-lg font-bold" x-text="selectedPolity.attributes?.manpower ?? '—'"></div></div>
+            </div>
+          </div>
+
+          <div class="bg-stone-900 border border-stone-800 rounded-lg p-3">
+            <h3 class="text-sm font-bold text-amber-300">Doutrinas (<span x-text="selectedPolity.doctrines.length"></span>)</h3>
+            <ul class="text-sm list-disc list-inside text-stone-300 mt-1">
+              <template x-for="d in selectedPolity.doctrines" :key="d"><li x-text="d"></li></template>
+            </ul>
+          </div>
+
+          <div class="bg-stone-900 border border-rose-900 rounded-lg p-3">
+            <h3 class="text-sm font-bold text-rose-300">Tensões (<span x-text="selectedPolity.internal_tensions.length"></span>)</h3>
+            <ul class="text-sm list-disc list-inside text-rose-200 mt-1">
+              <template x-for="t in selectedPolity.internal_tensions" :key="t"><li x-text="t"></li></template>
+            </ul>
+          </div>
+
+          <div class="bg-stone-900 border border-stone-800 rounded-lg p-3">
+            <h3 class="text-sm font-bold text-amber-300">Regiões (<span x-text="selectedPolity.owned_regions.length"></span>)</h3>
+            <div class="text-xs text-stone-300 mt-1" x-text="selectedPolity.owned_regions.join(' · ')"></div>
+          </div>
+
+          <div class="bg-stone-900 border border-stone-800 rounded-lg p-3">
+            <h3 class="text-sm font-bold text-amber-300">Batalhões (<span x-text="selectedPolity.military_units.length"></span>)</h3>
+            <ul class="text-xs space-y-1 mt-1">
+              <template x-for="u in selectedPolity.military_units" :key="u.name">
+                <li class="border-l-2 border-stone-700 pl-2">
+                  <span class="font-bold" x-text="u.name"></span> · <span x-text="u.type"></span> · força <span x-text="u.strength"></span> · <span class="text-stone-400" x-text="u.location_region"></span>
+                </li>
+              </template>
+            </ul>
+          </div>
+
+          <button x-show="selectedPolity.name !== state?.player_polity" @click="selectDiplomatic(selectedPolity.name); setTab('diplo')" class="w-full bg-amber-700 hover:bg-amber-600 text-white font-bold py-3 rounded">
+            🤝 Abrir canal diplomático com <span x-text="selectedPolity.name"></span>
+          </button>
+        </div>
+      </template>
+    </section>
+
+    <!-- ===================== ABA: EVENTOS ===================== -->
+    <section x-show="tab === 'eventos'" x-transition.opacity x-cloak class="flex-1 p-3">
+      <h1 class="text-lg font-bold text-amber-300 mb-2">Eventos</h1>
+      <p class="text-xs text-stone-400 mb-3">Cronologia de tudo que aconteceu (mais recente primeiro). Persistido entre sessões.</p>
+      <ul class="space-y-2 text-sm">
+        <template x-for="(e, i) in eventsFeed" :key="i">
+          <li class="bg-stone-900 border-l-4 pl-3 py-2 rounded-r" :class="severityBorder(e.severity)">
+            <div class="flex justify-between items-baseline gap-2">
+              <span class="font-bold text-amber-200" x-text="e.date"></span>
+              <span class="text-[10px] uppercase text-stone-500" x-text="e.severity || 'moderate'"></span>
+            </div>
+            <div x-text="e.description"></div>
+            <div class="text-[10px] text-stone-500 mt-1" x-show="e.affected_polities?.length">
+              <span x-text="(e.affected_polities || []).join(', ')"></span>
+            </div>
           </li>
         </template>
       </ul>
+      <p x-show="!eventsFeed.length" class="text-stone-500 italic text-sm">Sem eventos ainda. Avance o tempo no Mapa para gerar.</p>
     </section>
 
-    <!-- Advisor tab -->
-    <section
-      x-show="tab === 'advisor'"
-      x-transition.opacity
-      class="md:hidden flex-1 bg-stone-900 border border-stone-800 p-3 overflow-y-auto min-h-[60vh]"
-      x-data="{question: ''}"
-    >
-      <h2 class="text-base font-bold text-amber-300 mb-1">Advisor</h2>
-      <p class="text-xs text-stone-400 mb-2">
-        Conselheiro estratégico no papel de ministro de gabinete. Faz
-        análise da situação. Não muda o estado do jogo.
-      </p>
-      <div x-show="!agentReady" class="bg-amber-900/30 border-l-4 border-amber-500 p-2 mb-2 text-amber-100 text-xs">
-        Disponível só com IA configurada. Veja modo leitura no banner.
+    <!-- ===================== ABA: DIPLOMACIA ===================== -->
+    <section x-show="tab === 'diplo'" x-transition.opacity x-cloak class="flex-1 p-3">
+      <!-- Lista de polities -->
+      <template x-if="!diplomaticPolity">
+        <div>
+          <h1 class="text-lg font-bold text-amber-300 mb-2">Diplomacia</h1>
+          <p class="text-xs text-stone-400 mb-3">Selecione uma nação para abrir o canal bilateral.</p>
+          <div class="space-y-2">
+            <template x-for="p in foreignPolityList" :key="p.name">
+              <button @click="selectDiplomatic(p.name)" class="w-full bg-stone-900 border border-stone-800 hover:border-amber-700 rounded-lg p-3 flex items-center gap-3 text-left">
+                <img :src="flagFor(p.name)" alt="" class="w-10 h-7 object-cover border border-stone-700 rounded shrink-0" x-show="flagFor(p.name)" />
+                <div class="min-w-0 flex-1">
+                  <div class="font-bold" x-text="p.name"></div>
+                  <div class="text-[10px] text-stone-400 truncate" x-text="p.leader + ' · ' + p.government_type"></div>
+                </div>
+                <span class="text-stone-600">›</span>
+              </button>
+            </template>
+          </div>
+        </div>
+      </template>
+
+      <!-- Thread bilateral -->
+      <template x-if="diplomaticPolity">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <button @click="backFromDiplomatic()" class="text-stone-400 hover:text-amber-300 text-sm">‹ voltar</button>
+            <div class="flex items-center gap-2">
+              <img :src="flagFor(diplomaticPolity)" alt="" class="w-7 h-5 object-cover border border-stone-700" x-show="flagFor(diplomaticPolity)" />
+              <h1 class="text-lg font-bold text-amber-300" x-text="diplomaticPolity"></h1>
+            </div>
+            <span class="w-12"></span>
+          </div>
+          <div class="space-y-3 mb-4 max-h-[55vh] overflow-y-auto">
+            <template x-for="(entry, i) in diplomaticThreads[diplomaticPolity] || []" :key="i">
+              <div class="space-y-1">
+                <div class="text-[10px] text-stone-500" x-text="entry.date"></div>
+                <div class="bg-amber-900/30 border-l-2 border-amber-700 pl-2 py-1 text-sm">
+                  <div class="text-[10px] text-amber-200 font-bold">Brasil →</div>
+                  <div x-text="entry.message_in"></div>
+                </div>
+                <div class="bg-stone-800 border-l-2 border-stone-600 pl-2 py-1 text-sm">
+                  <div class="text-[10px] text-stone-300 font-bold"><span x-text="diplomaticPolity"></span> →</div>
+                  <div class="whitespace-pre-wrap" x-text="entry.message_out"></div>
+                </div>
+              </div>
+            </template>
+            <p x-show="!(diplomaticThreads[diplomaticPolity] || []).length" class="text-stone-500 italic text-xs">Nenhuma mensagem ainda. Envie a primeira abaixo.</p>
+          </div>
+          <form @submit.prevent="sendDiplomatic()" class="space-y-2">
+            <textarea x-model="diplomaticDraft" rows="3" required class="w-full bg-stone-800 border border-stone-700 rounded p-2 text-sm" placeholder="Mensagem oficial à chancelaria…"></textarea>
+            <button type="submit" :disabled="diplomaticPending || !diplomaticDraft.trim()" class="w-full bg-amber-600 hover:bg-amber-500 disabled:bg-stone-700 disabled:text-stone-400 text-stone-950 font-bold py-3 rounded">
+              <span x-show="!diplomaticPending">enviar</span><span x-show="diplomaticPending">enviando…</span>
+            </button>
+          </form>
+        </div>
+      </template>
+    </section>
+
+    <!-- ===================== ABA: ADVISOR ===================== -->
+    <section x-show="tab === 'advisor'" x-transition.opacity x-cloak class="flex-1 p-3">
+      <h1 class="text-lg font-bold text-amber-300 mb-2">Conselheiro</h1>
+      <p class="text-xs text-stone-400 mb-3">Análise estratégica, voz de gabinete. Histórico persistente entre sessões.</p>
+      <div class="space-y-3 mb-4 max-h-[60vh] overflow-y-auto">
+        <template x-for="m in advisorThread" :key="m.id">
+          <div class="space-y-1">
+            <div class="text-[10px] text-stone-500" x-text="m.in_game_date"></div>
+            <div class="bg-amber-900/20 border-l-2 border-amber-700 pl-2 py-1 text-sm">
+              <div class="text-[10px] text-amber-200 font-bold">Você →</div>
+              <div x-text="m.question"></div>
+            </div>
+            <div class="bg-stone-800 border-l-2 border-stone-600 pl-2 py-1 text-sm">
+              <div class="text-[10px] text-stone-300 font-bold">Conselheiro →</div>
+              <div class="whitespace-pre-wrap" x-text="m.answer"></div>
+            </div>
+          </div>
+        </template>
+        <p x-show="!advisorThread.length" class="text-stone-500 italic text-xs">Pergunte algo abaixo. Pode ser análise, opinião, recomendação.</p>
       </div>
-      <form @submit.prevent="if(!agentReady){openAgentNotice('Advisor'); return} askAdvisor(question)" class="space-y-2">
-        <textarea x-model="question" rows="3" class="w-full bg-stone-800 border border-stone-700 rounded p-2 text-sm" placeholder="Ex.: 'A oposição paulista está crescendo. Vale fazer concessões agora ou consolidar poder federal?'" required></textarea>
-        <button type="submit" class="w-full bg-amber-600 hover:bg-amber-500 disabled:bg-stone-700 disabled:text-stone-400 text-stone-950 font-bold py-2 rounded text-sm" :disabled="advisorPending || !question.trim()">
-          <span x-show="!advisorPending">consultar</span>
-          <span x-show="advisorPending">consultando…</span>
+      <form @submit.prevent="askAdvisor()" class="space-y-2">
+        <textarea x-model="advisorDraft" rows="3" required class="w-full bg-stone-800 border border-stone-700 rounded p-2 text-sm" placeholder="Ex.: 'Vale fazer concessões aos paulistas agora ou consolidar poder federal?'"></textarea>
+        <button type="submit" :disabled="advisorPending || !advisorDraft.trim()" class="w-full bg-amber-600 hover:bg-amber-500 disabled:bg-stone-700 disabled:text-stone-400 text-stone-950 font-bold py-3 rounded">
+          <span x-show="!advisorPending">consultar</span><span x-show="advisorPending">consultando…</span>
         </button>
       </form>
-      <div x-show="advisorAnswer" class="mt-3 border-l-2 border-amber-700 pl-2">
-        <p class="whitespace-pre-wrap text-sm" x-text="advisorAnswer"></p>
-      </div>
     </section>
 
-    <!-- Action Box: bottom sheet no mobile, painel desktop -->
-    <div
-      x-show="actionOpen"
-      x-transition.opacity
-      @click.self="actionOpen = false"
-      class="fixed inset-0 bg-stone-950/70 z-30 flex items-end md:items-center justify-center md:hidden"
-    >
-      <div class="bg-stone-900 border-t md:border border-stone-700 w-full md:max-w-md md:rounded p-3" @click.stop>
+    <!-- ===================== ACTION MODAL ===================== -->
+    <div x-show="actionOpen" x-cloak x-transition.opacity @click.self="actionOpen = false" class="fixed inset-0 bg-stone-950/70 z-30 flex items-end md:items-center justify-center">
+      <div class="bg-stone-900 border-t border-amber-700 w-full md:max-w-md md:rounded p-4" @click.stop>
         <h3 class="text-base font-bold text-amber-300 mb-2">Nova ação</h3>
         <form @submit.prevent="submitAction(); actionOpen = false">
-          <textarea
-            x-model="actionDraft"
-            class="w-full bg-stone-800 border border-stone-700 rounded p-2 text-sm"
-            rows="3"
-            placeholder="Descreva uma ação em prosa: 'subsidiar produção de aço no Vale do Paraíba em 30%'"
-            x-ref="actionInput"
-          ></textarea>
+          <textarea x-model="actionDraft" x-ref="actionInput" rows="3" class="w-full bg-stone-800 border border-stone-700 rounded p-2 text-sm" placeholder="Ex.: 'subsidiar produção de aço no Vale do Paraíba em 30%'"></textarea>
           <div class="flex justify-end gap-2 mt-2">
             <button type="button" @click="actionOpen = false" class="px-3 py-2 text-sm text-stone-400">Cancelar</button>
-            <button type="submit" class="bg-amber-600 hover:bg-amber-500 text-stone-950 font-bold px-4 py-2 rounded text-sm" :disabled="!actionDraft.trim()">
-              Enfileirar
-            </button>
+            <button type="submit" :disabled="!actionDraft.trim()" class="bg-amber-600 hover:bg-amber-500 disabled:bg-stone-700 disabled:text-stone-400 text-stone-950 font-bold px-4 py-2 rounded text-sm">Enfileirar</button>
           </div>
         </form>
       </div>
     </div>
 
-    <!-- Action Box desktop sempre visível abaixo do mapa -->
-    <div class="hidden md:block md:col-span-6 md:col-start-4 md:row-start-3 bg-stone-900 border border-stone-800 rounded p-3">
-      <div class="flex items-center justify-between mb-2">
-        <h2 class="text-base font-bold text-amber-300">Action Box</h2>
-        <span class="text-xs text-stone-500"><span x-text="pendingActions.length"></span> pendentes</span>
-      </div>
-      <form @submit.prevent="submitAction">
-        <textarea
-          x-model="actionDraft"
-          class="w-full bg-stone-800 border border-stone-700 rounded p-2 text-sm"
-          rows="2"
-          placeholder="Descreva uma ação em prosa…"
-        ></textarea>
-        <div class="flex justify-end mt-2">
-          <button type="submit" class="bg-stone-700 hover:bg-stone-600 px-3 py-1 rounded text-sm" :disabled="!actionDraft.trim()">
-            ⏳ enfileirar
-          </button>
+    <!-- ===================== WELCOME MODAL ===================== -->
+    <div x-show="showWelcome" x-cloak x-transition.opacity @click.self="dismissWelcome()" class="fixed inset-0 bg-stone-950/80 backdrop-blur z-40 flex items-center justify-center p-4">
+      <div class="bg-stone-900 border border-amber-700 rounded-lg max-w-lg max-h-[90vh] overflow-y-auto p-5 text-sm" @click.stop>
+        <h2 class="text-xl font-bold text-amber-300 mb-2">Bem-vindo ao sim-global</h2>
+        <p class="text-stone-300 mb-3">Simulador histórico-estratégico turn-based. Você comanda <strong x-text="state?.player_polity"></strong> a partir de <strong x-text="state?.current_date"></strong>. Cada turno avança o tempo do jogo; eventos pré-programados e suas ações moldam o futuro.</p>
+        <h3 class="text-base font-bold text-amber-300 mt-3 mb-1">Como jogar</h3>
+        <ol class="list-decimal list-inside text-stone-300 space-y-1 mb-3">
+          <li><strong>Mapa</strong>: vê o mundo, escolhe quantos meses avançar.</li>
+          <li><strong>Polity</strong>: detalhes da nação selecionada.</li>
+          <li><strong>Eventos</strong>: cronologia do que aconteceu.</li>
+          <li><strong>Diplo</strong>: chat bilateral com chanceleres das outras nações.</li>
+          <li><strong>Conselho</strong>: análise estratégica do conselheiro.</li>
+          <li><strong>+ ação</strong> (no Mapa): enfileira ações em prosa para o próximo turno.</li>
+        </ol>
+        <div x-show="!agentReady" class="bg-amber-900/30 border-l-4 border-amber-500 p-3 mb-3 text-amber-100 text-xs">
+          <strong class="block">Modo leitura — IA indisponível neste servidor.</strong>
+          Use <code>https://sim-global.fly.dev</code> para a versão completa com Opus 4.7.
         </div>
-      </form>
+        <button @click="dismissWelcome()" class="w-full bg-amber-600 hover:bg-amber-500 text-stone-950 font-bold py-3 rounded">Começar</button>
+      </div>
     </div>
 
-    <!-- Bottom navigation (mobile only) -->
-    <nav class="md:hidden fixed bottom-0 inset-x-0 bg-stone-900 border-t border-stone-800 z-20 pb-[env(safe-area-inset-bottom)]">
-      <div class="flex justify-around">
+    <!-- ===================== ERROR MODAL ===================== -->
+    <div x-show="errorModal.open" x-cloak x-transition.opacity @click.self="errorModal.open = false" class="fixed inset-0 bg-stone-950/80 z-40 flex items-center justify-center p-4">
+      <div class="bg-stone-900 border border-rose-700 rounded-lg max-w-md p-4 text-sm" @click.stop>
+        <h2 class="text-base font-bold text-rose-300 mb-2" x-text="errorModal.title"></h2>
+        <p class="text-stone-200 whitespace-pre-wrap mb-3" x-text="errorModal.body"></p>
+        <button @click="errorModal.open = false" class="w-full bg-stone-700 hover:bg-stone-600 py-2 rounded">Fechar</button>
+      </div>
+    </div>
+
+    <!-- ===================== BOTTOM NAV ===================== -->
+    <nav class="fixed bottom-0 inset-x-0 bg-stone-900 border-t border-stone-800 z-20 pb-[env(safe-area-inset-bottom)]">
+      <div class="flex">
         <template x-for="t in tabs" :key="t.key">
-          <button
-            @click="tab = t.key"
-            type="button"
-            class="flex-1 flex flex-col items-center py-2 text-xs"
-            :class="tab === t.key ? 'text-amber-300' : 'text-stone-500'"
-          >
-            <span class="text-xl" x-text="t.icon"></span>
-            <span x-text="t.label"></span>
+          <button @click="setTab(t.key)" type="button"
+                  class="flex-1 flex flex-col items-center py-2.5 text-xs transition-all"
+                  :class="tab === t.key ? 'text-amber-300 bg-stone-800 border-t-2 border-amber-500 font-bold' : 'text-stone-500 border-t-2 border-transparent'">
+            <span class="text-2xl leading-none" x-text="t.icon"></span>
+            <span class="mt-0.5" x-text="t.label"></span>
           </button>
         </template>
       </div>
-      <!-- ações de turno -->
-      <div class="flex gap-2 px-3 pb-2">
-        <button
-          @click="if(!agentReady){openAgentNotice('Avançar tempo'); return} advanceTime()"
-          type="button"
-          class="flex-1 bg-amber-600 hover:bg-amber-500 active:bg-amber-700 disabled:bg-stone-700 disabled:text-stone-400 text-stone-950 font-bold py-2 rounded text-sm"
-          :disabled="!state"
-          :title="agentReady ? 'Avançar 6 meses no jogo' : 'Indisponível em modo leitura'"
-        >
-          ▶ avançar 6 meses
-        </button>
-        <button
-          @click="actionOpen = true; $nextTick(() => $refs.actionInput?.focus())"
-          type="button"
-          class="bg-stone-700 hover:bg-stone-600 text-stone-100 px-4 py-2 rounded text-sm"
-          title="Enfileirar uma ação para o próximo turno"
-        >
-          + ação <span class="text-stone-400" x-text="pendingActions.length ? `(${pendingActions.length})` : ''"></span>
-        </button>
-      </div>
     </nav>
-
-    <!-- Status bar (desktop) -->
-    <footer class="hidden md:flex md:col-span-12 border-t border-stone-800 pt-2 text-xs text-stone-500 justify-between">
-      <span>
-        Polities: <span x-text="state ? Object.keys(state.polities).length : 0"></span>
-        · Regiões: <span x-text="state ? Object.keys(state.regions).length : 0"></span>
-        · Relações: <span x-text="state ? Object.keys(state.diplomatic_relations).length : 0"></span>
-      </span>
-      <span x-text="status"></span>
-    </footer>
   </div>
 
   <script src="/static/js/main.js"></script>
   <script>
     if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () =>
-        navigator.serviceWorker.register("/static/sw.js").catch(() => {})
-      );
+      window.addEventListener("load", () => navigator.serviceWorker.register("/static/sw.js").catch(() => {}));
     }
   </script>
 </body>

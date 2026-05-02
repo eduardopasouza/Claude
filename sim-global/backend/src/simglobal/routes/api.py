@@ -31,15 +31,20 @@ from ..persistence import (
     CampaignAlreadyExistsError,
     CampaignNotFoundError,
     all_summaries,
-    apply_turn_buffer,
+    append_advisor_message,
     append_diplomatic_log,
+    apply_turn_buffer,
+    create_turn_job,
     delete_campaign,
     diplomatic_history,
     export_game_state,
     get_campaign_lore,
+    get_turn_job,
     import_game_state,
+    list_advisor_messages,
     list_campaigns,
     recent_events,
+    update_turn_job,
 )
 from ..scenarios import filter_in_window, load_scheduled_events_raw
 from ..state_loader import load_example, list_examples
@@ -211,65 +216,124 @@ def api_state(name: str, db: Session = Depends(get_db)) -> dict:
     }
 
 
-@router.post("/campaigns/{name}/turn")
-async def api_turn(
+@router.post("/campaigns/{name}/turn", status_code=202)
+async def api_turn_submit(
     name: str,
     req: TurnRequest,
+    request: Request,
     db: Session = Depends(get_db),
     runner=Depends(get_agent),
 ) -> dict:
+    """Cria job em background; frontend faz polling de /turn/<job>/status."""
+    import uuid as _uuid
+
     try:
-        state = export_game_state(db, name)
+        export_game_state(db, name)  # garante existência + valida
     except CampaignNotFoundError as exc:
         raise HTTPException(404, str(exc)) from exc
 
-    from datetime import timedelta
-    window_end = state.current_date + timedelta(days=30 * req.months)
-    sched_raw = load_scheduled_events_raw(name)
-    sched_window = filter_in_window(sched_raw, state.current_date, window_end)
-    payload = {
-        "current_state": state.model_dump(mode="json"),
-        "pending_actions": [a.model_dump(mode="json") for a in state.pending_actions],
-        "n_months": req.months,
-        "scheduled_events_in_window": sched_window,
-        "recent_event_log": [
-            e.model_dump(mode="json") for e in recent_events(db, name, limit=20)
-        ],
-        "summaries": [
-            s.model_dump(mode="json") for s in all_summaries(db, name)
-        ],
+    job_id = _uuid.uuid4().hex
+    create_turn_job(db, name, job_id, req.months)
+    db.commit()
+
+    factory = request.app.state.session_factory
+    asyncio.create_task(
+        _run_turn_job(factory, runner, name, job_id, req.months)
+    )
+    return {"job_id": job_id, "status": "pending"}
+
+
+@router.get("/campaigns/{name}/turn/{job_id}")
+def api_turn_status(
+    name: str, job_id: str, db: Session = Depends(get_db)
+) -> dict:
+    job = get_turn_job(db, job_id)
+    if job is None:
+        raise HTTPException(404, "job não encontrado")
+    return {
+        "job_id": job.id,
+        "status": job.status,
+        "progress_message": job.progress_message,
+        "error": job.error,
+        "result": job.result,
+        "created_at": job.created_at.isoformat() if job.created_at else None,
+        "finished_at": job.finished_at.isoformat() if job.finished_at else None,
     }
 
+
+async def _run_turn_job(
+    session_factory, runner, name: str, job_id: str, months: int
+) -> None:
+    """Worker async que executa o game_master fora do request loop."""
+    from datetime import timedelta as _td
+
+    def _update(**kw):
+        with session_factory() as s:
+            update_turn_job(s, job_id, **kw)
+            s.commit()
+
     try:
+        with session_factory() as db:
+            state = export_game_state(db, name)
+            window_end = state.current_date + _td(days=30 * months)
+            sched_raw = load_scheduled_events_raw(name)
+            sched_window = filter_in_window(sched_raw, state.current_date, window_end)
+            payload = {
+                "current_state": state.model_dump(mode="json"),
+                "pending_actions": [a.model_dump(mode="json") for a in state.pending_actions],
+                "n_months": months,
+                "scheduled_events_in_window": sched_window,
+                "recent_event_log": [
+                    e.model_dump(mode="json") for e in recent_events(db, name, limit=20)
+                ],
+                "summaries": [
+                    s2.model_dump(mode="json") for s2 in all_summaries(db, name)
+                ],
+            }
+
+        _update(status="running", progress_message=f"chamando game_master ({months} meses)…")
         raw = await runner.run_subagent(
             _prompt_path("game_master.md"),
             payload,
             json_output=True,
             max_retries=3,
         )
-    except Exception as exc:
-        logger.exception("game_master falhou")
-        raise HTTPException(502, f"game_master falhou: {exc}") from exc
+        _update(progress_message="validando schema do turn_buffer…")
 
-    try:
-        buffer = TurnBuffer.model_validate(raw)
-    except ValidationError as exc:
-        raise HTTPException(502, f"turn_buffer inválido: {exc}") from exc
+        try:
+            buffer = TurnBuffer.model_validate(raw)
+        except ValidationError as exc:
+            _update(status="failed", error=f"turn_buffer inválido: {exc}", finished=True)
+            return
 
-    violations = check_turn_invariants(state, buffer)
-    if violations:
-        raise HTTPException(
-            502, f"invariantes de turno violados: {violations}"
+        with session_factory() as db:
+            state = export_game_state(db, name)
+            violations = check_turn_invariants(state, buffer)
+            if violations:
+                _update(
+                    status="failed",
+                    error=f"invariantes violados: {violations}",
+                    finished=True,
+                )
+                return
+            apply_turn_buffer(db, name, buffer)
+            db.commit()
+
+        _update(
+            status="done",
+            result={
+                "campaign": name,
+                "turn_end_date": buffer.turn_end_date.isoformat(),
+                "events": [e.model_dump(mode="json") for e in buffer.events],
+                "deltas_applied": len(buffer.deltas),
+                "narrative": buffer.narrative,
+            },
+            progress_message=None,
+            finished=True,
         )
-
-    apply_turn_buffer(db, name, buffer)
-    return {
-        "campaign": name,
-        "turn_end_date": buffer.turn_end_date.isoformat(),
-        "events": [e.model_dump(mode="json") for e in buffer.events],
-        "deltas_applied": len(buffer.deltas),
-        "narrative": buffer.narrative,
-    }
+    except Exception as exc:
+        logger.exception("turn job %s falhou", job_id)
+        _update(status="failed", error=str(exc), finished=True)
 
 
 @router.post("/campaigns/{name}/advise")
@@ -295,6 +359,12 @@ async def api_advise(
         ],
         "lore_md": get_campaign_lore(db, name),
     }
+    # Histórico das últimas 10 mensagens advisor — vai como contexto.
+    history = list_advisor_messages(db, name)[-10:]
+    payload["history"] = [
+        {"question": h.question, "answer": h.answer, "in_game_date": h.in_game_date.isoformat()}
+        for h in history
+    ]
     try:
         text = await runner.run_subagent(
             _prompt_path("advisor.md"), payload, json_output=False
@@ -302,7 +372,54 @@ async def api_advise(
     except Exception as exc:
         logger.exception("advisor falhou")
         raise HTTPException(502, f"advisor falhou: {exc}") from exc
-    return {"campaign": name, "answer": text}
+    msg_obj = append_advisor_message(
+        db, name, state.current_date, req.question, str(text)
+    )
+    return {
+        "campaign": name,
+        "answer": text,
+        "id": msg_obj.id,
+        "in_game_date": state.current_date.isoformat(),
+    }
+
+
+@router.get("/campaigns/{name}/advisor/history")
+def api_advisor_history(name: str, db: Session = Depends(get_db)) -> list[dict]:
+    try:
+        msgs = list_advisor_messages(db, name)
+    except CampaignNotFoundError as exc:
+        raise HTTPException(404, str(exc)) from exc
+    return [
+        {
+            "id": m.id,
+            "in_game_date": m.in_game_date.isoformat(),
+            "question": m.question,
+            "answer": m.answer,
+            "created_at": m.created_at.isoformat(),
+        }
+        for m in msgs
+    ]
+
+
+@router.get("/campaigns/{name}/events")
+def api_events_history(
+    name: str, limit: int = 200, db: Session = Depends(get_db)
+) -> list[dict]:
+    try:
+        events = recent_events(db, name, limit=limit)
+    except CampaignNotFoundError as exc:
+        raise HTTPException(404, str(exc)) from exc
+    return [e.model_dump(mode="json") for e in events]
+
+
+@router.get("/campaigns/{name}/dm/{counterparty}/history")
+def api_dm_history(
+    name: str, counterparty: str, db: Session = Depends(get_db)
+) -> list[dict]:
+    try:
+        return diplomatic_history(db, name, counterparty)
+    except CampaignNotFoundError as exc:
+        raise HTTPException(404, str(exc)) from exc
 
 
 @router.post("/campaigns/{name}/dm")

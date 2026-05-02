@@ -15,6 +15,7 @@ from .db import (
     make_session_factory,
 )
 from .models import (
+    AdvisorMessage,
     Base,
     Battalion,
     Campaign,
@@ -28,23 +29,29 @@ from .models import (
     Polity,
     Region,
     ScheduledEventFire,
+    TurnJob,
 )
 from .repositories import (
     CampaignAlreadyExistsError,
     CampaignNotFoundError,
     all_summaries,
+    append_advisor_message,
     append_diplomatic_log,
     append_event_log_entries,
     apply_turn_buffer,
+    create_turn_job,
     delete_campaign,
     diplomatic_history,
     events_since_summary,
     export_game_state,
     get_campaign_lore,
+    get_turn_job,
     import_game_state,
+    list_advisor_messages,
     list_campaigns,
     recent_events,
     record_scheduled_event_fired,
+    update_turn_job,
 )
 
 __all__ = [

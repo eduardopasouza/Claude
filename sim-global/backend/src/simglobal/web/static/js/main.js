@@ -14,6 +14,9 @@ const POLITY_TO_ISO3 = {
   "Japão": "JPN",
 };
 
+const LS_TAB_KEY = "simglobal-tab";
+const LS_POLITY_KEY = "simglobal-selected-polity";
+
 function campaign(initialState, examples, activeName, agentReady) {
   return {
     examples,
@@ -25,10 +28,17 @@ function campaign(initialState, examples, activeName, agentReady) {
     actionOpen: false,
     pendingActions: initialState?.pending_actions ?? [],
     eventsFeed: [],
-    advisorAnswer: "",
+    advisorThread: [],   // [{id, in_game_date, question, answer}]
+    advisorDraft: "",
     advisorPending: false,
+    diplomaticThreads: {}, // {polityName: [{date, message_in, message_out}]}
+    diplomaticPolity: null,
     diplomaticDraft: "",
     diplomaticPending: false,
+    turnMonths: 6,
+    turnPending: false,
+    turnProgress: "",
+    turnLastNarrative: "",
     status: "pronto",
     tab: "mapa",
     mapLoaded: false,
@@ -39,32 +49,45 @@ function campaign(initialState, examples, activeName, agentReady) {
       { key: "polity", label: "Polity", icon: "📋" },
       { key: "eventos", label: "Eventos", icon: "📜" },
       { key: "diplo", label: "Diplo", icon: "🤝" },
-      { key: "advisor", label: "Advisor", icon: "💬" },
+      { key: "advisor", label: "Conselho", icon: "💬" },
     ],
 
     init() {
-      if (this.state) {
-        const player = this.state.player_polity;
-        this.selectedPolity = this.state.polities[player] ?? null;
-      }
-      // Mostra onboarding na primeira visita (localStorage).
+      // Restaura tab e polity selecionada do localStorage.
       try {
-        const seen = localStorage.getItem("simglobal-welcome-seen");
-        if (!seen) this.showWelcome = true;
-      } catch (e) {
-        this.showWelcome = true;
+        const savedTab = localStorage.getItem(LS_TAB_KEY);
+        if (savedTab && this.tabs.some(t => t.key === savedTab)) this.tab = savedTab;
+      } catch (e) {}
+      if (this.state) {
+        const savedPolity = (() => {
+          try { return localStorage.getItem(LS_POLITY_KEY); } catch (e) { return null; }
+        })();
+        const player = this.state.player_polity;
+        const target = (savedPolity && this.state.polities[savedPolity]) || this.state.polities[player];
+        this.selectedPolity = target ?? null;
       }
-      // Alpine não aguarda promises do init síncrono. Disparamos o
-      // load do mapa em background; recolorMap é chamado dentro do
-      // próprio loadMap após a injeção.
+      try {
+        if (!localStorage.getItem("simglobal-welcome-seen")) this.showWelcome = true;
+      } catch (e) { this.showWelcome = true; }
+
       this.loadMap();
+      this.refreshHistory();
+    },
+
+    persistTab() { try { localStorage.setItem(LS_TAB_KEY, this.tab); } catch (e) {} },
+    setTab(key) { this.tab = key; this.persistTab(); },
+
+    persistPolity() {
+      try {
+        if (this.selectedPolity?.name) {
+          localStorage.setItem(LS_POLITY_KEY, this.selectedPolity.name);
+        }
+      } catch (e) {}
     },
 
     dismissWelcome() {
       this.showWelcome = false;
-      try {
-        localStorage.setItem("simglobal-welcome-seen", "1");
-      } catch (e) {}
+      try { localStorage.setItem("simglobal-welcome-seen", "1"); } catch (e) {}
     },
 
     openAgentNotice(feature) {
@@ -73,17 +96,44 @@ function campaign(initialState, examples, activeName, agentReady) {
         title: `${feature} indisponível`,
         body:
           "Este servidor está em modo leitura: não tem o motor narrativo Claude " +
-          "Opus 4.7 configurado. Você pode navegar pelo mapa, ler atributos da " +
-          "polity e o histórico do cenário, mas turnos, diplomacia e advisor " +
-          "exigem o Claude Agent SDK rodando com seu token Pro/Max.\n\n" +
-          "Para ativar: rode o servidor em Fly.io ou Docker (instruções no " +
-          "README do projeto na raiz: sim-global/README.md → Deploy público).",
+          "Opus 4.7 configurado. A versão completa está em https://sim-global.fly.dev " +
+          "(login: eduardosouza).",
       };
     },
 
     showError(title, body) {
       this.errorModal = { open: true, title, body };
     },
+
+    async refreshHistory() {
+      if (!this.activeName) return;
+      const enc = encodeURIComponent(this.activeName);
+      try {
+        const [advR, evR] = await Promise.all([
+          fetch(`/api/campaigns/${enc}/advisor/history`),
+          fetch(`/api/campaigns/${enc}/events?limit=50`),
+        ]);
+        if (advR.ok) this.advisorThread = await advR.json();
+        if (evR.ok) this.eventsFeed = (await evR.json()).reverse();
+      } catch (e) { console.warn("refreshHistory:", e); }
+    },
+
+    async loadDmHistory(polityName) {
+      if (!this.activeName || !polityName) return;
+      const enc = encodeURIComponent(this.activeName);
+      const polEnc = encodeURIComponent(polityName);
+      try {
+        const r = await fetch(`/api/campaigns/${enc}/dm/${polEnc}/history`);
+        if (r.ok) this.diplomaticThreads[polityName] = await r.json();
+      } catch (e) { console.warn("loadDmHistory:", e); }
+    },
+
+    selectDiplomatic(polityName) {
+      this.diplomaticPolity = polityName;
+      if (!this.diplomaticThreads[polityName]) this.loadDmHistory(polityName);
+    },
+
+    backFromDiplomatic() { this.diplomaticPolity = null; },
 
     get regionList() {
       if (!this.state) return [];
@@ -92,14 +142,16 @@ function campaign(initialState, examples, activeName, agentReady) {
 
     get internalRegionList() {
       if (!this.state) return [];
-      return Object.values(this.state.regions).filter(
-        (r) => r.owner === this.state.player_polity,
-      );
+      return Object.values(this.state.regions).filter(r => r.owner === this.state.player_polity);
     },
 
     get polityList() {
       if (!this.state) return [];
       return Object.values(this.state.polities);
+    },
+
+    get foreignPolityList() {
+      return this.polityList.filter(p => p.name !== this.state?.player_polity);
     },
 
     iso3Of(polity) {
@@ -133,91 +185,60 @@ function campaign(initialState, examples, activeName, agentReady) {
 
     async loadMap() {
       const host = document.getElementById("world-map");
-      if (!host) {
-        console.warn("loadMap: #world-map não está no DOM");
-        return;
-      }
-      host.innerHTML = '<p class="text-stone-500 text-xs italic">carregando mapa…</p>';
+      if (!host) return;
+      host.innerHTML = '<p class="text-stone-500 text-xs italic p-4">carregando mapa…</p>';
       try {
         const resp = await fetch("/assets/map/world-political.svg");
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-        const svgText = await resp.text();
-        host.innerHTML = svgText;
+        host.innerHTML = await resp.text();
         const svg = host.querySelector("svg");
-        if (!svg) {
-          host.innerHTML = '<p class="text-rose-400 text-xs">SVG inválido</p>';
-          throw new Error("SVG raiz ausente após injeção");
-        }
+        if (!svg) throw new Error("SVG raiz ausente");
         svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
         svg.style.width = "100%";
         svg.style.height = "auto";
-        svg.style.maxHeight = "70vh";
+        svg.style.maxHeight = "60vh";
         svg.style.touchAction = "pinch-zoom";
-        const paths = svg.querySelectorAll("path");
-        paths.forEach((p) => {
+        svg.querySelectorAll("path").forEach(p => {
           p.style.cursor = "pointer";
           p.addEventListener("click", () => this.selectByPath(p));
         });
-        console.info(`loadMap: ${paths.length} países carregados`);
         this.mapLoaded = true;
-        // Recolore imediatamente (não espera próxima chamada).
         this.recolorMap();
       } catch (err) {
-        console.warn("loadMap falhou:", err);
-        host.innerHTML = `<p class="text-rose-400 text-xs">mapa indisponível: ${err.message}</p>`;
+        host.innerHTML = `<p class="text-rose-400 text-xs p-4">mapa indisponível: ${err.message}</p>`;
       }
     },
 
     recolorMap() {
       if (!this.state || !this.mapLoaded) return;
-      const host = document.getElementById("world-map");
-      if (!host) return;
-      const svg = host.querySelector("svg");
+      const svg = document.querySelector("#world-map svg");
       if (!svg) return;
-      // Reset completo: fill, stroke e stroke-width.
-      svg.querySelectorAll("path").forEach((p) => {
+      svg.querySelectorAll("path").forEach(p => {
         p.setAttribute("fill", "#444");
         p.setAttribute("stroke", "#222");
         p.setAttribute("stroke-width", "0.5");
       });
-      let coloredCount = 0;
-      let missingIso = [];
-      Object.values(this.state.polities).forEach((polity) => {
+      Object.values(this.state.polities).forEach(polity => {
         const iso = this.iso3Of(polity);
-        if (!iso) {
-          missingIso.push(polity.name);
-          return;
-        }
-        // CSS.escape protege contra ids exóticos.
+        if (!iso) return;
         const escapedIso = window.CSS && CSS.escape ? CSS.escape(iso) : iso;
         const path = svg.querySelector(`#${escapedIso}`);
-        if (!path) {
-          missingIso.push(`${polity.name}→${iso}`);
-          return;
-        }
+        if (!path) return;
         path.setAttribute("fill", this.colorFor(polity.name));
         if (polity.name === this.selectedPolity?.name) {
           path.setAttribute("stroke", "#fcd34d");
           path.setAttribute("stroke-width", "2.5");
         }
-        coloredCount++;
       });
-      if (missingIso.length) {
-        console.info(
-          `recolorMap: ${coloredCount} polities pintadas; sem path:`,
-          missingIso,
-        );
-      }
     },
 
     selectByPath(pathEl) {
       const iso = pathEl.getAttribute("id");
-      const polity = Object.values(this.state.polities).find(
-        (p) => this.iso3Of(p) === iso,
-      );
+      const polity = Object.values(this.state.polities).find(p => this.iso3Of(p) === iso);
       if (polity) {
         this.selectedPolity = polity;
-        this.tab = "polity";
+        this.persistPolity();
+        this.setTab("polity");
         this.recolorMap();
       }
     },
@@ -225,11 +246,13 @@ function campaign(initialState, examples, activeName, agentReady) {
     selectByRegion(region) {
       if (!region.owner || !this.state) return;
       this.selectedPolity = this.state.polities[region.owner] ?? null;
+      this.persistPolity();
       this.recolorMap();
     },
 
     selectByPolityName(name) {
       this.selectedPolity = this.state.polities[name] ?? null;
+      this.persistPolity();
       this.recolorMap();
     },
 
@@ -244,117 +267,136 @@ function campaign(initialState, examples, activeName, agentReady) {
         category: null,
       });
       this.actionDraft = "";
-      this.status = `ação enfileirada (${this.pendingActions.length} pendentes)`;
+      this.status = `ação enfileirada (${this.pendingActions.length})`;
     },
 
     async loadCampaign(name) {
       this.status = `carregando ${name}…`;
       const resp = await fetch(`/api/campaigns/${encodeURIComponent(name)}/state`);
-      if (!resp.ok) {
-        this.status = `falha ao carregar ${name}`;
-        return;
-      }
+      if (!resp.ok) { this.status = `falha ao carregar ${name}`; return; }
       const payload = await resp.json();
       this.state = payload.state;
       this.activeName = payload.campaign;
       this.selectedPolity = this.state.polities[this.state.player_polity] ?? null;
       this.pendingActions = this.state.pending_actions ?? [];
-      this.eventsFeed = [];
       this.recolorMap();
-      this.status = payload.invariant_violations.length
-        ? `carregado com ${payload.invariant_violations.length} violações`
-        : "carregado";
+      await this.refreshHistory();
+      this.status = "carregado";
     },
 
-    async advanceTime(months = 6) {
+    async advanceTime() {
       if (!this.activeName) return;
-      this.status = `avançando ${months} meses…`;
+      if (!this.agentReady) { this.openAgentNotice("Avançar tempo"); return; }
+      const months = Math.max(1, Math.min(120, parseInt(this.turnMonths, 10) || 6));
+      this.turnPending = true;
+      this.turnProgress = "submetendo turno…";
       try {
-        const resp = await fetch(
+        const subResp = await fetch(
           `/api/campaigns/${encodeURIComponent(this.activeName)}/turn`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ months }),
-          },
+          { method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify({months}) }
         );
-        if (resp.status === 503) {
-          this.openAgentNotice("Avançar tempo");
-          this.status = "modo leitura";
+        if (subResp.status === 503) { this.openAgentNotice("Avançar tempo"); return; }
+        if (!subResp.ok) {
+          const err = await subResp.json().catch(() => ({detail: subResp.statusText}));
+          this.showError("Falha ao submeter turno", err.detail || subResp.statusText);
           return;
         }
-        if (!resp.ok) {
-          const err = await resp.json().catch(() => ({ detail: resp.statusText }));
-          this.showError("Falha ao avançar tempo", err.detail || resp.statusText);
-          this.status = "erro";
-          return;
+        const {job_id} = await subResp.json();
+        // Polling
+        const enc = encodeURIComponent(this.activeName);
+        for (let i = 0; i < 360; i++) {  // 360 * 2s = 12min máx
+          await new Promise(r => setTimeout(r, 2000));
+          const stR = await fetch(`/api/campaigns/${enc}/turn/${job_id}`);
+          if (!stR.ok) continue;
+          const job = await stR.json();
+          this.turnProgress = job.progress_message || job.status;
+          if (job.status === "done") {
+            this.turnLastNarrative = job.result?.narrative || "";
+            this.eventsFeed = [...(job.result?.events || []), ...this.eventsFeed].slice(0, 200);
+            await this.loadCampaign(this.activeName);
+            this.status = `turno aplicado · ${job.result?.deltas_applied} deltas`;
+            return;
+          }
+          if (job.status === "failed") {
+            this.showError("Turno falhou", job.error || "erro desconhecido");
+            return;
+          }
         }
-        const payload = await resp.json();
-        this.eventsFeed = [...payload.events, ...this.eventsFeed].slice(0, 50);
-        this.status = `turno aplicado · ${payload.deltas_applied} deltas`;
-        await this.loadCampaign(this.activeName);
+        this.showError("Turno demorou demais", "polling >12min sem resposta. O job pode estar travado.");
       } catch (err) {
         this.showError("Erro de rede", String(err));
-        this.status = "erro";
+      } finally {
+        this.turnPending = false;
+        this.turnProgress = "";
       }
     },
 
-    async askAdvisor(question) {
-      if (!this.activeName) return;
+    async askAdvisor() {
+      const question = this.advisorDraft.trim();
+      if (!this.activeName || !question) return;
+      if (!this.agentReady) { this.openAgentNotice("Conselheiro"); return; }
       this.advisorPending = true;
-      this.advisorAnswer = "";
       try {
         const resp = await fetch(
           `/api/campaigns/${encodeURIComponent(this.activeName)}/advise`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ question }),
-          },
+          { method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify({question}) }
         );
-        if (resp.status === 503) {
-          this.openAgentNotice("Advisor");
-          return;
-        }
+        if (resp.status === 503) { this.openAgentNotice("Conselheiro"); return; }
         if (!resp.ok) {
-          const err = await resp.json().catch(() => ({ detail: resp.statusText }));
-          this.advisorAnswer = `erro: ${err.detail || resp.statusText}`;
+          const err = await resp.json().catch(() => ({detail: resp.statusText}));
+          this.showError("Conselheiro falhou", err.detail || resp.statusText);
           return;
         }
         const payload = await resp.json();
-        this.advisorAnswer = payload.answer;
+        this.advisorThread.push({
+          id: payload.id,
+          in_game_date: payload.in_game_date,
+          question: question,
+          answer: payload.answer,
+        });
+        this.advisorDraft = "";
       } catch (err) {
-        this.advisorAnswer = `erro de rede: ${err}`;
+        this.showError("Erro de rede", String(err));
       } finally {
         this.advisorPending = false;
       }
     },
 
-    async sendDiplomatic(counterparty, message) {
-      if (!this.activeName) return null;
+    async sendDiplomatic() {
+      if (!this.activeName || !this.diplomaticPolity) return;
+      const message = this.diplomaticDraft.trim();
+      if (!message) return;
+      if (!this.agentReady) { this.openAgentNotice("Diplomacia"); return; }
       this.diplomaticPending = true;
       try {
         const resp = await fetch(
           `/api/campaigns/${encodeURIComponent(this.activeName)}/dm`,
           {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ counterparty, message }),
-          },
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify({counterparty: this.diplomaticPolity, message}),
+          }
         );
-        if (resp.status === 503) {
-          this.openAgentNotice("Diplomacia");
-          return null;
-        }
+        if (resp.status === 503) { this.openAgentNotice("Diplomacia"); return; }
         if (!resp.ok) {
-          const err = await resp.json().catch(() => ({ detail: resp.statusText }));
-          this.showError("Falha diplomática", err.detail || resp.statusText);
-          return null;
+          const err = await resp.json().catch(() => ({detail: resp.statusText}));
+          this.showError("Diplomacia falhou", err.detail || resp.statusText);
+          return;
         }
-        return await resp.json();
+        const reply = await resp.json();
+        const thread = this.diplomaticThreads[this.diplomaticPolity] || [];
+        thread.push({
+          date: this.state?.current_date,
+          from_polity: this.state?.player_polity,
+          to_polity: this.diplomaticPolity,
+          message_in: message,
+          message_out: reply.message_out,
+          proposed_deltas: reply.proposed_deltas || [],
+        });
+        this.diplomaticThreads[this.diplomaticPolity] = thread;
+        this.diplomaticDraft = "";
       } catch (err) {
         this.showError("Erro de rede", String(err));
-        return null;
       } finally {
         this.diplomaticPending = false;
       }
