@@ -18,6 +18,13 @@ EventCategoryType = Literal[
     "internal",
     "economic",
     "natural",
+    "cultural",
+    "social",
+    "religious",
+    "technological",
+    "scientific",
+    "demographic",
+    "environmental",
 ]
 
 EventCauseType = Literal["player_action", "scheduled", "emergent"]

@@ -78,6 +78,20 @@
         </button>
       </div>
 
+      <!-- Fila de ações pendentes -->
+      <div x-show="pendingActions.length" class="bg-stone-900 border border-stone-800 rounded-lg p-3">
+        <h3 class="text-sm font-bold text-amber-300 mb-2">Ações pendentes (<span x-text="pendingActions.length"></span>)</h3>
+        <ul class="space-y-1 text-xs">
+          <template x-for="a in pendingActions" :key="a.id">
+            <li class="flex items-start gap-2 bg-stone-800 rounded p-2">
+              <span class="flex-1 break-words" x-text="a.description"></span>
+              <button @click="deleteAction(a.id)" class="text-rose-400 hover:text-rose-300 shrink-0" title="remover">✕</button>
+            </li>
+          </template>
+        </ul>
+        <p class="text-[10px] text-stone-500 mt-2">Estas ações serão processadas pelo game_master no próximo ▶ avançar tempo.</p>
+      </div>
+
       <details class="bg-stone-900 border border-stone-800 rounded-lg p-3">
         <summary class="cursor-pointer text-sm text-amber-300 font-bold">Polities no jogo (<span x-text="polityList.length"></span>)</summary>
         <div class="grid grid-cols-2 gap-1 mt-2">

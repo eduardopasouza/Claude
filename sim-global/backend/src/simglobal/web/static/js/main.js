@@ -109,12 +109,14 @@ function campaign(initialState, examples, activeName, agentReady) {
       if (!this.activeName) return;
       const enc = encodeURIComponent(this.activeName);
       try {
-        const [advR, evR] = await Promise.all([
+        const [advR, evR, actR] = await Promise.all([
           fetch(`/api/campaigns/${enc}/advisor/history`),
-          fetch(`/api/campaigns/${enc}/events?limit=50`),
+          fetch(`/api/campaigns/${enc}/events?limit=200`),
+          fetch(`/api/campaigns/${enc}/actions`),
         ]);
         if (advR.ok) this.advisorThread = await advR.json();
         if (evR.ok) this.eventsFeed = (await evR.json()).reverse();
+        if (actR.ok) this.pendingActions = await actR.json();
       } catch (e) { console.warn("refreshHistory:", e); }
     },
 
@@ -256,18 +258,50 @@ function campaign(initialState, examples, activeName, agentReady) {
       this.recolorMap();
     },
 
-    submitAction() {
+    async submitAction() {
       const description = this.actionDraft.trim();
-      if (!description) return;
-      this.pendingActions.push({
-        description,
-        submitted_on: this.state?.current_date ?? null,
-        target_polities: [],
-        target_regions: [],
-        category: null,
-      });
-      this.actionDraft = "";
-      this.status = `ação enfileirada (${this.pendingActions.length})`;
+      if (!description || !this.activeName) return;
+      try {
+        const r = await fetch(
+          `/api/campaigns/${encodeURIComponent(this.activeName)}/actions`,
+          { method: "POST", headers: {"Content-Type":"application/json"},
+            body: JSON.stringify({description}) }
+        );
+        if (!r.ok) {
+          const err = await r.json().catch(() => ({detail: r.statusText}));
+          this.showError("Falha ao enfileirar ação", err.detail || r.statusText);
+          return;
+        }
+        const action = await r.json();
+        this.pendingActions.push(action);
+        this.actionDraft = "";
+        this.status = `ação enfileirada (${this.pendingActions.length})`;
+      } catch (err) {
+        this.showError("Erro de rede", String(err));
+      }
+    },
+
+    async deleteAction(actionId) {
+      if (!this.activeName) return;
+      try {
+        const r = await fetch(
+          `/api/campaigns/${encodeURIComponent(this.activeName)}/actions/${actionId}`,
+          { method: "DELETE" }
+        );
+        if (r.ok || r.status === 404) {
+          this.pendingActions = this.pendingActions.filter(a => a.id !== actionId);
+        }
+      } catch (e) { console.warn("deleteAction:", e); }
+    },
+
+    async refreshPendingActions() {
+      if (!this.activeName) return;
+      try {
+        const r = await fetch(
+          `/api/campaigns/${encodeURIComponent(this.activeName)}/actions`
+        );
+        if (r.ok) this.pendingActions = await r.json();
+      } catch (e) { console.warn("refreshPendingActions:", e); }
     },
 
     async loadCampaign(name) {

@@ -204,15 +204,39 @@ def test_event_severity_explicit():
     assert event.severity == "critical"
 
 
-def test_event_severity_invalid_rejected():
-    with pytest.raises(ValidationError):
-        Event(
-            date=date(1942, 8, 22),
-            category="diplomatic",
-            description="x",
-            caused_by="scheduled",
-            severity="apocalyptic",  # type: ignore[arg-type]
-        )
+def test_event_severity_invalid_normalized_to_moderate():
+    """Schema agora é tolerante: severity desconhecida vira 'moderate'
+    em vez de derrubar o turno."""
+    e = Event(
+        date=date(1942, 8, 22),
+        category="diplomatic",
+        description="x",
+        caused_by="scheduled",
+        severity="apocalyptic",
+    )
+    assert e.severity == "moderate"
+
+
+def test_event_category_unknown_normalized_to_internal():
+    """Schema tolerante: category desconhecida vira 'internal'."""
+    e = Event(
+        date=date(1942, 8, 22),
+        category="cultural-cosmic",
+        description="x",
+        caused_by="scheduled",
+    )
+    assert e.category == "internal"
+
+
+def test_event_category_cultural_accepted():
+    """Categoria expandida ('cultural') é aceita literalmente."""
+    e = Event(
+        date=date(1942, 8, 22),
+        category="cultural",
+        description="x",
+        caused_by="scheduled",
+    )
+    assert e.category == "cultural"
 
 
 # ---- scheduled event (scripting híbrido) ----

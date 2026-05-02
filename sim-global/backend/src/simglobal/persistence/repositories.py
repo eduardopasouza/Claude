@@ -687,3 +687,53 @@ def update_turn_job(
     if finished:
         job.finished_at = _dt.utcnow()
     session.flush()
+
+
+# ---------- pending actions ----------
+
+
+def add_pending_action(
+    session: Session,
+    campaign_name: str,
+    description: str,
+    submitted_on: date,
+    target_polities: list[str] | None = None,
+    target_regions: list[str] | None = None,
+    category: str | None = None,
+) -> m.PendingAction:
+    campaign = _get_campaign(session, campaign_name)
+    action = m.PendingAction(
+        campaign_id=campaign.id,
+        description=description,
+        submitted_on=submitted_on,
+        target_polities=list(target_polities or []),
+        target_regions=list(target_regions or []),
+        category=category,
+    )
+    session.add(action)
+    session.flush()
+    return action
+
+
+def list_pending_actions(
+    session: Session, campaign_name: str
+) -> list[m.PendingAction]:
+    campaign = _get_campaign(session, campaign_name)
+    stmt = (
+        select(m.PendingAction)
+        .where(m.PendingAction.campaign_id == campaign.id)
+        .order_by(m.PendingAction.id)
+    )
+    return list(session.execute(stmt).scalars())
+
+
+def delete_pending_action(
+    session: Session, campaign_name: str, action_id: int
+) -> bool:
+    campaign = _get_campaign(session, campaign_name)
+    action = session.get(m.PendingAction, action_id)
+    if action is None or action.campaign_id != campaign.id:
+        return False
+    session.delete(action)
+    session.flush()
+    return True

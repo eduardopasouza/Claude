@@ -30,12 +30,14 @@ from simengine.schemas import (
 from ..persistence import (
     CampaignAlreadyExistsError,
     CampaignNotFoundError,
+    add_pending_action,
     all_summaries,
     append_advisor_message,
     append_diplomatic_log,
     apply_turn_buffer,
     create_turn_job,
     delete_campaign,
+    delete_pending_action,
     diplomatic_history,
     export_game_state,
     get_campaign_lore,
@@ -43,6 +45,7 @@ from ..persistence import (
     import_game_state,
     list_advisor_messages,
     list_campaigns,
+    list_pending_actions,
     recent_events,
     update_turn_job,
 )
@@ -104,6 +107,13 @@ class TurnRequest(BaseModel):
 
 class AdviseRequest(BaseModel):
     question: str
+
+
+class ActionPayload(BaseModel):
+    description: str
+    target_polities: list[str] = Field(default_factory=list)
+    target_regions: list[str] = Field(default_factory=list)
+    category: str | None = None
 
 
 class DiplomaticMessage(BaseModel):
@@ -410,6 +420,64 @@ def api_events_history(
     except CampaignNotFoundError as exc:
         raise HTTPException(404, str(exc)) from exc
     return [e.model_dump(mode="json") for e in events]
+
+
+@router.get("/campaigns/{name}/actions")
+def api_list_actions(name: str, db: Session = Depends(get_db)) -> list[dict]:
+    try:
+        actions = list_pending_actions(db, name)
+    except CampaignNotFoundError as exc:
+        raise HTTPException(404, str(exc)) from exc
+    return [
+        {
+            "id": a.id,
+            "description": a.description,
+            "submitted_on": a.submitted_on.isoformat(),
+            "target_polities": list(a.target_polities or []),
+            "target_regions": list(a.target_regions or []),
+            "category": a.category,
+        }
+        for a in actions
+    ]
+
+
+@router.post("/campaigns/{name}/actions", status_code=201)
+def api_add_action(
+    name: str, payload: ActionPayload, db: Session = Depends(get_db)
+) -> dict:
+    try:
+        state = export_game_state(db, name)
+    except CampaignNotFoundError as exc:
+        raise HTTPException(404, str(exc)) from exc
+    action = add_pending_action(
+        db,
+        name,
+        description=payload.description,
+        submitted_on=state.current_date,
+        target_polities=payload.target_polities,
+        target_regions=payload.target_regions,
+        category=payload.category,
+    )
+    return {
+        "id": action.id,
+        "description": action.description,
+        "submitted_on": action.submitted_on.isoformat(),
+        "target_polities": list(action.target_polities or []),
+        "target_regions": list(action.target_regions or []),
+        "category": action.category,
+    }
+
+
+@router.delete("/campaigns/{name}/actions/{action_id}", status_code=204)
+def api_delete_action(
+    name: str, action_id: int, db: Session = Depends(get_db)
+) -> None:
+    try:
+        ok = delete_pending_action(db, name, action_id)
+    except CampaignNotFoundError as exc:
+        raise HTTPException(404, str(exc)) from exc
+    if not ok:
+        raise HTTPException(404, "ação não encontrada")
 
 
 @router.get("/campaigns/{name}/dm/{counterparty}/history")
