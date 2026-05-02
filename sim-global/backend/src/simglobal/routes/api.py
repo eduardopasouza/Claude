@@ -302,12 +302,23 @@ async def _run_turn_job(
             }
 
         _update(status="running", progress_message=f"chamando game_master ({months} meses)…")
-        raw = await runner.run_subagent(
-            _prompt_path("game_master.md"),
-            payload,
-            json_output=True,
-            max_retries=3,
-        )
+        try:
+            raw = await asyncio.wait_for(
+                runner.run_subagent(
+                    _prompt_path("game_master.md"),
+                    payload,
+                    json_output=True,
+                    max_retries=3,
+                ),
+                timeout=300.0,  # 5min limite duro
+            )
+        except asyncio.TimeoutError:
+            _update(
+                status="failed",
+                error="game_master demorou mais que 5min — provável trava no SDK ou retry-loop. Reduza o intervalo de meses, descarte ações pendentes muito longas, e tente de novo.",
+                finished=True,
+            )
+            return
         _update(progress_message="validando schema do turn_buffer…")
 
         try:
