@@ -1,0 +1,25 @@
+/* Customizações que ficam fora do Tailwind. */
+
+/* Esconde elementos com x-cloak até Alpine inicializar (evita
+   modais de boas-vindas e erro piscarem no carregamento). */
+[x-cloak] {
+  display: none !important;
+}
+
+body {
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+}
+
+/* Tipografia mais densa em listas dos painéis. */
+aside ul li {
+  line-height: 1.3;
+}
+
+/* Mapa esquemático: animação leve quando uma região é selecionada. */
+@keyframes pulse-border {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(252, 211, 77, 0.5); }
+  50% { box-shadow: 0 0 0 4px rgba(252, 211, 77, 0); }
+}
+[class*="border-amber-300"] {
+  animation: pulse-border 1.6s ease-in-out infinite;
+}

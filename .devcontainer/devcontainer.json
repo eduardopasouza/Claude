@@ -1,0 +1,45 @@
+{
+  "name": "sim-global (Codespace)",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    }
+  },
+  "forwardPorts": [8000],
+  "portsAttributes": {
+    "8000": {
+      "label": "sim-global",
+      "onAutoForward": "openPreview",
+      "visibility": "public"
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "postStartCommand": "bash .devcontainer/post-start.sh",
+  "containerEnv": {
+    "SIMGLOBAL_HOST": "0.0.0.0",
+    "SIMGLOBAL_PORT": "8000",
+    "SIMGLOBAL_OPEN_BROWSER": "0"
+  },
+  "secrets": {
+    "CLAUDE_CODE_OAUTH_TOKEN": {
+      "description": "Token OAuth da assinatura Claude Pro/Max. Gere localmente com `claude setup-token`. Sem ele, o app roda em modo leitura (mapa, painéis, mas /turn /advise /dm retornam 503).",
+      "documentationUrl": "https://docs.claude.com/en/api/agent-sdk/python"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "tamasfe.even-better-toml",
+        "redhat.vscode-yaml"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "editor.formatOnSave": false
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "simglobal"
+version = "0.1.0"
+description = "Simulador histórico-estratégico turn-based local com frontend visual"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.5",
+    "pyyaml>=6.0",
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.27",
+    "jinja2>=3.1",
+    "python-multipart>=0.0.9",
+    "sqlalchemy>=2.0",
+    "alembic>=1.13",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=4.1",
+    "httpx>=0.27",
+]
+agent = [
+    "claude-agent-sdk>=0.1",
+]
+
+[project.scripts]
+simglobal = "simglobal.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/simengine", "src/simglobal"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra --strict-markers"

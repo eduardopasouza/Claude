@@ -1,0 +1,8 @@
+# Configuração operacional da versão brasil-sim.
+# Lido por simengine.scripts.consolidate_check e pelo loop de turno
+# definido em sim/brasil-sim/CLAUDE.md.
+
+consolidator:
+  # Número de eventos brutos em event_log.jsonl que dispara
+  # consolidação automática desde o último consolidated_summary.
+  threshold: 20

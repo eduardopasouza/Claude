@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+.pytest_cache/
+.coverage
+htmlcov/
+build/
+dist/
+
+# Ambientes virtuais
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Buffers transitórios de turno (campanhas)
+**/saves/*/turn_buffer.json
+
+# SQLite local de campanhas
+saves/*.db
+saves/*.db-journal
+saves/*.db-shm
+saves/*.db-wal
+
+# Segredos
+.env
+.env.*
+*.token
+
+# OS
+.DS_Store
+Thumbs.db
+.vercel

@@ -1,0 +1,696 @@
+{
+  "current_date": "1930-11-03",
+  "player_polity": "Brasil",
+  "polities": {
+    "Brasil": {
+      "name": "Brasil",
+      "government_type": "Governo Provisório (chefia revolucionária)",
+      "leader": "Getúlio Vargas",
+      "capital_region": "Rio-Vale do Paraíba",
+      "owned_regions": [
+        "Norte",
+        "Nordeste açucareiro",
+        "Nordeste sertanejo",
+        "Centro-Oeste pecuário",
+        "São Paulo cafeeiro",
+        "Rio-Vale do Paraíba",
+        "Minas mineradora-cafeeira",
+        "Sul gaúcho",
+        "Sul colonial",
+        "Mato Grosso fronteiriço"
+      ],
+      "military_units": [
+        {
+          "name": "1º BC RJ",
+          "polity": "Brasil",
+          "location_region": "Rio-Vale do Paraíba",
+          "type": "infantaria",
+          "strength": 65
+        },
+        {
+          "name": "2º BC SP",
+          "polity": "Brasil",
+          "location_region": "São Paulo cafeeiro",
+          "type": "infantaria",
+          "strength": 50
+        },
+        {
+          "name": "3º BC RS",
+          "polity": "Brasil",
+          "location_region": "Sul gaúcho",
+          "type": "infantaria",
+          "strength": 70
+        },
+        {
+          "name": "4º BC MG",
+          "polity": "Brasil",
+          "location_region": "Minas mineradora-cafeeira",
+          "type": "infantaria",
+          "strength": 55
+        },
+        {
+          "name": "5º BC PE",
+          "polity": "Brasil",
+          "location_region": "Nordeste açucareiro",
+          "type": "infantaria",
+          "strength": 50
+        },
+        {
+          "name": "1º RC",
+          "polity": "Brasil",
+          "location_region": "Sul gaúcho",
+          "type": "cavalaria",
+          "strength": 60
+        },
+        {
+          "name": "1º RAM",
+          "polity": "Brasil",
+          "location_region": "Rio-Vale do Paraíba",
+          "type": "artilharia",
+          "strength": 50
+        },
+        {
+          "name": "Esquadra",
+          "polity": "Brasil",
+          "location_region": "Rio-Vale do Paraíba",
+          "type": "naval",
+          "strength": 55
+        }
+      ],
+      "doctrines": [
+        "Aliança Liberal vitoriosa",
+        "tenentismo presente",
+        "café como pilar econômico em crise"
+      ],
+      "internal_tensions": [
+        "tenentes radicais x conservadores liberais",
+        "elites paulistas deslocadas",
+        "queda do preço do café"
+      ],
+      "iso3": "BRA"
+    },
+    "Argentina": {
+      "name": "Argentina",
+      "government_type": "República presidencialista (governo provisório)",
+      "leader": "José Félix Uriburu",
+      "capital_region": "Argentina",
+      "owned_regions": [
+        "Argentina"
+      ],
+      "military_units": [
+        {
+          "name": "Ejército Argentino",
+          "polity": "Argentina",
+          "location_region": "Argentina",
+          "type": "infantaria",
+          "strength": 60
+        }
+      ],
+      "doctrines": [
+        "nacionalismo corporativista católico",
+        "agroexportação dependente do Reino Unido"
+      ],
+      "internal_tensions": [
+        "ressaca do golpe de setembro de 1930",
+        "rivalidade Uriburu x Justo dentro do exército"
+      ],
+      "iso3": "ARG"
+    },
+    "Uruguai": {
+      "name": "Uruguai",
+      "government_type": "República presidencialista democrática",
+      "leader": "Juan Campisteguy",
+      "capital_region": "Uruguai",
+      "owned_regions": [
+        "Uruguai"
+      ],
+      "military_units": [],
+      "doctrines": [
+        "batllismo reformista",
+        "neutralidade pragmática no Prata"
+      ],
+      "internal_tensions": [
+        "impacto da Crise de 1929 sobre o frigorífico"
+      ],
+      "iso3": "URY"
+    },
+    "Paraguai": {
+      "name": "Paraguai",
+      "government_type": "República",
+      "leader": "José Patricio Guggiari",
+      "capital_region": "Paraguai",
+      "owned_regions": [
+        "Paraguai"
+      ],
+      "military_units": [
+        {
+          "name": "Ejército Paraguayo",
+          "polity": "Paraguai",
+          "location_region": "Paraguai",
+          "type": "infantaria",
+          "strength": 45
+        }
+      ],
+      "doctrines": [
+        "reivindicação do Chaco Boreal"
+      ],
+      "internal_tensions": [
+        "mobilização preparatória contra Bolívia"
+      ],
+      "iso3": "PRY"
+    },
+    "Chile": {
+      "name": "Chile",
+      "government_type": "Ditadura presidencial (Ibáñez)",
+      "leader": "Carlos Ibáñez del Campo",
+      "capital_region": "Chile",
+      "owned_regions": [
+        "Chile"
+      ],
+      "military_units": [
+        {
+          "name": "Ejército de Chile",
+          "polity": "Chile",
+          "location_region": "Chile",
+          "type": "infantaria",
+          "strength": 55
+        }
+      ],
+      "doctrines": [
+        "modernização autoritária",
+        "salitre e cobre como pilares"
+      ],
+      "internal_tensions": [
+        "colapso do mercado de salitre",
+        "agitação operária no norte"
+      ],
+      "iso3": "CHL"
+    },
+    "Bolívia": {
+      "name": "Bolívia",
+      "government_type": "Junta militar provisória",
+      "leader": "Carlos Blanco Galindo",
+      "capital_region": "Bolívia",
+      "owned_regions": [
+        "Bolívia"
+      ],
+      "military_units": [
+        {
+          "name": "Ejército Boliviano",
+          "polity": "Bolívia",
+          "location_region": "Bolívia",
+          "type": "infantaria",
+          "strength": 50
+        }
+      ],
+      "doctrines": [
+        "controle altiplânico",
+        "reivindicação saída ao mar"
+      ],
+      "internal_tensions": [
+        "instabilidade pós-deposição de Siles",
+        "tensão com Paraguai pelo Chaco"
+      ],
+      "iso3": "BOL"
+    },
+    "EUA": {
+      "name": "EUA",
+      "government_type": "República federal presidencialista",
+      "leader": "Herbert Hoover",
+      "capital_region": "EUA",
+      "owned_regions": [
+        "EUA"
+      ],
+      "military_units": [
+        {
+          "name": "US Army",
+          "polity": "EUA",
+          "location_region": "EUA",
+          "type": "infantaria",
+          "strength": 50
+        },
+        {
+          "name": "US Navy",
+          "polity": "EUA",
+          "location_region": "EUA",
+          "type": "naval",
+          "strength": 80
+        }
+      ],
+      "doctrines": [
+        "isolacionismo pré-Boa Vizinhança",
+        "padrão-ouro",
+        "austeridade Hoover"
+      ],
+      "internal_tensions": [
+        "Grande Depressão",
+        "desemprego em massa"
+      ],
+      "iso3": "USA"
+    },
+    "Reino Unido": {
+      "name": "Reino Unido",
+      "government_type": "Monarquia constitucional parlamentar",
+      "leader": "Ramsay MacDonald",
+      "capital_region": "Reino Unido",
+      "owned_regions": [
+        "Reino Unido"
+      ],
+      "military_units": [
+        {
+          "name": "British Army",
+          "polity": "Reino Unido",
+          "location_region": "Reino Unido",
+          "type": "infantaria",
+          "strength": 60
+        },
+        {
+          "name": "Royal Navy",
+          "polity": "Reino Unido",
+          "location_region": "Reino Unido",
+          "type": "naval",
+          "strength": 90
+        }
+      ],
+      "doctrines": [
+        "primazia naval imperial",
+        "padrão-ouro",
+        "comércio preferencial com domínios"
+      ],
+      "internal_tensions": [
+        "Grande Depressão",
+        "tensão Trabalhista x Conservador"
+      ],
+      "iso3": "GBR"
+    },
+    "Alemanha": {
+      "name": "Alemanha",
+      "government_type": "República de Weimar (presidencialismo emergencial)",
+      "leader": "Heinrich Brüning",
+      "capital_region": "Alemanha",
+      "owned_regions": [
+        "Alemanha"
+      ],
+      "military_units": [
+        {
+          "name": "Reichswehr",
+          "polity": "Alemanha",
+          "location_region": "Alemanha",
+          "type": "infantaria",
+          "strength": 40
+        }
+      ],
+      "doctrines": [
+        "limitações de Versalhes",
+        "deflação Brüning",
+        "republicanismo em crise"
+      ],
+      "internal_tensions": [
+        "Grande Depressão profunda",
+        "ascensão nazista",
+        "violência paramilitar"
+      ],
+      "iso3": "DEU"
+    },
+    "Itália": {
+      "name": "Itália",
+      "government_type": "Monarquia constitucional sob ditadura fascista",
+      "leader": "Benito Mussolini",
+      "capital_region": "Itália",
+      "owned_regions": [
+        "Itália"
+      ],
+      "military_units": [
+        {
+          "name": "Regio Esercito",
+          "polity": "Itália",
+          "location_region": "Itália",
+          "type": "infantaria",
+          "strength": 60
+        },
+        {
+          "name": "Regia Marina",
+          "polity": "Itália",
+          "location_region": "Itália",
+          "type": "naval",
+          "strength": 65
+        }
+      ],
+      "doctrines": [
+        "fascismo consolidado",
+        "imperialismo mediterrâneo",
+        "Estado corporativista"
+      ],
+      "internal_tensions": [
+        "impacto da Crise de 1929",
+        "tensão Igreja-Estado pós-Lateranenses"
+      ],
+      "iso3": "ITA"
+    },
+    "Japão": {
+      "name": "Japão",
+      "government_type": "Monarquia constitucional militarizada",
+      "leader": "Hamaguchi Osachi",
+      "capital_region": "Japão",
+      "owned_regions": [
+        "Japão"
+      ],
+      "military_units": [
+        {
+          "name": "Imperial Japanese Army",
+          "polity": "Japão",
+          "location_region": "Japão",
+          "type": "infantaria",
+          "strength": 75
+        },
+        {
+          "name": "Imperial Japanese Navy",
+          "polity": "Japão",
+          "location_region": "Japão",
+          "type": "naval",
+          "strength": 80
+        }
+      ],
+      "doctrines": [
+        "expansionismo asiático",
+        "Tratado Naval de Londres em vigor",
+        "Showa Restauração"
+      ],
+      "internal_tensions": [
+        "tensão civis x militares",
+        "depressão agrária",
+        "crescimento de sociedades secretas militaristas"
+      ],
+      "iso3": "JPN"
+    }
+  },
+  "regions": {
+    "Norte": {
+      "name": "Norte",
+      "type": "land",
+      "owner": "Brasil",
+      "population_estimate_thousands": 2200,
+      "economic_profile": "extrativismo (borracha em decadência, castanha, madeira)",
+      "features": []
+    },
+    "Nordeste açucareiro": {
+      "name": "Nordeste açucareiro",
+      "type": "coastal",
+      "owner": "Brasil",
+      "population_estimate_thousands": 4000,
+      "economic_profile": "açúcar de usinas, algodão, cacau no Recôncavo",
+      "features": []
+    },
+    "Nordeste sertanejo": {
+      "name": "Nordeste sertanejo",
+      "type": "land",
+      "owner": "Brasil",
+      "population_estimate_thousands": 5200,
+      "economic_profile": "pecuária extensiva, algodão arbóreo, secas recorrentes",
+      "features": []
+    },
+    "Centro-Oeste pecuário": {
+      "name": "Centro-Oeste pecuário",
+      "type": "land",
+      "owner": "Brasil",
+      "population_estimate_thousands": 800,
+      "economic_profile": "pecuária bovina extensiva, fronteira agrícola incipiente",
+      "features": []
+    },
+    "São Paulo cafeeiro": {
+      "name": "São Paulo cafeeiro",
+      "type": "coastal",
+      "owner": "Brasil",
+      "population_estimate_thousands": 6500,
+      "economic_profile": "café, indústria nascente, imigração europeia",
+      "features": []
+    },
+    "Rio-Vale do Paraíba": {
+      "name": "Rio-Vale do Paraíba",
+      "type": "coastal",
+      "owner": "Brasil",
+      "population_estimate_thousands": 3300,
+      "economic_profile": "burocracia federal, indústria, porto",
+      "features": []
+    },
+    "Minas mineradora-cafeeira": {
+      "name": "Minas mineradora-cafeeira",
+      "type": "land",
+      "owner": "Brasil",
+      "population_estimate_thousands": 7500,
+      "economic_profile": "café da Zona da Mata, mineração, pecuária leiteira",
+      "features": []
+    },
+    "Sul gaúcho": {
+      "name": "Sul gaúcho",
+      "type": "coastal",
+      "owner": "Brasil",
+      "population_estimate_thousands": 2900,
+      "economic_profile": "pecuária, charque, vinho colonial, base militar revolucionária",
+      "features": []
+    },
+    "Sul colonial": {
+      "name": "Sul colonial",
+      "type": "coastal",
+      "owner": "Brasil",
+      "population_estimate_thousands": 1800,
+      "economic_profile": "erva-mate, madeira, colônias italianas e alemãs",
+      "features": []
+    },
+    "Mato Grosso fronteiriço": {
+      "name": "Mato Grosso fronteiriço",
+      "type": "land",
+      "owner": "Brasil",
+      "population_estimate_thousands": 200,
+      "economic_profile": "pecuária extensiva, comércio fluvial transfronteiriço",
+      "features": []
+    },
+    "Argentina": {
+      "name": "Argentina",
+      "type": "coastal",
+      "owner": "Argentina",
+      "population_estimate_thousands": 11900,
+      "economic_profile": "agroexportação (carnes, trigo, lã)",
+      "features": []
+    },
+    "Uruguai": {
+      "name": "Uruguai",
+      "type": "coastal",
+      "owner": "Uruguai",
+      "population_estimate_thousands": 1860,
+      "economic_profile": "pecuária, frigoríficos, comércio platino",
+      "features": []
+    },
+    "Paraguai": {
+      "name": "Paraguai",
+      "type": "land",
+      "owner": "Paraguai",
+      "population_estimate_thousands": 870,
+      "economic_profile": "agropecuária de subsistência, erva-mate",
+      "features": []
+    },
+    "Chile": {
+      "name": "Chile",
+      "type": "coastal",
+      "owner": "Chile",
+      "population_estimate_thousands": 4400,
+      "economic_profile": "salitre em colapso, cobre, agricultura central",
+      "features": []
+    },
+    "Bolívia": {
+      "name": "Bolívia",
+      "type": "land",
+      "owner": "Bolívia",
+      "population_estimate_thousands": 2300,
+      "economic_profile": "estanho do altiplano, agricultura andina",
+      "features": []
+    },
+    "EUA": {
+      "name": "EUA",
+      "type": "coastal",
+      "owner": "EUA",
+      "population_estimate_thousands": 122775,
+      "economic_profile": "potência industrial e financeira em depressão",
+      "features": []
+    },
+    "Reino Unido": {
+      "name": "Reino Unido",
+      "type": "coastal",
+      "owner": "Reino Unido",
+      "population_estimate_thousands": 45866,
+      "economic_profile": "industrial-imperial, financeiro em Londres",
+      "features": []
+    },
+    "Alemanha": {
+      "name": "Alemanha",
+      "type": "coastal",
+      "owner": "Alemanha",
+      "population_estimate_thousands": 65094,
+      "economic_profile": "industrial-pesado em depressão, dependente de capital externo",
+      "features": []
+    },
+    "Itália": {
+      "name": "Itália",
+      "type": "coastal",
+      "owner": "Itália",
+      "population_estimate_thousands": 41652,
+      "economic_profile": "agroindustrial, autarquia fascista incipiente",
+      "features": []
+    },
+    "Japão": {
+      "name": "Japão",
+      "type": "coastal",
+      "owner": "Japão",
+      "population_estimate_thousands": 64450,
+      "economic_profile": "industrial-militar, dependente de matérias-primas asiáticas",
+      "features": []
+    }
+  },
+  "diplomatic_relations": {
+    "Argentina::Brasil": {
+      "polity_a": "Argentina",
+      "polity_b": "Brasil",
+      "status": "paz",
+      "opinion_a_to_b": 5,
+      "opinion_b_to_a": 5,
+      "treaties": [],
+      "notes": "Rivalidade histórica pelo Prata. Ambos governos provisórios em 1930."
+    },
+    "Brasil::Uruguai": {
+      "polity_a": "Brasil",
+      "polity_b": "Uruguai",
+      "status": "paz",
+      "opinion_a_to_b": 15,
+      "opinion_b_to_a": 10,
+      "treaties": [],
+      "notes": "Vizinhança fronteiriça com RS, relações historicamente cordiais."
+    },
+    "Brasil::Paraguai": {
+      "polity_a": "Brasil",
+      "polity_b": "Paraguai",
+      "status": "paz",
+      "opinion_a_to_b": 0,
+      "opinion_b_to_a": -5,
+      "treaties": [],
+      "notes": "Sequela da Guerra do Paraguai (1864-1870) ainda pesa em Asunción."
+    },
+    "Brasil::Chile": {
+      "polity_a": "Brasil",
+      "polity_b": "Chile",
+      "status": "paz",
+      "opinion_a_to_b": 10,
+      "opinion_b_to_a": 10,
+      "treaties": [],
+      "notes": "Pacto ABC (1915) em letra morta, mas sem fricções diretas."
+    },
+    "Bolívia::Brasil": {
+      "polity_a": "Bolívia",
+      "polity_b": "Brasil",
+      "status": "paz",
+      "opinion_a_to_b": 5,
+      "opinion_b_to_a": 10,
+      "treaties": [],
+      "notes": "Tratado de Petrópolis (1903) resolveu o Acre; tensão potencial pelo Chaco."
+    },
+    "Brasil::EUA": {
+      "polity_a": "Brasil",
+      "polity_b": "EUA",
+      "status": "paz",
+      "opinion_a_to_b": 25,
+      "opinion_b_to_a": 20,
+      "treaties": [],
+      "notes": "Parceria comercial (café), aproximação crescente."
+    },
+    "Brasil::Reino Unido": {
+      "polity_a": "Brasil",
+      "polity_b": "Reino Unido",
+      "status": "paz",
+      "opinion_a_to_b": 20,
+      "opinion_b_to_a": 15,
+      "treaties": [],
+      "notes": "Mercado tradicional para commodities e fonte de capital."
+    },
+    "Alemanha::Brasil": {
+      "polity_a": "Alemanha",
+      "polity_b": "Brasil",
+      "status": "paz",
+      "opinion_a_to_b": 5,
+      "opinion_b_to_a": 5,
+      "treaties": [],
+      "notes": "Comunidade alemã expressiva no Sul colonial; comércio crescente."
+    },
+    "Brasil::Itália": {
+      "polity_a": "Brasil",
+      "polity_b": "Itália",
+      "status": "paz",
+      "opinion_a_to_b": 10,
+      "opinion_b_to_a": 10,
+      "treaties": [],
+      "notes": "Imigração italiana massiva em SP e Sul."
+    },
+    "Brasil::Japão": {
+      "polity_a": "Brasil",
+      "polity_b": "Japão",
+      "status": "paz",
+      "opinion_a_to_b": 5,
+      "opinion_b_to_a": 5,
+      "treaties": [],
+      "notes": "Imigração japonesa em SP a partir de 1908."
+    },
+    "Bolívia::Paraguai": {
+      "polity_a": "Bolívia",
+      "polity_b": "Paraguai",
+      "status": "neutralidade armada",
+      "opinion_a_to_b": -30,
+      "opinion_b_to_a": -30,
+      "treaties": [],
+      "notes": "Mobilização preparatória para a Guerra do Chaco (eclodirá em 1932)."
+    },
+    "Argentina::Chile": {
+      "polity_a": "Argentina",
+      "polity_b": "Chile",
+      "status": "paz",
+      "opinion_a_to_b": 5,
+      "opinion_b_to_a": 0,
+      "treaties": [],
+      "notes": "Rivalidade andina latente."
+    },
+    "EUA::Reino Unido": {
+      "polity_a": "EUA",
+      "polity_b": "Reino Unido",
+      "status": "paz",
+      "opinion_a_to_b": 30,
+      "opinion_b_to_a": 25,
+      "treaties": [],
+      "notes": "Aliança de fato anglo-americana, articulação comercial."
+    },
+    "Alemanha::Reino Unido": {
+      "polity_a": "Alemanha",
+      "polity_b": "Reino Unido",
+      "status": "paz",
+      "opinion_a_to_b": -10,
+      "opinion_b_to_a": -5,
+      "treaties": [],
+      "notes": "Versalhes ainda vinculante mas tensão crescente."
+    },
+    "Itália::Reino Unido": {
+      "polity_a": "Itália",
+      "polity_b": "Reino Unido",
+      "status": "paz",
+      "opinion_a_to_b": -5,
+      "opinion_b_to_a": 0,
+      "treaties": [],
+      "notes": "Mediterrâneo como ponto de fricção potencial."
+    },
+    "EUA::Japão": {
+      "polity_a": "EUA",
+      "polity_b": "Japão",
+      "status": "paz",
+      "opinion_a_to_b": -5,
+      "opinion_b_to_a": -10,
+      "treaties": [],
+      "notes": "Tratado Naval de Londres (1930) limita marinhas; rivalidade no Pacífico."
+    }
+  },
+  "pending_actions": []
+}

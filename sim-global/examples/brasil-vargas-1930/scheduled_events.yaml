@@ -1,0 +1,593 @@
+# Eventos pré-programados — Brasil, Era Vargas (1930-1945).
+#
+# Cada evento tem id único, data canônica e janela de gatilho
+# (trigger_window_days antes/depois). O Skill simulator lê este
+# arquivo a cada turno e dispara os eventos cuja janela cruza o
+# delta temporal solicitado, a menos que cancel_conditions sejam
+# verdadeiras face ao estado atual.
+#
+# Tanto cancel_conditions quanto default_effects são prosa em
+# português. O simulator interpreta e produz Events e StateDeltas
+# concretos no turn_buffer.json. NÃO é DSL formal.
+#
+# Fontes citadas para verificação humana. Onde a fonte é dúbia, o
+# campo source contém [FONTE PENDENTE].
+
+events:
+  - id: criacao_ministerio_trabalho
+    date: 1930-12-26
+    trigger_window_days: 90
+    category: internal
+    description: >
+      Criação do Ministério do Trabalho, Indústria e Comércio.
+      Lindolfo Collor empossado como primeiro ministro do Trabalho.
+    source: https://pt.wikipedia.org/wiki/Minist%C3%A9rio_do_Trabalho_e_Previd%C3%AAncia
+    affected_polities: [Brasil]
+    affected_regions: [Rio-Vale do Paraíba]
+    cancel_conditions: >
+      Não cancela em circunstâncias normais. Apenas se o jogador
+      explicitamente extinguir o ministério antes da data.
+    default_effects: >
+      Brasil ganha doutrina "trabalhismo nascente". Possível
+      tensão "elites paulistas insatisfeitas".
+
+  - id: guerra_chaco_inicio
+    date: 1932-06-15
+    trigger_window_days: 90
+    category: military
+    description: >
+      Início formal da Guerra do Chaco entre Bolívia e Paraguai
+      pelo Chaco Boreal.
+    source: https://pt.wikipedia.org/wiki/Guerra_do_Chaco
+    affected_polities: [Bolívia, Paraguai]
+    affected_regions: []
+    cancel_conditions: >
+      Não cancelável por ação brasileira direta (evento externo).
+      Só não dispara se mediação multilateral coordenada pelo
+      Brasil em 1931-1932 obteve cessar-fogo prévio.
+    default_effects: >
+      Bolívia e Paraguai entram em status "guerra" entre si.
+      Brasil pressionado a posicionar-se sobre o conflito (Vargas
+      historicamente buscou neutralidade ativa).
+
+  - id: revolucao_constitucionalista
+    date: 1932-07-09
+    trigger_window_days: 60
+    category: military
+    description: >
+      Eclode em São Paulo a Revolução Constitucionalista. Forças
+      paulistas exigem nova constituinte e fim do governo
+      provisório.
+    source: https://pt.wikipedia.org/wiki/Revolu%C3%A7%C3%A3o_Constitucionalista_de_1932
+    affected_polities: [Brasil]
+    affected_regions: [São Paulo cafeeiro]
+    cancel_conditions: >
+      Cancela se Brasil já convocou Assembleia Constituinte antes
+      de junho de 1932 ou se a tensão "oposição paulista" foi
+      pacificada via concessões substantivas (anistia, retorno de
+      autonomia estadual a SP).
+    default_effects: >
+      Brasil ganha tensão "revolta constitucionalista em SP".
+      Conflito armado de cerca de 3 meses; vitória federal por
+      padrão, com custo político alto. Argentina e Uruguai
+      expressam preocupação (-3 opinião com Brasil).
+
+  - id: capitulacao_paulista_1932
+    date: 1932-10-02
+    trigger_window_days: 30
+    category: military
+    description: >
+      Capitulação das forças constitucionalistas paulistas após
+      derrota militar.
+    source: https://pt.wikipedia.org/wiki/Revolu%C3%A7%C3%A3o_Constitucionalista_de_1932
+    affected_polities: [Brasil]
+    affected_regions: [São Paulo cafeeiro]
+    cancel_conditions: >
+      Só dispara se a Revolução Constitucionalista efetivamente
+      ocorreu. Se foi cancelada ou venceu, pular.
+    default_effects: >
+      Brasil remove tensão "revolta constitucionalista em SP" e
+      ganha doutrina "centralismo administrativo reforçado".
+      Promessa pública de constituinte para o ano seguinte.
+
+  - id: ascensao_hitler
+    date: 1933-01-30
+    trigger_window_days: 30
+    category: diplomatic
+    description: >
+      Adolf Hitler é nomeado chanceler da Alemanha pelo presidente
+      Hindenburg.
+    source: https://pt.wikipedia.org/wiki/Adolf_Hitler
+    affected_polities: [Alemanha]
+    affected_regions: []
+    cancel_conditions: >
+      Não cancelável (evento externo).
+    default_effects: >
+      Alemanha muda leader para "Adolf Hitler" e government_type
+      para "Reich Nacional-Socialista". Adiciona doutrina
+      "expansionismo nazista".
+
+  - id: eleicoes_constituinte_1933
+    date: 1933-05-03
+    trigger_window_days: 60
+    category: internal
+    description: >
+      Eleições para a Assembleia Nacional Constituinte.
+    source: https://pt.wikipedia.org/wiki/Elei%C3%A7%C3%A3o_geral_no_Brasil_em_1933
+    affected_polities: [Brasil]
+    affected_regions: []
+    cancel_conditions: >
+      Cancela se o regime já tomou rumo autoritário aberto e
+      eliminou perspectiva eleitoral antes de 1933.
+    default_effects: >
+      Brasil ganha doutrina "transição constitucional".
+      Tensões internas reduzem temporariamente.
+
+  - id: constituicao_1934
+    date: 1934-07-16
+    trigger_window_days: 60
+    category: internal
+    description: >
+      Promulgação da Constituição de 1934. Vargas eleito
+      presidente pela Assembleia Constituinte para mandato até
+      1938.
+    source: https://pt.wikipedia.org/wiki/Constitui%C3%A7%C3%A3o_brasileira_de_1934
+    affected_polities: [Brasil]
+    affected_regions: []
+    cancel_conditions: >
+      Só ocorre se houve eleição constituinte em 1933.
+    default_effects: >
+      Brasil muda government_type para "República
+      constitucional". Doutrina "transição constitucional"
+      substituída por "presidencialismo constitucional".
+
+  - id: fundacao_anl
+    date: 1935-03-31
+    trigger_window_days: 45
+    category: internal
+    description: >
+      Fundação da Aliança Nacional Libertadora (ANL), frente
+      antifascista liderada por comunistas, tenentes
+      progressistas e setores liberais.
+    source: https://pt.wikipedia.org/wiki/Alian%C3%A7a_Nacional_Libertadora
+    affected_polities: [Brasil]
+    affected_regions: [Rio-Vale do Paraíba]
+    cancel_conditions: >
+      Cancela se o regime já consolidou ditadura aberta antes de
+      1935.
+    default_effects: >
+      Brasil ganha tensão "ANL mobilizando oposição".
+
+  - id: guerra_chaco_fim
+    date: 1935-06-12
+    trigger_window_days: 60
+    category: military
+    description: >
+      Cessar-fogo entre Bolívia e Paraguai pondo fim à Guerra do
+      Chaco. Paraguai vitorioso, recebe a maior parte do Chaco
+      Boreal.
+    source: https://pt.wikipedia.org/wiki/Guerra_do_Chaco
+    affected_polities: [Bolívia, Paraguai]
+    affected_regions: []
+    cancel_conditions: >
+      Só dispara se guerra_chaco_inicio ocorreu.
+    default_effects: >
+      Bolívia e Paraguai voltam a "paz". Bolívia desestabilizada
+      politicamente (tensão interna "derrota chaquenha");
+      Paraguai com prestígio elevado. Argentina e Brasil
+      ganham peso regional como mediadores se atuaram.
+
+  - id: anl_fechada
+    date: 1935-07-11
+    trigger_window_days: 30
+    category: internal
+    description: >
+      ANL declarada ilegal e fechada por decreto, com base na
+      Lei de Segurança Nacional.
+    source: https://pt.wikipedia.org/wiki/Alian%C3%A7a_Nacional_Libertadora
+    affected_polities: [Brasil]
+    affected_regions: []
+    cancel_conditions: >
+      Só dispara se ANL foi fundada (evento fundacao_anl).
+    default_effects: >
+      Brasil substitui tensão "ANL mobilizando oposição" por
+      "comunistas radicalizados na clandestinidade".
+
+  - id: intentona_comunista
+    date: 1935-11-23
+    trigger_window_days: 30
+    category: military
+    description: >
+      Levantes comunistas em Natal, Recife e Rio (Praia Vermelha)
+      coordenados pelo PCB. Esmagados em poucos dias.
+    source: https://pt.wikipedia.org/wiki/Intentona_Comunista
+    affected_polities: [Brasil]
+    affected_regions: [Nordeste açucareiro, Nordeste sertanejo, Rio-Vale do Paraíba]
+    cancel_conditions: >
+      Só dispara se a tensão "comunistas radicalizados na
+      clandestinidade" estiver presente (decorrente do
+      fechamento da ANL).
+    default_effects: >
+      Brasil consolida narrativa anticomunista. Adiciona doutrina
+      "anticomunismo de Estado". Justifica reforço de poderes
+      presidenciais. EUA e Reino Unido reagem positivamente
+      (+3 opinião cada).
+
+  - id: guerra_civil_espanhola
+    date: 1936-07-17
+    trigger_window_days: 30
+    category: diplomatic
+    description: >
+      Início da Guerra Civil Espanhola. Levante militar contra a
+      Segunda República.
+    source: https://pt.wikipedia.org/wiki/Guerra_Civil_Espanhola
+    affected_polities: [Alemanha, Itália]
+    affected_regions: []
+    cancel_conditions: >
+      Não cancelável (evento externo).
+    default_effects: >
+      Itália e Alemanha apoiam franquistas; URSS apoia
+      republicanos. Polariza ideologicamente a Europa, o que
+      ressoa no Brasil galvanizando integralistas e antifascistas.
+
+  - id: plano_cohen
+    date: 1937-09-30
+    trigger_window_days: 30
+    category: internal
+    description: >
+      Divulgação do "Plano Cohen", documento forjado descrevendo
+      suposta insurreição comunista. Justificativa pública para o
+      golpe do mês seguinte.
+    source: https://pt.wikipedia.org/wiki/Plano_Cohen
+    affected_polities: [Brasil]
+    affected_regions: []
+    cancel_conditions: >
+      Cancela se Vargas já caiu antes de 1937 ou se o regime
+      tomou caminho liberal-democrático estável.
+    default_effects: >
+      Brasil ganha tensão "alarme anticomunista fabricado".
+      Prepara terreno político para o Estado Novo.
+
+  - id: estado_novo
+    date: 1937-11-10
+    trigger_window_days: 30
+    category: internal
+    description: >
+      Golpe do Estado Novo. Vargas dissolve o Congresso, cancela
+      eleições marcadas para janeiro de 1938 e impõe nova
+      constituição (a "Polaca").
+    source: https://pt.wikipedia.org/wiki/Estado_Novo_(Brasil)
+    affected_polities: [Brasil]
+    affected_regions: []
+    cancel_conditions: >
+      Cancela se Vargas perdeu poder antes de 1937, se o regime
+      consolidou via democrática estável, ou se as forças
+      armadas se opuseram a tempo.
+    default_effects: >
+      Brasil muda government_type para "Estado Novo (ditadura
+      civil)". Adiciona doutrinas "autoritarismo presidencial" e
+      "corporativismo de Estado". Remove doutrina constitucional
+      anterior. Tensão "oposição liberal silenciada" aparece.
+
+  - id: anschluss
+    date: 1938-03-12
+    trigger_window_days: 30
+    category: diplomatic
+    description: >
+      Anschluss: anexação da Áustria pela Alemanha nazista.
+    source: https://pt.wikipedia.org/wiki/Anschluss
+    affected_polities: [Alemanha]
+    affected_regions: []
+    cancel_conditions: >
+      Não cancelável (evento externo).
+    default_effects: >
+      Alemanha ganha doutrina "Pan-Germanismo realizado". Tensão
+      internacional escala. Reino Unido e França preocupados
+      mas ainda apaziguadores.
+
+  - id: lei_nacionalizacao_trabalho
+    date: 1938-04-18
+    trigger_window_days: 60
+    category: economic
+    description: >
+      Pacote de medidas de nacionalização do trabalho do Estado
+      Novo (incluindo regulamentação da Lei dos 2/3 e restrições
+      a estrangeiros).
+    source: https://pt.wikipedia.org/wiki/Estado_Novo_(Brasil)
+    affected_polities: [Brasil]
+    affected_regions: [Sul colonial, São Paulo cafeeiro]
+    cancel_conditions: >
+      Cancela se Estado Novo não foi instalado.
+    default_effects: >
+      Brasil consolida doutrina "nacionalismo trabalhista".
+      Tensão "comunidades de imigrantes pressionadas" aparece em
+      Sul colonial. Itália e Alemanha reagem mal (-5 opinião
+      cada).
+
+  - id: intentona_integralista
+    date: 1938-05-11
+    trigger_window_days: 30
+    category: military
+    description: >
+      Tentativa de golpe integralista. Assalto ao Palácio
+      Guanabara por militantes da AIB rapidamente sufocado.
+    source: https://pt.wikipedia.org/wiki/Levante_integralista_de_1938
+    affected_polities: [Brasil]
+    affected_regions: [Rio-Vale do Paraíba]
+    cancel_conditions: >
+      Cancela se Estado Novo absorveu integralistas formalmente
+      ou se Plínio Salgado foi exilado/cooptado antes.
+    default_effects: >
+      Brasil ganha tensão "integralistas reprimidos". Plínio
+      Salgado eventualmente exilado em Portugal. AIB extinta.
+      Polities do Eixo perdem ponto de apoio interno no Brasil.
+
+  - id: pacto_molotov_ribbentrop
+    date: 1939-08-23
+    trigger_window_days: 15
+    category: diplomatic
+    description: >
+      Pacto de não-agressão germano-soviético, com cláusulas
+      secretas dividindo a Europa Oriental.
+    source: https://pt.wikipedia.org/wiki/Pacto_Molotov%E2%80%93Ribbentrop
+    affected_polities: [Alemanha]
+    affected_regions: []
+    cancel_conditions: >
+      Não cancelável (evento externo).
+    default_effects: >
+      Alemanha em status temporário de "neutralidade armada" com
+      a URSS. Reino Unido e EUA ainda mais alarmados.
+
+  - id: inicio_segunda_guerra
+    date: 1939-09-01
+    trigger_window_days: 15
+    category: military
+    description: >
+      Invasão alemã da Polônia. Reino Unido e França declaram
+      guerra à Alemanha em 3 de setembro. Início formal da 2ª
+      Guerra Mundial.
+    source: https://pt.wikipedia.org/wiki/Segunda_Guerra_Mundial
+    affected_polities: [Alemanha, Reino Unido]
+    affected_regions: []
+    cancel_conditions: >
+      Não cancelável.
+    default_effects: >
+      Reino Unido e Alemanha entram em status "guerra" entre si.
+      Brasil sob pressão crescente para escolher lado. Comércio
+      atlântico afetado.
+
+  - id: marcha_para_oeste
+    date: 1940-05-01
+    trigger_window_days: 60
+    category: economic
+    description: >
+      Discurso "Marcha para o Oeste" de Vargas (1º de Maio),
+      defendendo colonização do interior brasileiro como projeto
+      nacional.
+    source: https://pt.wikipedia.org/wiki/Marcha_para_o_Oeste
+    affected_polities: [Brasil]
+    affected_regions: [Centro-Oeste pecuário, Mato Grosso fronteiriço, Norte]
+    cancel_conditions: >
+      Cancela se Vargas deposto antes de 1940.
+    default_effects: >
+      Brasil ganha doutrina "interiorização". Investimentos no
+      Centro-Oeste e Norte. Bolívia e Paraguai notam pressão
+      brasileira nas fronteiras.
+
+  - id: queda_da_franca
+    date: 1940-06-22
+    trigger_window_days: 30
+    category: military
+    description: >
+      Armistício franco-alemão. Queda da França e instalação do
+      regime de Vichy.
+    source: https://pt.wikipedia.org/wiki/Batalha_de_Fran%C3%A7a
+    affected_polities: [Alemanha, Reino Unido]
+    affected_regions: []
+    cancel_conditions: >
+      Só dispara se 2GM começou.
+    default_effects: >
+      Alemanha ganha doutrina "domínio continental europeu".
+      Reino Unido isolado. Brasil sob escolha mais difícil:
+      pressão alemã (potência ascendente) versus EUA.
+
+  - id: operacao_barbarossa
+    date: 1941-06-22
+    trigger_window_days: 15
+    category: military
+    description: >
+      Alemanha invade a União Soviética, rompendo o Pacto
+      Molotov-Ribbentrop.
+    source: https://pt.wikipedia.org/wiki/Opera%C3%A7%C3%A3o_Barbarossa
+    affected_polities: [Alemanha]
+    affected_regions: []
+    cancel_conditions: >
+      Não cancelável.
+    default_effects: >
+      Frente Oriental consome recursos alemães. Reino Unido ganha
+      aliado de fato (URSS). PCB clandestino no Brasil
+      reorienta-se contra o Eixo.
+
+  - id: pearl_harbor
+    date: 1941-12-07
+    trigger_window_days: 15
+    category: military
+    description: >
+      Ataque japonês a Pearl Harbor. EUA entram na guerra contra
+      Japão; Alemanha e Itália declaram guerra aos EUA dias
+      depois.
+    source: https://pt.wikipedia.org/wiki/Ataque_a_Pearl_Harbor
+    affected_polities: [EUA, Japão]
+    affected_regions: []
+    cancel_conditions: >
+      Não cancelável.
+    default_effects: >
+      EUA entram em status "guerra" com Japão, Alemanha e Itália.
+      Brasil sob pressão imediata e maciça dos EUA para
+      alinhamento panamericano.
+
+  - id: conferencia_rio_1942
+    date: 1942-01-15
+    trigger_window_days: 30
+    category: diplomatic
+    description: >
+      3ª Reunião de Consulta dos Ministros das Relações
+      Exteriores Americanas, no Rio de Janeiro. Brasil articula a
+      recomendação de ruptura coletiva com o Eixo. Em 28/01,
+      Brasil rompe relações diplomáticas com Alemanha, Itália e
+      Japão.
+    source: https://pt.wikipedia.org/wiki/Confer%C3%AAncia_do_Rio_de_Janeiro_(1942)
+    affected_polities: [Brasil, EUA, Argentina, Chile, Alemanha, Itália, Japão]
+    affected_regions: []
+    cancel_conditions: >
+      Cancela se Brasil já está alinhado com Eixo formalmente
+      ou se Vargas optou por neutralidade fechada e barganha
+      direta com Berlim.
+    default_effects: >
+      Brasil rompe com Alemanha, Itália, Japão (status
+      "ruptura"). Argentina mantém neutralidade (tensão
+      diplomática Brasil-Argentina). Chile relutante. Opinião
+      EUA sobre Brasil sobe substancialmente (+15).
+
+  - id: torpedeamentos_u507
+    date: 1942-08-15
+    trigger_window_days: 15
+    category: military
+    description: >
+      U-boat U-507 afunda cinco navios mercantes brasileiros na
+      costa de Sergipe e Bahia em poucos dias. Mais de 600
+      mortos. Comoção nacional.
+    source: https://pt.wikipedia.org/wiki/Brasil_na_Segunda_Guerra_Mundial
+    affected_polities: [Brasil, Alemanha]
+    affected_regions: [Nordeste açucareiro]
+    cancel_conditions: >
+      Só dispara se Brasil rompeu com o Eixo (evento
+      conferencia_rio_1942 ocorreu).
+    default_effects: >
+      Brasil ganha tensão "clamor por declaração de guerra".
+      Opinião Brasil→Alemanha despenca (delta_b_to_a -50).
+      Caminho aberto para declaração formal.
+
+  - id: declaracao_guerra_brasil
+    date: 1942-08-22
+    trigger_window_days: 15
+    category: diplomatic
+    description: >
+      Brasil reconhece estado de beligerância com Alemanha e
+      Itália. Entrada formal na 2ª Guerra Mundial ao lado dos
+      Aliados.
+    source: https://pt.wikipedia.org/wiki/Brasil_na_Segunda_Guerra_Mundial
+    affected_polities: [Brasil, Alemanha, Itália]
+    affected_regions: []
+    cancel_conditions: >
+      Cancela se Brasil não rompeu com Eixo ou se torpedeamentos
+      foram evitados via concessões alemãs ou rota alternativa.
+    default_effects: >
+      Brasil entra em status "guerra" com Alemanha e Itália.
+      Status com EUA passa para "aliança". Aceleração do esforço
+      militar nacional.
+
+  - id: feb_embarca
+    date: 1944-07-02
+    trigger_window_days: 60
+    category: military
+    description: >
+      Primeiro escalão da Força Expedicionária Brasileira (FEB)
+      embarca rumo à Itália a bordo do USS General Mann.
+    source: https://pt.wikipedia.org/wiki/For%C3%A7a_Expedicion%C3%A1ria_Brasileira
+    affected_polities: [Brasil]
+    affected_regions: [Rio-Vale do Paraíba]
+    cancel_conditions: >
+      Só dispara se Brasil declarou guerra ao Eixo.
+    default_effects: >
+      Brasil cria batalhões "FEB-1", "FEB-2", "FEB-3"
+      (infantaria, strength 60-70). Posicionados em "Rio-Vale do
+      Paraíba" antes do embarque. Doutrina "projeção militar
+      internacional" adicionada.
+
+  - id: monte_castelo
+    date: 1945-02-21
+    trigger_window_days: 30
+    category: military
+    description: >
+      Tomada do Monte Castelo pela FEB após sucessivas
+      tentativas. Vitória simbólica brasileira na campanha
+      italiana.
+    source: https://pt.wikipedia.org/wiki/Batalha_de_Monte_Castelo
+    affected_polities: [Brasil, Itália]
+    affected_regions: []
+    cancel_conditions: >
+      Só dispara se FEB embarcou.
+    default_effects: >
+      Brasil consolida prestígio internacional. Tensão interna
+      "demanda por democratização" emerge (combatentes que
+      lutaram pela liberdade na Europa querem-na em casa).
+
+  - id: anistia_1945
+    date: 1945-04-29
+    trigger_window_days: 60
+    category: internal
+    description: >
+      Decreto-lei 7.474 concede anistia ampla a presos políticos.
+      Sinaliza abertura política antes da queda do Estado Novo.
+    source: https://pt.wikipedia.org/wiki/Estado_Novo_(Brasil)
+    affected_polities: [Brasil]
+    affected_regions: []
+    cancel_conditions: >
+      Cancela se Estado Novo já caiu antes ou se a repressão
+      escalou em vez de relaxar.
+    default_effects: >
+      Brasil remove tensão "oposição liberal silenciada". Tensão
+      "demanda por democratização" intensifica.
+
+  - id: capitulacao_alema
+    date: 1945-05-08
+    trigger_window_days: 7
+    category: military
+    description: >
+      Capitulação incondicional alemã. Fim da guerra na Europa.
+    source: https://pt.wikipedia.org/wiki/Dia_da_Vit%C3%B3ria_na_Europa
+    affected_polities: [Alemanha, Reino Unido, EUA]
+    affected_regions: []
+    cancel_conditions: >
+      Não cancelável.
+    default_effects: >
+      Alemanha em status "ruptura" com todos. Eixo desfeito na
+      Europa. Reino Unido e EUA passam a focar Pacífico.
+
+  - id: capitulacao_japonesa
+    date: 1945-08-15
+    trigger_window_days: 15
+    category: military
+    description: >
+      Anúncio da capitulação japonesa após bombas atômicas em
+      Hiroshima (06/08) e Nagasaki (09/08).
+    source: https://pt.wikipedia.org/wiki/Rendi%C3%A7%C3%A3o_do_Jap%C3%A3o
+    affected_polities: [Japão, EUA]
+    affected_regions: []
+    cancel_conditions: >
+      Não cancelável.
+    default_effects: >
+      Japão muda government_type para "ocupação aliada". Fim
+      formal da 2GM.
+
+  - id: deposicao_vargas
+    date: 1945-10-29
+    trigger_window_days: 30
+    category: internal
+    description: >
+      Deposição de Getúlio Vargas pelo Alto-Comando das Forças
+      Armadas (Góes Monteiro e Eurico Gaspar Dutra à frente).
+      Fim do Estado Novo.
+    source: https://pt.wikipedia.org/wiki/Estado_Novo_(Brasil)
+    affected_polities: [Brasil]
+    affected_regions: [Rio-Vale do Paraíba]
+    cancel_conditions: >
+      Cancela se Vargas pacificou militares com concessões
+      substantivas ou se transição democrática foi formalizada
+      antecipadamente. Cancela se Vargas já caiu antes.
+    default_effects: >
+      Brasil muda leader (sucessor: presidente do STF José
+      Linhares como interino). government_type passa para
+      "República em transição". Doutrinas autoritárias removidas;
+      "redemocratização em curso" adicionada.

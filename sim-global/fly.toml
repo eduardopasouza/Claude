@@ -1,0 +1,47 @@
+# fly.toml app configuration file generated for sim-global on 2026-05-01T22:33:20Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'sim-global'
+primary_region = 'gru'
+
+[build]
+  dockerfile = 'Dockerfile'
+
+[env]
+  SIMGLOBAL_DATABASE_URL = 'sqlite:////data/saves/simglobal.db'
+  SIMGLOBAL_HOST = '0.0.0.0'
+  SIMGLOBAL_OPEN_BROWSER = '0'
+  SIMGLOBAL_PORT = '8080'
+
+[[mounts]]
+  source = 'simglobal_data'
+  destination = '/data'
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+  [http_service.concurrency]
+    type = 'requests'
+    hard_limit = 50
+    soft_limit = 20
+
+  [[http_service.checks]]
+    interval = '30s'
+    timeout = '5s'
+    grace_period = '10s'
+    method = 'GET'
+    path = '/api/health'
+
+[[vm]]
+  size = 'shared-cpu-1x'
+  memory = '512mb'
+  cpu_kind = 'shared'
+  cpus = 1
+  memory_mb = 512
